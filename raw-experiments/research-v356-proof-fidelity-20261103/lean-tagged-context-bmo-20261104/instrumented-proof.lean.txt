@@ -1,0 +1,296 @@
+by
+  intro p n hp hn hdvd hmin
+  haveI : Fact p.Prime := ⟨hp⟩
+  have hp_ne_zero : p ≠ 0 := by
+    have hp_pos : 0 < p := lt_of_lt_of_le (by norm_num : 0 < 2) hp.two_le
+    exact ne_of_gt hp_pos
+  haveI : NeZero p := ⟨hp_ne_zero⟩
+  have hzero_to_dvd : ∀ a : ℕ, ((a : ZMod p) = 0) → p ∣ a := by
+    intro a ha
+    exact (ZMod.natCast_eq_zero_iff a p).1 ha
+  have hdvd_to_zero : ∀ a : ℕ, p ∣ a → ((a : ZMod p) = 0) := by
+    intro a ha
+    exact (ZMod.natCast_eq_zero_iff a p).2 ha
+  have pow_six_dvd : ∀ x : ℕ, 1 ≤ x → ((x : ZMod p) ^ 6 = 1) → p ∣ (x ^ 6 - 1) := by
+    intro x hx1 hx6
+    apply hzero_to_dvd
+    have hxpos : 0 < x := lt_of_lt_of_le zero_lt_one hx1
+    have hpos : 0 < x ^ 6 := pow_pos hxpos 6
+    have hle : 1 ≤ x ^ 6 := Nat.succ_le_of_lt hpos
+    rw [Nat.cast_sub hle]
+    simp [hx6]
+  have hn6 : (n : ZMod p) ^ 6 = 1 := by
+    have h0 : ((n ^ 6 - 1 : ℕ) : ZMod p) = 0 := hdvd_to_zero (n ^ 6 - 1) hdvd
+    have hnpos : 0 < n := lt_trans zero_lt_one hn
+    have hpos : 0 < n ^ 6 := pow_pos hnpos 6
+    have hle : 1 ≤ n ^ 6 := Nat.succ_le_of_lt hpos
+    rw [Nat.cast_sub hle] at h0
+    have h1 : ((n ^ 6 : ℕ) : ZMod p) = 1 := by
+      have h0' : ((n ^ 6 : ℕ) : ZMod p) - 1 = 0 := by
+        simpa using h0
+      exact sub_eq_zero.mp h0'
+    simpa using h1
+  have source_step_0 : p ∣ (n - 1) ∨ p ∣ (n + 1) ∨ p ∣ (n ^ 2 + n + 1) ∨ p ∣ (n ^ 2 - n + 1) := by
+    run_tac do
+      let goal ← Lean.Elab.Tactic.getMainGoal
+      Lean.logInfo m!"JJ_SOURCE_CONTEXT_0\n{goal}"
+    have hfac : (n : ZMod p) ^ 6 - 1 =
+        (((n : ZMod p) - 1) * ((n : ZMod p) + 1) *
+          ((n : ZMod p) ^ 2 + (n : ZMod p) + 1) *
+          ((n : ZMod p) ^ 2 - (n : ZMod p) + 1)) := by ring
+    have hprod : (((n : ZMod p) - 1) * ((n : ZMod p) + 1) *
+        ((n : ZMod p) ^ 2 + (n : ZMod p) + 1) *
+        ((n : ZMod p) ^ 2 - (n : ZMod p) + 1)) = 0 := by
+      rw [← hfac, hn6]
+      ring
+    rcases mul_eq_zero.mp hprod with hABC | hD
+    · rcases mul_eq_zero.mp hABC with hAB | hC
+      · rcases mul_eq_zero.mp hAB with hA | hB
+        · left
+          have h0 : ((n - 1 : ℕ) : ZMod p) = 0 := by
+            rw [Nat.cast_sub (le_of_lt hn)]
+            simpa using hA
+          exact hzero_to_dvd (n - 1) h0
+        · right; left
+          have h0 : ((n + 1 : ℕ) : ZMod p) = 0 := by
+            simpa using hB
+          exact hzero_to_dvd (n + 1) h0
+      · right; right; left
+        have h0 : ((n ^ 2 + n + 1 : ℕ) : ZMod p) = 0 := by
+          simpa using hC
+        exact hzero_to_dvd (n ^ 2 + n + 1) h0
+    · right; right; right
+      have hnle : n ≤ n ^ 2 := by
+        have h : n * 1 ≤ n * n := Nat.mul_le_mul_left n (le_of_lt hn)
+        simpa [pow_two] using h
+      have hcastD : ((n ^ 2 - n + 1 : ℕ) : ZMod p) =
+          (n : ZMod p) ^ 2 - (n : ZMod p) + 1 := by
+        rw [Nat.cast_add, Nat.cast_sub hnle]
+        simp only [Nat.cast_pow, Nat.cast_one]
+      have h0 : ((n ^ 2 - n + 1 : ℕ) : ZMod p) = 0 := by
+        rw [hcastD]
+        exact hD
+      exact hzero_to_dvd (n ^ 2 - n + 1) h0
+  have source_step_1 : p ∣ (n ^ 2 + n + 1) → p ∣ ((n + 1) ^ 6 - 1) := by
+    run_tac do
+      let goal ← Lean.Elab.Tactic.getMainGoal
+      Lean.logInfo m!"JJ_SOURCE_CONTEXT_1\n{goal}"
+    intro hcase
+    have hA : (n : ZMod p) ^ 2 + (n : ZMod p) + 1 = 0 := by
+      have h0 : ((n ^ 2 + n + 1 : ℕ) : ZMod p) = 0 := hdvd_to_zero (n ^ 2 + n + 1) hcase
+      simpa using h0
+    have hrel : (n : ZMod p) + 1 = -((n : ZMod p) ^ 2) := by
+      have hsum : (n : ZMod p) + 1 + (n : ZMod p) ^ 2 = 0 := by
+        calc
+          (n : ZMod p) + 1 + (n : ZMod p) ^ 2
+              = (n : ZMod p) ^ 2 + (n : ZMod p) + 1 := by ring
+          _ = 0 := hA
+      calc
+        (n : ZMod p) + 1 = ((n : ZMod p) + 1 + (n : ZMod p) ^ 2) - (n : ZMod p) ^ 2 := by ring
+        _ = 0 - (n : ZMod p) ^ 2 := by rw [hsum]
+        _ = -((n : ZMod p) ^ 2) := by ring
+    have hb : (((n + 1 : ℕ) : ZMod p) ^ 6 = 1) := by
+      have hx : ((n : ZMod p) + 1) ^ 6 = 1 := by
+        calc
+          ((n : ZMod p) + 1) ^ 6 = (-((n : ZMod p) ^ 2)) ^ 6 := by rw [hrel]
+          _ = (n : ZMod p) ^ 12 := by ring
+          _ = ((n : ZMod p) ^ 6) ^ 2 := by ring
+          _ = 1 := by rw [hn6]; ring
+      simpa using hx
+    exact pow_six_dvd (n + 1) (by exact Nat.succ_le_succ (Nat.zero_le n)) hb
+  have source_step_2 : p ∣ (n + 1) → p ∣ ((n + 2) ^ 6 - 1) := by
+    run_tac do
+      let goal ← Lean.Elab.Tactic.getMainGoal
+      Lean.logInfo m!"JJ_SOURCE_CONTEXT_2\n{goal}"
+    intro hcase
+    have hx1 : (n : ZMod p) + 1 = 0 := by
+      have h0 : ((n + 1 : ℕ) : ZMod p) = 0 := hdvd_to_zero (n + 1) hcase
+      simpa using h0
+    have hx2 : (n : ZMod p) + 2 = 1 := by
+      calc
+        (n : ZMod p) + 2 = ((n : ZMod p) + 1) + 1 := by ring
+        _ = 0 + 1 := by rw [hx1]
+        _ = 1 := by ring
+    have hb : (((n + 2 : ℕ) : ZMod p) ^ 6 = 1) := by
+      have hx : ((n : ZMod p) + 2) ^ 6 = 1 := by
+        calc
+          ((n : ZMod p) + 2) ^ 6 = (1 : ZMod p) ^ 6 := by rw [hx2]
+          _ = 1 := by ring
+      simpa using hx
+    exact pow_six_dvd (n + 2) (by exact Nat.succ_le_succ (Nat.zero_le (n + 1))) hb
+  have source_step_3 : p ∣ (n - 1) → p ∣ ((n - 2) ^ 6 - 1) := by
+    run_tac do
+      let goal ← Lean.Elab.Tactic.getMainGoal
+      Lean.logInfo m!"JJ_SOURCE_CONTEXT_3\n{goal}"
+    intro hcase
+    have hn3 : 3 ≤ n := by
+      have hn_ne2 : n ≠ 2 := by
+        intro hn2
+        have hpdiv1 : p ∣ 1 := by
+          simpa [hn2] using hcase
+        have hp_le_one : p ≤ 1 := Nat.le_of_dvd (by norm_num : 0 < 1) hpdiv1
+        have hp_ge2 : 2 ≤ p := hp.two_le
+        have h21 : 2 ≤ 1 := le_trans hp_ge2 hp_le_one
+        exact (Nat.not_succ_le_self 1) h21
+      have hn_ge2 : 2 ≤ n := Nat.succ_le_of_lt hn
+      have hn_gt2 : 2 < n := lt_of_le_of_ne hn_ge2 (by intro h; exact hn_ne2 h.symm)
+      exact Nat.succ_le_of_lt hn_gt2
+    have hx : (n : ZMod p) = 1 := by
+      have h0 : ((n - 1 : ℕ) : ZMod p) = 0 := hdvd_to_zero (n - 1) hcase
+      rw [Nat.cast_sub (le_of_lt hn)] at h0
+      simpa using (sub_eq_zero.mp h0)
+    have hb : (((n - 2 : ℕ) : ZMod p) ^ 6 = 1) := by
+      have hcast : ((n - 2 : ℕ) : ZMod p) = (n : ZMod p) - 2 := by
+        rw [Nat.cast_sub (le_trans (by norm_num : 2 ≤ 3) hn3)]
+        simp
+      rw [hcast, hx]
+      ring_nf
+    exact pow_six_dvd (n - 2) (by
+      have hn_gt2 : 2 < n := lt_of_lt_of_le (by norm_num : 2 < 3) hn3
+      have hpos : 0 < n - 2 := Nat.sub_pos_of_lt hn_gt2
+      exact Nat.succ_le_of_lt hpos) hb
+  have source_step_4 : p ∣ (n - 1) → n < 4 := by
+    run_tac do
+      let goal ← Lean.Elab.Tactic.getMainGoal
+      Lean.logInfo m!"JJ_SOURCE_CONTEXT_4\n{goal}"
+    intro hcase
+    by_contra hnot
+    have hn4 : 4 ≤ n := le_of_not_gt hnot
+    have hm1 : 1 < n - 2 := by
+      have h2 : 2 ≤ n - 2 := by
+        have h : 4 - 2 ≤ n - 2 := Nat.sub_le_sub_right hn4 2
+        simpa using h
+      exact lt_of_lt_of_le (by norm_num : 1 < 2) h2
+    have hm2 : n - 2 < n := Nat.sub_lt (lt_trans zero_lt_one hn) (by norm_num : 0 < 2)
+    have hdiv : p ∣ ((n - 2) ^ 6 - 1) := source_step_3 hcase
+    exact hmin (n - 2) hm1 hm2 hdiv
+  have source_step_5 : p ∣ (n - 1) → n = 3 := by
+    run_tac do
+      let goal ← Lean.Elab.Tactic.getMainGoal
+      Lean.logInfo m!"JJ_SOURCE_CONTEXT_5\n{goal}"
+    intro hcase
+    have hlt4 : n < 4 := source_step_4 hcase
+    have hn23 : n = 2 ∨ n = 3 := by
+      have hn_ge2 : 2 ≤ n := Nat.succ_le_of_lt hn
+      have hn_le3 : n ≤ 3 := Nat.le_of_lt_succ hlt4
+      rcases Nat.eq_or_lt_of_le hn_ge2 with h | h
+      · left; exact h.symm
+      · right
+        have hn_ge3 : 3 ≤ n := Nat.succ_le_of_lt h
+        exact le_antisymm hn_le3 hn_ge3
+    rcases hn23 with hn2 | hn3
+    · have hpdiv1 : p ∣ 1 := by
+        rw [hn2] at hcase
+        simpa using hcase
+      have hp_le_one : p ≤ 1 := Nat.le_of_dvd (by norm_num : 0 < 1) hpdiv1
+      have hp_ge2 : 2 ≤ p := hp.two_le
+      have h21 : 2 ≤ 1 := le_trans hp_ge2 hp_le_one
+      exact False.elim ((Nat.not_succ_le_self 1) h21)
+    · exact hn3
+  have source_step_6 : p ∣ (n - 1) → p ∣ ((n + 2) ^ 6 - 1) := by
+    run_tac do
+      let goal ← Lean.Elab.Tactic.getMainGoal
+      Lean.logInfo m!"JJ_SOURCE_CONTEXT_6\n{goal}"
+    intro hcase
+    have hn3 : n = 3 := source_step_5 hcase
+    have hpdiv2 : p ∣ 2 := by
+      rw [hn3] at hcase
+      simpa using hcase
+    have hp_le2 : p ≤ 2 := Nat.le_of_dvd (by norm_num : 0 < 2) hpdiv2
+    have hp_ge2 : 2 ≤ p := hp.two_le
+    have hp2 : p = 2 := le_antisymm hp_le2 hp_ge2
+    rw [hn3, hp2]
+    norm_num
+  have source_step_7 : p ∣ (n ^ 2 - n + 1) → p ∣ ((n - 1) ^ 6 - 1) := by
+    run_tac do
+      let goal ← Lean.Elab.Tactic.getMainGoal
+      Lean.logInfo m!"JJ_SOURCE_CONTEXT_7\n{goal}"
+    intro hcase
+    have hnle : n ≤ n ^ 2 := by
+      have h : n * 1 ≤ n * n := Nat.mul_le_mul_left n (le_of_lt hn)
+      simpa [pow_two] using h
+    have hDcast : ((n ^ 2 - n + 1 : ℕ) : ZMod p) =
+        (n : ZMod p) ^ 2 - (n : ZMod p) + 1 := by
+      rw [Nat.cast_add, Nat.cast_sub hnle]
+      simp only [Nat.cast_pow, Nat.cast_one]
+    have hD : (n : ZMod p) ^ 2 - (n : ZMod p) + 1 = 0 := by
+      have h0 : ((n ^ 2 - n + 1 : ℕ) : ZMod p) = 0 := hdvd_to_zero (n ^ 2 - n + 1) hcase
+      rw [hDcast] at h0
+      exact h0
+    have hrel : (n : ZMod p) - 1 = (n : ZMod p) ^ 2 := by
+      have hsum : (n : ZMod p) - 1 - (n : ZMod p) ^ 2 = 0 := by
+        calc
+          (n : ZMod p) - 1 - (n : ZMod p) ^ 2 = -((n : ZMod p) ^ 2 - (n : ZMod p) + 1) := by ring
+          _ = 0 := by rw [hD]; ring
+      calc
+        (n : ZMod p) - 1 = ((n : ZMod p) - 1 - (n : ZMod p) ^ 2) + (n : ZMod p) ^ 2 := by ring
+        _ = 0 + (n : ZMod p) ^ 2 := by rw [hsum]
+        _ = (n : ZMod p) ^ 2 := by ring
+    have hb : (((n - 1 : ℕ) : ZMod p) ^ 6 = 1) := by
+      have hcast : ((n - 1 : ℕ) : ZMod p) = (n : ZMod p) - 1 := by
+        rw [Nat.cast_sub (le_of_lt hn)]
+        simp
+      rw [hcast]
+      calc
+        ((n : ZMod p) - 1) ^ 6 = ((n : ZMod p) ^ 2) ^ 6 := by rw [hrel]
+        _ = (n : ZMod p) ^ 12 := by ring
+        _ = ((n : ZMod p) ^ 6) ^ 2 := by ring
+        _ = 1 := by rw [hn6]; ring
+    exact pow_six_dvd (n - 1) (by
+      have hpos : 0 < n - 1 := Nat.sub_pos_of_lt hn
+      exact Nat.succ_le_of_lt hpos) hb
+  have source_step_8 : p ∣ (n ^ 2 - n + 1) → n = 2 := by
+    run_tac do
+      let goal ← Lean.Elab.Tactic.getMainGoal
+      Lean.logInfo m!"JJ_SOURCE_CONTEXT_8\n{goal}"
+    intro hcase
+    by_contra hne
+    have hn3 : 3 ≤ n := by
+      have hn_ge2 : 2 ≤ n := Nat.succ_le_of_lt hn
+      have hn_gt2 : 2 < n := lt_of_le_of_ne hn_ge2 (by intro h; exact hne h.symm)
+      exact Nat.succ_le_of_lt hn_gt2
+    have h1 : 1 < n - 1 := by
+      have h2 : 2 ≤ n - 1 := by
+        have h : 3 - 1 ≤ n - 1 := Nat.sub_le_sub_right hn3 1
+        simpa using h
+      exact lt_of_lt_of_le (by norm_num : 1 < 2) h2
+    have h2 : n - 1 < n := Nat.sub_lt (lt_trans zero_lt_one hn) (by norm_num : 0 < 1)
+    have hdiv : p ∣ ((n - 1) ^ 6 - 1) := source_step_7 hcase
+    exact hmin (n - 1) h1 h2 hdiv
+  have source_step_9 : p ∣ (n ^ 2 - n + 1) → p ∣ ((n + 2) ^ 6 - 1) := by
+    run_tac do
+      let goal ← Lean.Elab.Tactic.getMainGoal
+      Lean.logInfo m!"JJ_SOURCE_CONTEXT_9\n{goal}"
+    intro hcase
+    have hn2 : n = 2 := source_step_8 hcase
+    have hpdiv3 : p ∣ 3 := by
+      rw [hn2] at hcase
+      have h3 : (2 ^ 2 - 2 + 1 : ℕ) = 3 := by norm_num
+      rw [h3] at hcase
+      exact hcase
+    have hp_le3 : p ≤ 3 := Nat.le_of_dvd (by norm_num : 0 < 3) hpdiv3
+    have hp_cases : p = 2 ∨ p = 3 := by
+      have hp_ge2 : 2 ≤ p := hp.two_le
+      rcases Nat.eq_or_lt_of_le hp_ge2 with h | h
+      · left; exact h.symm
+      · right
+        have hp_ge3 : 3 ≤ p := Nat.succ_le_of_lt h
+        exact le_antisymm hp_le3 hp_ge3
+    rcases hp_cases with hp2 | hp3
+    · have hnot : ¬ (2 ∣ 3) := by norm_num
+      rw [hp2] at hpdiv3
+      exact False.elim (hnot hpdiv3)
+    · rw [hp3, hn2]
+      norm_num
+  have source_step_10 : p ∣ ((n + 1) ^ 6 - 1) ∨ p ∣ ((n + 2) ^ 6 - 1) := by
+    run_tac do
+      let goal ← Lean.Elab.Tactic.getMainGoal
+      Lean.logInfo m!"JJ_SOURCE_CONTEXT_10\n{goal}"
+    rcases source_step_0 with h1 | hrest
+    · exact Or.inr (source_step_6 h1)
+    · rcases hrest with h2 | hrest
+      · exact Or.inr (source_step_2 h2)
+      · rcases hrest with h3 | h4
+        · exact Or.inl (source_step_1 h3)
+        · exact Or.inr (source_step_9 h4)
+  exact source_step_10

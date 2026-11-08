@@ -1,0 +1,148 @@
+macos/Native/NativeCamera.swift:34:47: warning: 'externalUnknown' was deprecated in macOS 14.0: renamed to 'AVCaptureDevice.DeviceType.external'
+ 32 |     }
+ 33 |     return AVCaptureDevice.DiscoverySession(
+ 34 |       deviceTypes: [.builtInWideAngleCamera, .externalUnknown], mediaType: .video,
+    |                                               |- warning: 'externalUnknown' was deprecated in macOS 14.0: renamed to 'AVCaptureDevice.DeviceType.external'
+    |                                               `- note: use 'AVCaptureDevice.DeviceType.external' instead
+ 35 |       position: .unspecified
+ 36 |     ).devices
+
+macos/Native/NativeCamera.swift:139:35: warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+137 |               Picker("设备", selection: $camera.selected) {
+138 |                 ForEach(camera.devices, id: \.uniqueID) { Text($0.localizedName).tag($0.uniqueID) }
+139 |               }.frame(width: 240).onChange(of: camera.selected) { _ in
+    |                                   `- warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+140 |                 if !camera.selected.isEmpty { camera.configure() }
+141 |               }
+
+macos/Native/NativeCamera.swift:259:12: warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+257 |       }.background(GeometryReader { geometry in
+258 |         Color.clear.onAppear { panelWidth = geometry.size.width }
+259 |           .onChange(of: geometry.size.width) { panelWidth = $0 }
+    |            `- warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+260 |       })
+261 |     }.onAppear {
+macos/Native/NativeInkVerificationProgress.swift:94:6: warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+ 92 |       finishingPhase = nil
+ 93 |     }
+ 94 |     .onChange(of: stage) { newStage in
+    |      `- warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+ 95 |       let next = Self.phase(for: newStage)
+ 96 |       guard next != activePhase else { return }
+macos/Native/NativeMathTypesetting.swift:105:10: warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+103 |     .background(GeometryReader { geometry in
+104 |       Color.clear.onAppear { viewportWidth = geometry.size.width }
+105 |         .onChange(of: geometry.size.width) { nextWidth in viewportWidth = nextWidth }
+    |          `- warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+106 |     })
+107 |   }
+macos/Native/NativePages.swift:399:10: warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+ 397 |     }.background(GeometryReader { geometry in
+ 398 |       Color.clear.onAppear { contentWidth = geometry.size.width }
+ 399 |         .onChange(of: geometry.size.width) { contentWidth = $0 }
+     |          `- warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+ 400 |     })
+ 401 |     }
+
+macos/Native/NativePages.swift:1165:12: warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+1163 |       .background(GeometryReader { geometry in
+1164 |         Color.clear.onAppear { panelWidth = geometry.size.width }
+1165 |           .onChange(of: geometry.size.width) { panelWidth = $0 }
+     |            `- warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+1166 |       })
+1167 |   }
+
+macos/Native/NativePages.swift:1456:10: warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+1454 |     .background(GeometryReader { proxy in
+1455 |       Color.clear.onAppear { panelWidth = proxy.size.width }
+1456 |         .onChange(of: proxy.size.width) { panelWidth = $0 }
+     |          `- warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+1457 |     })
+1458 |     .onAppear { store.selectedCandidate = nil }
+
+macos/Native/NativePages.swift:1575:6: warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+1573 |     }
+1574 |     .onAppear { focusOnOriginalStep() }
+1575 |     .onChange(of: store.selectedStep) { _ in focusOnOriginalStep() }
+     |      `- warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+1576 |     .onChange(of: store.draft) { _ in
+1577 |       if let focus = manuscriptFocus, !focus.matches(store.draft) {
+
+macos/Native/NativePages.swift:1576:6: warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+1574 |     .onAppear { focusOnOriginalStep() }
+1575 |     .onChange(of: store.selectedStep) { _ in focusOnOriginalStep() }
+1576 |     .onChange(of: store.draft) { _ in
+     |      `- warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+1577 |       if let focus = manuscriptFocus, !focus.matches(store.draft) {
+1578 |         manuscriptFocusNotice = "原稿已经修改；先前保存的来源位置不再代表当前文本。"
+
+macos/Native/NativePages.swift:1862:10: warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+1860 |       .background(GeometryReader { geometry in
+1861 |       Color.clear.onAppear { panelWidth = geometry.size.width }
+1862 |         .onChange(of: geometry.size.width) { panelWidth = $0 }
+     |          `- warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+1863 |     })
+1864 |   }
+
+macos/Native/NativePages.swift:1982:10: warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+1980 |       .background(GeometryReader { geometry in
+1981 |       Color.clear.onAppear { panelWidth = geometry.size.width }
+1982 |         .onChange(of: geometry.size.width) { panelWidth = $0 }
+     |          `- warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+1983 |     })
+1984 |     .background(alignment: .top) {
+macos/Native/StitchComponents.swift:168:12: warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+ 166 |       .background(GeometryReader { geometry in
+ 167 |         Color.clear.onAppear { viewportWidth = geometry.size.width }
+ 168 |           .onChange(of: geometry.size.width) { viewportWidth = $0 }
+     |            `- warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+ 169 |       })
+ 170 |   }
+
+macos/Native/StitchComponents.swift:185:12: warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+ 183 |       .background(GeometryReader { geometry in
+ 184 |         Color.clear.onAppear { viewportWidth = geometry.size.width }
+ 185 |           .onChange(of: geometry.size.width) { viewportWidth = $0 }
+     |            `- warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+ 186 |       })
+ 187 |   }
+
+macos/Native/StitchComponents.swift:458:8: warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+ 456 |     }.frame(maxWidth: .infinity).background(Stitch.low).cornerRadius(8)
+ 457 |       .onAppear { zoom = initialZoom; useHeightFit = fitWideImageHeight }
+ 458 |       .onChange(of: initialZoom) { value in offset = .zero; zoom = value; useHeightFit = fitWideImageHeight }
+     |        `- warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+ 459 |       .onChange(of: url) { _ in offset = .zero; zoom = initialZoom; useHeightFit = fitWideImageHeight }
+ 460 |   }
+
+macos/Native/StitchComponents.swift:459:8: warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+ 457 |       .onAppear { zoom = initialZoom; useHeightFit = fitWideImageHeight }
+ 458 |       .onChange(of: initialZoom) { value in offset = .zero; zoom = value; useHeightFit = fitWideImageHeight }
+ 459 |       .onChange(of: url) { _ in offset = .zero; zoom = initialZoom; useHeightFit = fitWideImageHeight }
+     |        `- warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+ 460 |   }
+ 461 | }
+
+macos/Native/StitchComponents.swift:846:12: warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+ 844 |           }
+ 845 |           .background(Stitch.surface)
+ 846 |           .onChange(of: store.selectedStep) { stepID in
+     |            `- warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+ 847 |             guard !stepID.isEmpty else { return }
+ 848 |             if store.screen == .stepDetail {
+
+macos/Native/StitchComponents.swift:861:12: warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+ 859 |             }
+ 860 |           }
+ 861 |           .onChange(of: store.screen) { destination in
+     |            `- warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+ 862 |             guard [.workspace, .success, .failure].contains(destination),
+ 863 |                   !store.selectedStep.isEmpty else { return }
+
+macos/Native/StitchComponents.swift:886:12: warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+ 884 |       .background(GeometryReader { geometry in
+ 885 |         Color.clear.onAppear { viewportWidth = geometry.size.width }
+ 886 |           .onChange(of: geometry.size.width) { viewportWidth = $0 }
+     |            `- warning: 'onChange(of:perform:)' was deprecated in macOS 14.0: Use `onChange` with a two or zero parameter action closure instead.
+ 887 |       })
+ 888 |       .environment(\.colorScheme, .light)

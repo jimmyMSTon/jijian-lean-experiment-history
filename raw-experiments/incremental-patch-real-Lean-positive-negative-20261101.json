@@ -1,0 +1,143 @@
+[
+  {
+    "case": "real_kernel_closed_true",
+    "expected": true,
+    "result": {
+      "status": "kernel_verified",
+      "kernelVerified": true,
+      "patchEvidence": {
+        "appliedPatches": [
+          {
+            "index": 0,
+            "part": "supportingDeclarations",
+            "oldTextSha256": "a2886e02a1b24fcdf5b4d6c4b686995ff79df979c9778b632d84a76115e58c4c",
+            "newTextSha256": "acc4d1722b7b2988e14aa9d382ec6a18d8d3792dfa96d1cfe309af0e64373fdc"
+          }
+        ],
+        "rejectedPatches": [],
+        "sourceChanged": true
+      },
+      "modelProvenance": {
+        "model": "fixture_emulating_short_patch_only"
+      },
+      "candidateSupportingDeclarations": "theorem support : ∀ n : ℕ, n=n := by\n  intro n\n  rfl",
+      "candidateProofTerm": "by exact support",
+      "candidateSha256": "7d59fcdb05db1a915ff61bbc75f8dc300ee4b583159b9af4bece984a4272d27c",
+      "lean": {
+        "status": "verified",
+        "localVerified": true,
+        "kernelVerified": true,
+        "certificate": {
+          "checked": true,
+          "statementMatched": true,
+          "additionalAxioms": [],
+          "verificationMethod": "Lean_declared_target_kernel_checked_with_axiom_audit",
+          "sourceSha256": "e352cb814a0502fa985cacde7f6714f37c55bd4e2d6a8e486b5c3095980c2133"
+        },
+        "moduleProof": {
+          "supportingDeclarationsSha256": "7a25911fa2a5c75aeb04cfb2f5e2d38757ecb056890cc04fde1d7e14a03156c0",
+          "proofTermSha256": "409e7c8a889a4803897ae0bba7edada6a97c7fa4ae56c3f3204900d835b3396f",
+          "sourceSha256": "e352cb814a0502fa985cacde7f6714f37c55bd4e2d6a8e486b5c3095980c2133",
+          "auditTarget": "JijianWholeModuleProof_17f616501ed87305247c2e24",
+          "requiredAxioms": [],
+          "additionalAxioms": [],
+          "auditReportPresent": true,
+          "runtimeReturnCode": 0,
+          "originalSourceProofCertified": false
+        },
+        "diagnostics": []
+      },
+      "compilerErrors": []
+    }
+  },
+  {
+    "case": "real_kernel_rejected_false",
+    "expected": false,
+    "result": {
+      "status": "patched_kernel_rejected",
+      "kernelVerified": false,
+      "patchEvidence": {
+        "appliedPatches": [
+          {
+            "index": 0,
+            "part": "supportingDeclarations",
+            "oldTextSha256": "a2886e02a1b24fcdf5b4d6c4b686995ff79df979c9778b632d84a76115e58c4c",
+            "newTextSha256": "acc4d1722b7b2988e14aa9d382ec6a18d8d3792dfa96d1cfe309af0e64373fdc"
+          }
+        ],
+        "rejectedPatches": [],
+        "sourceChanged": true
+      },
+      "modelProvenance": {
+        "model": "fixture_emulating_short_patch_only"
+      },
+      "candidateSupportingDeclarations": "theorem support : ∀ n : ℕ, n=n := by\n  intro n\n  rfl",
+      "candidateProofTerm": "by exact support",
+      "candidateSha256": "7d59fcdb05db1a915ff61bbc75f8dc300ee4b583159b9af4bece984a4272d27c",
+      "lean": {
+        "status": "module_kernel_rejected",
+        "localVerified": false,
+        "kernelVerified": false,
+        "certificate": null,
+        "moduleProof": {
+          "supportingDeclarationsSha256": "7a25911fa2a5c75aeb04cfb2f5e2d38757ecb056890cc04fde1d7e14a03156c0",
+          "proofTermSha256": "409e7c8a889a4803897ae0bba7edada6a97c7fa4ae56c3f3204900d835b3396f",
+          "sourceSha256": "a0a3088b0c3e07754c66b3ade00bbd0f8ed4a6cf500d761f0fefd6c326f99d85",
+          "auditTarget": "JijianWholeModuleProof_ef477673f807f89bab6b2ae3",
+          "requiredAxioms": [
+            "sorryAx"
+          ],
+          "additionalAxioms": [
+            "sorryAx"
+          ],
+          "auditReportPresent": true,
+          "runtimeReturnCode": 1,
+          "originalSourceProofCertified": false
+        },
+        "diagnostics": [
+          {
+            "severity": "error",
+            "message": "Type mismatch\n  support\nhas type\n  ∀ (n : ℕ), n = n\nbut is expected to have type\n  JijianLockedProp_ef477673f807f89bab6b2ae3",
+            "leanPosition": {
+              "column": 3,
+              "line": 12
+            },
+            "leanEndPosition": {
+              "column": 16,
+              "line": 12
+            },
+            "stepId": "whole-module-proof",
+            "sourceRefs": [],
+            "mappingPrecision": "step",
+            "raw": {
+              "caption": "",
+              "data": "Type mismatch\n  support\nhas type\n  ∀ (n : ℕ), n = n\nbut is expected to have type\n  JijianLockedProp_ef477673f807f89bab6b2ae3",
+              "endPos": {
+                "column": 16,
+                "line": 12
+              },
+              "fileName": "/private/tmp/jj-real-exact-module-incremental-redteam-20261101c/work/lean-3pbj0am7/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "[anonymous]",
+              "pos": {
+                "column": 3,
+                "line": 12
+              },
+              "severity": "error"
+            }
+          }
+        ]
+      },
+      "compilerErrors": [
+        {
+          "message": "Type mismatch\n  support\nhas type\n  ∀ (n : ℕ), n = n\nbut is expected to have type\n  JijianLockedProp_ef477673f807f89bab6b2ae3",
+          "position": {
+            "column": 3,
+            "line": 12
+          }
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,138 @@
+{
+  "case": "BMO",
+  "sourceSha256": "a14959b2d283da18780f7015681ba9b45b6219ca0855d6e6b98fb4a73c0a2a39",
+  "sourceStepCount": 11,
+  "taggedTacticCount": 11,
+  "capturedNamedLocalContexts": 11,
+  "observedIndices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "kernelVerified": true,
+  "certificateChecked": true,
+  "statementMatched": true,
+  "additionalAxioms": [],
+  "otherDiagnostics": [],
+  "note": "Local context lists facts available to Lean, not facts actually referenced by the author's reason, and not a source-language semantic certificate.",
+  "steps": [
+    {
+      "index": 0,
+      "sourceExcerpt": "由恒等式 t^6−1=(t−1)(t+1)(t²+t+1)(t²−t+1)，以及 p 为素数且 p|(n^6−1)，p 必整除这四个因子中的至少一个。逐一讨论。",
+      "availableLeanHypotheses": "p n : ℕ\nhp : Nat.Prime p\nhn : n > 1\nhdvd : p ∣ n ^ 6 - 1\nhmin : ∀ (m : ℕ), 1 < m → m < n → ¬p ∣ m ^ 6 - 1\nthis✝ : Fact (Nat.Prime p)\nhp_ne_zero : p ≠ 0\nthis : NeZero p\nhzero_to_dvd : ∀ (a : ℕ), ↑a = 0 → p ∣ a\nhdvd_to_zero : ∀ (a : ℕ), p ∣ a → ↑a = 0\npow_six_dvd : ∀ (x : ℕ), 1 ≤ x → ↑x ^ 6 = 1 → p ∣ x ^ 6 - 1\nhn6 : ↑n ^ 6 = 1",
+      "actualLeanGoal": "p ∣ n - 1 ∨ p ∣ n + 1 ∨ p ∣ n ^ 2 + n + 1 ∨ p ∣ n ^ 2 - n + 1",
+      "leanPosition": {
+        "column": 1269,
+        "line": 5
+      }
+    },
+    {
+      "index": 1,
+      "sourceExcerpt": "情形一，p|(n²+n+1)。则模 p 有 n+1≡−n²，所以 (n+1)^6≡n^12≡(n^6)^2≡1。因此 p|((n+1)^6−1)。",
+      "availableLeanHypotheses": "p n : ℕ\nhp : Nat.Prime p\nhn : n > 1\nhdvd : p ∣ n ^ 6 - 1\nhmin : ∀ (m : ℕ), 1 < m → m < n → ¬p ∣ m ^ 6 - 1\nthis✝ : Fact (Nat.Prime p)\nhp_ne_zero : p ≠ 0\nthis : NeZero p\nhzero_to_dvd : ∀ (a : ℕ), ↑a = 0 → p ∣ a\nhdvd_to_zero : ∀ (a : ℕ), p ∣ a → ↑a = 0\npow_six_dvd : ∀ (x : ℕ), 1 ≤ x → ↑x ^ 6 = 1 → p ∣ x ^ 6 - 1\nhn6 : ↑n ^ 6 = 1\nsource_step_0 : p ∣ n - 1 ∨ p ∣ n + 1 ∨ p ∣ n ^ 2 + n + 1 ∨ p ∣ n ^ 2 - n + 1",
+      "actualLeanGoal": "p ∣ n ^ 2 + n + 1 → p ∣ (n + 1) ^ 6 - 1",
+      "leanPosition": {
+        "column": 2959,
+        "line": 5
+      }
+    },
+    {
+      "index": 2,
+      "sourceExcerpt": "情形二，p|(n+1)。则 n+2≡1 (mod p)，所以 (n+2)^6≡1，故 p|((n+2)^6−1)。",
+      "availableLeanHypotheses": "p n : ℕ\nhp : Nat.Prime p\nhn : n > 1\nhdvd : p ∣ n ^ 6 - 1\nhmin : ∀ (m : ℕ), 1 < m → m < n → ¬p ∣ m ^ 6 - 1\nthis✝ : Fact (Nat.Prime p)\nhp_ne_zero : p ≠ 0\nthis : NeZero p\nhzero_to_dvd : ∀ (a : ℕ), ↑a = 0 → p ∣ a\nhdvd_to_zero : ∀ (a : ℕ), p ∣ a → ↑a = 0\npow_six_dvd : ∀ (x : ℕ), 1 ≤ x → ↑x ^ 6 = 1 → p ∣ x ^ 6 - 1\nhn6 : ↑n ^ 6 = 1\nsource_step_0 : p ∣ n - 1 ∨ p ∣ n + 1 ∨ p ∣ n ^ 2 + n + 1 ∨ p ∣ n ^ 2 - n + 1\nsource_step_1 : p ∣ n ^ 2 + n + 1 → p ∣ (n + 1) ^ 6 - 1",
+      "actualLeanGoal": "p ∣ n + 1 → p ∣ (n + 2) ^ 6 - 1",
+      "leanPosition": {
+        "column": 4203,
+        "line": 5
+      }
+    },
+    {
+      "index": 3,
+      "sourceExcerpt": "情形三，p|(n−1)。则 n≡1 (mod p)，故 n−2≡−1 (mod p)，从而 (n−2)^6≡1 (mod p)。",
+      "availableLeanHypotheses": "p n : ℕ\nhp : Nat.Prime p\nhn : n > 1\nhdvd : p ∣ n ^ 6 - 1\nhmin : ∀ (m : ℕ), 1 < m → m < n → ¬p ∣ m ^ 6 - 1\nthis✝ : Fact (Nat.Prime p)\nhp_ne_zero : p ≠ 0\nthis : NeZero p\nhzero_to_dvd : ∀ (a : ℕ), ↑a = 0 → p ∣ a\nhdvd_to_zero : ∀ (a : ℕ), p ∣ a → ↑a = 0\npow_six_dvd : ∀ (x : ℕ), 1 ≤ x → ↑x ^ 6 = 1 → p ∣ x ^ 6 - 1\nhn6 : ↑n ^ 6 = 1\nsource_step_0 : p ∣ n - 1 ∨ p ∣ n + 1 ∨ p ∣ n ^ 2 + n + 1 ∨ p ∣ n ^ 2 - n + 1\nsource_step_1 : p ∣ n ^ 2 + n + 1 → p ∣ (n + 1) ^ 6 - 1\nsource_step_2 : p ∣ n + 1 → p ∣ (n + 2) ^ 6 - 1",
+      "actualLeanGoal": "p ∣ n - 1 → p ∣ (n - 2) ^ 6 - 1",
+      "leanPosition": {
+        "column": 5019,
+        "line": 5
+      }
+    },
+    {
+      "index": 4,
+      "sourceExcerpt": "若 n≥4，则 n−2>1 且 n−2<n，这与 n 的最小性矛盾。",
+      "availableLeanHypotheses": "p n : ℕ\nhp : Nat.Prime p\nhn : n > 1\nhdvd : p ∣ n ^ 6 - 1\nhmin : ∀ (m : ℕ), 1 < m → m < n → ¬p ∣ m ^ 6 - 1\nthis✝ : Fact (Nat.Prime p)\nhp_ne_zero : p ≠ 0\nthis : NeZero p\nhzero_to_dvd : ∀ (a : ℕ), ↑a = 0 → p ∣ a\nhdvd_to_zero : ∀ (a : ℕ), p ∣ a → ↑a = 0\npow_six_dvd : ∀ (x : ℕ), 1 ≤ x → ↑x ^ 6 = 1 → p ∣ x ^ 6 - 1\nhn6 : ↑n ^ 6 = 1\nsource_step_0 : p ∣ n - 1 ∨ p ∣ n + 1 ∨ p ∣ n ^ 2 + n + 1 ∨ p ∣ n ^ 2 - n + 1\nsource_step_1 : p ∣ n ^ 2 + n + 1 → p ∣ (n + 1) ^ 6 - 1\nsource_step_2 : p ∣ n + 1 → p ∣ (n + 2) ^ 6 - 1\nsource_step_3 : p ∣ n - 1 → p ∣ (n - 2) ^ 6 - 1",
+      "actualLeanGoal": "p ∣ n - 1 → n < 4",
+      "leanPosition": {
+        "column": 6352,
+        "line": 5
+      }
+    },
+    {
+      "index": 5,
+      "sourceExcerpt": "因此此情形只能有 n=2 或 n=3；但 n=2 时 p|1 不可能，故 n=3。",
+      "availableLeanHypotheses": "p n : ℕ\nhp : Nat.Prime p\nhn : n > 1\nhdvd : p ∣ n ^ 6 - 1\nhmin : ∀ (m : ℕ), 1 < m → m < n → ¬p ∣ m ^ 6 - 1\nthis✝ : Fact (Nat.Prime p)\nhp_ne_zero : p ≠ 0\nthis : NeZero p\nhzero_to_dvd : ∀ (a : ℕ), ↑a = 0 → p ∣ a\nhdvd_to_zero : ∀ (a : ℕ), p ∣ a → ↑a = 0\npow_six_dvd : ∀ (x : ℕ), 1 ≤ x → ↑x ^ 6 = 1 → p ∣ x ^ 6 - 1\nhn6 : ↑n ^ 6 = 1\nsource_step_0 : p ∣ n - 1 ∨ p ∣ n + 1 ∨ p ∣ n ^ 2 + n + 1 ∨ p ∣ n ^ 2 - n + 1\nsource_step_1 : p ∣ n ^ 2 + n + 1 → p ∣ (n + 1) ^ 6 - 1\nsource_step_2 : p ∣ n + 1 → p ∣ (n + 2) ^ 6 - 1\nsource_step_3 : p ∣ n - 1 → p ∣ (n - 2) ^ 6 - 1\nsource_step_4 : p ∣ n - 1 → n < 4",
+      "actualLeanGoal": "p ∣ n - 1 → n = 3",
+      "leanPosition": {
+        "column": 6974,
+        "line": 5
+      }
+    },
+    {
+      "index": 6,
+      "sourceExcerpt": "此时 p|(n−1)=2，故 p=2；而 (n+2)^6−1=5^6−1 为偶数，结论成立。",
+      "availableLeanHypotheses": "p n : ℕ\nhp : Nat.Prime p\nhn : n > 1\nhdvd : p ∣ n ^ 6 - 1\nhmin : ∀ (m : ℕ), 1 < m → m < n → ¬p ∣ m ^ 6 - 1\nthis✝ : Fact (Nat.Prime p)\nhp_ne_zero : p ≠ 0\nthis : NeZero p\nhzero_to_dvd : ∀ (a : ℕ), ↑a = 0 → p ∣ a\nhdvd_to_zero : ∀ (a : ℕ), p ∣ a → ↑a = 0\npow_six_dvd : ∀ (x : ℕ), 1 ≤ x → ↑x ^ 6 = 1 → p ∣ x ^ 6 - 1\nhn6 : ↑n ^ 6 = 1\nsource_step_0 : p ∣ n - 1 ∨ p ∣ n + 1 ∨ p ∣ n ^ 2 + n + 1 ∨ p ∣ n ^ 2 - n + 1\nsource_step_1 : p ∣ n ^ 2 + n + 1 → p ∣ (n + 1) ^ 6 - 1\nsource_step_2 : p ∣ n + 1 → p ∣ (n + 2) ^ 6 - 1\nsource_step_3 : p ∣ n - 1 → p ∣ (n - 2) ^ 6 - 1\nsource_step_4 : p ∣ n - 1 → n < 4\nsource_step_5 : p ∣ n - 1 → n = 3",
+      "actualLeanGoal": "p ∣ n - 1 → p ∣ (n + 2) ^ 6 - 1",
+      "leanPosition": {
+        "column": 7890,
+        "line": 5
+      }
+    },
+    {
+      "index": 7,
+      "sourceExcerpt": "情形四，p|(n²−n+1)。则 n−1≡n² (mod p)，因此 (n−1)^6≡n^12≡1 (mod p)。",
+      "availableLeanHypotheses": "p n : ℕ\nhp : Nat.Prime p\nhn : n > 1\nhdvd : p ∣ n ^ 6 - 1\nhmin : ∀ (m : ℕ), 1 < m → m < n → ¬p ∣ m ^ 6 - 1\nthis✝ : Fact (Nat.Prime p)\nhp_ne_zero : p ≠ 0\nthis : NeZero p\nhzero_to_dvd : ∀ (a : ℕ), ↑a = 0 → p ∣ a\nhdvd_to_zero : ∀ (a : ℕ), p ∣ a → ↑a = 0\npow_six_dvd : ∀ (x : ℕ), 1 ≤ x → ↑x ^ 6 = 1 → p ∣ x ^ 6 - 1\nhn6 : ↑n ^ 6 = 1\nsource_step_0 : p ∣ n - 1 ∨ p ∣ n + 1 ∨ p ∣ n ^ 2 + n + 1 ∨ p ∣ n ^ 2 - n + 1\nsource_step_1 : p ∣ n ^ 2 + n + 1 → p ∣ (n + 1) ^ 6 - 1\nsource_step_2 : p ∣ n + 1 → p ∣ (n + 2) ^ 6 - 1\nsource_step_3 : p ∣ n - 1 → p ∣ (n - 2) ^ 6 - 1\nsource_step_4 : p ∣ n - 1 → n < 4\nsource_step_5 : p ∣ n - 1 → n = 3\nsource_step_6 : p ∣ n - 1 → p ∣ (n + 2) ^ 6 - 1",
+      "actualLeanGoal": "p ∣ n ^ 2 - n + 1 → p ∣ (n - 1) ^ 6 - 1",
+      "leanPosition": {
+        "column": 8400,
+        "line": 5
+      }
+    },
+    {
+      "index": 8,
+      "sourceExcerpt": "若 n≥3，则 1<n−1<n，违反最小性，所以 n=2。",
+      "availableLeanHypotheses": "p n : ℕ\nhp : Nat.Prime p\nhn : n > 1\nhdvd : p ∣ n ^ 6 - 1\nhmin : ∀ (m : ℕ), 1 < m → m < n → ¬p ∣ m ^ 6 - 1\nthis✝ : Fact (Nat.Prime p)\nhp_ne_zero : p ≠ 0\nthis : NeZero p\nhzero_to_dvd : ∀ (a : ℕ), ↑a = 0 → p ∣ a\nhdvd_to_zero : ∀ (a : ℕ), p ∣ a → ↑a = 0\npow_six_dvd : ∀ (x : ℕ), 1 ≤ x → ↑x ^ 6 = 1 → p ∣ x ^ 6 - 1\nhn6 : ↑n ^ 6 = 1\nsource_step_0 : p ∣ n - 1 ∨ p ∣ n + 1 ∨ p ∣ n ^ 2 + n + 1 ∨ p ∣ n ^ 2 - n + 1\nsource_step_1 : p ∣ n ^ 2 + n + 1 → p ∣ (n + 1) ^ 6 - 1\nsource_step_2 : p ∣ n + 1 → p ∣ (n + 2) ^ 6 - 1\nsource_step_3 : p ∣ n - 1 → p ∣ (n - 2) ^ 6 - 1\nsource_step_4 : p ∣ n - 1 → n < 4\nsource_step_5 : p ∣ n - 1 → n = 3\nsource_step_6 : p ∣ n - 1 → p ∣ (n + 2) ^ 6 - 1\nsource_step_7 : p ∣ n ^ 2 - n + 1 → p ∣ (n - 1) ^ 6 - 1",
+      "actualLeanGoal": "p ∣ n ^ 2 - n + 1 → n = 2",
+      "leanPosition": {
+        "column": 10066,
+        "line": 5
+      }
+    },
+    {
+      "index": 9,
+      "sourceExcerpt": "此时 p|(2²−2+1)=3，即 p=3，且 (n+2)^6−1=4^6−1=4095 可被3整除。",
+      "availableLeanHypotheses": "p n : ℕ\nhp : Nat.Prime p\nhn : n > 1\nhdvd : p ∣ n ^ 6 - 1\nhmin : ∀ (m : ℕ), 1 < m → m < n → ¬p ∣ m ^ 6 - 1\nthis✝ : Fact (Nat.Prime p)\nhp_ne_zero : p ≠ 0\nthis : NeZero p\nhzero_to_dvd : ∀ (a : ℕ), ↑a = 0 → p ∣ a\nhdvd_to_zero : ∀ (a : ℕ), p ∣ a → ↑a = 0\npow_six_dvd : ∀ (x : ℕ), 1 ≤ x → ↑x ^ 6 = 1 → p ∣ x ^ 6 - 1\nhn6 : ↑n ^ 6 = 1\nsource_step_0 : p ∣ n - 1 ∨ p ∣ n + 1 ∨ p ∣ n ^ 2 + n + 1 ∨ p ∣ n ^ 2 - n + 1\nsource_step_1 : p ∣ n ^ 2 + n + 1 → p ∣ (n + 1) ^ 6 - 1\nsource_step_2 : p ∣ n + 1 → p ∣ (n + 2) ^ 6 - 1\nsource_step_3 : p ∣ n - 1 → p ∣ (n - 2) ^ 6 - 1\nsource_step_4 : p ∣ n - 1 → n < 4\nsource_step_5 : p ∣ n - 1 → n = 3\nsource_step_6 : p ∣ n - 1 → p ∣ (n + 2) ^ 6 - 1\nsource_step_7 : p ∣ n ^ 2 - n + 1 → p ∣ (n - 1) ^ 6 - 1\nsource_step_8 : p ∣ n ^ 2 - n + 1 → n = 2",
+      "actualLeanGoal": "p ∣ n ^ 2 - n + 1 → p ∣ (n + 2) ^ 6 - 1",
+      "leanPosition": {
+        "column": 10865,
+        "line": 5
+      }
+    },
+    {
+      "index": 10,
+      "sourceExcerpt": "以上四种情形穷尽所有可能，故断言成立。",
+      "availableLeanHypotheses": "p n : ℕ\nhp : Nat.Prime p\nhn : n > 1\nhdvd : p ∣ n ^ 6 - 1\nhmin : ∀ (m : ℕ), 1 < m → m < n → ¬p ∣ m ^ 6 - 1\nthis✝ : Fact (Nat.Prime p)\nhp_ne_zero : p ≠ 0\nthis : NeZero p\nhzero_to_dvd : ∀ (a : ℕ), ↑a = 0 → p ∣ a\nhdvd_to_zero : ∀ (a : ℕ), p ∣ a → ↑a = 0\npow_six_dvd : ∀ (x : ℕ), 1 ≤ x → ↑x ^ 6 = 1 → p ∣ x ^ 6 - 1\nhn6 : ↑n ^ 6 = 1\nsource_step_0 : p ∣ n - 1 ∨ p ∣ n + 1 ∨ p ∣ n ^ 2 + n + 1 ∨ p ∣ n ^ 2 - n + 1\nsource_step_1 : p ∣ n ^ 2 + n + 1 → p ∣ (n + 1) ^ 6 - 1\nsource_step_2 : p ∣ n + 1 → p ∣ (n + 2) ^ 6 - 1\nsource_step_3 : p ∣ n - 1 → p ∣ (n - 2) ^ 6 - 1\nsource_step_4 : p ∣ n - 1 → n < 4\nsource_step_5 : p ∣ n - 1 → n = 3\nsource_step_6 : p ∣ n - 1 → p ∣ (n + 2) ^ 6 - 1\nsource_step_7 : p ∣ n ^ 2 - n + 1 → p ∣ (n - 1) ^ 6 - 1\nsource_step_8 : p ∣ n ^ 2 - n + 1 → n = 2\nsource_step_9 : p ∣ n ^ 2 - n + 1 → p ∣ (n + 2) ^ 6 - 1",
+      "actualLeanGoal": "p ∣ (n + 1) ^ 6 - 1 ∨ p ∣ (n + 2) ^ 6 - 1",
+      "leanPosition": {
+        "column": 11776,
+        "line": 5
+      }
+    }
+  ]
+}

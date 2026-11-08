@@ -1,0 +1,27 @@
+[
+  {
+    "sourceStepIndex": 16,
+    "sourceExcerpt": "第五部分：证明此下界不能提高。假设 n 为奇数，取初始 B 为第一行的前 n−1 个位置为 1，其余为 0。因为 n−1 为偶数，B 的全部行和均为 0；B 的前 n−1 列和为 1，最后一列和为 0。如果某个最终矩阵 Y 可由操作得到，则 B+Y 的每行和、每列和都等于共同值 t。",
+    "frozenLeanProposition": "Odd n → ∀ B : Matrix (Fin n) (Fin n) ℤ,\n        ∃ x : Matrix (Fin n) (Fin n) ℕ,\n          (n : ℤ)^2 - (n : ℤ) + 1 ≤ (countEven B x : ℤ)"
+  },
+  {
+    "sourceStepIndex": 17,
+    "sourceExcerpt": "若 t=0，则 Y 的前 n−1 列都必须具有奇数个 1，所以 Y 至少有 n−1 个 1。",
+    "frozenLeanProposition": "Odd n →\n        (∀ i : Fin n, r Bbad i = 0) ∧\n        (∀ j : Fin n,\n          c Bbad j = (if j.val < n - 1 then (1 : ZMod 2) else 0))"
+  },
+  {
+    "sourceStepIndex": 18,
+    "sourceExcerpt": "若 t=1，则 Y 的全部 n 行都必须具有奇数个 1，所以 Y 至少有 n 个 1。",
+    "frozenLeanProposition": "Odd n → ∀ Y : Matrix (Fin n) (Fin n) (ZMod 2),\n        (∀ i : Fin n, r (Bbad + Y) i = 0) → n - 1 ≤ onesCount Y"
+  },
+  {
+    "sourceStepIndex": 19,
+    "sourceExcerpt": "无论如何最终至少有 n−1 个奇数格，因此最多只有 n²−n+1 个偶数格。结合第四部分，得 N(n)=n²−n+1。",
+    "frozenLeanProposition": "Odd n → ∀ Y : Matrix (Fin n) (Fin n) (ZMod 2),\n        (∀ i : Fin n, r (Bbad + Y) i = 1) → n ≤ onesCount Y"
+  },
+  {
+    "sourceStepIndex": 20,
+    "sourceExcerpt": "综上，偶数阶 N(n)=n²，奇数阶 N(n)=n²−n+1。证毕。",
+    "frozenLeanProposition": "let target : ℤ := if Even n then (n : ℤ)^2 else (n : ℤ)^2 - (n : ℤ) + 1;\n        (∀ (B : Matrix (Fin n) (Fin n) ℤ), ∃ (x : Matrix (Fin n) (Fin n) ℕ),\n          target ≤ ((Finset.univ.filter (fun p : Fin n × Fin n =>\n            Even (B p.1 p.2 + (∑ k : Fin n, (x p.1 k : ℤ)) +\n              (∑ k : Fin n, (x k p.2 : ℤ)) - (x p.1 p.2 : ℤ)))).card : ℤ)) ∧\n        (∀ (N : ℤ),\n          (∀ (B : Matrix (Fin n) (Fin n) ℤ), ∃ (x : Matrix (Fin n) (Fin n) ℕ),\n            N ≤ ((Finset.univ.filter (fun p : Fin n × Fin n =>\n              Even (B p.1 p.2 + (∑ k : Fin n, (x p.1 k : ℤ)) +\n                (∑ k : Fin n, (x k p.2 : ℤ)) - (x p.1 p.2 : ℤ)))).card : ℤ)) →\n          N ≤ target)"
+  }
+]

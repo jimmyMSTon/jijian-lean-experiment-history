@@ -1,0 +1,342 @@
+{
+  "id": "bea3cfd9-67d1-4208-bd56-ed5809d72d32",
+  "runId": "a66cafe7-488b-40fb-a29a-6604cca3377a",
+  "kind": "lean_first_explanation_only",
+  "verifiedFormalProof": true,
+  "sourceEquivalenceCertified": false,
+  "originalProofCertified": false,
+  "modelExplanationAuthority": "interpretation_only_not_a_certificate",
+  "formalProofCertified": true,
+  "verificationMode": "single_whole_theorem_kernel",
+  "sourceFidelityReview": {
+    "assessment": "no_specific_mismatch_identified_by_model",
+    "sourceEquivalenceCertified": false,
+    "originalProofCertified": false,
+    "modelReviewOnly": true,
+    "reviewedStepCount": 6,
+    "sourceStepCount": 6,
+    "issues": [],
+    "auxiliaryAssertions": [
+      "have htlt : t < 1 := lt_of_not_ge hnot",
+      "have hkpos : 0 < k := by omega",
+      "have hk1_lt_n : k - 1 < n := by omega",
+      "have hk1_lt_k : k - 1 < k := by omega",
+      "have hk1_nonneg : 0 ≤ u := by",
+      "have hfront_term_nonneg : ∀ j ∈ Finset.range k, 0 ≤ x j := by",
+      "have ht_nonneg : 0 ≤ t := by",
+      "have hfront_bounds : ∀ i, i < k → u ≤ x i ∧ x i ≤ t := by",
+      "have htail_bounds : ∀ i, k ≤ i → i < n → 0 ≤ x i ∧ x i ≤ u := by",
+      "have hall_bounds : ∀ i, i < n → 0 ≤ x i ∧ x i < 1 := by",
+      "have hit := htail_bounds i hki hin",
+      "have hle_u : x i ≤ u := hit.2",
+      "have hu_le_t : u ≤ t := by",
+      "have hk1k := hfront_bounds (k - 1) hk1_lt_k",
+      "have hk1k := hfront_bounds (k - 1) hk1_lt_k",
+      "have hb := hall_bounds i hin",
+      "have h0 : 0 ≤ x i := hb.1",
+      "have hlt : x i < 1 := hb.2",
+      "have hle1 : x i ≤ 1 := le_of_lt hlt",
+      "have hdecomp : m = 2 + (m - 2) := by omega",
+      "have hpow_le_one : (x i) ^ (m - 2) ≤ 1 := by",
+      "have hterm : ∀ i ∈ Finset.Ico k n, (x i) ^ m ≤ u * x i := by",
+      "have hki : k ≤ i := (Finset.mem_Ico.mp hi).1",
+      "have hin : i < n := (Finset.mem_Ico.mp hi).2",
+      "have hstep1 : (x i) ^ m ≤ (x i) ^ 2 := source_step_1 i hin",
+      "have htb := htail_bounds i hki hin",
+      "have hsq : (x i) ^ 2 ≤ u * x i := by",
+      "have hsum_pow_le : (∑ i ∈ Finset.Ico k n, (x i) ^ m) ≤ u * (∑ i ∈ Finset.Ico k n, x i) := by",
+      "have htail_x_le : (∑ i ∈ Finset.Ico k n, x i) ≤ (k : ℝ) - t := by",
+      "have hdecomp : t + (∑ i ∈ Finset.Ico k n, x i) = ∑ i ∈ Finset.range n, x i := by",
+      "have hterm : ∀ i ∈ Finset.range k, (x i) ^ m ≤ x i - u + u * x i := by",
+      "have hik : i < k := Finset.mem_range.mp hi",
+      "have hfb := hfront_bounds i hik",
+      "have hu_le_x : u ≤ x i := hfb.1",
+      "have hx_le_t : x i ≤ t := hfb.2",
+      "have hx_lt_one : x i < 1 := lt_of_le_of_lt hx_le_t htlt",
+      "have hprod : (x i - u) * (x i - 1) ≤ 0 := by",
+      "have hsq : (x i) ^ 2 ≤ x i - u + u * x i := by nlinarith [hprod]",
+      "have hin : i < n := lt_of_lt_of_le hik hkn",
+      "have hsum_le : (∑ i ∈ Finset.range k, (x i) ^ m) ≤ ∑ i ∈ Finset.range k, (x i - u + u * x i) := Finset.sum_le_sum hterm",
+      "have hsum_eq : (∑ i ∈ Finset.range k, (x i - u + u * x i)) = t - (k : ℝ) * u + u * t := by",
+      "have hdecomp : (∑ i ∈ Finset.range k, (x i) ^ m) + (∑ i ∈ Finset.Ico k n, (x i) ^ m) = ∑ i ∈ Finset.range n, (x i) ^ m := by"
+    ],
+    "modelProvenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "558e3d37-2ba3-418f-be7a-99c6eb516fbd",
+      "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+      "usage": {
+        "prompt_tokens": 6499,
+        "completion_tokens": 11557,
+        "total_tokens": 18056,
+        "prompt_tokens_details": {
+          "cached_tokens": 640
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 9830
+        },
+        "prompt_cache_hit_tokens": 640,
+        "prompt_cache_miss_tokens": 5859
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "steps": [
+      {
+        "index": 0,
+        "originalExcerpt": "第一步（设反证条件，并验证界限）：令 t=x₁+x₂+⋯+xₖ，u=xₖ。反设 t<1。因所有 xᵢ≥0，且 x₁≥⋯≥xₙ，所以 0≤u≤xᵢ≤t<1 对 1≤i≤k 成立；对 k<i≤n，则 0≤xᵢ≤u<1。特别地，0≤u<1，且 t≥0。另外对全部 i=1,…,n 有 0≤xᵢ<1：前 k 项不超过 t，后 n−k 项不超过 u。整个反证推导中分母没有出现，n=k 时后段求和约定为 0。",
+        "leanEvidenceExcerpt": "have source_step_0 : (0 ≤ t ∧ t < 1 ∧ 0 ≤ u ∧ u < 1 ∧",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 中以 t 为前 k 项和、u=x(k-1) 对应原文 xₖ；source_step_0 打包了 t≥0、t<1、u≥0、u<1、所有下标 n 内的 xᵢ<1，以及前段 u≤xᵢ≤t、尾段 0≤xᵢ≤u 的界。与原文第一步的界限一致，未插入额外关键数学假设。"
+      },
+      {
+        "index": 1,
+        "originalExcerpt": "第二步（低于 1 的非负数降幂）：由于 m≥2 为整数，对任意 0≤s<1，均有 s^m≤s²。这是因为 m−2 为非负整数且 0≤s^(m−2)≤1，故 s^m=s²·s^(m−2)≤s²（若 m=2，则 s^(m−2)=1）。将此结论分别用于每个 xᵢ。",
+        "leanEvidenceExcerpt": "have source_step_1 : ∀ i, i < n → (x i) ^ m ≤ (x i) ^ 2 := by",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 中 source_step_1 对每个 i<n 证明 (x i)^m ≤ (x i)^2；其内部用 m=2+(m-2) 以及 xᵢ^(m-2)≤1，与原文利用 m−2 非负和底数在 [0,1] 的降幂理由一致。"
+      },
+      {
+        "index": 2,
+        "originalExcerpt": "第三步（尾段估计）：对每个 k<i≤n，有 0≤xᵢ≤u，故 xᵢ^m≤xᵢ²≤u xᵢ。逐项求和得到\n∑_{i=k+1}^n xᵢ^m≤u∑_{i=k+1}^n xᵢ。\n又由条件（ii）以及前 k 项的和为 t，有 ∑_{i=k+1}^n xᵢ≤k−t。因为 u≥0，所以\n∑_{i=k+1}^n xᵢ^m≤u(k−t)。\nn=k 时两边的尾段求和均为 0，结论依然成立。",
+        "leanEvidenceExcerpt": "have hsum_pow_le' : (∑ i ∈ Finset.Ico k n, (x i) ^ m) ≤ u * ((k : ℝ) - t) := by",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 用 Finset.Ico k n 表示原文尾段 k<i≤n，并证明尾段幂和 ≤ u·(k−t)。其中逐项使用 xᵢ^m≤xᵢ²≤u xᵢ，再由条件（ii）推出尾段线性和的界，和原文第三步一致。"
+      },
+      {
+        "index": 3,
+        "originalExcerpt": "第四步（前段估计）：对每个 1≤i≤k，由第一步有 u≤xᵢ<1，因此 (xᵢ−u)≥0、(xᵢ−1)≤0，从而 (xᵢ−u)(xᵢ−1)≤0。\n展开整理即得 xᵢ²≤(1+u)xᵢ−u=xᵢ−u+u xᵢ。\n结合第二步 xᵢ^m≤xᵢ²，得到\nxᵢ^m≤xᵢ−u+u xᵢ。\n对 i=1,…,k 求和得\n∑_{i=1}^k xᵢ^m≤t−ku+ut。",
+        "leanEvidenceExcerpt": "have source_step_3 : (∑ i ∈ Finset.range k, (x i) ^ m) ≤ t - (k : ℝ) * u + u * t := by",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 的 source_step_3 先逐项由 (xᵢ−u)(xᵢ−1)≤0 推出 xᵢ²≤xᵢ−u+u xᵢ，再结合 source_step_1 得 xᵢ^m≤xᵢ−u+u xᵢ，求和得到 t−k u+u t。与原文第四步的前段估计一致。"
+      },
+      {
+        "index": 4,
+        "originalExcerpt": "第五步（合并不等式并产生矛盾）：将幂和拆成前 k 项和后 n−k 项，利用第三、四步，\n∑_{i=1}^n xᵢ^m\n=∑_{i=1}^k xᵢ^m+∑_{i=k+1}^n xᵢ^m\n≤(t−ku+ut)+u(k−t)\n=t。\n但题设（i）给出 ∑_{i=1}^n xᵢ^m≥1，因此有 1≤t，与反设 t<1 矛盾。",
+        "leanEvidenceExcerpt": "have source_step_4 : (∑ i ∈ Finset.range n, (x i) ^ m) ≤ t := by",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 的 source_step_4 用前段估计 source_step_3 与尾段估计 source_step_2.2 合并，得到全幂和 ≤ t；随后 source_step_5 用题设幂和 ≥1 得到 1≤t，并由 exact hnot source_step_5 与 t<1 矛盾。与原文第五步一致，仅将矛盾部分拆到下一行代码。"
+      },
+      {
+        "index": 5,
+        "originalExcerpt": "反设不成立，故 t≥1，即 x₁+x₂+⋯+xₖ≥1。证毕。",
+        "leanEvidenceExcerpt": "exact hnot source_step_5",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 中 source_step_5 已得到 1≤t，最后 exact hnot source_step_5 直接消去反设 hnot : ¬ 1≤t，对应原文“反设不成立，故 t≥1”的结论。"
+      }
+    ],
+    "modelSummary": "逐项比较后，Lean 代码与原文证明的设界、降幂、尾段估计、前段估计、合并矛盾及结论均对应；主要差异只是 Lean 使用 0 基下标 x(k-1) 表示原文 xₖ，并用 Finset.Ico k n 表示原文尾段。未发现作者未写的关键数学定理被额外补入，也未发现语义错位。该审计仅说明未识别具体不忠实疑点，不等同于对整篇形式化的独立完全认证。"
+  },
+  "summary": "整篇翻译后的形式定理已通过 Lean Kernel；原稿数学语义和推理忠实性尚未独立认证。",
+  "sourceSteps": [
+    {
+      "id": "source-0",
+      "index": 0,
+      "role": "inference",
+      "start": 336,
+      "end": 535,
+      "sourceExcerpt": "第一步（设反证条件，并验证界限）：令 t=x₁+x₂+⋯+xₖ，u=xₖ。反设 t<1。因所有 xᵢ≥0，且 x₁≥⋯≥xₙ，所以 0≤u≤xᵢ≤t<1 对 1≤i≤k 成立；对 k<i≤n，则 0≤xᵢ≤u<1。特别地，0≤u<1，且 t≥0。另外对全部 i=1,…,n 有 0≤xᵢ<1：前 k 项不超过 t，后 n−k 项不超过 u。整个反证推导中分母没有出现，n=k 时后段求和约定为 0。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_0",
+      "dependsOn": []
+    },
+    {
+      "id": "source-1",
+      "index": 1,
+      "role": "inference",
+      "start": 537,
+      "end": 666,
+      "sourceExcerpt": "第二步（低于 1 的非负数降幂）：由于 m≥2 为整数，对任意 0≤s<1，均有 s^m≤s²。这是因为 m−2 为非负整数且 0≤s^(m−2)≤1，故 s^m=s²·s^(m−2)≤s²（若 m=2，则 s^(m−2)=1）。将此结论分别用于每个 xᵢ。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_1",
+      "dependsOn": []
+    },
+    {
+      "id": "source-2",
+      "index": 2,
+      "role": "inference",
+      "start": 668,
+      "end": 855,
+      "sourceExcerpt": "第三步（尾段估计）：对每个 k<i≤n，有 0≤xᵢ≤u，故 xᵢ^m≤xᵢ²≤u xᵢ。逐项求和得到\n∑_{i=k+1}^n xᵢ^m≤u∑_{i=k+1}^n xᵢ。\n又由条件（ii）以及前 k 项的和为 t，有 ∑_{i=k+1}^n xᵢ≤k−t。因为 u≥0，所以\n∑_{i=k+1}^n xᵢ^m≤u(k−t)。\nn=k 时两边的尾段求和均为 0，结论依然成立。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_2",
+      "dependsOn": []
+    },
+    {
+      "id": "source-3",
+      "index": 3,
+      "role": "inference",
+      "start": 857,
+      "end": 1033,
+      "sourceExcerpt": "第四步（前段估计）：对每个 1≤i≤k，由第一步有 u≤xᵢ<1，因此 (xᵢ−u)≥0、(xᵢ−1)≤0，从而 (xᵢ−u)(xᵢ−1)≤0。\n展开整理即得 xᵢ²≤(1+u)xᵢ−u=xᵢ−u+u xᵢ。\n结合第二步 xᵢ^m≤xᵢ²，得到\nxᵢ^m≤xᵢ−u+u xᵢ。\n对 i=1,…,k 求和得\n∑_{i=1}^k xᵢ^m≤t−ku+ut。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_3",
+      "dependsOn": []
+    },
+    {
+      "id": "source-4",
+      "index": 4,
+      "role": "inference",
+      "start": 1035,
+      "end": 1194,
+      "sourceExcerpt": "第五步（合并不等式并产生矛盾）：将幂和拆成前 k 项和后 n−k 项，利用第三、四步，\n∑_{i=1}^n xᵢ^m\n=∑_{i=1}^k xᵢ^m+∑_{i=k+1}^n xᵢ^m\n≤(t−ku+ut)+u(k−t)\n=t。\n但题设（i）给出 ∑_{i=1}^n xᵢ^m≥1，因此有 1≤t，与反设 t<1 矛盾。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_4",
+      "dependsOn": []
+    },
+    {
+      "id": "source-5",
+      "index": 5,
+      "role": "inference",
+      "start": 1195,
+      "end": 1225,
+      "sourceExcerpt": "反设不成立，故 t≥1，即 x₁+x₂+⋯+xₖ≥1。证毕。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_5",
+      "dependsOn": []
+    }
+  ],
+  "localStepEvidence": [
+    {
+      "id": "source-0",
+      "status": "translation_mapped_only",
+      "start": 336,
+      "end": 535,
+      "kernelVerified": false,
+      "unverifiedDependencies": [],
+      "diagnostics": [],
+      "repairStatus": null,
+      "attemptCount": 0,
+      "originalDiagnostics": []
+    },
+    {
+      "id": "source-1",
+      "status": "translation_mapped_only",
+      "start": 537,
+      "end": 666,
+      "kernelVerified": false,
+      "unverifiedDependencies": [],
+      "diagnostics": [],
+      "repairStatus": null,
+      "attemptCount": 0,
+      "originalDiagnostics": []
+    },
+    {
+      "id": "source-2",
+      "status": "translation_mapped_only",
+      "start": 668,
+      "end": 855,
+      "kernelVerified": false,
+      "unverifiedDependencies": [],
+      "diagnostics": [],
+      "repairStatus": null,
+      "attemptCount": 0,
+      "originalDiagnostics": []
+    },
+    {
+      "id": "source-3",
+      "status": "translation_mapped_only",
+      "start": 857,
+      "end": 1033,
+      "kernelVerified": false,
+      "unverifiedDependencies": [],
+      "diagnostics": [],
+      "repairStatus": null,
+      "attemptCount": 0,
+      "originalDiagnostics": []
+    },
+    {
+      "id": "source-4",
+      "status": "translation_mapped_only",
+      "start": 1035,
+      "end": 1194,
+      "kernelVerified": false,
+      "unverifiedDependencies": [],
+      "diagnostics": [],
+      "repairStatus": null,
+      "attemptCount": 0,
+      "originalDiagnostics": []
+    },
+    {
+      "id": "source-5",
+      "status": "translation_mapped_only",
+      "start": 1195,
+      "end": 1225,
+      "kernelVerified": false,
+      "unverifiedDependencies": [],
+      "diagnostics": [],
+      "repairStatus": null,
+      "attemptCount": 0,
+      "originalDiagnostics": []
+    }
+  ],
+  "diagnostics": [],
+  "explanation": {
+    "summary": "现有数据表明：模型翻译后的整条命题及其 proofTerm 已通过 Lean Kernel（wholeFormalProofVerified=true，kernelVerified=true），leanDiagnostics 为空。但 sourceFidelityReview 明确 sourceEquivalenceCertified=false、originalProofCertified=false，六个源步骤均为 translation_mapped_only 且本地 kernelVerified=false。因此只能认定译稿整定理通过 Kernel，不能认定中文原题语义与原证明逐句等价，也不能把各自然语言步骤分别称为已通过 Kernel 的可信前提。",
+    "why": "Lean 检查的是翻译后的命题与证明项；无编译报错、无诊断，也未发现模型标注的具体来源不匹配或 unsupportedOriginalSteps。但 sourceFidelityReview 是 modelReviewOnly，步骤中的 matches_authored_reason 只是映射审计，不是逐句形式化验证。局部步骤未单独 Kernel 验证，不能作为单独可信前提；整条译稿通过 Kernel 也不能自动证明自然语言原稿等价。由于没有可从原稿逐字核对的问题语句，problematicSourceExcerpt 留空；现有信息不构成对题目本身的 Kernel 反证。",
+    "suggestedRevision": "建议将状态说明固定为：翻译命题及 proofTerm 已通过 Kernel；来源等价性与自然语言原证明未认证；六个源步骤为 translation_mapped_only。若需更强结论，应补充原题到 Lean 语句的逐条等价性说明，并将各源步骤分别形式化并给出 Kernel 检查证据；在此之前，不应把自然语言原证明等同于已通过 Kernel 的译稿，也不应把局部映射步骤标为 Kernel 已验证。",
+    "problematicSourceExcerpt": ""
+  },
+  "explanationError": null,
+  "modelProvenance": {
+    "jsonParsing": {
+      "method": "deterministic_json_schema",
+      "recovered": false,
+      "edits": []
+    },
+    "provider": "deepseek",
+    "requestedModel": "deepseek-flash",
+    "model": "deepseek-flash",
+    "responseId": "febc932b-781e-4967-9b12-4b0daa254c6a",
+    "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "usage": {
+      "prompt_tokens": 5931,
+      "completion_tokens": 2196,
+      "total_tokens": 8127,
+      "prompt_tokens_details": {
+        "cached_tokens": 128
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 1840
+      },
+      "prompt_cache_hit_tokens": 128,
+      "prompt_cache_miss_tokens": 5803
+    },
+    "thinking": "provider_default",
+    "promptSchemaEncoding": "compact_json_v1",
+    "structuredOutput": "json_mode_with_local_schema_validation",
+    "simulated": false
+  }
+}

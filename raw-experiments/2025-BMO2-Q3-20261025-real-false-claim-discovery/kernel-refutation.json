@@ -1,0 +1,105 @@
+{
+  "status": "source_assertion_formal_negation_kernel_verified_source_unconfirmed",
+  "sourceSha256": "f2698c66fec85ed920a110f31f6d10c42cb666a25819d77003ed95093243e7dd",
+  "kernelRefutationVerified": true,
+  "naturalLanguageClaimCertified": false,
+  "overallProblemDisproved": false,
+  "sourceEquivalenceCertified": false,
+  "mathClaimRefutationOnly": true,
+  "provider": {
+    "jsonParsing": {
+      "method": "deterministic_json_schema",
+      "recovered": false,
+      "edits": []
+    },
+    "provider": "deepseek",
+    "requestedModel": "deepseek-flash",
+    "model": "deepseek-flash",
+    "responseId": "3fb6f322-91b7-4734-8a70-bc28b159d171",
+    "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "usage": {
+      "prompt_tokens": 1863,
+      "completion_tokens": 13997,
+      "total_tokens": 15860,
+      "prompt_tokens_details": {
+        "cached_tokens": 512
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 13489
+      },
+      "prompt_cache_hit_tokens": 512,
+      "prompt_cache_miss_tokens": 1351
+    },
+    "thinking": "provider_default",
+    "promptSchemaEncoding": "compact_json_v1",
+    "structuredOutput": "json_mode_with_local_schema_validation",
+    "simulated": false
+  },
+  "candidate": {
+    "sourceExcerpt": "每次行交换改变恰好两个 r_i",
+    "sourceStepIndex": 1,
+    "closedSourceAssertion": "∀ (n : ℕ) (σ : Equiv.Perm (Fin n)) (a b : Fin n), a ≠ b → (Finset.univ.filter (fun i : Fin n => (((σ i).val : ZMod 2) + (i.val : ZMod 2)) ≠ (((σ.trans (Equiv.swap a b)) i).val : ZMod 2) + (i.val : ZMod 2))).card = 2",
+    "negationProofTerm": "by\n  intro h\n  have hc :\n      (Finset.univ.filter (fun i : Fin 4 =>\n        ((((Equiv.refl (Fin 4)) i).val : ZMod 2) + (i.val : ZMod 2)) ≠\n        (((((Equiv.refl (Fin 4)).trans (Equiv.swap (0 : Fin 4) (2 : Fin 4))) i).val : ZMod 2) + (i.val : ZMod 2)))).card = 2 := by\n    simpa using h 4 (Equiv.refl (Fin 4)) (0 : Fin 4) (2 : Fin 4) (by decide)\n  have h0 :\n      (Finset.univ.filter (fun i : Fin 4 =>\n        ((((Equiv.refl (Fin 4)) i).val : ZMod 2) + (i.val : ZMod 2)) ≠\n        (((((Equiv.refl (Fin 4)).trans (Equiv.swap (0 : Fin 4) (2 : Fin 4))) i).val : ZMod 2) + (i.val : ZMod 2)))).card = 0 := by\n    decide\n  omega",
+    "counterexampleDescription": "取 n=4，行置换为恒等，交换第 1 行与第 3 行（代码中为 0-based 的第 0 行与第 2 行）。这两行是同一种交错行，交换后标准棋盘逐格不变，因此所有 r_i 仍为 0；改变的 r_i 个数为 0，而不是 2。",
+    "candidateValid": true
+  },
+  "lockedRefutationStatement": "¬ (∀ (n : ℕ) (σ : Equiv.Perm (Fin n)) (a b : Fin n), a ≠ b → (Finset.univ.filter (fun i : Fin n => (((σ i).val : ZMod 2) + (i.val : ZMod 2)) ≠ (((σ.trans (Equiv.swap a b)) i).val : ZMod 2) + (i.val : ZMod 2))).card = 2)",
+  "lean": {
+    "localVerified": true,
+    "status": "verified",
+    "diagnostics": [],
+    "certificate": {
+      "auditMethod": "fresh_environment_data_only_kernel_replay",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "checked": true,
+      "dependencyUsage": [],
+      "formalStatement": "¬∀ (n : ℕ) (σ : Equiv.Perm (Fin n)) (a b : Fin n),\n    a ≠ b → {i | ↑↑(σ i) + ↑↑i ≠ ↑↑((Equiv.trans σ (Equiv.swap a b)) i) + ↑↑i}.card = 2",
+      "statementMatched": true,
+      "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+      "expectedExpressionSha256": "f73e5baa533827a1a5d31a9b3c2f91b24fa12ebeeef88c71a14f8dd65e7e25ca",
+      "proofExpressionSha256": "dadba7144e05e02edceba685300edf040bedf468ff04fcaf76ee97c389edbf84",
+      "statement_hash": "f2698c66fec85ed920a110f31f6d10c42cb666a25819d77003ed95093243e7dd",
+      "nativeExpressionComparison": "structural_equal",
+      "sourceTypeSha256": "86c6d2e199e701a59687a64219005e9bd1d2046f107ba725a600fd4f5ad0277d",
+      "sourceProofSha256": "ba18dc09fcc24130c05aa9b8790cde41455ac7b6a98040e13dc4eb1bf9d266dd",
+      "runtime": {
+        "configured": true,
+        "executableFound": true,
+        "projectFound": true,
+        "runtimeBuilt": true,
+        "runtimeIntegrity": true,
+        "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+        "sandbox": "macos",
+        "isolated": true,
+        "ready": true,
+        "toolchain": "leanprover/lean4:v4.34.0",
+        "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+        "liveTestedInThisDistribution": false
+      },
+      "additionalAxioms": [],
+      "auditIsolation": "fresh_import_environment_reset_between_candidates"
+    },
+    "evidence": {
+      "expected": "[oversized elaborated Lean expression omitted; see certificate SHA-256]",
+      "proof": "[oversized elaborated Lean expression omitted; see certificate SHA-256]",
+      "omissions": {
+        "expected": {
+          "omitted": true,
+          "utf8Bytes": 124392,
+          "canonicalSha256": "f73e5baa533827a1a5d31a9b3c2f91b24fa12ebeeef88c71a14f8dd65e7e25ca",
+          "reason": "bounded_http_storage_evidence_after_kernel_check"
+        },
+        "proof": {
+          "omitted": true,
+          "utf8Bytes": 14453059,
+          "canonicalSha256": "dadba7144e05e02edceba685300edf040bedf468ff04fcaf76ee97c389edbf84",
+          "reason": "bounded_http_storage_evidence_after_kernel_check"
+        }
+      }
+    }
+  }
+}

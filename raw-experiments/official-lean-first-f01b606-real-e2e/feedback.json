@@ -1,0 +1,115 @@
+{
+  "id": "ec1e7806-617c-45c1-8e8e-d219bfa99e00",
+  "runId": "e369adf2-cd4d-4356-8906-c44daf74fccd",
+  "kind": "lean_first_explanation_only",
+  "verifiedFormalProof": true,
+  "sourceEquivalenceCertified": false,
+  "originalProofCertified": false,
+  "modelExplanationAuthority": "interpretation_only_not_a_certificate",
+  "summary": "Lean Kernel 已验证翻译后的完整形式命题，但原稿语义对应未被证明。",
+  "sourceSteps": [
+    {
+      "start": 99,
+      "end": 147,
+      "sourceExcerpt": "证明：由 gcd(a,b)=1，依 Bézout 恒等式，存在整数 u,v 使 au+bv=1。",
+      "leanWitness": "have hbez : ∃ u v : ℤ, (a : ℤ) * u + (b : ℤ) * v = 1 := by ...，使用 Nat.gcd_eq_gcd_ab 和 hgcd 得到 Bézout 系数"
+    },
+    {
+      "start": 147,
+      "end": 161,
+      "sourceExcerpt": "令 x=r·bv+s·au。",
+      "leanWitness": "let x : ℤ := r * ((b : ℤ) * v) + s * ((a : ℤ) * u)"
+    },
+    {
+      "start": 161,
+      "end": 219,
+      "sourceExcerpt": "因为 x−r=au(s−r)，故 a∣(x−r)；因为 x−s=bv(r−s)，故 b∣(x−s)，于是存在性成立。",
+      "leanWitness": "hxr_eq, hxr, hxs_eq, hxs 分别证明 x-r 和 x-s 的整除性"
+    },
+    {
+      "start": 219,
+      "end": 247,
+      "sourceExcerpt": "接着任取整数 y，假定 a∣(y−r)、b∣(y−s)。",
+      "leanWitness": "intro y hyr hys"
+    },
+    {
+      "start": 247,
+      "end": 288,
+      "sourceExcerpt": "由 a∣(y−r) 及 a∣(x−r)，得 a∣(y−x)；同理 b∣(y−x)。",
+      "leanWitness": "hAy 和 hBy，由 dvd_sub 及 convert ... ring 得到"
+    },
+    {
+      "start": 288,
+      "end": 314,
+      "sourceExcerpt": "从 a∣(y−x)，可取整数 k 使 y−x=ak。",
+      "leanWitness": "rcases hAy with ⟨k, hk⟩"
+    },
+    {
+      "start": 314,
+      "end": 333,
+      "sourceExcerpt": "又因 b∣(y−x)，所以 b∣ak。",
+      "leanWitness": "have hbak : (b : ℤ) ∣ (a : ℤ) * k := by rw [hk] at hBy; exact hBy"
+    },
+    {
+      "start": 333,
+      "end": 372,
+      "sourceExcerpt": "将 Bézout 等式乘 k，得到 k=k(au+bv)=(ak)u+bkv。",
+      "leanWitness": "have hEq : k = ((a : ℤ) * k) * u + (b : ℤ) * (k * v) := by ..."
+    },
+    {
+      "start": 372,
+      "end": 392,
+      "sourceExcerpt": "右边两项都能被 b 整除，因此 b∣k。",
+      "leanWitness": "have hbk : (b : ℤ) ∣ k := by rw [hEq]; apply dvd_add ..."
+    },
+    {
+      "start": 392,
+      "end": 430,
+      "sourceExcerpt": "故存在整数 t 使 k=bt，于是 y−x=ab t，即 ab∣(y−x)。",
+      "leanWitness": "rcases hbk with ⟨t, ht⟩，最后 calc 使用 ht 与 Nat.cast_mul 证明 ((a*b:ℕ):ℤ) ∣ y-x"
+    },
+    {
+      "start": 430,
+      "end": 468,
+      "sourceExcerpt": "因此所有满足两同余式的整数解都与 x 模 ab 同余，存在性与唯一性均得证。",
+      "leanWitness": "整体 refine ⟨x, ?_⟩ 后的最终结论，输出构造的 x 与任意 y 的同余性"
+    }
+  ],
+  "diagnostics": [],
+  "explanation": {
+    "summary": "Lean Kernel 已接受翻译后的命题及 proofTerm，且无编译诊断；但 formalStatus 为 formal_verified_source_mapping_unconfirmed，说明自然语言原稿到 Lean 命题/证明的逐句映射尚未确认。不能据此说“原证明已认证”。",
+    "why": "现有数据表明：kernelVerified=true，leanDiagnostics 为空，unsupportedOriginalSteps 为空；sourceSteps 给出了从 Bézout 构造 x、验证两个整除性、取任意 y、推出 a∣(y−x) 与 b∣(y−x)、利用 b∣ak 和 Bézout 得 b∣k、最终得 ab∣(y−x) 的 Lean 见证。这些只能说明翻译后的形式命题和 proofTerm 通过 Kernel 检查。由于 source mapping 未确认，仍不能断言 Lean 证明与自然语言原稿在语义和步骤上完全等价；本次检查的是模型翻译后的命题与 proofTerm。",
+    "suggestedRevision": "建议人工完成 source mapping 确认：逐项核对 x 的定义、Bézout 系数的使用、a∣(x−r) 与 b∣(x−s) 的转写、由 b∣ak 推出 b∣k 的论证，以及最终 ((a*b:ℕ):ℤ)∣y−x 与自然语言“ab∣(y−x)”的对应。若映射确认完成，可记录为来源映射已验证；在此之前应表述为“翻译后的形式证明通过 Kernel 检查，原稿映射待确认”，不要表述为原证明已认证。",
+    "problematicSourceExcerpt": ""
+  },
+  "explanationError": null,
+  "modelProvenance": {
+    "jsonParsing": {
+      "method": "deterministic_json_schema",
+      "recovered": false,
+      "edits": []
+    },
+    "provider": "deepseek",
+    "requestedModel": "deepseek-flash",
+    "model": "deepseek-flash",
+    "responseId": "af0a0ca7-4096-483d-92cf-8998f70d3275",
+    "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "usage": {
+      "prompt_tokens": 1574,
+      "completion_tokens": 912,
+      "total_tokens": 2486,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 562
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 1574
+    },
+    "thinking": "provider_default",
+    "promptSchemaEncoding": "compact_json_v1",
+    "structuredOutput": "json_mode_with_local_schema_validation",
+    "simulated": false
+  }
+}

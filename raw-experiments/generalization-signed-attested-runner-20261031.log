@@ -1,0 +1,31 @@
+F.                                                                       [100%]
+=================================== FAILURES ===================================
+___ test_mismatched_theorem_wrapper_body_gets_fresh_locked_goal_kernel_check ___
+
+    def test_mismatched_theorem_wrapper_body_gets_fresh_locked_goal_kernel_check():
+        import pytest
+        from backend.config import Settings
+        from backend.lean.runner import LeanRunner
+    
+        runner = LeanRunner(Settings.from_env())
+        if not runner.info().get('ready'):
+            pytest.skip('Source-matched Lean runtime not ready')
+        body = '''by
+      intro n
+      have source_step_0 : n = n := by
+        rfl
+      exact source_step_0'''
+        wrapped = 'theorem candidate : ∀ n : ℕ, n = 0 := ' + body
+        normalized, operations = normalize_source_scaffold_wrapper(wrapped, GOAL, 1)
+>       assert operations == ['unwrap_theorem_wrapper_compile_against_locked_goal']
+E       AssertionError: assert [] == ['unwrap_theo..._locked_goal']
+E         
+E         Right contains one more item: 'unwrap_theorem_wrapper_compile_against_locked_goal'
+E         Use -v to get more diff
+
+tests/test_lean_first_modular.py:237: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_lean_first_modular.py::test_mismatched_theorem_wrapper_body_gets_fresh_locked_goal_kernel_check
+1 failed, 1 passed in 14.41s
+
+PYTEST_EXIT=1

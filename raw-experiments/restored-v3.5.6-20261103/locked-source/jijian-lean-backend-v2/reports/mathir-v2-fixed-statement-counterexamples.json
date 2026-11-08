@@ -1,0 +1,290 @@
+{
+  "auditKind": "fixed_statement_counterexample_kernel_audit",
+  "providerCalls": 0,
+  "mathIRRegenerated": false,
+  "leanBatchSize": 3,
+  "leanRuntime": {
+    "configured": true,
+    "executableFound": true,
+    "projectFound": true,
+    "runtimeBuilt": true,
+    "sandbox": "macos",
+    "isolated": true,
+    "ready": true,
+    "toolchain": "leanprover/lean4:v4.34.0",
+    "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+    "liveTestedInThisDistribution": false
+  },
+  "cases": {
+    "C11": {
+      "sourceMatchesSavedProblem": true,
+      "sourceSha256": "7f981adee920b2891944a0203cef1b342c0fb26221735f4f0c2437810f2d66f7",
+      "fixedStatement": "(∀ (v_d_x : ℝ), (∀ (v_d_y : ℝ), ((((v_d_x - (1 : ℝ)) * v_d_y) = (v_d_x - (1 : ℝ))) → (v_d_y = (1 : ℝ)))))",
+      "fixedStatementHash": "9f0f3003598450d36c136959ca4451ef1e53a4a0e32d99dcfc204b352a289fc1",
+      "routeIds": [
+        "pr_user"
+      ],
+      "nodeCount": 4,
+      "witness": {
+        "x": "1",
+        "y": "0",
+        "premise": true,
+        "conclusion": false
+      },
+      "counterexampleNegation": "¬ ((∀ (v_d_x : ℝ), (∀ (v_d_y : ℝ), ((((v_d_x - (1 : ℝ)) * v_d_y) = (v_d_x - (1 : ℝ))) → (v_d_y = (1 : ℝ))))))",
+      "negationKernelResult": {
+        "localVerified": true,
+        "status": "verified",
+        "diagnostics": [],
+        "certificate": {
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "checked": true,
+          "dependencyUsage": [],
+          "formalStatement": "¬∀ (v_d_x v_d_y : ℝ), (v_d_x - 1) * v_d_y = v_d_x - 1 → v_d_y = 1",
+          "statementMatched": true,
+          "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+          "expectedExpressionSha256": "846a6af00aca1e1e8b0fa2eae6c9e6d7beced9e5830d7e77d25c1b48ca915a7d",
+          "proofExpressionSha256": "b527ebafa7a8944e65f940077c2b6b96fc4974fec59aeec25ae1ac8325bb3a2e",
+          "statement_hash": "abbee6a919c2d07a2671bc99556ce1a2e3b5f93f2d2dc4717cb9c0f6cbc31471",
+          "nativeExpressionComparison": "structural_equal",
+          "sourceTypeSha256": "abbee6a919c2d07a2671bc99556ce1a2e3b5f93f2d2dc4717cb9c0f6cbc31471",
+          "sourceProofSha256": "a7d10d770bc6d78d90a17574f85e9f7baf7529bbe77cfef58199928e0277469f",
+          "runtime": {
+            "configured": true,
+            "executableFound": true,
+            "projectFound": true,
+            "runtimeBuilt": true,
+            "sandbox": "macos",
+            "isolated": true,
+            "ready": true,
+            "toolchain": "leanprover/lean4:v4.34.0",
+            "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+            "liveTestedInThisDistribution": false
+          },
+          "additionalAxioms": [],
+          "auditIsolation": "fresh_import_environment_reset_between_candidates"
+        },
+        "evidence": {
+          "schema": "lean-proof-evidence-v1",
+          "sha256": "ee62979caafe87d9923055427bacb10ef934d710da3b5aca86c7ba4c04d093d1",
+          "artifact": "reports/mathir-v2-stage7-proof-evidence/ee62979caafe87d9923055427bacb10ef934d710da3b5aca86c7ba4c04d093d1.json.gz",
+          "uncompressedBytes": 128386,
+          "compressedBytes": 2179
+        }
+      }
+    },
+    "C12": {
+      "sourceMatchesSavedProblem": true,
+      "sourceSha256": "0593f57bcf39115538fc358a1783cdbdfbd02ec820093193bbb9fd19a8c3aca7",
+      "fixedStatement": "(∃ (v_M : ℝ), (∀ (v_x : ℝ), (v_x < v_M)))",
+      "fixedStatementHash": "a9199a64e2896e007b2862b430cd9c218dda7f0cb752cbb7008c2e5d01cbff44",
+      "routeIds": [
+        "pr_main"
+      ],
+      "nodeCount": 6,
+      "witness": {
+        "M": "arbitrary real M",
+        "x": "M + 1",
+        "forcedRelation": "M + 1 < M"
+      },
+      "counterexampleNegation": "¬ ((∃ (v_M : ℝ), (∀ (v_x : ℝ), (v_x < v_M))))",
+      "negationKernelResult": {
+        "localVerified": true,
+        "status": "verified",
+        "diagnostics": [],
+        "certificate": {
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "checked": true,
+          "dependencyUsage": [],
+          "formalStatement": "¬∃ v_M, ∀ (v_x : ℝ), v_x < v_M",
+          "statementMatched": true,
+          "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+          "expectedExpressionSha256": "76b562a738d0bfd5717d4f932b3a8adc8b7088851f746339d42a974ce0891c75",
+          "proofExpressionSha256": "08924f5d27e8f8f58169522ef1c9161bc047b8c8d5b9ee074c82b7de6ff7b0d0",
+          "statement_hash": "bbe7119c76e355a665cc63e38eedb2067f46106f413025957c99a82fdea8f0fb",
+          "nativeExpressionComparison": "structural_equal",
+          "sourceTypeSha256": "bbe7119c76e355a665cc63e38eedb2067f46106f413025957c99a82fdea8f0fb",
+          "sourceProofSha256": "2ca170f9d1dc077ff9ccae7af7d6c02d5545ecd281ac6463941f5eee3b8d0ef9",
+          "runtime": {
+            "configured": true,
+            "executableFound": true,
+            "projectFound": true,
+            "runtimeBuilt": true,
+            "sandbox": "macos",
+            "isolated": true,
+            "ready": true,
+            "toolchain": "leanprover/lean4:v4.34.0",
+            "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+            "liveTestedInThisDistribution": false
+          },
+          "additionalAxioms": [],
+          "auditIsolation": "fresh_import_environment_reset_between_candidates"
+        },
+        "evidence": {
+          "schema": "lean-proof-evidence-v1",
+          "sha256": "f317b46d760928f4025e1440f49677157d5f09a616ad06b47cdf09d5d624ab06",
+          "artifact": "reports/mathir-v2-stage7-proof-evidence/f317b46d760928f4025e1440f49677157d5f09a616ad06b47cdf09d5d624ab06.json.gz",
+          "uncompressedBytes": 551462,
+          "compressedBytes": 7465
+        }
+      }
+    },
+    "C15": {
+      "sourceMatchesSavedProblem": true,
+      "sourceSha256": "c3228defc5b55007773ddb31d3331b5db9931a03d0b1d31f7af3d7899608ec38",
+      "fixedStatement": "(∀ (v_x : ℝ), (∀ (v_y : ℝ), (((v_x ^ (2 : ℕ)) = (v_y ^ (2 : ℕ))) → (v_x = v_y))))",
+      "fixedStatementHash": "b8eb21518af7ed70e82b58fb6c8676724bc5577df55b84eb93b1bd20ef11600b",
+      "routeIds": [
+        "route_user_proof"
+      ],
+      "nodeCount": 2,
+      "witness": {
+        "x": "1",
+        "y": "-1",
+        "squaresEqual": true,
+        "valuesEqual": false
+      },
+      "counterexampleNegation": "¬ ((∀ (v_x : ℝ), (∀ (v_y : ℝ), (((v_x ^ (2 : ℕ)) = (v_y ^ (2 : ℕ))) → (v_x = v_y)))))",
+      "negationKernelResult": {
+        "localVerified": true,
+        "status": "verified",
+        "diagnostics": [],
+        "certificate": {
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "checked": true,
+          "dependencyUsage": [],
+          "formalStatement": "¬∀ (v_x v_y : ℝ), v_x ^ 2 = v_y ^ 2 → v_x = v_y",
+          "statementMatched": true,
+          "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+          "expectedExpressionSha256": "5e48a4bd41983e52c2415ed767e79638cd063707df96f463c66a3920c8c57451",
+          "proofExpressionSha256": "9843cf3944f9dbcbf09475579a1a3f6078690609a46f4adbe51a839f82fbfa34",
+          "statement_hash": "02883c77a29b6b3a19734b9e36a57a9afedd843e98462fbd64054102de09130f",
+          "nativeExpressionComparison": "structural_equal",
+          "sourceTypeSha256": "02883c77a29b6b3a19734b9e36a57a9afedd843e98462fbd64054102de09130f",
+          "sourceProofSha256": "141d6075565e88d3eca5964e35dd01db7a4be9c1a914cae5c835b282f0cf01e8",
+          "runtime": {
+            "configured": true,
+            "executableFound": true,
+            "projectFound": true,
+            "runtimeBuilt": true,
+            "sandbox": "macos",
+            "isolated": true,
+            "ready": true,
+            "toolchain": "leanprover/lean4:v4.34.0",
+            "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+            "liveTestedInThisDistribution": false
+          },
+          "additionalAxioms": [],
+          "auditIsolation": "fresh_import_environment_reset_between_candidates"
+        },
+        "evidence": {
+          "schema": "lean-proof-evidence-v1",
+          "sha256": "166f7ea5f4c777020b82eb73b6549d73db8ce7d631c3a394358abe89c55fb58b",
+          "artifact": "reports/mathir-v2-stage7-proof-evidence/166f7ea5f4c777020b82eb73b6549d73db8ce7d631c3a394358abe89c55fb58b.json.gz",
+          "uncompressedBytes": 79235,
+          "compressedBytes": 1749
+        }
+      }
+    }
+  },
+  "processMetrics": [
+    {
+      "phase": "proposition_elaboration",
+      "wallSeconds": 11.74,
+      "queueWaitSeconds": 0.0001,
+      "slot": 0,
+      "parallelism": 1,
+      "activeProcessGroupsAtStart": 1,
+      "processGroupPid": 7320,
+      "kernelInputJsonBytes": 0,
+      "status": "completed",
+      "userCpuSeconds": 2.07,
+      "systemCpuSeconds": 9.64,
+      "maxRssBytes": 6046973952,
+      "peakMemoryFootprintBytes": 933130368,
+      "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+      "leanStdoutBytes": 15287,
+      "leanStderrBytes": 754,
+      "pythonPeakRssBytes": 48824320,
+      "leanReturnCode": 0
+    },
+    {
+      "phase": "expected_wire_materialization",
+      "wallSeconds": 0.0007,
+      "leanStdoutBytes": 15287,
+      "recordCount": 3,
+      "pythonPeakRssBytes": 48824320
+    },
+    {
+      "phase": "proof_export_batch",
+      "wallSeconds": 12.85,
+      "queueWaitSeconds": 0.0002,
+      "slot": 0,
+      "parallelism": 1,
+      "activeProcessGroupsAtStart": 1,
+      "processGroupPid": 7332,
+      "kernelInputJsonBytes": 0,
+      "status": "completed",
+      "userCpuSeconds": 2.17,
+      "systemCpuSeconds": 10.58,
+      "maxRssBytes": 6063292416,
+      "peakMemoryFootprintBytes": 937652416,
+      "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+      "leanStdoutBytes": 912347,
+      "leanStderrBytes": 755,
+      "pythonPeakRssBytes": 51806208,
+      "leanReturnCode": 0
+    },
+    {
+      "phase": "proof_wire_materialization",
+      "wallSeconds": 0.044,
+      "leanStdoutBytes": 912347,
+      "candidateCount": 3,
+      "pythonPeakRssBytes": 64667648
+    },
+    {
+      "phase": "independent_kernel_replay_batch",
+      "wallSeconds": 13.06,
+      "queueWaitSeconds": 0.0001,
+      "slot": 0,
+      "parallelism": 1,
+      "activeProcessGroupsAtStart": 1,
+      "processGroupPid": 7351,
+      "kernelInputJsonBytes": 846448,
+      "status": "completed",
+      "userCpuSeconds": 2.14,
+      "systemCpuSeconds": 10.88,
+      "maxRssBytes": 6054199296,
+      "peakMemoryFootprintBytes": 939094080,
+      "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+      "leanStdoutBytes": 2002,
+      "leanStderrBytes": 755,
+      "pythonPeakRssBytes": 65765376,
+      "leanReturnCode": 0
+    },
+    {
+      "phase": "kernel_certificate_materialization",
+      "wallSeconds": 0.0125,
+      "leanStdoutBytes": 2002,
+      "certificateCount": 3,
+      "pythonPeakRssBytes": 65781760
+    }
+  ],
+  "elapsedSeconds": 37.758,
+  "interpretation": "A verified negation proves the saved fixed proposition is false. It does not prove or replace any original proof route."
+}

@@ -1,0 +1,56 @@
+{
+  "case": {
+    "id": "bmo1-2024-q1",
+    "expected": "correct",
+    "source": "2024 BMO Round 1 第1题。题目：定义正整数 n≥3 为“快乐”，若能把 n 个互不相同的正整数围成一个圆，使得每一对相邻数中一个整除另一个，而每一对不相邻数互不整除。求 3≤n≤12 中所有快乐的 n，并严格证明。\n\n证明：\n第一步，n=3 时取循环排列 (1,2,4)。三个数互异，任意两数均相邻；1|2、2|4、1|4，因此 n=3 快乐。\n第二步，n=4 时取循环排列 (2,12,3,18)。每一对相邻元素有整除关系：2|12、3|12、3|18、2|18；而仅有两对不相邻的数 (2,3) 与 (12,18)，两对均互不整除，故 n=4 快乐。\n第三步，对任一偶数 n=2k≥6，取 k 个彼此不同的素数 p₁,…,p_k，令 p_{k+1}=p₁，并循环排列 p₁,p₁p₂,p₂,p₂p₃,…,p_k,p_kp₁。所有单素数互异；每个乘积包含恰好两个不同素因子，且 k≥3 时相邻素数的无序二元集合两两不同，故这些乘积也互异，且不会等于任何单素数。每对相邻数为 p_i 和含 p_i 因子的相邻乘积，必有整除关系。对不相邻的两数：两个单素数互不整除；两个不同乘积都是两个互异素数之积，若其中一个整除另一个则二者相同，矛盾；单素数 p_i 仅能整除含 p_i 的两个相邻乘积，不能整除其他乘积，复合数也不整除单素数。因此构造满足要求。这证明 6、8、10、12 快乐。\n第四步，证明 n>3 为奇数时不快乐。反设存在符合条件的循环排列 a₁,…,a_n，下标模 n。相邻数互异且一个整除另一个，因此必有严格的大小方向。若存在三个连续元素 a_i<a_{i+1}<a_{i+2}，因相邻整除，得 a_i|a_{i+1}|a_{i+2}，从而 a_i|a_{i+2}；当 n>3 时这两数不相邻，矛盾。三个连续元素严格递减时同理。因此绕圆每两个相邻的大小方向只能交替，一升一降。奇数条边的环无法做到严格交替，故奇数 n>3 不快乐。\n综合可得所求 n 恰为 3、4、6、8、10、12。"
+  },
+  "jobId": "cf76ce74-fc04-4f46-a099-57f58123d79e",
+  "jobStatus": "completed",
+  "resultStatus": "whole_proof_translation_service_unavailable",
+  "kernelVerified": false,
+  "formalProofCertified": false,
+  "originalProofCertified": false,
+  "fidelityReview": null,
+  "fidelityIssues": 0,
+  "sourceSteps": 15,
+  "kernelCertificate": null,
+  "unsupportedOriginalSteps": [
+    "模型输出与约定的数据结构不一致"
+  ],
+  "error": null,
+  "usage": {
+    "attempts": 3,
+    "inputTokens": 6735,
+    "outputTokens": 60039,
+    "missingUsage": 0,
+    "requests": [
+      {
+        "reason": "WholeProofPlan",
+        "status": "response_received",
+        "input_tokens": 1240,
+        "output_tokens": 24152,
+        "error_type": null,
+        "http_duration_ms": 99021.653
+      },
+      {
+        "reason": "WholeProofProgram",
+        "status": "response_received",
+        "input_tokens": 2201,
+        "output_tokens": 35086,
+        "error_type": null,
+        "http_duration_ms": 178661.016
+      },
+      {
+        "reason": "Explanation",
+        "status": "response_received",
+        "input_tokens": 3294,
+        "output_tokens": 801,
+        "error_type": null,
+        "http_duration_ms": 6024.183
+      }
+    ]
+  },
+  "feedbackError": null,
+  "elapsedSeconds": 284.48,
+  "totalElapsedSeconds": 285.38
+}

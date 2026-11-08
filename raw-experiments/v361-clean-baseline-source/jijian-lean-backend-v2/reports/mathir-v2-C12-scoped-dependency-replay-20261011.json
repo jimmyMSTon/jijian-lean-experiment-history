@@ -1,0 +1,655 @@
+{
+  "baseline": "3804bae",
+  "providerCalls": 0,
+  "statementLockPreserved": true,
+  "cases": {
+    "C12": {
+      "input": "reports/mathir-v2-stage8-live/C12.json",
+      "sourceTextMatches": true,
+      "expectedStatementHash": "a9199a64e2896e007b2862b430cd9c218dda7f0cb752cbb7008c2e5d01cbff44",
+      "actualStatementHash": "a9199a64e2896e007b2862b430cd9c218dda7f0cb752cbb7008c2e5d01cbff44",
+      "statementLockPreserved": true,
+      "fixedStatementKernelPassed": false,
+      "originalRouteKernelPassed": false,
+      "routes": [
+        {
+          "routeId": "pr_main",
+          "routeHash": "df06ef4da36207e1f1613c2105a28254596bc7711b0c5751631c35b295564a91",
+          "sourceEvidenceHash": "064d5a2a780b7fac90777df42094de7d43d936c013a1e3a713430dd6be0ce2f9",
+          "goalNodeId": "n6",
+          "goalProofTerm": null,
+          "proofComposition": {
+            "status": "incomplete",
+            "error": "A claim in the route has no original proof term",
+            "kernelChecked": false
+          },
+          "status": "incomplete",
+          "completeOriginalRouteKernelPassed": false,
+          "fixedStatementKernelPassed": false,
+          "routeConnectivity": {
+            "status": "connected",
+            "goalNodeIdPresent": true,
+            "unconnectedNodeIds": [],
+            "unconnectedClaimNodeIds": [],
+            "basis": "goal dependency closure plus explicit induction-case edges"
+          },
+          "dependencyEvidence": {
+            "status": "incomplete",
+            "basis": "Kernel proof expression binder-use audit for declared claim dependencies"
+          },
+          "stepResults": [
+            {
+              "sourceId": "mathir-v2/pr_main/n2",
+              "routeId": "pr_main",
+              "nodeId": "n2",
+              "kind": "claim",
+              "expectedType": "(∀ (v_x : ℝ), (∀ (v_M : ℝ), (v_M = (v_x + (1 : ℝ)))))",
+              "proofTerm": null,
+              "originalProofTerm": null,
+              "context": [
+                {
+                  "source_id": "x",
+                  "scope_id": "s_theorem",
+                  "kind": "variable",
+                  "name": "v_x",
+                  "type": "ℝ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "M",
+                  "scope_id": "s_theorem",
+                  "kind": "variable",
+                  "name": "v_M",
+                  "type": "ℝ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                }
+              ],
+              "dependsOn": [],
+              "proofAttemptStatus": "missing_proof",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "failureClass": "missing_proof",
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 78,
+                  "end": 93
+                }
+              ],
+              "status": "incomplete",
+              "lean": {
+                "status": "missing_proof",
+                "localVerified": false,
+                "diagnostics": [],
+                "certificate": null
+              }
+            },
+            {
+              "sourceId": "mathir-v2/pr_main/n3",
+              "routeId": "pr_main",
+              "nodeId": "n3",
+              "kind": "claim",
+              "expectedType": "(∀ (v_x : ℝ), (∀ (v_M : ℝ), (v_x < (v_x + (1 : ℝ)))))",
+              "proofTerm": "by\n  intro x M\n  linarith",
+              "originalProofTerm": "by\n  intro x M\n  linarith",
+              "context": [
+                {
+                  "source_id": "x",
+                  "scope_id": "s_theorem",
+                  "kind": "variable",
+                  "name": "v_x",
+                  "type": "ℝ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "M",
+                  "scope_id": "s_theorem",
+                  "kind": "variable",
+                  "name": "v_M",
+                  "type": "ℝ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                }
+              ],
+              "dependsOn": [],
+              "proofAttemptStatus": "verified",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "failureClass": null,
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 98,
+                  "end": 106
+                }
+              ],
+              "status": "passed",
+              "lean": {
+                "localVerified": true,
+                "status": "verified",
+                "diagnostics": [],
+                "certificate": {
+                  "auditMethod": "fresh_environment_data_only_kernel_replay",
+                  "axioms": [
+                    "propext",
+                    "Classical.choice",
+                    "Quot.sound"
+                  ],
+                  "checked": true,
+                  "dependencyUsage": [],
+                  "formalStatement": "∀ (v_x v_M : ℝ), v_x < v_x + 1",
+                  "statementMatched": true,
+                  "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                  "expectedExpressionSha256": "18912db8635537df512a53023d1536414b3cd5d32a2aa01664fc830a58c8fed9",
+                  "proofExpressionSha256": "0f688a4123908bee3c9713922192704af258ba2699653fe9a2f0fe4dc7e69e20",
+                  "statement_hash": "a9199a64e2896e007b2862b430cd9c218dda7f0cb752cbb7008c2e5d01cbff44",
+                  "nativeExpressionComparison": "structural_equal",
+                  "sourceTypeSha256": "719bc68c3bf4b39fea69b802d66d5994d4a35f18447d799427aa13ea495031ba",
+                  "sourceProofSha256": "bafe5c164781e8bc0a07d8270c9a0b5a1966c84ee13b65330e709bc533b52f3f",
+                  "runtime": {
+                    "configured": true,
+                    "executableFound": true,
+                    "projectFound": true,
+                    "runtimeBuilt": true,
+                    "sandbox": "macos",
+                    "isolated": true,
+                    "ready": true,
+                    "toolchain": "leanprover/lean4:v4.34.0",
+                    "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                    "liveTestedInThisDistribution": false
+                  },
+                  "additionalAxioms": [],
+                  "auditIsolation": "fresh_import_environment_reset_between_candidates"
+                },
+                "evidence": {
+                  "schema": "lean-proof-evidence-v1",
+                  "sha256": "a7bf0a939c012fddd27059b9aca1103d7575e0db7a97936db8d0494ac03a1fd6",
+                  "artifact": "reports/mathir-v2-stage7-proof-evidence/a7bf0a939c012fddd27059b9aca1103d7575e0db7a97936db8d0494ac03a1fd6.json.gz",
+                  "uncompressedBytes": 552913,
+                  "compressedBytes": 7400
+                }
+              }
+            },
+            {
+              "sourceId": "mathir-v2/pr_main/n4",
+              "routeId": "pr_main",
+              "nodeId": "n4",
+              "kind": "claim",
+              "expectedType": "(∀ (v_x : ℝ), (∀ (v_M : ℝ), (∀ (jjdep_n2 : (v_M = (v_x + (1 : ℝ)))), (∀ (jjdep_n3 : (v_x < (v_x + (1 : ℝ)))), (v_x < v_M)))))",
+              "proofTerm": "by\n  intro x M h1 h2\n  rw [h1]\n  exact h2",
+              "originalProofTerm": "by\n  intro x M h1 h2\n  rw [h1]\n  exact h2",
+              "context": [
+                {
+                  "source_id": "x",
+                  "scope_id": "s_theorem",
+                  "kind": "variable",
+                  "name": "v_x",
+                  "type": "ℝ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "M",
+                  "scope_id": "s_theorem",
+                  "kind": "variable",
+                  "name": "v_M",
+                  "type": "ℝ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "n2",
+                  "kind": "claim",
+                  "name": "h_pr_main_n2",
+                  "type": "(v_M = (v_x + (1 : ℝ)))"
+                },
+                {
+                  "source_id": "n3",
+                  "kind": "claim",
+                  "name": "h_pr_main_n3",
+                  "type": "(v_x < (v_x + (1 : ℝ)))"
+                }
+              ],
+              "dependsOn": [
+                "n2",
+                "n3"
+              ],
+              "proofAttemptStatus": "verified",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "all_declared_dependencies_used",
+              "dependencyUsage": [
+                {
+                  "dependencyId": "n2",
+                  "used": true
+                },
+                {
+                  "dependencyId": "n3",
+                  "used": true
+                }
+              ],
+              "failureClass": null,
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 107,
+                  "end": 114
+                }
+              ],
+              "status": "passed",
+              "lean": {
+                "localVerified": true,
+                "status": "verified",
+                "diagnostics": [],
+                "certificate": {
+                  "auditMethod": "fresh_environment_data_only_kernel_replay",
+                  "axioms": [
+                    "propext",
+                    "Classical.choice",
+                    "Quot.sound"
+                  ],
+                  "checked": true,
+                  "dependencyUsage": [
+                    {
+                      "dependencyId": "n2",
+                      "used": true
+                    },
+                    {
+                      "dependencyId": "n3",
+                      "used": true
+                    }
+                  ],
+                  "formalStatement": "∀ (v_x v_M : ℝ), v_M = v_x + 1 → v_x < v_x + 1 → v_x < v_M",
+                  "statementMatched": true,
+                  "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                  "expectedExpressionSha256": "bceaa4f89986ab4b8837375b8deedfa8486b86d811bb3d912d00f34dd4045bd1",
+                  "proofExpressionSha256": "96c0c304a7a7607ad199e298ec73b41fc58d4f1651cc9c2278b76cbf2ab7d527",
+                  "statement_hash": "a9199a64e2896e007b2862b430cd9c218dda7f0cb752cbb7008c2e5d01cbff44",
+                  "nativeExpressionComparison": "structural_equal",
+                  "sourceTypeSha256": "83e96dfbcdad12486326277bd9dc239457dda70580afc09a346eb2210d586625",
+                  "sourceProofSha256": "7cb990a40ff95fab34c8c68aafe1270181f3e5a4b6a26fb6e359c59966b0e27c",
+                  "runtime": {
+                    "configured": true,
+                    "executableFound": true,
+                    "projectFound": true,
+                    "runtimeBuilt": true,
+                    "sandbox": "macos",
+                    "isolated": true,
+                    "ready": true,
+                    "toolchain": "leanprover/lean4:v4.34.0",
+                    "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                    "liveTestedInThisDistribution": false
+                  },
+                  "additionalAxioms": [],
+                  "auditIsolation": "fresh_import_environment_reset_between_candidates"
+                },
+                "evidence": {
+                  "schema": "lean-proof-evidence-v1",
+                  "sha256": "6d58d394d7a98ce7c8a8840df8b03751a3ee774bb1407902122d0c15436955c7",
+                  "artifact": "reports/mathir-v2-stage7-proof-evidence/6d58d394d7a98ce7c8a8840df8b03751a3ee774bb1407902122d0c15436955c7.json.gz",
+                  "uncompressedBytes": 21033,
+                  "compressedBytes": 634
+                }
+              }
+            },
+            {
+              "sourceId": "mathir-v2/pr_main/n5",
+              "routeId": "pr_main",
+              "nodeId": "n5",
+              "kind": "claim",
+              "expectedType": "(∀ (jjdep_n2 : (∀ (v_x : ℝ), (∀ (v_M : ℝ), (v_M = (v_x + (1 : ℝ)))))), (∀ (jjdep_n3 : (∀ (v_x : ℝ), (v_x < (v_x + (1 : ℝ))))), (∀ (jjdep_n4 : (∀ (v_x : ℝ), (∀ (v_M : ℝ), (v_x < v_M)))), (∀ (v_x : ℝ), (∃ (v_M : ℝ), ((v_M = (v_x + (1 : ℝ))) ∧ (v_x < v_M)))))))",
+              "proofTerm": "by\n  intro h1 h2 h3 w\n  exact ⟨w + 1, by\n    constructor\n    · rfl\n    · linarith⟩",
+              "originalProofTerm": "by\n  intro h1 h2 h3 w\n  exact ⟨w + 1, by\n    constructor\n    · rfl\n    · linarith⟩",
+              "context": [
+                {
+                  "source_id": "x",
+                  "scope_id": "s_theorem",
+                  "kind": "variable",
+                  "name": "v_x",
+                  "type": "ℝ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "M",
+                  "scope_id": "s_theorem",
+                  "kind": "variable",
+                  "name": "v_M",
+                  "type": "ℝ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "n2",
+                  "kind": "claim",
+                  "name": "h_pr_main_n2",
+                  "type": "(∀ (v_x : ℝ), (∀ (v_M : ℝ), (v_M = (v_x + (1 : ℝ)))))"
+                },
+                {
+                  "source_id": "n3",
+                  "kind": "claim",
+                  "name": "h_pr_main_n3",
+                  "type": "(∀ (v_x : ℝ), (v_x < (v_x + (1 : ℝ))))"
+                },
+                {
+                  "source_id": "n4",
+                  "kind": "claim",
+                  "name": "h_pr_main_n4",
+                  "type": "(∀ (v_x : ℝ), (∀ (v_M : ℝ), (v_x < v_M)))"
+                }
+              ],
+              "dependsOn": [
+                "n2",
+                "n3",
+                "n4"
+              ],
+              "proofAttemptStatus": "verified",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "declared_dependency_unused",
+              "dependencyUsage": [
+                {
+                  "dependencyId": "n2",
+                  "used": false
+                },
+                {
+                  "dependencyId": "n3",
+                  "used": false
+                },
+                {
+                  "dependencyId": "n4",
+                  "used": false
+                }
+              ],
+              "failureClass": "dependency_usage_failed",
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 119,
+                  "end": 135
+                }
+              ],
+              "status": "passed",
+              "lean": {
+                "localVerified": true,
+                "status": "verified",
+                "diagnostics": [],
+                "certificate": {
+                  "auditMethod": "fresh_environment_data_only_kernel_replay",
+                  "axioms": [
+                    "propext",
+                    "Classical.choice",
+                    "Quot.sound"
+                  ],
+                  "checked": true,
+                  "dependencyUsage": [
+                    {
+                      "dependencyId": "n2",
+                      "used": false
+                    },
+                    {
+                      "dependencyId": "n3",
+                      "used": false
+                    },
+                    {
+                      "dependencyId": "n4",
+                      "used": false
+                    }
+                  ],
+                  "formalStatement": "(∀ (v_x v_M : ℝ), v_M = v_x + 1) →\n  (∀ (v_x : ℝ), v_x < v_x + 1) → (∀ (v_x v_M : ℝ), v_x < v_M) → ∀ (v_x : ℝ), ∃ v_M, v_M = v_x + 1 ∧ v_x < v_M",
+                  "statementMatched": true,
+                  "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                  "expectedExpressionSha256": "e79f0fdf87a1ef5ea561ddfd50d86a4eea85b3af1d32ba0f864167e4dc663fde",
+                  "proofExpressionSha256": "51fbd44344ea8355f6ce1135058db440b6724ca64bd3ae87039176cb35b7566d",
+                  "statement_hash": "a9199a64e2896e007b2862b430cd9c218dda7f0cb752cbb7008c2e5d01cbff44",
+                  "nativeExpressionComparison": "structural_equal",
+                  "sourceTypeSha256": "0b2102af595084c1e65155e52678324d80bea8637f2667d29e06c1f73bbdf5c0",
+                  "sourceProofSha256": "21c478c9eaa15c9c19b835e3fe3a0d8a7c012369dfad6b15b999a1f5cf295e3a",
+                  "runtime": {
+                    "configured": true,
+                    "executableFound": true,
+                    "projectFound": true,
+                    "runtimeBuilt": true,
+                    "sandbox": "macos",
+                    "isolated": true,
+                    "ready": true,
+                    "toolchain": "leanprover/lean4:v4.34.0",
+                    "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                    "liveTestedInThisDistribution": false
+                  },
+                  "additionalAxioms": [],
+                  "auditIsolation": "fresh_import_environment_reset_between_candidates"
+                },
+                "evidence": {
+                  "schema": "lean-proof-evidence-v1",
+                  "sha256": "2ad1297e934d704e6199d71f40394d450d2176caecf6c9ceaa1d56d2e9330f15",
+                  "artifact": "reports/mathir-v2-stage7-proof-evidence/2ad1297e934d704e6199d71f40394d450d2176caecf6c9ceaa1d56d2e9330f15.json.gz",
+                  "uncompressedBytes": 580789,
+                  "compressedBytes": 7812
+                }
+              }
+            },
+            {
+              "sourceId": "mathir-v2/pr_main/n6",
+              "routeId": "pr_main",
+              "nodeId": "n6",
+              "kind": "claim",
+              "expectedType": "(∀ (jjdep_n5 : (∀ (v_x : ℝ), (∃ (v_M : ℝ), ((v_M = (v_x + (1 : ℝ))) ∧ (v_x < v_M))))), (∃ (v_M : ℝ), (∀ (v_x : ℝ), (v_x < v_M))))",
+              "proofTerm": null,
+              "originalProofTerm": null,
+              "context": [
+                {
+                  "source_id": "x",
+                  "scope_id": "s_theorem",
+                  "kind": "variable",
+                  "name": "v_x",
+                  "type": "ℝ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "M",
+                  "scope_id": "s_theorem",
+                  "kind": "variable",
+                  "name": "v_M",
+                  "type": "ℝ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "n5",
+                  "kind": "claim",
+                  "name": "h_pr_main_n5",
+                  "type": "(∀ (v_x : ℝ), (∃ (v_M : ℝ), ((v_M = (v_x + (1 : ℝ))) ∧ (v_x < v_M))))"
+                }
+              ],
+              "dependsOn": [
+                "n5"
+              ],
+              "proofAttemptStatus": "missing_proof",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "dependency_usage_not_audited",
+              "dependencyUsage": [],
+              "failureClass": "missing_proof",
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 135,
+                  "end": 167
+                }
+              ],
+              "status": "incomplete",
+              "lean": {
+                "status": "missing_proof",
+                "localVerified": false,
+                "diagnostics": [],
+                "certificate": null
+              }
+            }
+          ],
+          "kernel": null,
+          "sourceAlignment": {
+            "status": "ambiguous",
+            "sourceRefsValidated": true,
+            "semanticAlignmentKernelProven": false
+          }
+        }
+      ],
+      "leanMetrics": {
+        "processCount": 3,
+        "elapsedSeconds": 40.255,
+        "processes": [
+          {
+            "phase": "proposition_elaboration",
+            "wallSeconds": 13.28,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 3539,
+            "kernelInputJsonBytes": 0,
+            "status": "completed",
+            "userCpuSeconds": 2.13,
+            "systemCpuSeconds": 11.11,
+            "maxRssBytes": 6047629312,
+            "peakMemoryFootprintBytes": 933261440,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 19492,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 38453248,
+            "leanReturnCode": 0
+          },
+          {
+            "phase": "expected_wire_materialization",
+            "wallSeconds": 0.0008,
+            "leanStdoutBytes": 19492,
+            "recordCount": 3,
+            "pythonPeakRssBytes": 38469632
+          },
+          {
+            "phase": "proof_export_batch",
+            "wallSeconds": 13.43,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 3553,
+            "kernelInputJsonBytes": 0,
+            "status": "completed",
+            "userCpuSeconds": 2.2,
+            "systemCpuSeconds": 11.2,
+            "maxRssBytes": 6063063040,
+            "peakMemoryFootprintBytes": 941601024,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 1389604,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 43335680,
+            "leanReturnCode": 0
+          },
+          {
+            "phase": "proof_wire_materialization",
+            "wallSeconds": 0.0664,
+            "leanStdoutBytes": 1389604,
+            "candidateCount": 3,
+            "pythonPeakRssBytes": 64176128
+          },
+          {
+            "phase": "independent_kernel_replay_batch",
+            "wallSeconds": 13.46,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 3565,
+            "kernelInputJsonBytes": 1286824,
+            "status": "completed",
+            "userCpuSeconds": 2.15,
+            "systemCpuSeconds": 11.28,
+            "maxRssBytes": 6054805504,
+            "peakMemoryFootprintBytes": 939667520,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 2408,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 65208320,
+            "leanReturnCode": 0
+          },
+          {
+            "phase": "kernel_certificate_materialization",
+            "wallSeconds": 0.0182,
+            "leanStdoutBytes": 2408,
+            "certificateCount": 3,
+            "pythonPeakRssBytes": 65552384
+          }
+        ],
+        "measurement": "Lean subprocess groups; each invocation includes the sandbox launcher and Lean process. Kernel batch resets the imported environment between evidence replays."
+      }
+    }
+  },
+  "proofWireReplay": "batch Lean check, then content-addressed evidence",
+  "proofWireBatches": [
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 3,
+      "batchElapsedSeconds": 27.02,
+      "stepId": "mathir-v2/pr_main/n3",
+      "proofTermBytes": 25,
+      "externalizedWireBytes": 552913,
+      "evidence": {
+        "schema": "lean-proof-evidence-v1",
+        "sha256": "a7bf0a939c012fddd27059b9aca1103d7575e0db7a97936db8d0494ac03a1fd6",
+        "artifact": "reports/mathir-v2-stage7-proof-evidence/a7bf0a939c012fddd27059b9aca1103d7575e0db7a97936db8d0494ac03a1fd6.json.gz",
+        "uncompressedBytes": 552913,
+        "compressedBytes": 7400
+      }
+    },
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 3,
+      "batchElapsedSeconds": 27.02,
+      "stepId": "mathir-v2/pr_main/n4",
+      "proofTermBytes": 41,
+      "externalizedWireBytes": 21033,
+      "evidence": {
+        "schema": "lean-proof-evidence-v1",
+        "sha256": "6d58d394d7a98ce7c8a8840df8b03751a3ee774bb1407902122d0c15436955c7",
+        "artifact": "reports/mathir-v2-stage7-proof-evidence/6d58d394d7a98ce7c8a8840df8b03751a3ee774bb1407902122d0c15436955c7.json.gz",
+        "uncompressedBytes": 21033,
+        "compressedBytes": 634
+      }
+    },
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 3,
+      "batchElapsedSeconds": 27.02,
+      "stepId": "mathir-v2/pr_main/n5",
+      "proofTermBytes": 88,
+      "externalizedWireBytes": 580789,
+      "evidence": {
+        "schema": "lean-proof-evidence-v1",
+        "sha256": "2ad1297e934d704e6199d71f40394d450d2176caecf6c9ceaa1d56d2e9330f15",
+        "artifact": "reports/mathir-v2-stage7-proof-evidence/2ad1297e934d704e6199d71f40394d450d2176caecf6c9ceaa1d56d2e9330f15.json.gz",
+        "uncompressedBytes": 580789,
+        "compressedBytes": 7812
+      }
+    }
+  ],
+  "checkManyInvocationMode": "single batch per route",
+  "sourceReport": "saved Stage 8 proof terms",
+  "compilerRevision": "current workspace under baseline 3804bae",
+  "leanBatchCalls": {
+    "C12": 1
+  }
+}

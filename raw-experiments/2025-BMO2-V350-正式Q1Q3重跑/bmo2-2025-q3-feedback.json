@@ -1,0 +1,191 @@
+{
+  "id": "ed6e9a7c-29cb-434e-b090-bcfe6714e833",
+  "runId": "eef04102-fc70-4a3d-87de-712be9b9f34a",
+  "kind": "lean_first_explanation_only",
+  "verifiedFormalProof": false,
+  "sourceEquivalenceCertified": false,
+  "originalProofCertified": false,
+  "modelExplanationAuthority": "interpretation_only_not_a_certificate",
+  "formalProofCertified": false,
+  "verificationMode": "single_whole_theorem_kernel",
+  "sourceFidelityReview": {},
+  "authoredClaimRefutation": {},
+  "goalExpressionRepair": {},
+  "summary": "整篇形式证明尚未通过 Lean Kernel；请查看原稿锚点、编译诊断和翻译缺口，不能据此判定原数学证明错误。",
+  "sourceSteps": [
+    {
+      "id": "source-0",
+      "index": 0,
+      "role": "inference",
+      "start": 126,
+      "end": 294,
+      "sourceExcerpt": "第一步：用 0、1 代表两色，标准棋盘第 (i,j) 格为 (i+j) mod 2。任意交换两行只改变这两行的位置，不改变各行是否为某个标准交错行或其反色的性质；交换两列类似。每个扰乱后格子相对初始颜色的变化可以写成 r_i+c_j (mod 2)，其中 r_i、c_j∈{0,1} 分别是该行该列被互异颜色的行/列交换影响的奇偶次数。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_0",
+      "dependsOn": []
+    },
+    {
+      "id": "source-1",
+      "index": 1,
+      "role": "inference",
+      "start": 295,
+      "end": 463,
+      "sourceExcerpt": "第二步：每次行交换改变恰好两个 r_i，列交换改变恰好两个 c_j，因此行位元中 1 的个数 R、列位元中 1 的个数 C 均为偶数。相对初始图案，全部恢复当且仅当 r_i+c_j≡0 对每个 i,j 成立，也即所有 r_i,c_j 都等于 0，或者所有 r_i,c_j 都等于 1。第二种情形只会在 n 为偶数时满足 R、C 的偶性。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_1",
+      "dependsOn": []
+    },
+    {
+      "id": "source-2",
+      "index": 2,
+      "role": "inference",
+      "start": 464,
+      "end": 634,
+      "sourceExcerpt": "第三步：若 n 为奇数，只能恢复到全零位元配置。每个交换至多消除两个值为 1 的行或列位元，所以至少需 (R+C)/2 次，且分别把标记为 1 的行两两交换、列两两交换即可恰好做到。因此最少次数是 (R+C)/2。由于 R,C≤n−1，最大为 n−1；取 R=C=n−1 的扰乱配置即可达到，因 n−1 为偶数可由一系列两行、两列互换构造。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_2",
+      "dependsOn": []
+    },
+    {
+      "id": "source-3",
+      "index": 3,
+      "role": "inference",
+      "start": 635,
+      "end": 808,
+      "sourceExcerpt": "第四步：若 n 为偶数，则既可恢复全零位元，也可恢复全一位元。恢复全零用 (R+C)/2 次，恢复全一用 (2n−R−C)/2 次，两者取小者为最优交换数。因为 R+C 介于 0 与 2n 之间，两个数之和为 n，所以最小值不超过 n/2。这个界可以达到：取 R=n、C=0（n 是偶数，因此是可达位元配置），此时两种恢复方式都需要 n/2 次。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_3",
+      "dependsOn": []
+    },
+    {
+      "id": "source-4",
+      "index": 4,
+      "role": "inference",
+      "start": 808,
+      "end": 832,
+      "sourceExcerpt": "故答案：n 偶数时 n/2；n 奇数时 n−1。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_4",
+      "dependsOn": []
+    }
+  ],
+  "localStepEvidence": [
+    {
+      "id": "source-0",
+      "status": "translation_mapped_only",
+      "start": 126,
+      "end": 294,
+      "kernelVerified": false,
+      "unverifiedDependencies": [],
+      "diagnostics": [],
+      "repairStatus": null,
+      "attemptCount": 0,
+      "originalDiagnostics": []
+    },
+    {
+      "id": "source-1",
+      "status": "translation_mapped_only",
+      "start": 295,
+      "end": 463,
+      "kernelVerified": false,
+      "unverifiedDependencies": [],
+      "diagnostics": [],
+      "repairStatus": null,
+      "attemptCount": 0,
+      "originalDiagnostics": []
+    },
+    {
+      "id": "source-2",
+      "status": "translation_mapped_only",
+      "start": 464,
+      "end": 634,
+      "kernelVerified": false,
+      "unverifiedDependencies": [],
+      "diagnostics": [],
+      "repairStatus": null,
+      "attemptCount": 0,
+      "originalDiagnostics": []
+    },
+    {
+      "id": "source-3",
+      "status": "translation_mapped_only",
+      "start": 635,
+      "end": 808,
+      "kernelVerified": false,
+      "unverifiedDependencies": [],
+      "diagnostics": [],
+      "repairStatus": null,
+      "attemptCount": 0,
+      "originalDiagnostics": []
+    },
+    {
+      "id": "source-4",
+      "status": "translation_mapped_only",
+      "start": 808,
+      "end": 832,
+      "kernelVerified": false,
+      "unverifiedDependencies": [],
+      "diagnostics": [],
+      "repairStatus": null,
+      "attemptCount": 0,
+      "originalDiagnostics": []
+    }
+  ],
+  "diagnostics": [],
+  "explanation": {
+    "summary": "本次仅记录整命题级翻译与检查状态：形式化状态为 whole_proof_translation_incomplete，wholeFormalProofVerified=false，kernelVerified=false。Lean 内核未验证该证明命题，也未产生正式反证；这不表示原题或原证明为假。",
+    "why": "提交的 Lean 目标把棋盘、行列交换、可达性与最优界封装成单一命题，但原稿五步均标为 translation_mapped_only：r_i+c_j 表示、R/C 偶性、恢复等价条件、奇数/偶数 n 的上下界和极值可达构造都未形成 Lean 证明项。leanDiagnostics 为空只说明本轮未见内核诊断，不能当作通过；未验证的前置步骤不可称为可信前提。authoredClaimRefutation 状态为空且 kernelRefutationVerified 非 true，因此不得称题目被反证，也不得编造反例。",
+    "suggestedRevision": "继续在 Lean 4 + Mathlib 中逐步形式化并证明：交换序列的 r_i+c_j 表示、R/C 偶性、恢复等价条件、奇数 n 的上下界与极值可达性、偶数 n 的 min 公式与 R=n,C=0 下界。每步分别提交可检查引理；完成后再组合成锁定命题并给出无 sorry 的完整证明项。当前只能标记为未完成翻译/未验证，不能声称整篇证明通过 Kernel。",
+    "problematicSourceExcerpt": ""
+  },
+  "explanationError": null,
+  "modelProvenance": {
+    "jsonParsing": {
+      "method": "deterministic_json_schema",
+      "recovered": false,
+      "edits": []
+    },
+    "provider": "deepseek",
+    "requestedModel": "deepseek-flash",
+    "model": "deepseek-flash",
+    "responseId": "7debea10-69c2-49c2-a6e2-5bc7b52a9c4d",
+    "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "usage": {
+      "prompt_tokens": 2722,
+      "completion_tokens": 1022,
+      "total_tokens": 3744,
+      "prompt_tokens_details": {
+        "cached_tokens": 256
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 704
+      },
+      "prompt_cache_hit_tokens": 256,
+      "prompt_cache_miss_tokens": 2466
+    },
+    "thinking": "provider_default",
+    "promptSchemaEncoding": "compact_json_v1",
+    "structuredOutput": "json_mode_with_local_schema_validation",
+    "simulated": false
+  }
+}

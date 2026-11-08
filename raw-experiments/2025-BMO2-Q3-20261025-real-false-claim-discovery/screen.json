@@ -1,0 +1,43 @@
+{
+  "status": "source_anchored_suspected_false_assertion_not_certified",
+  "suspected": true,
+  "notAKernelVerdict": true,
+  "originalProofCertified": false,
+  "overallProblemDisproved": false,
+  "modelProvenance": {
+    "jsonParsing": {
+      "method": "deterministic_json_schema",
+      "recovered": false,
+      "edits": []
+    },
+    "provider": "deepseek",
+    "requestedModel": "deepseek-flash",
+    "model": "deepseek-flash",
+    "responseId": "5e60dfb7-676d-4cf8-8440-dacd040489ff",
+    "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "usage": {
+      "prompt_tokens": 1640,
+      "completion_tokens": 16860,
+      "total_tokens": 18500,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 16673
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 1640
+    },
+    "thinking": "provider_default",
+    "promptSchemaEncoding": "compact_json_v1",
+    "structuredOutput": "json_mode_with_local_schema_validation",
+    "simulated": false
+  },
+  "candidate": {
+    "suspected": true,
+    "sourceStepIndex": 1,
+    "sourceQuote": "每次行交换改变恰好两个 r_i，列交换改变恰好两个 c_j",
+    "allegedMathematicalError": "该句把任意一次允许的行交换都断言为恰好改变两个 r_i。但交换两行同类型的整行时，棋盘状态不变，所有 r_i 也可保持不变，因此改变的是 0 个而不是恰好 2 个；列交换同理。",
+    "concreteCounterexample": "取 n=4 的标准棋盘，初始时所有 r_i=0。按题意允许交换任意两整行；交换第 1 行与第 3 行（二者都是相同的交错行 0,1,0,1）。交换后棋盘逐格不变，故所有 r_i 仍为 0，改变的 r_i 个数为 0，而不是恰好 2。"
+  }
+}

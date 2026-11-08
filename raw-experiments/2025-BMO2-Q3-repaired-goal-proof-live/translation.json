@@ -1,0 +1,42 @@
+{
+  "complete": false,
+  "unsupportedOriginalSteps": [
+    "第一步：需要把交换操作在 Lean 的 applyOp/applyOps 定义下约化为行、列奇偶位元 r_i,c_j，并证明任一可达棋盘的差异都形如 r_i xor c_j；原证明仅有文字说明，未形式化交换顺序、同奇偶行不可区分性以及 r_i,c_j 的精确构造。",
+    "第二步：需要证明每次行交换/列交换对位元 1 的个数 R,C 的影响，并形式化恢复条件等价于全零位元配置或全一配置（n 偶数时）。原证明未在锁定定义下证明这些不变量和等价性。",
+    "第三步：需要证明奇数 n 时最少次数为 (R+C)/2，包括下界“每次至多消除两个 1”和上界“两两交换构造”，还要证明 R,C≤n−1 以及 R=C=n−1 的可达扰乱配置可由合法行列交换构造。",
+    "第四步：需要证明偶数 n 时最优次数为 min((R+C)/2,(2n−R−C)/2)，并由 R+C 的范围推出不超过 n/2；同时构造 R=n,C=0 的可达配置来达到下界。原证明的极值构造未在 Reachable/MinCost 定义下形式化。",
+    "最后一步：需要把以上计数结论装配成 lockedFormalStatement 中关于所有可达棋盘的最优恢复次数上界，以及存在达到 answer n 的棋盘的完整证明；该装配在提交的原证明中只是结论性陈述，未给出 Lean 证明项。"
+  ],
+  "proofTerm": "by\n  -- No complete Lean proof is supplied. The unresolved formalization gaps are listed in unsupportedOriginalSteps.\n  fail \"incomplete formalization of the original BMO proof\"",
+  "proofProvenance": {
+    "jsonParsing": {
+      "method": "deterministic_json_schema",
+      "recovered": false,
+      "edits": []
+    },
+    "provider": "deepseek",
+    "requestedModel": "deepseek-flash",
+    "model": "deepseek-flash",
+    "responseId": "22481ec9-58cb-4fd5-b004-f043c1af122e",
+    "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "usage": {
+      "prompt_tokens": 2202,
+      "completion_tokens": 8719,
+      "total_tokens": 10921,
+      "prompt_tokens_details": {
+        "cached_tokens": 384
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 8326
+      },
+      "prompt_cache_hit_tokens": 384,
+      "prompt_cache_miss_tokens": 1818
+    },
+    "thinking": "provider_default",
+    "promptSchemaEncoding": "compact_json_v1",
+    "structuredOutput": "json_mode_with_local_schema_validation",
+    "simulated": false
+  },
+  "lockedStatement": "let Board : ℕ → Type := fun n => Fin n → Fin n → Bool; let checkerboard : (n : ℕ) → Board n := fun n i j => decide ((i.val + j.val) % 2 = 0); let SwapOp : ℕ → Type := fun n => Bool × (Fin n × Fin n); let applyOp : (n : ℕ) → SwapOp n → Board n → Board n := fun n op b => fun r c => if op.1 then (if r = op.2.1 then b op.2.2 c else if r = op.2.2 then b op.2.1 c else b r c) else (if c = op.2.1 then b r op.2.2 else if c = op.2.2 then b r op.2.1 else b r c); let applyOps : (n : ℕ) → List (SwapOp n) → Board n → Board n := fun n ops b => List.foldl (fun b op => applyOp n op b) b ops; let Reachable : (n : ℕ) → Board n → Prop := fun n b => ∃ ops : List (SwapOp n), applyOps n ops (checkerboard n) = b; let Restoring : (n : ℕ) → Board n → ℕ → Prop := fun n b k => ∃ ops : List (SwapOp n), ops.length = k ∧ applyOps n ops b = checkerboard n; let MinCost : (n : ℕ) → Board n → ℕ → Prop := fun n b k => Restoring n b k ∧ ∀ m : ℕ, Restoring n b m → k ≤ m; let answer : ℕ → ℕ := fun n => if n % 2 = 0 then n / 2 else n - 1; ∀ n : ℕ, 0 < n → (∀ b : Board n, Reachable n b → ∃ k : ℕ, MinCost n b k ∧ k ≤ answer n) ∧ (∃ b : Board n, Reachable n b ∧ MinCost n b (answer n))",
+  "sourceSha256": "f2698c66fec85ed920a110f31f6d10c42cb666a25819d77003ed95093243e7dd"
+}

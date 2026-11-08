@@ -1,0 +1,130 @@
+[
+  {
+    "case": {
+      "id": "bmo2-2025-q1",
+      "topic": "三角形数裂项",
+      "expected": "deliberately_invalid",
+      "source": "【2025 British Mathematical Olympiad Round 2，Problem 1，原题】证明：对每个正整数 n，1/n 可以写成有限个互不相同三角形数的倒数之和。三角形数 T_k=k(k+1)/2，k 为正整数。\n【提交的原证明】\n第一步：取正整数 n。对每个 k≥1，有 1/T_k=2/[k(k+1)]=2(1/k−1/(k+1))，这是分母拆项的恒等式。\n第二步：选择互不相同的三角形数 T_n,T_{n+1},…,T_{2n−2}。这些下标各不相同，且 k→T_k 严格递增，因此选出的三角形数互不相同。\n第三步：把第二步选出的倒数相加，裂项相消可得\n∑_{k=n}^{2n−2}1/T_k=2∑_{k=n}^{2n−2}(1/k−1/(k+1))=2(1/n−1/(2n−1))。\n第四步：由于 n 为正整数，2(1/n−1/(2n−1))=1/n。故选出的有限个互异三角形数倒数之和恰好等于 1/n，题目得证。"
+    },
+    "jobId": "66aa797f-e5d5-4b5a-a7dc-32dda2b04405",
+    "jobStatus": "completed",
+    "resultStatus": "whole_proof_translation_incomplete",
+    "kernelVerified": false,
+    "formalProofCertified": false,
+    "originalProofCertified": false,
+    "fidelityReview": null,
+    "fidelityIssues": 0,
+    "sourceSteps": 4,
+    "kernelCertificate": null,
+    "unsupportedOriginalSteps": [
+      "第四步等式 2(1/n - 1/(2n-1)) = 1/n 不成立。化简为 2(n-1)/(n(2n-1)) = 1/n 等价于 2(n-1)/(2n-1)=1，即 2n-2=2n-1，矛盾；例如 n=2 时左边为 1/3 而右边为 1/2。",
+      "第二步至第三步的上界 T_{2n-2} 与所用裂项公式不匹配。按原稿实际求和 sum_{k=n}^{2n-2} 1/T_k = 2(1/n - 1/(2n-1)) = 2(n-1)/(n(2n-1))，并不等于 1/n。若要得到 1/n，需要使用的是到 T_{2n-1} 的求和，而不是原稿写出的 T_{2n-2}。",
+      "由于原稿的末尾算术恒等式为假，无法从这些步骤推出锁定命题的存在性结论。"
+    ],
+    "error": null,
+    "usage": {
+      "attempts": 4,
+      "inputTokens": 5475,
+      "outputTokens": 29479,
+      "missingUsage": 0,
+      "requests": [
+        {
+          "reason": "WholeProofPlan",
+          "status": "response_received",
+          "input_tokens": 923,
+          "output_tokens": 18530,
+          "error_type": null,
+          "http_duration_ms": 79440.173
+        },
+        {
+          "reason": "WholeProofProgram",
+          "status": "response_received",
+          "input_tokens": 1234,
+          "output_tokens": 7004,
+          "error_type": null,
+          "http_duration_ms": 39950.721
+        },
+        {
+          "reason": "SourceClaimRefutation",
+          "status": "response_received",
+          "input_tokens": 1412,
+          "output_tokens": 2965,
+          "error_type": null,
+          "http_duration_ms": 14417.301
+        },
+        {
+          "reason": "Explanation",
+          "status": "response_received",
+          "input_tokens": 1906,
+          "output_tokens": 980,
+          "error_type": null,
+          "http_duration_ms": 5836.56
+        }
+      ]
+    },
+    "feedbackError": null,
+    "elapsedSeconds": 164.92,
+    "totalElapsedSeconds": 166.48
+  },
+  {
+    "case": {
+      "id": "bmo2-2025-q3",
+      "topic": "棋盘行列交换",
+      "expected": "valid",
+      "source": "【2025 British Mathematical Olympiad Round 2，Problem 3，原题】n×n 棋盘相邻格黑白交错，允许反复交换任意两整行或任意两整列。扰乱后，恢复原图案所需交换次数的最大可能最小值是多少？\n【提交的原证明】\n第一步：用 0、1 代表两色，标准棋盘第 (i,j) 格为 (i+j) mod 2。任意交换两行只改变这两行的位置，不改变各行是否为某个标准交错行或其反色的性质；交换两列类似。每个扰乱后格子相对初始颜色的变化可以写成 r_i+c_j (mod 2)，其中 r_i、c_j∈{0,1} 分别是该行该列被互异颜色的行/列交换影响的奇偶次数。\n第二步：每次行交换改变恰好两个 r_i，列交换改变恰好两个 c_j，因此行位元中 1 的个数 R、列位元中 1 的个数 C 均为偶数。相对初始图案，全部恢复当且仅当 r_i+c_j≡0 对每个 i,j 成立，也即所有 r_i,c_j 都等于 0，或者所有 r_i,c_j 都等于 1。第二种情形只会在 n 为偶数时满足 R、C 的偶性。\n第三步：若 n 为奇数，只能恢复到全零位元配置。每个交换至多消除两个值为 1 的行或列位元，所以至少需 (R+C)/2 次，且分别把标记为 1 的行两两交换、列两两交换即可恰好做到。因此最少次数是 (R+C)/2。由于 R,C≤n−1，最大为 n−1；取 R=C=n−1 的扰乱配置即可达到，因 n−1 为偶数可由一系列两行、两列互换构造。\n第四步：若 n 为偶数，则既可恢复全零位元，也可恢复全一位元。恢复全零用 (R+C)/2 次，恢复全一用 (2n−R−C)/2 次，两者取小者为最优交换数。因为 R+C 介于 0 与 2n 之间，两个数之和为 n，所以最小值不超过 n/2。这个界可以达到：取 R=n、C=0（n 是偶数，因此是可达位元配置），此时两种恢复方式都需要 n/2 次。故答案：n 偶数时 n/2；n 奇数时 n−1。"
+    },
+    "jobId": "66a8f136-c8cb-4128-b34d-07f963c43708",
+    "jobStatus": "completed",
+    "resultStatus": "whole_proof_translation_incomplete",
+    "kernelVerified": false,
+    "formalProofCertified": false,
+    "originalProofCertified": false,
+    "fidelityReview": null,
+    "fidelityIssues": 0,
+    "sourceSteps": 5,
+    "kernelCertificate": null,
+    "unsupportedOriginalSteps": [
+      "第一步：未能形式化任意行/列交换序列后的棋盘表示 B(i,j)=a_i+b_j，并证明其相对标准棋盘可写成 r_i+c_j 以及可达位元配置的精确约束。",
+      "第二步：未能形式化证明行、列位元中 1 的个数 R,C 为偶数，恢复条件等价于全零或全一位元配置，以及 n 为偶数时全一情形可达。",
+      "第三步：未能形式化奇数 n 情形下每次交换至多消除两个 1 位元的下界、配对交换达到 (R+C)/2 的上界构造，以及 R=C=n−1 的可达极值构造。",
+      "第四步：未能形式化偶数 n 情形下两种恢复方式的最优值 min((R+C)/2,(2n−R−C)/2)、上界不超过 n/2，以及 R=n,C=0 的下界构造。",
+      "第五步：未能在 Lean 4 + Mathlib 中把各步组合成锁定命题的完整证明项。"
+    ],
+    "error": null,
+    "usage": {
+      "attempts": 3,
+      "inputTokens": 6070,
+      "outputTokens": 38967,
+      "missingUsage": 0,
+      "requests": [
+        {
+          "reason": "WholeProofPlan",
+          "status": "response_received",
+          "input_tokens": 1199,
+          "output_tokens": 21137,
+          "error_type": null,
+          "http_duration_ms": 99186.515
+        },
+        {
+          "reason": "WholeProofProgram",
+          "status": "response_received",
+          "input_tokens": 2149,
+          "output_tokens": 16808,
+          "error_type": null,
+          "http_duration_ms": 102657.031
+        },
+        {
+          "reason": "Explanation",
+          "status": "response_received",
+          "input_tokens": 2722,
+          "output_tokens": 1022,
+          "error_type": null,
+          "http_duration_ms": 7199.698
+        }
+      ]
+    },
+    "feedbackError": null,
+    "elapsedSeconds": 209.21,
+    "totalElapsedSeconds": 375.71
+  }
+]

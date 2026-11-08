@@ -1,0 +1,286 @@
+...............F......F........F...F....F..                              [100%]
+=================================== FAILURES ===================================
+___________ test_unsolved_math_is_not_forged_and_kernel_not_invoked ____________
+
+    def test_unsolved_math_is_not_forged_and_kernel_not_invoked():
+>       result,_,kernel=call(AI(complete=False,proof=''))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_lean_first_whole.py:229: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_lean_first_whole.py:64: in call
+    result=asyncio.run(verify_whole_original(SOURCE,ai,kernel))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py:204: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py:127: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py:719: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+backend/lean_first_whole.py:276: in verify_whole_original
+    screen = await screen_authored_falsity(
+backend/lean_first_fault_screen.py:53: in screen_authored_falsity
+    candidate,provenance=await provider.structured(SuspectedAuthoredFault,SCREEN_PROMPT,{
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_lean_first_whole.AI object at 0x105b329c0>
+schema = <class 'backend.lean_first_fault_screen.SuspectedAuthoredFault'>
+instructions = '你仅负责筛查【原稿作者是否写出了可以具体反例推翻的数学断言】，不负责编译整个证明，不负责给出另一条新证明。\n当证明翻译失败时必须严格区分：作者数学断言为假 vs AI/Mathlib/类型形式化无能力。只因模型无法形式化不等于作者证...写出的具体错误数学断言。提供符合原题所有相关假设的精确反例，不能把原题整体命题说成假。\n你的怀疑只是候选，不能当作数学证书。后续必须由另外的结构化步骤翻译成闭合的 Lean 命题，并由独立 Kernel 证明它的否定；否则一律未验证。'
+payload = {'important': 'Look for concrete falsifiable math assertions only; failure to compile is NOT an error.', 'originalSour...。因此结论成立。', 'sourceSteps': [{'index': 0, 'sourceExcerpt': '由 a=b 推出 a+1=b+1'}, {'index': 1, 'sourceExcerpt': '因此结论成立'}]}
+
+    async def structured(self, schema, instructions, payload):
+        self.calls.append((schema.__name__,payload))
+        if schema.__name__ == 'WholeProofPlan':
+            return schema(formalStatement=self.statement,goalExcerpt=self.goal,
+                givenExcerpts=[GIVEN],steps=[
+                    {'sourceExcerpt':t,'start':SOURCE.index(t),'end':SOURCE.index(t)+len(t)}
+                    for t in (A,B)]), {'model':'fake-real-schema'}
+        if schema.__name__=='WholeProofProgram':
+            assert payload['lockedFormalStatement']==self.statement
+            assert payload['mandatoryMarkerNames']==['source_step_0','source_step_1']
+            return schema(complete=self.complete,proofTerm=self.proof,
+                unsupportedOriginalSteps=[] if self.complete else ['缺少数学推理']), {'model':'fixture'}
+        if schema.__name__=='StepObligations':
+            return schema(steps=[dict(index=i,sourceExcerpt=x['sourceExcerpt'],complete=False,formalStatement='',proofTerm='',dependsOn=[],limitations=['fixture']) for i,x in enumerate(payload['sourceSteps'])]),{'model':'fixture'}
+        if schema.__name__=='LockedProofRepair':
+            return schema(proofTerm=self.repair,repairNote='Only correct Lean syntax'), {'model':'fixture'}
+        if schema.__name__=='SourceReasonAudit':
+            return schema(steps=[{'index':i,'originalExcerpt':t,
+                          'leanEvidenceExcerpt':f'have source_step_{i}',
+                          'assessment':'matches_authored_reason','explanation':'fixture'}
+                         for i,t in enumerate((A,B))],
+                          overallAssessment='no_specific_mismatch_identified',
+                          summary='fixture audit no mathematical equivalence certificate'), {'model':'fixture'}
+>       raise AssertionError(schema.__name__)
+E       AssertionError: SuspectedAuthoredFault
+
+tests/test_lean_first_whole.py:49: AssertionError
+____ test_official_whole_pipeline_continues_after_valid_goal_syntax_repair _____
+
+    def test_official_whole_pipeline_continues_after_valid_goal_syntax_repair():
+        ai=AI();runner=Runner()
+>       result=asyncio.run(verify_whole_original(SRC,ai,runner))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_lean_first_goal_repair.py:95: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py:204: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py:127: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py:719: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+backend/lean_first_whole.py:276: in verify_whole_original
+    screen = await screen_authored_falsity(
+backend/lean_first_fault_screen.py:53: in screen_authored_falsity
+    candidate,provenance=await provider.structured(SuspectedAuthoredFault,SCREEN_PROMPT,{
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_lean_first_goal_repair.AI object at 0x105b8a9c0>
+schema = <class 'backend.lean_first_fault_screen.SuspectedAuthoredFault'>
+prompt = '你仅负责筛查【原稿作者是否写出了可以具体反例推翻的数学断言】，不负责编译整个证明，不负责给出另一条新证明。\n当证明翻译失败时必须严格区分：作者数学断言为假 vs AI/Mathlib/类型形式化无能力。只因模型无法形式化不等于作者证...写出的具体错误数学断言。提供符合原题所有相关假设的精确反例，不能把原题整体命题说成假。\n你的怀疑只是候选，不能当作数学证书。后续必须由另外的结构化步骤翻译成闭合的 Lean 命题，并由独立 Kernel 证明它的否定；否则一律未验证。'
+payload = {'important': 'Look for concrete falsifiable math assertions only; failure to compile is NOT an error.', 'originalSource': '题目：任意自然数 n，证明 n=n。证明：取 n，等式左右相同，故成立。', 'sourceSteps': [{'index': 0, 'sourceExcerpt': '等式左右相同'}]}
+
+    async def structured(self,schema,prompt,payload):
+        self.calls.append(schema.__name__)
+        if schema.__name__ == 'LeanGoalExpressionRepair':
+            return schema(formalStatement=self.goal,encodingNotes="Convert declaration to Prop",
+                unresolvedMathematicalConcepts=list(self.unresolved),
+                sourceMeaningPreserved=self.claims),{"model":"fixture-goal-repair"}
+        if schema.__name__ == 'WholeProofPlan':
+            return schema(formalStatement=BAD_GOAL,goalExcerpt="证明 n=n",
+                givenExcerpts=[],steps=[{
+                   "start":SRC.index("等式左右相同"),
+                   "end":SRC.index("等式左右相同")+len("等式左右相同"),
+                   "sourceExcerpt":"等式左右相同"
+                }]),{"model":"fixture-initial"}
+        if schema.__name__ == 'StepObligations':
+            return schema(steps=[dict(index=i,sourceExcerpt=x['sourceExcerpt'],complete=False,formalStatement='',proofTerm='',dependsOn=[],limitations=['fixture']) for i,x in enumerate(payload['sourceSteps'])]),{'model':'fixture'}
+        if schema.__name__ == 'WholeProofProgram':
+            assert payload['lockedFormalStatement']==FIXED_GOAL
+            return schema(complete=False,proofTerm="by\n  sorry",
+                unsupportedOriginalSteps=["fixture does not deliver mathematics"]),{"model":"fixture"}
+>       raise AssertionError(schema.__name__)
+E       AssertionError: SuspectedAuthoredFault
+
+tests/test_lean_first_goal_repair.py:36: AssertionError
+_ test_whole_source_translation_failure_without_false_claim_no_refutation_attempt _
+
+    def test_whole_source_translation_failure_without_false_claim_no_refutation_attempt():
+        from backend.lean_first_whole import verify_whole_original
+        class FullAI:
+            def __init__(self):self.names=[]
+            async def structured(self,schema,prompt,payload):
+                self.names.append(schema.__name__)
+                if schema.__name__=="WholeProofPlan":
+                    return schema(formalStatement="∀ n : ℕ, 0 < n → True",
+                       goalExcerpt="证毕",givenExcerpts=[],
+                       steps=[{"start":SOURCE.index(QUOTE),"end":SOURCE.index(QUOTE)+len(QUOTE),
+                               "sourceExcerpt":QUOTE}]),{"model":"fixture"}
+                if schema.__name__=="WholeProofProgram":
+                    return schema(complete=False,proofTerm="by\n  skip",
+                        unsupportedOriginalSteps=["无法在 Mathlib 中形式化所有求和证明"]),{"model":"fixture"}
+                if schema.__name__=='StepObligations':
+                    return schema(steps=[dict(index=i,sourceExcerpt=x['sourceExcerpt'],complete=False,formalStatement='',proofTerm='',dependsOn=[],limitations=['fixture']) for i,x in enumerate(payload['sourceSteps'])]),{'model':'fixture'}
+                raise AssertionError(schema.__name__)
+        ai=FullAI();runner=Runner()
+>       row=asyncio.run(verify_whole_original(SOURCE,ai,runner))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_lean_first_refutation.py:142: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py:204: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py:127: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py:719: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+backend/lean_first_whole.py:276: in verify_whole_original
+    screen = await screen_authored_falsity(
+backend/lean_first_fault_screen.py:53: in screen_authored_falsity
+    candidate,provenance=await provider.structured(SuspectedAuthoredFault,SCREEN_PROMPT,{
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_lean_first_refutation.test_whole_source_translation_failure_without_false_claim_no_refutation_attempt.<locals>.FullAI object at 0x105a370e0>
+schema = <class 'backend.lean_first_fault_screen.SuspectedAuthoredFault'>
+prompt = '你仅负责筛查【原稿作者是否写出了可以具体反例推翻的数学断言】，不负责编译整个证明，不负责给出另一条新证明。\n当证明翻译失败时必须严格区分：作者数学断言为假 vs AI/Mathlib/类型形式化无能力。只因模型无法形式化不等于作者证...写出的具体错误数学断言。提供符合原题所有相关假设的精确反例，不能把原题整体命题说成假。\n你的怀疑只是候选，不能当作数学证书。后续必须由另外的结构化步骤翻译成闭合的 Lean 命题，并由独立 Kernel 证明它的否定；否则一律未验证。'
+payload = {'important': 'Look for concrete falsifiable math assertions only; failure to compile is NOT an error.', 'originalSour... n≥1。第三步：有 2*(1/n - 1/(2*n-1)) = 1/n。证毕。', 'sourceSteps': [{'index': 0, 'sourceExcerpt': '2*(1/n - 1/(2*n-1)) = 1/n'}]}
+
+    async def structured(self,schema,prompt,payload):
+        self.names.append(schema.__name__)
+        if schema.__name__=="WholeProofPlan":
+            return schema(formalStatement="∀ n : ℕ, 0 < n → True",
+               goalExcerpt="证毕",givenExcerpts=[],
+               steps=[{"start":SOURCE.index(QUOTE),"end":SOURCE.index(QUOTE)+len(QUOTE),
+                       "sourceExcerpt":QUOTE}]),{"model":"fixture"}
+        if schema.__name__=="WholeProofProgram":
+            return schema(complete=False,proofTerm="by\n  skip",
+                unsupportedOriginalSteps=["无法在 Mathlib 中形式化所有求和证明"]),{"model":"fixture"}
+        if schema.__name__=='StepObligations':
+            return schema(steps=[dict(index=i,sourceExcerpt=x['sourceExcerpt'],complete=False,formalStatement='',proofTerm='',dependsOn=[],limitations=['fixture']) for i,x in enumerate(payload['sourceSteps'])]),{'model':'fixture'}
+>       raise AssertionError(schema.__name__)
+E       AssertionError: SuspectedAuthoredFault
+
+tests/test_lean_first_refutation.py:140: AssertionError
+_ test_global_source_failure_keeps_complete_proof_unverified_even_with_atomic_certificate _
+
+    def test_global_source_failure_keeps_complete_proof_unverified_even_with_atomic_certificate():
+        ai=AI();runner=Runner()
+>       result=asyncio.run(verify_whole_original(SOURCE,ai,runner))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_lean_first_atomic_algebra.py:75: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py:204: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py:127: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py:719: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+backend/lean_first_whole.py:276: in verify_whole_original
+    screen = await screen_authored_falsity(
+backend/lean_first_fault_screen.py:53: in screen_authored_falsity
+    candidate,provenance=await provider.structured(SuspectedAuthoredFault,SCREEN_PROMPT,{
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_lean_first_atomic_algebra.AI object at 0x105a3e850>
+schema = <class 'backend.lean_first_fault_screen.SuspectedAuthoredFault'>
+prompt = '你仅负责筛查【原稿作者是否写出了可以具体反例推翻的数学断言】，不负责编译整个证明，不负责给出另一条新证明。\n当证明翻译失败时必须严格区分：作者数学断言为假 vs AI/Mathlib/类型形式化无能力。只因模型无法形式化不等于作者证...写出的具体错误数学断言。提供符合原题所有相关假设的精确反例，不能把原题整体命题说成假。\n你的怀疑只是候选，不能当作数学证书。后续必须由另外的结构化步骤翻译成闭合的 Lean 命题，并由独立 Kernel 证明它的否定；否则一律未验证。'
+payload = {'important': 'Look for concrete falsifiable math assertions only; failure to compile is NOT an error.', 'originalSour...数恒等式 b²F(d)=(bd)²+b(bd)+b²，可得到下一步的同余。', 'sourceSteps': [{'index': 0, 'sourceExcerpt': '由代数恒等式 b²F(d)=(bd)²+b(bd)+b²'}]}
+
+    async def structured(self,schema,prompt,payload):
+        self.calls.append(schema.__name__)
+        if schema.__name__=="AlgebraicIdentities":
+            return schema(identities=[{"sourceStepIndex":0,"sourceQuote":self.quote,
+                "formalStatement":STATEMENT,"reasonLabel":"代数恒等式"}]),{"model":"fixture"}
+        if schema.__name__=="WholeProofPlan":
+            return schema(formalStatement="∀ n : ℕ, n = n",
+                goalExcerpt="可得到下一步的同余",
+                givenExcerpts=[],steps=[{"sourceExcerpt":EXCERPT,
+                                         "start":SOURCE.index(EXCERPT),
+                                         "end":SOURCE.index(EXCERPT)+len(EXCERPT)}]),{"model":"fixture"}
+        if schema.__name__=="WholeProofProgram":
+            return schema(complete=False,proofTerm="by\n  skip",
+                          unsupportedOriginalSteps=["无法完成同余的整篇形式化"]),{"model":"fixture"}
+        if schema.__name__=="StepObligations":
+            return schema(steps=[{"index":0,"sourceExcerpt":EXCERPT,
+              "complete":False,"formalStatement":"","proofTerm":"",
+              "dependsOn":[],"limitations":["缺少同余的形式化"],"atoms":[]}]),{"model":"fixture"}
+>       raise AssertionError(schema.__name__)
+E       AssertionError: SuspectedAuthoredFault
+
+tests/test_lean_first_atomic_algebra.py:35: AssertionError
+_ test_real_whole_failure_routes_to_source_step_diagnostics_and_preserves_overall _
+
+    def test_real_whole_failure_routes_to_source_step_diagnostics_and_preserves_overall():
+        ai=AI();runner=Runner()
+>       result=asyncio.run(verify_whole_original(SOURCE,ai,runner))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_lean_first_step_diagnostics.py:92: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py:204: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py:127: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py:719: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+backend/lean_first_whole.py:276: in verify_whole_original
+    screen = await screen_authored_falsity(
+backend/lean_first_fault_screen.py:53: in screen_authored_falsity
+    candidate,provenance=await provider.structured(SuspectedAuthoredFault,SCREEN_PROMPT,{
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_lean_first_step_diagnostics.AI object at 0x105353d10>
+schema = <class 'backend.lean_first_fault_screen.SuspectedAuthoredFault'>
+prompt = '你仅负责筛查【原稿作者是否写出了可以具体反例推翻的数学断言】，不负责编译整个证明，不负责给出另一条新证明。\n当证明翻译失败时必须严格区分：作者数学断言为假 vs AI/Mathlib/类型形式化无能力。只因模型无法形式化不等于作者证...写出的具体错误数学断言。提供符合原题所有相关假设的精确反例，不能把原题整体命题说成假。\n你的怀疑只是候选，不能当作数学证书。后续必须由另外的结构化步骤翻译成闭合的 Lean 命题，并由独立 Kernel 证明它的否定；否则一律未验证。'
+payload = {'important': 'Look for concrete falsifiable math assertions only; failure to compile is NOT an error.', 'originalSour...rceExcerpt': '设 a=b'}, {'index': 1, 'sourceExcerpt': '由等式两边同时加 1，有 a+1=b+1'}, {'index': 2, 'sourceExcerpt': '最后得出结论'}]}
+
+    async def structured(self,schema,prompt,payload):
+        self.schemas.append(schema.__name__)
+        if schema.__name__=="StepObligations":
+            rows=[]
+            for i,step in enumerate(STEPS):
+                rows.append({"index":i,"sourceExcerpt":step["sourceExcerpt"],
+                    "complete":i==1,"formalStatement":"∀ a b : ℤ, a=b → a+1=b+1" if i==1 else "",
+                    "proofTerm":"by\n  intros a b h\n  omega" if i==1 else "",
+                    "dependsOn":[0] if i==1 else [],
+                    "limitations":[] if i==1 else ["not enough mathematical argument"]})
+            if self.invalid: rows[1]["sourceExcerpt"]="model invented text"
+            if self.all_false: rows[1]["formalStatement"]="True"
+            if self.missing: rows.pop()
+            return schema(steps=[StepObligation(**r) for r in rows]),{"model":"fixture"}
+        if schema.__name__=="WholeProofPlan":
+            return schema(formalStatement="∀ a b : ℤ, a=b → a+1=b+1",
+                goalExcerpt="得出结论",givenExcerpts=[],
+                steps=[{"start":s["start"],"end":s["end"],
+                        "sourceExcerpt":s["sourceExcerpt"]} for s in STEPS]),{"model":"fixture"}
+        if schema.__name__=="WholeProofProgram":
+            return schema(complete=False,proofTerm="by\n  skip",
+                          unsupportedOriginalSteps=["step 1 cannot formalize as complete theorem"]),{"model":"fixture"}
+>       raise AssertionError(schema.__name__)
+E       AssertionError: SuspectedAuthoredFault
+
+tests/test_lean_first_step_diagnostics.py:45: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_lean_first_whole.py::test_unsolved_math_is_not_forged_and_kernel_not_invoked
+FAILED tests/test_lean_first_goal_repair.py::test_official_whole_pipeline_continues_after_valid_goal_syntax_repair
+FAILED tests/test_lean_first_refutation.py::test_whole_source_translation_failure_without_false_claim_no_refutation_attempt
+FAILED tests/test_lean_first_atomic_algebra.py::test_global_source_failure_keeps_complete_proof_unverified_even_with_atomic_certificate
+FAILED tests/test_lean_first_step_diagnostics.py::test_real_whole_failure_routes_to_source_step_diagnostics_and_preserves_overall
+5 failed, 38 passed in 0.21s

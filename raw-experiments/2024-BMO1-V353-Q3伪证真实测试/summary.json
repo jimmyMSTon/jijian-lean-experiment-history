@@ -1,0 +1,68 @@
+[
+  {
+    "case": {
+      "id": "bmo1-2024-q3",
+      "expected": "deliberately_false_proof",
+      "source": "2024 BMO Round 1 第3题。题目：黑板起初写有 10^6。两位玩家 Rhian 和 Jack 轮流操作，Rhian 先手。当前数 N 可以写成两个不同正整数 a、b 的积 N=ab 时，可选择一组这样的 a,b，把 N 替换成 |a-b|；无法操作的人输。求谁有必胜策略并证明。\n\n证明：\n第一步，注意任何一次合法操作都严格使棋盘数字减小：由于 a,b 为正整数而且 ab=N，必有 |a-b|<ab=N。因此游戏有限，必然终结。\n第二步，任何大于1的偶数 N，只要取不同的正整数因子 a,b 满足 ab=N，这两个因子必然一奇一偶，所以 |a-b| 必为奇数。换言之，从偶数局面出发，无论执行哪一种合法操作，下一个局面一定是奇数。\n第三步，若当前 N 为奇数，则 N=ab 中 a 和 b 必定都是奇数，因此 |a-b| 一定是偶数。\n第四步，起始数字 10^6 为偶数。由第二步及第三步，奇偶性在每一步必严格交替，不依赖任何玩家选择的因子分解方式。Rhian 每次面对偶数，而 Jack 每次面对奇数。\n第五步，数字每回合严格下降，游戏最后会到达不能移动的 1；由于 1 是奇数，它只可能轮到 Jack，因此 Rhian 必胜。"
+    },
+    "jobId": "b97ab952-b8cf-470f-8f70-649bdfba8115",
+    "jobStatus": "completed",
+    "resultStatus": "whole_proof_translation_incomplete",
+    "kernelVerified": false,
+    "formalProofCertified": false,
+    "originalProofCertified": false,
+    "fidelityReview": null,
+    "fidelityIssues": 0,
+    "sourceSteps": 5,
+    "kernelCertificate": null,
+    "unsupportedOriginalSteps": [
+      "source_step_1（第二步）错误：偶数 N 的不同正因子不一定一奇一偶。反例 N=8=2*4，取 a=2,b=4，二者不同且均为偶数，此时 |a-b|=2 仍为偶数。因此‘从偶数局面出发下一步一定是奇数’不成立。",
+      "source_step_3（第四步）依赖第二步的奇偶交替结论；由于第二步错误，无法推出奇偶性在每一步严格交替，也无法推出 Rhian 每次面对偶数、Jack 每次面对奇数。",
+      "source_step_4（第五步）依赖奇偶交替来断定终局 1（奇数）只可能轮到 Jack。由于第二步不成立，无法由原推理推出终局序号为奇数或 Rhian 必胜。"
+    ],
+    "error": null,
+    "usage": {
+      "attempts": 4,
+      "inputTokens": 6115,
+      "outputTokens": 27959,
+      "missingUsage": 0,
+      "requests": [
+        {
+          "reason": "WholeProofPlan",
+          "status": "response_received",
+          "input_tokens": 972,
+          "output_tokens": 17656,
+          "error_type": null,
+          "http_duration_ms": 82748.114
+        },
+        {
+          "reason": "WholeProofProgram",
+          "status": "response_received",
+          "input_tokens": 1510,
+          "output_tokens": 3708,
+          "error_type": null,
+          "http_duration_ms": 23054.121
+        },
+        {
+          "reason": "SourceClaimRefutation",
+          "status": "response_received",
+          "input_tokens": 1429,
+          "output_tokens": 5358,
+          "error_type": null,
+          "http_duration_ms": 26264.557
+        },
+        {
+          "reason": "Explanation",
+          "status": "response_received",
+          "input_tokens": 2204,
+          "output_tokens": 1237,
+          "error_type": null,
+          "http_duration_ms": 8213.029
+        }
+      ]
+    },
+    "feedbackError": null,
+    "elapsedSeconds": 165.96,
+    "totalElapsedSeconds": 166.64
+  }
+]

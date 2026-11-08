@@ -1,0 +1,97 @@
+{
+  "case": {
+    "id": "analytic-geometry-circle-tangent",
+    "domain": "解析几何：圆的切线与唯一交点",
+    "expected": "valid",
+    "source": "【解析几何｜完整待证命题】设 r 为正实数，a,b 为实数且 a²+b²=r²。考虑圆 C：x²+y²=r² 及直线 ℓ：ax+by=r²。证明 ℓ 与 C 的公共点恰好只有 (a,b) 一个；因此按解析几何中直线与圆只有一个交点的切线定义，ℓ 为 C 在 (a,b) 处的切线。\n【原证明】首先，因为 a²+b²=r²，所以点 (a,b) 满足圆 C 的方程。并且 aa+bb=a²+b²=r²，因此 (a,b) 也满足直线 ℓ 的方程，故存在这个公共点。\n现在任取另一公共点 (x,y)。由于 (x,y) 在圆上，x²+y²=r²；由于它也在直线上，ax+by=r²。于是展开平方和：\n(x-a)²+(y-b)²=(x²+y²)+(a²+b²)-2(ax+by)=r²+r²-2r²=0。\n因为实数平方非负，有 (x-a)²≥0 且 (y-b)²≥0。两者之和为零，推出 (x-a)²=0、(y-b)²=0，所以 x-a=0 且 y-b=0，即 x=a、y=b。\n因此任意公共点只能是 (a,b)，加上它确实是公共点，说明交点唯一，所以 ℓ 是 C 在 (a,b) 处的切线。证毕。"
+  },
+  "jobId": "f8b3d792-358f-4c29-888c-85bb7e580334",
+  "jobStatus": "completed",
+  "resultStatus": "whole_formal_kernel_verified_source_unconfirmed",
+  "kernelVerified": true,
+  "formalProofCertified": true,
+  "originalProofCertified": false,
+  "fidelityReview": "no_specific_mismatch_identified_by_model",
+  "fidelityIssues": 0,
+  "sourceSteps": 8,
+  "kernelCertificate": {
+    "auditMethod": "fresh_environment_data_only_kernel_replay",
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "checked": true,
+    "dependencyUsage": [],
+    "formalStatement": "∀ (r a b : ℝ),\n  0 < r → a ^ 2 + b ^ 2 = r ^ 2 → {p | a * p.1 + b * p.2 = r ^ 2} ∩ {p | p.1 ^ 2 + p.2 ^ 2 = r ^ 2} = {(a, b)}",
+    "statementMatched": true,
+    "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+    "expectedExpressionSha256": "d3dd73b7d27e6142cb4e2b714bcb9ac97fdca39f270a8fc686ddd91a3fe96067",
+    "proofExpressionSha256": "05d4db4ff3a40375111090af1229a2902476a9a1372aaaba73eb7a494188a315",
+    "statement_hash": "f45c71f643ea98690ea4dfde191c3f7a47a638bd53698eb9329a573b9aeda752",
+    "nativeExpressionComparison": "structural_equal",
+    "sourceTypeSha256": "e9b797417a6501f7b6385bf689391d71e3d4a9e72d1d4fbac0d31c85fc805c39",
+    "sourceProofSha256": "1c4e524e912247e5f6d7eb242cc83caef2ad0736ce04a54080a07a2fc5eafaee",
+    "runtime": {
+      "configured": true,
+      "executableFound": true,
+      "projectFound": true,
+      "runtimeBuilt": true,
+      "runtimeIntegrity": true,
+      "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+      "sandbox": "macos",
+      "isolated": true,
+      "ready": true,
+      "toolchain": "leanprover/lean4:v4.34.0",
+      "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+      "liveTestedInThisDistribution": false
+    },
+    "additionalAxioms": [],
+    "auditIsolation": "fresh_import_environment_reset_between_candidates"
+  },
+  "unsupportedOriginalSteps": [],
+  "error": null,
+  "usage": {
+    "attempts": 4,
+    "inputTokens": 9239,
+    "outputTokens": 38086,
+    "missingUsage": 0,
+    "requests": [
+      {
+        "reason": "WholeProofPlan",
+        "status": "response_received",
+        "input_tokens": 997,
+        "output_tokens": 11930,
+        "error_type": null,
+        "http_duration_ms": 54613.979
+      },
+      {
+        "reason": "WholeProofProgram",
+        "status": "response_received",
+        "input_tokens": 1457,
+        "output_tokens": 12710,
+        "error_type": null,
+        "http_duration_ms": 58446.085
+      },
+      {
+        "reason": "SourceReasonAudit",
+        "status": "response_received",
+        "input_tokens": 3090,
+        "output_tokens": 12495,
+        "error_type": null,
+        "http_duration_ms": 69699.608
+      },
+      {
+        "reason": "Explanation",
+        "status": "response_received",
+        "input_tokens": 3695,
+        "output_tokens": 951,
+        "error_type": null,
+        "http_duration_ms": 7238.374
+      }
+    ]
+  },
+  "feedbackError": null,
+  "elapsedSeconds": 227.28,
+  "totalElapsedSeconds": 412.88
+}

@@ -1,0 +1,859 @@
+{
+  "ambiguitites": [],
+  "fixedStatementKernelPassed": false,
+  "kernelVerified": false,
+  "leanMetrics": {
+    "elapsedSeconds": 69.898,
+    "measurement": "Lean subprocess groups; each invocation includes the sandbox launcher and Lean process. Kernel batch resets the imported environment between evidence replays.",
+    "processCount": 2,
+    "processes": [
+      {
+        "activeProcessGroupsAtStart": 1,
+        "kernelInputJsonBytes": 0,
+        "leanReturnCode": 1,
+        "leanStderrBytes": 755,
+        "leanStdoutBytes": 11749437,
+        "maxRssBytes": 6105956352,
+        "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+        "parallelism": 1,
+        "peakMemoryFootprintBytes": 984002944,
+        "phase": "statement_proof_export_batch",
+        "processGroupPid": 8088,
+        "pythonPeakRssBytes": 124256256,
+        "queueWaitSeconds": 0.0001,
+        "slot": 0,
+        "status": "completed",
+        "systemCpuSeconds": 22.66,
+        "userCpuSeconds": 3.39,
+        "wallSeconds": 48.72
+      },
+      {
+        "candidateCount": 7,
+        "expectedStatementCount": 9,
+        "leanStdoutBytes": 11749437,
+        "phase": "statement_proof_wire_materialization",
+        "pythonPeakRssBytes": 349323264,
+        "wallSeconds": 0.753
+      },
+      {
+        "activeProcessGroupsAtStart": 1,
+        "kernelInputJsonBytes": 10716670,
+        "leanReturnCode": 0,
+        "leanStderrBytes": 755,
+        "leanStdoutBytes": 5227,
+        "maxRssBytes": 6094372864,
+        "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+        "parallelism": 1,
+        "peakMemoryFootprintBytes": 981135744,
+        "phase": "independent_kernel_replay_batch",
+        "processGroupPid": 8277,
+        "pythonPeakRssBytes": 349421568,
+        "queueWaitSeconds": 0.0001,
+        "slot": 0,
+        "status": "completed",
+        "systemCpuSeconds": 16.25,
+        "userCpuSeconds": 2.94,
+        "wallSeconds": 20.25
+      },
+      {
+        "certificateCount": 7,
+        "leanStdoutBytes": 5227,
+        "phase": "kernel_certificate_materialization",
+        "pythonPeakRssBytes": 355041280,
+        "wallSeconds": 0.1748
+      }
+    ]
+  },
+  "mathirDeclarations": [
+    {
+      "id": "d_n",
+      "name": "n",
+      "type": {
+        "argumentOrder": [],
+        "binderId": null,
+        "candidateKinds": [],
+        "codomain": null,
+        "coefficient": null,
+        "cols": null,
+        "declaredStructures": [],
+        "dimension": null,
+        "domain": null,
+        "element": null,
+        "kind": "Nat",
+        "rows": null,
+        "structureConstraints": [],
+        "termArguments": [],
+        "typeArguments": [],
+        "typeConstructor": null,
+        "typeVarId": null,
+        "typeVarMode": "unresolved"
+      }
+    },
+    {
+      "id": "d_k_exists",
+      "name": "k",
+      "type": {
+        "argumentOrder": [],
+        "binderId": null,
+        "candidateKinds": [],
+        "codomain": null,
+        "coefficient": null,
+        "cols": null,
+        "declaredStructures": [],
+        "dimension": null,
+        "domain": null,
+        "element": null,
+        "kind": "Nat",
+        "rows": null,
+        "structureConstraints": [],
+        "termArguments": [],
+        "typeArguments": [],
+        "typeConstructor": null,
+        "typeVarId": null,
+        "typeVarMode": "unresolved"
+      }
+    },
+    {
+      "id": "d_k_witness",
+      "name": "k",
+      "type": {
+        "argumentOrder": [],
+        "binderId": null,
+        "candidateKinds": [],
+        "codomain": null,
+        "coefficient": null,
+        "cols": null,
+        "declaredStructures": [],
+        "dimension": null,
+        "domain": null,
+        "element": null,
+        "kind": "Nat",
+        "rows": null,
+        "structureConstraints": [],
+        "termArguments": [],
+        "typeArguments": [],
+        "typeConstructor": null,
+        "typeVarId": null,
+        "typeVarMode": "unresolved"
+      }
+    }
+  ],
+  "mathirGoalExpr": "(mod((d_n pow 2), 8) eq 1)",
+  "mathirNodes": [
+    {
+      "goalNodeId": "rn_congruence",
+      "label": "原证明：由奇数表示直接证明模 8 同余",
+      "nodes": [
+        {
+          "assessmentBasis": "原文设定 n 为奇自然数",
+          "closedDependencies": [],
+          "dependsOn": [],
+          "expression": "odd(d_n)",
+          "kind": "local_assumption",
+          "nodeId": "rn_odd",
+          "proofTermPresent": false,
+          "sourceAssessment": "supported"
+        },
+        {
+          "assessmentBasis": "原文由 n 为奇数推出存在自然数 k 使 n=2k+1",
+          "closedDependencies": [],
+          "dependsOn": [
+            "rn_odd"
+          ],
+          "expression": "exists((d_n eq ((2 mul d_k_exists) add 1)))",
+          "kind": "claim",
+          "nodeId": "rn_exists_k",
+          "proofTermPresent": true,
+          "sourceAssessment": "supported"
+        },
+        {
+          "assessmentBasis": "原文由存在量词取出自然数 k 并得到 n=2k+1",
+          "closedDependencies": [],
+          "dependsOn": [
+            "rn_exists_k"
+          ],
+          "expression": "(d_n eq ((2 mul d_k_witness) add 1))",
+          "kind": "claim",
+          "nodeId": "rn_n_eq_k",
+          "proofTermPresent": false,
+          "sourceAssessment": "supported"
+        },
+        {
+          "assessmentBasis": "原文由 n=2k+1 代入写出 n²=(2k+1)²",
+          "closedDependencies": [],
+          "dependsOn": [
+            "rn_n_eq_k"
+          ],
+          "expression": "((d_n pow 2) eq (((2 mul d_k_witness) add 1) pow 2))",
+          "kind": "claim",
+          "nodeId": "rn_square_subst",
+          "proofTermPresent": true,
+          "sourceAssessment": "supported"
+        },
+        {
+          "assessmentBasis": "原文明确写出 (2k+1)²=4k(k+1)+1",
+          "closedDependencies": [],
+          "dependsOn": [],
+          "expression": "((((2 mul d_k_witness) add 1) pow 2) eq (((4 mul d_k_witness) mul (d_k_witness add 1)) add 1))",
+          "kind": "claim",
+          "nodeId": "rn_square_expand",
+          "proofTermPresent": true,
+          "sourceAssessment": "supported"
+        },
+        {
+          "assessmentBasis": "原文等式链给出 n²=(2k+1)²=4k(k+1)+1",
+          "closedDependencies": [],
+          "dependsOn": [
+            "rn_square_subst",
+            "rn_square_expand"
+          ],
+          "expression": "((d_n pow 2) eq (((4 mul d_k_witness) mul (d_k_witness add 1)) add 1))",
+          "kind": "claim",
+          "nodeId": "rn_n_square_eq",
+          "proofTermPresent": true,
+          "sourceAssessment": "supported"
+        },
+        {
+          "assessmentBasis": "原文陈述相邻自然数 k 与 k+1 中必有一个是偶数",
+          "closedDependencies": [],
+          "dependsOn": [],
+          "expression": "or(even(d_k_witness), even((d_k_witness add 1)))",
+          "kind": "claim",
+          "nodeId": "rn_adjacent_even",
+          "proofTermPresent": true,
+          "sourceAssessment": "supported"
+        },
+        {
+          "assessmentBasis": "原文由此推出 2 整除 k(k+1)",
+          "closedDependencies": [],
+          "dependsOn": [
+            "rn_adjacent_even"
+          ],
+          "expression": "divides(2, (d_k_witness mul (d_k_witness add 1)))",
+          "kind": "claim",
+          "nodeId": "rn_two_divides",
+          "proofTermPresent": true,
+          "sourceAssessment": "supported"
+        },
+        {
+          "assessmentBasis": "原文由 2 整除 k(k+1) 推出 8 整除 4k(k+1)",
+          "closedDependencies": [],
+          "dependsOn": [
+            "rn_two_divides"
+          ],
+          "expression": "divides(8, ((4 mul d_k_witness) mul (d_k_witness add 1)))",
+          "kind": "claim",
+          "nodeId": "rn_eight_divides",
+          "proofTermPresent": true,
+          "sourceAssessment": "supported"
+        },
+        {
+          "assessmentBasis": "原文结论：n² 与 1 模 8 同余，得证",
+          "closedDependencies": [],
+          "dependsOn": [
+            "rn_n_square_eq",
+            "rn_eight_divides"
+          ],
+          "expression": "(mod((d_n pow 2), 8) eq 1)",
+          "kind": "claim",
+          "nodeId": "rn_congruence",
+          "proofTermPresent": true,
+          "sourceAssessment": "supported"
+        }
+      ],
+      "routeId": "r_direct_mod8"
+    }
+  ],
+  "mathirVersion": "2.0",
+  "originalMeaning": "model_interpretation",
+  "originalProofFidelity": {
+    "basis": "Kernel checks Lean proof terms for the locked formal statement; it cannot certify that generated tactics faithfully express each inference in the original human manuscript.",
+    "routes": [
+      {
+        "formalRouteKernelPassed": false,
+        "routeId": "r_direct_mod8",
+        "sourceReasoningStatus": "not_independently_established",
+        "sourceReasoningVerified": false,
+        "steps": [
+          {
+            "formalStepKernelPassed": true,
+            "nodeId": "rn_exists_k",
+            "proofTermOrigin": "proof_only_generation",
+            "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+            "sourceReasoningVerified": false
+          },
+          {
+            "formalStepKernelPassed": false,
+            "nodeId": "rn_n_eq_k",
+            "proofTermOrigin": "missing",
+            "sourceReasoningStatus": "source_reasoning_not_independently_established",
+            "sourceReasoningVerified": false
+          },
+          {
+            "formalStepKernelPassed": true,
+            "nodeId": "rn_square_subst",
+            "proofTermOrigin": "proof_only_generation",
+            "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+            "sourceReasoningVerified": false
+          },
+          {
+            "formalStepKernelPassed": true,
+            "nodeId": "rn_square_expand",
+            "proofTermOrigin": "proof_only_generation",
+            "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+            "sourceReasoningVerified": false
+          },
+          {
+            "formalStepKernelPassed": true,
+            "nodeId": "rn_n_square_eq",
+            "proofTermOrigin": "proof_only_generation",
+            "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+            "sourceReasoningVerified": false
+          },
+          {
+            "formalStepKernelPassed": true,
+            "nodeId": "rn_adjacent_even",
+            "proofTermOrigin": "proof_only_generation",
+            "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+            "sourceReasoningVerified": false
+          },
+          {
+            "formalStepKernelPassed": true,
+            "nodeId": "rn_two_divides",
+            "proofTermOrigin": "proof_only_generation",
+            "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+            "sourceReasoningVerified": false
+          },
+          {
+            "formalStepKernelPassed": true,
+            "nodeId": "rn_eight_divides",
+            "proofTermOrigin": "proof_only_generation",
+            "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+            "sourceReasoningVerified": false
+          },
+          {
+            "formalStepKernelPassed": false,
+            "nodeId": "rn_congruence",
+            "proofTermOrigin": "proof_only_generation",
+            "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+            "sourceReasoningVerified": false
+          }
+        ]
+      }
+    ],
+    "sourceProofVerified": false,
+    "status": "not_independently_established"
+  },
+  "originalRouteKernelPassed": false,
+  "routes": [
+    {
+      "dependencyEvidence": {
+        "basis": "Kernel proof expression binder-use audit for declared claim dependencies",
+        "status": "incomplete"
+      },
+      "formalRouteKernelPassed": false,
+      "kernel": {
+        "certificate": null,
+        "diagnostics": [
+          {
+            "leanEndPosition": {
+              "column": 37,
+              "line": 5
+            },
+            "leanPosition": {
+              "column": 26,
+              "line": 5
+            },
+            "mappingPrecision": "step",
+            "message": "Tactic `rcases` failed: `jjdep_rn_eight_divides : ?m.26 jjdep_rn_n_square_eq` is not an inductive datatype",
+            "raw": {
+              "caption": "",
+              "data": "Tactic `rcases` failed: `jjdep_rn_eight_divides : ?m.26 jjdep_rn_n_square_eq` is not an inductive datatype",
+              "endPos": {
+                "column": 37,
+                "line": 5
+              },
+              "fileName": "/private/tmp/jj-hard-e2e-dlh0jqti/data/work/lean-yh5vs3aj/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "[anonymous]",
+              "pos": {
+                "column": 26,
+                "line": 5
+              },
+              "severity": "error"
+            },
+            "severity": "error",
+            "sourceRefs": [],
+            "stepId": "mathir-v2/r_direct_mod8/locked-goal"
+          },
+          {
+            "leanEndPosition": {
+              "column": 77,
+              "line": 5
+            },
+            "leanPosition": {
+              "column": 7,
+              "line": 2
+            },
+            "mappingPrecision": "step",
+            "message": "Type mismatch\n  fun jjdep_rn_n_square_eq jjdep_rn_eight_divides => ?m.23\nhas type\n  (jjdep_rn_n_square_eq : ?m.20) →\n    (jjdep_rn_eight_divides : ?m.26 jjdep_rn_n_square_eq) → ?m.27 jjdep_rn_n_square_eq jjdep_rn_eight_divides\nbut is expected to have type\n  v_d_n ^ 2 % 8 = 1",
+            "raw": {
+              "caption": "",
+              "data": "Type mismatch\n  fun jjdep_rn_n_square_eq jjdep_rn_eight_divides => ?m.23\nhas type\n  (jjdep_rn_n_square_eq : ?m.20) →\n    (jjdep_rn_eight_divides : ?m.26 jjdep_rn_n_square_eq) → ?m.27 jjdep_rn_n_square_eq jjdep_rn_eight_divides\nbut is expected to have type\n  v_d_n ^ 2 % 8 = 1",
+              "endPos": {
+                "column": 77,
+                "line": 5
+              },
+              "fileName": "/private/tmp/jj-hard-e2e-dlh0jqti/data/work/lean-yh5vs3aj/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "[anonymous]",
+              "pos": {
+                "column": 7,
+                "line": 2
+              },
+              "severity": "error"
+            },
+            "severity": "error",
+            "sourceRefs": [],
+            "stepId": "mathir-v2/r_direct_mod8/locked-goal"
+          }
+        ],
+        "evidenceRef": null,
+        "status": "not_proved"
+      },
+      "proofComposition": {
+        "error": "A claim in the route has no original proof term",
+        "kernelChecked": false,
+        "status": "incomplete"
+      },
+      "routeConnectivity": {
+        "basis": "goal dependency closure plus explicit induction-case edges",
+        "goalNodeIdPresent": true,
+        "status": "connected",
+        "unconnectedClaimNodeIds": [],
+        "unconnectedNodeIds": []
+      },
+      "routeId": "r_direct_mod8",
+      "sourceAlignment": {
+        "modelAssessment": "supported",
+        "semanticAlignmentKernelProven": false,
+        "sourceRefsValidated": true,
+        "status": "supported",
+        "transcriptionStatus": "confirmed",
+        "unresolvedAmbiguityIds": []
+      },
+      "status": "incomplete",
+      "steps": [
+        {
+          "declaredDependencies": [
+            "rn_odd"
+          ],
+          "dependencyEvidence": "all_declared_dependencies_used",
+          "diagnostics": [],
+          "expectedType": "(∀ (v_d_n : ℕ), ((Odd v_d_n) → (∀ (jjdep_rn_odd : (Odd v_d_n)), (∃ (v_d_k_exists : ℕ), (v_d_n = (((2 : ℕ) * v_d_k_exists) + (1 : ℕ)))))))",
+          "failureClass": null,
+          "mathematicalStatus": "conditionally_established",
+          "nodeId": "rn_exists_k",
+          "proofTermOrigin": "proof_only_generation",
+          "proofTermSha256": "441cf68dfea3b345c366e4e759c83e2250b163708357bbe2a427c2c921026aa2",
+          "sourceAssessment": "supported",
+          "status": "passed",
+          "stepKernelCertificate": {
+            "additionalAxioms": [],
+            "auditIsolation": "fresh_import_environment_reset_between_candidates",
+            "auditMethod": "fresh_environment_data_only_kernel_replay",
+            "axioms": [
+              "propext"
+            ],
+            "checked": true,
+            "expectedExpressionSha256": "b863f22674e68fcec1972cf0d14859dce49d3481a11980b44aa7878c09d00f11",
+            "nativeExpressionComparison": "structural_equal",
+            "proofExpressionSha256": "006f9acb72467a623c9a439727950a55abe2dbeb0db9fc36118e461ca038372d",
+            "statementMatched": true,
+            "statement_hash": "182a7e25aebcc26765512a7f65f444abe7d161ffe575e226d68b62353ae07614"
+          }
+        },
+        {
+          "declaredDependencies": [
+            "rn_exists_k"
+          ],
+          "dependencyEvidence": "dependency_usage_not_audited",
+          "diagnostics": [],
+          "expectedType": "(∀ (v_d_n : ℕ), ((Odd v_d_n) → (∀ (v_d_k_witness : ℕ), (∀ (jjdep_rn_exists_k : (∃ (v_d_k_exists : ℕ), (v_d_n = (((2 : ℕ) * v_d_k_exists) + (1 : ℕ))))), (v_d_n = (((2 : ℕ) * v_d_k_witness) + (1 : ℕ)))))))",
+          "failureClass": "missing_proof",
+          "mathematicalStatus": "not_established",
+          "nodeId": "rn_n_eq_k",
+          "proofTermOrigin": "missing",
+          "proofTermSha256": null,
+          "sourceAssessment": "supported",
+          "status": "incomplete",
+          "stepKernelCertificate": null
+        },
+        {
+          "declaredDependencies": [
+            "rn_n_eq_k"
+          ],
+          "dependencyEvidence": "all_declared_dependencies_used",
+          "diagnostics": [],
+          "expectedType": "(∀ (v_d_n : ℕ), ((Odd v_d_n) → (∀ (v_d_k_witness : ℕ), (∀ (jjdep_rn_n_eq_k : (v_d_n = (((2 : ℕ) * v_d_k_witness) + (1 : ℕ)))), ((v_d_n ^ (2 : ℕ)) = ((((2 : ℕ) * v_d_k_witness) + (1 : ℕ)) ^ (2 : ℕ)))))))",
+          "failureClass": null,
+          "mathematicalStatus": "conditionally_established",
+          "nodeId": "rn_square_subst",
+          "proofTermOrigin": "proof_only_generation",
+          "proofTermSha256": "4fa7bfaf386a23487c64f57b7f0268059373ad05516fa5d9a661b850ce24494f",
+          "sourceAssessment": "supported",
+          "status": "passed",
+          "stepKernelCertificate": {
+            "additionalAxioms": [],
+            "auditIsolation": "fresh_import_environment_reset_between_candidates",
+            "auditMethod": "fresh_environment_data_only_kernel_replay",
+            "axioms": [
+              "propext"
+            ],
+            "checked": true,
+            "expectedExpressionSha256": "f2c5c6b41982dcef0c6d6f4b5631a2ce508dc28c3fa7946e15e24f29b9b1ce19",
+            "nativeExpressionComparison": "structural_equal",
+            "proofExpressionSha256": "955feb088264597ed4e6c4641e005e1e87973bae2fad1bea1a049d4485030642",
+            "statementMatched": true,
+            "statement_hash": "182a7e25aebcc26765512a7f65f444abe7d161ffe575e226d68b62353ae07614"
+          }
+        },
+        {
+          "declaredDependencies": [],
+          "dependencyEvidence": "not_required",
+          "diagnostics": [],
+          "expectedType": "(∀ (v_d_n : ℕ), ((Odd v_d_n) → (∀ (v_d_k_witness : ℕ), (((((2 : ℕ) * v_d_k_witness) + (1 : ℕ)) ^ (2 : ℕ)) = ((((4 : ℕ) * v_d_k_witness) * (v_d_k_witness + (1 : ℕ))) + (1 : ℕ))))))",
+          "failureClass": null,
+          "mathematicalStatus": "established",
+          "nodeId": "rn_square_expand",
+          "proofTermOrigin": "proof_only_generation",
+          "proofTermSha256": "b0e1638f2049a9b53bc49e7ab54f26c3aaf878cc68f42282b651bcfddf755100",
+          "sourceAssessment": "supported",
+          "status": "passed",
+          "stepKernelCertificate": {
+            "additionalAxioms": [],
+            "auditIsolation": "fresh_import_environment_reset_between_candidates",
+            "auditMethod": "fresh_environment_data_only_kernel_replay",
+            "axioms": [
+              "propext"
+            ],
+            "checked": true,
+            "expectedExpressionSha256": "22db23166709f5c5463d03022e6cc0f839965d1e9d77aa141bf71142fddc2100",
+            "nativeExpressionComparison": "structural_equal",
+            "proofExpressionSha256": "4444154badce4ff3b446a3a84fa0a9b50243d4f71f9643e4d6081f2054fca1f4",
+            "statementMatched": true,
+            "statement_hash": "182a7e25aebcc26765512a7f65f444abe7d161ffe575e226d68b62353ae07614"
+          }
+        },
+        {
+          "declaredDependencies": [
+            "rn_square_subst",
+            "rn_square_expand"
+          ],
+          "dependencyEvidence": "all_declared_dependencies_used",
+          "diagnostics": [],
+          "expectedType": "(∀ (v_d_n : ℕ), ((Odd v_d_n) → (∀ (v_d_k_witness : ℕ), (∀ (jjdep_rn_square_subst : ((v_d_n ^ (2 : ℕ)) = ((((2 : ℕ) * v_d_k_witness) + (1 : ℕ)) ^ (2 : ℕ)))), (∀ (jjdep_rn_square_expand : (((((2 : ℕ) * v_d_k_witness) + (1 : ℕ)) ^ (2 : ℕ)) = ((((4 : ℕ) * v_d_k_witness) * (v_d_k_witness + (1 : ℕ))) + (1 : ℕ)))), ((v_d_n ^ (2 : ℕ)) = ((((4 : ℕ) * v_d_k_witness) * (v_d_k_witness + (1 : ℕ))) + (1 : ℕ))))))))",
+          "failureClass": null,
+          "mathematicalStatus": "conditionally_established",
+          "nodeId": "rn_n_square_eq",
+          "proofTermOrigin": "proof_only_generation",
+          "proofTermSha256": "7a842a4195ed8da8bec47ab16a1c963650dbc636bf386c39aae872b202aeb707",
+          "sourceAssessment": "supported",
+          "status": "passed",
+          "stepKernelCertificate": {
+            "additionalAxioms": [],
+            "auditIsolation": "fresh_import_environment_reset_between_candidates",
+            "auditMethod": "fresh_environment_data_only_kernel_replay",
+            "axioms": [
+              "propext"
+            ],
+            "checked": true,
+            "expectedExpressionSha256": "b1bd44f966326baff9f3161852338f26fa9b8999a85571c16b0d7a3c4a58f321",
+            "nativeExpressionComparison": "structural_equal",
+            "proofExpressionSha256": "5b6503c526a7c259c7efdc6e56c428697d38ceb4693403f748fb2e265129478a",
+            "statementMatched": true,
+            "statement_hash": "182a7e25aebcc26765512a7f65f444abe7d161ffe575e226d68b62353ae07614"
+          }
+        },
+        {
+          "declaredDependencies": [],
+          "dependencyEvidence": "not_required",
+          "diagnostics": [],
+          "expectedType": "(∀ (v_d_n : ℕ), ((Odd v_d_n) → (∀ (v_d_k_witness : ℕ), ((Even v_d_k_witness) ∨ (Even (v_d_k_witness + (1 : ℕ)))))))",
+          "failureClass": null,
+          "mathematicalStatus": "established",
+          "nodeId": "rn_adjacent_even",
+          "proofTermOrigin": "proof_only_generation",
+          "proofTermSha256": "45b2a3c1b99be63549f845d176bcd9e2309a3f28804ae47d9cd03f8804794072",
+          "sourceAssessment": "supported",
+          "status": "passed",
+          "stepKernelCertificate": {
+            "additionalAxioms": [],
+            "auditIsolation": "fresh_import_environment_reset_between_candidates",
+            "auditMethod": "fresh_environment_data_only_kernel_replay",
+            "axioms": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "checked": true,
+            "expectedExpressionSha256": "a44c4c9346bdaf04a3985ad013f2d8993377a4ab83a1cb9fa4adf21b6c280241",
+            "nativeExpressionComparison": "structural_equal",
+            "proofExpressionSha256": "e2d59d047486e4737fe7b8101a406e1081bac85494310270cd29159b95de3d81",
+            "statementMatched": true,
+            "statement_hash": "182a7e25aebcc26765512a7f65f444abe7d161ffe575e226d68b62353ae07614"
+          }
+        },
+        {
+          "declaredDependencies": [
+            "rn_adjacent_even"
+          ],
+          "dependencyEvidence": "all_declared_dependencies_used",
+          "diagnostics": [],
+          "expectedType": "(∀ (v_d_n : ℕ), ((Odd v_d_n) → (∀ (v_d_k_witness : ℕ), (∀ (jjdep_rn_adjacent_even : ((Even v_d_k_witness) ∨ (Even (v_d_k_witness + (1 : ℕ))))), ((2 : ℕ) ∣ (v_d_k_witness * (v_d_k_witness + (1 : ℕ))))))))",
+          "failureClass": null,
+          "mathematicalStatus": "conditionally_established",
+          "nodeId": "rn_two_divides",
+          "proofTermOrigin": "proof_only_generation",
+          "proofTermSha256": "9c4e5bb930167413b982b6027293ade67ba54cefa94515333df09d7d7314f744",
+          "sourceAssessment": "supported",
+          "status": "passed",
+          "stepKernelCertificate": {
+            "additionalAxioms": [],
+            "auditIsolation": "fresh_import_environment_reset_between_candidates",
+            "auditMethod": "fresh_environment_data_only_kernel_replay",
+            "axioms": [
+              "propext"
+            ],
+            "checked": true,
+            "expectedExpressionSha256": "2c216bec8f08cb6d2326ab15280e74d7892ec470ce782af2090b2a1caae3311b",
+            "nativeExpressionComparison": "structural_equal",
+            "proofExpressionSha256": "7ceb18e13e3a1121d0ac449ad964d73501471ea1bfd21d82e5f5cf481bc5521a",
+            "statementMatched": true,
+            "statement_hash": "182a7e25aebcc26765512a7f65f444abe7d161ffe575e226d68b62353ae07614"
+          }
+        },
+        {
+          "declaredDependencies": [
+            "rn_two_divides"
+          ],
+          "dependencyEvidence": "all_declared_dependencies_used",
+          "diagnostics": [],
+          "expectedType": "(∀ (v_d_n : ℕ), ((Odd v_d_n) → (∀ (v_d_k_witness : ℕ), (∀ (jjdep_rn_two_divides : ((2 : ℕ) ∣ (v_d_k_witness * (v_d_k_witness + (1 : ℕ))))), ((8 : ℕ) ∣ (((4 : ℕ) * v_d_k_witness) * (v_d_k_witness + (1 : ℕ))))))))",
+          "failureClass": null,
+          "mathematicalStatus": "conditionally_established",
+          "nodeId": "rn_eight_divides",
+          "proofTermOrigin": "proof_only_generation",
+          "proofTermSha256": "1aef03f68e702625edf983d0ab539fc785f524c5aa2a9990ada563aa456ffd78",
+          "sourceAssessment": "supported",
+          "status": "passed",
+          "stepKernelCertificate": {
+            "additionalAxioms": [],
+            "auditIsolation": "fresh_import_environment_reset_between_candidates",
+            "auditMethod": "fresh_environment_data_only_kernel_replay",
+            "axioms": [
+              "propext"
+            ],
+            "checked": true,
+            "expectedExpressionSha256": "ce05b23659d343d860f523c84e2d03b5df151eabda154bd2965bebaa2304aee3",
+            "nativeExpressionComparison": "structural_equal",
+            "proofExpressionSha256": "06d24983bc090275e0328fa7e97ac57500dbf14eebe08711edab9df98c78b7f5",
+            "statementMatched": true,
+            "statement_hash": "182a7e25aebcc26765512a7f65f444abe7d161ffe575e226d68b62353ae07614"
+          }
+        },
+        {
+          "declaredDependencies": [
+            "rn_n_square_eq",
+            "rn_eight_divides"
+          ],
+          "dependencyEvidence": "dependency_usage_not_audited",
+          "diagnostics": [
+            {
+              "leanEndPosition": {
+                "column": 23,
+                "line": 5
+              },
+              "leanPosition": {
+                "column": 10,
+                "line": 5
+              },
+              "mappingPrecision": "step",
+              "message": "Unknown identifier `v_d_k_witness`",
+              "raw": {
+                "caption": "",
+                "data": "Unknown identifier `v_d_k_witness`",
+                "endPos": {
+                  "column": 23,
+                  "line": 5
+                },
+                "fileName": "/private/tmp/jj-hard-e2e-dlh0jqti/data/work/lean-yh5vs3aj/Task.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 10,
+                  "line": 5
+                },
+                "severity": "error"
+              },
+              "severity": "error",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "end": 175,
+                  "start": 155
+                }
+              ],
+              "stepId": "mathir-v2/r_direct_mod8/rn_congruence"
+            },
+            {
+              "leanEndPosition": {
+                "column": 41,
+                "line": 5
+              },
+              "leanPosition": {
+                "column": 28,
+                "line": 5
+              },
+              "mappingPrecision": "step",
+              "message": "Unknown identifier `v_d_k_witness`",
+              "raw": {
+                "caption": "",
+                "data": "Unknown identifier `v_d_k_witness`",
+                "endPos": {
+                  "column": 41,
+                  "line": 5
+                },
+                "fileName": "/private/tmp/jj-hard-e2e-dlh0jqti/data/work/lean-yh5vs3aj/Task.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 28,
+                  "line": 5
+                },
+                "severity": "error"
+              },
+              "severity": "error",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "end": 175,
+                  "start": 155
+                }
+              ],
+              "stepId": "mathir-v2/r_direct_mod8/rn_congruence"
+            },
+            {
+              "leanEndPosition": {
+                "column": 137,
+                "line": 5
+              },
+              "leanPosition": {
+                "column": 4261,
+                "line": 5
+              },
+              "mappingPrecision": "step",
+              "message": "Unknown identifier `v_d_k_witness`",
+              "raw": {
+                "caption": "",
+                "data": "Unknown identifier `v_d_k_witness`",
+                "endPos": {
+                  "column": 137,
+                  "line": 5
+                },
+                "fileName": "/private/tmp/jj-hard-e2e-dlh0jqti/data/work/lean-yh5vs3aj/Task.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 4261,
+                  "line": 5
+                },
+                "severity": "error"
+              },
+              "severity": "error",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "end": 175,
+                  "start": 155
+                }
+              ],
+              "stepId": "mathir-v2/r_direct_mod8/rn_congruence"
+            },
+            {
+              "leanEndPosition": {
+                "column": 155,
+                "line": 5
+              },
+              "leanPosition": {
+                "column": 142,
+                "line": 5
+              },
+              "mappingPrecision": "step",
+              "message": "Unknown identifier `v_d_k_witness`",
+              "raw": {
+                "caption": "",
+                "data": "Unknown identifier `v_d_k_witness`",
+                "endPos": {
+                  "column": 155,
+                  "line": 5
+                },
+                "fileName": "/private/tmp/jj-hard-e2e-dlh0jqti/data/work/lean-yh5vs3aj/Task.lean",
+                "isSilent": false,
+                "keepFullRange": false,
+                "kind": "lean.unknownIdentifier._namedError",
+                "pos": {
+                  "column": 142,
+                  "line": 5
+                },
+                "severity": "error"
+              },
+              "severity": "error",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "end": 175,
+                  "start": 155
+                }
+              ],
+              "stepId": "mathir-v2/r_direct_mod8/rn_congruence"
+            },
+            {
+              "mappingPrecision": "step",
+              "message": "Expected proposition contains Lean sorryAx recovery",
+              "severity": "error",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "end": 175,
+                  "start": 155
+                }
+              ],
+              "stepId": "mathir-v2/r_direct_mod8/rn_congruence"
+            }
+          ],
+          "expectedType": "(∀ (v_d_n : ℕ), ((Odd v_d_n) → (∀ (jjdep_rn_n_square_eq : ((v_d_n ^ (2 : ℕ)) = ((((4 : ℕ) * v_d_k_witness) * (v_d_k_witness + (1 : ℕ))) + (1 : ℕ)))), (∀ (jjdep_rn_eight_divides : ((8 : ℕ) ∣ (((4 : ℕ) * v_d_k_witness) * (v_d_k_witness + (1 : ℕ))))), (((v_d_n ^ (2 : ℕ)) % (8 : ℕ)) = (1 : ℕ))))))",
+          "failureClass": "lean_statement_compile_failed",
+          "mathematicalStatus": "not_established",
+          "nodeId": "rn_congruence",
+          "proofTermOrigin": "proof_only_generation",
+          "proofTermSha256": "951455af31609f8f70f7d995a17c82dc6b2c00fb899835d2d49a5f88b098f8f4",
+          "sourceAssessment": "supported",
+          "status": "incomplete",
+          "stepKernelCertificate": null
+        }
+      ]
+    }
+  ],
+  "runStatus": "incomplete",
+  "sourceProofVerified": false,
+  "statement": "(∀ (v_d_n : ℕ), ((Odd v_d_n) → (((v_d_n ^ (2 : ℕ)) % (8 : ℕ)) = (1 : ℕ))))",
+  "statementHash": "182a7e25aebcc26765512a7f65f444abe7d161ffe575e226d68b62353ae07614",
+  "termination": "proof_statement_not_elaborated",
+  "unresolvedAmbiguityIds": []
+}

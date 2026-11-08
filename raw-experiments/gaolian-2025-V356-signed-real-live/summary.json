@@ -1,0 +1,98 @@
+[
+  {
+    "case": {
+      "id": "gaolian-2025-r2-q2",
+      "expected": "correct",
+      "source": "2025年全国高中数学联赛二试（加试）A卷第2题，代数不等式证明题（40分）。原题：设 m,n,k 均为正整数，m≥2，n≥k≥2；实数 x₁≥x₂≥⋯≥x_n≥0，满足 ∑_{i=1}^n x_i^m≥1 及 ∑_{i=1}^n x_i≤k。证明前 k 项之和 ∑_{i=1}^k x_i≥1。\n\n我的完整证明：\n第一步，令 t=∑_{i=1}^k x_i，u=x_k。反设 t<1。由于 x_i≥0 且这前 k 项之和小于 1，对每个 1≤i≤k 都有 0≤x_i≤t<1；同时 0≤u≤t/k<1，并且前 k 项均满足 x_i≥u，后 n−k 项均满足 0≤x_i≤u。\n第二步，对于每个 i>k，由 m≥2 和 0≤x_i≤u<1，有 x_i^{m}=x_i·x_i^{m−1}≤x_i·u≤u x_i。故尾部幂和满足 ∑_{i=k+1}^n x_i^m≤u∑_{i=k+1}^n x_i≤u(k−t)，最后一个不等式使用 ∑_{i=1}^n x_i≤k。若 n=k，尾部为空和 0，此式仍成立。\n第三步，对于每个 1≤i≤k，由 m≥2 和 0≤x_i<1，有 x_i^m≤x_i²。另一方面 u≤x_i<1，所以 (x_i−u)(x_i−1)≤0，即 x_i²−u x_i≤x_i−u。二式结合得到 x_i^m−u x_i≤x_i−u，即 x_i^m≤(1+u)x_i−u。\n第四步，对前 k 项求和，得 ∑_{i=1}^k x_i^m≤(1+u)t−ku。与第二步的尾部估计合并，\n∑_{i=1}^n x_i^m≤(1+u)t−ku+u(k−t)=t<1。\n第五步，这与题设 ∑_{i=1}^n x_i^m≥1 矛盾。故假设 t<1 不成立，于是 t≥1，也就是 ∑_{i=1}^k x_i≥1。证明完毕。"
+    },
+    "jobId": "4d664dc9-5632-4a7e-9516-9d090e7db887",
+    "jobStatus": "completed",
+    "resultStatus": "whole_formal_kernel_verified_source_unconfirmed",
+    "kernelVerified": true,
+    "formalProofCertified": true,
+    "originalProofCertified": false,
+    "fidelityReview": "no_specific_mismatch_identified_by_model",
+    "fidelityIssues": 0,
+    "sourceSteps": 5,
+    "kernelCertificate": {
+      "auditMethod": "fresh_environment_data_only_kernel_replay",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "checked": true,
+      "dependencyUsage": [],
+      "formalStatement": "∀ (m n k : ℕ) (x : Fin n → ℝ),\n  2 ≤ m →\n    2 ≤ k →\n      ∀ (hkn : k ≤ n),\n        (∀ (i : Fin n), 0 ≤ x i) →\n          (∀ (i j : Fin n), i ≤ j → x j ≤ x i) → 1 ≤ ∑ i, x i ^ m → ∑ i, x i ≤ ↑k → 1 ≤ ∑ i, x (Fin.castLE hkn i)",
+      "statementMatched": true,
+      "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+      "expectedExpressionSha256": "07ca886d70419bcaec678fc7a24855b22cc88de19acca387805503a56162f7b7",
+      "proofExpressionSha256": "84770ffa986b48edfda68a04d8b3ced904b77855da988681584013c29b61e0a0",
+      "statement_hash": "9def33798bfeed13b58ad6fcd073977306f2b0d28c260f998bf2beff97484cf5",
+      "nativeExpressionComparison": "structural_equal",
+      "sourceTypeSha256": "9958a677d42dd7eb59eb425104fabd40a96a94ecceb815fc58fad44e7ba2ba34",
+      "sourceProofSha256": "881b1b428c3156b8d591af18a0ea42ed05571b416b915adae799d9223bee9c9d",
+      "runtime": {
+        "configured": true,
+        "executableFound": true,
+        "projectFound": true,
+        "runtimeBuilt": true,
+        "runtimeIntegrity": true,
+        "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+        "sandbox": "macos",
+        "isolated": true,
+        "ready": true,
+        "toolchain": "leanprover/lean4:v4.34.0",
+        "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+        "liveTestedInThisDistribution": false
+      },
+      "additionalAxioms": [],
+      "auditIsolation": "fresh_import_environment_reset_between_candidates"
+    },
+    "unsupportedOriginalSteps": [],
+    "error": null,
+    "usage": {
+      "attempts": 4,
+      "inputTokens": 15187,
+      "outputTokens": 67075,
+      "missingUsage": 0,
+      "requests": [
+        {
+          "reason": "WholeProofPlan",
+          "status": "response_received",
+          "input_tokens": 1211,
+          "output_tokens": 13712,
+          "error_type": null,
+          "http_duration_ms": 62654.85
+        },
+        {
+          "reason": "WholeProofProgram",
+          "status": "response_received",
+          "input_tokens": 1940,
+          "output_tokens": 42317,
+          "error_type": null,
+          "http_duration_ms": 196037.157
+        },
+        {
+          "reason": "SourceReasonAudit",
+          "status": "response_received",
+          "input_tokens": 6837,
+          "output_tokens": 9795,
+          "error_type": null,
+          "http_duration_ms": 55999.314
+        },
+        {
+          "reason": "Explanation",
+          "status": "response_received",
+          "input_tokens": 5199,
+          "output_tokens": 1251,
+          "error_type": null,
+          "http_duration_ms": 9750.68
+        }
+      ]
+    },
+    "feedbackError": null,
+    "elapsedSeconds": 403.62,
+    "totalElapsedSeconds": 404.33
+  }
+]

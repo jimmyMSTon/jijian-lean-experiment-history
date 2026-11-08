@@ -1,0 +1,145 @@
+{
+  "context": "Independent Lean counterchecks of false theorem/steps; original official backend run is separate",
+  "noDeepSeekRequests": true,
+  "records": [
+    {
+      "stepId": "diagnostic_false_theorem_div4",
+      "expectedType": "¬ ((∀ (v_n_goal : ℕ), ((4 : ℕ) ∣ (v_n_goal * (v_n_goal + (1 : ℕ))))))",
+      "proofTerm": "by\n  intro h\n  have bad := h 1\n  norm_num at bad",
+      "sourceRefs": [],
+      "statement_hash": "wrong-original-proof-negative-audit",
+      "lean": {
+        "status": "verified",
+        "localVerified": true,
+        "diagnostics": [],
+        "certificate": {
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext"
+          ],
+          "checked": true,
+          "dependencyUsage": [],
+          "formalStatement": "¬∀ (v_n_goal : ℕ), 4 ∣ v_n_goal * (v_n_goal + 1)",
+          "statementMatched": true,
+          "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+          "expectedExpressionSha256": "b31f45bd85ebd7257e47b4d7f5c7a82997340b20addf1ac7c9c34faa9ede2258",
+          "proofExpressionSha256": "2d2c43acf86cc88bb898d594d82b717094e74790a54fea8f6555970871ad35fe",
+          "statement_hash": "wrong-original-proof-negative-audit",
+          "nativeExpressionComparison": "structural_equal",
+          "sourceTypeSha256": "399e957be1b8bb7c276ed11097516db5c8dcac5b994629236ce3cbe6bf137238",
+          "sourceProofSha256": "2216e16664d57ba03b8dd39a7398ac39bd1ab8dc18e93c67972d96b27515a262",
+          "runtime": {
+            "configured": true,
+            "executableFound": true,
+            "projectFound": true,
+            "runtimeBuilt": true,
+            "runtimeIntegrity": true,
+            "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+            "sandbox": "macos",
+            "isolated": true,
+            "ready": true,
+            "toolchain": "leanprover/lean4:v4.34.0",
+            "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+            "liveTestedInThisDistribution": false
+          },
+          "additionalAxioms": [],
+          "auditIsolation": "fresh_import_environment_reset_between_candidates"
+        }
+      }
+    },
+    {
+      "stepId": "diagnostic_wrong_existential_witness",
+      "expectedType": "¬ ((∀ (v_d_x : ℝ), (let v_d_proof_y : ℝ := v_d_x; (((2 : ℝ) * v_d_x) = (0 : ℝ)))))",
+      "proofTerm": "by\n  intro h\n  have bad := h 1\n  norm_num at bad",
+      "sourceRefs": [],
+      "statement_hash": "wrong-original-proof-negative-audit",
+      "lean": {
+        "status": "verified",
+        "localVerified": true,
+        "diagnostics": [],
+        "certificate": {
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "checked": true,
+          "dependencyUsage": [],
+          "formalStatement": "¬∀ (v_d_x : ℝ),\n    have v_d_proof_y := v_d_x;\n    2 * v_d_x = 0",
+          "statementMatched": true,
+          "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+          "expectedExpressionSha256": "371497f15aa4715d2fa22603f6f46ceaa45560dfbd31fb6e20fa8b965e9848f4",
+          "proofExpressionSha256": "b3361a0fe1adfa9fd3bbd45aa70e018e04dd5d0b4152e04de30503ad03969143",
+          "statement_hash": "wrong-original-proof-negative-audit",
+          "nativeExpressionComparison": "structural_equal",
+          "sourceTypeSha256": "7f3b6739b0bed2267c7de1bb7b943a94a22ca5109a2b47cb4281b80e9a744ef3",
+          "sourceProofSha256": "2216e16664d57ba03b8dd39a7398ac39bd1ab8dc18e93c67972d96b27515a262",
+          "runtime": {
+            "configured": true,
+            "executableFound": true,
+            "projectFound": true,
+            "runtimeBuilt": true,
+            "runtimeIntegrity": true,
+            "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+            "sandbox": "macos",
+            "isolated": true,
+            "ready": true,
+            "toolchain": "leanprover/lean4:v4.34.0",
+            "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+            "liveTestedInThisDistribution": false
+          },
+          "additionalAxioms": [],
+          "auditIsolation": "fresh_import_environment_reset_between_candidates"
+        }
+      }
+    },
+    {
+      "stepId": "diagnostic_unsupported_a_ge_b",
+      "expectedType": "¬ (∀ a b : ℝ, a ≥ b)",
+      "proofTerm": "by\n  intro h\n  have bad := h 0 1\n  norm_num at bad",
+      "sourceRefs": [],
+      "statement_hash": "wrong-original-proof-negative-audit",
+      "lean": {
+        "status": "verified",
+        "localVerified": true,
+        "diagnostics": [],
+        "certificate": {
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "checked": true,
+          "dependencyUsage": [],
+          "formalStatement": "¬∀ (a b : ℝ), a ≥ b",
+          "statementMatched": true,
+          "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+          "expectedExpressionSha256": "775ceee20a92c4dadfd460f9b372c497ce89d09b9e7e00036b8b72212ce77ac3",
+          "proofExpressionSha256": "4cf2d63fd8744ec92414b88116c856c43528f001642ed7f558bf68c1887d043c",
+          "statement_hash": "wrong-original-proof-negative-audit",
+          "nativeExpressionComparison": "structural_equal",
+          "sourceTypeSha256": "f82e1c28d6ade2d343d3b5abc90f41a2abbf838472f45a0b4f22c523cc412071",
+          "sourceProofSha256": "5181a1aef3c411a0e99c613be4e2002e9f9e1ef1471b67c924aa1b6ae2d576d8",
+          "runtime": {
+            "configured": true,
+            "executableFound": true,
+            "projectFound": true,
+            "runtimeBuilt": true,
+            "runtimeIntegrity": true,
+            "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+            "sandbox": "macos",
+            "isolated": true,
+            "ready": true,
+            "toolchain": "leanprover/lean4:v4.34.0",
+            "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+            "liveTestedInThisDistribution": false
+          },
+          "additionalAxioms": [],
+          "auditIsolation": "fresh_import_environment_reset_between_candidates"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "case": "CMO",
+  "validExactMapping": true,
+  "validationErrors": [],
+  "review": {
+    "rows": [
+      {
+        "index": 15,
+        "sourceExcerpt": "第四部分：对任意 B，总能选择 t=0 或 t=1，使得相应目标奇数行数、奇数列数均不超过 n−1。若 r<n 且 c<n，取 t=0；否则至少一个等于 n，此时由 r、c 同奇偶且 n 为奇数，r≥1 且 c≥1，取 t=1。因此上一步构造引理给出一个 Y，其 1 的个数不超过 n−1，并且 B+Y 的所有行和、列和都是 t，故可通过合法操作实现。于是最终至少 n²−n+1 个格子为偶数。",
+        "formalProposition": "Odd n → ∀ B : Matrix (Fin n) (Fin n) (ZMod 2),\n        ∃ t0 : ZMod 2,\n          ((if t0 = 0 then oddRowCount B else n - oddRowCount B) ≤ n - 1) ∧\n          ((if t0 = 0 then oddColCount B else n - oddColCount B) ≤ n - 1)",
+        "assessment": "partial_or_missing_context",
+        "likelyOriginalStepIndex": 15,
+        "missingOrChangedContext": [
+          "只捕获了选择 t0 使奇数行数/列数或其补数不超过 n−1 的一部分。",
+          "没有表达由构造引理得到 Y、Y 的 1 的个数不超过 n−1、B+Y 的所有行和列和均为 t，以及可通过合法操作实现。",
+          "没有表达本步最终结论：最终至少 n²−n+1 个格子为偶数。"
+        ],
+        "evidenceExplanation": "形式命题与源步中分支选择 t=0/t=1 以控制奇数行/列计数的局部内容相符，但源步其余关键推理和最终偶数下界均未被形式化，因此是部分对应。"
+      },
+      {
+        "index": 16,
+        "sourceExcerpt": "第五部分：证明此下界不能提高。假设 n 为奇数，取初始 B 为第一行的前 n−1 个位置为 1，其余为 0。因为 n−1 为偶数，B 的全部行和均为 0；B 的前 n−1 列和为 1，最后一列和为 0。如果某个最终矩阵 Y 可由操作得到，则 B+Y 的每行和、每列和都等于共同值 t。",
+        "formalProposition": "Odd n → ∀ B : Matrix (Fin n) (Fin n) ℤ,\n        ∃ x : Matrix (Fin n) (Fin n) ℕ,\n          (n : ℤ)^2 - (n : ℤ) + 1 ≤ (countEven B x : ℤ)",
+        "assessment": "wrong_source_step",
+        "likelyOriginalStepIndex": 15,
+        "missingOrChangedContext": [
+          "源步16是下界构造中选取 Bbad 并讨论 B+Y 的共同行和、列和 t 的设置。",
+          "形式命题断言奇数 n 下任意 B 都能使偶数格数至少为 n²−n+1，这是第四部分的结论（source 15），不是 source 16 的构造设置。",
+          "未出现 Bbad、Y、共同值 t 或可由操作得到这些上下文。"
+        ],
+        "evidenceExplanation": "该形式命题表达的是任意 B 的偶数格下界，属于第四部分最终下界，而 source 16 讲述反例构造及 B+Y 行列和共同值的准备。"
+      },
+      {
+        "index": 17,
+        "sourceExcerpt": "若 t=0，则 Y 的前 n−1 列都必须具有奇数个 1，所以 Y 至少有 n−1 个 1。",
+        "formalProposition": "Odd n →\n        (∀ i : Fin n, r Bbad i = 0) ∧\n        (∀ j : Fin n,\n          c Bbad j = (if j.val < n - 1 then (1 : ZMod 2) else 0))",
+        "assessment": "wrong_source_step",
+        "likelyOriginalStepIndex": 16,
+        "missingOrChangedContext": [
+          "形式命题描述的是 Bbad 的行和与列和，即 source 16 中初始 B 的奇偶行列和性质。",
+          "source 17 讨论的是 t=0 时 Y 的前 n−1 列必须各有奇数个 1，从而 onesCount Y ≥ n−1；该推理未被形式命题表达。",
+          "形式命题完全没有出现 Y、t=0 分支或 onesCount 下界。"
+        ],
+        "evidenceExplanation": "形式命题对应 source 16 中对 Bbad 行列和的描述，而非 source 17 中从 t=0 推 Y 至少含 n−1 个 1 的步骤。"
+      },
+      {
+        "index": 18,
+        "sourceExcerpt": "若 t=1，则 Y 的全部 n 行都必须具有奇数个 1，所以 Y 至少有 n 个 1。",
+        "formalProposition": "Odd n → ∀ Y : Matrix (Fin n) (Fin n) (ZMod 2),\n        (∀ i : Fin n, r (Bbad + Y) i = 0) → n - 1 ≤ onesCount Y",
+        "assessment": "wrong_source_step",
+        "likelyOriginalStepIndex": 17,
+        "missingOrChangedContext": [
+          "形式命题是 t=0 分支推出 onesCount Y ≥ n−1，对应 source 17，而不是 source 18 的 t=1 分支推出 onesCount Y ≥ n。",
+          "形式命题只用行和 r(Bbad+Y)=0，源步 t=0 还需要全部行、列和均为 0；尤其是需要 Bbad 的前 n−1 列列为 1 以推出这些列在 Y 中为奇数。",
+          "仅凭行和为 0 一般不充分推出 n−1 ≤ onesCount Y，因此条件维度与源步关键条件不一致。"
+        ],
+        "evidenceExplanation": "形式命题的结论是 n−1 下界，显然对应 t=0 分支；source 18 要求的是 t=1 分支和 n 下界。并且形式化时把关键的列和条件遗漏/改成了行和条件。"
+      },
+      {
+        "index": 19,
+        "sourceExcerpt": "无论如何最终至少有 n−1 个奇数格，因此最多只有 n²−n+1 个偶数格。结合第四部分，得 N(n)=n²−n+1。",
+        "formalProposition": "Odd n → ∀ Y : Matrix (Fin n) (Fin n) (ZMod 2),\n        (∀ i : Fin n, r (Bbad + Y) i = 1) → n ≤ onesCount Y",
+        "assessment": "wrong_source_step",
+        "likelyOriginalStepIndex": 18,
+        "missingOrChangedContext": [
+          "形式命题是 t=1 分支下推出 onesCount Y ≥ n，对应 source 18。",
+          "source 19 是把 t=0/t=1 两种情形汇总为至少 n−1 个奇数格，并进一步得到最多 n²−n+1 个偶数格且 N(n)=n²−n+1；这些汇总与最终结论未被形式命题表达。",
+          "源步 t=1 还包含列和条件；当前命题只保留行和为 1，虽足以支持各行至少一个 1 的论证，但不是完整的 source 18/19 上下文。"
+        ],
+        "evidenceExplanation": "该形式命题直接对应 source 18 的 t=1 分支及 n 下界，而 source 19 是分支汇总和最终 N(n) 的结论步骤。"
+      },
+      {
+        "index": 20,
+        "sourceExcerpt": "综上，偶数阶 N(n)=n²，奇数阶 N(n)=n²−n+1。证毕。",
+        "formalProposition": "let target : ℤ := if Even n then (n : ℤ)^2 else (n : ℤ)^2 - (n : ℤ) + 1;\n        (∀ (B : Matrix (Fin n) (Fin n) ℤ), ∃ (x : Matrix (Fin n) (Fin n) ℕ),\n          target ≤ ((Finset.univ.filter (fun p : Fin n × Fin n =>\n            Even (B p.1 p.2 + (∑ k : Fin n, (x p.1 k : ℤ)) +\n              (∑ k : Fin n, (x k p.2 : ℤ)) - (x p.1 p.2 : ℤ)))).card : ℤ)) ∧\n        (∀ (N : ℤ),\n          (∀ (B : Matrix (Fin n) (Fin n) ℤ), ∃ (x : Matrix (Fin n) (Fin n) ℕ),\n            N ≤ ((Finset.univ.filter (fun p : Fin n × Fin n =>\n              Even (B p.1 p.2 + (∑ k : Fin n, (x p.1 k : ℤ)) +\n                (∑ k : Fin n, (x k p.2 : ℤ)) - (x p.1 p.2 : ℤ)))).card : ℤ)) →\n          N ≤ target)",
+        "assessment": "matches",
+        "likelyOriginalStepIndex": 20,
+        "missingOrChangedContext": [],
+        "evidenceExplanation": "形式命题用 target 统一表示偶数 n 时的 n² 和奇数 n 时的 n²−n+1，并同时表达对所有 B 的下界以及任何统一保证值 N 不超过 target，正是源步最终 N(n) 精确公式的完整形式。"
+      }
+    ],
+    "summary": "第15步只形式化了分支选择 t0 的局部计数控制，缺少 Y、B+Y 共同行列和与最终偶数下界；第16至19步的形式命题与源编号发生错位：16对应第四部分下界结论，17对应第五部分 Bbad 行列和设置，18对应 t=0 的 n−1 下界，19对应 t=1 的 n 下界；其中18还遗漏了关键的列和条件。第20步与最终 N(n) 公式基本一致。"
+  },
+  "provenance": {
+    "jsonParsing": {
+      "method": "deterministic_json_schema",
+      "recovered": false,
+      "edits": []
+    },
+    "provider": "deepseek",
+    "requestedModel": "deepseek-flash",
+    "model": "deepseek-flash",
+    "responseId": "98d0c210-f5c6-404e-b179-8d678dacbde8",
+    "systemFingerprint": "bc19ba97cbe016479903222bb1578db6",
+    "usage": {
+      "prompt_tokens": 2350,
+      "completion_tokens": 10172,
+      "total_tokens": 12522,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 8045
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 2350
+    },
+    "thinking": "provider_default",
+    "promptSchemaEncoding": "compact_json_v1",
+    "structuredOutput": "json_mode_with_local_schema_validation",
+    "simulated": false
+  },
+  "input": {
+    "case": "2018 CMO P5 genuine failed compilation",
+    "formalDefinitions": "by\n  intro n hn\n  let parityMatrix : Matrix (Fin n) (Fin n) ℤ → Matrix (Fin n) (Fin n) (ZMod 2) :=\n    fun B i j => (B i j : ZMod 2)\n  let T : Matrix (Fin n) (Fin n) (ZMod 2) → Matrix (Fin n) (Fin n) (ZMod 2) :=\n    fun X i j => X i j + (∑ k : Fin n, X i k) + (∑ k : Fin n, X k j)\n  let r : Matrix (Fin n) (Fin n) (ZMod 2) → Fin n → ZMod 2 :=\n    fun X i => ∑ j : Fin n, X i j\n  let c : Matrix (Fin n) (Fin n) (ZMod 2) → Fin n → ZMod 2 :=\n    fun X j => ∑ i : Fin n, X i j\n  let t : Matrix (Fin n) (Fin n) (ZMod 2) → ZMod 2 :=\n    fun X => ∑ i : Fin n, ∑ j : Fin n, X i j\n  let oddRows : Matrix (Fin n) (Fin n) (ZMod 2) → Finset (Fin n) :=\n    fun X => Finset.univ.filter (fun i : Fin n => r X i = (1 : ZMod 2))\n  let oddCols : Matrix (Fin n) (Fin n) (ZMod 2) → Finset (Fin n) :=\n    fun X => Finset.univ.filter (fun j : Fin n => c X j = (1 : ZMod 2))\n  let oddRowCount : Matrix (Fin n) (Fin n) (ZMod 2) → ℕ :=\n    fun X => (oddRows X).card\n  let oddColCount : Matrix (Fin n) (Fin n) (ZMod 2) → ℕ :=\n    fun X => (oddCols X).card\n  let onesCount : Matrix (Fin n) (Fin n) (ZMod 2) → ℕ :=\n    fun X => (Finset.univ.filter (fun p : Fin n × Fin n => X p.1 p.2 = (1 : ZMod 2))).card\n  let countEven : Matrix (Fin n) (Fin n) ℤ → Matrix (Fin n) (Fin n) ℕ → ℕ :=\n    fun B x => (Finset.univ.filter (fun p : Fin n × Fin n =>\n      Even (B p.1 p.2 + (∑ k : Fin n, (x p.1 k : ℤ)) +\n        (∑ k : Fin n, (x k p.2 : ℤ)) - (x p.1 p.2 : ℤ)))).card\n  let i0 : Fin n := ⟨0, hn⟩\n  let Bbad : Matrix (Fin n) (Fin n) (ZMod 2) :=\n    fun i j => if i = i0 ∧ j.val < n - 1 then (1 : ZMod 2) else 0\n  ",
+    "stepPairs": [
+      {
+        "index": 15,
+        "sourceExcerpt": "第四部分：对任意 B，总能选择 t=0 或 t=1，使得相应目标奇数行数、奇数列数均不超过 n−1。若 r<n 且 c<n，取 t=0；否则至少一个等于 n，此时由 r、c 同奇偶且 n 为奇数，r≥1 且 c≥1，取 t=1。因此上一步构造引理给出一个 Y，其 1 的个数不超过 n−1，并且 B+Y 的所有行和、列和都是 t，故可通过合法操作实现。于是最终至少 n²−n+1 个格子为偶数。",
+        "formalProposition": "Odd n → ∀ B : Matrix (Fin n) (Fin n) (ZMod 2),\n        ∃ t0 : ZMod 2,\n          ((if t0 = 0 then oddRowCount B else n - oddRowCount B) ≤ n - 1) ∧\n          ((if t0 = 0 then oddColCount B else n - oddColCount B) ≤ n - 1)"
+      },
+      {
+        "index": 16,
+        "sourceExcerpt": "第五部分：证明此下界不能提高。假设 n 为奇数，取初始 B 为第一行的前 n−1 个位置为 1，其余为 0。因为 n−1 为偶数，B 的全部行和均为 0；B 的前 n−1 列和为 1，最后一列和为 0。如果某个最终矩阵 Y 可由操作得到，则 B+Y 的每行和、每列和都等于共同值 t。",
+        "formalProposition": "Odd n → ∀ B : Matrix (Fin n) (Fin n) ℤ,\n        ∃ x : Matrix (Fin n) (Fin n) ℕ,\n          (n : ℤ)^2 - (n : ℤ) + 1 ≤ (countEven B x : ℤ)"
+      },
+      {
+        "index": 17,
+        "sourceExcerpt": "若 t=0，则 Y 的前 n−1 列都必须具有奇数个 1，所以 Y 至少有 n−1 个 1。",
+        "formalProposition": "Odd n →\n        (∀ i : Fin n, r Bbad i = 0) ∧\n        (∀ j : Fin n,\n          c Bbad j = (if j.val < n - 1 then (1 : ZMod 2) else 0))"
+      },
+      {
+        "index": 18,
+        "sourceExcerpt": "若 t=1，则 Y 的全部 n 行都必须具有奇数个 1，所以 Y 至少有 n 个 1。",
+        "formalProposition": "Odd n → ∀ Y : Matrix (Fin n) (Fin n) (ZMod 2),\n        (∀ i : Fin n, r (Bbad + Y) i = 0) → n - 1 ≤ onesCount Y"
+      },
+      {
+        "index": 19,
+        "sourceExcerpt": "无论如何最终至少有 n−1 个奇数格，因此最多只有 n²−n+1 个偶数格。结合第四部分，得 N(n)=n²−n+1。",
+        "formalProposition": "Odd n → ∀ Y : Matrix (Fin n) (Fin n) (ZMod 2),\n        (∀ i : Fin n, r (Bbad + Y) i = 1) → n ≤ onesCount Y"
+      },
+      {
+        "index": 20,
+        "sourceExcerpt": "综上，偶数阶 N(n)=n²，奇数阶 N(n)=n²−n+1。证毕。",
+        "formalProposition": "let target : ℤ := if Even n then (n : ℤ)^2 else (n : ℤ)^2 - (n : ℤ) + 1;\n        (∀ (B : Matrix (Fin n) (Fin n) ℤ), ∃ (x : Matrix (Fin n) (Fin n) ℕ),\n          target ≤ ((Finset.univ.filter (fun p : Fin n × Fin n =>\n            Even (B p.1 p.2 + (∑ k : Fin n, (x p.1 k : ℤ)) +\n              (∑ k : Fin n, (x k p.2 : ℤ)) - (x p.1 p.2 : ℤ)))).card : ℤ)) ∧\n        (∀ (N : ℤ),\n          (∀ (B : Matrix (Fin n) (Fin n) ℤ), ∃ (x : Matrix (Fin n) (Fin n) ℕ),\n            N ≤ ((Finset.univ.filter (fun p : Fin n × Fin n =>\n              Even (B p.1 p.2 + (∑ k : Fin n, (x p.1 k : ℤ)) +\n                (∑ k : Fin n, (x k p.2 : ℤ)) - (x p.1 p.2 : ℤ)))).card : ℤ)) →\n          N ≤ target)"
+      }
+    ]
+  },
+  "note": "A semantic model review is not an independent certificate, nor a product gate."
+}

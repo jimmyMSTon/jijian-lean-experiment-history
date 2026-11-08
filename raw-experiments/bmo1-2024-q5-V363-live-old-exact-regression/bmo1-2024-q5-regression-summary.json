@@ -1,0 +1,122 @@
+{
+  "case": {
+    "id": "bmo1-2024-q5-regression",
+    "category": "BMO",
+    "input": "2024 BMO Round 1 第5题。题目：p 是素数，n 是满足 n>1 且 p | (n^6−1) 的最小正整数。证明 p | ((n+1)^6−1) 或 p | ((n+2)^6−1)。\n\n证明：\n由恒等式 t^6−1=(t−1)(t+1)(t²+t+1)(t²−t+1)，以及 p 为素数且 p|(n^6−1)，p 必整除这四个因子中的至少一个。逐一讨论。\n情形一，p|(n²+n+1)。则模 p 有 n+1≡−n²，所以 (n+1)^6≡n^12≡(n^6)^2≡1。因此 p|((n+1)^6−1)。\n情形二，p|(n+1)。则 n+2≡1 (mod p)，所以 (n+2)^6≡1，故 p|((n+2)^6−1)。\n情形三，p|(n−1)。则 n≡1 (mod p)，故 n−2≡−1 (mod p)，从而 (n−2)^6≡1 (mod p)。若 n≥4，则 n−2>1 且 n−2<n，这与 n 的最小性矛盾。因此此情形只能有 n=2 或 n=3；但 n=2 时 p|1 不可能，故 n=3。此时 p|(n−1)=2，故 p=2；而 (n+2)^6−1=5^6−1 为偶数，结论成立。\n情形四，p|(n²−n+1)。则 n−1≡n² (mod p)，因此 (n−1)^6≡n^12≡1 (mod p)。若 n≥3，则 1<n−1<n，违反最小性，所以 n=2。此时 p|(2²−2+1)=3，即 p=3，且 (n+2)^6−1=4^6−1=4095 可被3整除。\n以上四种情形穷尽所有可能，故断言成立。",
+    "sourceSha256": "a14959b2d283da18780f7015681ba9b45b6219ca0855d6e6b98fb4a73c0a2a39",
+    "sourceReference": "Historical kernel success candidate from signed V3.5.6"
+  },
+  "jobId": "f9ff60bf-3f71-4c50-b1c7-2b3765bfcc95",
+  "jobStatus": "completed",
+  "resultStatus": "whole_formal_kernel_not_verified",
+  "kernelVerified": false,
+  "formalProofCertified": false,
+  "originalProofCertified": false,
+  "fidelityReview": null,
+  "fidelityIssues": 0,
+  "sourceSteps": 11,
+  "kernelCertificate": null,
+  "unsupportedOriginalSteps": [
+    "完整 Lean 证明未获得 Kernel 证书；保留失败诊断"
+  ],
+  "error": null,
+  "usage": {
+    "attempts": 11,
+    "inputTokens": 52591,
+    "outputTokens": 119200,
+    "missingUsage": 0,
+    "requests": [
+      {
+        "reason": "WholeProofPlan",
+        "status": "response_received",
+        "input_tokens": 1147,
+        "output_tokens": 20679,
+        "error_type": null,
+        "http_duration_ms": 93220.406
+      },
+      {
+        "reason": "WholeProofProgram",
+        "status": "response_received",
+        "input_tokens": 1976,
+        "output_tokens": 40597,
+        "error_type": null,
+        "http_duration_ms": 197820.812
+      },
+      {
+        "reason": "LeanProofPatchBatch",
+        "status": "response_received",
+        "input_tokens": 7966,
+        "output_tokens": 2064,
+        "error_type": null,
+        "http_duration_ms": 7406.665
+      },
+      {
+        "reason": "LeanProofPatchBatch",
+        "status": "response_received",
+        "input_tokens": 6163,
+        "output_tokens": 1593,
+        "error_type": null,
+        "http_duration_ms": 6766.114
+      },
+      {
+        "reason": "LeanProofPatchBatch",
+        "status": "response_received",
+        "input_tokens": 6720,
+        "output_tokens": 443,
+        "error_type": null,
+        "http_duration_ms": 2732.545
+      },
+      {
+        "reason": "LeanProofPatchBatch",
+        "status": "response_received",
+        "input_tokens": 5938,
+        "output_tokens": 240,
+        "error_type": null,
+        "http_duration_ms": 2482.683
+      },
+      {
+        "reason": "LeanProofPatchBatch",
+        "status": "response_received",
+        "input_tokens": 5901,
+        "output_tokens": 165,
+        "error_type": null,
+        "http_duration_ms": 1996.26
+      },
+      {
+        "reason": "LeanProofPatchBatch",
+        "status": "response_received",
+        "input_tokens": 6511,
+        "output_tokens": 144,
+        "error_type": null,
+        "http_duration_ms": 1594.185
+      },
+      {
+        "reason": "LeanProofScaffold",
+        "status": "response_received",
+        "input_tokens": 2417,
+        "output_tokens": 9670,
+        "error_type": null,
+        "http_duration_ms": 50441.425
+      },
+      {
+        "reason": "LeanSourceHoleFillBatch",
+        "status": "response_received",
+        "input_tokens": 2263,
+        "output_tokens": 42540,
+        "error_type": null,
+        "http_duration_ms": 206855.62
+      },
+      {
+        "reason": "Explanation",
+        "status": "response_received",
+        "input_tokens": 5589,
+        "output_tokens": 1065,
+        "error_type": null,
+        "http_duration_ms": 7892.538
+      }
+    ]
+  },
+  "feedbackError": null,
+  "elapsedSeconds": 841.37,
+  "totalElapsedSeconds": 842.09
+}

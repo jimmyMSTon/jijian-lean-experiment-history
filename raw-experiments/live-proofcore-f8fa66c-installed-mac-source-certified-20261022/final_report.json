@@ -1,0 +1,306 @@
+{
+  "session": {
+    "appPath": "/[LOCAL_USER]/Applications/极简 Lean.app",
+    "commit": "f8fa66c52ee110d40e79f7ca60a687154416f8f1",
+    "dirty": "false",
+    "startUtc": "2026-10-22T15:48:17.178773+00:00",
+    "backendSha256": "db73f1f59a9df4c379af868a612b9ceda96dbf3847a4036e40ed7fcb5eb0fbd5",
+    "cases": [
+      "packaged_control_f8fa66c_equation"
+    ],
+    "method": "real bundled backend direct HTTP; no GUI, no fixture",
+    "testingBranch": "main",
+    "appBundle": "/[LOCAL_USER]/Applications/极简 Lean.app",
+    "comparisonBaseline": "same author-written equation as earlier f0d7e6a; real signed current build, no preset MathIR or Lean"
+  },
+  "cases": [
+    {
+      "id": "packaged_control_f8fa66c_equation",
+      "topic": "control - installed signed f8fa66c Mac App independent source equality",
+      "source": "设 x、y 为实数，且已知 x=y。证明 x+3=y+3。原证明：由已知等式 x=y，在等号两边同时加 3，得到 x+3=y+3，因此结论成立。",
+      "reference": "Positive control only, independently report Kernel and original source; NOT one of three hard test problems",
+      "appSourceCommit": "f8fa66c52ee110d40e79f7ca60a687154416f8f1",
+      "providerFixture": false,
+      "kernelFixture": false,
+      "handWrittenLean": false,
+      "handWrittenMathIR": false,
+      "transport": "signed installed App packaged backend POST /api/v2/jobs",
+      "guiInteracted": false,
+      "startedUtc": "2026-10-22T15:48:17.184833+00:00",
+      "sourceSha256": "97c383c19d532029ea288cbf370193262f1b7b37c9a2de3b456eb0198ade3ae5",
+      "capabilities": {
+        "ai": {
+          "configured": true,
+          "provider": "deepseek",
+          "model": "deepseek-flash",
+          "thinking": "provider_default",
+          "liveTested": false
+        },
+        "lean": {
+          "configured": true,
+          "executableFound": true,
+          "projectFound": true,
+          "runtimeBuilt": true,
+          "runtimeIntegrity": true,
+          "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+          "sandbox": "macos",
+          "isolated": true,
+          "ready": true,
+          "toolchain": "leanprover/lean4:v4.34.0",
+          "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+          "liveTestedInThisDistribution": false
+        },
+        "mockFallback": false,
+        "health": "running"
+      },
+      "jobId": "8897de9a-e31f-488b-89b6-90178d1aadf2",
+      "submittedUtc": "2026-10-22T15:48:18.223724+00:00",
+      "stageTransitions": [
+        {
+          "status": "running",
+          "stage": "recognizing",
+          "seconds": 1.08,
+          "utc": "2026-10-22T15:48:18.260949+00:00"
+        },
+        {
+          "status": "running",
+          "stage": "lean_verification",
+          "seconds": 23.93,
+          "utc": "2026-10-22T15:48:41.116913+00:00"
+        },
+        {
+          "status": "running",
+          "stage": "proof_only_generation",
+          "seconds": 28.25,
+          "utc": "2026-10-22T15:48:45.431311+00:00"
+        },
+        {
+          "status": "completed",
+          "stage": "completed",
+          "seconds": 70.7,
+          "utc": "2026-10-22T15:49:27.886500+00:00"
+        }
+      ],
+      "terminalStatus": "completed",
+      "terminalStage": "completed",
+      "terminalError": null,
+      "result": {
+        "runStatus": "verified",
+        "termination": "original_route_kernel_passed",
+        "kernelVerified": true,
+        "fixedStatementKernelPassed": true,
+        "originalRouteKernelPassed": true,
+        "sourceProofVerified": true,
+        "originalProofVerified": true,
+        "originalMeaning": "model_interpretation",
+        "statement": null,
+        "failure": null,
+        "mathIRId": "16678ad7-8d0c-4a76-9cfa-5d5db4de651e",
+        "sourceStructureId": "c83fcefd-c059-474c-85fc-afa3828db837",
+        "originalProofFidelity": {
+          "sourceProofVerified": true,
+          "status": "independent_source_rule_certified",
+          "basis": "Explicit equations parsed from saved original source spans; individual algebraic inference rules checked independently of AI-generated proof terms; each formal obligation and the full locked route additionally certified by Lean Kernel.",
+          "routes": [
+            {
+              "routeId": "r_main",
+              "formalRouteKernelPassed": true,
+              "sourceReasoningVerified": true,
+              "sourceReasoningStatus": "source_rule_certified",
+              "steps": [
+                {
+                  "nodeId": "n_conclusion",
+                  "formalStepKernelPassed": true,
+                  "proofTermOrigin": "proof_only_generation",
+                  "sourceReasoningVerified": true,
+                  "sourceReasoningStatus": "source_rule_certified",
+                  "sourceInferenceRule": "explicit_equality_congruence",
+                  "sourceInferenceEvidence": {
+                    "blockId": "b0",
+                    "start": 43,
+                    "end": 64,
+                    "formulaStart": 57,
+                    "formulaEnd": 64,
+                    "quote": "在等号两边同时加 3，得到 x+3=y+3",
+                    "quoteSha256": "595958667319267198d49425937576dfa58231502b5847f4ce34c918a00ca4d2",
+                    "dependsOn": [
+                      "n_hyp"
+                    ],
+                    "method": "deterministic_source_formula_parser_and_exact_arithmetic_rule",
+                    "kernelStepCertificate": true
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "reasoningFidelity": {
+          "version": 2,
+          "authority": "independent_source_inference_certificate",
+          "status": "source_rule_certified",
+          "formalRouteKernelPassed": true,
+          "sourceEvidenceBoundToStatement": true,
+          "sourceDomainConflicts": [],
+          "expectedStatementHash": "71909f47b9f87ea10b0e35728f44b0189531bac1522c6494b71cb7efddad8899",
+          "originalProofVerified": true,
+          "sourceInferenceCertificationAvailable": true,
+          "sourceRuleVerifiedStepCount": 1,
+          "sourceRuleVerifiedRouteCount": 1,
+          "unconfirmedSourceStepCount": 0,
+          "unconfirmedSourceSteps": [],
+          "routes": [
+            {
+              "routeId": "r_main",
+              "formalRouteKernelPassed": true,
+              "originalReasoningVerified": true,
+              "originalReasoningStatus": "source_rule_certified",
+              "goalSourceMatch": {
+                "blockId": "b0",
+                "start": 21,
+                "end": 28,
+                "quote": "x+3=y+3",
+                "formulaStart": 21,
+                "formulaEnd": 28
+              },
+              "theoremPremisesSourceMatched": true,
+              "declarationTypesSourceMatched": true,
+              "sourceDomainConflicts": [],
+              "noExplicitSourceDomainDrift": true,
+              "unresolvedAmbiguitiesAbsent": true,
+              "authoredFormulaCoverageMatched": true,
+              "statementIdentityMatched": true,
+              "steps": [
+                {
+                  "nodeId": "n_conclusion",
+                  "formalStepKernelPassed": true,
+                  "originalInferenceVerified": true,
+                  "originalInferenceStatus": "source_rule_certified",
+                  "proofTermOrigin": "proof_only_generation",
+                  "sourceClaimAssessment": "supported",
+                  "sourceReferenceCount": 1,
+                  "declaredDependencies": [
+                    "n_hyp"
+                  ],
+                  "rule": "explicit_equality_congruence",
+                  "ruleEvidence": {
+                    "blockId": "b0",
+                    "start": 43,
+                    "end": 64,
+                    "formulaStart": 57,
+                    "formulaEnd": 64,
+                    "quote": "在等号两边同时加 3，得到 x+3=y+3",
+                    "quoteSha256": "595958667319267198d49425937576dfa58231502b5847f4ce34c918a00ca4d2",
+                    "dependsOn": [
+                      "n_hyp"
+                    ],
+                    "method": "deterministic_source_formula_parser_and_exact_arithmetic_rule",
+                    "kernelStepCertificate": true
+                  },
+                  "ruleCheckReason": "independent_source_formula_and_rule_check",
+                  "statementIdentityMatched": true,
+                  "reason": "independent_source_formula_and_rule_check"
+                }
+              ]
+            }
+          ],
+          "explanation": "Only exact source-anchored equations with an independently checked arithmetic inference rule and a genuine Kernel certificate are certified. Model proof reconstruction alone never qualifies. Unrecognized natural language is unconfirmed, not disproved."
+        },
+        "routeSummary": [
+          {
+            "routeId": "r_main",
+            "status": "passed",
+            "formalRouteKernelPassed": null,
+            "completeOriginalRouteKernelPassed": true,
+            "originalReasoningVerified": true,
+            "certificate": {
+              "checked": true,
+              "statementMatched": true,
+              "auditMethod": "fresh_environment_data_only_kernel_replay",
+              "axioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "additionalAxioms": [],
+              "statement_hash": "71909f47b9f87ea10b0e35728f44b0189531bac1522c6494b71cb7efddad8899",
+              "expectedExpressionSha256": "01a74e6899b4606b224b285ebecf22cb7ac023b0a5bc54c08e484f7778e63923",
+              "proofExpressionSha256": "48f423cd209df6b6c4f16de6c2f63bde18e805b25c8e27bcfbacc04c7f882f73",
+              "nativeExpressionComparison": "structural_equal",
+              "auditIsolation": "fresh_import_environment_reset_between_candidates"
+            },
+            "steps": 1
+          }
+        ],
+        "steps": [
+          {
+            "route": "r_main",
+            "node": "n_conclusion",
+            "status": "passed",
+            "mathematicalStatus": "conditionally_established",
+            "failureClass": null,
+            "sourceAssessment": "supported",
+            "proofTermOrigin": "proof_only_generation",
+            "originalInferenceVerified": true,
+            "sourceInferenceRule": "explicit_equality_congruence",
+            "diagnostics": [],
+            "declaredDependencies": null
+          }
+        ]
+      },
+      "finishedUtc": "2026-10-22T15:49:27.889827+00:00",
+      "wallSeconds": 70.7,
+      "provider": {
+        "realAttempts": 2,
+        "started": 2,
+        "finished": 2,
+        "requestCount": 2,
+        "usage": {
+          "input_tokens": 12717,
+          "output_tokens": 6307,
+          "incompleteUsageRecords": 0
+        },
+        "records": [
+          {
+            "request_id": "87ad253e-28fa-401f-8d87-a3dd9363f973",
+            "stage": "mathir",
+            "reason": "StructureOnlyMathIRV2",
+            "model": "deepseek-flash",
+            "status": "response_received",
+            "input_tokens": 10750,
+            "output_tokens": 5510,
+            "retry_index": 0,
+            "cache_hit": null,
+            "real_request_attempted": true,
+            "started_at": null,
+            "finished_at": null
+          },
+          {
+            "request_id": "da271bcb-de9b-4c76-80a9-32f3f3ea104b",
+            "stage": "formalization",
+            "reason": "FormalProofs",
+            "model": "deepseek-flash",
+            "status": "response_received",
+            "input_tokens": 1967,
+            "output_tokens": 797,
+            "retry_index": 0,
+            "cache_hit": null,
+            "real_request_attempted": true,
+            "started_at": null,
+            "finished_at": null
+          }
+        ]
+      },
+      "dbCounts": {
+        "artifacts": 7,
+        "jobs": 1,
+        "events": 13
+      },
+      "archiveSha256": "0f4eb3150ef93e255d36e9fba33d8f0b0d6a1e157e1fde384515fe0f3db33499"
+    }
+  ],
+  "totalRealRequests": 2,
+  "totalInputTokens": 12717,
+  "totalOutputTokens": 6307,
+  "totalWallSeconds": 70.7,
+  "finishedUtc": "2026-10-22T15:49:28.081404+00:00"
+}

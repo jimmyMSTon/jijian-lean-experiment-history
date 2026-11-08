@@ -1,0 +1,18 @@
+....F.........                                                           [100%]
+=================================== FAILURES ===================================
+___ test_exactly_valid_json_not_modified_and_wrong_math_field_never_invented ___
+
+    def test_exactly_valid_json_not_modified_and_wrong_math_field_never_invented():
+        schema={"type":"object","additionalProperties":False,
+                "properties":{"x":{"type":"integer"}},"required":["x"]}
+        value,audit=parse_structured_json('{"x":1}',schema)
+        assert value=={"x":1}
+        assert not audit["recovered"]
+>       with pytest.raises(AppError):
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'backend.errors.AppError'>
+
+tests/v2/test_real_complex_mathir_json_delimiters.py:72: Failed
+=========================== short test summary info ============================
+FAILED tests/v2/test_real_complex_mathir_json_delimiters.py::test_exactly_valid_json_not_modified_and_wrong_math_field_never_invented
+1 failed, 13 passed in 0.81s

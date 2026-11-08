@@ -1,0 +1,92 @@
+{
+  "case": {
+    "id": "cmo-2023-day2-p4",
+    "expected": "correct",
+    "source": "2023 年第 39 届中国数学奥林匹克（CMO）决赛，第二天第 4 题。原题：设非负实数 a₁,a₂,…,a₂₀₂₃ 满足 a₁+a₂+⋯+a₂₀₂₃=100。定义 N 为集合 S={(i,j) | 1≤i≤j≤2023，aᵢaⱼ≥1} 的元素个数。求证 N≤5050，并给出等号成立的充要条件。\n\n我的完整证明（须同时验证上界与等号充要条件；索引均取 1,…,2023）：\n\n第 1 步：定义有序指标对集合 T={(i,j) | 1≤i,j≤2023，aᵢaⱼ≥1}，以及对角指标集 D={i | 1≤i≤2023，aᵢ≥1}。因为 aᵢ≥0，条件 aᵢ²≥1 与 aᵢ≥1 等价。每个满足 aᵢaⱼ≥1 且 i≠j 的无序指标对，在 T 中对应 (i,j),(j,i) 两个有序对；每个满足条件的对角指标仅对应一个。于是精确计数恒等式为 2N=|T|+|D|。\n\n第 2 步：对每个 (i,j)∈T 有 aᵢaⱼ≥1；全部乘积 aᵢaⱼ 均非负。故 |T|=∑_{(i,j)∈T}1≤∑_{(i,j)∈T}aᵢaⱼ≤∑_{i=1}^{2023}∑_{j=1}^{2023}aᵢaⱼ=(∑_{i=1}^{2023}aᵢ)²=10000。\n\n第 3 步：对每个 i∈D 有 aᵢ≥1，且每项非负，因此 |D|=∑_{i∈D}1≤∑_{i∈D}aᵢ≤∑_{i=1}^{2023}aᵢ=100。\n\n第 4 步：由 2N=|T|+|D|≤10000+100=10100，得到 N≤5050。\n\n第 5 步：证明取等必要性。若 N=5050，则 2N=10100，而第 2、3 步分别给出 |T|≤10000 和 |D|≤100，因而必有 |D|=100。进一步 ∑_{i∈D}aᵢ≥|D|=100，但总和只有 100，故 ∑_{i∈D}aᵢ=100；所有 i∉D 必有 aᵢ=0（非负性），所有 i∈D 则因为 aᵢ≥1、共有恰好 100 项且它们的和等于 100，所以每项都等于 1。因此原数列恰有 100 项为 1、其余 1923 项为 0。\n\n第 6 步：证明取等充分性。反之，如果原数列恰有 100 项为 1，其余 1923 项为 0，则 aᵢaⱼ≥1 当且仅当 aᵢ=aⱼ=1。取这 100 个位置中任意两个指标且满足 i≤j，恰有 100 个对角对和 100·99/2 个非对角对，故 N=100+100·99/2=5050。\n\n第 7 步：综上，对任意 2023 个满足 aᵢ≥0、∑aᵢ=100 的实数，都有 N≤5050；并且 N=5050 当且仅当恰有 100 项等于 1、其余全部等于 0。证毕。"
+  },
+  "jobId": "4de204ac-467e-4f87-90ed-00571c06ae6b",
+  "jobStatus": "completed",
+  "resultStatus": "whole_formal_kernel_not_verified",
+  "kernelVerified": false,
+  "formalProofCertified": false,
+  "originalProofCertified": false,
+  "fidelityReview": null,
+  "fidelityIssues": 0,
+  "sourceSteps": 7,
+  "kernelCertificate": null,
+  "unsupportedOriginalSteps": [
+    "完整 Lean 证明未获得 Kernel 证书；保留失败诊断"
+  ],
+  "error": null,
+  "usage": {
+    "attempts": 7,
+    "inputTokens": 34786,
+    "outputTokens": 184581,
+    "missingUsage": 2,
+    "requests": [
+      {
+        "reason": "WholeProofPlan",
+        "status": "response_received",
+        "input_tokens": 1531,
+        "output_tokens": 24520,
+        "error_type": null,
+        "http_duration_ms": 98724.833
+      },
+      {
+        "reason": "WholeProofProgram",
+        "status": "response_received",
+        "input_tokens": 4321,
+        "output_tokens": 43727,
+        "error_type": null,
+        "http_duration_ms": 200844.415
+      },
+      {
+        "reason": "LockedProofRepair",
+        "status": "response_received",
+        "input_tokens": 10238,
+        "output_tokens": 30404,
+        "error_type": null,
+        "http_duration_ms": 135857.927
+      },
+      {
+        "reason": "LockedProofRepair",
+        "status": "response_received",
+        "input_tokens": 9693,
+        "output_tokens": 42411,
+        "error_type": null,
+        "http_duration_ms": 177297.061
+      },
+      {
+        "reason": "LockedProofRepair",
+        "status": "response_received",
+        "input_tokens": 9003,
+        "output_tokens": 43519,
+        "error_type": null,
+        "http_duration_ms": 178908.366
+      },
+      {
+        "reason": "LockedProofRepair",
+        "status": "failed",
+        "input_tokens": null,
+        "output_tokens": null,
+        "error_type": "AppError",
+        "http_duration_ms": 540.391
+      },
+      {
+        "reason": "Explanation",
+        "status": "failed",
+        "input_tokens": null,
+        "output_tokens": null,
+        "error_type": "AppError",
+        "http_duration_ms": 422.721
+      }
+    ]
+  },
+  "feedbackError": {
+    "code": "EXPLANATION_NOT_GROUNDED_OR_UNAVAILABLE",
+    "message": "AI 解释不可用；已有 Lean 证书与原始诊断仍完整保留。",
+    "type": "AppError"
+  },
+  "elapsedSeconds": 973.92,
+  "totalElapsedSeconds": 974.87
+}

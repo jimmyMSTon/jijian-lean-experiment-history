@@ -1,0 +1,25 @@
+.F.............................                                          [100%]
+=================================== FAILURES ===================================
+_______ test_only_leans_real_typechecked_declarations_can_trigger_retry ________
+
+    def test_only_leans_real_typechecked_declarations_can_trigger_retry():
+        class Unverified:
+            async def lookup_declarations(self,names):
+                assert tuple(names)==COUNTING_DECLARATIONS
+                return [{'name':n,'found':True,'status':'model_suggested','signature':'Fake'} for n in names]
+        class NoProvider:
+            async def structured(self,*_):
+                raise AssertionError('Provider called without Lean-checked lemma')
+        r=asyncio.run(recover_with_verified_counting_library(source='test',digest='abc',
+            statement='Nat.card S = 1',given=[],steps=[],prior_program=incomplete(),
+            runner=Unverified(),provider=NoProvider()))
+>       assert r['status']=='no_new_verified_counting_evidence' and not r['used']
+E       AssertionError: assert ('lean_lookup_..._declarations' == 'no_new_verif...ting_evidence'
+E         
+E         - no_new_verified_counting_evidence
+E         + lean_lookup_unavailable_or_no_checked_declarations)
+
+tests/test_lean_first_counting_support.py:39: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_lean_first_counting_support.py::test_only_leans_real_typechecked_declarations_can_trigger_retry
+1 failed, 30 passed in 0.13s

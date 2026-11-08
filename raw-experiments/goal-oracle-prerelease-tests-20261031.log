@@ -1,0 +1,38 @@
+..F............ss...                                                     [100%]
+=================================== FAILURES ===================================
+_____ test_runner_probe_replaces_all_holes_and_maps_trace_json_by_position _____
+
+tmp_path = PosixPath('/private/var/folders/_d/x5xldyk10v7_r3p9_74rnk2c0000gn/T/pytest-of-mac/pytest-164/test_runner_probe_replaces_all0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x106eb5350>
+
+    def test_runner_probe_replaces_all_holes_and_maps_trace_json_by_position(tmp_path, monkeypatch):
+        runner = LeanRunner(Settings(data_dir=tmp_path, lean_project=tmp_path))
+        template = """by
+      have source_step_0 : True := by
+        JJ_SOURCE_HOLE_0
+      have source_step_1 : True := by
+        JJ_SOURCE_HOLE_1"""
+        seen = []
+    
+        async def fake_stage(source, *, files=None):
+            seen.append(source)
+            trace_lines = [number for number, line in enumerate(source.splitlines(), 1)
+                           if "trace_state" in line]
+            payloads = ["x : ℤ\nh : x = x\n⊢ x = x", "⊢ True"]
+            events = [{"kind": "trace", "severity": "information", "data": data,
+                       "pos": {"line": line, "column": 4}}
+                      for line, data in zip(trace_lines, payloads)]
+            return ProcessResult(0, "\n".join(json.dumps(row) for row in events), "")
+    
+        monkeypatch.setattr(runner, "_stage", fake_stage)
+        result = asyncio.run(runner.probe_source_hole_goals("True", template))
+    
+>       assert result["probeSucceeded"] is True
+E       assert False is True
+
+tests/test_lean_goal_oracle.py:126: AssertionError
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_lean_first_modular.py:198: Lean Lake executable not available
+SKIPPED [1] tests/test_lean_first_modular.py:229: Source-matched Lean runtime not ready
+FAILED tests/test_lean_goal_oracle.py::test_runner_probe_replaces_all_holes_and_maps_trace_json_by_position
+1 failed, 17 passed, 2 skipped in 0.13s

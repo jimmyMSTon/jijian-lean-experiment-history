@@ -1,0 +1,2370 @@
+{
+  "study": "C08 current diagnostics deterministic cleanup and full-route replay",
+  "baseline": "3804bae",
+  "source": "reports/mathir-v2-stage8-live/C08.json",
+  "sourceMode": "saved real Flash proof response; no new provider request",
+  "liveAIProviderConstructed": false,
+  "noNetworkProviderSpyConstructed": true,
+  "providerMode": "fail_closed_no_network_spy",
+  "providerCalls": 0,
+  "statementHash": "d0dbaa648a8e41e790daa278e047e050ee52b7c536c12ae9432569591646bf41",
+  "structuralHash": "6c4c1d61484a591904cb22ef13e6be8a4747a883b35be0608b255f596e72d7ef",
+  "sourceProofTermIds": [
+    "n1",
+    "n2",
+    "n3",
+    "n4",
+    "n5"
+  ],
+  "verificationHistory": [
+    {
+      "version": "2.0",
+      "statement": "((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = ((15 : ℚ) / 16))",
+      "statementLock": {
+        "status": "locked",
+        "statementHash": "d0dbaa648a8e41e790daa278e047e050ee52b7c536c12ae9432569591646bf41"
+      },
+      "mathirHash": "1c67d2e35d27cf29def7e8a84b2a9ccaa23373287c514bc61c112e6bc7f0af40",
+      "sourceEvidenceHash": "462ce05f34142da2d7abff7ee245cbbc44c4e6b967689e088c4f89136b50a6bd",
+      "sourceAlignment": {
+        "status": "not_assessed",
+        "transcriptionStatus": "not_assessed",
+        "sourceRefsValidated": true,
+        "semanticAlignmentKernelProven": false
+      },
+      "steps": [
+        {
+          "sourceId": "mathir-v2/route_main/n1",
+          "routeId": "route_main",
+          "nodeId": "n1",
+          "kind": "claim",
+          "expectedType": "((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = ((((((1 : ℚ) / 2) ^ (1 : ℕ)) + (((1 : ℚ) / 2) ^ (2 : ℕ))) + (((1 : ℚ) / 2) ^ (3 : ℕ))) + (((1 : ℚ) / 2) ^ (4 : ℕ))))",
+          "proofTerm": "by\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 3 + 1)]\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 2 + 1)]\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 1 + 1)]\n  simp only [Finset.Icc_self, Finset.sum_singleton]\n  norm_num",
+          "originalProofTerm": "by\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 3 + 1)]\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 2 + 1)]\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 1 + 1)]\n  simp only [Finset.Icc_self, Finset.sum_singleton]\n  norm_num",
+          "context": [
+            {
+              "source_id": "d_k",
+              "scope_id": "s_root",
+              "kind": "variable",
+              "name": "v_d_k",
+              "type": "ℕ",
+              "value": null,
+              "constraints": [],
+              "bindingClass": "theorem"
+            }
+          ],
+          "dependsOn": [],
+          "proofAttemptStatus": "not_proved",
+          "mathematicalStatus": "not_established",
+          "dependencyEvidence": "not_required",
+          "dependencyUsage": [],
+          "failureClass": "lean_proof_compile_failed",
+          "sourceRefs": [
+            {
+              "blockId": "b_text",
+              "start": 65,
+              "end": 125
+            }
+          ],
+          "status": "incomplete",
+          "lean": {
+            "localVerified": false,
+            "status": "not_proved",
+            "diagnostics": [
+              {
+                "severity": "error",
+                "message": "No goals to be solved",
+                "leanPosition": {
+                  "column": 154,
+                  "line": 5
+                },
+                "leanEndPosition": {
+                  "column": 5533,
+                  "line": 5
+                },
+                "stepId": "mathir-v2/route_main/n1",
+                "sourceRefs": [
+                  {
+                    "blockId": "b_text",
+                    "start": 65,
+                    "end": 125
+                  }
+                ],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "No goals to be solved",
+                  "endPos": {
+                    "column": 5533,
+                    "line": 5
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-C08-current-diagnostics-cleanup/work/lean-ufs1za_2/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "[anonymous]",
+                  "pos": {
+                    "column": 154,
+                    "line": 5
+                  },
+                  "severity": "error"
+                }
+              }
+            ],
+            "certificate": null
+          }
+        },
+        {
+          "sourceId": "mathir-v2/route_main/n2",
+          "routeId": "route_main",
+          "nodeId": "n2",
+          "kind": "claim",
+          "expectedType": "(∀ (v_d_k : ℕ), (((((((1 : ℚ) / 2) ^ (1 : ℕ)) = ((1 : ℚ) / 2)) ∧ ((((1 : ℚ) / 2) ^ (2 : ℕ)) = ((1 : ℚ) / 4))) ∧ ((((1 : ℚ) / 2) ^ (3 : ℕ)) = ((1 : ℚ) / 8))) ∧ ((((1 : ℚ) / 2) ^ (4 : ℕ)) = ((1 : ℚ) / 16))))",
+          "proofTerm": "by intro v_d_k; norm_num",
+          "originalProofTerm": "by intro v_d_k; norm_num",
+          "context": [
+            {
+              "source_id": "d_k",
+              "scope_id": "s_root",
+              "kind": "variable",
+              "name": "v_d_k",
+              "type": "ℕ",
+              "value": null,
+              "constraints": [],
+              "bindingClass": "theorem"
+            }
+          ],
+          "dependsOn": [],
+          "proofAttemptStatus": "verified",
+          "mathematicalStatus": "not_established",
+          "dependencyEvidence": "not_required",
+          "dependencyUsage": [],
+          "failureClass": null,
+          "sourceRefs": [
+            {
+              "blockId": "b_text",
+              "start": 126,
+              "end": 186
+            }
+          ],
+          "status": "passed",
+          "lean": {
+            "localVerified": true,
+            "status": "verified",
+            "diagnostics": [],
+            "certificate": {
+              "auditMethod": "fresh_environment_data_only_kernel_replay",
+              "axioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "checked": true,
+              "dependencyUsage": [],
+              "formalStatement": "∀ (v_d_k : ℕ), (((1 / 2) ^ 1 = 1 / 2 ∧ (1 / 2) ^ 2 = 1 / 4) ∧ (1 / 2) ^ 3 = 1 / 8) ∧ (1 / 2) ^ 4 = 1 / 16",
+              "statementMatched": true,
+              "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+              "expectedExpressionSha256": "a3816a83dd6b9188173d92d6576fb9853989fb85ec8b15a636d38a5eb717eb18",
+              "proofExpressionSha256": "f1f67e4b43249e3f0f7bfe7b5d54f90336b52152ccc6c9201307fab09e0811f9",
+              "statement_hash": "d0dbaa648a8e41e790daa278e047e050ee52b7c536c12ae9432569591646bf41",
+              "nativeExpressionComparison": "structural_equal",
+              "sourceTypeSha256": "453b1c6de9b64aace5d33a0b104917625595ecbff6aa698acc2bc1dfed160920",
+              "sourceProofSha256": "4568f570094b47b874ffa8faeb11b6bed1b420cb630368fb0dda1e0275e9b03a",
+              "runtime": {
+                "configured": true,
+                "executableFound": true,
+                "projectFound": true,
+                "runtimeBuilt": true,
+                "sandbox": "macos",
+                "isolated": true,
+                "ready": true,
+                "toolchain": "leanprover/lean4:v4.34.0",
+                "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                "liveTestedInThisDistribution": false
+              },
+              "additionalAxioms": [],
+              "auditIsolation": "fresh_import_environment_reset_between_candidates"
+            },
+            "evidence": {
+              "schema": "lean-proof-evidence-v1",
+              "sha256": "4154de068d0f671c5e27c975692e17995d089f569c3f6b0d01856159863a9353",
+              "artifact": "reports/mathir-v2-stage7-proof-evidence/4154de068d0f671c5e27c975692e17995d089f569c3f6b0d01856159863a9353.json.gz",
+              "uncompressedBytes": 287,
+              "compressedBytes": 182
+            }
+          }
+        },
+        {
+          "sourceId": "mathir-v2/route_main/n3",
+          "routeId": "route_main",
+          "nodeId": "n3",
+          "kind": "claim",
+          "expectedType": "(∀ (jjdep_n1 : ((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = ((((((1 : ℚ) / 2) ^ (1 : ℕ)) + (((1 : ℚ) / 2) ^ (2 : ℕ))) + (((1 : ℚ) / 2) ^ (3 : ℕ))) + (((1 : ℚ) / 2) ^ (4 : ℕ))))), (∀ (jjdep_n2 : (((((((1 : ℚ) / 2) ^ (1 : ℕ)) = ((1 : ℚ) / 2)) ∧ ((((1 : ℚ) / 2) ^ (2 : ℕ)) = ((1 : ℚ) / 4))) ∧ ((((1 : ℚ) / 2) ^ (3 : ℕ)) = ((1 : ℚ) / 8))) ∧ ((((1 : ℚ) / 2) ^ (4 : ℕ)) = ((1 : ℚ) / 16)))), ((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)))))",
+          "proofTerm": "by intro h1 h2; simp only [h1, h2.1.1.1, h2.1.1.2, h2.1.2, h2.2]",
+          "originalProofTerm": "by intro h1 h2; simp only [h1, h2.1.1.1, h2.1.1.2, h2.1.2, h2.2]",
+          "context": [
+            {
+              "source_id": "d_k",
+              "scope_id": "s_root",
+              "kind": "variable",
+              "name": "v_d_k",
+              "type": "ℕ",
+              "value": null,
+              "constraints": [],
+              "bindingClass": "theorem"
+            },
+            {
+              "source_id": "n1",
+              "kind": "claim",
+              "name": "h_route_main_n1",
+              "type": "((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = ((((((1 : ℚ) / 2) ^ (1 : ℕ)) + (((1 : ℚ) / 2) ^ (2 : ℕ))) + (((1 : ℚ) / 2) ^ (3 : ℕ))) + (((1 : ℚ) / 2) ^ (4 : ℕ))))"
+            },
+            {
+              "source_id": "n2",
+              "kind": "claim",
+              "name": "h_route_main_n2",
+              "type": "(((((((1 : ℚ) / 2) ^ (1 : ℕ)) = ((1 : ℚ) / 2)) ∧ ((((1 : ℚ) / 2) ^ (2 : ℕ)) = ((1 : ℚ) / 4))) ∧ ((((1 : ℚ) / 2) ^ (3 : ℕ)) = ((1 : ℚ) / 8))) ∧ ((((1 : ℚ) / 2) ^ (4 : ℕ)) = ((1 : ℚ) / 16)))"
+            }
+          ],
+          "dependsOn": [
+            "n1",
+            "n2"
+          ],
+          "proofAttemptStatus": "verified",
+          "mathematicalStatus": "not_established",
+          "dependencyEvidence": "all_declared_dependencies_used",
+          "dependencyUsage": [
+            {
+              "dependencyId": "n1",
+              "used": true
+            },
+            {
+              "dependencyId": "n2",
+              "used": true
+            }
+          ],
+          "failureClass": null,
+          "sourceRefs": [
+            {
+              "blockId": "b_text",
+              "start": 187,
+              "end": 228
+            }
+          ],
+          "status": "passed",
+          "lean": {
+            "localVerified": true,
+            "status": "verified",
+            "diagnostics": [],
+            "certificate": {
+              "auditMethod": "fresh_environment_data_only_kernel_replay",
+              "axioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "checked": true,
+              "dependencyUsage": [
+                {
+                  "dependencyId": "n1",
+                  "used": true
+                },
+                {
+                  "dependencyId": "n2",
+                  "used": true
+                }
+              ],
+              "formalStatement": "∑ v_d_k ∈ Finset.Icc 1 4, (1 / 2) ^ v_d_k = (1 / 2) ^ 1 + (1 / 2) ^ 2 + (1 / 2) ^ 3 + (1 / 2) ^ 4 →\n  (((1 / 2) ^ 1 = 1 / 2 ∧ (1 / 2) ^ 2 = 1 / 4) ∧ (1 / 2) ^ 3 = 1 / 8) ∧ (1 / 2) ^ 4 = 1 / 16 →\n    ∑ v_d_k ∈ Finset.Icc 1 4, (1 / 2) ^ v_d_k = 1 / 2 + 1 / 4 + 1 / 8 + 1 / 16",
+              "statementMatched": true,
+              "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+              "expectedExpressionSha256": "25756f40669a256df26ed7eeb114f96d0eeb6c6c88b09f7bee86259b04ae9cd8",
+              "proofExpressionSha256": "278fc06339114c2f184f85d2b13947faaac688499b656902cb78301a889a28eb",
+              "statement_hash": "d0dbaa648a8e41e790daa278e047e050ee52b7c536c12ae9432569591646bf41",
+              "nativeExpressionComparison": "structural_equal",
+              "sourceTypeSha256": "652a14ba40b3fd8aad89fd9745c76768c8c3a6c231a781fc5ff02683b3a86b0d",
+              "sourceProofSha256": "d38144b1a8b226d6970f5ae5023379f51e63a75ff824223f8b1dfe14610dbf4d",
+              "runtime": {
+                "configured": true,
+                "executableFound": true,
+                "projectFound": true,
+                "runtimeBuilt": true,
+                "sandbox": "macos",
+                "isolated": true,
+                "ready": true,
+                "toolchain": "leanprover/lean4:v4.34.0",
+                "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                "liveTestedInThisDistribution": false
+              },
+              "additionalAxioms": [],
+              "auditIsolation": "fresh_import_environment_reset_between_candidates"
+            },
+            "evidence": {
+              "schema": "lean-proof-evidence-v1",
+              "sha256": "6564ebac0c3bcd6f0c8f793bb1fa75d16448977a49f8265ce7885eb15eb6a11b",
+              "artifact": "reports/mathir-v2-stage7-proof-evidence/6564ebac0c3bcd6f0c8f793bb1fa75d16448977a49f8265ce7885eb15eb6a11b.json.gz",
+              "uncompressedBytes": 287,
+              "compressedBytes": 181
+            }
+          }
+        },
+        {
+          "sourceId": "mathir-v2/route_main/n4",
+          "routeId": "route_main",
+          "nodeId": "n4",
+          "kind": "claim",
+          "expectedType": "(∀ (v_d_k : ℕ), ((((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16))) ∧ ((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)))) ∧ ((((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)) = ((15 : ℚ) / 16))))",
+          "proofTerm": "by intro v_d_k; norm_num",
+          "originalProofTerm": "by intro v_d_k; norm_num",
+          "context": [
+            {
+              "source_id": "d_k",
+              "scope_id": "s_root",
+              "kind": "variable",
+              "name": "v_d_k",
+              "type": "ℕ",
+              "value": null,
+              "constraints": [],
+              "bindingClass": "theorem"
+            }
+          ],
+          "dependsOn": [],
+          "proofAttemptStatus": "verified",
+          "mathematicalStatus": "not_established",
+          "dependencyEvidence": "not_required",
+          "dependencyUsage": [],
+          "failureClass": null,
+          "sourceRefs": [
+            {
+              "blockId": "b_text",
+              "start": 229,
+              "end": 295
+            }
+          ],
+          "status": "passed",
+          "lean": {
+            "localVerified": true,
+            "status": "verified",
+            "diagnostics": [],
+            "certificate": {
+              "auditMethod": "fresh_environment_data_only_kernel_replay",
+              "axioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "checked": true,
+              "dependencyUsage": [],
+              "formalStatement": "∀ (v_d_k : ℕ),\n  (1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 = 1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 ∧\n      1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 = (8 + 4 + 2 + 1) / 16) ∧\n    (8 + 4 + 2 + 1) / 16 = 15 / 16",
+              "statementMatched": true,
+              "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+              "expectedExpressionSha256": "d3d4204fa3c77d68023a3d6b4bd07f0ff2b685e4bd2cec6c07f571af05120514",
+              "proofExpressionSha256": "ed480bc087393aac489064252a329e992ab95c79be574a17d7bac72d9880e373",
+              "statement_hash": "d0dbaa648a8e41e790daa278e047e050ee52b7c536c12ae9432569591646bf41",
+              "nativeExpressionComparison": "structural_equal",
+              "sourceTypeSha256": "d35eda8f511df48b6c5c5ead95d6735b610fd9e3b797707d46ea03e0af9309fb",
+              "sourceProofSha256": "4568f570094b47b874ffa8faeb11b6bed1b420cb630368fb0dda1e0275e9b03a",
+              "runtime": {
+                "configured": true,
+                "executableFound": true,
+                "projectFound": true,
+                "runtimeBuilt": true,
+                "sandbox": "macos",
+                "isolated": true,
+                "ready": true,
+                "toolchain": "leanprover/lean4:v4.34.0",
+                "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                "liveTestedInThisDistribution": false
+              },
+              "additionalAxioms": [],
+              "auditIsolation": "fresh_import_environment_reset_between_candidates"
+            },
+            "evidence": {
+              "schema": "lean-proof-evidence-v1",
+              "sha256": "5cf6b73864e3bb6c22412f0452378dcf7fe866de701a931ccc749a6f969236c2",
+              "artifact": "reports/mathir-v2-stage7-proof-evidence/5cf6b73864e3bb6c22412f0452378dcf7fe866de701a931ccc749a6f969236c2.json.gz",
+              "uncompressedBytes": 288,
+              "compressedBytes": 183
+            }
+          }
+        },
+        {
+          "sourceId": "mathir-v2/route_main/n5",
+          "routeId": "route_main",
+          "nodeId": "n5",
+          "kind": "claim",
+          "expectedType": "(∀ (jjdep_n3 : ((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)))), (∀ (jjdep_n4 : ((((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16))) ∧ ((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)))) ∧ ((((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)) = ((15 : ℚ) / 16)))), ((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = ((15 : ℚ) / 16))))",
+          "proofTerm": "by intro h3 h4; exact h3.trans (h4.1.2.trans h4.2)",
+          "originalProofTerm": "by intro h3 h4; exact h3.trans (h4.1.2.trans h4.2)",
+          "context": [
+            {
+              "source_id": "d_k",
+              "scope_id": "s_root",
+              "kind": "variable",
+              "name": "v_d_k",
+              "type": "ℕ",
+              "value": null,
+              "constraints": [],
+              "bindingClass": "theorem"
+            },
+            {
+              "source_id": "n3",
+              "kind": "claim",
+              "name": "h_route_main_n3",
+              "type": "((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)))"
+            },
+            {
+              "source_id": "n4",
+              "kind": "claim",
+              "name": "h_route_main_n4",
+              "type": "((((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16))) ∧ ((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)))) ∧ ((((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)) = ((15 : ℚ) / 16)))"
+            }
+          ],
+          "dependsOn": [
+            "n3",
+            "n4"
+          ],
+          "proofAttemptStatus": "verified",
+          "mathematicalStatus": "not_established",
+          "dependencyEvidence": "all_declared_dependencies_used",
+          "dependencyUsage": [
+            {
+              "dependencyId": "n3",
+              "used": true
+            },
+            {
+              "dependencyId": "n4",
+              "used": true
+            }
+          ],
+          "failureClass": null,
+          "sourceRefs": [
+            {
+              "blockId": "b_text",
+              "start": 187,
+              "end": 295
+            }
+          ],
+          "status": "passed",
+          "lean": {
+            "localVerified": true,
+            "status": "verified",
+            "diagnostics": [],
+            "certificate": {
+              "auditMethod": "fresh_environment_data_only_kernel_replay",
+              "axioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "checked": true,
+              "dependencyUsage": [
+                {
+                  "dependencyId": "n3",
+                  "used": true
+                },
+                {
+                  "dependencyId": "n4",
+                  "used": true
+                }
+              ],
+              "formalStatement": "∑ v_d_k ∈ Finset.Icc 1 4, (1 / 2) ^ v_d_k = 1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 →\n  (1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 = 1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 ∧\n        1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 = (8 + 4 + 2 + 1) / 16) ∧\n      (8 + 4 + 2 + 1) / 16 = 15 / 16 →\n    ∑ v_d_k ∈ Finset.Icc 1 4, (1 / 2) ^ v_d_k = 15 / 16",
+              "statementMatched": true,
+              "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+              "expectedExpressionSha256": "bafcae6c5e23d71127b8e83d7b4eb50cc39448285246d0b9f8647fea150634c3",
+              "proofExpressionSha256": "a9192087bd011413cd4f8269dc0f9dff23c979c9ac50ae6e6a49991b7ff400b1",
+              "statement_hash": "d0dbaa648a8e41e790daa278e047e050ee52b7c536c12ae9432569591646bf41",
+              "nativeExpressionComparison": "structural_equal",
+              "sourceTypeSha256": "5bed8ccdf6b1f2e9dc87519d880e9af90e160a0906bf686c3faa03e22022c3c5",
+              "sourceProofSha256": "df9a80bfd7bb98e0a0d03686f4fa12baadc11e8ea2109845505c7a26fa6ca1fa",
+              "runtime": {
+                "configured": true,
+                "executableFound": true,
+                "projectFound": true,
+                "runtimeBuilt": true,
+                "sandbox": "macos",
+                "isolated": true,
+                "ready": true,
+                "toolchain": "leanprover/lean4:v4.34.0",
+                "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                "liveTestedInThisDistribution": false
+              },
+              "additionalAxioms": [],
+              "auditIsolation": "fresh_import_environment_reset_between_candidates"
+            },
+            "evidence": {
+              "schema": "lean-proof-evidence-v1",
+              "sha256": "db067e96c0b195b8b956618c93b1802a5116f9f275422ad8d66a037a9071cc95",
+              "artifact": "reports/mathir-v2-stage7-proof-evidence/db067e96c0b195b8b956618c93b1802a5116f9f275422ad8d66a037a9071cc95.json.gz",
+              "uncompressedBytes": 287,
+              "compressedBytes": 185
+            }
+          }
+        }
+      ],
+      "routes": [
+        {
+          "routeId": "route_main",
+          "routeHash": "74dbec081c5aefa9bef558a7581b22b02524138aafecd256612a46a14f29a3cc",
+          "sourceEvidenceHash": "f4e6743e01d5dad0b94215e30754e03112457d1473c183f14da52d6cc2f41df1",
+          "goalNodeId": "n5",
+          "goalProofTerm": "by\n  have jjproof_n1 : (((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = ((((((1 : ℚ) / 2) ^ (1 : ℕ)) + (((1 : ℚ) / 2) ^ (2 : ℕ))) + (((1 : ℚ) / 2) ^ (3 : ℕ))) + (((1 : ℚ) / 2) ^ (4 : ℕ))))) := (by\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 3 + 1)]\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 2 + 1)]\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 1 + 1)]\n  simp only [Finset.Icc_self, Finset.sum_singleton]\n  norm_num)\n  have jjproof_n2 : ((∀ (v_d_k : ℕ), (((((((1 : ℚ) / 2) ^ (1 : ℕ)) = ((1 : ℚ) / 2)) ∧ ((((1 : ℚ) / 2) ^ (2 : ℕ)) = ((1 : ℚ) / 4))) ∧ ((((1 : ℚ) / 2) ^ (3 : ℕ)) = ((1 : ℚ) / 8))) ∧ ((((1 : ℚ) / 2) ^ (4 : ℕ)) = ((1 : ℚ) / 16))))) := (by intro v_d_k; norm_num)\n  have jjproof_n3 : ((∀ (jjdep_n1 : ((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = ((((((1 : ℚ) / 2) ^ (1 : ℕ)) + (((1 : ℚ) / 2) ^ (2 : ℕ))) + (((1 : ℚ) / 2) ^ (3 : ℕ))) + (((1 : ℚ) / 2) ^ (4 : ℕ))))), (∀ (jjdep_n2 : (((((((1 : ℚ) / 2) ^ (1 : ℕ)) = ((1 : ℚ) / 2)) ∧ ((((1 : ℚ) / 2) ^ (2 : ℕ)) = ((1 : ℚ) / 4))) ∧ ((((1 : ℚ) / 2) ^ (3 : ℕ)) = ((1 : ℚ) / 8))) ∧ ((((1 : ℚ) / 2) ^ (4 : ℕ)) = ((1 : ℚ) / 16)))), ((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)))))) := (by intro h1 h2; simp only [h1, h2.1.1.1, h2.1.1.2, h2.1.2, h2.2])\n  have jjproof_n4 : ((∀ (v_d_k : ℕ), ((((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16))) ∧ ((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)))) ∧ ((((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)) = ((15 : ℚ) / 16))))) := (by intro v_d_k; norm_num)\n  have jjproof_n5 : ((∀ (jjdep_n3 : ((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)))), (∀ (jjdep_n4 : ((((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16))) ∧ ((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)))) ∧ ((((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)) = ((15 : ℚ) / 16)))), ((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = ((15 : ℚ) / 16))))) := (by intro h3 h4; exact h3.trans (h4.1.2.trans h4.2))\n  exact (jjproof_n5 (jjproof_n3 (jjproof_n1) (jjproof_n2 (0 : ℕ))) (jjproof_n4 (0 : ℕ)))",
+          "proofComposition": {
+            "status": "composed",
+            "error": null,
+            "kernelChecked": false
+          },
+          "status": "incomplete",
+          "completeOriginalRouteKernelPassed": false,
+          "fixedStatementKernelPassed": false,
+          "routeConnectivity": {
+            "status": "connected",
+            "goalNodeIdPresent": true,
+            "unconnectedNodeIds": [],
+            "unconnectedClaimNodeIds": [],
+            "basis": "goal dependency closure plus explicit induction-case edges"
+          },
+          "dependencyEvidence": {
+            "status": "checked",
+            "basis": "Kernel proof expression binder-use audit for declared claim dependencies"
+          },
+          "stepResults": [
+            {
+              "sourceId": "mathir-v2/route_main/n1",
+              "routeId": "route_main",
+              "nodeId": "n1",
+              "kind": "claim",
+              "expectedType": "((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = ((((((1 : ℚ) / 2) ^ (1 : ℕ)) + (((1 : ℚ) / 2) ^ (2 : ℕ))) + (((1 : ℚ) / 2) ^ (3 : ℕ))) + (((1 : ℚ) / 2) ^ (4 : ℕ))))",
+              "proofTerm": "by\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 3 + 1)]\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 2 + 1)]\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 1 + 1)]\n  simp only [Finset.Icc_self, Finset.sum_singleton]\n  norm_num",
+              "originalProofTerm": "by\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 3 + 1)]\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 2 + 1)]\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 1 + 1)]\n  simp only [Finset.Icc_self, Finset.sum_singleton]\n  norm_num",
+              "context": [
+                {
+                  "source_id": "d_k",
+                  "scope_id": "s_root",
+                  "kind": "variable",
+                  "name": "v_d_k",
+                  "type": "ℕ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                }
+              ],
+              "dependsOn": [],
+              "proofAttemptStatus": "not_proved",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "failureClass": "lean_proof_compile_failed",
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 65,
+                  "end": 125
+                }
+              ],
+              "status": "incomplete",
+              "lean": {
+                "localVerified": false,
+                "status": "not_proved",
+                "diagnostics": [
+                  {
+                    "severity": "error",
+                    "message": "No goals to be solved",
+                    "leanPosition": {
+                      "column": 154,
+                      "line": 5
+                    },
+                    "leanEndPosition": {
+                      "column": 5533,
+                      "line": 5
+                    },
+                    "stepId": "mathir-v2/route_main/n1",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b_text",
+                        "start": 65,
+                        "end": 125
+                      }
+                    ],
+                    "mappingPrecision": "step",
+                    "raw": {
+                      "caption": "",
+                      "data": "No goals to be solved",
+                      "endPos": {
+                        "column": 5533,
+                        "line": 5
+                      },
+                      "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-C08-current-diagnostics-cleanup/work/lean-ufs1za_2/Task.lean",
+                      "isSilent": false,
+                      "keepFullRange": false,
+                      "kind": "[anonymous]",
+                      "pos": {
+                        "column": 154,
+                        "line": 5
+                      },
+                      "severity": "error"
+                    }
+                  }
+                ],
+                "certificate": null
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_main/n2",
+              "routeId": "route_main",
+              "nodeId": "n2",
+              "kind": "claim",
+              "expectedType": "(∀ (v_d_k : ℕ), (((((((1 : ℚ) / 2) ^ (1 : ℕ)) = ((1 : ℚ) / 2)) ∧ ((((1 : ℚ) / 2) ^ (2 : ℕ)) = ((1 : ℚ) / 4))) ∧ ((((1 : ℚ) / 2) ^ (3 : ℕ)) = ((1 : ℚ) / 8))) ∧ ((((1 : ℚ) / 2) ^ (4 : ℕ)) = ((1 : ℚ) / 16))))",
+              "proofTerm": "by intro v_d_k; norm_num",
+              "originalProofTerm": "by intro v_d_k; norm_num",
+              "context": [
+                {
+                  "source_id": "d_k",
+                  "scope_id": "s_root",
+                  "kind": "variable",
+                  "name": "v_d_k",
+                  "type": "ℕ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                }
+              ],
+              "dependsOn": [],
+              "proofAttemptStatus": "verified",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "failureClass": null,
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 126,
+                  "end": 186
+                }
+              ],
+              "status": "passed",
+              "lean": {
+                "localVerified": true,
+                "status": "verified",
+                "diagnostics": [],
+                "certificate": {
+                  "auditMethod": "fresh_environment_data_only_kernel_replay",
+                  "axioms": [
+                    "propext",
+                    "Classical.choice",
+                    "Quot.sound"
+                  ],
+                  "checked": true,
+                  "dependencyUsage": [],
+                  "formalStatement": "∀ (v_d_k : ℕ), (((1 / 2) ^ 1 = 1 / 2 ∧ (1 / 2) ^ 2 = 1 / 4) ∧ (1 / 2) ^ 3 = 1 / 8) ∧ (1 / 2) ^ 4 = 1 / 16",
+                  "statementMatched": true,
+                  "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                  "expectedExpressionSha256": "a3816a83dd6b9188173d92d6576fb9853989fb85ec8b15a636d38a5eb717eb18",
+                  "proofExpressionSha256": "f1f67e4b43249e3f0f7bfe7b5d54f90336b52152ccc6c9201307fab09e0811f9",
+                  "statement_hash": "d0dbaa648a8e41e790daa278e047e050ee52b7c536c12ae9432569591646bf41",
+                  "nativeExpressionComparison": "structural_equal",
+                  "sourceTypeSha256": "453b1c6de9b64aace5d33a0b104917625595ecbff6aa698acc2bc1dfed160920",
+                  "sourceProofSha256": "4568f570094b47b874ffa8faeb11b6bed1b420cb630368fb0dda1e0275e9b03a",
+                  "runtime": {
+                    "configured": true,
+                    "executableFound": true,
+                    "projectFound": true,
+                    "runtimeBuilt": true,
+                    "sandbox": "macos",
+                    "isolated": true,
+                    "ready": true,
+                    "toolchain": "leanprover/lean4:v4.34.0",
+                    "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                    "liveTestedInThisDistribution": false
+                  },
+                  "additionalAxioms": [],
+                  "auditIsolation": "fresh_import_environment_reset_between_candidates"
+                },
+                "evidence": {
+                  "schema": "lean-proof-evidence-v1",
+                  "sha256": "4154de068d0f671c5e27c975692e17995d089f569c3f6b0d01856159863a9353",
+                  "artifact": "reports/mathir-v2-stage7-proof-evidence/4154de068d0f671c5e27c975692e17995d089f569c3f6b0d01856159863a9353.json.gz",
+                  "uncompressedBytes": 287,
+                  "compressedBytes": 182
+                }
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_main/n3",
+              "routeId": "route_main",
+              "nodeId": "n3",
+              "kind": "claim",
+              "expectedType": "(∀ (jjdep_n1 : ((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = ((((((1 : ℚ) / 2) ^ (1 : ℕ)) + (((1 : ℚ) / 2) ^ (2 : ℕ))) + (((1 : ℚ) / 2) ^ (3 : ℕ))) + (((1 : ℚ) / 2) ^ (4 : ℕ))))), (∀ (jjdep_n2 : (((((((1 : ℚ) / 2) ^ (1 : ℕ)) = ((1 : ℚ) / 2)) ∧ ((((1 : ℚ) / 2) ^ (2 : ℕ)) = ((1 : ℚ) / 4))) ∧ ((((1 : ℚ) / 2) ^ (3 : ℕ)) = ((1 : ℚ) / 8))) ∧ ((((1 : ℚ) / 2) ^ (4 : ℕ)) = ((1 : ℚ) / 16)))), ((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)))))",
+              "proofTerm": "by intro h1 h2; simp only [h1, h2.1.1.1, h2.1.1.2, h2.1.2, h2.2]",
+              "originalProofTerm": "by intro h1 h2; simp only [h1, h2.1.1.1, h2.1.1.2, h2.1.2, h2.2]",
+              "context": [
+                {
+                  "source_id": "d_k",
+                  "scope_id": "s_root",
+                  "kind": "variable",
+                  "name": "v_d_k",
+                  "type": "ℕ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "n1",
+                  "kind": "claim",
+                  "name": "h_route_main_n1",
+                  "type": "((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = ((((((1 : ℚ) / 2) ^ (1 : ℕ)) + (((1 : ℚ) / 2) ^ (2 : ℕ))) + (((1 : ℚ) / 2) ^ (3 : ℕ))) + (((1 : ℚ) / 2) ^ (4 : ℕ))))"
+                },
+                {
+                  "source_id": "n2",
+                  "kind": "claim",
+                  "name": "h_route_main_n2",
+                  "type": "(((((((1 : ℚ) / 2) ^ (1 : ℕ)) = ((1 : ℚ) / 2)) ∧ ((((1 : ℚ) / 2) ^ (2 : ℕ)) = ((1 : ℚ) / 4))) ∧ ((((1 : ℚ) / 2) ^ (3 : ℕ)) = ((1 : ℚ) / 8))) ∧ ((((1 : ℚ) / 2) ^ (4 : ℕ)) = ((1 : ℚ) / 16)))"
+                }
+              ],
+              "dependsOn": [
+                "n1",
+                "n2"
+              ],
+              "proofAttemptStatus": "verified",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "all_declared_dependencies_used",
+              "dependencyUsage": [
+                {
+                  "dependencyId": "n1",
+                  "used": true
+                },
+                {
+                  "dependencyId": "n2",
+                  "used": true
+                }
+              ],
+              "failureClass": null,
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 187,
+                  "end": 228
+                }
+              ],
+              "status": "passed",
+              "lean": {
+                "localVerified": true,
+                "status": "verified",
+                "diagnostics": [],
+                "certificate": {
+                  "auditMethod": "fresh_environment_data_only_kernel_replay",
+                  "axioms": [
+                    "propext",
+                    "Classical.choice",
+                    "Quot.sound"
+                  ],
+                  "checked": true,
+                  "dependencyUsage": [
+                    {
+                      "dependencyId": "n1",
+                      "used": true
+                    },
+                    {
+                      "dependencyId": "n2",
+                      "used": true
+                    }
+                  ],
+                  "formalStatement": "∑ v_d_k ∈ Finset.Icc 1 4, (1 / 2) ^ v_d_k = (1 / 2) ^ 1 + (1 / 2) ^ 2 + (1 / 2) ^ 3 + (1 / 2) ^ 4 →\n  (((1 / 2) ^ 1 = 1 / 2 ∧ (1 / 2) ^ 2 = 1 / 4) ∧ (1 / 2) ^ 3 = 1 / 8) ∧ (1 / 2) ^ 4 = 1 / 16 →\n    ∑ v_d_k ∈ Finset.Icc 1 4, (1 / 2) ^ v_d_k = 1 / 2 + 1 / 4 + 1 / 8 + 1 / 16",
+                  "statementMatched": true,
+                  "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                  "expectedExpressionSha256": "25756f40669a256df26ed7eeb114f96d0eeb6c6c88b09f7bee86259b04ae9cd8",
+                  "proofExpressionSha256": "278fc06339114c2f184f85d2b13947faaac688499b656902cb78301a889a28eb",
+                  "statement_hash": "d0dbaa648a8e41e790daa278e047e050ee52b7c536c12ae9432569591646bf41",
+                  "nativeExpressionComparison": "structural_equal",
+                  "sourceTypeSha256": "652a14ba40b3fd8aad89fd9745c76768c8c3a6c231a781fc5ff02683b3a86b0d",
+                  "sourceProofSha256": "d38144b1a8b226d6970f5ae5023379f51e63a75ff824223f8b1dfe14610dbf4d",
+                  "runtime": {
+                    "configured": true,
+                    "executableFound": true,
+                    "projectFound": true,
+                    "runtimeBuilt": true,
+                    "sandbox": "macos",
+                    "isolated": true,
+                    "ready": true,
+                    "toolchain": "leanprover/lean4:v4.34.0",
+                    "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                    "liveTestedInThisDistribution": false
+                  },
+                  "additionalAxioms": [],
+                  "auditIsolation": "fresh_import_environment_reset_between_candidates"
+                },
+                "evidence": {
+                  "schema": "lean-proof-evidence-v1",
+                  "sha256": "6564ebac0c3bcd6f0c8f793bb1fa75d16448977a49f8265ce7885eb15eb6a11b",
+                  "artifact": "reports/mathir-v2-stage7-proof-evidence/6564ebac0c3bcd6f0c8f793bb1fa75d16448977a49f8265ce7885eb15eb6a11b.json.gz",
+                  "uncompressedBytes": 287,
+                  "compressedBytes": 181
+                }
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_main/n4",
+              "routeId": "route_main",
+              "nodeId": "n4",
+              "kind": "claim",
+              "expectedType": "(∀ (v_d_k : ℕ), ((((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16))) ∧ ((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)))) ∧ ((((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)) = ((15 : ℚ) / 16))))",
+              "proofTerm": "by intro v_d_k; norm_num",
+              "originalProofTerm": "by intro v_d_k; norm_num",
+              "context": [
+                {
+                  "source_id": "d_k",
+                  "scope_id": "s_root",
+                  "kind": "variable",
+                  "name": "v_d_k",
+                  "type": "ℕ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                }
+              ],
+              "dependsOn": [],
+              "proofAttemptStatus": "verified",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "failureClass": null,
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 229,
+                  "end": 295
+                }
+              ],
+              "status": "passed",
+              "lean": {
+                "localVerified": true,
+                "status": "verified",
+                "diagnostics": [],
+                "certificate": {
+                  "auditMethod": "fresh_environment_data_only_kernel_replay",
+                  "axioms": [
+                    "propext",
+                    "Classical.choice",
+                    "Quot.sound"
+                  ],
+                  "checked": true,
+                  "dependencyUsage": [],
+                  "formalStatement": "∀ (v_d_k : ℕ),\n  (1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 = 1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 ∧\n      1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 = (8 + 4 + 2 + 1) / 16) ∧\n    (8 + 4 + 2 + 1) / 16 = 15 / 16",
+                  "statementMatched": true,
+                  "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                  "expectedExpressionSha256": "d3d4204fa3c77d68023a3d6b4bd07f0ff2b685e4bd2cec6c07f571af05120514",
+                  "proofExpressionSha256": "ed480bc087393aac489064252a329e992ab95c79be574a17d7bac72d9880e373",
+                  "statement_hash": "d0dbaa648a8e41e790daa278e047e050ee52b7c536c12ae9432569591646bf41",
+                  "nativeExpressionComparison": "structural_equal",
+                  "sourceTypeSha256": "d35eda8f511df48b6c5c5ead95d6735b610fd9e3b797707d46ea03e0af9309fb",
+                  "sourceProofSha256": "4568f570094b47b874ffa8faeb11b6bed1b420cb630368fb0dda1e0275e9b03a",
+                  "runtime": {
+                    "configured": true,
+                    "executableFound": true,
+                    "projectFound": true,
+                    "runtimeBuilt": true,
+                    "sandbox": "macos",
+                    "isolated": true,
+                    "ready": true,
+                    "toolchain": "leanprover/lean4:v4.34.0",
+                    "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                    "liveTestedInThisDistribution": false
+                  },
+                  "additionalAxioms": [],
+                  "auditIsolation": "fresh_import_environment_reset_between_candidates"
+                },
+                "evidence": {
+                  "schema": "lean-proof-evidence-v1",
+                  "sha256": "5cf6b73864e3bb6c22412f0452378dcf7fe866de701a931ccc749a6f969236c2",
+                  "artifact": "reports/mathir-v2-stage7-proof-evidence/5cf6b73864e3bb6c22412f0452378dcf7fe866de701a931ccc749a6f969236c2.json.gz",
+                  "uncompressedBytes": 288,
+                  "compressedBytes": 183
+                }
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_main/n5",
+              "routeId": "route_main",
+              "nodeId": "n5",
+              "kind": "claim",
+              "expectedType": "(∀ (jjdep_n3 : ((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)))), (∀ (jjdep_n4 : ((((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16))) ∧ ((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)))) ∧ ((((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)) = ((15 : ℚ) / 16)))), ((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = ((15 : ℚ) / 16))))",
+              "proofTerm": "by intro h3 h4; exact h3.trans (h4.1.2.trans h4.2)",
+              "originalProofTerm": "by intro h3 h4; exact h3.trans (h4.1.2.trans h4.2)",
+              "context": [
+                {
+                  "source_id": "d_k",
+                  "scope_id": "s_root",
+                  "kind": "variable",
+                  "name": "v_d_k",
+                  "type": "ℕ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "n3",
+                  "kind": "claim",
+                  "name": "h_route_main_n3",
+                  "type": "((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)))"
+                },
+                {
+                  "source_id": "n4",
+                  "kind": "claim",
+                  "name": "h_route_main_n4",
+                  "type": "((((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16))) ∧ ((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)))) ∧ ((((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)) = ((15 : ℚ) / 16)))"
+                }
+              ],
+              "dependsOn": [
+                "n3",
+                "n4"
+              ],
+              "proofAttemptStatus": "verified",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "all_declared_dependencies_used",
+              "dependencyUsage": [
+                {
+                  "dependencyId": "n3",
+                  "used": true
+                },
+                {
+                  "dependencyId": "n4",
+                  "used": true
+                }
+              ],
+              "failureClass": null,
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 187,
+                  "end": 295
+                }
+              ],
+              "status": "passed",
+              "lean": {
+                "localVerified": true,
+                "status": "verified",
+                "diagnostics": [],
+                "certificate": {
+                  "auditMethod": "fresh_environment_data_only_kernel_replay",
+                  "axioms": [
+                    "propext",
+                    "Classical.choice",
+                    "Quot.sound"
+                  ],
+                  "checked": true,
+                  "dependencyUsage": [
+                    {
+                      "dependencyId": "n3",
+                      "used": true
+                    },
+                    {
+                      "dependencyId": "n4",
+                      "used": true
+                    }
+                  ],
+                  "formalStatement": "∑ v_d_k ∈ Finset.Icc 1 4, (1 / 2) ^ v_d_k = 1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 →\n  (1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 = 1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 ∧\n        1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 = (8 + 4 + 2 + 1) / 16) ∧\n      (8 + 4 + 2 + 1) / 16 = 15 / 16 →\n    ∑ v_d_k ∈ Finset.Icc 1 4, (1 / 2) ^ v_d_k = 15 / 16",
+                  "statementMatched": true,
+                  "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                  "expectedExpressionSha256": "bafcae6c5e23d71127b8e83d7b4eb50cc39448285246d0b9f8647fea150634c3",
+                  "proofExpressionSha256": "a9192087bd011413cd4f8269dc0f9dff23c979c9ac50ae6e6a49991b7ff400b1",
+                  "statement_hash": "d0dbaa648a8e41e790daa278e047e050ee52b7c536c12ae9432569591646bf41",
+                  "nativeExpressionComparison": "structural_equal",
+                  "sourceTypeSha256": "5bed8ccdf6b1f2e9dc87519d880e9af90e160a0906bf686c3faa03e22022c3c5",
+                  "sourceProofSha256": "df9a80bfd7bb98e0a0d03686f4fa12baadc11e8ea2109845505c7a26fa6ca1fa",
+                  "runtime": {
+                    "configured": true,
+                    "executableFound": true,
+                    "projectFound": true,
+                    "runtimeBuilt": true,
+                    "sandbox": "macos",
+                    "isolated": true,
+                    "ready": true,
+                    "toolchain": "leanprover/lean4:v4.34.0",
+                    "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                    "liveTestedInThisDistribution": false
+                  },
+                  "additionalAxioms": [],
+                  "auditIsolation": "fresh_import_environment_reset_between_candidates"
+                },
+                "evidence": {
+                  "schema": "lean-proof-evidence-v1",
+                  "sha256": "db067e96c0b195b8b956618c93b1802a5116f9f275422ad8d66a037a9071cc95",
+                  "artifact": "reports/mathir-v2-stage7-proof-evidence/db067e96c0b195b8b956618c93b1802a5116f9f275422ad8d66a037a9071cc95.json.gz",
+                  "uncompressedBytes": 287,
+                  "compressedBytes": 185
+                }
+              }
+            }
+          ],
+          "kernel": {
+            "localVerified": false,
+            "status": "not_proved",
+            "diagnostics": [
+              {
+                "severity": "error",
+                "message": "No goals to be solved",
+                "leanPosition": {
+                  "column": 373,
+                  "line": 5
+                },
+                "leanEndPosition": {
+                  "column": 381,
+                  "line": 5
+                },
+                "stepId": "mathir-v2/route_main/locked-goal",
+                "sourceRefs": [],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "No goals to be solved",
+                  "endPos": {
+                    "column": 381,
+                    "line": 5
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-C08-current-diagnostics-cleanup/work/lean-ufs1za_2/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "[anonymous]",
+                  "pos": {
+                    "column": 373,
+                    "line": 5
+                  },
+                  "severity": "error"
+                }
+              }
+            ],
+            "certificate": null
+          },
+          "sourceAlignment": {
+            "status": "not_assessed",
+            "sourceRefsValidated": true,
+            "semanticAlignmentKernelProven": false
+          }
+        }
+      ],
+      "fixedStatementKernelPassed": false,
+      "anyRouteKernelPassed": false,
+      "kernelVerified": false,
+      "leanMetrics": {
+        "processCount": 3,
+        "elapsedSeconds": 40.532,
+        "processes": [
+          {
+            "phase": "proposition_elaboration",
+            "wallSeconds": 12.8,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 16098,
+            "kernelInputJsonBytes": 0,
+            "status": "completed",
+            "userCpuSeconds": 2.16,
+            "systemCpuSeconds": 10.53,
+            "maxRssBytes": 6049988608,
+            "peakMemoryFootprintBytes": 936243328,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 250949,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 40386560,
+            "leanReturnCode": 0
+          },
+          {
+            "phase": "expected_wire_materialization",
+            "wallSeconds": 0.0072,
+            "leanStdoutBytes": 250949,
+            "recordCount": 6,
+            "pythonPeakRssBytes": 43450368
+          },
+          {
+            "phase": "proof_export_batch",
+            "wallSeconds": 13.51,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 16118,
+            "kernelInputJsonBytes": 0,
+            "status": "completed",
+            "userCpuSeconds": 2.53,
+            "systemCpuSeconds": 10.82,
+            "maxRssBytes": 6099271680,
+            "peakMemoryFootprintBytes": 976171264,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 7529905,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 66142208,
+            "leanReturnCode": 1
+          },
+          {
+            "phase": "proof_wire_materialization",
+            "wallSeconds": 0.3868,
+            "leanStdoutBytes": 7529905,
+            "candidateCount": 4,
+            "pythonPeakRssBytes": 187039744
+          },
+          {
+            "phase": "independent_kernel_replay_batch",
+            "wallSeconds": 13.79,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 16129,
+            "kernelInputJsonBytes": 2577482,
+            "status": "completed",
+            "userCpuSeconds": 2.26,
+            "systemCpuSeconds": 11.48,
+            "maxRssBytes": 6058016768,
+            "peakMemoryFootprintBytes": 946548928,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 3712,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 187613184,
+            "leanReturnCode": 0
+          },
+          {
+            "phase": "kernel_certificate_materialization",
+            "wallSeconds": 0.0378,
+            "leanStdoutBytes": 3712,
+            "certificateCount": 4,
+            "pythonPeakRssBytes": 187957248
+          }
+        ],
+        "measurement": "Lean subprocess groups; each invocation includes the sandbox launcher and Lean process. Kernel batch resets the imported environment between evidence replays."
+      }
+    },
+    {
+      "version": "2.0",
+      "statement": "((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = ((15 : ℚ) / 16))",
+      "statementLock": {
+        "status": "locked",
+        "statementHash": "d0dbaa648a8e41e790daa278e047e050ee52b7c536c12ae9432569591646bf41"
+      },
+      "mathirHash": "87c49e2a2b556ac74473436a935098b0def19ea83ebf5820a54317f3fadf27ca",
+      "sourceEvidenceHash": "462ce05f34142da2d7abff7ee245cbbc44c4e6b967689e088c4f89136b50a6bd",
+      "sourceAlignment": {
+        "status": "not_assessed",
+        "transcriptionStatus": "not_assessed",
+        "sourceRefsValidated": true,
+        "semanticAlignmentKernelProven": false
+      },
+      "steps": [
+        {
+          "sourceId": "mathir-v2/route_main/n1",
+          "routeId": "route_main",
+          "nodeId": "n1",
+          "kind": "claim",
+          "expectedType": "((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = ((((((1 : ℚ) / 2) ^ (1 : ℕ)) + (((1 : ℚ) / 2) ^ (2 : ℕ))) + (((1 : ℚ) / 2) ^ (3 : ℕ))) + (((1 : ℚ) / 2) ^ (4 : ℕ))))",
+          "proofTerm": "by\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 3 + 1)]\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 2 + 1)]\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 1 + 1)]\n  simp only [Finset.Icc_self, Finset.sum_singleton]",
+          "originalProofTerm": "by\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 3 + 1)]\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 2 + 1)]\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 1 + 1)]\n  simp only [Finset.Icc_self, Finset.sum_singleton]",
+          "context": [
+            {
+              "source_id": "d_k",
+              "scope_id": "s_root",
+              "kind": "variable",
+              "name": "v_d_k",
+              "type": "ℕ",
+              "value": null,
+              "constraints": [],
+              "bindingClass": "theorem"
+            }
+          ],
+          "dependsOn": [],
+          "proofAttemptStatus": "verified",
+          "mathematicalStatus": "not_established",
+          "dependencyEvidence": "not_required",
+          "dependencyUsage": [],
+          "failureClass": null,
+          "sourceRefs": [
+            {
+              "blockId": "b_text",
+              "start": 65,
+              "end": 125
+            }
+          ],
+          "status": "passed",
+          "lean": {
+            "localVerified": true,
+            "status": "verified",
+            "diagnostics": [],
+            "certificate": {
+              "auditMethod": "fresh_environment_data_only_kernel_replay",
+              "axioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "checked": true,
+              "dependencyUsage": [],
+              "formalStatement": "∑ v_d_k ∈ Finset.Icc 1 4, (1 / 2) ^ v_d_k = (1 / 2) ^ 1 + (1 / 2) ^ 2 + (1 / 2) ^ 3 + (1 / 2) ^ 4",
+              "statementMatched": true,
+              "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+              "expectedExpressionSha256": "880fd4b03e0eaabfb5c28d54864a00000ea515d5bea5a9c08be07486c18e5004",
+              "proofExpressionSha256": "70cd46c636974b339998da1e4f2a030a66e08a71d01572b060aba795f5bb199b",
+              "statement_hash": "d0dbaa648a8e41e790daa278e047e050ee52b7c536c12ae9432569591646bf41",
+              "nativeExpressionComparison": "structural_equal",
+              "sourceTypeSha256": "e026a4e51df193382f2e58a79ee830724d608b82c7c0deeeaedec233873b1004",
+              "sourceProofSha256": "87296718e4e86af6a06d2fc041bcd8b36e522994f259717d415fb41cdd59c5a7",
+              "runtime": {
+                "configured": true,
+                "executableFound": true,
+                "projectFound": true,
+                "runtimeBuilt": true,
+                "sandbox": "macos",
+                "isolated": true,
+                "ready": true,
+                "toolchain": "leanprover/lean4:v4.34.0",
+                "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                "liveTestedInThisDistribution": false
+              },
+              "additionalAxioms": [],
+              "auditIsolation": "fresh_import_environment_reset_between_candidates"
+            },
+            "evidence": {
+              "schema": "lean-proof-evidence-v1",
+              "sha256": "13a1d64cca821165dcc13c401aabf7d474cbd74d81d2d960af1679e62afe528b",
+              "artifact": "reports/mathir-v2-stage7-proof-evidence/13a1d64cca821165dcc13c401aabf7d474cbd74d81d2d960af1679e62afe528b.json.gz",
+              "uncompressedBytes": 288,
+              "compressedBytes": 183
+            }
+          }
+        },
+        {
+          "sourceId": "mathir-v2/route_main/n2",
+          "routeId": "route_main",
+          "nodeId": "n2",
+          "kind": "claim",
+          "expectedType": "(∀ (v_d_k : ℕ), (((((((1 : ℚ) / 2) ^ (1 : ℕ)) = ((1 : ℚ) / 2)) ∧ ((((1 : ℚ) / 2) ^ (2 : ℕ)) = ((1 : ℚ) / 4))) ∧ ((((1 : ℚ) / 2) ^ (3 : ℕ)) = ((1 : ℚ) / 8))) ∧ ((((1 : ℚ) / 2) ^ (4 : ℕ)) = ((1 : ℚ) / 16))))",
+          "proofTerm": "by intro v_d_k; norm_num",
+          "originalProofTerm": "by intro v_d_k; norm_num",
+          "context": [
+            {
+              "source_id": "d_k",
+              "scope_id": "s_root",
+              "kind": "variable",
+              "name": "v_d_k",
+              "type": "ℕ",
+              "value": null,
+              "constraints": [],
+              "bindingClass": "theorem"
+            }
+          ],
+          "dependsOn": [],
+          "proofAttemptStatus": "verified",
+          "mathematicalStatus": "not_established",
+          "dependencyEvidence": "not_required",
+          "dependencyUsage": [],
+          "failureClass": null,
+          "sourceRefs": [
+            {
+              "blockId": "b_text",
+              "start": 126,
+              "end": 186
+            }
+          ],
+          "status": "passed",
+          "lean": {
+            "localVerified": true,
+            "status": "verified",
+            "diagnostics": [],
+            "certificate": {
+              "auditMethod": "fresh_environment_data_only_kernel_replay",
+              "axioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "checked": true,
+              "dependencyUsage": [],
+              "formalStatement": "∀ (v_d_k : ℕ), (((1 / 2) ^ 1 = 1 / 2 ∧ (1 / 2) ^ 2 = 1 / 4) ∧ (1 / 2) ^ 3 = 1 / 8) ∧ (1 / 2) ^ 4 = 1 / 16",
+              "statementMatched": true,
+              "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+              "expectedExpressionSha256": "a3816a83dd6b9188173d92d6576fb9853989fb85ec8b15a636d38a5eb717eb18",
+              "proofExpressionSha256": "f1f67e4b43249e3f0f7bfe7b5d54f90336b52152ccc6c9201307fab09e0811f9",
+              "statement_hash": "d0dbaa648a8e41e790daa278e047e050ee52b7c536c12ae9432569591646bf41",
+              "nativeExpressionComparison": "structural_equal",
+              "sourceTypeSha256": "453b1c6de9b64aace5d33a0b104917625595ecbff6aa698acc2bc1dfed160920",
+              "sourceProofSha256": "4568f570094b47b874ffa8faeb11b6bed1b420cb630368fb0dda1e0275e9b03a",
+              "runtime": {
+                "configured": true,
+                "executableFound": true,
+                "projectFound": true,
+                "runtimeBuilt": true,
+                "sandbox": "macos",
+                "isolated": true,
+                "ready": true,
+                "toolchain": "leanprover/lean4:v4.34.0",
+                "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                "liveTestedInThisDistribution": false
+              },
+              "additionalAxioms": [],
+              "auditIsolation": "fresh_import_environment_reset_between_candidates"
+            },
+            "evidence": {
+              "schema": "lean-proof-evidence-v1",
+              "sha256": "4154de068d0f671c5e27c975692e17995d089f569c3f6b0d01856159863a9353",
+              "artifact": "reports/mathir-v2-stage7-proof-evidence/4154de068d0f671c5e27c975692e17995d089f569c3f6b0d01856159863a9353.json.gz",
+              "uncompressedBytes": 287,
+              "compressedBytes": 182
+            }
+          }
+        },
+        {
+          "sourceId": "mathir-v2/route_main/n3",
+          "routeId": "route_main",
+          "nodeId": "n3",
+          "kind": "claim",
+          "expectedType": "(∀ (jjdep_n1 : ((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = ((((((1 : ℚ) / 2) ^ (1 : ℕ)) + (((1 : ℚ) / 2) ^ (2 : ℕ))) + (((1 : ℚ) / 2) ^ (3 : ℕ))) + (((1 : ℚ) / 2) ^ (4 : ℕ))))), (∀ (jjdep_n2 : (((((((1 : ℚ) / 2) ^ (1 : ℕ)) = ((1 : ℚ) / 2)) ∧ ((((1 : ℚ) / 2) ^ (2 : ℕ)) = ((1 : ℚ) / 4))) ∧ ((((1 : ℚ) / 2) ^ (3 : ℕ)) = ((1 : ℚ) / 8))) ∧ ((((1 : ℚ) / 2) ^ (4 : ℕ)) = ((1 : ℚ) / 16)))), ((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)))))",
+          "proofTerm": "by intro h1 h2; simp only [h1, h2.1.1.1, h2.1.1.2, h2.1.2, h2.2]",
+          "originalProofTerm": "by intro h1 h2; simp only [h1, h2.1.1.1, h2.1.1.2, h2.1.2, h2.2]",
+          "context": [
+            {
+              "source_id": "d_k",
+              "scope_id": "s_root",
+              "kind": "variable",
+              "name": "v_d_k",
+              "type": "ℕ",
+              "value": null,
+              "constraints": [],
+              "bindingClass": "theorem"
+            },
+            {
+              "source_id": "n1",
+              "kind": "claim",
+              "name": "h_route_main_n1",
+              "type": "((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = ((((((1 : ℚ) / 2) ^ (1 : ℕ)) + (((1 : ℚ) / 2) ^ (2 : ℕ))) + (((1 : ℚ) / 2) ^ (3 : ℕ))) + (((1 : ℚ) / 2) ^ (4 : ℕ))))"
+            },
+            {
+              "source_id": "n2",
+              "kind": "claim",
+              "name": "h_route_main_n2",
+              "type": "(((((((1 : ℚ) / 2) ^ (1 : ℕ)) = ((1 : ℚ) / 2)) ∧ ((((1 : ℚ) / 2) ^ (2 : ℕ)) = ((1 : ℚ) / 4))) ∧ ((((1 : ℚ) / 2) ^ (3 : ℕ)) = ((1 : ℚ) / 8))) ∧ ((((1 : ℚ) / 2) ^ (4 : ℕ)) = ((1 : ℚ) / 16)))"
+            }
+          ],
+          "dependsOn": [
+            "n1",
+            "n2"
+          ],
+          "proofAttemptStatus": "verified",
+          "mathematicalStatus": "not_established",
+          "dependencyEvidence": "all_declared_dependencies_used",
+          "dependencyUsage": [
+            {
+              "dependencyId": "n1",
+              "used": true
+            },
+            {
+              "dependencyId": "n2",
+              "used": true
+            }
+          ],
+          "failureClass": null,
+          "sourceRefs": [
+            {
+              "blockId": "b_text",
+              "start": 187,
+              "end": 228
+            }
+          ],
+          "status": "passed",
+          "lean": {
+            "localVerified": true,
+            "status": "verified",
+            "diagnostics": [],
+            "certificate": {
+              "auditMethod": "fresh_environment_data_only_kernel_replay",
+              "axioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "checked": true,
+              "dependencyUsage": [
+                {
+                  "dependencyId": "n1",
+                  "used": true
+                },
+                {
+                  "dependencyId": "n2",
+                  "used": true
+                }
+              ],
+              "formalStatement": "∑ v_d_k ∈ Finset.Icc 1 4, (1 / 2) ^ v_d_k = (1 / 2) ^ 1 + (1 / 2) ^ 2 + (1 / 2) ^ 3 + (1 / 2) ^ 4 →\n  (((1 / 2) ^ 1 = 1 / 2 ∧ (1 / 2) ^ 2 = 1 / 4) ∧ (1 / 2) ^ 3 = 1 / 8) ∧ (1 / 2) ^ 4 = 1 / 16 →\n    ∑ v_d_k ∈ Finset.Icc 1 4, (1 / 2) ^ v_d_k = 1 / 2 + 1 / 4 + 1 / 8 + 1 / 16",
+              "statementMatched": true,
+              "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+              "expectedExpressionSha256": "25756f40669a256df26ed7eeb114f96d0eeb6c6c88b09f7bee86259b04ae9cd8",
+              "proofExpressionSha256": "278fc06339114c2f184f85d2b13947faaac688499b656902cb78301a889a28eb",
+              "statement_hash": "d0dbaa648a8e41e790daa278e047e050ee52b7c536c12ae9432569591646bf41",
+              "nativeExpressionComparison": "structural_equal",
+              "sourceTypeSha256": "652a14ba40b3fd8aad89fd9745c76768c8c3a6c231a781fc5ff02683b3a86b0d",
+              "sourceProofSha256": "d38144b1a8b226d6970f5ae5023379f51e63a75ff824223f8b1dfe14610dbf4d",
+              "runtime": {
+                "configured": true,
+                "executableFound": true,
+                "projectFound": true,
+                "runtimeBuilt": true,
+                "sandbox": "macos",
+                "isolated": true,
+                "ready": true,
+                "toolchain": "leanprover/lean4:v4.34.0",
+                "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                "liveTestedInThisDistribution": false
+              },
+              "additionalAxioms": [],
+              "auditIsolation": "fresh_import_environment_reset_between_candidates"
+            },
+            "evidence": {
+              "schema": "lean-proof-evidence-v1",
+              "sha256": "6564ebac0c3bcd6f0c8f793bb1fa75d16448977a49f8265ce7885eb15eb6a11b",
+              "artifact": "reports/mathir-v2-stage7-proof-evidence/6564ebac0c3bcd6f0c8f793bb1fa75d16448977a49f8265ce7885eb15eb6a11b.json.gz",
+              "uncompressedBytes": 287,
+              "compressedBytes": 181
+            }
+          }
+        },
+        {
+          "sourceId": "mathir-v2/route_main/n4",
+          "routeId": "route_main",
+          "nodeId": "n4",
+          "kind": "claim",
+          "expectedType": "(∀ (v_d_k : ℕ), ((((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16))) ∧ ((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)))) ∧ ((((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)) = ((15 : ℚ) / 16))))",
+          "proofTerm": "by intro v_d_k; norm_num",
+          "originalProofTerm": "by intro v_d_k; norm_num",
+          "context": [
+            {
+              "source_id": "d_k",
+              "scope_id": "s_root",
+              "kind": "variable",
+              "name": "v_d_k",
+              "type": "ℕ",
+              "value": null,
+              "constraints": [],
+              "bindingClass": "theorem"
+            }
+          ],
+          "dependsOn": [],
+          "proofAttemptStatus": "verified",
+          "mathematicalStatus": "not_established",
+          "dependencyEvidence": "not_required",
+          "dependencyUsage": [],
+          "failureClass": null,
+          "sourceRefs": [
+            {
+              "blockId": "b_text",
+              "start": 229,
+              "end": 295
+            }
+          ],
+          "status": "passed",
+          "lean": {
+            "localVerified": true,
+            "status": "verified",
+            "diagnostics": [],
+            "certificate": {
+              "auditMethod": "fresh_environment_data_only_kernel_replay",
+              "axioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "checked": true,
+              "dependencyUsage": [],
+              "formalStatement": "∀ (v_d_k : ℕ),\n  (1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 = 1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 ∧\n      1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 = (8 + 4 + 2 + 1) / 16) ∧\n    (8 + 4 + 2 + 1) / 16 = 15 / 16",
+              "statementMatched": true,
+              "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+              "expectedExpressionSha256": "d3d4204fa3c77d68023a3d6b4bd07f0ff2b685e4bd2cec6c07f571af05120514",
+              "proofExpressionSha256": "ed480bc087393aac489064252a329e992ab95c79be574a17d7bac72d9880e373",
+              "statement_hash": "d0dbaa648a8e41e790daa278e047e050ee52b7c536c12ae9432569591646bf41",
+              "nativeExpressionComparison": "structural_equal",
+              "sourceTypeSha256": "d35eda8f511df48b6c5c5ead95d6735b610fd9e3b797707d46ea03e0af9309fb",
+              "sourceProofSha256": "4568f570094b47b874ffa8faeb11b6bed1b420cb630368fb0dda1e0275e9b03a",
+              "runtime": {
+                "configured": true,
+                "executableFound": true,
+                "projectFound": true,
+                "runtimeBuilt": true,
+                "sandbox": "macos",
+                "isolated": true,
+                "ready": true,
+                "toolchain": "leanprover/lean4:v4.34.0",
+                "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                "liveTestedInThisDistribution": false
+              },
+              "additionalAxioms": [],
+              "auditIsolation": "fresh_import_environment_reset_between_candidates"
+            },
+            "evidence": {
+              "schema": "lean-proof-evidence-v1",
+              "sha256": "5cf6b73864e3bb6c22412f0452378dcf7fe866de701a931ccc749a6f969236c2",
+              "artifact": "reports/mathir-v2-stage7-proof-evidence/5cf6b73864e3bb6c22412f0452378dcf7fe866de701a931ccc749a6f969236c2.json.gz",
+              "uncompressedBytes": 288,
+              "compressedBytes": 183
+            }
+          }
+        },
+        {
+          "sourceId": "mathir-v2/route_main/n5",
+          "routeId": "route_main",
+          "nodeId": "n5",
+          "kind": "claim",
+          "expectedType": "(∀ (jjdep_n3 : ((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)))), (∀ (jjdep_n4 : ((((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16))) ∧ ((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)))) ∧ ((((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)) = ((15 : ℚ) / 16)))), ((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = ((15 : ℚ) / 16))))",
+          "proofTerm": "by intro h3 h4; exact h3.trans (h4.1.2.trans h4.2)",
+          "originalProofTerm": "by intro h3 h4; exact h3.trans (h4.1.2.trans h4.2)",
+          "context": [
+            {
+              "source_id": "d_k",
+              "scope_id": "s_root",
+              "kind": "variable",
+              "name": "v_d_k",
+              "type": "ℕ",
+              "value": null,
+              "constraints": [],
+              "bindingClass": "theorem"
+            },
+            {
+              "source_id": "n3",
+              "kind": "claim",
+              "name": "h_route_main_n3",
+              "type": "((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)))"
+            },
+            {
+              "source_id": "n4",
+              "kind": "claim",
+              "name": "h_route_main_n4",
+              "type": "((((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16))) ∧ ((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)))) ∧ ((((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)) = ((15 : ℚ) / 16)))"
+            }
+          ],
+          "dependsOn": [
+            "n3",
+            "n4"
+          ],
+          "proofAttemptStatus": "verified",
+          "mathematicalStatus": "not_established",
+          "dependencyEvidence": "all_declared_dependencies_used",
+          "dependencyUsage": [
+            {
+              "dependencyId": "n3",
+              "used": true
+            },
+            {
+              "dependencyId": "n4",
+              "used": true
+            }
+          ],
+          "failureClass": null,
+          "sourceRefs": [
+            {
+              "blockId": "b_text",
+              "start": 187,
+              "end": 295
+            }
+          ],
+          "status": "passed",
+          "lean": {
+            "localVerified": true,
+            "status": "verified",
+            "diagnostics": [],
+            "certificate": {
+              "auditMethod": "fresh_environment_data_only_kernel_replay",
+              "axioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "checked": true,
+              "dependencyUsage": [
+                {
+                  "dependencyId": "n3",
+                  "used": true
+                },
+                {
+                  "dependencyId": "n4",
+                  "used": true
+                }
+              ],
+              "formalStatement": "∑ v_d_k ∈ Finset.Icc 1 4, (1 / 2) ^ v_d_k = 1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 →\n  (1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 = 1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 ∧\n        1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 = (8 + 4 + 2 + 1) / 16) ∧\n      (8 + 4 + 2 + 1) / 16 = 15 / 16 →\n    ∑ v_d_k ∈ Finset.Icc 1 4, (1 / 2) ^ v_d_k = 15 / 16",
+              "statementMatched": true,
+              "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+              "expectedExpressionSha256": "bafcae6c5e23d71127b8e83d7b4eb50cc39448285246d0b9f8647fea150634c3",
+              "proofExpressionSha256": "a9192087bd011413cd4f8269dc0f9dff23c979c9ac50ae6e6a49991b7ff400b1",
+              "statement_hash": "d0dbaa648a8e41e790daa278e047e050ee52b7c536c12ae9432569591646bf41",
+              "nativeExpressionComparison": "structural_equal",
+              "sourceTypeSha256": "5bed8ccdf6b1f2e9dc87519d880e9af90e160a0906bf686c3faa03e22022c3c5",
+              "sourceProofSha256": "df9a80bfd7bb98e0a0d03686f4fa12baadc11e8ea2109845505c7a26fa6ca1fa",
+              "runtime": {
+                "configured": true,
+                "executableFound": true,
+                "projectFound": true,
+                "runtimeBuilt": true,
+                "sandbox": "macos",
+                "isolated": true,
+                "ready": true,
+                "toolchain": "leanprover/lean4:v4.34.0",
+                "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                "liveTestedInThisDistribution": false
+              },
+              "additionalAxioms": [],
+              "auditIsolation": "fresh_import_environment_reset_between_candidates"
+            },
+            "evidence": {
+              "schema": "lean-proof-evidence-v1",
+              "sha256": "db067e96c0b195b8b956618c93b1802a5116f9f275422ad8d66a037a9071cc95",
+              "artifact": "reports/mathir-v2-stage7-proof-evidence/db067e96c0b195b8b956618c93b1802a5116f9f275422ad8d66a037a9071cc95.json.gz",
+              "uncompressedBytes": 287,
+              "compressedBytes": 185
+            }
+          }
+        }
+      ],
+      "routes": [
+        {
+          "routeId": "route_main",
+          "routeHash": "d6069c28287a229cb3fc7c9e1e5d7638c676233c8156977b772729606e0dbcb6",
+          "sourceEvidenceHash": "f4e6743e01d5dad0b94215e30754e03112457d1473c183f14da52d6cc2f41df1",
+          "goalNodeId": "n5",
+          "goalProofTerm": "by\n  have jjproof_n1 : (((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = ((((((1 : ℚ) / 2) ^ (1 : ℕ)) + (((1 : ℚ) / 2) ^ (2 : ℕ))) + (((1 : ℚ) / 2) ^ (3 : ℕ))) + (((1 : ℚ) / 2) ^ (4 : ℕ))))) := (by\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 3 + 1)]\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 2 + 1)]\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 1 + 1)]\n  simp only [Finset.Icc_self, Finset.sum_singleton])\n  have jjproof_n2 : ((∀ (v_d_k : ℕ), (((((((1 : ℚ) / 2) ^ (1 : ℕ)) = ((1 : ℚ) / 2)) ∧ ((((1 : ℚ) / 2) ^ (2 : ℕ)) = ((1 : ℚ) / 4))) ∧ ((((1 : ℚ) / 2) ^ (3 : ℕ)) = ((1 : ℚ) / 8))) ∧ ((((1 : ℚ) / 2) ^ (4 : ℕ)) = ((1 : ℚ) / 16))))) := (by intro v_d_k; norm_num)\n  have jjproof_n3 : ((∀ (jjdep_n1 : ((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = ((((((1 : ℚ) / 2) ^ (1 : ℕ)) + (((1 : ℚ) / 2) ^ (2 : ℕ))) + (((1 : ℚ) / 2) ^ (3 : ℕ))) + (((1 : ℚ) / 2) ^ (4 : ℕ))))), (∀ (jjdep_n2 : (((((((1 : ℚ) / 2) ^ (1 : ℕ)) = ((1 : ℚ) / 2)) ∧ ((((1 : ℚ) / 2) ^ (2 : ℕ)) = ((1 : ℚ) / 4))) ∧ ((((1 : ℚ) / 2) ^ (3 : ℕ)) = ((1 : ℚ) / 8))) ∧ ((((1 : ℚ) / 2) ^ (4 : ℕ)) = ((1 : ℚ) / 16)))), ((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)))))) := (by intro h1 h2; simp only [h1, h2.1.1.1, h2.1.1.2, h2.1.2, h2.2])\n  have jjproof_n4 : ((∀ (v_d_k : ℕ), ((((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16))) ∧ ((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)))) ∧ ((((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)) = ((15 : ℚ) / 16))))) := (by intro v_d_k; norm_num)\n  have jjproof_n5 : ((∀ (jjdep_n3 : ((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)))), (∀ (jjdep_n4 : ((((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16))) ∧ ((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)))) ∧ ((((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)) = ((15 : ℚ) / 16)))), ((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = ((15 : ℚ) / 16))))) := (by intro h3 h4; exact h3.trans (h4.1.2.trans h4.2))\n  exact (jjproof_n5 (jjproof_n3 (jjproof_n1) (jjproof_n2 (0 : ℕ))) (jjproof_n4 (0 : ℕ)))",
+          "proofComposition": {
+            "status": "composed",
+            "error": null,
+            "kernelChecked": true
+          },
+          "status": "passed",
+          "completeOriginalRouteKernelPassed": true,
+          "fixedStatementKernelPassed": true,
+          "routeConnectivity": {
+            "status": "connected",
+            "goalNodeIdPresent": true,
+            "unconnectedNodeIds": [],
+            "unconnectedClaimNodeIds": [],
+            "basis": "goal dependency closure plus explicit induction-case edges"
+          },
+          "dependencyEvidence": {
+            "status": "checked",
+            "basis": "Kernel proof expression binder-use audit for declared claim dependencies"
+          },
+          "stepResults": [
+            {
+              "sourceId": "mathir-v2/route_main/n1",
+              "routeId": "route_main",
+              "nodeId": "n1",
+              "kind": "claim",
+              "expectedType": "((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = ((((((1 : ℚ) / 2) ^ (1 : ℕ)) + (((1 : ℚ) / 2) ^ (2 : ℕ))) + (((1 : ℚ) / 2) ^ (3 : ℕ))) + (((1 : ℚ) / 2) ^ (4 : ℕ))))",
+              "proofTerm": "by\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 3 + 1)]\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 2 + 1)]\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 1 + 1)]\n  simp only [Finset.Icc_self, Finset.sum_singleton]",
+              "originalProofTerm": "by\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 3 + 1)]\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 2 + 1)]\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 1 + 1)]\n  simp only [Finset.Icc_self, Finset.sum_singleton]",
+              "context": [
+                {
+                  "source_id": "d_k",
+                  "scope_id": "s_root",
+                  "kind": "variable",
+                  "name": "v_d_k",
+                  "type": "ℕ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                }
+              ],
+              "dependsOn": [],
+              "proofAttemptStatus": "verified",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "failureClass": null,
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 65,
+                  "end": 125
+                }
+              ],
+              "status": "passed",
+              "lean": {
+                "localVerified": true,
+                "status": "verified",
+                "diagnostics": [],
+                "certificate": {
+                  "auditMethod": "fresh_environment_data_only_kernel_replay",
+                  "axioms": [
+                    "propext",
+                    "Classical.choice",
+                    "Quot.sound"
+                  ],
+                  "checked": true,
+                  "dependencyUsage": [],
+                  "formalStatement": "∑ v_d_k ∈ Finset.Icc 1 4, (1 / 2) ^ v_d_k = (1 / 2) ^ 1 + (1 / 2) ^ 2 + (1 / 2) ^ 3 + (1 / 2) ^ 4",
+                  "statementMatched": true,
+                  "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                  "expectedExpressionSha256": "880fd4b03e0eaabfb5c28d54864a00000ea515d5bea5a9c08be07486c18e5004",
+                  "proofExpressionSha256": "70cd46c636974b339998da1e4f2a030a66e08a71d01572b060aba795f5bb199b",
+                  "statement_hash": "d0dbaa648a8e41e790daa278e047e050ee52b7c536c12ae9432569591646bf41",
+                  "nativeExpressionComparison": "structural_equal",
+                  "sourceTypeSha256": "e026a4e51df193382f2e58a79ee830724d608b82c7c0deeeaedec233873b1004",
+                  "sourceProofSha256": "87296718e4e86af6a06d2fc041bcd8b36e522994f259717d415fb41cdd59c5a7",
+                  "runtime": {
+                    "configured": true,
+                    "executableFound": true,
+                    "projectFound": true,
+                    "runtimeBuilt": true,
+                    "sandbox": "macos",
+                    "isolated": true,
+                    "ready": true,
+                    "toolchain": "leanprover/lean4:v4.34.0",
+                    "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                    "liveTestedInThisDistribution": false
+                  },
+                  "additionalAxioms": [],
+                  "auditIsolation": "fresh_import_environment_reset_between_candidates"
+                },
+                "evidence": {
+                  "schema": "lean-proof-evidence-v1",
+                  "sha256": "13a1d64cca821165dcc13c401aabf7d474cbd74d81d2d960af1679e62afe528b",
+                  "artifact": "reports/mathir-v2-stage7-proof-evidence/13a1d64cca821165dcc13c401aabf7d474cbd74d81d2d960af1679e62afe528b.json.gz",
+                  "uncompressedBytes": 288,
+                  "compressedBytes": 183
+                }
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_main/n2",
+              "routeId": "route_main",
+              "nodeId": "n2",
+              "kind": "claim",
+              "expectedType": "(∀ (v_d_k : ℕ), (((((((1 : ℚ) / 2) ^ (1 : ℕ)) = ((1 : ℚ) / 2)) ∧ ((((1 : ℚ) / 2) ^ (2 : ℕ)) = ((1 : ℚ) / 4))) ∧ ((((1 : ℚ) / 2) ^ (3 : ℕ)) = ((1 : ℚ) / 8))) ∧ ((((1 : ℚ) / 2) ^ (4 : ℕ)) = ((1 : ℚ) / 16))))",
+              "proofTerm": "by intro v_d_k; norm_num",
+              "originalProofTerm": "by intro v_d_k; norm_num",
+              "context": [
+                {
+                  "source_id": "d_k",
+                  "scope_id": "s_root",
+                  "kind": "variable",
+                  "name": "v_d_k",
+                  "type": "ℕ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                }
+              ],
+              "dependsOn": [],
+              "proofAttemptStatus": "verified",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "failureClass": null,
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 126,
+                  "end": 186
+                }
+              ],
+              "status": "passed",
+              "lean": {
+                "localVerified": true,
+                "status": "verified",
+                "diagnostics": [],
+                "certificate": {
+                  "auditMethod": "fresh_environment_data_only_kernel_replay",
+                  "axioms": [
+                    "propext",
+                    "Classical.choice",
+                    "Quot.sound"
+                  ],
+                  "checked": true,
+                  "dependencyUsage": [],
+                  "formalStatement": "∀ (v_d_k : ℕ), (((1 / 2) ^ 1 = 1 / 2 ∧ (1 / 2) ^ 2 = 1 / 4) ∧ (1 / 2) ^ 3 = 1 / 8) ∧ (1 / 2) ^ 4 = 1 / 16",
+                  "statementMatched": true,
+                  "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                  "expectedExpressionSha256": "a3816a83dd6b9188173d92d6576fb9853989fb85ec8b15a636d38a5eb717eb18",
+                  "proofExpressionSha256": "f1f67e4b43249e3f0f7bfe7b5d54f90336b52152ccc6c9201307fab09e0811f9",
+                  "statement_hash": "d0dbaa648a8e41e790daa278e047e050ee52b7c536c12ae9432569591646bf41",
+                  "nativeExpressionComparison": "structural_equal",
+                  "sourceTypeSha256": "453b1c6de9b64aace5d33a0b104917625595ecbff6aa698acc2bc1dfed160920",
+                  "sourceProofSha256": "4568f570094b47b874ffa8faeb11b6bed1b420cb630368fb0dda1e0275e9b03a",
+                  "runtime": {
+                    "configured": true,
+                    "executableFound": true,
+                    "projectFound": true,
+                    "runtimeBuilt": true,
+                    "sandbox": "macos",
+                    "isolated": true,
+                    "ready": true,
+                    "toolchain": "leanprover/lean4:v4.34.0",
+                    "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                    "liveTestedInThisDistribution": false
+                  },
+                  "additionalAxioms": [],
+                  "auditIsolation": "fresh_import_environment_reset_between_candidates"
+                },
+                "evidence": {
+                  "schema": "lean-proof-evidence-v1",
+                  "sha256": "4154de068d0f671c5e27c975692e17995d089f569c3f6b0d01856159863a9353",
+                  "artifact": "reports/mathir-v2-stage7-proof-evidence/4154de068d0f671c5e27c975692e17995d089f569c3f6b0d01856159863a9353.json.gz",
+                  "uncompressedBytes": 287,
+                  "compressedBytes": 182
+                }
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_main/n3",
+              "routeId": "route_main",
+              "nodeId": "n3",
+              "kind": "claim",
+              "expectedType": "(∀ (jjdep_n1 : ((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = ((((((1 : ℚ) / 2) ^ (1 : ℕ)) + (((1 : ℚ) / 2) ^ (2 : ℕ))) + (((1 : ℚ) / 2) ^ (3 : ℕ))) + (((1 : ℚ) / 2) ^ (4 : ℕ))))), (∀ (jjdep_n2 : (((((((1 : ℚ) / 2) ^ (1 : ℕ)) = ((1 : ℚ) / 2)) ∧ ((((1 : ℚ) / 2) ^ (2 : ℕ)) = ((1 : ℚ) / 4))) ∧ ((((1 : ℚ) / 2) ^ (3 : ℕ)) = ((1 : ℚ) / 8))) ∧ ((((1 : ℚ) / 2) ^ (4 : ℕ)) = ((1 : ℚ) / 16)))), ((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)))))",
+              "proofTerm": "by intro h1 h2; simp only [h1, h2.1.1.1, h2.1.1.2, h2.1.2, h2.2]",
+              "originalProofTerm": "by intro h1 h2; simp only [h1, h2.1.1.1, h2.1.1.2, h2.1.2, h2.2]",
+              "context": [
+                {
+                  "source_id": "d_k",
+                  "scope_id": "s_root",
+                  "kind": "variable",
+                  "name": "v_d_k",
+                  "type": "ℕ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "n1",
+                  "kind": "claim",
+                  "name": "h_route_main_n1",
+                  "type": "((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = ((((((1 : ℚ) / 2) ^ (1 : ℕ)) + (((1 : ℚ) / 2) ^ (2 : ℕ))) + (((1 : ℚ) / 2) ^ (3 : ℕ))) + (((1 : ℚ) / 2) ^ (4 : ℕ))))"
+                },
+                {
+                  "source_id": "n2",
+                  "kind": "claim",
+                  "name": "h_route_main_n2",
+                  "type": "(((((((1 : ℚ) / 2) ^ (1 : ℕ)) = ((1 : ℚ) / 2)) ∧ ((((1 : ℚ) / 2) ^ (2 : ℕ)) = ((1 : ℚ) / 4))) ∧ ((((1 : ℚ) / 2) ^ (3 : ℕ)) = ((1 : ℚ) / 8))) ∧ ((((1 : ℚ) / 2) ^ (4 : ℕ)) = ((1 : ℚ) / 16)))"
+                }
+              ],
+              "dependsOn": [
+                "n1",
+                "n2"
+              ],
+              "proofAttemptStatus": "verified",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "all_declared_dependencies_used",
+              "dependencyUsage": [
+                {
+                  "dependencyId": "n1",
+                  "used": true
+                },
+                {
+                  "dependencyId": "n2",
+                  "used": true
+                }
+              ],
+              "failureClass": null,
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 187,
+                  "end": 228
+                }
+              ],
+              "status": "passed",
+              "lean": {
+                "localVerified": true,
+                "status": "verified",
+                "diagnostics": [],
+                "certificate": {
+                  "auditMethod": "fresh_environment_data_only_kernel_replay",
+                  "axioms": [
+                    "propext",
+                    "Classical.choice",
+                    "Quot.sound"
+                  ],
+                  "checked": true,
+                  "dependencyUsage": [
+                    {
+                      "dependencyId": "n1",
+                      "used": true
+                    },
+                    {
+                      "dependencyId": "n2",
+                      "used": true
+                    }
+                  ],
+                  "formalStatement": "∑ v_d_k ∈ Finset.Icc 1 4, (1 / 2) ^ v_d_k = (1 / 2) ^ 1 + (1 / 2) ^ 2 + (1 / 2) ^ 3 + (1 / 2) ^ 4 →\n  (((1 / 2) ^ 1 = 1 / 2 ∧ (1 / 2) ^ 2 = 1 / 4) ∧ (1 / 2) ^ 3 = 1 / 8) ∧ (1 / 2) ^ 4 = 1 / 16 →\n    ∑ v_d_k ∈ Finset.Icc 1 4, (1 / 2) ^ v_d_k = 1 / 2 + 1 / 4 + 1 / 8 + 1 / 16",
+                  "statementMatched": true,
+                  "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                  "expectedExpressionSha256": "25756f40669a256df26ed7eeb114f96d0eeb6c6c88b09f7bee86259b04ae9cd8",
+                  "proofExpressionSha256": "278fc06339114c2f184f85d2b13947faaac688499b656902cb78301a889a28eb",
+                  "statement_hash": "d0dbaa648a8e41e790daa278e047e050ee52b7c536c12ae9432569591646bf41",
+                  "nativeExpressionComparison": "structural_equal",
+                  "sourceTypeSha256": "652a14ba40b3fd8aad89fd9745c76768c8c3a6c231a781fc5ff02683b3a86b0d",
+                  "sourceProofSha256": "d38144b1a8b226d6970f5ae5023379f51e63a75ff824223f8b1dfe14610dbf4d",
+                  "runtime": {
+                    "configured": true,
+                    "executableFound": true,
+                    "projectFound": true,
+                    "runtimeBuilt": true,
+                    "sandbox": "macos",
+                    "isolated": true,
+                    "ready": true,
+                    "toolchain": "leanprover/lean4:v4.34.0",
+                    "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                    "liveTestedInThisDistribution": false
+                  },
+                  "additionalAxioms": [],
+                  "auditIsolation": "fresh_import_environment_reset_between_candidates"
+                },
+                "evidence": {
+                  "schema": "lean-proof-evidence-v1",
+                  "sha256": "6564ebac0c3bcd6f0c8f793bb1fa75d16448977a49f8265ce7885eb15eb6a11b",
+                  "artifact": "reports/mathir-v2-stage7-proof-evidence/6564ebac0c3bcd6f0c8f793bb1fa75d16448977a49f8265ce7885eb15eb6a11b.json.gz",
+                  "uncompressedBytes": 287,
+                  "compressedBytes": 181
+                }
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_main/n4",
+              "routeId": "route_main",
+              "nodeId": "n4",
+              "kind": "claim",
+              "expectedType": "(∀ (v_d_k : ℕ), ((((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16))) ∧ ((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)))) ∧ ((((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)) = ((15 : ℚ) / 16))))",
+              "proofTerm": "by intro v_d_k; norm_num",
+              "originalProofTerm": "by intro v_d_k; norm_num",
+              "context": [
+                {
+                  "source_id": "d_k",
+                  "scope_id": "s_root",
+                  "kind": "variable",
+                  "name": "v_d_k",
+                  "type": "ℕ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                }
+              ],
+              "dependsOn": [],
+              "proofAttemptStatus": "verified",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "failureClass": null,
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 229,
+                  "end": 295
+                }
+              ],
+              "status": "passed",
+              "lean": {
+                "localVerified": true,
+                "status": "verified",
+                "diagnostics": [],
+                "certificate": {
+                  "auditMethod": "fresh_environment_data_only_kernel_replay",
+                  "axioms": [
+                    "propext",
+                    "Classical.choice",
+                    "Quot.sound"
+                  ],
+                  "checked": true,
+                  "dependencyUsage": [],
+                  "formalStatement": "∀ (v_d_k : ℕ),\n  (1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 = 1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 ∧\n      1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 = (8 + 4 + 2 + 1) / 16) ∧\n    (8 + 4 + 2 + 1) / 16 = 15 / 16",
+                  "statementMatched": true,
+                  "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                  "expectedExpressionSha256": "d3d4204fa3c77d68023a3d6b4bd07f0ff2b685e4bd2cec6c07f571af05120514",
+                  "proofExpressionSha256": "ed480bc087393aac489064252a329e992ab95c79be574a17d7bac72d9880e373",
+                  "statement_hash": "d0dbaa648a8e41e790daa278e047e050ee52b7c536c12ae9432569591646bf41",
+                  "nativeExpressionComparison": "structural_equal",
+                  "sourceTypeSha256": "d35eda8f511df48b6c5c5ead95d6735b610fd9e3b797707d46ea03e0af9309fb",
+                  "sourceProofSha256": "4568f570094b47b874ffa8faeb11b6bed1b420cb630368fb0dda1e0275e9b03a",
+                  "runtime": {
+                    "configured": true,
+                    "executableFound": true,
+                    "projectFound": true,
+                    "runtimeBuilt": true,
+                    "sandbox": "macos",
+                    "isolated": true,
+                    "ready": true,
+                    "toolchain": "leanprover/lean4:v4.34.0",
+                    "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                    "liveTestedInThisDistribution": false
+                  },
+                  "additionalAxioms": [],
+                  "auditIsolation": "fresh_import_environment_reset_between_candidates"
+                },
+                "evidence": {
+                  "schema": "lean-proof-evidence-v1",
+                  "sha256": "5cf6b73864e3bb6c22412f0452378dcf7fe866de701a931ccc749a6f969236c2",
+                  "artifact": "reports/mathir-v2-stage7-proof-evidence/5cf6b73864e3bb6c22412f0452378dcf7fe866de701a931ccc749a6f969236c2.json.gz",
+                  "uncompressedBytes": 288,
+                  "compressedBytes": 183
+                }
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_main/n5",
+              "routeId": "route_main",
+              "nodeId": "n5",
+              "kind": "claim",
+              "expectedType": "(∀ (jjdep_n3 : ((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)))), (∀ (jjdep_n4 : ((((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16))) ∧ ((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)))) ∧ ((((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)) = ((15 : ℚ) / 16)))), ((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = ((15 : ℚ) / 16))))",
+              "proofTerm": "by intro h3 h4; exact h3.trans (h4.1.2.trans h4.2)",
+              "originalProofTerm": "by intro h3 h4; exact h3.trans (h4.1.2.trans h4.2)",
+              "context": [
+                {
+                  "source_id": "d_k",
+                  "scope_id": "s_root",
+                  "kind": "variable",
+                  "name": "v_d_k",
+                  "type": "ℕ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "n3",
+                  "kind": "claim",
+                  "name": "h_route_main_n3",
+                  "type": "((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (4 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)))"
+                },
+                {
+                  "source_id": "n4",
+                  "kind": "claim",
+                  "name": "h_route_main_n4",
+                  "type": "((((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16))) ∧ ((((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) + ((1 : ℚ) / 8)) + ((1 : ℚ) / 16)) = (((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)))) ∧ ((((((8 : ℚ) + (4 : ℚ)) + (2 : ℚ)) + (1 : ℚ)) / (16 : ℚ)) = ((15 : ℚ) / 16)))"
+                }
+              ],
+              "dependsOn": [
+                "n3",
+                "n4"
+              ],
+              "proofAttemptStatus": "verified",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "all_declared_dependencies_used",
+              "dependencyUsage": [
+                {
+                  "dependencyId": "n3",
+                  "used": true
+                },
+                {
+                  "dependencyId": "n4",
+                  "used": true
+                }
+              ],
+              "failureClass": null,
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 187,
+                  "end": 295
+                }
+              ],
+              "status": "passed",
+              "lean": {
+                "localVerified": true,
+                "status": "verified",
+                "diagnostics": [],
+                "certificate": {
+                  "auditMethod": "fresh_environment_data_only_kernel_replay",
+                  "axioms": [
+                    "propext",
+                    "Classical.choice",
+                    "Quot.sound"
+                  ],
+                  "checked": true,
+                  "dependencyUsage": [
+                    {
+                      "dependencyId": "n3",
+                      "used": true
+                    },
+                    {
+                      "dependencyId": "n4",
+                      "used": true
+                    }
+                  ],
+                  "formalStatement": "∑ v_d_k ∈ Finset.Icc 1 4, (1 / 2) ^ v_d_k = 1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 →\n  (1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 = 1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 ∧\n        1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 = (8 + 4 + 2 + 1) / 16) ∧\n      (8 + 4 + 2 + 1) / 16 = 15 / 16 →\n    ∑ v_d_k ∈ Finset.Icc 1 4, (1 / 2) ^ v_d_k = 15 / 16",
+                  "statementMatched": true,
+                  "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                  "expectedExpressionSha256": "bafcae6c5e23d71127b8e83d7b4eb50cc39448285246d0b9f8647fea150634c3",
+                  "proofExpressionSha256": "a9192087bd011413cd4f8269dc0f9dff23c979c9ac50ae6e6a49991b7ff400b1",
+                  "statement_hash": "d0dbaa648a8e41e790daa278e047e050ee52b7c536c12ae9432569591646bf41",
+                  "nativeExpressionComparison": "structural_equal",
+                  "sourceTypeSha256": "5bed8ccdf6b1f2e9dc87519d880e9af90e160a0906bf686c3faa03e22022c3c5",
+                  "sourceProofSha256": "df9a80bfd7bb98e0a0d03686f4fa12baadc11e8ea2109845505c7a26fa6ca1fa",
+                  "runtime": {
+                    "configured": true,
+                    "executableFound": true,
+                    "projectFound": true,
+                    "runtimeBuilt": true,
+                    "sandbox": "macos",
+                    "isolated": true,
+                    "ready": true,
+                    "toolchain": "leanprover/lean4:v4.34.0",
+                    "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                    "liveTestedInThisDistribution": false
+                  },
+                  "additionalAxioms": [],
+                  "auditIsolation": "fresh_import_environment_reset_between_candidates"
+                },
+                "evidence": {
+                  "schema": "lean-proof-evidence-v1",
+                  "sha256": "db067e96c0b195b8b956618c93b1802a5116f9f275422ad8d66a037a9071cc95",
+                  "artifact": "reports/mathir-v2-stage7-proof-evidence/db067e96c0b195b8b956618c93b1802a5116f9f275422ad8d66a037a9071cc95.json.gz",
+                  "uncompressedBytes": 287,
+                  "compressedBytes": 185
+                }
+              }
+            }
+          ],
+          "kernel": {
+            "localVerified": true,
+            "status": "verified",
+            "diagnostics": [],
+            "certificate": {
+              "auditMethod": "fresh_environment_data_only_kernel_replay",
+              "axioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "checked": true,
+              "dependencyUsage": [],
+              "formalStatement": "∑ v_d_k ∈ Finset.Icc 1 4, (1 / 2) ^ v_d_k = 15 / 16",
+              "statementMatched": true,
+              "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+              "expectedExpressionSha256": "da4ee408fdb69f23f2ff75a7f36692fe457aedd7e1a1e3e13b6238a36be4b723",
+              "proofExpressionSha256": "7d77e26a89d78636bd95939cb30c2597bbccb046ecf8dd06747db1776cf2b6cb",
+              "statement_hash": "d0dbaa648a8e41e790daa278e047e050ee52b7c536c12ae9432569591646bf41",
+              "nativeExpressionComparison": "structural_equal",
+              "sourceTypeSha256": "efda8366674d618be2c971dfab5bddc5c9084bc4cd3444c9d02aaf8230e84e7e",
+              "sourceProofSha256": "24755b02baa8607b40aed1fe898c5ac01ce7ed2ce203a556356ce713f41dd955",
+              "runtime": {
+                "configured": true,
+                "executableFound": true,
+                "projectFound": true,
+                "runtimeBuilt": true,
+                "sandbox": "macos",
+                "isolated": true,
+                "ready": true,
+                "toolchain": "leanprover/lean4:v4.34.0",
+                "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                "liveTestedInThisDistribution": false
+              },
+              "additionalAxioms": [],
+              "auditIsolation": "fresh_import_environment_reset_between_candidates"
+            },
+            "evidence": {
+              "schema": "lean-proof-evidence-v1",
+              "sha256": "115009049d07531a5bf25cae3816f339274670d3a23e320d6356283f7e5b83d9",
+              "artifact": "reports/mathir-v2-stage7-proof-evidence/115009049d07531a5bf25cae3816f339274670d3a23e320d6356283f7e5b83d9.json.gz",
+              "uncompressedBytes": 289,
+              "compressedBytes": 184
+            }
+          },
+          "sourceAlignment": {
+            "status": "not_assessed",
+            "sourceRefsValidated": true,
+            "semanticAlignmentKernelProven": false
+          }
+        }
+      ],
+      "fixedStatementKernelPassed": true,
+      "anyRouteKernelPassed": true,
+      "kernelVerified": true,
+      "leanMetrics": {
+        "processCount": 3,
+        "elapsedSeconds": 41.729,
+        "processes": [
+          {
+            "phase": "proposition_elaboration",
+            "wallSeconds": 13.63,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 16201,
+            "kernelInputJsonBytes": 0,
+            "status": "completed",
+            "userCpuSeconds": 2.18,
+            "systemCpuSeconds": 11.4,
+            "maxRssBytes": 6050398208,
+            "peakMemoryFootprintBytes": 935342272,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 250949,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 187957248,
+            "leanReturnCode": 0
+          },
+          {
+            "phase": "expected_wire_materialization",
+            "wallSeconds": 0.0063,
+            "leanStdoutBytes": 250949,
+            "recordCount": 6,
+            "pythonPeakRssBytes": 187957248
+          },
+          {
+            "phase": "proof_export_batch",
+            "wallSeconds": 13.76,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 16218,
+            "kernelInputJsonBytes": 0,
+            "status": "completed",
+            "userCpuSeconds": 2.53,
+            "systemCpuSeconds": 11.23,
+            "maxRssBytes": 6093717504,
+            "peakMemoryFootprintBytes": 968028416,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 7529218,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 187957248,
+            "leanReturnCode": 0
+          },
+          {
+            "phase": "proof_wire_materialization",
+            "wallSeconds": 0.3983,
+            "leanStdoutBytes": 7529218,
+            "candidateCount": 6,
+            "pythonPeakRssBytes": 222707712
+          },
+          {
+            "phase": "independent_kernel_replay_batch",
+            "wallSeconds": 13.83,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 16231,
+            "kernelInputJsonBytes": 7106345,
+            "status": "completed",
+            "userCpuSeconds": 2.49,
+            "systemCpuSeconds": 11.31,
+            "maxRssBytes": 6090588160,
+            "peakMemoryFootprintBytes": 973353280,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 5179,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 222789632,
+            "leanReturnCode": 0
+          },
+          {
+            "phase": "kernel_certificate_materialization",
+            "wallSeconds": 0.1043,
+            "leanStdoutBytes": 5179,
+            "certificateCount": 6,
+            "pythonPeakRssBytes": 222838784
+          }
+        ],
+        "measurement": "Lean subprocess groups; each invocation includes the sandbox launcher and Lean process. Kernel batch resets the imported environment between evidence replays."
+      }
+    }
+  ],
+  "workflowTermination": "original_route_kernel_passed",
+  "workflowEvents": [
+    {
+      "stage": "diagnostic_repair",
+      "provider_called": false,
+      "provider": null,
+      "patch_records": [
+        {
+          "node_id": "n1",
+          "origin": "diagnostic_repair",
+          "proof_term": "by\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 3 + 1)]\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 2 + 1)]\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 1 + 1)]\n  simp only [Finset.Icc_self, Finset.sum_singleton]",
+          "replaces_proof_term": "by\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 3 + 1)]\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 2 + 1)]\n  rw [Finset.sum_Icc_succ_top (by norm_num : (1 : ℕ) ≤ 1 + 1)]\n  simp only [Finset.Icc_self, Finset.sum_singleton]\n  norm_num",
+          "statement_hash": "d0dbaa648a8e41e790daa278e047e050ee52b7c536c12ae9432569591646bf41",
+          "diagnostic_hash": "90ae5ec63b7a37a1bfc4a388844cc6e8039273e34a5d08d83791765bfa90cbc6"
+        }
+      ],
+      "repair_input_hash": "96c122b3b42b702fe5220769b554aa316c9362db3cd970167a2c6152f21f3b82",
+      "result": null
+    }
+  ],
+  "repairMode": "deterministic_diagnostic_cleanup",
+  "repairInputDiagnostic": [
+    {
+      "nodeId": "n1",
+      "diagnostics": [
+        {
+          "severity": "error",
+          "message": "No goals to be solved",
+          "leanPosition": {
+            "column": 154,
+            "line": 5
+          },
+          "leanEndPosition": {
+            "column": 5533,
+            "line": 5
+          },
+          "stepId": "mathir-v2/route_main/n1",
+          "sourceRefs": [
+            {
+              "blockId": "b_text",
+              "start": 65,
+              "end": 125
+            }
+          ],
+          "mappingPrecision": "step",
+          "raw": {
+            "caption": "",
+            "data": "No goals to be solved",
+            "endPos": {
+              "column": 5533,
+              "line": 5
+            },
+            "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-C08-current-diagnostics-cleanup/work/lean-ufs1za_2/Task.lean",
+            "isSilent": false,
+            "keepFullRange": false,
+            "kind": "[anonymous]",
+            "pos": {
+              "column": 154,
+              "line": 5
+            },
+            "severity": "error"
+          }
+        }
+      ]
+    }
+  ],
+  "repairPatches": [
+    {
+      "nodeId": "n1",
+      "proofTermSha256": "87296718e4e86af6a06d2fc041bcd8b36e522994f259717d415fb41cdd59c5a7",
+      "proofTermBytes": 255
+    }
+  ],
+  "repairCandidateChecks": [
+    {
+      "batchIndex": 2,
+      "batchCandidateCount": 1,
+      "batchElapsedSeconds": 40.327,
+      "stepId": "mathir-v2/route_main/n1/deterministic-repair",
+      "proofTermBytes": 255,
+      "externalizedWireBytes": 962292,
+      "evidence": {
+        "schema": "lean-proof-evidence-v1",
+        "sha256": "13a1d64cca821165dcc13c401aabf7d474cbd74d81d2d960af1679e62afe528b",
+        "artifact": "reports/mathir-v2-stage7-proof-evidence/13a1d64cca821165dcc13c401aabf7d474cbd74d81d2d960af1679e62afe528b.json.gz",
+        "uncompressedBytes": 288,
+        "compressedBytes": 183
+      }
+    }
+  ],
+  "finalFixedStatementKernelPassed": true,
+  "finalOriginalRouteKernelPassed": true,
+  "statementLockPreserved": true,
+  "elapsedSeconds": 126.672,
+  "resources": {
+    "processCount": 9,
+    "elapsedSeconds": 121.6216257950291,
+    "activeProcessGroups": 0,
+    "peakActiveProcessGroups": 1,
+    "lastProcessGroupPid": 16231
+  },
+  "leanRuntime": {
+    "configured": true,
+    "executableFound": true,
+    "projectFound": true,
+    "runtimeBuilt": true,
+    "sandbox": "macos",
+    "isolated": true,
+    "ready": true,
+    "toolchain": "leanprover/lean4:v4.34.0",
+    "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+    "liveTestedInThisDistribution": false
+  }
+}

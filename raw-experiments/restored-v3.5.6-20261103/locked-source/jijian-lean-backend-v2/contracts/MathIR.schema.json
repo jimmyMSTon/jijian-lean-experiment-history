@@ -1,0 +1,704 @@
+{
+  "$defs": {
+    "Ambiguity": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "sourceText": {
+          "title": "Sourcetext",
+          "type": "string"
+        },
+        "sourceRefs": {
+          "items": {
+            "$ref": "#/$defs/SourceRef"
+          },
+          "title": "Sourcerefs",
+          "type": "array"
+        },
+        "candidates": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Candidates",
+          "type": "array"
+        },
+        "resolvedAs": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Resolvedas"
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Confidence"
+        },
+        "resolutionBasis": {
+          "title": "Resolutionbasis",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "sourceText",
+        "sourceRefs",
+        "candidates",
+        "resolvedAs",
+        "confidence",
+        "resolutionBasis"
+      ],
+      "title": "Ambiguity",
+      "type": "object"
+    },
+    "Box": {
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "title": "X",
+          "type": "number"
+        },
+        "y": {
+          "title": "Y",
+          "type": "number"
+        },
+        "width": {
+          "title": "Width",
+          "type": "number"
+        },
+        "height": {
+          "title": "Height",
+          "type": "number"
+        }
+      },
+      "required": [
+        "x",
+        "y",
+        "width",
+        "height"
+      ],
+      "title": "Box",
+      "type": "object"
+    },
+    "Claim": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "latex": {
+          "title": "Latex",
+          "type": "string"
+        },
+        "scopeId": {
+          "title": "Scopeid",
+          "type": "string"
+        },
+        "sourceRefs": {
+          "items": {
+            "$ref": "#/$defs/SourceRef"
+          },
+          "title": "Sourcerefs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "text",
+        "latex",
+        "scopeId",
+        "sourceRefs"
+      ],
+      "title": "Claim",
+      "type": "object"
+    },
+    "Definition": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "scopeId": {
+          "title": "Scopeid",
+          "type": "string"
+        },
+        "sourceRefs": {
+          "items": {
+            "$ref": "#/$defs/SourceRef"
+          },
+          "title": "Sourcerefs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "text",
+        "scopeId",
+        "sourceRefs"
+      ],
+      "title": "Definition",
+      "type": "object"
+    },
+    "Induction": {
+      "additionalProperties": false,
+      "description": "References to original cases; hypothesis is a local assumption, not a theorem.",
+      "properties": {
+        "variableId": {
+          "title": "Variableid",
+          "type": "string"
+        },
+        "baseCaseId": {
+          "title": "Basecaseid",
+          "type": "string"
+        },
+        "hypothesisId": {
+          "title": "Hypothesisid",
+          "type": "string"
+        },
+        "stepCaseId": {
+          "title": "Stepcaseid",
+          "type": "string"
+        },
+        "conclusionId": {
+          "title": "Conclusionid",
+          "type": "string"
+        },
+        "stepScopeId": {
+          "title": "Stepscopeid",
+          "type": "string"
+        }
+      },
+      "required": [
+        "variableId",
+        "baseCaseId",
+        "hypothesisId",
+        "stepCaseId",
+        "conclusionId",
+        "stepScopeId"
+      ],
+      "title": "Induction",
+      "type": "object"
+    },
+    "MathExpression": {
+      "additionalProperties": false,
+      "description": "Data-only expression tree; identifiers refer to MathIR symbols, never Lean code.",
+      "properties": {
+        "op": {
+          "enum": [
+            "symbol",
+            "number",
+            "constant",
+            "add",
+            "sub",
+            "mul",
+            "div",
+            "pow",
+            "neg",
+            "eq",
+            "le",
+            "lt",
+            "ge",
+            "gt",
+            "and",
+            "or",
+            "implies",
+            "iff",
+            "not",
+            "forall",
+            "exists",
+            "sum_range",
+            "apply",
+            "eval",
+            "cos",
+            "sin",
+            "true"
+          ],
+          "title": "Op",
+          "type": "string"
+        },
+        "args": {
+          "items": {
+            "$ref": "#/$defs/MathExpression"
+          },
+          "title": "Args",
+          "type": "array"
+        },
+        "symbolId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Symbolid"
+        },
+        "binderId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Binderid"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        }
+      },
+      "required": [
+        "op"
+      ],
+      "title": "MathExpression",
+      "type": "object"
+    },
+    "MathematicalExpression": {
+      "additionalProperties": false,
+      "properties": {
+        "sourceId": {
+          "title": "Sourceid",
+          "type": "string"
+        },
+        "expression": {
+          "$ref": "#/$defs/MathExpression"
+        }
+      },
+      "required": [
+        "sourceId",
+        "expression"
+      ],
+      "title": "MathematicalExpression",
+      "type": "object"
+    },
+    "MathematicalSpecification": {
+      "additionalProperties": false,
+      "description": "Typed mathematics attached during understanding, before proof generation.",
+      "properties": {
+        "expressions": {
+          "items": {
+            "$ref": "#/$defs/MathematicalExpression"
+          },
+          "title": "Expressions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "expressions"
+      ],
+      "title": "MathematicalSpecification",
+      "type": "object"
+    },
+    "Scope": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "parentId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Parentid"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "sourceRefs": {
+          "items": {
+            "$ref": "#/$defs/SourceRef"
+          },
+          "title": "Sourcerefs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "parentId",
+        "description",
+        "sourceRefs"
+      ],
+      "title": "Scope",
+      "type": "object"
+    },
+    "Source": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "title": "Kind",
+          "type": "string"
+        },
+        "raw": {
+          "title": "Raw",
+          "type": "string"
+        },
+        "normalized": {
+          "title": "Normalized",
+          "type": "string"
+        },
+        "recognitionId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Recognitionid"
+        },
+        "transcriptionEvidence": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Transcriptionevidence"
+        },
+        "blocks": {
+          "items": {
+            "$ref": "#/$defs/SourceBlock"
+          },
+          "title": "Blocks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "kind",
+        "raw",
+        "normalized",
+        "blocks"
+      ],
+      "title": "Source",
+      "type": "object"
+    },
+    "SourceBlock": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "bbox": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Box"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence"
+        },
+        "assetId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Assetid"
+        },
+        "providerData": {
+          "additionalProperties": true,
+          "title": "Providerdata",
+          "type": "object"
+        }
+      },
+      "required": [
+        "id",
+        "text"
+      ],
+      "title": "SourceBlock",
+      "type": "object"
+    },
+    "SourceRef": {
+      "additionalProperties": false,
+      "properties": {
+        "blockId": {
+          "title": "Blockid",
+          "type": "string"
+        },
+        "start": {
+          "title": "Start",
+          "type": "integer"
+        },
+        "end": {
+          "title": "End",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "blockId",
+        "start",
+        "end"
+      ],
+      "title": "SourceRef",
+      "type": "object"
+    },
+    "Step": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "latex": {
+          "title": "Latex",
+          "type": "string"
+        },
+        "scopeId": {
+          "title": "Scopeid",
+          "type": "string"
+        },
+        "sourceRefs": {
+          "items": {
+            "$ref": "#/$defs/SourceRef"
+          },
+          "title": "Sourcerefs",
+          "type": "array"
+        },
+        "dependsOn": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Dependson",
+          "type": "array"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "text",
+        "latex",
+        "scopeId",
+        "sourceRefs",
+        "dependsOn",
+        "reason"
+      ],
+      "title": "Step",
+      "type": "object"
+    },
+    "Variable": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "domain": {
+          "title": "Domain",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "scopeId": {
+          "title": "Scopeid",
+          "type": "string"
+        },
+        "sourceRefs": {
+          "items": {
+            "$ref": "#/$defs/SourceRef"
+          },
+          "title": "Sourcerefs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "domain",
+        "description",
+        "scopeId",
+        "sourceRefs"
+      ],
+      "title": "Variable",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "inductions": {
+      "items": {
+        "$ref": "#/$defs/Induction"
+      },
+      "title": "Inductions",
+      "type": "array"
+    },
+    "version": {
+      "const": "1.0",
+      "title": "Version",
+      "type": "string"
+    },
+    "source": {
+      "$ref": "#/$defs/Source"
+    },
+    "scopes": {
+      "items": {
+        "$ref": "#/$defs/Scope"
+      },
+      "title": "Scopes",
+      "type": "array"
+    },
+    "variables": {
+      "items": {
+        "$ref": "#/$defs/Variable"
+      },
+      "title": "Variables",
+      "type": "array"
+    },
+    "definitions": {
+      "items": {
+        "$ref": "#/$defs/Definition"
+      },
+      "title": "Definitions",
+      "type": "array"
+    },
+    "assumptions": {
+      "items": {
+        "$ref": "#/$defs/Claim"
+      },
+      "title": "Assumptions",
+      "type": "array"
+    },
+    "proofSteps": {
+      "items": {
+        "$ref": "#/$defs/Step"
+      },
+      "title": "Proofsteps",
+      "type": "array"
+    },
+    "goal": {
+      "$ref": "#/$defs/Step"
+    },
+    "ambiguities": {
+      "items": {
+        "$ref": "#/$defs/Ambiguity"
+      },
+      "title": "Ambiguities",
+      "type": "array"
+    },
+    "formal": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/MathematicalSpecification"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "version",
+    "source",
+    "scopes",
+    "variables",
+    "definitions",
+    "assumptions",
+    "proofSteps",
+    "goal",
+    "ambiguities"
+  ],
+  "title": "MathIR",
+  "type": "object"
+}

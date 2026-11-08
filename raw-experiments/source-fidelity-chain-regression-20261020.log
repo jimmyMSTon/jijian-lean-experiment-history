@@ -1,0 +1,31 @@
+.......F.....................                                            [100%]
+=================================== FAILURES ===================================
+____ test_real_provider_algebra_proof_has_five_independently_sourced_rules _____
+
+tmp_path = PosixPath('/private/tmp/pytest-of-mac/pytest-146/test_real_provider_algebra_pro0')
+
+    def test_real_provider_algebra_proof_has_five_independently_sourced_rules(tmp_path):
+        ir, verification = saved()
+        audit = audit_reasoning_fidelity(ir, verification)
+        assert audit["authority"] == "independent_source_inference_certificate"
+        assert audit["originalProofVerified"] is True
+        assert audit["status"] == "source_rule_certified"
+        assert audit["sourceRuleVerifiedStepCount"] == 5
+        assert audit["sourceRuleVerifiedRouteCount"] == 1
+        steps = audit["routes"][0]["steps"]
+>       assert [step["rule"] for step in steps] == [
+            "explicit_polynomial_identity",
+            "explicit_algebraic_rearrangement",
+            "explicit_equation_substitution",
+            "explicit_polynomial_identity",
+            "equality_transitivity",
+        ]
+E       AssertionError: assert ['explicit_po...uality_chain'] == ['explicit_po...transitivity']
+E         
+E         At index 4 diff: 'explicit_authored_equality_chain' != 'equality_transitivity'
+E         Use -v to get more diff
+
+tests/v2/test_source_inference_certificates.py:36: AssertionError
+=========================== short test summary info ============================
+FAILED tests/v2/test_source_inference_certificates.py::test_real_provider_algebra_proof_has_five_independently_sourced_rules
+1 failed, 28 passed in 0.55s

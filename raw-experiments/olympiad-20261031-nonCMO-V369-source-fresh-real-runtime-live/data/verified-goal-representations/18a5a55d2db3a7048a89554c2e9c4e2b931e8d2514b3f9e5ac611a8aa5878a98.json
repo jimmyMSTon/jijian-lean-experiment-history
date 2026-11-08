@@ -1,0 +1,80 @@
+{
+  "sourceSha256": "18a5a55d2db3a7048a89554c2e9c4e2b931e8d2514b3f9e5ac611a8aa5878a98",
+  "typechecked": true,
+  "plan": {
+    "formalStatement": "∀ r : ℕ, 0 < r → IsGreatest {C : ℝ | ∃ a : ℕ → ℝ, a 1 ≠ 0 ∧ (∀ n : ℕ, 1 ≤ n → a n = a 1 * (r : ℝ) ^ (n - 1)) ∧ (∀ n : ℕ, 1 ≤ n → (⨅ k : ℤ, |a n - (k : ℝ)|) ≥ C)} (if r % 2 = 1 then (1 / 2 : ℝ) else (r : ℝ) / (2 * ((r : ℝ) + 1)))",
+    "goalExcerpt": "给定正整数r，求最大的实数C，使存在一个公比为r的实数等比数列(a_n)（n≥1），满足对所有正整数n都有 ||a_n||≥C，其中||x||为x到最近整数的距离。",
+    "givenExcerpts": [
+      "给定正整数r",
+      "公比为r的实数等比数列(a_n)（n≥1）",
+      "满足对所有正整数n都有 ||a_n||≥C"
+    ],
+    "steps": [
+      {
+        "start": 123,
+        "end": 229,
+        "sourceExcerpt": "第1步。记dist(x,Z)=min_{k∈Z}|x-k|。对任意实数x均有0≤dist(x,Z)≤1/2，且dist(x+k,Z)=dist(x,Z)（整数k）。我们在固定正整数r后求使上述条件能成立的最大C。"
+      },
+      {
+        "start": 230,
+        "end": 326,
+        "sourceExcerpt": "第2步。若r为奇数，所有数列均受C≤1/2限制。取a_1=1/2，a_n=r^(n-1)/2。因r^(n-1)为奇数，a_n是半整数，故所有n的dist(a_n,Z)=1/2，最佳C为1/2。"
+      },
+      {
+        "start": 327,
+        "end": 429,
+        "sourceExcerpt": "第3步。以下设r=2m，其中m≥1为整数。令c=m/(2m+1)=r/(2(r+1))，则0<c<1/2。对任意实数x选最邻近整数k，写x=k+δ且|δ|≤1/2。若|δ|≤c，则dist(x,Z)≤c。"
+      },
+      {
+        "start": 430,
+        "end": 552,
+        "sourceExcerpt": "第4步。若c<|δ|≤1/2，则r|δ|=2m|δ|落在(m-c,m]。由于r为整数，rx=rk+rδ的最近整数可以选rk±m，所以dist(rx,Z)≤m-r|δ|<c。因而对每个x必有min(dist(x,Z),dist(rx,Z))≤c。"
+      },
+      {
+        "start": 553,
+        "end": 633,
+        "sourceExcerpt": "第5步。任何公比为r的数列满足a_2=ra_1。将第4步用在x=a_1，得dist(a_1,Z)与dist(a_2,Z)至少一个不大于c。所以任何适用的C≤c。"
+      },
+      {
+        "start": 634,
+        "end": 766,
+        "sourceExcerpt": "第6步。取a_1=m/(2m+1)，并设a_n=r^(n-1)a_1。模整数计算：2m≡-1 (mod 2m+1)，故对任意n，a_n与(-1)^(n-1)m/(2m+1)相差整数。因0<m/(2m+1)<1/2，所以dist(a_n,Z)=m/(2m+1)=c。"
+      },
+      {
+        "start": 767,
+        "end": 815,
+        "sourceExcerpt": "第7步。上界与构造均成立，故r奇数时最大C=1/2，r偶数时最大C=r/(2(r+1))。证毕。"
+      }
+    ]
+  },
+  "originalModelProvenance": {
+    "jsonParsing": {
+      "method": "deterministic_json_schema",
+      "recovered": false,
+      "edits": []
+    },
+    "provider": "deepseek",
+    "requestedModel": "deepseek-flash",
+    "model": "deepseek-flash",
+    "responseId": "f87c92fd-58be-48de-bc5f-b7da3bae40fb",
+    "systemFingerprint": "bc19ba97cbe016479903222bb1578db6",
+    "usage": {
+      "prompt_tokens": 1244,
+      "completion_tokens": 21140,
+      "total_tokens": 22384,
+      "prompt_tokens_details": {
+        "cached_tokens": 1024
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 20316
+      },
+      "prompt_cache_hit_tokens": 1024,
+      "prompt_cache_miss_tokens": 220
+    },
+    "thinking": "provider_default",
+    "promptSchemaEncoding": "compact_json_v1",
+    "structuredOutput": "json_mode_with_local_schema_validation",
+    "simulated": false
+  },
+  "meaning": "Lean typechecked goal encoding only; entire proof not certified"
+}

@@ -1,0 +1,621 @@
+{
+  "id": "new_integer_witness_nine",
+  "topic": "正确整数证明：9整除q推出81整除q平方",
+  "source": "设 q 是整数，已知 9 整除 q。证明 81 整除 q²。原证明：因为 9 整除 q，根据整除定义，存在整数 r 使得 q=9r。取这样的 r，则 q²=(9r)²=81r²。由于 r² 为整数，所以 q² 是81的整数倍，即 81 整除 q²。证毕。",
+  "reference": "正确源证明，存在整数见证r，分支作用域、类型、定义、正反原稿证书核验。",
+  "appSourceCommit": "90a6e5b703cdec4911611d4aafcd7fbcce4dbf27",
+  "providerFixture": false,
+  "kernelFixture": false,
+  "handWrittenLean": false,
+  "handWrittenMathIR": false,
+  "transport": "signed installed App packaged backend POST /api/v2/jobs",
+  "guiInteracted": false,
+  "startedUtc": "2026-10-20T15:30:08.989271+00:00",
+  "sourceSha256": "4f8e872c90a050d91688eabe48101c2b78f13d666236751add9549fb5a82e2a4",
+  "capabilities": {
+    "ai": {
+      "configured": true,
+      "provider": "deepseek",
+      "model": "deepseek-flash",
+      "thinking": "provider_default",
+      "liveTested": false
+    },
+    "lean": {
+      "configured": true,
+      "executableFound": true,
+      "projectFound": true,
+      "runtimeBuilt": true,
+      "runtimeIntegrity": true,
+      "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+      "sandbox": "macos",
+      "isolated": true,
+      "ready": true,
+      "toolchain": "leanprover/lean4:v4.34.0",
+      "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+      "liveTestedInThisDistribution": false
+    },
+    "mockFallback": false,
+    "health": "running"
+  },
+  "jobId": "661e8e88-4799-41fc-863b-048c639599ad",
+  "submittedUtc": "2026-10-20T15:30:11.876428+00:00",
+  "stageTransitions": [
+    {
+      "status": "running",
+      "stage": "recognizing",
+      "seconds": 3.29,
+      "utc": "2026-10-20T15:30:12.281189+00:00"
+    },
+    {
+      "status": "running",
+      "stage": "lean_verification",
+      "seconds": 86.28,
+      "utc": "2026-10-20T15:31:35.269241+00:00"
+    },
+    {
+      "status": "running",
+      "stage": "proof_only_generation",
+      "seconds": 111.59,
+      "utc": "2026-10-20T15:32:00.578282+00:00"
+    },
+    {
+      "status": "completed",
+      "stage": "completed",
+      "seconds": 148.33,
+      "utc": "2026-10-20T15:32:37.317368+00:00"
+    }
+  ],
+  "terminalStatus": "completed",
+  "terminalStage": "completed",
+  "terminalError": null,
+  "result": {
+    "runStatus": "formal_verified_source_unconfirmed",
+    "termination": "original_route_kernel_passed",
+    "kernelVerified": true,
+    "fixedStatementKernelPassed": true,
+    "originalRouteKernelPassed": true,
+    "sourceProofVerified": false,
+    "originalProofVerified": false,
+    "originalMeaning": "model_interpretation",
+    "statement": null,
+    "failure": null,
+    "mathIRId": "ba139981-f63d-474b-864d-6c637b220869",
+    "sourceStructureId": "a836344b-f7f6-4e8a-89da-67480342f68f",
+    "originalProofFidelity": {
+      "sourceProofVerified": false,
+      "status": "not_independently_established",
+      "basis": "Formal Kernel proof alone cannot certify an author's natural-language reasoning. Unrecognized source rule remains unconfirmed.",
+      "routes": [
+        {
+          "routeId": "route_original_proof",
+          "formalRouteKernelPassed": true,
+          "sourceReasoningVerified": false,
+          "sourceReasoningStatus": "not_independently_established",
+          "steps": [
+            {
+              "nodeId": "exists_r_claim",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": true,
+              "sourceReasoningStatus": "source_rule_certified",
+              "sourceInferenceRule": "source_attested_divisibility_existence",
+              "sourceInferenceEvidence": {
+                "blockId": "b0",
+                "start": 44,
+                "end": 66,
+                "quote": "根据整除定义，存在整数 r 使得 q=9r。",
+                "quoteSha256": "f4ecbce0159d0a9f076590ffbbc1d942c43d4b10d506565cd70101bf765d6a58",
+                "dependsOn": [
+                  "h9q_route"
+                ],
+                "method": "deterministic_source_predicate_source_causality",
+                "kernelStepCertificate": true
+              }
+            },
+            {
+              "nodeId": "c1_q_sq_eq_9r_sq",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": true,
+              "sourceReasoningStatus": "source_rule_certified",
+              "sourceInferenceRule": "equality_power_congruence",
+              "sourceInferenceEvidence": {
+                "blockId": "b0",
+                "start": 75,
+                "end": 83,
+                "quote": "q²=(9r)²",
+                "quoteSha256": "7af7de35bfc9183d8898f4c723f178bf6f9fed202847af0f26c7c016916a7e4e",
+                "dependsOn": [
+                  "h_q_eq_9r"
+                ],
+                "method": "independent_authored_scope_and_quantifier_rule",
+                "kernelStepCertificate": true
+              }
+            },
+            {
+              "nodeId": "c2_9r_sq_eq_81r_sq",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": true,
+              "sourceReasoningStatus": "source_rule_certified",
+              "sourceInferenceRule": "explicit_polynomial_identity",
+              "sourceInferenceEvidence": {
+                "blockId": "b0",
+                "start": 78,
+                "end": 88,
+                "formulaStart": 78,
+                "formulaEnd": 88,
+                "quote": "(9r)²=81r²",
+                "quoteSha256": "12ac2141c6617d076f4a5604f895825180cb621bc7f67961a294952b0d67fab0",
+                "dependsOn": [],
+                "method": "deterministic_source_formula_parser_and_exact_arithmetic_rule",
+                "kernelStepCertificate": true
+              }
+            },
+            {
+              "nodeId": "c3_q_sq_eq_81r_sq",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": true,
+              "sourceReasoningStatus": "source_rule_certified",
+              "sourceInferenceRule": "explicit_authored_equality_chain",
+              "sourceInferenceEvidence": {
+                "blockId": "b0",
+                "start": 75,
+                "end": 88,
+                "formulaStart": 75,
+                "formulaEnd": 88,
+                "quote": "q²=(9r)²=81r²",
+                "quoteSha256": "e98e9ea335ab6faf21c1b4b6398cdef5df5467995869a503d185a6b39066b41a",
+                "dependsOn": [
+                  "c1_q_sq_eq_9r_sq",
+                  "c2_9r_sq_eq_81r_sq"
+                ],
+                "method": "deterministic_source_formula_parser_and_exact_arithmetic_rule",
+                "kernelStepCertificate": true
+              }
+            },
+            {
+              "nodeId": "multiple_claim",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": false,
+              "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+              "sourceInferenceRule": null,
+              "sourceInferenceEvidence": null
+            },
+            {
+              "nodeId": "proof_final_divides",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": false,
+              "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+              "sourceInferenceRule": null,
+              "sourceInferenceEvidence": null
+            },
+            {
+              "nodeId": "final_divides_root",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": true,
+              "sourceReasoningStatus": "source_rule_certified",
+              "sourceInferenceRule": "explicit_existential_witness_elimination",
+              "sourceInferenceEvidence": {
+                "blockId": "b0",
+                "start": 113,
+                "end": 123,
+                "quote": "即 81 整除 q²",
+                "quoteSha256": "937dc9d5039002691bcc83657f1fa0276e30bce2ccf31f8b6a7147307f050927",
+                "dependsOn": [
+                  "exists_r_claim",
+                  "proof_final_divides"
+                ],
+                "method": "independent_authored_scope_and_quantifier_rule",
+                "kernelStepCertificate": true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "reasoningFidelity": {
+      "version": 2,
+      "authority": "independent_source_inference_certificate",
+      "status": "source_rules_partially_certified",
+      "formalRouteKernelPassed": true,
+      "sourceEvidenceBoundToStatement": true,
+      "expectedStatementHash": "8bb2f1d09e68163fb9f0b351075f7c17817e3f710d9eaac74e39919f0eae6bc6",
+      "originalProofVerified": false,
+      "sourceInferenceCertificationAvailable": true,
+      "sourceRuleVerifiedStepCount": 5,
+      "sourceRuleVerifiedRouteCount": 0,
+      "unconfirmedSourceStepCount": 2,
+      "unconfirmedSourceSteps": [
+        {
+          "routeId": "route_original_proof",
+          "nodeId": "multiple_claim",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "unsupported_or_non_authored_predicate"
+        },
+        {
+          "routeId": "route_original_proof",
+          "nodeId": "proof_final_divides",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "unmatched_authored_dependency"
+        }
+      ],
+      "routes": [
+        {
+          "routeId": "route_original_proof",
+          "formalRouteKernelPassed": true,
+          "originalReasoningVerified": false,
+          "originalReasoningStatus": "not_independently_certified",
+          "goalSourceMatch": {
+            "blockId": "b0",
+            "start": 21,
+            "end": 29,
+            "quote": "81 整除 q²",
+            "quoteSha256": "a5e0cb6d84c341d00b99a081411b38dd8d541448e7fc684fbb9c5f84f85c238e",
+            "formulaStart": 21,
+            "formulaEnd": 29,
+            "rule": "source_attested_divisibility",
+            "sourceMatchReason": "divides_expression_matches_source"
+          },
+          "theoremPremisesSourceMatched": true,
+          "declarationTypesSourceMatched": false,
+          "unresolvedAmbiguitiesAbsent": true,
+          "authoredFormulaCoverageMatched": true,
+          "statementIdentityMatched": true,
+          "steps": [
+            {
+              "nodeId": "exists_r_claim",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": true,
+              "originalInferenceStatus": "source_rule_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 2,
+              "declaredDependencies": [
+                "h9q_route"
+              ],
+              "rule": "source_attested_divisibility_existence",
+              "ruleEvidence": {
+                "blockId": "b0",
+                "start": 44,
+                "end": 66,
+                "quote": "根据整除定义，存在整数 r 使得 q=9r。",
+                "quoteSha256": "f4ecbce0159d0a9f076590ffbbc1d942c43d4b10d506565cd70101bf765d6a58",
+                "dependsOn": [
+                  "h9q_route"
+                ],
+                "method": "deterministic_source_predicate_source_causality",
+                "kernelStepCertificate": true
+              },
+              "ruleCheckReason": "independent_source_predicate_and_kernel_check",
+              "statementIdentityMatched": true,
+              "reason": "independent_source_predicate_and_kernel_check"
+            },
+            {
+              "nodeId": "c1_q_sq_eq_9r_sq",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": true,
+              "originalInferenceStatus": "source_rule_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [
+                "h_q_eq_9r"
+              ],
+              "rule": "equality_power_congruence",
+              "ruleEvidence": {
+                "blockId": "b0",
+                "start": 75,
+                "end": 83,
+                "quote": "q²=(9r)²",
+                "quoteSha256": "7af7de35bfc9183d8898f4c723f178bf6f9fed202847af0f26c7c016916a7e4e",
+                "dependsOn": [
+                  "h_q_eq_9r"
+                ],
+                "method": "independent_authored_scope_and_quantifier_rule",
+                "kernelStepCertificate": true
+              },
+              "ruleCheckReason": "independent_scoped_quantifier_rule",
+              "statementIdentityMatched": true,
+              "reason": "independent_scoped_quantifier_rule"
+            },
+            {
+              "nodeId": "c2_9r_sq_eq_81r_sq",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": true,
+              "originalInferenceStatus": "source_rule_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [],
+              "rule": "explicit_polynomial_identity",
+              "ruleEvidence": {
+                "blockId": "b0",
+                "start": 78,
+                "end": 88,
+                "formulaStart": 78,
+                "formulaEnd": 88,
+                "quote": "(9r)²=81r²",
+                "quoteSha256": "12ac2141c6617d076f4a5604f895825180cb621bc7f67961a294952b0d67fab0",
+                "dependsOn": [],
+                "method": "deterministic_source_formula_parser_and_exact_arithmetic_rule",
+                "kernelStepCertificate": true
+              },
+              "ruleCheckReason": "independent_source_formula_and_rule_check",
+              "statementIdentityMatched": true,
+              "reason": "independent_source_formula_and_rule_check"
+            },
+            {
+              "nodeId": "c3_q_sq_eq_81r_sq",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": true,
+              "originalInferenceStatus": "source_rule_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [
+                "c1_q_sq_eq_9r_sq",
+                "c2_9r_sq_eq_81r_sq"
+              ],
+              "rule": "explicit_authored_equality_chain",
+              "ruleEvidence": {
+                "blockId": "b0",
+                "start": 75,
+                "end": 88,
+                "formulaStart": 75,
+                "formulaEnd": 88,
+                "quote": "q²=(9r)²=81r²",
+                "quoteSha256": "e98e9ea335ab6faf21c1b4b6398cdef5df5467995869a503d185a6b39066b41a",
+                "dependsOn": [
+                  "c1_q_sq_eq_9r_sq",
+                  "c2_9r_sq_eq_81r_sq"
+                ],
+                "method": "deterministic_source_formula_parser_and_exact_arithmetic_rule",
+                "kernelStepCertificate": true
+              },
+              "ruleCheckReason": "independent_source_formula_and_rule_check",
+              "statementIdentityMatched": true,
+              "reason": "independent_source_formula_and_rule_check"
+            },
+            {
+              "nodeId": "multiple_claim",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": false,
+              "originalInferenceStatus": "not_independently_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [
+                "c3_q_sq_eq_81r_sq",
+                "typing_r_sq_int"
+              ],
+              "rule": null,
+              "ruleEvidence": null,
+              "ruleCheckReason": "unsupported_or_non_authored_predicate",
+              "statementIdentityMatched": true,
+              "reason": "ai_generated_formal_reconstruction"
+            },
+            {
+              "nodeId": "proof_final_divides",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": false,
+              "originalInferenceStatus": "not_independently_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [
+                "multiple_claim"
+              ],
+              "rule": null,
+              "ruleEvidence": null,
+              "ruleCheckReason": "unmatched_authored_dependency",
+              "statementIdentityMatched": true,
+              "reason": "ai_generated_formal_reconstruction"
+            },
+            {
+              "nodeId": "final_divides_root",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": true,
+              "originalInferenceStatus": "source_rule_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [
+                "exists_r_claim",
+                "proof_final_divides"
+              ],
+              "rule": "explicit_existential_witness_elimination",
+              "ruleEvidence": {
+                "blockId": "b0",
+                "start": 113,
+                "end": 123,
+                "quote": "即 81 整除 q²",
+                "quoteSha256": "937dc9d5039002691bcc83657f1fa0276e30bce2ccf31f8b6a7147307f050927",
+                "dependsOn": [
+                  "exists_r_claim",
+                  "proof_final_divides"
+                ],
+                "method": "independent_authored_scope_and_quantifier_rule",
+                "kernelStepCertificate": true
+              },
+              "ruleCheckReason": "independent_scoped_quantifier_rule",
+              "statementIdentityMatched": true,
+              "reason": "independent_scoped_quantifier_rule"
+            }
+          ]
+        }
+      ],
+      "explanation": "Only exact source-anchored equations with an independently checked arithmetic inference rule and a genuine Kernel certificate are certified. Model proof reconstruction alone never qualifies. Unrecognized natural language is unconfirmed, not disproved."
+    },
+    "routeSummary": [
+      {
+        "routeId": "route_original_proof",
+        "status": "passed",
+        "formalRouteKernelPassed": null,
+        "completeOriginalRouteKernelPassed": true,
+        "originalReasoningVerified": false,
+        "certificate": {
+          "checked": true,
+          "statementMatched": true,
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext"
+          ],
+          "additionalAxioms": [],
+          "statement_hash": "8bb2f1d09e68163fb9f0b351075f7c17817e3f710d9eaac74e39919f0eae6bc6",
+          "expectedExpressionSha256": "fc09bd27f3f8f7dfa5c9b16717415e5ff3b4f5c2fb99da2f765e5c65bfc51672",
+          "proofExpressionSha256": "ca176fe0448e5148d91976c63c4e8303cc4bd38d41f54c87f6b4eb799b39c609",
+          "nativeExpressionComparison": "structural_equal",
+          "auditIsolation": "fresh_import_environment_reset_between_candidates"
+        },
+        "steps": 7
+      }
+    ],
+    "steps": [
+      {
+        "route": "route_original_proof",
+        "node": "exists_r_claim",
+        "status": "passed",
+        "mathematicalStatus": "conditionally_established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": true,
+        "sourceInferenceRule": "source_attested_divisibility_existence",
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "route_original_proof",
+        "node": "c1_q_sq_eq_9r_sq",
+        "status": "passed",
+        "mathematicalStatus": "conditionally_established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": true,
+        "sourceInferenceRule": "equality_power_congruence",
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "route_original_proof",
+        "node": "c2_9r_sq_eq_81r_sq",
+        "status": "passed",
+        "mathematicalStatus": "established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": true,
+        "sourceInferenceRule": "explicit_polynomial_identity",
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "route_original_proof",
+        "node": "c3_q_sq_eq_81r_sq",
+        "status": "passed",
+        "mathematicalStatus": "conditionally_established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": true,
+        "sourceInferenceRule": "explicit_authored_equality_chain",
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "route_original_proof",
+        "node": "multiple_claim",
+        "status": "passed",
+        "mathematicalStatus": "conditionally_established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": false,
+        "sourceInferenceRule": null,
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "route_original_proof",
+        "node": "proof_final_divides",
+        "status": "passed",
+        "mathematicalStatus": "conditionally_established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": false,
+        "sourceInferenceRule": null,
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "route_original_proof",
+        "node": "final_divides_root",
+        "status": "passed",
+        "mathematicalStatus": "conditionally_established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": true,
+        "sourceInferenceRule": "explicit_existential_witness_elimination",
+        "diagnostics": [],
+        "declaredDependencies": null
+      }
+    ]
+  },
+  "finishedUtc": "2026-10-20T15:32:37.326622+00:00",
+  "wallSeconds": 148.34,
+  "provider": {
+    "realAttempts": 2,
+    "started": 2,
+    "finished": 2,
+    "requestCount": 2,
+    "usage": {
+      "input_tokens": 15398,
+      "output_tokens": 25719,
+      "incompleteUsageRecords": 0
+    },
+    "records": [
+      {
+        "request_id": "32c0c321-7419-4ba4-a4cd-911ccb206678",
+        "stage": "mathir",
+        "reason": "StructureOnlyMathIRV2",
+        "model": "deepseek-flash",
+        "status": "response_received",
+        "input_tokens": 10802,
+        "output_tokens": 19705,
+        "retry_index": 0,
+        "cache_hit": null,
+        "real_request_attempted": true,
+        "started_at": null,
+        "finished_at": null
+      },
+      {
+        "request_id": "ab38f9e0-5f2b-48bd-9371-bc3074991f3b",
+        "stage": "formalization",
+        "reason": "FormalProofs",
+        "model": "deepseek-flash",
+        "status": "response_received",
+        "input_tokens": 4596,
+        "output_tokens": 6014,
+        "retry_index": 0,
+        "cache_hit": null,
+        "real_request_attempted": true,
+        "started_at": null,
+        "finished_at": null
+      }
+    ]
+  },
+  "dbCounts": {
+    "artifacts": 7,
+    "jobs": 1,
+    "events": 13
+  },
+  "archiveSha256": "a33e4c8be8cb07ce200ffc4dc5115cfe6276bde8d5ae5866c23804fabb4fe2eb"
+}

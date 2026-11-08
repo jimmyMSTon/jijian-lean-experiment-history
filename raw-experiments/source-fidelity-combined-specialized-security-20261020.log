@@ -1,0 +1,273 @@
+.F......F..F..................                                           [100%]
+=================================== FAILURES ===================================
+_ test_real_sequence_proof_mutated_causal_math_refuses_source_certificate[\u4efb\u53d6 \u03b5>0-\u4efb\u53d6 \u03b5<0] _
+
+old = '任取 ε>0', new = '任取 ε<0'
+
+    @pytest.mark.parametrize(("old","new"),[
+        ("任取 ε>0","任取 ε<0"),
+        ("uₙ→A","uₙ→B"),
+        ("存在自然数 N","存在有理数 N"),
+        ("n≥N","n≤N"),
+        ("|(uₙ+2)−(A+2)|","|(uₙ+3)−(A+2)|"),
+        ("|uₙ−A|<ε","|uₙ−A|<δ"),
+        ("uₙ+2→A+2","uₙ+2→A+3"),
+        ("根据数列极限的定义","根据错误极限的定义"),
+    ])
+    def test_real_sequence_proof_mutated_causal_math_refuses_source_certificate(old,new):
+        ir,v=recorded()
+        source,forged=mutate_source_only(ir,v,old,new)
+>       actual=audit_reasoning_fidelity(source,forged)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/v2/test_source_epsilon_N.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+backend/v2/reasoning_fidelity.py:195: in audit_reasoning_fidelity
+    certified = source_predicate_rule(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+ir = MathIRV2(version='2.0', source=SourceEvidence(id='a0720f072141aa5a30178708', kind='text', raw='设 (uₙ)ₙ∈ℕ 为实数数列，A 为实数，已...'b0', start=0, end=155)], sourceAssessment='supported', assessmentBasis='原稿给出从 uₙ→A 到 uₙ+2→A+2 的证明。')], ambiguities=[])
+route = ProofRoute(id='route_main', label='原证明：由 uₙ→A 证明 uₙ+2→A+2', nodes=[RouteNode(id='n_hconv', kind='local_assumption', ex...SourceRef(blockId='b0', start=0, end=155)], sourceAssessment='supported', assessmentBasis='原稿给出从 uₙ→A 到 uₙ+2→A+2 的证明。')
+node = RouteNode(id='n_shift_limit', kind='claim', expression=Expr(op='sequence_tends_to', args=[Expr(op='lambda', args=[Expr...ourceRef(blockId='b0', start=131, end=152)], sourceAssessment='supported', assessmentBasis='原文最后根据数列极限的定义断言 uₙ+2→A+2。')
+checked_row = {'assessmentBasis': '原文最后根据数列极限的定义断言 uₙ+2→A+2。', 'certificate': {'additionalAxioms': [], 'auditIsolation': 'fresh_impo...dence': 'all_declared_dependencies_used', 'dependencyUsage': [{'dependencyId': 'n_exists_N_shift', 'used': True}], ...}
+nodes = {'n_eps_pos': RouteNode(id='n_eps_pos', kind='local_assumption', expression=Expr(op='gt', args=[Expr(op='symbol', args...urceAssessment='supported', assessmentBasis='原证明由存在性语句取定见证 N，并局部使用其性质：所有 n≥N 满足 |uₙ−A|<ε；这是消去存在量词后的局部假设，不是全局事实。'), ...}
+names = {'A_real': 'A', 'N_exists': 'N', 'N_shift_exists': 'N', 'N_witness': 'N', ...}
+supported_source = {'n_eps_pos': None, 'n_exists_N_eps': {'N': 'N_exists', 'blockId': 'b0', 'end': 97, 'eps': 'eps', ...}, 'n_exists_N_sh...end': 131, 'eps': 'eps', ...}, 'n_hN_property': {'N': 'N_witness', 'blockId': 'b0', 'end': 97, 'eps': 'eps', ...}, ...}
+
+    def source_predicate_rule(ir: MathIRV2, route, node, checked_row,
+                              nodes: dict[str,Any], names: dict[str,str],
+                              supported_source: dict[str,dict|None]) -> dict:
+        result={"nodeId":node.id,"originalInferenceVerified":False,
+                "rule":None,"evidence":None,"reason":"unconfirmed_source_predicate"}
+        certificate=((checked_row.get("lean")or{}).get("certificate") or
+                     checked_row.get("certificate") or {})
+        if (node.sourceAssessment!="supported" or checked_row.get("status")!="passed"
+                or not certificate.get("checked") or not certificate.get("statementMatched")
+                or certificate.get("additionalAxioms")!=[]
+                or ir.source.kind!="text" or ir.source.transcriptStatus!="confirmed"):
+            result["reason"]="unverified_formal_obligation_or_source"
+            return result
+        aliases=_source_aliases(ir,names)
+        anchor=supported_source.get(node.id)
+        if anchor is None:
+            anchor=source_predicate_anchor(ir,node,names,aliases)
+        if anchor is None or not source_claim_in_authored_proof(ir,route,node,anchor):
+            result["reason"]="unsupported_or_non_authored_predicate"
+            return result
+        dependencies=[nodes[dep] for dep in node.dependsOn
+                      if dep in nodes and nodes[dep].kind!="typing"]
+        if any(supported_source.get(dep.id) is None for dep in dependencies):
+            result["reason"]="source_dependency_formula_unconfirmed"
+            return result
+        prefix=" ".join(b.text for b in ir.source.blocks
+                        if b.id==anchor["blockId"] and b.text)
+        # All dependencies must be existing, independently anchored author
+        # claims and precede the current step. Never claim 'because P' based
+        # solely on a second unrelated proof of the conclusion.
+        if any(not dep.sourceRefs
+               or not any(r.blockId == anchor["blockId"] for r in dep.sourceRefs)
+               or max(r.end for r in dep.sourceRefs if r.blockId==anchor["blockId"])>anchor["end"]
+               for dep in dependencies):
+            result["reason"]="source_dependency_not_prior_to_conclusion"
+            return result
+        quote=anchor["quote"]
+        before_so=quote.split("所以",1)[0] if "所以" in quote else quote
+        if "因为" in quote and "所以" in quote:
+            cited=before_so.split("因为",1)[-1]
+            # The source's premise must be represented by the listed dependencies.
+            # Independently parse every authored because-equation. An irrelevant
+            # fact cannot become a decorative extra reason for another valid proof.
+            for chain, _, _ in _source_equations(cited, set(names.values())):
+                for left,right in zip(chain,chain[1:]):
+                    if not any((_eq(dep.expression,names) in ((left,right),(right,left)))
+                               for dep in dependencies):
+                        result["reason"]="unrelated_authored_causal_equation"
+                        return result
+            if not any(word in cited for word in ("互素","互质","整除","偶数","余数")):
+                result["reason"]="causal_premise_not_read_from_source"
+                return result
+            # In a single sentence with multiple direct mathematical premises,
+            # each dependency must be present. The dependencies in a separate
+            # preceding step are still required in the original source.
+            for dep in dependencies:
+                if (dep.expression.op=="divides"
+                        and not _divides_matches(cited,dep.expression,names,aliases)):
+                    result["reason"]="causal_divisibility_premise_mismatch"
+                    return result
+                if (dep.expression.op=="coprime"
+                        and not _coprime_matches(cited,dep.expression)):
+                    result["reason"]="causal_coprime_premise_mismatch"
+                    return result
+        if dependencies and not any(mark in quote for mark in (
+                "所以","因此","故","可得","推得","于是","由","根据","则")):
+            result["reason"]="source_dependency_relationship_not_expressed"
+            return result
+        if not dependencies and any(word in quote for word in ("因为","由于")):
+            # A standalone true arithmetic fact introduced as a later premise is
+            # permitted only when the asserted text *itself* is exactly the node.
+            if "所以" in quote or not _predicate_match(quote,prefix,node.expression,names,aliases)[0]:
+                result["reason"]="untraced_because_reason"
+                return result
+        result.update({
+>           "originalInferenceVerified":True,"rule":anchor["rule"],
+                                                    ^^^^^^^^^^^^^^
+            "reason":"independent_source_predicate_and_kernel_check",
+            "evidence":{"blockId":anchor["blockId"],"start":anchor["start"],
+                        "end":anchor["end"],"quote":anchor["quote"],
+                        "quoteSha256":anchor["quoteSha256"],
+                        "dependsOn":[dep.id for dep in dependencies],
+                        "method":"deterministic_source_predicate_source_causality",
+                        "kernelStepCertificate":True},
+        })
+E       KeyError: 'rule'
+
+backend/v2/source_predicate_rules.py:338: KeyError
+_ test_real_sequence_proof_mutated_causal_math_refuses_source_certificate[\u6839\u636e\u6570\u5217\u6781\u9650\u7684\u5b9a\u4e49-\u6839\u636e\u9519\u8bef\u6781\u9650\u7684\u5b9a\u4e49] _
+
+old = '根据数列极限的定义', new = '根据错误极限的定义'
+
+    @pytest.mark.parametrize(("old","new"),[
+        ("任取 ε>0","任取 ε<0"),
+        ("uₙ→A","uₙ→B"),
+        ("存在自然数 N","存在有理数 N"),
+        ("n≥N","n≤N"),
+        ("|(uₙ+2)−(A+2)|","|(uₙ+3)−(A+2)|"),
+        ("|uₙ−A|<ε","|uₙ−A|<δ"),
+        ("uₙ+2→A+2","uₙ+2→A+3"),
+        ("根据数列极限的定义","根据错误极限的定义"),
+    ])
+    def test_real_sequence_proof_mutated_causal_math_refuses_source_certificate(old,new):
+        ir,v=recorded()
+        source,forged=mutate_source_only(ir,v,old,new)
+>       actual=audit_reasoning_fidelity(source,forged)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/v2/test_source_epsilon_N.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+backend/v2/reasoning_fidelity.py:195: in audit_reasoning_fidelity
+    certified = source_predicate_rule(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+ir = MathIRV2(version='2.0', source=SourceEvidence(id='a0720f072141aa5a30178708', kind='text', raw='设 (uₙ)ₙ∈ℕ 为实数数列，A 为实数，已...'b0', start=0, end=155)], sourceAssessment='supported', assessmentBasis='原稿给出从 uₙ→A 到 uₙ+2→A+2 的证明。')], ambiguities=[])
+route = ProofRoute(id='route_main', label='原证明：由 uₙ→A 证明 uₙ+2→A+2', nodes=[RouteNode(id='n_hconv', kind='local_assumption', ex...SourceRef(blockId='b0', start=0, end=155)], sourceAssessment='supported', assessmentBasis='原稿给出从 uₙ→A 到 uₙ+2→A+2 的证明。')
+node = RouteNode(id='n_shift_limit', kind='claim', expression=Expr(op='sequence_tends_to', args=[Expr(op='lambda', args=[Expr...ourceRef(blockId='b0', start=131, end=152)], sourceAssessment='supported', assessmentBasis='原文最后根据数列极限的定义断言 uₙ+2→A+2。')
+checked_row = {'assessmentBasis': '原文最后根据数列极限的定义断言 uₙ+2→A+2。', 'certificate': {'additionalAxioms': [], 'auditIsolation': 'fresh_impo...dence': 'all_declared_dependencies_used', 'dependencyUsage': [{'dependencyId': 'n_exists_N_shift', 'used': True}], ...}
+nodes = {'n_eps_pos': RouteNode(id='n_eps_pos', kind='local_assumption', expression=Expr(op='gt', args=[Expr(op='symbol', args...urceAssessment='supported', assessmentBasis='原证明由存在性语句取定见证 N，并局部使用其性质：所有 n≥N 满足 |uₙ−A|<ε；这是消去存在量词后的局部假设，不是全局事实。'), ...}
+names = {'A_real': 'A', 'N_exists': 'N', 'N_shift_exists': 'N', 'N_witness': 'N', ...}
+supported_source = {'n_eps_pos': {'blockId': 'b0', 'end': 61, 'formulaEnd': 61, 'formulaStart': 50, ...}, 'n_exists_N_eps': {'N': 'N_exis...end': 131, 'eps': 'eps', ...}, 'n_hN_property': {'N': 'N_witness', 'blockId': 'b0', 'end': 97, 'eps': 'eps', ...}, ...}
+
+    def source_predicate_rule(ir: MathIRV2, route, node, checked_row,
+                              nodes: dict[str,Any], names: dict[str,str],
+                              supported_source: dict[str,dict|None]) -> dict:
+        result={"nodeId":node.id,"originalInferenceVerified":False,
+                "rule":None,"evidence":None,"reason":"unconfirmed_source_predicate"}
+        certificate=((checked_row.get("lean")or{}).get("certificate") or
+                     checked_row.get("certificate") or {})
+        if (node.sourceAssessment!="supported" or checked_row.get("status")!="passed"
+                or not certificate.get("checked") or not certificate.get("statementMatched")
+                or certificate.get("additionalAxioms")!=[]
+                or ir.source.kind!="text" or ir.source.transcriptStatus!="confirmed"):
+            result["reason"]="unverified_formal_obligation_or_source"
+            return result
+        aliases=_source_aliases(ir,names)
+        anchor=supported_source.get(node.id)
+        if anchor is None:
+            anchor=source_predicate_anchor(ir,node,names,aliases)
+        if anchor is None or not source_claim_in_authored_proof(ir,route,node,anchor):
+            result["reason"]="unsupported_or_non_authored_predicate"
+            return result
+        dependencies=[nodes[dep] for dep in node.dependsOn
+                      if dep in nodes and nodes[dep].kind!="typing"]
+        if any(supported_source.get(dep.id) is None for dep in dependencies):
+            result["reason"]="source_dependency_formula_unconfirmed"
+            return result
+        prefix=" ".join(b.text for b in ir.source.blocks
+                        if b.id==anchor["blockId"] and b.text)
+        # All dependencies must be existing, independently anchored author
+        # claims and precede the current step. Never claim 'because P' based
+        # solely on a second unrelated proof of the conclusion.
+        if any(not dep.sourceRefs
+               or not any(r.blockId == anchor["blockId"] for r in dep.sourceRefs)
+               or max(r.end for r in dep.sourceRefs if r.blockId==anchor["blockId"])>anchor["end"]
+               for dep in dependencies):
+            result["reason"]="source_dependency_not_prior_to_conclusion"
+            return result
+        quote=anchor["quote"]
+        before_so=quote.split("所以",1)[0] if "所以" in quote else quote
+        if "因为" in quote and "所以" in quote:
+            cited=before_so.split("因为",1)[-1]
+            # The source's premise must be represented by the listed dependencies.
+            # Independently parse every authored because-equation. An irrelevant
+            # fact cannot become a decorative extra reason for another valid proof.
+            for chain, _, _ in _source_equations(cited, set(names.values())):
+                for left,right in zip(chain,chain[1:]):
+                    if not any((_eq(dep.expression,names) in ((left,right),(right,left)))
+                               for dep in dependencies):
+                        result["reason"]="unrelated_authored_causal_equation"
+                        return result
+            if not any(word in cited for word in ("互素","互质","整除","偶数","余数")):
+                result["reason"]="causal_premise_not_read_from_source"
+                return result
+            # In a single sentence with multiple direct mathematical premises,
+            # each dependency must be present. The dependencies in a separate
+            # preceding step are still required in the original source.
+            for dep in dependencies:
+                if (dep.expression.op=="divides"
+                        and not _divides_matches(cited,dep.expression,names,aliases)):
+                    result["reason"]="causal_divisibility_premise_mismatch"
+                    return result
+                if (dep.expression.op=="coprime"
+                        and not _coprime_matches(cited,dep.expression)):
+                    result["reason"]="causal_coprime_premise_mismatch"
+                    return result
+        if dependencies and not any(mark in quote for mark in (
+                "所以","因此","故","可得","推得","于是","由","根据","则")):
+            result["reason"]="source_dependency_relationship_not_expressed"
+            return result
+        if not dependencies and any(word in quote for word in ("因为","由于")):
+            # A standalone true arithmetic fact introduced as a later premise is
+            # permitted only when the asserted text *itself* is exactly the node.
+            if "所以" in quote or not _predicate_match(quote,prefix,node.expression,names,aliases)[0]:
+                result["reason"]="untraced_because_reason"
+                return result
+        result.update({
+>           "originalInferenceVerified":True,"rule":anchor["rule"],
+                                                    ^^^^^^^^^^^^^^
+            "reason":"independent_source_predicate_and_kernel_check",
+            "evidence":{"blockId":anchor["blockId"],"start":anchor["start"],
+                        "end":anchor["end"],"quote":anchor["quote"],
+                        "quoteSha256":anchor["quoteSha256"],
+                        "dependsOn":[dep.id for dep in dependencies],
+                        "method":"deterministic_source_predicate_source_causality",
+                        "kernelStepCertificate":True},
+        })
+E       KeyError: 'rule'
+
+backend/v2/source_predicate_rules.py:338: KeyError
+__ test_explicit_user_written_because_without_source_reason_is_not_certified ___
+
+    def test_explicit_user_written_because_without_source_reason_is_not_certified():
+        from backend.v2.source_limit_rules import source_limit_step_rule,source_limit_anchor
+        ir,v=recorded()
+        shape=_sequence_shape(ir)
+        route=ir.proofRoutes[0]
+        all_nodes={n.id:n for n in route.nodes}
+        anchors={n.id:source_limit_anchor(ir,n,shape) for n in route.nodes}
+        end=next(n for n in route.nodes if n.id=="n_shift_limit")
+        row=next(s for rt in v["routes"] for s in rt["steps"] if s["nodeId"]==end.id)
+        tampered=copy.deepcopy(anchors)
+        tampered[end.id]={**tampered[end.id],
+                          "quote":"因为 5=5，所以根据数列极限的定义，uₙ+2→A+2。"}
+        # This is only a direct-parser probe; the actual source object has not
+        # been re-signed or changed and cannot receive a real Kernel certificate.
+        evidence=source_limit_step_rule(ir,route,end,{"status":row["status"],
+                   "certificate":row["certificate"]},all_nodes,tampered,shape)
+>       assert evidence["originalInferenceVerified"] is False
+E       assert True is False
+
+tests/v2/test_source_epsilon_N.py:118: AssertionError
+=========================== short test summary info ============================
+FAILED tests/v2/test_source_epsilon_N.py::test_real_sequence_proof_mutated_causal_math_refuses_source_certificate[\u4efb\u53d6 \u03b5>0-\u4efb\u53d6 \u03b5<0]
+FAILED tests/v2/test_source_epsilon_N.py::test_real_sequence_proof_mutated_causal_math_refuses_source_certificate[\u6839\u636e\u6570\u5217\u6781\u9650\u7684\u5b9a\u4e49-\u6839\u636e\u9519\u8bef\u6781\u9650\u7684\u5b9a\u4e49]
+FAILED tests/v2/test_source_epsilon_N.py::test_explicit_user_written_because_without_source_reason_is_not_certified
+3 failed, 27 passed in 0.63s

@@ -1,0 +1,187 @@
+{
+  "id": "a8afc253-5335-4030-a436-273bf5f2e6bb",
+  "runId": "996c56a2-3d16-4ced-a613-bc9e88e6c4b7",
+  "kind": "original_proof_explanation_only",
+  "authority": "source_and_lean_saved_evidence",
+  "sourceProofVerified": false,
+  "kernelVerifiedDoesNotEstablishAuthoredReasoning": true,
+  "itemEvidence": [
+    {
+      "stepId": "route_original/r1_sq_nonneg",
+      "originalSource": [
+        {
+          "blockId": "b0",
+          "start": 30,
+          "end": 51,
+          "originalText": "证明：由实数的平方非负，(a−b)²≥0。"
+        }
+      ],
+      "proofStatus": "passed",
+      "reasoningCertified": false,
+      "mathematicalStatus": "established",
+      "failureClass": null,
+      "declaredDependencies": [],
+      "dependencyEvidence": "not_required",
+      "diagnostics": [],
+      "sourceIntegrityIssue": null,
+      "independentCounterexampleKernelCertificate": false
+    },
+    {
+      "stepId": "route_original/r2_expand",
+      "originalSource": [
+        {
+          "blockId": "b0",
+          "start": 51,
+          "end": 70,
+          "originalText": "展开平方可得 a²−2ab+b²≥0。"
+        }
+      ],
+      "proofStatus": "passed",
+      "reasoningCertified": false,
+      "mathematicalStatus": "conditionally_established",
+      "failureClass": null,
+      "declaredDependencies": [
+        "r1_sq_nonneg"
+      ],
+      "dependencyEvidence": "declared_dependency_unused",
+      "diagnostics": [],
+      "sourceIntegrityIssue": null,
+      "independentCounterexampleKernelCertificate": false
+    },
+    {
+      "stepId": "route_original/r3_add_4ab",
+      "originalSource": [
+        {
+          "blockId": "b0",
+          "start": 70,
+          "end": 98,
+          "originalText": "两边同时加上 4ab，得到 a²+2ab+b²≥4ab。"
+        }
+      ],
+      "proofStatus": "passed",
+      "reasoningCertified": false,
+      "mathematicalStatus": "conditionally_established",
+      "failureClass": null,
+      "declaredDependencies": [
+        "r2_expand"
+      ],
+      "dependencyEvidence": "all_declared_dependencies_used",
+      "diagnostics": [],
+      "sourceIntegrityIssue": null,
+      "independentCounterexampleKernelCertificate": false
+    },
+    {
+      "stepId": "route_original/r4_square_expansion",
+      "originalSource": [
+        {
+          "blockId": "b0",
+          "start": 98,
+          "end": 131,
+          "originalText": "由于 (a+b)²=a²+2ab+b²，故 (a+b)²≥4ab。"
+        }
+      ],
+      "proofStatus": "passed",
+      "reasoningCertified": false,
+      "mathematicalStatus": "established",
+      "failureClass": null,
+      "declaredDependencies": [],
+      "dependencyEvidence": "not_required",
+      "diagnostics": [],
+      "sourceIntegrityIssue": null,
+      "independentCounterexampleKernelCertificate": false
+    },
+    {
+      "stepId": "route_original/r5_conclusion",
+      "originalSource": [
+        {
+          "blockId": "b0",
+          "start": 98,
+          "end": 131,
+          "originalText": "由于 (a+b)²=a²+2ab+b²，故 (a+b)²≥4ab。"
+        }
+      ],
+      "proofStatus": "passed",
+      "reasoningCertified": false,
+      "mathematicalStatus": "conditionally_established",
+      "failureClass": null,
+      "declaredDependencies": [
+        "r3_add_4ab",
+        "r4_square_expansion"
+      ],
+      "dependencyEvidence": "all_declared_dependencies_used",
+      "diagnostics": [],
+      "sourceIntegrityIssue": null,
+      "independentCounterexampleKernelCertificate": false
+    }
+  ],
+  "explanation": {
+    "items": [
+      {
+        "stepId": "route_original/r1_sq_nonneg",
+        "explanation": "系统记录该步 proofStatus=passed，mathematicalStatus=established，且无声明依赖；来源审计未显示完整性问题，也没有 independentCounterexampleKernelCertificate。也就是说，按系统保存的 Lean 核验结果，这一步在“实数平方非负”这一直接依据下通过。但 reasoningCertified=false，表示未认证作者在原稿中的推理说明本身，不能把该步通过扩展为对整个原稿证明的作者级认证。",
+        "suggestions": [
+          "请核对原稿此处是否明确把“实数的平方非负”作为所使用的基础事实；如需完整推理认证，可由你在原稿中补充该依据说明。"
+        ]
+      },
+      {
+        "stepId": "route_original/r2_expand",
+        "explanation": "原文摘录为“展开平方可得 a²−2ab+b²≥0。”系统记录该步 proofStatus=passed，但 mathematicalStatus=conditionally_established，并且依赖审计显示声明依赖 r1_sq_nonneg 为 declared_dependency_unused：即该步证书没有实际使用所声明的 r1。因此只能说明该步在当时允许的前提下通过核验，不能据此记录为真正从 r1 推出的步骤；reasoningCertified=false 也说明作者理由未获认证。这不是说该步命题错误，也没有反例证书。",
+        "suggestions": [
+          "请检查原稿是否应显式写出由 (a−b)²≥0 展开得到该式；若保留对 r1 的依赖，需要由你在原稿中明确该关系或调整依赖标注。"
+        ]
+      },
+      {
+        "stepId": "route_original/r3_add_4ab",
+        "explanation": "原文摘录为“两边同时加上 4ab，得到 a²+2ab+b²≥4ab。”系统记录 proofStatus=passed，mathematicalStatus=conditionally_established，依赖审计显示声明依赖 r2_expand 为 all_declared_dependencies_used，即该步的证书实际使用了 r2。按该步当时允许的前提，系统核验了在已有不等式两边加同一实数 4ab 后的结果；但 reasoningCertified=false，未认证作者在原文中的推理说明，也没有独立反例证书。",
+        "suggestions": [
+          "请核对原稿是否明确说明这里是在不等式两边同时加上 4ab；如需完整推理认证，可由你在原稿中补充该依据。"
+        ]
+      },
+      {
+        "stepId": "route_original/r4_square_expansion",
+        "explanation": "原文摘录覆盖“由于 (a+b)²=a²+2ab+b²，故 (a+b)²≥4ab。”系统记录该步 proofStatus=passed、mathematicalStatus=established，且依赖字段为空、dependencyEvidence=not_required；因此该记录针对平方展开恒等式部分，不把最终不等式结论归因于本步的依赖推理。该步没有 independentCounterexampleKernelCertificate；reasoningCertified=false 表示未认证作者理由，不等同于命题被证明为假。",
+        "suggestions": [
+          "该摘录同时包含平方展开恒等式与最终结论，请核对原稿中 r4 是否只打算表示平方展开恒等式；若是，建议由你在原稿或步骤标注中使范围更清楚。"
+        ]
+      },
+      {
+        "stepId": "route_original/r5_conclusion",
+        "explanation": "原文摘录为“由于 (a+b)²=a²+2ab+b²，故 (a+b)²≥4ab。”系统记录 proofStatus=passed、mathematicalStatus=conditionally_established，依赖审计显示 r3_add_4ab 与 r4_square_expansion 均为 all_declared_dependencies_used。也就是说，在该步当时允许的前提下，系统核验了由 r3 的不等式与 r4 的平方展开恒等式得到最终结论的条件蕴含；但 reasoningCertified=false，未认证作者在原文中的推理说明，也没有独立反例证书。",
+        "suggestions": [
+          "请核对原稿最终句是否明确同时串联 r3 和 r4；如需完整推理认证，可由你在原稿中补充这两步如何共同推出结论的说明。"
+        ]
+      }
+    ],
+    "authority": "deepseek_explanation_only_not_kernel_or_source_certificate",
+    "provenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "f57c82fa-a323-489d-b3fa-9b66674ce839",
+      "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+      "usage": {
+        "prompt_tokens": 1134,
+        "completion_tokens": 3091,
+        "total_tokens": 4225,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2206
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 878
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    }
+  },
+  "explanationError": null
+}

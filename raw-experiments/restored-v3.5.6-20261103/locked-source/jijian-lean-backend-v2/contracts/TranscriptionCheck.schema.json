@@ -1,0 +1,218 @@
+{
+  "$defs": {
+    "VisualBlockCheck": {
+      "additionalProperties": false,
+      "properties": {
+        "blockIndex": {
+          "title": "Blockindex",
+          "type": "integer"
+        },
+        "before": {
+          "title": "Before",
+          "type": "string"
+        },
+        "observedText": {
+          "title": "Observedtext",
+          "type": "string"
+        },
+        "cropRegionIds": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Cropregionids",
+          "type": "array"
+        },
+        "uncertainties": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Uncertainties",
+          "type": "array"
+        }
+      },
+      "required": [
+        "blockIndex",
+        "before",
+        "observedText",
+        "cropRegionIds",
+        "uncertainties"
+      ],
+      "title": "VisualBlockCheck",
+      "type": "object"
+    },
+    "VisualDifference": {
+      "additionalProperties": false,
+      "properties": {
+        "cropRegionIds": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Cropregionids",
+          "type": "array"
+        },
+        "blockIndex": {
+          "title": "Blockindex",
+          "type": "integer"
+        },
+        "before": {
+          "title": "Before",
+          "type": "string"
+        },
+        "after": {
+          "title": "After",
+          "type": "string"
+        },
+        "category": {
+          "title": "Category",
+          "type": "string"
+        },
+        "imageEvidence": {
+          "title": "Imageevidence",
+          "type": "string"
+        },
+        "unambiguous": {
+          "title": "Unambiguous",
+          "type": "boolean"
+        },
+        "alternatives": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Alternatives",
+          "type": "array"
+        },
+        "edits": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/VisualEdit"
+          },
+          "title": "Edits",
+          "type": "array"
+        }
+      },
+      "required": [
+        "blockIndex",
+        "before",
+        "after",
+        "category",
+        "imageEvidence",
+        "unambiguous",
+        "alternatives"
+      ],
+      "title": "VisualDifference",
+      "type": "object"
+    },
+    "VisualEdit": {
+      "additionalProperties": false,
+      "properties": {
+        "beforeText": {
+          "title": "Beforetext",
+          "type": "string"
+        },
+        "afterText": {
+          "title": "Aftertext",
+          "type": "string"
+        },
+        "imageEvidence": {
+          "title": "Imageevidence",
+          "type": "string"
+        },
+        "unambiguous": {
+          "title": "Unambiguous",
+          "type": "boolean"
+        },
+        "alternatives": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Alternatives",
+          "type": "array"
+        }
+      },
+      "required": [
+        "beforeText",
+        "afterText",
+        "imageEvidence",
+        "unambiguous",
+        "alternatives"
+      ],
+      "title": "VisualEdit",
+      "type": "object"
+    },
+    "VisualReviewTarget": {
+      "additionalProperties": false,
+      "properties": {
+        "blockIndex": {
+          "title": "Blockindex",
+          "type": "integer"
+        },
+        "cropRegionIds": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Cropregionids",
+          "type": "array"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "blockIndex",
+        "cropRegionIds",
+        "reason"
+      ],
+      "title": "VisualReviewTarget",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "reviewTargets": {
+      "items": {
+        "$ref": "#/$defs/VisualReviewTarget"
+      },
+      "title": "Reviewtargets",
+      "type": "array"
+    },
+    "differences": {
+      "items": {
+        "$ref": "#/$defs/VisualDifference"
+      },
+      "title": "Differences",
+      "type": "array"
+    },
+    "ambiguities": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Ambiguities",
+      "type": "array"
+    },
+    "notes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+    },
+    "blockChecks": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/VisualBlockCheck"
+      },
+      "title": "Blockchecks",
+      "type": "array"
+    }
+  },
+  "required": [
+    "reviewTargets",
+    "differences",
+    "ambiguities",
+    "notes"
+  ],
+  "title": "TranscriptionCheck",
+  "type": "object"
+}

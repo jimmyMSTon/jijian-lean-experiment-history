@@ -1,0 +1,214 @@
+F..F.................                                                    [100%]
+=================================== FAILURES ===================================
+____ test_real_refutation_repair_is_constrained_to_original_locked_negation ____
+
+    def test_real_refutation_repair_is_constrained_to_original_locked_negation():
+>       result,provider,runner=call()
+                               ^^^^^^
+
+tests/test_lean_first_refutation_repair_attribution.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_lean_first_refutation_repair_attribution.py:51: in call
+    result=asyncio.run(refute_authored_claim(
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py:204: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py:127: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py:719: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+backend/lean_first_refutation.py:119: in refute_authored_claim
+    repair = await repair_locked_proof(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    async def repair_locked_proof(*, source: str, step: dict, statement: str,
+                                  original_proof: str, first_lean: dict, provider, runner,
+                                  emit=None, proof_validator=None,
+                                  mandatory_source_markers: list[str] | None = None) -> dict:
+        """Continue technical correction while Lean supplies novel diagnostics.
+    
+        There is no arbitrary retry count. The existing fixed theorem, source-step
+        witnesses, provenance, and fresh Kernel check apply to EVERY candidate.
+        A repeated proof, identical diagnostics, refusal, malformed reply, source
+        witness loss, or genuine service failure can never become a success.
+        Mathematical gaps are never repaired by inventing author reasoning.
+        """
+        from .errors import AppError
+    
+        attempts = [{"origin": "original_translation", "proofTerm": original_proof,
+                     "lean": first_lean, "kernelVerified": kernel_pass(first_lean)}]
+        record = {"attempts": attempts, "candidateProofTerm": original_proof,
+                  "lean": first_lean, "kernelVerified": False, "repairStatus": "not_attempted"}
+        current_proof, current_lean = original_proof, first_lean
+        seen_proofs = {original_proof}
+        while True:
+            if current_lean.get('status') in ('statement_not_elaborated', 'missing_proof'):
+                record['repairStatus'] = 'fixed_statement_not_elaborated_or_missing_proof'
+                return record
+            diagnostics = current_lean.get('diagnostics') or []
+            if not any(d.get('severity') == 'error' for d in diagnostics):
+                if len(attempts) == 1:
+                    record['repairStatus'] = 'no_actionable_lean_error'
+                return record
+            if emit is not None:
+                await emit('local_repairing', {"stepId": step['id'],
+                                               "completedAttempts": len(attempts) - 1})
+            api_evidence = await checked_missing_name_evidence(diagnostics, runner)
+            if api_evidence.get('missingNames'):
+                record.setdefault('mathlibDeclarationChecks', []).append(api_evidence)
+            try:
+                reply, provenance = await provider.structured(LockedProofRepair, PROMPT, {
+                    'originalSource': source,
+                    'sourceSpan': {k: step[k] for k in ('id', 'start', 'end', 'sourceExcerpt')},
+                    'lockedFormalStatement': statement,
+                    'originalTranslationProofTerm': current_proof,
+                    'leanStatus': current_lean.get('status'),
+                    'leanDiagnostics': diagnostics,
+                    'lockedDependencies': step.get('dependsOn') or [],
+                    'unverifiedDependencies': step.get('unverifiedDependencyIndices') or [],
+                    'mandatorySourceMarkers': mandatory_source_markers or [],
+                    'installedMathlibDeclarationEvidence': api_evidence,
+                })
+            except AppError as error:
+                record['repairStatus'] = 'repair_service_unavailable'
+                record['repairServiceError'] = error.payload()
+                return record
+            candidate = reply.proofTerm
+            record['repairProvenance'] = provenance
+            record['repairNote'] = reply.repairNote
+            if candidate in seen_proofs:
+                record['repairStatus'] = 'repair_declined_or_unchanged' if candidate == current_proof else 'repair_repeated_previous_candidate'
+                return record
+            invalid = invalid_translation(statement, candidate)
+            if invalid:
+                record['repairStatus'] = 'repair_invalid_lean_translation'
+                record['repairRejectionReason'] = invalid
+                record['rejectedProofTerm'] = candidate
+                return record
+            if proof_validator is not None:
+                rejection = proof_validator(candidate)
+                if rejection:
+                    record['repairStatus'] = 'repair_broke_authored_step_witnesses'
+                    record['repairRejectionReason'] = rejection
+                    record['rejectedProofTerm'] = candidate
+                    return record
+            obligation = {'stepId': step['id'], 'expectedType': statement,
+                          'proofTerm': candidate, 'sourceRefs': [{
+                              'blockId': 'b0', 'start': step['start'], 'end': step['end']}],
+                          'statement_hash': step['sourceSha256']}
+            try:
+>               check = getattr(runner, 'check_many_with_probes', runner.check_many)
+                                                                  ^^^^^^^^^^^^^^^^^
+E               AttributeError: 'Runner' object has no attribute 'check_many'
+
+backend/lean_first_repair.py:178: AttributeError
+__ test_exact_original_substring_refutation_is_attributed_to_full_source_step __
+
+    def test_exact_original_substring_refutation_is_attributed_to_full_source_step():
+>       result,_,_=call()
+                   ^^^^^^
+
+tests/test_lean_first_refutation_repair_attribution.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_lean_first_refutation_repair_attribution.py:51: in call
+    result=asyncio.run(refute_authored_claim(
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py:204: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py:127: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py:719: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+backend/lean_first_refutation.py:119: in refute_authored_claim
+    repair = await repair_locked_proof(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    async def repair_locked_proof(*, source: str, step: dict, statement: str,
+                                  original_proof: str, first_lean: dict, provider, runner,
+                                  emit=None, proof_validator=None,
+                                  mandatory_source_markers: list[str] | None = None) -> dict:
+        """Continue technical correction while Lean supplies novel diagnostics.
+    
+        There is no arbitrary retry count. The existing fixed theorem, source-step
+        witnesses, provenance, and fresh Kernel check apply to EVERY candidate.
+        A repeated proof, identical diagnostics, refusal, malformed reply, source
+        witness loss, or genuine service failure can never become a success.
+        Mathematical gaps are never repaired by inventing author reasoning.
+        """
+        from .errors import AppError
+    
+        attempts = [{"origin": "original_translation", "proofTerm": original_proof,
+                     "lean": first_lean, "kernelVerified": kernel_pass(first_lean)}]
+        record = {"attempts": attempts, "candidateProofTerm": original_proof,
+                  "lean": first_lean, "kernelVerified": False, "repairStatus": "not_attempted"}
+        current_proof, current_lean = original_proof, first_lean
+        seen_proofs = {original_proof}
+        while True:
+            if current_lean.get('status') in ('statement_not_elaborated', 'missing_proof'):
+                record['repairStatus'] = 'fixed_statement_not_elaborated_or_missing_proof'
+                return record
+            diagnostics = current_lean.get('diagnostics') or []
+            if not any(d.get('severity') == 'error' for d in diagnostics):
+                if len(attempts) == 1:
+                    record['repairStatus'] = 'no_actionable_lean_error'
+                return record
+            if emit is not None:
+                await emit('local_repairing', {"stepId": step['id'],
+                                               "completedAttempts": len(attempts) - 1})
+            api_evidence = await checked_missing_name_evidence(diagnostics, runner)
+            if api_evidence.get('missingNames'):
+                record.setdefault('mathlibDeclarationChecks', []).append(api_evidence)
+            try:
+                reply, provenance = await provider.structured(LockedProofRepair, PROMPT, {
+                    'originalSource': source,
+                    'sourceSpan': {k: step[k] for k in ('id', 'start', 'end', 'sourceExcerpt')},
+                    'lockedFormalStatement': statement,
+                    'originalTranslationProofTerm': current_proof,
+                    'leanStatus': current_lean.get('status'),
+                    'leanDiagnostics': diagnostics,
+                    'lockedDependencies': step.get('dependsOn') or [],
+                    'unverifiedDependencies': step.get('unverifiedDependencyIndices') or [],
+                    'mandatorySourceMarkers': mandatory_source_markers or [],
+                    'installedMathlibDeclarationEvidence': api_evidence,
+                })
+            except AppError as error:
+                record['repairStatus'] = 'repair_service_unavailable'
+                record['repairServiceError'] = error.payload()
+                return record
+            candidate = reply.proofTerm
+            record['repairProvenance'] = provenance
+            record['repairNote'] = reply.repairNote
+            if candidate in seen_proofs:
+                record['repairStatus'] = 'repair_declined_or_unchanged' if candidate == current_proof else 'repair_repeated_previous_candidate'
+                return record
+            invalid = invalid_translation(statement, candidate)
+            if invalid:
+                record['repairStatus'] = 'repair_invalid_lean_translation'
+                record['repairRejectionReason'] = invalid
+                record['rejectedProofTerm'] = candidate
+                return record
+            if proof_validator is not None:
+                rejection = proof_validator(candidate)
+                if rejection:
+                    record['repairStatus'] = 'repair_broke_authored_step_witnesses'
+                    record['repairRejectionReason'] = rejection
+                    record['rejectedProofTerm'] = candidate
+                    return record
+            obligation = {'stepId': step['id'], 'expectedType': statement,
+                          'proofTerm': candidate, 'sourceRefs': [{
+                              'blockId': 'b0', 'start': step['start'], 'end': step['end']}],
+                          'statement_hash': step['sourceSha256']}
+            try:
+>               check = getattr(runner, 'check_many_with_probes', runner.check_many)
+                                                                  ^^^^^^^^^^^^^^^^^
+E               AttributeError: 'Runner' object has no attribute 'check_many'
+
+backend/lean_first_repair.py:178: AttributeError
+=========================== short test summary info ============================
+FAILED tests/test_lean_first_refutation_repair_attribution.py::test_real_refutation_repair_is_constrained_to_original_locked_negation
+FAILED tests/test_lean_first_refutation_repair_attribution.py::test_exact_original_substring_refutation_is_attributed_to_full_source_step
+2 failed, 19 passed in 0.11s

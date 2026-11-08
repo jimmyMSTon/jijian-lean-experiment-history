@@ -1,0 +1,122 @@
+{
+  "id": "hard_linear_algebra_spectral",
+  "topic": "实对称矩阵正交对角化",
+  "source": "设 n≥1，A 为 n×n 实对称矩阵，即 Aᵀ=A。证明存在实正交矩阵 Q 与实对角矩阵 D，使 QᵀAQ=D。原证明：对 n 作归纳。n=1 显然。设 n>1。在单位球面 S={x∈ℝⁿ∣∥x∥=1} 上，连续函数 R(x)=xᵀAx 取得最大值 λ，设最大值点为单位向量 v。对任意与 v 正交的 w，考虑 g(t)=R((v+tw)/∥v+tw∥)，在 t=0 取得极大值，故 g′(0)=2wᵀAv=0。因此 Av 与 v 的正交补正交，存在实数 μ 使 Av=μv，且 μ=vᵀAv=λ。由于 A 对称，若 w⊥v，则 ⟨Aw,v⟩=⟨w,Av⟩=λ⟨w,v⟩=0，所以 v⊥ 在 A 下不变。将 A 限制在维数 n−1 的空间 v⊥ 上仍为实对称算子。依归纳假设，v⊥ 有一组由 A 的特征向量组成的标准正交基；与 v 合并得到 ℝⁿ 的标准正交特征向量基。以这些向量为列构成 Q，则 QᵀQ=I，且 QᵀAQ 为实对角矩阵。证毕。",
+  "reference": "真证明，极值、Rayleigh 商、对称性、不变子空间、维数归纳",
+  "appSourceCommit": "868349bf1fbec7ffae5e45c01d671f3552ba56d2",
+  "providerFixture": false,
+  "kernelFixture": false,
+  "handWrittenLean": false,
+  "handWrittenMathIR": false,
+  "transport": "signed installed App packaged backend POST /api/v2/jobs",
+  "guiInteracted": false,
+  "startedUtc": "2026-10-23T16:14:44.864161+00:00",
+  "sourceSha256": "f1f3240a93c04b59a15f6d685d57aa00a9b0e6c27388f08bc857e819021c839c",
+  "capabilities": {
+    "ai": {
+      "configured": true,
+      "provider": "deepseek",
+      "model": "deepseek-flash",
+      "thinking": "provider_default",
+      "liveTested": false
+    },
+    "lean": {
+      "configured": true,
+      "executableFound": true,
+      "projectFound": true,
+      "runtimeBuilt": true,
+      "runtimeIntegrity": true,
+      "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+      "sandbox": "macos",
+      "isolated": true,
+      "ready": true,
+      "toolchain": "leanprover/lean4:v4.34.0",
+      "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+      "liveTestedInThisDistribution": false
+    },
+    "mockFallback": false,
+    "health": "running"
+  },
+  "jobId": "f674d76e-768c-44f6-9a68-8e580e84076d",
+  "submittedUtc": "2026-10-23T16:14:45.483751+00:00",
+  "stageTransitions": [
+    {
+      "status": "running",
+      "stage": "recognizing",
+      "seconds": 0.62,
+      "utc": "2026-10-23T16:14:45.488663+00:00"
+    },
+    {
+      "status": "failed",
+      "stage": "failed",
+      "seconds": 1.44,
+      "utc": "2026-10-23T16:14:46.306528+00:00"
+    }
+  ],
+  "terminalStatus": "failed",
+  "terminalStage": "failed",
+  "terminalError": {
+    "code": "AI_PROVIDER_ERROR",
+    "message": "AI 服务返回错误",
+    "details": {
+      "httpStatus": 402,
+      "requestId": null,
+      "retryAfter": null,
+      "providerCode": "invalid_request_error",
+      "providerMessage": "Insufficient Balance (request_id: cdfbf0ef-ad1e-4227-ad74-b6fe7e494c5d)"
+    }
+  },
+  "result": {
+    "runStatus": null,
+    "termination": null,
+    "kernelVerified": null,
+    "fixedStatementKernelPassed": null,
+    "originalRouteKernelPassed": null,
+    "sourceProofVerified": null,
+    "originalProofVerified": null,
+    "originalMeaning": null,
+    "statement": null,
+    "failure": null,
+    "mathIRId": null,
+    "sourceStructureId": null,
+    "originalProofFidelity": null,
+    "reasoningFidelity": null,
+    "routeSummary": [],
+    "steps": []
+  },
+  "finishedUtc": "2026-10-23T16:14:46.310646+00:00",
+  "wallSeconds": 1.45,
+  "provider": {
+    "realAttempts": 1,
+    "started": 1,
+    "finished": 1,
+    "requestCount": 1,
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "incompleteUsageRecords": 1
+    },
+    "records": [
+      {
+        "request_id": "f011e43a-5086-47a0-a68c-c13943a81fd6",
+        "stage": "mathir",
+        "reason": "StructureOnlyMathIRV2",
+        "model": "deepseek-flash",
+        "status": "failed",
+        "input_tokens": null,
+        "output_tokens": null,
+        "retry_index": 0,
+        "cache_hit": null,
+        "real_request_attempted": true,
+        "started_at": null,
+        "finished_at": null
+      }
+    ]
+  },
+  "dbCounts": {
+    "artifacts": 0,
+    "jobs": 1,
+    "events": 3
+  },
+  "archiveSha256": "dbf6d2b0d84e0da43298a8b01cceda09048a9a18631692b62ee7dd0d18fe57ee"
+}

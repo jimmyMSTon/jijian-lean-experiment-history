@@ -1,0 +1,1716 @@
+{
+  "study": "MathIR v2 Stage 5 new-input proof-only live E2E",
+  "baselineCommit": "f5dd230",
+  "workflowId": "e4f41dd4-5e81-44e3-9cf1-51cdd8f7c869",
+  "provider": "DeepSeek",
+  "requestedModel": "deepseek-flash",
+  "productionV1Changed": false,
+  "requestAudit": {
+    "requestCount": 5,
+    "realRequestCount": 5,
+    "stages": {
+      "formalization": 2,
+      "mathir": 2,
+      "repair": 1
+    },
+    "rows": [
+      {
+        "request_id": "20c3dd62-a9af-4052-97d8-4a4163768ea8",
+        "stage": "mathir",
+        "reason": "StructureOnlyMathIRV2",
+        "input_hash": "e3bb41104d56f063b1fa6d3ec38f28dca3a8cbf8a5f62df9dd7545642fa099d4",
+        "prompt_version": "sha256:4682acac0d3289de3a13c9571d7b53c10c7f03a0e3d47ca896e6efdc5d9e165b",
+        "model": "deepseek-flash",
+        "retry_index": 0,
+        "input_tokens": 3756,
+        "output_tokens": 11102,
+        "http_duration_ms": 45473.135,
+        "status": "response_received",
+        "real_request_attempted": true
+      },
+      {
+        "request_id": "7257da50-3c80-4ed0-b055-60fad78e8d02",
+        "stage": "formalization",
+        "reason": "FormalProofs",
+        "input_hash": "f10356b800d3955d1bb21f48ae1e99bc1fbdf34d1b1a279a11f29fc874155fda",
+        "prompt_version": "sha256:ecc008b6fb7eb8d4a3db5b76acfb73de187f423589fd95d77bc84110a11132b3",
+        "model": "deepseek-flash",
+        "retry_index": 0,
+        "input_tokens": 958,
+        "output_tokens": 525,
+        "http_duration_ms": 2806.761,
+        "status": "response_received",
+        "real_request_attempted": true
+      },
+      {
+        "request_id": "15016f93-d93b-4215-b637-305ef48524f0",
+        "stage": "mathir",
+        "reason": "StructureOnlyMathIRV2",
+        "input_hash": "97439171aed34d3ed6f2889dce2a6cf443301ee764ec7f6899ba9105b8aa4371",
+        "prompt_version": "sha256:4682acac0d3289de3a13c9571d7b53c10c7f03a0e3d47ca896e6efdc5d9e165b",
+        "model": "deepseek-flash",
+        "retry_index": 0,
+        "input_tokens": 3777,
+        "output_tokens": 10438,
+        "http_duration_ms": 41411.056,
+        "status": "response_received",
+        "real_request_attempted": true
+      },
+      {
+        "request_id": "7589e954-6ec7-48aa-829c-19a694b5f09b",
+        "stage": "formalization",
+        "reason": "FormalProofs",
+        "input_hash": "650468a9844b1d859eff5adc26f42f03352dea3b992ac4af41ebe7d004340b6c",
+        "prompt_version": "sha256:ecc008b6fb7eb8d4a3db5b76acfb73de187f423589fd95d77bc84110a11132b3",
+        "model": "deepseek-flash",
+        "retry_index": 0,
+        "input_tokens": 1319,
+        "output_tokens": 2879,
+        "http_duration_ms": 12694.344,
+        "status": "response_received",
+        "real_request_attempted": true
+      },
+      {
+        "request_id": "3798fd96-bd62-491f-b259-2f9fd8486095",
+        "stage": "repair",
+        "reason": "FormalProofs",
+        "input_hash": "f22f97bb1c503bfcf96ed7365d7e156b0fa893c5015ea5bbf849754f8331667b",
+        "prompt_version": "sha256:ecc008b6fb7eb8d4a3db5b76acfb73de187f423589fd95d77bc84110a11132b3",
+        "model": "deepseek-flash",
+        "retry_index": 0,
+        "input_tokens": 1302,
+        "output_tokens": 1978,
+        "http_duration_ms": 9005.834,
+        "status": "response_received",
+        "real_request_attempted": true
+      }
+    ]
+  },
+  "cases": {
+    "new_real_square_correct": {
+      "inputKind": "real-number square identity, valid inference",
+      "sourceText": "设实数 x 满足 x=1。由等式两边平方，得到 x²=1。证明：x²=1。",
+      "sourceTextMatches": true,
+      "allInputProofTermsNull": true,
+      "structureNormalization": [],
+      "lockedStatement": {
+        "text": "(∀ (v_d_x : ℝ), ((v_d_x = (1 : ℝ)) → ((v_d_x ^ (2 : ℕ)) = (1 : ℝ))))",
+        "statementHash": "926fccb30c000ef04af31e289ae9b31deebe74f6d87c81d3682541b6ca6a9af4",
+        "structuralHash": "abcb1c7459188504858c10289cb23b7d173e7261e8c65c708b17192b9c304909"
+      },
+      "proofOnlyStatus": "patches_returned",
+      "proofPatches": [
+        {
+          "node_id": "n_claim_x_sq_eq_1",
+          "origin": "proof_only_generation",
+          "proof_term": "by\n  intro v_d_x h jjdep_n_assumption_x_eq_1\n  rw [jjdep_n_assumption_x_eq_1]\n  norm_num",
+          "replaces_proof_term": null,
+          "statement_hash": "926fccb30c000ef04af31e289ae9b31deebe74f6d87c81d3682541b6ca6a9af4",
+          "diagnostic_hash": null
+        }
+      ],
+      "repairPatches": null,
+      "firstVerificationSeconds": 65.189,
+      "postRepairVerificationSeconds": null,
+      "elapsedSeconds": 113.589,
+      "memory": {
+        "selfMaxRssRaw": 55836672,
+        "childrenMaxRssRaw": 6052839424,
+        "unit": "bytes",
+        "selfMaxRssMiB": 53.25,
+        "childrenMaxRssMiB": 5772.44,
+        "scope": "Python process and maximum reaped direct Lean checker child; not total system memory"
+      },
+      "sourceMathIR": {
+        "version": "2.0",
+        "source": {
+          "id": "src_main",
+          "kind": "text",
+          "raw": "设实数 x 满足 x=1。由等式两边平方，得到 x²=1。证明：x²=1。",
+          "normalized": "设实数 x 满足 x=1。由等式两边平方，得到 x²=1。证明：x²=1。",
+          "blocks": [
+            {
+              "id": "b_text",
+              "text": "设实数 x 满足 x=1。由等式两边平方，得到 x²=1。证明：x²=1。",
+              "page": null,
+              "bbox": null,
+              "assetId": null
+            }
+          ],
+          "transcriptStatus": "confirmed"
+        },
+        "scopes": [
+          {
+            "id": "sc_main",
+            "parentId": null,
+            "description": "Main scope for the statement and proof.",
+            "sourceRefs": [
+              {
+                "blockId": "b_text",
+                "start": 0,
+                "end": 37
+              }
+            ]
+          }
+        ],
+        "declarations": [
+          {
+            "id": "d_x",
+            "name": "x",
+            "kind": "variable",
+            "type": {
+              "kind": "Real",
+              "coefficient": null
+            },
+            "scopeId": "sc_main",
+            "constraints": [],
+            "value": null,
+            "sourceRefs": [
+              {
+                "blockId": "b_text",
+                "start": 1,
+                "end": 5
+              }
+            ],
+            "sourceAssessment": "supported",
+            "assessmentBasis": "原文设实数 x。"
+          }
+        ],
+        "assumptions": [
+          {
+            "id": "a_x_eq_1",
+            "expression": {
+              "op": "eq",
+              "args": [
+                {
+                  "op": "symbol",
+                  "args": [],
+                  "symbolId": "d_x",
+                  "binderId": null,
+                  "literal": null,
+                  "lower": null,
+                  "upper": null,
+                  "upperInclusive": null,
+                  "targetType": null
+                },
+                {
+                  "op": "literal",
+                  "args": [],
+                  "symbolId": null,
+                  "binderId": null,
+                  "literal": {
+                    "type": "Real",
+                    "value": "1"
+                  },
+                  "lower": null,
+                  "upper": null,
+                  "upperInclusive": null,
+                  "targetType": null
+                }
+              ],
+              "symbolId": null,
+              "binderId": null,
+              "literal": null,
+              "lower": null,
+              "upper": null,
+              "upperInclusive": null,
+              "targetType": null
+            },
+            "scopeId": "sc_main",
+            "sourceRefs": [
+              {
+                "blockId": "b_text",
+                "start": 9,
+                "end": 12
+              }
+            ],
+            "sourceAssessment": "supported",
+            "assessmentBasis": "原文明确设 x=1。"
+          }
+        ],
+        "goal": {
+          "id": "g_x_sq_eq_1",
+          "expression": {
+            "op": "eq",
+            "args": [
+              {
+                "op": "pow",
+                "args": [
+                  {
+                    "op": "symbol",
+                    "args": [],
+                    "symbolId": "d_x",
+                    "binderId": null,
+                    "literal": null,
+                    "lower": null,
+                    "upper": null,
+                    "upperInclusive": null,
+                    "targetType": null
+                  },
+                  {
+                    "op": "literal",
+                    "args": [],
+                    "symbolId": null,
+                    "binderId": null,
+                    "literal": {
+                      "type": "Nat",
+                      "value": "2"
+                    },
+                    "lower": null,
+                    "upper": null,
+                    "upperInclusive": null,
+                    "targetType": null
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "literal": null,
+                "lower": null,
+                "upper": null,
+                "upperInclusive": null,
+                "targetType": null
+              },
+              {
+                "op": "literal",
+                "args": [],
+                "symbolId": null,
+                "binderId": null,
+                "literal": {
+                  "type": "Real",
+                  "value": "1"
+                },
+                "lower": null,
+                "upper": null,
+                "upperInclusive": null,
+                "targetType": null
+              }
+            ],
+            "symbolId": null,
+            "binderId": null,
+            "literal": null,
+            "lower": null,
+            "upper": null,
+            "upperInclusive": null,
+            "targetType": null
+          },
+          "scopeId": "sc_main",
+          "sourceRefs": [
+            {
+              "blockId": "b_text",
+              "start": 32,
+              "end": 36
+            }
+          ],
+          "sourceAssessment": "supported",
+          "assessmentBasis": "原文最后写作证明：x²=1。"
+        },
+        "proofRoutes": [
+          {
+            "id": "pr_main",
+            "label": "Squaring both sides of x=1",
+            "nodes": [
+              {
+                "id": "n_assumption_x_eq_1",
+                "kind": "local_assumption",
+                "expression": {
+                  "op": "eq",
+                  "args": [
+                    {
+                      "op": "symbol",
+                      "args": [],
+                      "symbolId": "d_x",
+                      "binderId": null,
+                      "literal": null,
+                      "lower": null,
+                      "upper": null,
+                      "upperInclusive": null,
+                      "targetType": null
+                    },
+                    {
+                      "op": "literal",
+                      "args": [],
+                      "symbolId": null,
+                      "binderId": null,
+                      "literal": {
+                        "type": "Real",
+                        "value": "1"
+                      },
+                      "lower": null,
+                      "upper": null,
+                      "upperInclusive": null,
+                      "targetType": null
+                    }
+                  ],
+                  "symbolId": null,
+                  "binderId": null,
+                  "literal": null,
+                  "lower": null,
+                  "upper": null,
+                  "upperInclusive": null,
+                  "targetType": null
+                },
+                "scopeId": "sc_main",
+                "dependsOn": [],
+                "proofTerm": null,
+                "sourceRefs": [
+                  {
+                    "blockId": "b_text",
+                    "start": 9,
+                    "end": 12
+                  }
+                ],
+                "sourceAssessment": "supported",
+                "assessmentBasis": "原文明确设 x=1。"
+              },
+              {
+                "id": "n_claim_x_sq_eq_1",
+                "kind": "claim",
+                "expression": {
+                  "op": "eq",
+                  "args": [
+                    {
+                      "op": "pow",
+                      "args": [
+                        {
+                          "op": "symbol",
+                          "args": [],
+                          "symbolId": "d_x",
+                          "binderId": null,
+                          "literal": null,
+                          "lower": null,
+                          "upper": null,
+                          "upperInclusive": null,
+                          "targetType": null
+                        },
+                        {
+                          "op": "literal",
+                          "args": [],
+                          "symbolId": null,
+                          "binderId": null,
+                          "literal": {
+                            "type": "Nat",
+                            "value": "2"
+                          },
+                          "lower": null,
+                          "upper": null,
+                          "upperInclusive": null,
+                          "targetType": null
+                        }
+                      ],
+                      "symbolId": null,
+                      "binderId": null,
+                      "literal": null,
+                      "lower": null,
+                      "upper": null,
+                      "upperInclusive": null,
+                      "targetType": null
+                    },
+                    {
+                      "op": "literal",
+                      "args": [],
+                      "symbolId": null,
+                      "binderId": null,
+                      "literal": {
+                        "type": "Real",
+                        "value": "1"
+                      },
+                      "lower": null,
+                      "upper": null,
+                      "upperInclusive": null,
+                      "targetType": null
+                    }
+                  ],
+                  "symbolId": null,
+                  "binderId": null,
+                  "literal": null,
+                  "lower": null,
+                  "upper": null,
+                  "upperInclusive": null,
+                  "targetType": null
+                },
+                "scopeId": "sc_main",
+                "dependsOn": [
+                  "n_assumption_x_eq_1"
+                ],
+                "proofTerm": null,
+                "sourceRefs": [
+                  {
+                    "blockId": "b_text",
+                    "start": 24,
+                    "end": 28
+                  }
+                ],
+                "sourceAssessment": "supported",
+                "assessmentBasis": "原文由等式两边平方得到 x²=1。"
+              }
+            ],
+            "goalNodeId": "n_claim_x_sq_eq_1",
+            "inductions": [],
+            "sourceRefs": [
+              {
+                "blockId": "b_text",
+                "start": 13,
+                "end": 29
+              }
+            ],
+            "sourceAssessment": "supported",
+            "assessmentBasis": "原文由等式两边平方得到 x²=1。"
+          }
+        ],
+        "ambiguities": []
+      },
+      "providerRequests": [
+        {
+          "stage": "mathir",
+          "provider": "deepseek",
+          "requestedModel": "deepseek-flash",
+          "model": "deepseek-flash",
+          "responseId": "3542eca6-0be0-4eb6-af6a-59b50d5ab2a1",
+          "systemFingerprint": "aeb56401ca74e127821c4f9126dcb669",
+          "usage": {
+            "prompt_tokens": 3756,
+            "completion_tokens": 11102,
+            "total_tokens": 14858,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 10304
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 3756
+          },
+          "thinking": "provider_default",
+          "simulated": false
+        },
+        {
+          "stage": "formalization",
+          "provider": "deepseek",
+          "requestedModel": "deepseek-flash",
+          "model": "deepseek-flash",
+          "responseId": "1c8fd3bb-6c67-450d-be20-273efb681ae0",
+          "systemFingerprint": "aeb56401ca74e127821c4f9126dcb669",
+          "usage": {
+            "prompt_tokens": 958,
+            "completion_tokens": 525,
+            "total_tokens": 1483,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 463
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 958
+          },
+          "thinking": "provider_default",
+          "simulated": false
+        }
+      ],
+      "firstVerification": {
+        "leanMetrics": {
+          "processCount": 5,
+          "elapsedSeconds": 65.138,
+          "measurement": "Lean subprocess stage invocations and summed wall time; Kernel audit processes remain separate"
+        },
+        "sourceAlignment": {
+          "status": "not_assessed",
+          "transcriptionStatus": "confirmed",
+          "sourceRefsValidated": true,
+          "semanticAlignmentKernelProven": false
+        },
+        "statementLock": {
+          "status": "locked",
+          "statementHash": "926fccb30c000ef04af31e289ae9b31deebe74f6d87c81d3682541b6ca6a9af4"
+        },
+        "steps": [
+          {
+            "nodeId": "n_claim_x_sq_eq_1",
+            "status": "passed",
+            "proofAttemptStatus": "verified",
+            "mathematicalStatus": "not_established",
+            "expectedType": "(∀ (v_d_x : ℝ), ((v_d_x = (1 : ℝ)) → (∀ (jjdep_n_assumption_x_eq_1 : (v_d_x = (1 : ℝ))), ((v_d_x ^ (2 : ℕ)) = (1 : ℝ)))))",
+            "context": [
+              {
+                "source_id": "d_x",
+                "scope_id": "sc_main",
+                "kind": "variable",
+                "name": "v_d_x",
+                "type": "ℝ",
+                "value": null,
+                "constraints": []
+              },
+              {
+                "source_id": "a_x_eq_1",
+                "scope_id": "sc_main",
+                "kind": "theorem_assumption",
+                "type": "(v_d_x = (1 : ℝ))"
+              },
+              {
+                "source_id": "n_assumption_x_eq_1",
+                "kind": "local_assumption",
+                "name": "h_pr_main_n_assumption_x_eq_1",
+                "type": "(v_d_x = (1 : ℝ))"
+              }
+            ],
+            "dependsOn": [
+              "n_assumption_x_eq_1"
+            ],
+            "dependencyEvidence": "all_declared_dependencies_used",
+            "dependencyUsage": [
+              {
+                "dependencyId": "n_assumption_x_eq_1",
+                "used": true
+              }
+            ],
+            "sourceReasoning": [
+              "x²=1"
+            ],
+            "inputMathIRProofTerm": null,
+            "formalizedProofTerm": "by\n  intro v_d_x h jjdep_n_assumption_x_eq_1\n  rw [jjdep_n_assumption_x_eq_1]\n  norm_num",
+            "proofGenerationHistory": [
+              {
+                "node_id": "n_claim_x_sq_eq_1",
+                "origin": "proof_only_generation",
+                "proof_term": "by\n  intro v_d_x h jjdep_n_assumption_x_eq_1\n  rw [jjdep_n_assumption_x_eq_1]\n  norm_num",
+                "replaces_proof_term": null,
+                "statement_hash": "926fccb30c000ef04af31e289ae9b31deebe74f6d87c81d3682541b6ca6a9af4",
+                "diagnostic_hash": null
+              }
+            ],
+            "lean": {
+              "localVerified": true,
+              "status": "verified",
+              "diagnostics": [],
+              "certificate": {
+                "auditMethod": "fresh_environment_data_only_kernel_replay",
+                "axioms": [
+                  "propext",
+                  "Classical.choice",
+                  "Quot.sound"
+                ],
+                "checked": true,
+                "dependencyUsage": [
+                  {
+                    "dependencyId": "n_assumption_x_eq_1",
+                    "used": true
+                  }
+                ],
+                "formalStatement": "∀ (v_d_x : ℝ), v_d_x = 1 → v_d_x = 1 → v_d_x ^ 2 = 1",
+                "statementMatched": true,
+                "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                "expectedExpressionSha256": "6cdadf471955ab9882ae3510de5a5862d7d4e267776fcfc86329e539a55065d9",
+                "proofExpressionSha256": "ed1e6c824576cb10abc8b4a65effef9d5bc25380d4db21a11edec369cf664bd2",
+                "statement_hash": "926fccb30c000ef04af31e289ae9b31deebe74f6d87c81d3682541b6ca6a9af4",
+                "nativeExpressionComparison": "structural_equal",
+                "sourceTypeSha256": "729a2b0de186b345de4dbe1a448980b934d4dcd96ac68a256fa577c3c6a79c26",
+                "sourceProofSha256": "5e6c249233a1ef3e2e3500280743623136298b63927d50f362981e4c197ecc5d",
+                "runtime": {
+                  "configured": true,
+                  "executableFound": true,
+                  "projectFound": true,
+                  "runtimeBuilt": true,
+                  "sandbox": "macos",
+                  "isolated": true,
+                  "ready": true,
+                  "toolchain": "leanprover/lean4:v4.34.0",
+                  "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                  "liveTestedInThisDistribution": false
+                },
+                "additionalAxioms": []
+              }
+            }
+          }
+        ]
+      },
+      "finalResult": {
+        "fixedStatementKernelPassed": true,
+        "originalRouteKernelPassed": true,
+        "routes": [
+          {
+            "routeId": "pr_main",
+            "status": "passed",
+            "completeOriginalRouteKernelPassed": true,
+            "fixedStatementKernelPassed": true,
+            "proofComposition": {
+              "status": "composed",
+              "error": null,
+              "kernelChecked": true
+            },
+            "routeConnectivity": {
+              "status": "connected",
+              "goalNodeIdPresent": true,
+              "unconnectedNodeIds": [],
+              "unconnectedClaimNodeIds": [],
+              "basis": "goal dependency closure plus explicit induction-case edges"
+            },
+            "steps": [
+              {
+                "nodeId": "n_claim_x_sq_eq_1",
+                "status": "passed",
+                "proofAttemptStatus": "verified",
+                "mathematicalStatus": "not_established",
+                "sourceReasoning": null,
+                "inputMathIRProofTerm": null,
+                "dependencyEvidence": "all_declared_dependencies_used",
+                "dependencyUsage": [
+                  {
+                    "dependencyId": "n_assumption_x_eq_1",
+                    "used": true
+                  }
+                ],
+                "diagnostics": [],
+                "formalizedProofTerm": "by\n  intro v_d_x h jjdep_n_assumption_x_eq_1\n  rw [jjdep_n_assumption_x_eq_1]\n  norm_num",
+                "proofGenerationHistory": [
+                  {
+                    "node_id": "n_claim_x_sq_eq_1",
+                    "origin": "proof_only_generation",
+                    "proof_term": "by\n  intro v_d_x h jjdep_n_assumption_x_eq_1\n  rw [jjdep_n_assumption_x_eq_1]\n  norm_num",
+                    "replaces_proof_term": null,
+                    "statement_hash": "926fccb30c000ef04af31e289ae9b31deebe74f6d87c81d3682541b6ca6a9af4",
+                    "diagnostic_hash": null
+                  }
+                ]
+              }
+            ],
+            "kernelCertificate": {
+              "auditMethod": "fresh_environment_data_only_kernel_replay",
+              "axioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "checked": true,
+              "dependencyUsage": [],
+              "formalStatement": "∀ (v_d_x : ℝ), v_d_x = 1 → v_d_x ^ 2 = 1",
+              "statementMatched": true,
+              "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+              "expectedExpressionSha256": "dc48fe3698162418623366095640ad9de6532ea85155db86cbc502145c27ddd7",
+              "proofExpressionSha256": "cdcdbc09779f93ad31226a93c244b136e7c114c86320bdbc06c9f0d4b2582639",
+              "statement_hash": "926fccb30c000ef04af31e289ae9b31deebe74f6d87c81d3682541b6ca6a9af4",
+              "nativeExpressionComparison": "structural_equal",
+              "sourceTypeSha256": "3d7ca74c0cd73e4085f52a778089b188a2eeb8729556bf0c73f7bc45d158d381",
+              "sourceProofSha256": "197d67ed9489399b04478bc0d84bdb8f7c505eabfa50c26822c05e36036bf313",
+              "runtime": {
+                "configured": true,
+                "executableFound": true,
+                "projectFound": true,
+                "runtimeBuilt": true,
+                "sandbox": "macos",
+                "isolated": true,
+                "ready": true,
+                "toolchain": "leanprover/lean4:v4.34.0",
+                "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                "liveTestedInThisDistribution": false
+              },
+              "additionalAxioms": []
+            }
+          }
+        ]
+      }
+    },
+    "new_real_inference_invalid": {
+      "inputKind": "real-number equation, invalid intermediate inference",
+      "sourceText": "设实数 x 满足 x=1。原稿写道：等式两边加 1，得到 x+1=1；再由 x+1=1 得 x=0。请按原稿保留每一步和最终结论。",
+      "sourceTextMatches": true,
+      "allInputProofTermsNull": true,
+      "structureNormalization": [],
+      "lockedStatement": {
+        "text": "(∀ (v_d_x : ℝ), ((v_d_x = (1 : ℝ)) → (v_d_x = (0 : ℝ))))",
+        "statementHash": "ecf912b81dca01974a8c0e90164d635888af02d39d224a71276ef5c4fca03605",
+        "structuralHash": "5287c63bed1aea4c6e12d17931883d729f6d150ac6fb53d117bbe1d13ca198ce"
+      },
+      "proofOnlyStatus": "patches_returned",
+      "proofPatches": [
+        {
+          "node_id": "n_x_eq_0",
+          "origin": "proof_only_generation",
+          "proof_term": "fun (v_d_x : ℝ) (_hx : v_d_x = (1 : ℝ)) (h : v_d_x + (1 : ℝ) = (1 : ℝ)) => by linarith",
+          "replaces_proof_term": null,
+          "statement_hash": "ecf912b81dca01974a8c0e90164d635888af02d39d224a71276ef5c4fca03605",
+          "diagnostic_hash": null
+        }
+      ],
+      "repairPatches": [
+        {
+          "node_id": "n_x_eq_0",
+          "origin": "diagnostic_repair",
+          "proof_term": "by linarith",
+          "replaces_proof_term": "fun (v_d_x : ℝ) (_hx : v_d_x = (1 : ℝ)) (h : v_d_x + (1 : ℝ) = (1 : ℝ)) => by linarith",
+          "statement_hash": "ecf912b81dca01974a8c0e90164d635888af02d39d224a71276ef5c4fca03605",
+          "diagnostic_hash": "8e57f5fd5a7d31a7159e2952f1808b7020dceb0612409caa1deaac4eef9d3078"
+        }
+      ],
+      "firstVerificationSeconds": 39.975,
+      "postRepairVerificationSeconds": 55.031,
+      "elapsedSeconds": 158.182,
+      "memory": {
+        "selfMaxRssRaw": 103251968,
+        "childrenMaxRssRaw": 6070173696,
+        "unit": "bytes",
+        "selfMaxRssMiB": 98.47,
+        "childrenMaxRssMiB": 5788.97,
+        "scope": "Python process and maximum reaped direct Lean checker child; not total system memory"
+      },
+      "sourceMathIR": {
+        "version": "2.0",
+        "source": {
+          "id": "src_main",
+          "kind": "text",
+          "raw": "设实数 x 满足 x=1。原稿写道：等式两边加 1，得到 x+1=1；再由 x+1=1 得 x=0。请按原稿保留每一步和最终结论。",
+          "normalized": "设实数 x 满足 x=1。原稿写道：等式两边加 1，得到 x+1=1；再由 x+1=1 得 x=0。请按原稿保留每一步和最终结论。",
+          "blocks": [
+            {
+              "id": "b_text",
+              "text": "设实数 x 满足 x=1。原稿写道：等式两边加 1，得到 x+1=1；再由 x+1=1 得 x=0。请按原稿保留每一步和最终结论。",
+              "page": null,
+              "bbox": null,
+              "assetId": null
+            }
+          ],
+          "transcriptStatus": "confirmed"
+        },
+        "scopes": [
+          {
+            "id": "sc_root",
+            "parentId": null,
+            "description": "原稿根作用域",
+            "sourceRefs": []
+          }
+        ],
+        "declarations": [
+          {
+            "id": "d_x",
+            "name": "x",
+            "kind": "variable",
+            "type": {
+              "kind": "Real",
+              "coefficient": null
+            },
+            "scopeId": "sc_root",
+            "constraints": [],
+            "value": null,
+            "sourceRefs": [
+              {
+                "blockId": "b_text",
+                "start": 4,
+                "end": 5
+              }
+            ],
+            "sourceAssessment": "supported",
+            "assessmentBasis": "原文‘设实数 x’引入实数变量 x。"
+          }
+        ],
+        "assumptions": [
+          {
+            "id": "a_x_eq_1",
+            "expression": {
+              "op": "eq",
+              "args": [
+                {
+                  "op": "symbol",
+                  "args": [],
+                  "symbolId": "d_x",
+                  "binderId": null,
+                  "literal": null,
+                  "lower": null,
+                  "upper": null,
+                  "upperInclusive": null,
+                  "targetType": null
+                },
+                {
+                  "op": "literal",
+                  "args": [],
+                  "symbolId": null,
+                  "binderId": null,
+                  "literal": {
+                    "type": "Real",
+                    "value": "1"
+                  },
+                  "lower": null,
+                  "upper": null,
+                  "upperInclusive": null,
+                  "targetType": null
+                }
+              ],
+              "symbolId": null,
+              "binderId": null,
+              "literal": null,
+              "lower": null,
+              "upper": null,
+              "upperInclusive": null,
+              "targetType": null
+            },
+            "scopeId": "sc_root",
+            "sourceRefs": [
+              {
+                "blockId": "b_text",
+                "start": 0,
+                "end": 12
+              }
+            ],
+            "sourceAssessment": "supported",
+            "assessmentBasis": "原文明确给出‘设实数 x 满足 x=1’。"
+          }
+        ],
+        "goal": {
+          "id": "g_x_eq_0",
+          "expression": {
+            "op": "eq",
+            "args": [
+              {
+                "op": "symbol",
+                "args": [],
+                "symbolId": "d_x",
+                "binderId": null,
+                "literal": null,
+                "lower": null,
+                "upper": null,
+                "upperInclusive": null,
+                "targetType": null
+              },
+              {
+                "op": "literal",
+                "args": [],
+                "symbolId": null,
+                "binderId": null,
+                "literal": {
+                  "type": "Real",
+                  "value": "0"
+                },
+                "lower": null,
+                "upper": null,
+                "upperInclusive": null,
+                "targetType": null
+              }
+            ],
+            "symbolId": null,
+            "binderId": null,
+            "literal": null,
+            "lower": null,
+            "upper": null,
+            "upperInclusive": null,
+            "targetType": null
+          },
+          "scopeId": "sc_root",
+          "sourceRefs": [
+            {
+              "blockId": "b_text",
+              "start": 46,
+              "end": 49
+            }
+          ],
+          "sourceAssessment": "supported",
+          "assessmentBasis": "原稿最终结论写作 x=0。"
+        },
+        "proofRoutes": [
+          {
+            "id": "pr_main",
+            "label": "原稿推理",
+            "nodes": [
+              {
+                "id": "n_assume_x_eq_1",
+                "kind": "local_assumption",
+                "expression": {
+                  "op": "eq",
+                  "args": [
+                    {
+                      "op": "symbol",
+                      "args": [],
+                      "symbolId": "d_x",
+                      "binderId": null,
+                      "literal": null,
+                      "lower": null,
+                      "upper": null,
+                      "upperInclusive": null,
+                      "targetType": null
+                    },
+                    {
+                      "op": "literal",
+                      "args": [],
+                      "symbolId": null,
+                      "binderId": null,
+                      "literal": {
+                        "type": "Real",
+                        "value": "1"
+                      },
+                      "lower": null,
+                      "upper": null,
+                      "upperInclusive": null,
+                      "targetType": null
+                    }
+                  ],
+                  "symbolId": null,
+                  "binderId": null,
+                  "literal": null,
+                  "lower": null,
+                  "upper": null,
+                  "upperInclusive": null,
+                  "targetType": null
+                },
+                "scopeId": "sc_root",
+                "dependsOn": [],
+                "proofTerm": null,
+                "sourceRefs": [
+                  {
+                    "blockId": "b_text",
+                    "start": 0,
+                    "end": 12
+                  }
+                ],
+                "sourceAssessment": "supported",
+                "assessmentBasis": "与假设 a_x_eq_1 的表达式和来源一致。"
+              },
+              {
+                "id": "n_add_1_both_sides",
+                "kind": "claim",
+                "expression": {
+                  "op": "eq",
+                  "args": [
+                    {
+                      "op": "add",
+                      "args": [
+                        {
+                          "op": "symbol",
+                          "args": [],
+                          "symbolId": "d_x",
+                          "binderId": null,
+                          "literal": null,
+                          "lower": null,
+                          "upper": null,
+                          "upperInclusive": null,
+                          "targetType": null
+                        },
+                        {
+                          "op": "literal",
+                          "args": [],
+                          "symbolId": null,
+                          "binderId": null,
+                          "literal": {
+                            "type": "Real",
+                            "value": "1"
+                          },
+                          "lower": null,
+                          "upper": null,
+                          "upperInclusive": null,
+                          "targetType": null
+                        }
+                      ],
+                      "symbolId": null,
+                      "binderId": null,
+                      "literal": null,
+                      "lower": null,
+                      "upper": null,
+                      "upperInclusive": null,
+                      "targetType": null
+                    },
+                    {
+                      "op": "literal",
+                      "args": [],
+                      "symbolId": null,
+                      "binderId": null,
+                      "literal": {
+                        "type": "Real",
+                        "value": "1"
+                      },
+                      "lower": null,
+                      "upper": null,
+                      "upperInclusive": null,
+                      "targetType": null
+                    }
+                  ],
+                  "symbolId": null,
+                  "binderId": null,
+                  "literal": null,
+                  "lower": null,
+                  "upper": null,
+                  "upperInclusive": null,
+                  "targetType": null
+                },
+                "scopeId": "sc_root",
+                "dependsOn": [
+                  "n_assume_x_eq_1"
+                ],
+                "proofTerm": null,
+                "sourceRefs": [
+                  {
+                    "blockId": "b_text",
+                    "start": 18,
+                    "end": 34
+                  }
+                ],
+                "sourceAssessment": "ambiguous",
+                "assessmentBasis": "原稿称‘等式两边加 1，得到 x+1=1’，但按通常算术从 x=1 两边加 1 应得 x+1=2；保留原稿不修正。"
+              },
+              {
+                "id": "n_x_eq_0",
+                "kind": "claim",
+                "expression": {
+                  "op": "eq",
+                  "args": [
+                    {
+                      "op": "symbol",
+                      "args": [],
+                      "symbolId": "d_x",
+                      "binderId": null,
+                      "literal": null,
+                      "lower": null,
+                      "upper": null,
+                      "upperInclusive": null,
+                      "targetType": null
+                    },
+                    {
+                      "op": "literal",
+                      "args": [],
+                      "symbolId": null,
+                      "binderId": null,
+                      "literal": {
+                        "type": "Real",
+                        "value": "0"
+                      },
+                      "lower": null,
+                      "upper": null,
+                      "upperInclusive": null,
+                      "targetType": null
+                    }
+                  ],
+                  "symbolId": null,
+                  "binderId": null,
+                  "literal": null,
+                  "lower": null,
+                  "upper": null,
+                  "upperInclusive": null,
+                  "targetType": null
+                },
+                "scopeId": "sc_root",
+                "dependsOn": [
+                  "n_add_1_both_sides"
+                ],
+                "proofTerm": null,
+                "sourceRefs": [
+                  {
+                    "blockId": "b_text",
+                    "start": 35,
+                    "end": 49
+                  }
+                ],
+                "sourceAssessment": "supported",
+                "assessmentBasis": "原稿明确写‘再由 x+1=1 得 x=0’，最终结论为 x=0。"
+              }
+            ],
+            "goalNodeId": "n_x_eq_0",
+            "inductions": [],
+            "sourceRefs": [
+              {
+                "blockId": "b_text",
+                "start": 0,
+                "end": 65
+              }
+            ],
+            "sourceAssessment": "ambiguous",
+            "assessmentBasis": "原稿第一步从 x=1 加 1 得到 x+1=1 存在算术不一致；保留原稿步骤。"
+          }
+        ],
+        "ambiguities": [
+          {
+            "id": "amb_add_one",
+            "description": "原稿称等式 x=1 两边加 1 得到 x+1=1；按通常算术应得 x+1=2。未按原稿修正，仅记录不一致。",
+            "sourceRefs": [
+              {
+                "blockId": "b_text",
+                "start": 18,
+                "end": 34
+              }
+            ],
+            "relatedNodeIds": [
+              "n_add_1_both_sides"
+            ]
+          }
+        ]
+      },
+      "providerRequests": [
+        {
+          "stage": "mathir",
+          "provider": "deepseek",
+          "requestedModel": "deepseek-flash",
+          "model": "deepseek-flash",
+          "responseId": "16d9fad4-c2ad-4ca5-bd83-7cbbca747702",
+          "systemFingerprint": "aeb56401ca74e127821c4f9126dcb669",
+          "usage": {
+            "prompt_tokens": 3777,
+            "completion_tokens": 10438,
+            "total_tokens": 14215,
+            "prompt_tokens_details": {
+              "cached_tokens": 3456
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 9352
+            },
+            "prompt_cache_hit_tokens": 3456,
+            "prompt_cache_miss_tokens": 321
+          },
+          "thinking": "provider_default",
+          "simulated": false
+        },
+        {
+          "stage": "formalization",
+          "provider": "deepseek",
+          "requestedModel": "deepseek-flash",
+          "model": "deepseek-flash",
+          "responseId": "3827e21d-a00f-4f5b-a541-1e9965650864",
+          "systemFingerprint": "aeb56401ca74e127821c4f9126dcb669",
+          "usage": {
+            "prompt_tokens": 1319,
+            "completion_tokens": 2879,
+            "total_tokens": 4198,
+            "prompt_tokens_details": {
+              "cached_tokens": 256
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 2814
+            },
+            "prompt_cache_hit_tokens": 256,
+            "prompt_cache_miss_tokens": 1063
+          },
+          "thinking": "provider_default",
+          "simulated": false
+        },
+        {
+          "stage": "repair",
+          "provider": "deepseek",
+          "requestedModel": "deepseek-flash",
+          "model": "deepseek-flash",
+          "responseId": "75661da1-7f87-4c45-a1ed-2eb7a97c6e97",
+          "systemFingerprint": "aeb56401ca74e127821c4f9126dcb669",
+          "usage": {
+            "prompt_tokens": 1302,
+            "completion_tokens": 1978,
+            "total_tokens": 3280,
+            "prompt_tokens_details": {
+              "cached_tokens": 384
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 1953
+            },
+            "prompt_cache_hit_tokens": 384,
+            "prompt_cache_miss_tokens": 918
+          },
+          "thinking": "provider_default",
+          "simulated": false
+        }
+      ],
+      "firstVerification": {
+        "leanMetrics": {
+          "processCount": 3,
+          "elapsedSeconds": 39.964,
+          "measurement": "Lean subprocess stage invocations and summed wall time; Kernel audit processes remain separate"
+        },
+        "sourceAlignment": {
+          "status": "ambiguous",
+          "transcriptionStatus": "confirmed",
+          "sourceRefsValidated": true,
+          "semanticAlignmentKernelProven": false
+        },
+        "statementLock": {
+          "status": "locked",
+          "statementHash": "ecf912b81dca01974a8c0e90164d635888af02d39d224a71276ef5c4fca03605"
+        },
+        "steps": [
+          {
+            "nodeId": "n_add_1_both_sides",
+            "status": "incomplete",
+            "proofAttemptStatus": "missing_proof",
+            "mathematicalStatus": "not_established",
+            "expectedType": "(∀ (v_d_x : ℝ), ((v_d_x = (1 : ℝ)) → (∀ (jjdep_n_assume_x_eq_1 : (v_d_x = (1 : ℝ))), ((v_d_x + (1 : ℝ)) = (1 : ℝ)))))",
+            "context": [
+              {
+                "source_id": "d_x",
+                "scope_id": "sc_root",
+                "kind": "variable",
+                "name": "v_d_x",
+                "type": "ℝ",
+                "value": null,
+                "constraints": []
+              },
+              {
+                "source_id": "a_x_eq_1",
+                "scope_id": "sc_root",
+                "kind": "theorem_assumption",
+                "type": "(v_d_x = (1 : ℝ))"
+              },
+              {
+                "source_id": "n_assume_x_eq_1",
+                "kind": "local_assumption",
+                "name": "h_pr_main_n_assume_x_eq_1",
+                "type": "(v_d_x = (1 : ℝ))"
+              }
+            ],
+            "dependsOn": [
+              "n_assume_x_eq_1"
+            ],
+            "dependencyEvidence": "dependency_usage_not_audited",
+            "dependencyUsage": [],
+            "sourceReasoning": [
+              "等式两边加 1，得到 x+1=1"
+            ],
+            "inputMathIRProofTerm": null,
+            "formalizedProofTerm": null,
+            "proofGenerationHistory": [],
+            "lean": {
+              "localVerified": false,
+              "status": "missing_proof",
+              "diagnostics": [],
+              "certificate": null
+            }
+          },
+          {
+            "nodeId": "n_x_eq_0",
+            "status": "incomplete",
+            "proofAttemptStatus": "not_proved",
+            "mathematicalStatus": "not_established",
+            "expectedType": "(∀ (v_d_x : ℝ), ((v_d_x = (1 : ℝ)) → (∀ (jjdep_n_add_1_both_sides : ((v_d_x + (1 : ℝ)) = (1 : ℝ))), (v_d_x = (0 : ℝ)))))",
+            "context": [
+              {
+                "source_id": "d_x",
+                "scope_id": "sc_root",
+                "kind": "variable",
+                "name": "v_d_x",
+                "type": "ℝ",
+                "value": null,
+                "constraints": []
+              },
+              {
+                "source_id": "a_x_eq_1",
+                "scope_id": "sc_root",
+                "kind": "theorem_assumption",
+                "type": "(v_d_x = (1 : ℝ))"
+              },
+              {
+                "source_id": "n_add_1_both_sides",
+                "kind": "claim",
+                "name": "h_pr_main_n_add_1_both_sides",
+                "type": "((v_d_x + (1 : ℝ)) = (1 : ℝ))"
+              }
+            ],
+            "dependsOn": [
+              "n_add_1_both_sides"
+            ],
+            "dependencyEvidence": "dependency_usage_not_audited",
+            "dependencyUsage": [],
+            "sourceReasoning": [
+              "再由 x+1=1 得 x=0"
+            ],
+            "inputMathIRProofTerm": null,
+            "formalizedProofTerm": "by linarith",
+            "proofGenerationHistory": [
+              {
+                "node_id": "n_x_eq_0",
+                "origin": "proof_only_generation",
+                "proof_term": "fun (v_d_x : ℝ) (_hx : v_d_x = (1 : ℝ)) (h : v_d_x + (1 : ℝ) = (1 : ℝ)) => by linarith",
+                "replaces_proof_term": null,
+                "statement_hash": "ecf912b81dca01974a8c0e90164d635888af02d39d224a71276ef5c4fca03605",
+                "diagnostic_hash": null
+              },
+              {
+                "node_id": "n_x_eq_0",
+                "origin": "diagnostic_repair",
+                "proof_term": "by linarith",
+                "replaces_proof_term": "fun (v_d_x : ℝ) (_hx : v_d_x = (1 : ℝ)) (h : v_d_x + (1 : ℝ) = (1 : ℝ)) => by linarith",
+                "statement_hash": "ecf912b81dca01974a8c0e90164d635888af02d39d224a71276ef5c4fca03605",
+                "diagnostic_hash": "8e57f5fd5a7d31a7159e2952f1808b7020dceb0612409caa1deaac4eef9d3078"
+              }
+            ],
+            "lean": {
+              "localVerified": false,
+              "status": "not_proved",
+              "diagnostics": [
+                {
+                  "severity": "error",
+                  "message": "Type mismatch\n  fun v_d_x _hx h => ?m.37\nhas type\n  (v_d_x : ℝ) → (_hx : v_d_x = 1) → (h : v_d_x + 1 = 1) → ?m.38 v_d_x _hx h\nbut is expected to have type\n  v_d_x = 0",
+                  "leanPosition": {
+                    "column": 3,
+                    "line": 4
+                  },
+                  "leanEndPosition": {
+                    "column": 73,
+                    "line": 5
+                  },
+                  "stepId": "mathir-v2/pr_main/n_x_eq_0",
+                  "sourceRefs": [
+                    {
+                      "blockId": "b_text",
+                      "start": 35,
+                      "end": 49
+                    }
+                  ],
+                  "mappingPrecision": "step",
+                  "raw": {
+                    "caption": "",
+                    "data": "Type mismatch\n  fun v_d_x _hx h => ?m.37\nhas type\n  (v_d_x : ℝ) → (_hx : v_d_x = 1) → (h : v_d_x + 1 = 1) → ?m.38 v_d_x _hx h\nbut is expected to have type\n  v_d_x = 0",
+                    "endPos": {
+                      "column": 73,
+                      "line": 5
+                    },
+                    "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-live-stage5/work/lean-kexue9yv/Task.lean",
+                    "isSilent": false,
+                    "keepFullRange": false,
+                    "kind": "[anonymous]",
+                    "pos": {
+                      "column": 3,
+                      "line": 4
+                    },
+                    "severity": "error"
+                  }
+                }
+              ],
+              "certificate": null
+            }
+          }
+        ]
+      },
+      "postRepairVerification": {
+        "leanMetrics": {
+          "processCount": 4,
+          "elapsedSeconds": 54.924,
+          "measurement": "Lean subprocess stage invocations and summed wall time; Kernel audit processes remain separate"
+        },
+        "sourceAlignment": {
+          "status": "ambiguous",
+          "transcriptionStatus": "confirmed",
+          "sourceRefsValidated": true,
+          "semanticAlignmentKernelProven": false
+        },
+        "statementLock": {
+          "status": "locked",
+          "statementHash": "ecf912b81dca01974a8c0e90164d635888af02d39d224a71276ef5c4fca03605"
+        },
+        "steps": [
+          {
+            "nodeId": "n_add_1_both_sides",
+            "status": "incomplete",
+            "proofAttemptStatus": "missing_proof",
+            "mathematicalStatus": "not_established",
+            "expectedType": "(∀ (v_d_x : ℝ), ((v_d_x = (1 : ℝ)) → (∀ (jjdep_n_assume_x_eq_1 : (v_d_x = (1 : ℝ))), ((v_d_x + (1 : ℝ)) = (1 : ℝ)))))",
+            "context": [
+              {
+                "source_id": "d_x",
+                "scope_id": "sc_root",
+                "kind": "variable",
+                "name": "v_d_x",
+                "type": "ℝ",
+                "value": null,
+                "constraints": []
+              },
+              {
+                "source_id": "a_x_eq_1",
+                "scope_id": "sc_root",
+                "kind": "theorem_assumption",
+                "type": "(v_d_x = (1 : ℝ))"
+              },
+              {
+                "source_id": "n_assume_x_eq_1",
+                "kind": "local_assumption",
+                "name": "h_pr_main_n_assume_x_eq_1",
+                "type": "(v_d_x = (1 : ℝ))"
+              }
+            ],
+            "dependsOn": [
+              "n_assume_x_eq_1"
+            ],
+            "dependencyEvidence": "dependency_usage_not_audited",
+            "dependencyUsage": [],
+            "sourceReasoning": [
+              "等式两边加 1，得到 x+1=1"
+            ],
+            "inputMathIRProofTerm": null,
+            "formalizedProofTerm": null,
+            "proofGenerationHistory": [],
+            "lean": {
+              "localVerified": false,
+              "status": "missing_proof",
+              "diagnostics": [],
+              "certificate": null
+            }
+          },
+          {
+            "nodeId": "n_x_eq_0",
+            "status": "passed",
+            "proofAttemptStatus": "verified",
+            "mathematicalStatus": "not_established",
+            "expectedType": "(∀ (v_d_x : ℝ), ((v_d_x = (1 : ℝ)) → (∀ (jjdep_n_add_1_both_sides : ((v_d_x + (1 : ℝ)) = (1 : ℝ))), (v_d_x = (0 : ℝ)))))",
+            "context": [
+              {
+                "source_id": "d_x",
+                "scope_id": "sc_root",
+                "kind": "variable",
+                "name": "v_d_x",
+                "type": "ℝ",
+                "value": null,
+                "constraints": []
+              },
+              {
+                "source_id": "a_x_eq_1",
+                "scope_id": "sc_root",
+                "kind": "theorem_assumption",
+                "type": "(v_d_x = (1 : ℝ))"
+              },
+              {
+                "source_id": "n_add_1_both_sides",
+                "kind": "claim",
+                "name": "h_pr_main_n_add_1_both_sides",
+                "type": "((v_d_x + (1 : ℝ)) = (1 : ℝ))"
+              }
+            ],
+            "dependsOn": [
+              "n_add_1_both_sides"
+            ],
+            "dependencyEvidence": "all_declared_dependencies_used",
+            "dependencyUsage": [
+              {
+                "dependencyId": "n_add_1_both_sides",
+                "used": true
+              }
+            ],
+            "sourceReasoning": [
+              "再由 x+1=1 得 x=0"
+            ],
+            "inputMathIRProofTerm": null,
+            "formalizedProofTerm": "by linarith",
+            "proofGenerationHistory": [
+              {
+                "node_id": "n_x_eq_0",
+                "origin": "proof_only_generation",
+                "proof_term": "fun (v_d_x : ℝ) (_hx : v_d_x = (1 : ℝ)) (h : v_d_x + (1 : ℝ) = (1 : ℝ)) => by linarith",
+                "replaces_proof_term": null,
+                "statement_hash": "ecf912b81dca01974a8c0e90164d635888af02d39d224a71276ef5c4fca03605",
+                "diagnostic_hash": null
+              },
+              {
+                "node_id": "n_x_eq_0",
+                "origin": "diagnostic_repair",
+                "proof_term": "by linarith",
+                "replaces_proof_term": "fun (v_d_x : ℝ) (_hx : v_d_x = (1 : ℝ)) (h : v_d_x + (1 : ℝ) = (1 : ℝ)) => by linarith",
+                "statement_hash": "ecf912b81dca01974a8c0e90164d635888af02d39d224a71276ef5c4fca03605",
+                "diagnostic_hash": "8e57f5fd5a7d31a7159e2952f1808b7020dceb0612409caa1deaac4eef9d3078"
+              }
+            ],
+            "lean": {
+              "localVerified": true,
+              "status": "verified",
+              "diagnostics": [],
+              "certificate": {
+                "auditMethod": "fresh_environment_data_only_kernel_replay",
+                "axioms": [
+                  "propext",
+                  "Classical.choice",
+                  "Quot.sound"
+                ],
+                "checked": true,
+                "dependencyUsage": [
+                  {
+                    "dependencyId": "n_add_1_both_sides",
+                    "used": true
+                  }
+                ],
+                "formalStatement": "∀ (v_d_x : ℝ), v_d_x = 1 → v_d_x + 1 = 1 → v_d_x = 0",
+                "statementMatched": true,
+                "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                "expectedExpressionSha256": "5970714f2d9e2fd09c9c04b038585234efc76cdf33876c44c5ef4b69c0d84053",
+                "proofExpressionSha256": "1e4461ed62f8fba21eeeb18e32046196649693eb67963877b56f6c9831201ca6",
+                "statement_hash": "ecf912b81dca01974a8c0e90164d635888af02d39d224a71276ef5c4fca03605",
+                "nativeExpressionComparison": "structural_equal",
+                "sourceTypeSha256": "3b4473933481f29e8e638c37c88fd4968488ad85ce5bbd4c8a4344343d260d3a",
+                "sourceProofSha256": "deb6c547fc9fee623efc927fd3611fc944ed8cd868a13df07fbe19221423b826",
+                "runtime": {
+                  "configured": true,
+                  "executableFound": true,
+                  "projectFound": true,
+                  "runtimeBuilt": true,
+                  "sandbox": "macos",
+                  "isolated": true,
+                  "ready": true,
+                  "toolchain": "leanprover/lean4:v4.34.0",
+                  "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                  "liveTestedInThisDistribution": false
+                },
+                "additionalAxioms": []
+              }
+            }
+          }
+        ]
+      },
+      "finalResult": {
+        "fixedStatementKernelPassed": false,
+        "originalRouteKernelPassed": false,
+        "routes": [
+          {
+            "routeId": "pr_main",
+            "status": "incomplete",
+            "completeOriginalRouteKernelPassed": false,
+            "fixedStatementKernelPassed": false,
+            "proofComposition": {
+              "status": "incomplete",
+              "error": "A claim in the route has no original proof term",
+              "kernelChecked": false
+            },
+            "routeConnectivity": {
+              "status": "connected",
+              "goalNodeIdPresent": true,
+              "unconnectedNodeIds": [],
+              "unconnectedClaimNodeIds": [],
+              "basis": "goal dependency closure plus explicit induction-case edges"
+            },
+            "steps": [
+              {
+                "nodeId": "n_add_1_both_sides",
+                "status": "incomplete",
+                "proofAttemptStatus": "missing_proof",
+                "mathematicalStatus": "not_established",
+                "sourceReasoning": null,
+                "inputMathIRProofTerm": null,
+                "dependencyEvidence": "dependency_usage_not_audited",
+                "dependencyUsage": [],
+                "diagnostics": [],
+                "formalizedProofTerm": null,
+                "proofGenerationHistory": []
+              },
+              {
+                "nodeId": "n_x_eq_0",
+                "status": "passed",
+                "proofAttemptStatus": "verified",
+                "mathematicalStatus": "not_established",
+                "sourceReasoning": null,
+                "inputMathIRProofTerm": null,
+                "dependencyEvidence": "all_declared_dependencies_used",
+                "dependencyUsage": [
+                  {
+                    "dependencyId": "n_add_1_both_sides",
+                    "used": true
+                  }
+                ],
+                "diagnostics": [],
+                "formalizedProofTerm": "by linarith",
+                "proofGenerationHistory": [
+                  {
+                    "node_id": "n_x_eq_0",
+                    "origin": "proof_only_generation",
+                    "proof_term": "fun (v_d_x : ℝ) (_hx : v_d_x = (1 : ℝ)) (h : v_d_x + (1 : ℝ) = (1 : ℝ)) => by linarith",
+                    "replaces_proof_term": null,
+                    "statement_hash": "ecf912b81dca01974a8c0e90164d635888af02d39d224a71276ef5c4fca03605",
+                    "diagnostic_hash": null
+                  },
+                  {
+                    "node_id": "n_x_eq_0",
+                    "origin": "diagnostic_repair",
+                    "proof_term": "by linarith",
+                    "replaces_proof_term": "fun (v_d_x : ℝ) (_hx : v_d_x = (1 : ℝ)) (h : v_d_x + (1 : ℝ) = (1 : ℝ)) => by linarith",
+                    "statement_hash": "ecf912b81dca01974a8c0e90164d635888af02d39d224a71276ef5c4fca03605",
+                    "diagnostic_hash": "8e57f5fd5a7d31a7159e2952f1808b7020dceb0612409caa1deaac4eef9d3078"
+                  }
+                ]
+              }
+            ],
+            "kernelCertificate": null
+          }
+        ]
+      }
+    }
+  },
+  "contractDebugProbes": {
+    "requestCount": 2,
+    "realRequestCount": 2,
+    "stages": {
+      "mathir": 2
+    },
+    "rows": [
+      {
+        "request_id": "f0e55937-2c24-4556-a00a-0ef527412ade",
+        "stage": "mathir",
+        "reason": "StructureOnlyMathIRV2",
+        "input_hash": "3141abfa7ea69e2997617f67b4440f999eb0ba99ad580365fc375094b0f4e3bd",
+        "prompt_version": "sha256:4162614604f72f362ab7584f7bc13d4a7d0786151af04279913266f2b3438e48",
+        "model": "deepseek-flash",
+        "retry_index": 0,
+        "input_tokens": 3681,
+        "output_tokens": 10750,
+        "http_duration_ms": 44217.232,
+        "status": "response_received",
+        "real_request_attempted": true
+      },
+      {
+        "request_id": "9a6c645c-be7d-47ca-b1b3-9bacdb0360d5",
+        "stage": "mathir",
+        "reason": "StructureOnlyMathIRV2",
+        "input_hash": "22186fe50ba054ea445f5eb603b9d350ed6fb9d396267072dc7c353d03e05c5f",
+        "prompt_version": "sha256:4162614604f72f362ab7584f7bc13d4a7d0786151af04279913266f2b3438e48",
+        "model": "deepseek-flash",
+        "retry_index": 0,
+        "input_tokens": 3691,
+        "output_tokens": 13426,
+        "http_duration_ms": 52334.206,
+        "status": "response_received",
+        "real_request_attempted": true
+      }
+    ],
+    "cases": {
+      "new_nat_inequality_correct": {
+        "sourceText": "设 m,n∈ℕ，已知 m≤n。推理：对不等式两边同时加 2，得到 m+2≤n+2。证明：m+2≤n+2。",
+        "error": {
+          "type": "V2ValidationError",
+          "message": "Unknown route dependency 'a_m_le_n'"
+        },
+        "offlineNormalizationCheck": {
+          "providerRequests": 0,
+          "statementHash": "c3a0cd3f0f7b1ddf679be667b58880ea51afb89cf01190a47a9752808c9193f3",
+          "normalizationRecords": [
+            {
+              "route_id": "pr_main",
+              "source_assumption_id": "a_m_le_n",
+              "route_node_id": "route_assumption_pr_main_a_m_le_n",
+              "dependent_node_ids": [
+                "c_m_plus_2_le_n_plus_2"
+              ],
+              "expression_hash": "0e454250a101936004205b96b6d5ae1f980a079cb1fff44c691288990a5992af",
+              "source_refs": [
+                {
+                  "blockId": "b_text",
+                  "start": 11,
+                  "end": 14
+                }
+              ]
+            }
+          ],
+          "normalizedStatement": "(∀ (v_d_m : ℕ), (∀ (v_d_n : ℕ), ((v_d_m ≤ v_d_n) → ((v_d_m + (2 : ℕ)) ≤ (v_d_n + (2 : ℕ))))))",
+          "statementLocked": true,
+          "normalizedDependencies": [
+            {
+              "nodeId": "c_m_plus_2_le_n_plus_2",
+              "dependsOn": [
+                "route_assumption_pr_main_a_m_le_n"
+              ]
+            },
+            {
+              "nodeId": "route_assumption_pr_main_a_m_le_n",
+              "dependsOn": []
+            }
+          ]
+        }
+      },
+      "new_nat_inequality_invalid": {
+        "sourceText": "设 m,n∈ℕ，已知 m≤n。原稿尝试：左边加 3、右边加 2，写成 m+3≤n+2，并把它作为结论。请按原稿保留这个结论和推理关系。",
+        "error": {
+          "type": "V2ValidationError",
+          "message": "targetType is valid only on an explicit ascribe node"
+        },
+        "offlineNormalizationCheck": null
+      }
+    }
+  },
+  "aggregateProviderUsage": {
+    "allStage5RealRequests": 7,
+    "inputTokens": 18484,
+    "outputTokens": 51098,
+    "retryCount": 0,
+    "scope": "five requests in the two fresh end-to-end cases plus two early MathIR contract-debug probes"
+  }
+}

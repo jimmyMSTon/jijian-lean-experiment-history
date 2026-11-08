@@ -1,0 +1,15 @@
+F...................................                                     [100%]
+=================================== FAILURES ===================================
+_____________ test_nested_source_segments_are_mapped_by_lean_line ______________
+
+    def test_nested_source_segments_are_mapped_by_lean_line():
+        assert source_segment_at_line(PROOF, 5) == 0
+        assert source_segment_at_line(PROOF, 9) == 1
+>       assert source_segment_at_line(PROOF, 11) == 2
+E       AssertionError: assert None == 2
+E        +  where None = source_segment_at_line('by\n  intro h\n  have source_step_0 : True := by\n    have thing : True := by\n      trivial\n    exact thing\n  have...True := by\n    · have source_step_1 : True := by\n        trivial\n      exact source_step_1\n  exact source_step_2\n', 11)
+
+tests/test_lean_first_error_mapping.py:29: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_lean_first_error_mapping.py::test_nested_source_segments_are_mapped_by_lean_line
+1 failed, 35 passed in 0.12s

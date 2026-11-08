@@ -1,0 +1,237 @@
+[
+  {
+    "case": {
+      "id": "bmo1-2024-q5",
+      "input": "2024 BMO Round 1 第5题。题目：p 是素数，n 是满足 n>1 且 p | (n^6−1) 的最小正整数。证明 p | ((n+1)^6−1) 或 p | ((n+2)^6−1)。\n\n证明：\n由恒等式 t^6−1=(t−1)(t+1)(t²+t+1)(t²−t+1)，以及 p 为素数且 p|(n^6−1)，p 必整除这四个因子中的至少一个。逐一讨论。\n情形一，p|(n²+n+1)。则模 p 有 n+1≡−n²，所以 (n+1)^6≡n^12≡(n^6)^2≡1。因此 p|((n+1)^6−1)。\n情形二，p|(n+1)。则 n+2≡1 (mod p)，所以 (n+2)^6≡1，故 p|((n+2)^6−1)。\n情形三，p|(n−1)。则 n≡1 (mod p)，故 n−2≡−1 (mod p)，从而 (n−2)^6≡1 (mod p)。若 n≥4，则 n−2>1 且 n−2<n，这与 n 的最小性矛盾。因此此情形只能有 n=2 或 n=3；但 n=2 时 p|1 不可能，故 n=3。此时 p|(n−1)=2，故 p=2；而 (n+2)^6−1=5^6−1 为偶数，结论成立。\n情形四，p|(n²−n+1)。则 n−1≡n² (mod p)，因此 (n−1)^6≡n^12≡1 (mod p)。若 n≥3，则 1<n−1<n，违反最小性，所以 n=2。此时 p|(2²−2+1)=3，即 p=3，且 (n+2)^6−1=4^6−1=4095 可被3整除。\n以上四种情形穷尽所有可能，故断言成立。"
+    },
+    "jobId": "6698ed94-74c3-4991-b138-79827a836fc9",
+    "jobStatus": "completed",
+    "resultStatus": "whole_formal_kernel_verified_source_unconfirmed",
+    "kernelVerified": true,
+    "formalProofCertified": true,
+    "originalProofCertified": false,
+    "fidelityReview": "no_specific_mismatch_identified_by_model",
+    "fidelityIssues": 0,
+    "sourceSteps": 13,
+    "kernelCertificate": {
+      "auditMethod": "fresh_environment_data_only_kernel_replay",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "checked": true,
+      "dependencyUsage": [],
+      "formalStatement": "∀ (p n : ℕ),\n  Nat.Prime p →\n    1 < n → p ∣ n ^ 6 - 1 → (∀ (m : ℕ), 1 < m → p ∣ m ^ 6 - 1 → n ≤ m) → p ∣ (n + 1) ^ 6 - 1 ∨ p ∣ (n + 2) ^ 6 - 1",
+      "statementMatched": true,
+      "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+      "expectedExpressionSha256": "d33b729f7557d2c6560df34e14b7878d8be0eb192188af6a65b73112692a0369",
+      "proofExpressionSha256": "50c0a2293cf82f4358ed340ba01de1a63e60094733fbdb3fd760a192e79c0fca",
+      "statement_hash": "a14959b2d283da18780f7015681ba9b45b6219ca0855d6e6b98fb4a73c0a2a39",
+      "nativeExpressionComparison": "structural_equal",
+      "sourceTypeSha256": "46675a3877dc0a449de9991f19dcd964c48d308dcfa9b272de0ce1d3bbf5ca50",
+      "sourceProofSha256": "e936162e7daa1cc8c9878635b7f2f232e3f23c10f25dd9361607c48ce6630e4c",
+      "runtime": {
+        "configured": true,
+        "executableFound": true,
+        "projectFound": true,
+        "runtimeBuilt": true,
+        "runtimeIntegrity": true,
+        "runtimeAttestation": "bbfe5800c297fd14f30d44eb49274921392f08d089a5544098bc3ea49d2b8881",
+        "sandbox": "macos",
+        "isolated": true,
+        "ready": true,
+        "toolchain": "leanprover/lean4:v4.34.0",
+        "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+        "liveTestedInThisDistribution": false
+      },
+      "additionalAxioms": [],
+      "auditIsolation": "fresh_import_environment_reset_between_candidates"
+    },
+    "unsupportedOriginalSteps": [],
+    "error": null,
+    "usage": {
+      "attempts": 4,
+      "inputTokens": 17835,
+      "outputTokens": 63764,
+      "missingUsage": 0,
+      "requests": [
+        {
+          "reason": "WholeProofPlan",
+          "status": "response_received",
+          "input_tokens": 1147,
+          "output_tokens": 16362,
+          "error_type": null,
+          "http_duration_ms": 70314.302
+        },
+        {
+          "reason": "WholeProofProgram",
+          "status": "response_received",
+          "input_tokens": 2007,
+          "output_tokens": 37390,
+          "error_type": null,
+          "http_duration_ms": 170905.824
+        },
+        {
+          "reason": "SourceReasonAudit",
+          "status": "response_received",
+          "input_tokens": 7915,
+          "output_tokens": 9136,
+          "error_type": null,
+          "http_duration_ms": 42843.932
+        },
+        {
+          "reason": "Explanation",
+          "status": "response_received",
+          "input_tokens": 6766,
+          "output_tokens": 876,
+          "error_type": null,
+          "http_duration_ms": 6708.679
+        }
+      ]
+    },
+    "feedbackError": null,
+    "elapsedSeconds": 441.1,
+    "totalElapsedSeconds": 441.66
+  },
+  {
+    "case": {
+      "id": "bmo2-2025-q4",
+      "input": "【2025 British Mathematical Olympiad Round 2，Problem 4，原题】正整数数列 u_1,u_2,… 满足 u_1=1，且对每个 n≥2 都有 u_{n+1}=(u_n²+u_n+1)^2025/u_{n−1}。问这样的数列有多少个？\n【提交的原证明】\n第一步：记 F(t)=t²+t+1，e=2025。只要选择 u_2 为正整数，给定 u_1=1 后，有理数递推便唯一确定全部后项；因此需找出恰好哪些 u_2 能使后项全为正整数。注意 F(t)>0 对正数 t 成立，所以只要各次除法合法，所有后项为正。\n第二步：由 u_1=1，u_3=F(u_2)^e。按模 u_2 计算，F(u_2)≡1，所以 u_3≡1 (mod u_2)。因为 u_4=F(u_3)^e/u_2 应为整数，所以 u_2 整除 F(u_3)^e≡F(1)^e=3^e (mod u_2)。于是 u_2|3^2025。正因子恰好为 1,3,3²,…,3^2025，共 2026 个，给出可能解数的上界。\n第三步：反过来，任取 u_2=3^j（0≤j≤2025），按原递推逐项定义正有理数 u_n。u_3=F(u_2)^e 是整数；第二步同余计算给出 u_2|F(u_3)^e，故 u_4 也是整数。此时 gcd(u_2,u_3)=1，因为 u_3≡1 (mod u_2)；并且 gcd(u_3,u_4)=1，由 u_4u_2=F(u_3)^e≡1 (mod u_3) 得 gcd(u_3,u_2)=1，再结合连续递推，后续相邻项互素性可归纳维护。\n第四步：给出归纳核心。设 n≥4，已知到 u_n 为止全为正整数，且连续的相邻项互素。记 b=u_{n−2}, c=u_{n−1}, d=u_n。递推给出 bd=F(c)^e，因此 bd≡1 (mod c)。此外 c u_{n−3}=F(b)^e，所以 F(b)^e≡0 (mod c)。由代数恒等式\nb²F(d)=(bd)²+b(bd)+b²≡1+b+b²=F(b) (mod c)，\n两侧取 e 次幂，得到 b^{2e}F(d)^e≡F(b)^e≡0 (mod c)。又 gcd(b,c)=1，因此 b^{2e} 在模 c 下可逆，推出 c|F(d)^e。所以 u_{n+1}=F(d)^e/c 是正整数。\n第五步：维护归纳所需互素性。由 u_{n+1}c=F(d)^e≡1 (mod d)，得 gcd(u_{n+1},d)=1。初始相邻项的互素性可由 u_3≡1 (mod u_2)、u_4u_2=F(u_3)^e≡1 (mod u_3) 与 gcd(u_2,u_3)=1 推出。于是用强归纳法所有 u_n 都是正整数，而且相邻两项互素。\n第六步：因此每一个 3^j（j=0,…,2025）都给出一列符合要求的正整数数列。不同 u_2 确定不同数列，且其他 u_2 无法成立。答案恰好为 2026 列。"
+    },
+    "jobId": "584a1016-3cab-4c5d-8a76-14755515119b",
+    "jobStatus": "completed",
+    "resultStatus": "whole_proof_translation_incomplete",
+    "kernelVerified": false,
+    "formalProofCertified": false,
+    "originalProofCertified": false,
+    "fidelityReview": null,
+    "fidelityIssues": 0,
+    "sourceSteps": 6,
+    "kernelCertificate": null,
+    "unsupportedOriginalSteps": [
+      "source_step_0: The parametrization by u₂ and the uniqueness/positivity of the rational recursion were not formalized in Lean.",
+      "source_step_1: The congruence argument proving u₂ | 3^2025 and the divisor count 2026 were not formalized.",
+      "source_step_2: The existence direction for each u₂ = 3^j requires constructing the entire positive-integer sequence and proving the initial divisibility and coprimality facts; this construction was not completed.",
+      "source_step_3: The induction core using b²F(d) = (bd)² + b(bd) + b², the e-th power congruence, and invertibility of b^{2e} modulo c was not translated into kernel-checked Lean.",
+      "source_step_4: Maintenance of adjacent coprimality under the induction was not formalized.",
+      "source_step_5: The final bijection between the solution subtype and the 2026 possible u₂ values, and hence the computation of Nat.card, was not formalized."
+    ],
+    "error": null,
+    "usage": {
+      "attempts": 13,
+      "inputTokens": 64883,
+      "outputTokens": 212571,
+      "missingUsage": 0,
+      "requests": [
+        {
+          "reason": "WholeProofPlan",
+          "status": "response_received",
+          "input_tokens": 1477,
+          "output_tokens": 24443,
+          "error_type": null,
+          "http_duration_ms": 103153.564
+        },
+        {
+          "reason": "WholeProofProgram",
+          "status": "response_received",
+          "input_tokens": 4249,
+          "output_tokens": 11585,
+          "error_type": null,
+          "http_duration_ms": 69218.842
+        },
+        {
+          "reason": "WholeProofProgram",
+          "status": "response_received",
+          "input_tokens": 4895,
+          "output_tokens": 5091,
+          "error_type": null,
+          "http_duration_ms": 32719.202
+        },
+        {
+          "reason": "LeanProofScaffold",
+          "status": "response_received",
+          "input_tokens": 4161,
+          "output_tokens": 13314,
+          "error_type": null,
+          "http_duration_ms": 69190.5
+        },
+        {
+          "reason": "LeanSourceHoleFillBatch",
+          "status": "response_received",
+          "input_tokens": 4994,
+          "output_tokens": 5947,
+          "error_type": null,
+          "http_duration_ms": 38282.268
+        },
+        {
+          "reason": "LeanSourceHoleFill",
+          "status": "response_received",
+          "input_tokens": 4197,
+          "output_tokens": 25178,
+          "error_type": null,
+          "http_duration_ms": 123015.838
+        },
+        {
+          "reason": "LeanSourceHoleFill",
+          "status": "response_received",
+          "input_tokens": 5618,
+          "output_tokens": 29437,
+          "error_type": null,
+          "http_duration_ms": 146857.247
+        },
+        {
+          "reason": "LeanSourceHoleFill",
+          "status": "response_received",
+          "input_tokens": 6814,
+          "output_tokens": 27922,
+          "error_type": null,
+          "http_duration_ms": 132705.016
+        },
+        {
+          "reason": "LeanSourceHoleFill",
+          "status": "response_received",
+          "input_tokens": 9005,
+          "output_tokens": 11715,
+          "error_type": null,
+          "http_duration_ms": 53841.825
+        },
+        {
+          "reason": "LeanSourceHoleFill",
+          "status": "response_received",
+          "input_tokens": 9750,
+          "output_tokens": 33470,
+          "error_type": null,
+          "http_duration_ms": 170820.784
+        },
+        {
+          "reason": "SuspectedAuthoredFault",
+          "status": "response_received",
+          "input_tokens": 2182,
+          "output_tokens": 4870,
+          "error_type": null,
+          "http_duration_ms": 25647.127
+        },
+        {
+          "reason": "StepObligations",
+          "status": "response_received",
+          "input_tokens": 3255,
+          "output_tokens": 18236,
+          "error_type": null,
+          "http_duration_ms": 90001.263
+        },
+        {
+          "reason": "Explanation",
+          "status": "response_received",
+          "input_tokens": 4286,
+          "output_tokens": 1363,
+          "error_type": null,
+          "http_duration_ms": 9768.304
+        }
+      ]
+    },
+    "feedbackError": null,
+    "elapsedSeconds": 1119.09,
+    "totalElapsedSeconds": 1560.79
+  }
+]

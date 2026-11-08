@@ -1,0 +1,602 @@
+{
+  "study": "MathIR v2 stage 4 saved-output deterministic replay",
+  "sourceLiveReport": "mathir-v2-stage4-live-matrix.json",
+  "providerRequests": 0,
+  "cases": {
+    "correct_equality": {
+      "sourceText": "设 a,b∈ℝ，已知 a=b。证明 a+1=b+1。证明：由 a=b，在等式两边同时加 1，得到 a+1=b+1。",
+      "sourceTextMatches": true,
+      "statement": "(∀ (v_d_a : ℝ), (∀ (v_d_b : ℝ), ((v_d_a = v_d_b) → ((v_d_a + (1 : ℝ)) = (v_d_b + (1 : ℝ))))))",
+      "statementHash": "5c727a567efecbb11daa84c5fb5c747643575b1b6fb0e1d16c83ca32fdf8cc6f",
+      "mathirHash": null,
+      "symbolResolutions": [],
+      "fixedStatementKernelPassed": true,
+      "anyRouteKernelPassed": true,
+      "kernelVerified": true,
+      "elapsedSeconds": 96.131,
+      "routes": [
+        {
+          "routeId": "r_main",
+          "goalNodeId": "n_concl",
+          "goalProofTerm": "by\n  intro v_d_a v_d_b h_assumption_0\n  have jjproof_n_concl : ((∀ (v_d_a : ℝ), (∀ (v_d_b : ℝ), ((v_d_a = v_d_b) → (∀ (jjdep_n_ab : (v_d_a = v_d_b)), ((v_d_a + (1 : ℝ)) = (v_d_b + (1 : ℝ)))))))) := (by\n  intro v_d_a v_d_b h_assumption_0 jjdep_n_ab\n  let h_ab := h_assumption_0\n  exact (by exact congrArg (fun x : ℝ => x + 1) jjdep_n_ab))\n  exact (jjproof_n_concl v_d_a v_d_b h_assumption_0 h_assumption_0)",
+          "proofComposition": {
+            "status": "composed",
+            "error": null,
+            "kernelChecked": true
+          },
+          "routeConnectivity": {
+            "status": "connected",
+            "goalNodeIdPresent": true,
+            "unconnectedNodeIds": [],
+            "unconnectedClaimNodeIds": [],
+            "basis": "goal dependency closure plus explicit induction-case edges"
+          },
+          "dependencyEvidence": {
+            "status": "checked",
+            "basis": "Kernel proof expression binder-use audit for declared claim dependencies"
+          },
+          "completeOriginalRouteKernelPassed": true,
+          "status": "passed",
+          "kernel": {
+            "checked": true,
+            "statementMatched": true,
+            "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+            "auditMethod": "fresh_environment_data_only_kernel_replay",
+            "formalStatement": "∀ (v_d_a v_d_b : ℝ), v_d_a = v_d_b → v_d_a + 1 = v_d_b + 1",
+            "axioms": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "dependencyUsage": [],
+            "expectedExpressionSha256": "a51516e375788e2c745d16e2474940e25cb8d637461c3778f87879104774594a",
+            "proofExpressionSha256": "062e7e8c8451fc0705a1b70937bfd992cc030de8b6a345c2b7a1bd6264946a52",
+            "statement_hash": "5c727a567efecbb11daa84c5fb5c747643575b1b6fb0e1d16c83ca32fdf8cc6f",
+            "nativeExpressionComparison": "structural_equal",
+            "sourceTypeSha256": "da183b0f4b8e7a6674e1ff2415f4c696438645431e64c2cb1af9d7fffcf78651",
+            "sourceProofSha256": "0497a70616a8adc0a54d15a9b6c8ce1b9e362906d6177a745e7ee5556dff3d4d",
+            "additionalAxioms": [],
+            "runtime": {
+              "configured": true,
+              "executableFound": true,
+              "projectFound": true,
+              "runtimeBuilt": true,
+              "sandbox": "macos",
+              "isolated": true,
+              "ready": true,
+              "toolchain": "leanprover/lean4:v4.34.0",
+              "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+              "liveTestedInThisDistribution": false
+            }
+          },
+          "steps": [
+            {
+              "sourceId": "mathir-v2/r_main/n_concl",
+              "status": "passed",
+              "originalProofTerm": "by exact congrArg (fun x : ℝ => x + 1) h_ab",
+              "proofTerm": "by\n  intro v_d_a v_d_b h_assumption_0 jjdep_n_ab\n  let h_ab := h_assumption_0\n  exact (by exact congrArg (fun x : ℝ => x + 1) jjdep_n_ab)",
+              "expectedType": "(∀ (v_d_a : ℝ), (∀ (v_d_b : ℝ), ((v_d_a = v_d_b) → (∀ (jjdep_n_ab : (v_d_a = v_d_b)), ((v_d_a + (1 : ℝ)) = (v_d_b + (1 : ℝ)))))))",
+              "dependencyEvidence": "all_declared_dependencies_used",
+              "dependencyUsage": [
+                {
+                  "dependencyId": "n_ab",
+                  "used": true
+                }
+              ],
+              "leanStatus": "verified",
+              "certificate": {
+                "checked": true,
+                "statementMatched": true,
+                "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                "auditMethod": "fresh_environment_data_only_kernel_replay",
+                "formalStatement": "∀ (v_d_a v_d_b : ℝ), v_d_a = v_d_b → v_d_a = v_d_b → v_d_a + 1 = v_d_b + 1",
+                "axioms": [
+                  "propext",
+                  "Classical.choice",
+                  "Quot.sound"
+                ],
+                "dependencyUsage": [
+                  {
+                    "dependencyId": "n_ab",
+                    "used": true
+                  }
+                ],
+                "expectedExpressionSha256": "d550ef7d9aac5a8195e769f8bae4e7329b49bb0795be13c88e7a89e0a4468bee",
+                "proofExpressionSha256": "366aa0f3a5d5bf0fa35a5258ce45d438e540af1d3344129f0b0258a3091e5103",
+                "statement_hash": "5c727a567efecbb11daa84c5fb5c747643575b1b6fb0e1d16c83ca32fdf8cc6f",
+                "nativeExpressionComparison": "structural_equal",
+                "sourceTypeSha256": "2b0846dcd11b0606744a31d83df9cf255837e80eba20eee8784c816ec900fe7c",
+                "sourceProofSha256": "64a8b88a5dd420df5f06b6cfa2ed474ac0d942abacb6ab7a5b5ca610b6f144d7",
+                "additionalAxioms": [],
+                "runtime": {
+                  "configured": true,
+                  "executableFound": true,
+                  "projectFound": true,
+                  "runtimeBuilt": true,
+                  "sandbox": "macos",
+                  "isolated": true,
+                  "ready": true,
+                  "toolchain": "leanprover/lean4:v4.34.0",
+                  "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                  "liveTestedInThisDistribution": false
+                }
+              },
+              "diagnostics": []
+            }
+          ]
+        }
+      ]
+    },
+    "incorrect_equality": {
+      "sourceText": "设 a,b∈ℝ，已知 a=b。证明 a+1=b+2。证明：由 a=b，两边同时加 1，所以 a+1=b+2。",
+      "sourceTextMatches": true,
+      "statement": "(∀ (v_d_a : ℝ), (∀ (v_d_b : ℝ), ((v_d_a = v_d_b) → ((v_d_a + (1 : ℝ)) = (v_d_b + (2 : ℝ))))))",
+      "statementHash": "4ec8d0d54539a4964415a8e31f04e412fba200f3af7ea91fd6293b1edacf2553",
+      "mathirHash": null,
+      "symbolResolutions": [],
+      "fixedStatementKernelPassed": false,
+      "anyRouteKernelPassed": false,
+      "kernelVerified": false,
+      "elapsedSeconds": 0.003,
+      "routes": [
+        {
+          "routeId": "r_main",
+          "goalNodeId": "n_conclusion",
+          "goalProofTerm": null,
+          "proofComposition": {
+            "status": "incomplete",
+            "error": "A claim in the route has no original proof term",
+            "kernelChecked": false
+          },
+          "routeConnectivity": {
+            "status": "connected",
+            "goalNodeIdPresent": true,
+            "unconnectedNodeIds": [],
+            "unconnectedClaimNodeIds": [],
+            "basis": "goal dependency closure plus explicit induction-case edges"
+          },
+          "dependencyEvidence": {
+            "status": "incomplete",
+            "basis": "Kernel proof expression binder-use audit for declared claim dependencies"
+          },
+          "completeOriginalRouteKernelPassed": false,
+          "status": "incomplete",
+          "kernel": null,
+          "steps": [
+            {
+              "sourceId": "mathir-v2/r_main/n_conclusion",
+              "status": "incomplete",
+              "originalProofTerm": null,
+              "proofTerm": null,
+              "expectedType": "(∀ (v_d_a : ℝ), (∀ (v_d_b : ℝ), ((v_d_a = v_d_b) → (∀ (jjdep_n_hyp_ab : (v_d_a = v_d_b)), ((v_d_a + (1 : ℝ)) = (v_d_b + (2 : ℝ)))))))",
+              "dependencyEvidence": "dependency_usage_not_audited",
+              "dependencyUsage": [],
+              "leanStatus": "missing_proof",
+              "certificate": null,
+              "diagnostics": []
+            }
+          ]
+        }
+      ]
+    },
+    "nat_induction_from_one": {
+      "sourceText": "证明：对所有自然数 n，若 n≥1，则 n+0=n。用从 1 开始的归纳法：基例 n=1 时 1+0=1。归纳步假设 k≥1 且 k+0=k，由归纳假设可得 (k+1)+0=k+1。",
+      "sourceTextMatches": true,
+      "statement": "(∀ (v_d_n : ℕ), ((v_d_n ≥ (1 : ℕ)) → ((v_d_n + (0 : ℕ)) = v_d_n)))",
+      "statementHash": "cef0376775fe7c2f5b72ef67c9826af246c04e1fb7fb06347de896a81af12ffe",
+      "mathirHash": null,
+      "symbolResolutions": [],
+      "fixedStatementKernelPassed": false,
+      "anyRouteKernelPassed": false,
+      "kernelVerified": false,
+      "elapsedSeconds": 79.865,
+      "routes": [
+        {
+          "routeId": "pr_main",
+          "goalNodeId": "n_conclusion",
+          "goalProofTerm": "by\n  intro v_d_n hbound\n  exact Nat.le_induction (m := (1 : ℕ)) (P := fun ind_ind_main_motive _ => ((ind_ind_main_motive + (0 : ℕ)) = ind_ind_main_motive)) (by rfl) (by exact False.elim (by assumption)) v_d_n hbound",
+          "proofComposition": {
+            "status": "structural_induction",
+            "error": null,
+            "kernelChecked": false
+          },
+          "routeConnectivity": {
+            "status": "connected",
+            "goalNodeIdPresent": true,
+            "unconnectedNodeIds": [],
+            "unconnectedClaimNodeIds": [],
+            "basis": "goal dependency closure plus explicit induction-case edges"
+          },
+          "dependencyEvidence": {
+            "status": "checked",
+            "basis": "Kernel proof expression binder-use audit for declared claim dependencies"
+          },
+          "completeOriginalRouteKernelPassed": false,
+          "status": "failed",
+          "kernel": null,
+          "steps": [
+            {
+              "sourceId": "mathir-v2/pr_main/ind_main/base",
+              "status": "passed",
+              "originalProofTerm": null,
+              "proofTerm": "by rfl",
+              "expectedType": "(((1 : ℕ) + (0 : ℕ)) = (1 : ℕ))",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "leanStatus": "verified",
+              "certificate": {
+                "checked": true,
+                "statementMatched": true,
+                "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                "auditMethod": "fresh_environment_data_only_kernel_replay",
+                "formalStatement": "1 + 0 = 1",
+                "axioms": [],
+                "dependencyUsage": [],
+                "expectedExpressionSha256": "5c26cd1fd014dd7a0c4c271ed0d65cfa4423c777f9a012e2bc566ac3a8806cea",
+                "proofExpressionSha256": "976ce151714aa798a41703cd00552933ba58095597532f02f2e235c7747cb72d",
+                "statement_hash": "cef0376775fe7c2f5b72ef67c9826af246c04e1fb7fb06347de896a81af12ffe",
+                "nativeExpressionComparison": "structural_equal",
+                "sourceTypeSha256": "e1139cf44dba3ba2a683d15a7625a0acda2e3eb0876ef25771a6e0c68f272b27",
+                "sourceProofSha256": "e90a75ee4b57d6e87420745c8246217b3ba8666343d955b6c5c08dc391e702bd",
+                "additionalAxioms": [],
+                "runtime": {
+                  "configured": true,
+                  "executableFound": true,
+                  "projectFound": true,
+                  "runtimeBuilt": true,
+                  "sandbox": "macos",
+                  "isolated": true,
+                  "ready": true,
+                  "toolchain": "leanprover/lean4:v4.34.0",
+                  "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                  "liveTestedInThisDistribution": false
+                }
+              },
+              "diagnostics": []
+            },
+            {
+              "sourceId": "mathir-v2/pr_main/ind_main/step",
+              "status": "incomplete",
+              "originalProofTerm": null,
+              "proofTerm": null,
+              "expectedType": "(∀ (ind_ind_main_n : ℕ), (ind_ind_main_n ≥ (1 : ℕ)) → ((ind_ind_main_n + (0 : ℕ)) = ind_ind_main_n) → (((ind_ind_main_n + (1 : ℕ)) + (0 : ℕ)) = (ind_ind_main_n + (1 : ℕ))))",
+              "dependencyEvidence": "local_context_kernel_checked",
+              "dependencyUsage": [],
+              "leanStatus": "missing_proof",
+              "certificate": null,
+              "diagnostics": []
+            }
+          ]
+        }
+      ]
+    },
+    "rational_finite_sum": {
+      "sourceText": "证明有限和：∑_{k=1}^{2}(1/2)^k=3/4，其中所有分数都在有理数 ℚ 中。计算：1/2+1/4=3/4。",
+      "sourceTextMatches": true,
+      "statement": "((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (2 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = ((3 : ℚ) / 4))",
+      "statementHash": "57350422c75ac4c30184315e510757fd69545aa722b0f30656e7ee587d978e54",
+      "mathirHash": null,
+      "symbolResolutions": [],
+      "fixedStatementKernelPassed": false,
+      "anyRouteKernelPassed": false,
+      "kernelVerified": false,
+      "elapsedSeconds": 48.632,
+      "routes": [
+        {
+          "routeId": "r_direct_compute",
+          "goalNodeId": "c_goal",
+          "goalProofTerm": null,
+          "proofComposition": {
+            "status": "incomplete",
+            "error": "A claim in the route has no original proof term",
+            "kernelChecked": false
+          },
+          "routeConnectivity": {
+            "status": "connected",
+            "goalNodeIdPresent": true,
+            "unconnectedNodeIds": [],
+            "unconnectedClaimNodeIds": [],
+            "basis": "goal dependency closure plus explicit induction-case edges"
+          },
+          "dependencyEvidence": {
+            "status": "incomplete",
+            "basis": "Kernel proof expression binder-use audit for declared claim dependencies"
+          },
+          "completeOriginalRouteKernelPassed": false,
+          "status": "incomplete",
+          "kernel": null,
+          "steps": [
+            {
+              "sourceId": "mathir-v2/r_direct_compute/c_calc",
+              "status": "passed",
+              "originalProofTerm": "by norm_num",
+              "proofTerm": "by norm_num",
+              "expectedType": "((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) = ((3 : ℚ) / 4))",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "leanStatus": "verified",
+              "certificate": {
+                "checked": true,
+                "statementMatched": true,
+                "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                "auditMethod": "fresh_environment_data_only_kernel_replay",
+                "formalStatement": "1 / 2 + 1 / 4 = 3 / 4",
+                "axioms": [
+                  "propext",
+                  "Classical.choice",
+                  "Quot.sound"
+                ],
+                "dependencyUsage": [],
+                "expectedExpressionSha256": "e81d454fdfe54a4621ba6a853a3535b1e02c1cb1a993d7ece9ec3eccf878abc3",
+                "proofExpressionSha256": "ee0cb0f77432361d4eb1b543f5068e3bcca0065983d433bdd1729be300da14dc",
+                "statement_hash": "57350422c75ac4c30184315e510757fd69545aa722b0f30656e7ee587d978e54",
+                "nativeExpressionComparison": "structural_equal",
+                "sourceTypeSha256": "1e57f7394cc63af3ef57c50d7f16b19fb816d4e74def008214ed8a77fe040da3",
+                "sourceProofSha256": "814f59292751dd3531030b267a6fc1ca5ebbdad3361cb56ddd181533b1c3db22",
+                "additionalAxioms": [],
+                "runtime": {
+                  "configured": true,
+                  "executableFound": true,
+                  "projectFound": true,
+                  "runtimeBuilt": true,
+                  "sandbox": "macos",
+                  "isolated": true,
+                  "ready": true,
+                  "toolchain": "leanprover/lean4:v4.34.0",
+                  "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                  "liveTestedInThisDistribution": false
+                }
+              },
+              "diagnostics": []
+            },
+            {
+              "sourceId": "mathir-v2/r_direct_compute/c_goal",
+              "status": "incomplete",
+              "originalProofTerm": null,
+              "proofTerm": null,
+              "expectedType": "(∀ (jjdep_c_calc : ((((1 : ℚ) / 2) + ((1 : ℚ) / 4)) = ((3 : ℚ) / 4))), ((∑ v_d_k ∈ Finset.Icc (1 : ℕ) (2 : ℕ), (((1 : ℚ) / 2) ^ v_d_k)) = ((3 : ℚ) / 4)))",
+              "dependencyEvidence": "dependency_usage_not_audited",
+              "dependencyUsage": [],
+              "leanStatus": "missing_proof",
+              "certificate": null,
+              "diagnostics": []
+            }
+          ]
+        }
+      ]
+    },
+    "dependent_polynomial_definitions": {
+      "sourceText": "定义实系数多项式 P(x)=x^2+1，再定义 Q(x)=P(x)+1。证明 Q(0)=2。证明：由 Q(x)=P(x)+1 和 P(x)=x^2+1，代入 x=0 得 Q(0)=0^2+1+1=2。",
+      "sourceTextMatches": true,
+      "statement": "(let v_d_P : Polynomial ℝ := ((Polynomial.X ^ (2 : ℕ)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P + (Polynomial.C (1 : ℝ))); ((Polynomial.eval (0 : ℝ) v_d_Q) = (2 : ℝ))))",
+      "statementHash": "25ffc2f8efcbf03ac7ab486dd24cb8307720936db6a6ab47e09367b71d71c52e",
+      "mathirHash": null,
+      "symbolResolutions": [],
+      "fixedStatementKernelPassed": true,
+      "anyRouteKernelPassed": false,
+      "kernelVerified": false,
+      "elapsedSeconds": 194.51,
+      "routes": [
+        {
+          "routeId": "r_main",
+          "goalNodeId": "r_conclusion",
+          "goalProofTerm": "by\n  have jjproof_r_q_def : ((let v_d_P : Polynomial ℝ := ((Polynomial.X ^ (2 : ℕ)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P + (Polynomial.C (1 : ℝ))); (v_d_Q = (v_d_P + (Polynomial.C (1 : ℝ))))))) := (by\n  intro v_d_P v_d_Q\n  exact (by rfl))\n  have jjproof_r_p_def : ((let v_d_P : Polynomial ℝ := ((Polynomial.X ^ (2 : ℕ)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P + (Polynomial.C (1 : ℝ))); (v_d_P = ((Polynomial.X ^ (2 : ℕ)) + (Polynomial.C (1 : ℝ))))))) := (by\n  intro v_d_P v_d_Q\n  exact (by rfl))\n  have jjproof_r_conclusion : ((let v_d_P : Polynomial ℝ := ((Polynomial.X ^ (2 : ℕ)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P + (Polynomial.C (1 : ℝ))); (∀ (jjdep_r_q_def : (v_d_Q = (v_d_P + (Polynomial.C (1 : ℝ))))), (∀ (jjdep_r_p_def : (v_d_P = ((Polynomial.X ^ (2 : ℕ)) + (Polynomial.C (1 : ℝ))))), ((Polynomial.eval (0 : ℝ) v_d_Q) = (2 : ℝ))))))) := (by\n  intro v_d_P v_d_Q jjdep_r_q_def jjdep_r_p_def\n  exact (by rw [jjdep_r_q_def, jjdep_r_p_def]; norm_num))\n  exact (jjproof_r_conclusion (jjproof_r_q_def) (jjproof_r_p_def))",
+          "proofComposition": {
+            "status": "composed",
+            "error": null,
+            "kernelChecked": true
+          },
+          "routeConnectivity": {
+            "status": "connected",
+            "goalNodeIdPresent": true,
+            "unconnectedNodeIds": [],
+            "unconnectedClaimNodeIds": [],
+            "basis": "goal dependency closure plus explicit induction-case edges"
+          },
+          "dependencyEvidence": {
+            "status": "incomplete",
+            "basis": "Kernel proof expression binder-use audit for declared claim dependencies"
+          },
+          "completeOriginalRouteKernelPassed": false,
+          "status": "incomplete",
+          "kernel": {
+            "checked": true,
+            "statementMatched": true,
+            "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+            "auditMethod": "fresh_environment_data_only_kernel_replay",
+            "formalStatement": "have v_d_P := Polynomial.X ^ 2 + Polynomial.C 1;\nhave v_d_Q := v_d_P + Polynomial.C 1;\nPolynomial.eval 0 v_d_Q = 2",
+            "axioms": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "dependencyUsage": [],
+            "expectedExpressionSha256": "d3cf2e1c61a3bdda4b47f5480d905f33e11e374fb6e7722bd245a1f27006124b",
+            "proofExpressionSha256": "fe5fd1d88f1c598fc304638f698736d39e1e802aeb8b870ab5c1617c062f311a",
+            "statement_hash": "25ffc2f8efcbf03ac7ab486dd24cb8307720936db6a6ab47e09367b71d71c52e",
+            "nativeExpressionComparison": "structural_equal",
+            "sourceTypeSha256": "0dc1f1b59ac90ec8b139cc2e5a18866e3105af51c0096de45fb9e281a4f8a18c",
+            "sourceProofSha256": "a1f0ca35e626efce737d07ccbfdcb927e358b21522e1f229fb8a78732e6e09bf",
+            "additionalAxioms": [],
+            "runtime": {
+              "configured": true,
+              "executableFound": true,
+              "projectFound": true,
+              "runtimeBuilt": true,
+              "sandbox": "macos",
+              "isolated": true,
+              "ready": true,
+              "toolchain": "leanprover/lean4:v4.34.0",
+              "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+              "liveTestedInThisDistribution": false
+            }
+          },
+          "steps": [
+            {
+              "sourceId": "mathir-v2/r_main/r_q_def",
+              "status": "passed",
+              "originalProofTerm": "by rfl",
+              "proofTerm": "by\n  intro v_d_P v_d_Q\n  exact (by rfl)",
+              "expectedType": "(let v_d_P : Polynomial ℝ := ((Polynomial.X ^ (2 : ℕ)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P + (Polynomial.C (1 : ℝ))); (v_d_Q = (v_d_P + (Polynomial.C (1 : ℝ))))))",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "leanStatus": "verified",
+              "certificate": {
+                "checked": true,
+                "statementMatched": true,
+                "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                "auditMethod": "fresh_environment_data_only_kernel_replay",
+                "formalStatement": "have v_d_P := Polynomial.X ^ 2 + Polynomial.C 1;\nhave v_d_Q := v_d_P + Polynomial.C 1;\nv_d_Q = v_d_P + Polynomial.C 1",
+                "axioms": [
+                  "propext",
+                  "Classical.choice",
+                  "Quot.sound"
+                ],
+                "dependencyUsage": [],
+                "expectedExpressionSha256": "426c9aaa058b791aa29112810d802ea337003541f0b3534e3c9812ad026af9f9",
+                "proofExpressionSha256": "81baba9055a1d601ad9222b3a8472a412e2cddfd3c019f10238d3002931d4b39",
+                "statement_hash": "25ffc2f8efcbf03ac7ab486dd24cb8307720936db6a6ab47e09367b71d71c52e",
+                "nativeExpressionComparison": "structural_equal",
+                "sourceTypeSha256": "ade2311c75391ffd3648824938d00df4276b1cec7af511cbe32525b658966dbb",
+                "sourceProofSha256": "542f8b47172698ec2c5804b5bd9e6961631a7f597cde3ccc001d907c3dd321c0",
+                "additionalAxioms": [],
+                "runtime": {
+                  "configured": true,
+                  "executableFound": true,
+                  "projectFound": true,
+                  "runtimeBuilt": true,
+                  "sandbox": "macos",
+                  "isolated": true,
+                  "ready": true,
+                  "toolchain": "leanprover/lean4:v4.34.0",
+                  "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                  "liveTestedInThisDistribution": false
+                }
+              },
+              "diagnostics": []
+            },
+            {
+              "sourceId": "mathir-v2/r_main/r_p_def",
+              "status": "passed",
+              "originalProofTerm": "by rfl",
+              "proofTerm": "by\n  intro v_d_P v_d_Q\n  exact (by rfl)",
+              "expectedType": "(let v_d_P : Polynomial ℝ := ((Polynomial.X ^ (2 : ℕ)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P + (Polynomial.C (1 : ℝ))); (v_d_P = ((Polynomial.X ^ (2 : ℕ)) + (Polynomial.C (1 : ℝ))))))",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "leanStatus": "verified",
+              "certificate": {
+                "checked": true,
+                "statementMatched": true,
+                "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                "auditMethod": "fresh_environment_data_only_kernel_replay",
+                "formalStatement": "have v_d_P := Polynomial.X ^ 2 + Polynomial.C 1;\nhave v_d_Q := v_d_P + Polynomial.C 1;\nv_d_P = Polynomial.X ^ 2 + Polynomial.C 1",
+                "axioms": [
+                  "propext",
+                  "Classical.choice",
+                  "Quot.sound"
+                ],
+                "dependencyUsage": [],
+                "expectedExpressionSha256": "27d14491c2801e9369721b15bdda618259fa534afbff7a01036252b49549070e",
+                "proofExpressionSha256": "b8de882e656557496a810779c10acc757ef2872cd40a4a0e98ffee8164100990",
+                "statement_hash": "25ffc2f8efcbf03ac7ab486dd24cb8307720936db6a6ab47e09367b71d71c52e",
+                "nativeExpressionComparison": "structural_equal",
+                "sourceTypeSha256": "7da2f61aa65cd86844315cead31547bf995ff68cdb4bc18a079ea57089f7239b",
+                "sourceProofSha256": "542f8b47172698ec2c5804b5bd9e6961631a7f597cde3ccc001d907c3dd321c0",
+                "additionalAxioms": [],
+                "runtime": {
+                  "configured": true,
+                  "executableFound": true,
+                  "projectFound": true,
+                  "runtimeBuilt": true,
+                  "sandbox": "macos",
+                  "isolated": true,
+                  "ready": true,
+                  "toolchain": "leanprover/lean4:v4.34.0",
+                  "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                  "liveTestedInThisDistribution": false
+                }
+              },
+              "diagnostics": []
+            },
+            {
+              "sourceId": "mathir-v2/r_main/r_conclusion",
+              "status": "passed",
+              "originalProofTerm": "by rw [r_q_def, r_p_def]; norm_num",
+              "proofTerm": "by\n  intro v_d_P v_d_Q jjdep_r_q_def jjdep_r_p_def\n  exact (by rw [jjdep_r_q_def, jjdep_r_p_def]; norm_num)",
+              "expectedType": "(let v_d_P : Polynomial ℝ := ((Polynomial.X ^ (2 : ℕ)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P + (Polynomial.C (1 : ℝ))); (∀ (jjdep_r_q_def : (v_d_Q = (v_d_P + (Polynomial.C (1 : ℝ))))), (∀ (jjdep_r_p_def : (v_d_P = ((Polynomial.X ^ (2 : ℕ)) + (Polynomial.C (1 : ℝ))))), ((Polynomial.eval (0 : ℝ) v_d_Q) = (2 : ℝ))))))",
+              "dependencyEvidence": "dependency_usage_not_audited",
+              "dependencyUsage": [],
+              "leanStatus": "verified",
+              "certificate": {
+                "checked": true,
+                "statementMatched": true,
+                "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                "auditMethod": "fresh_environment_data_only_kernel_replay",
+                "formalStatement": "have v_d_P := Polynomial.X ^ 2 + Polynomial.C 1;\nhave v_d_Q := v_d_P + Polynomial.C 1;\nv_d_Q = v_d_P + Polynomial.C 1 → v_d_P = Polynomial.X ^ 2 + Polynomial.C 1 → Polynomial.eval 0 v_d_Q = 2",
+                "axioms": [
+                  "propext",
+                  "Classical.choice",
+                  "Quot.sound"
+                ],
+                "dependencyUsage": [],
+                "expectedExpressionSha256": "bf7afaee36a534771ac86f6989adb9f0ebe6128c38a708032ed819cdb2910111",
+                "proofExpressionSha256": "443c9b96ab97928ed6afc5a3c1d42e35eeb78758c12b072420cf2d0560e41b29",
+                "statement_hash": "25ffc2f8efcbf03ac7ab486dd24cb8307720936db6a6ab47e09367b71d71c52e",
+                "nativeExpressionComparison": "structural_equal",
+                "sourceTypeSha256": "ad4753ef9c43b24acccc71834351cc2ca120a4c3f91dacc412f985c043815d2a",
+                "sourceProofSha256": "f48b8c16fa222c715d4c000be56bc761ac340565a704cc8ec67e5d5bf24a7546",
+                "additionalAxioms": [],
+                "runtime": {
+                  "configured": true,
+                  "executableFound": true,
+                  "projectFound": true,
+                  "runtimeBuilt": true,
+                  "sandbox": "macos",
+                  "isolated": true,
+                  "ready": true,
+                  "toolchain": "leanprover/lean4:v4.34.0",
+                  "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                  "liveTestedInThisDistribution": false
+                }
+              },
+              "diagnostics": [
+                {
+                  "severity": "warning",
+                  "message": "Variable name `jjdep_r_q_def` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _jjdep_r_q_def\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+                  "leanPosition": {
+                    "column": 67,
+                    "line": 5
+                  }
+                },
+                {
+                  "severity": "warning",
+                  "message": "Variable name `jjdep_r_p_def` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _jjdep_r_p_def\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+                  "leanPosition": {
+                    "column": 132,
+                    "line": 5
+                  }
+                },
+                {
+                  "severity": "warning",
+                  "message": "Variable name `jjdep_r_q_def` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _jjdep_r_q_def\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+                  "leanPosition": {
+                    "column": 67,
+                    "line": 5
+                  }
+                },
+                {
+                  "severity": "warning",
+                  "message": "Variable name `jjdep_r_p_def` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _jjdep_r_p_def\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+                  "leanPosition": {
+                    "column": 132,
+                    "line": 5
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

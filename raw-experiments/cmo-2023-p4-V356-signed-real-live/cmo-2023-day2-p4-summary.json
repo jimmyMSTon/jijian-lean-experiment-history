@@ -1,0 +1,75 @@
+{
+  "case": {
+    "id": "cmo-2023-day2-p4",
+    "expected": "correct",
+    "source": "2023 年第 39 届中国数学奥林匹克（CMO）决赛，第二天第 4 题。原题：设非负实数 a₁,a₂,…,a₂₀₂₃ 满足 a₁+a₂+⋯+a₂₀₂₃=100。定义 N 为集合 S={(i,j) | 1≤i≤j≤2023，aᵢaⱼ≥1} 的元素个数。求证 N≤5050，并给出等号成立的充要条件。\n\n我的完整证明（须同时验证上界与等号充要条件；索引均取 1,…,2023）：\n\n第 1 步：定义有序指标对集合 T={(i,j) | 1≤i,j≤2023，aᵢaⱼ≥1}，以及对角指标集 D={i | 1≤i≤2023，aᵢ≥1}。因为 aᵢ≥0，条件 aᵢ²≥1 与 aᵢ≥1 等价。每个满足 aᵢaⱼ≥1 且 i≠j 的无序指标对，在 T 中对应 (i,j),(j,i) 两个有序对；每个满足条件的对角指标仅对应一个。于是精确计数恒等式为 2N=|T|+|D|。\n\n第 2 步：对每个 (i,j)∈T 有 aᵢaⱼ≥1；全部乘积 aᵢaⱼ 均非负。故 |T|=∑_{(i,j)∈T}1≤∑_{(i,j)∈T}aᵢaⱼ≤∑_{i=1}^{2023}∑_{j=1}^{2023}aᵢaⱼ=(∑_{i=1}^{2023}aᵢ)²=10000。\n\n第 3 步：对每个 i∈D 有 aᵢ≥1，且每项非负，因此 |D|=∑_{i∈D}1≤∑_{i∈D}aᵢ≤∑_{i=1}^{2023}aᵢ=100。\n\n第 4 步：由 2N=|T|+|D|≤10000+100=10100，得到 N≤5050。\n\n第 5 步：证明取等必要性。若 N=5050，则 2N=10100，而第 2、3 步分别给出 |T|≤10000 和 |D|≤100，因而必有 |D|=100。进一步 ∑_{i∈D}aᵢ≥|D|=100，但总和只有 100，故 ∑_{i∈D}aᵢ=100；所有 i∉D 必有 aᵢ=0（非负性），所有 i∈D 则因为 aᵢ≥1、共有恰好 100 项且它们的和等于 100，所以每项都等于 1。因此原数列恰有 100 项为 1、其余 1923 项为 0。\n\n第 6 步：证明取等充分性。反之，如果原数列恰有 100 项为 1，其余 1923 项为 0，则 aᵢaⱼ≥1 当且仅当 aᵢ=aⱼ=1。取这 100 个位置中任意两个指标且满足 i≤j，恰有 100 个对角对和 100·99/2 个非对角对，故 N=100+100·99/2=5050。\n\n第 7 步：综上，对任意 2023 个满足 aᵢ≥0、∑aᵢ=100 的实数，都有 N≤5050；并且 N=5050 当且仅当恰有 100 项等于 1、其余全部等于 0。证毕。"
+  },
+  "jobId": "67d2b41e-95d7-4b1b-9f79-ea8433b6fd73",
+  "jobStatus": "completed",
+  "resultStatus": "whole_proof_translation_incomplete",
+  "kernelVerified": false,
+  "formalProofCertified": false,
+  "originalProofCertified": false,
+  "fidelityReview": null,
+  "fidelityIssues": 0,
+  "sourceSteps": 7,
+  "kernelCertificate": null,
+  "unsupportedOriginalSteps": [
+    "第 1 步的精确计数恒等式 2N=|T|+|D| 未在 Lean 中完成。需要构造并验证无序对/有序对/对角指标之间的有限集合双射或等价的 Finset 基数恒等式。",
+    "第 5 步中由 N=5050 推出 |T|=10000、|D|=100，并进一步由非负性与有限和取等推出数列恰有 100 个 1、其余为 0 的完整 Lean 形式化未完成。",
+    "第 6 步中当恰有 100 项为 1、其余为 0 时，计数 S 中满足 i≤j 且 a_i a_j≥1 的对数为 100+100·99/2=5050 的 Finset/双射形式化未完成。",
+    "整体 lockedFormalStatement 中 Nat.card 子类型 N 与所用 Finset 基数之间的转换，在最简代码层面尚未给出完整可核查的 Lean 证明项。"
+  ],
+  "error": null,
+  "usage": {
+    "attempts": 5,
+    "inputTokens": 14548,
+    "outputTokens": 69806,
+    "missingUsage": 0,
+    "requests": [
+      {
+        "reason": "WholeProofPlan",
+        "status": "response_received",
+        "input_tokens": 1531,
+        "output_tokens": 23991,
+        "error_type": null,
+        "http_duration_ms": 97918.016
+      },
+      {
+        "reason": "WholeProofProgram",
+        "status": "response_received",
+        "input_tokens": 2620,
+        "output_tokens": 23316,
+        "error_type": null,
+        "http_duration_ms": 135967.707
+      },
+      {
+        "reason": "SuspectedAuthoredFault",
+        "status": "response_received",
+        "input_tokens": 2223,
+        "output_tokens": 1606,
+        "error_type": null,
+        "http_duration_ms": 9897.122
+      },
+      {
+        "reason": "StepObligations",
+        "status": "response_received",
+        "input_tokens": 3349,
+        "output_tokens": 19706,
+        "error_type": null,
+        "http_duration_ms": 92046.117
+      },
+      {
+        "reason": "Explanation",
+        "status": "response_received",
+        "input_tokens": 4825,
+        "output_tokens": 1187,
+        "error_type": null,
+        "http_duration_ms": 8588.638
+      }
+    ]
+  },
+  "feedbackError": null,
+  "elapsedSeconds": 369.59,
+  "totalElapsedSeconds": 373.31
+}

@@ -1,0 +1,126 @@
+[
+  {
+    "variant": "A_full",
+    "isolatedFormalizationId": "e6b73d2a-c023-4b08-93aa-2436ae96cbb9",
+    "proofHash": "2d454d876bd6a487caee62dff7abf6188ca1a24f00cdb16c4d7e8eee5cd0c82c",
+    "proofs": [
+      {
+        "sourceId": "step_expand",
+        "proof": "by intro v0 v1; ring"
+      },
+      {
+        "sourceId": "step_factor",
+        "proof": "by intro v0 v1 s0; rw [sub_sq]"
+      },
+      {
+        "sourceId": "step_nonneg",
+        "proof": "by intro v0 v1; exact sq_nonneg (v0 - v1)"
+      },
+      {
+        "sourceId": "step_ge",
+        "proof": "by intro v0 v1 s0 s1 s2; rw [s0 v0 v1, s1 v0 v1]; exact s2 v0 v1"
+      },
+      {
+        "sourceId": "step_conclusion",
+        "proof": "by intro v0 v1 s3; rw [← sub_nonneg]; exact s3 v0 v1"
+      },
+      {
+        "sourceId": "goal",
+        "proof": "by intro v0 v1 s4; exact s4 v0 v1"
+      }
+    ]
+  },
+  {
+    "variant": "B_names_checks_only_first",
+    "isolatedFormalizationId": "42cf5a65-ea08-4b1c-a48a-9e8aaa63f72b",
+    "proofHash": "7f8be48e8a0a41d14edd715fb15e8d5739576731fdd8d94b5cffc881bd13741c",
+    "proofs": [
+      {
+        "sourceId": "step_expand",
+        "proof": "by\n  intro v0 v1\n  ring"
+      },
+      {
+        "sourceId": "step_factor",
+        "proof": "by\n  intro v0 v1 s0\n  ring"
+      },
+      {
+        "sourceId": "step_nonneg",
+        "proof": "by\n  intro v0 v1\n  exact sq_nonneg (v0 - v1)"
+      },
+      {
+        "sourceId": "step_ge",
+        "proof": "by\n  intro v0 v1 s0 s1 s2\n  rw [s0 v0 v1]\n  rw [s1 v0 v1]\n  exact s2 v0 v1"
+      },
+      {
+        "sourceId": "step_conclusion",
+        "proof": "by\n  intro v0 v1 s3\n  exact sub_nonneg.mp (s3 v0 v1)"
+      },
+      {
+        "sourceId": "goal",
+        "proof": "by\n  exact s4 v0 v1"
+      }
+    ]
+  },
+  {
+    "variant": "C_deduplicated_source_map_first",
+    "isolatedFormalizationId": "98cbf6be-bc0c-4513-aec1-0f660f1cf2f0",
+    "proofHash": "672e49ca1244dbb61396f59894df630cf4ad7e4a2eec24fb09c5949e834886a5",
+    "proofs": [
+      {
+        "sourceId": "step_expand",
+        "proof": "by ring"
+      },
+      {
+        "sourceId": "step_factor",
+        "proof": "by exact (sub_sq v0 v1).symm"
+      },
+      {
+        "sourceId": "step_nonneg",
+        "proof": "by exact sq_nonneg (v0 - v1)"
+      },
+      {
+        "sourceId": "step_ge",
+        "proof": "by rw [s0 v0 v1, s1 v0 v1]; exact s2 v0 v1"
+      },
+      {
+        "sourceId": "step_conclusion",
+        "proof": "by exact (sub_nonneg.mp (s3 v0 v1))"
+      },
+      {
+        "sourceId": "goal",
+        "proof": "by exact s4 v0 v1"
+      }
+    ]
+  },
+  {
+    "variant": "B_names_checks_only_duplicate",
+    "isolatedFormalizationId": "4287db7f-c58e-481a-ae2c-5b5d2e499c3e",
+    "proofHash": "4f574a1e8dc90d28c762b24f21f8e0a623aca02b5889fbad4be733288c2bf764",
+    "proofs": [
+      {
+        "sourceId": "step_expand",
+        "proof": "by\n  ring"
+      },
+      {
+        "sourceId": "step_factor",
+        "proof": "by\n  exact (sub_sq v0 v1).symm"
+      },
+      {
+        "sourceId": "step_nonneg",
+        "proof": "by\n  exact sq_nonneg (v0 - v1)"
+      },
+      {
+        "sourceId": "step_ge",
+        "proof": "by\n  have h : (2 * ((v0 ^ 2) + (v1 ^ 2))) - ((v0 + v1) ^ 2) = (v0 - v1) ^ 2 := by\n    calc\n      (2 * ((v0 ^ 2) + (v1 ^ 2))) - ((v0 + v1) ^ 2) = (((v0 ^ 2) - ((2 * v0) * v1)) + (v1 ^ 2)) := s0 v0 v1\n      _ = (v0 - v1) ^ 2 := s1 v0 v1\n  rw [h]\n  exact s2 v0 v1"
+      },
+      {
+        "sourceId": "step_conclusion",
+        "proof": "by\n  exact sub_nonneg.mp (s3 v0 v1)"
+      },
+      {
+        "sourceId": "goal",
+        "proof": "by\n  exact s4 v0 v1"
+      }
+    ]
+  }
+]

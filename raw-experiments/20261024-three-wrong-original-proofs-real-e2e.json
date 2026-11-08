@@ -1,0 +1,579 @@
+{
+  "title": "三道错误证明全链实际测试与判定审计",
+  "date": "2026-10-24",
+  "officialInstalledSignedCommit": "868349bf1fbec7ffae5e45c01d671f3552ba56d2",
+  "method": "Three source-only Chinese submissions via signed App backend POST /api/v2/jobs, real DeepSeek/MathIR/Lean4, independent isolates; no fixtures, hand-written MathIR, or injected Lean; GUI not exercised.",
+  "expectedInterpretation": "A is a true theorem with unsupported original step, B is a false theorem, C is a true theorem with explicitly invalid witness; correctly assessed original reasoning is false for all three.",
+  "cases": [
+    {
+      "caseId": "wrong_A_true_inequality_invalid_assumption",
+      "kind": "true_theorem_invalid_source_inference",
+      "title": "真定理、错误地假设 a≥b",
+      "sourceText": "命题：对任意实数 a,b∈ℝ，都有 a²+b²≥2ab。错误证明：任取实数 a,b。因为 a≥b，所以 a−b≥0。两边平方得 (a−b)²≥0。展开即 a²−2ab+b²≥0，从而 a²+b²≥2ab。证毕。",
+      "sourceSha256": "d374e67dddc7559ad859c7b207df15b1502f9389fc8b2de5122963d40c6aa1db",
+      "jobId": "72b3f867-81e6-4d73-b851-11f7674de71a",
+      "jobTerminalStatus": "completed",
+      "testVersion": "868349bf1fbec7ffae5e45c01d671f3552ba56d2",
+      "providerCalls": 3,
+      "inputTokens": 31253,
+      "outputTokens": 25124,
+      "durationSeconds": 158.37,
+      "modelResponses": [
+        {
+          "request_id": "0141a058-c837-4dc4-aa7a-2056dcf8d82c",
+          "stage": "mathir",
+          "reason": "StructureOnlyMathIRV2",
+          "model": "deepseek-flash",
+          "status": "response_received",
+          "input_tokens": 11658,
+          "output_tokens": 10805,
+          "retry_index": 0,
+          "cache_hit": null,
+          "real_request_attempted": true,
+          "started_at": null,
+          "finished_at": null
+        },
+        {
+          "request_id": "e101afe5-b880-4db0-9be5-f931c80830af",
+          "stage": "mathir",
+          "reason": "StructureOnlyMathIRV2",
+          "model": "deepseek-flash",
+          "status": "response_received",
+          "input_tokens": 16020,
+          "output_tokens": 10215,
+          "retry_index": 0,
+          "cache_hit": null,
+          "real_request_attempted": true,
+          "started_at": null,
+          "finished_at": null
+        },
+        {
+          "request_id": "818e61ff-e359-4e5c-a752-e4fa10eea5e2",
+          "stage": "formalization",
+          "reason": "FormalProofs",
+          "model": "deepseek-flash",
+          "status": "response_received",
+          "input_tokens": 3575,
+          "output_tokens": 4104,
+          "retry_index": 0,
+          "cache_hit": null,
+          "real_request_attempted": true,
+          "started_at": null,
+          "finished_at": null
+        }
+      ],
+      "providerUsageGaps": 0,
+      "runStatus": "formal_verified_source_unconfirmed",
+      "termination": "original_route_kernel_passed",
+      "finalFormalKernelVerified": true,
+      "sourceOriginalProofVerified": false,
+      "leanTheorem": "(∀ (v_a_decl : ℝ), (∀ (v_b_decl : ℝ), (((v_a_decl ^ (2 : ℕ)) + (v_b_decl ^ (2 : ℕ))) ≥ (((2 : ℝ) * v_a_decl) * v_b_decl))))",
+      "kernelCertificate": {
+        "checked": true,
+        "statementMatched": true,
+        "auditMethod": "fresh_environment_data_only_kernel_replay",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "additionalAxioms": [],
+        "statement_hash": "cd5d0e71e27e01e4a7a07ad58e9fd526698f86b0e50ea8b3f0a7f0c0ac3b97a8",
+        "expectedExpressionSha256": "dacec09dac02b3d585e73edbeafe487f552fa81bc4f7a66dbe3f2ba6f922ed4a",
+        "proofExpressionSha256": "23888d3d42e80b77b3597a10b0188034d2c45df84eba982418bbccf4dc05a952",
+        "nativeExpressionComparison": "structural_equal",
+        "auditIsolation": "fresh_import_environment_reset_between_candidates"
+      },
+      "stepCount": 5,
+      "verifiedStepCount": 5,
+      "incompleteSteps": [],
+      "kernelSteps": [
+        {
+          "route": "route_erroneous",
+          "node": "n_sub_nonneg",
+          "status": "passed",
+          "mathematicalStatus": "conditionally_established",
+          "failureClass": null,
+          "sourceAssessment": "supported",
+          "proofTermOrigin": "proof_only_generation",
+          "originalInferenceVerified": false,
+          "sourceInferenceRule": null,
+          "diagnostics": [],
+          "declaredDependencies": null
+        },
+        {
+          "route": "route_erroneous",
+          "node": "n_square_nonneg",
+          "status": "passed",
+          "mathematicalStatus": "conditionally_established",
+          "failureClass": null,
+          "sourceAssessment": "supported",
+          "proofTermOrigin": "proof_only_generation",
+          "originalInferenceVerified": false,
+          "sourceInferenceRule": null,
+          "diagnostics": [],
+          "declaredDependencies": null
+        },
+        {
+          "route": "route_erroneous",
+          "node": "n_expand",
+          "status": "passed",
+          "mathematicalStatus": "conditionally_established",
+          "failureClass": null,
+          "sourceAssessment": "supported",
+          "proofTermOrigin": "proof_only_generation",
+          "originalInferenceVerified": false,
+          "sourceInferenceRule": null,
+          "diagnostics": [],
+          "declaredDependencies": null
+        },
+        {
+          "route": "route_erroneous",
+          "node": "n_final_pointwise",
+          "status": "passed",
+          "mathematicalStatus": "conditionally_established",
+          "failureClass": null,
+          "sourceAssessment": "supported",
+          "proofTermOrigin": "proof_only_generation",
+          "originalInferenceVerified": false,
+          "sourceInferenceRule": null,
+          "diagnostics": [],
+          "declaredDependencies": null
+        },
+        {
+          "route": "route_erroneous",
+          "node": "n_goal_universal",
+          "status": "passed",
+          "mathematicalStatus": "conditionally_established",
+          "failureClass": null,
+          "sourceAssessment": "supported",
+          "proofTermOrigin": "proof_only_generation",
+          "originalInferenceVerified": false,
+          "sourceInferenceRule": null,
+          "diagnostics": [],
+          "declaredDependencies": null
+        }
+      ],
+      "sourceRuleCertifiedSteps": 0,
+      "sourceUnconfirmed": [
+        {
+          "routeId": "route_erroneous",
+          "nodeId": "n_sub_nonneg",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "unsupported_or_non_authored_predicate"
+        },
+        {
+          "routeId": "route_erroneous",
+          "nodeId": "n_square_nonneg",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "unsupported_or_non_authored_predicate"
+        },
+        {
+          "routeId": "route_erroneous",
+          "nodeId": "n_expand",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "unsupported_or_non_authored_predicate"
+        },
+        {
+          "routeId": "route_erroneous",
+          "nodeId": "n_final_pointwise",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "unsupported_or_non_authored_predicate"
+        },
+        {
+          "routeId": "route_erroneous",
+          "nodeId": "n_goal_universal",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "unsupported_or_non_authored_predicate"
+        }
+      ],
+      "rawCaseEvidenceDirectory": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/live-three-wrong-proofs-868349b-20261024-1223/wrong_A_true_inequality_invalid_assumption",
+      "backendEvidenceZipSha256": "c8deb459dc817260c914ede905f4115d7f883fbdef5c39c705f9aa1c50b8ef6a"
+    },
+    {
+      "caseId": "wrong_B_false_divisibility_by_four",
+      "kind": "false_theorem",
+      "title": "假定理、偶数错误推出4整除",
+      "sourceText": "命题：对所有自然数 n∈ℕ，都有 4∣n(n+1)。错误证明：任意两个相邻自然数 n 与 n+1 中必有一个为偶数，所以 n(n+1) 是偶数。既然 n(n+1) 是偶数，就一定能被 4 整除，因此 4∣n(n+1)。证毕。",
+      "sourceSha256": "d6247d4ea77fc9351e9aafc2d2680ddef676ebaf87aef3cd34858924b200394f",
+      "jobId": "cd5ceba5-aef8-4579-907e-fbcf9d85e040",
+      "jobTerminalStatus": "completed",
+      "testVersion": "868349bf1fbec7ffae5e45c01d671f3552ba56d2",
+      "providerCalls": 3,
+      "inputTokens": 16031,
+      "outputTokens": 16957,
+      "durationSeconds": 114.72,
+      "modelResponses": [
+        {
+          "request_id": "1e45cc9a-cc3d-4aea-bfb5-11daad4f6401",
+          "stage": "mathir",
+          "reason": "StructureOnlyMathIRV2",
+          "model": "deepseek-flash",
+          "status": "response_received",
+          "input_tokens": 11530,
+          "output_tokens": 10035,
+          "retry_index": 0,
+          "cache_hit": null,
+          "real_request_attempted": true,
+          "started_at": null,
+          "finished_at": null
+        },
+        {
+          "request_id": "a2c8cb5c-7002-4330-82a7-031ce80f8ad6",
+          "stage": "formalization",
+          "reason": "FormalProofs",
+          "model": "deepseek-flash",
+          "status": "response_received",
+          "input_tokens": 2604,
+          "output_tokens": 6769,
+          "retry_index": 0,
+          "cache_hit": null,
+          "real_request_attempted": true,
+          "started_at": null,
+          "finished_at": null
+        },
+        {
+          "request_id": "9aed8247-d260-48f6-992d-12ac2e8060dc",
+          "stage": "formalization",
+          "reason": "FormalProofs",
+          "model": "deepseek-flash",
+          "status": "response_received",
+          "input_tokens": 1897,
+          "output_tokens": 153,
+          "retry_index": 0,
+          "cache_hit": null,
+          "real_request_attempted": true,
+          "started_at": null,
+          "finished_at": null
+        }
+      ],
+      "providerUsageGaps": 0,
+      "runStatus": "incomplete",
+      "termination": "proof_generation_returned_no_patch",
+      "finalFormalKernelVerified": false,
+      "sourceOriginalProofVerified": false,
+      "leanTheorem": "(∀ (v_n_goal : ℕ), ((4 : ℕ) ∣ (v_n_goal * (v_n_goal + (1 : ℕ)))))",
+      "kernelCertificate": null,
+      "stepCount": 4,
+      "verifiedStepCount": 3,
+      "incompleteSteps": [
+        {
+          "node": "r_even_implies_div4",
+          "failureClass": "missing_proof",
+          "mathematicalStatus": "not_established"
+        }
+      ],
+      "kernelSteps": [
+        {
+          "route": "route_wrong_proof",
+          "node": "r_adj_even",
+          "status": "passed",
+          "mathematicalStatus": "established",
+          "failureClass": null,
+          "sourceAssessment": "supported",
+          "proofTermOrigin": "proof_only_generation",
+          "originalInferenceVerified": false,
+          "sourceInferenceRule": null,
+          "diagnostics": [],
+          "declaredDependencies": null
+        },
+        {
+          "route": "route_wrong_proof",
+          "node": "r_prod_even",
+          "status": "passed",
+          "mathematicalStatus": "conditionally_established",
+          "failureClass": null,
+          "sourceAssessment": "supported",
+          "proofTermOrigin": "proof_only_generation",
+          "originalInferenceVerified": false,
+          "sourceInferenceRule": null,
+          "diagnostics": [],
+          "declaredDependencies": null
+        },
+        {
+          "route": "route_wrong_proof",
+          "node": "r_even_implies_div4",
+          "status": "incomplete",
+          "mathematicalStatus": "not_established",
+          "failureClass": "missing_proof",
+          "sourceAssessment": "supported",
+          "proofTermOrigin": "missing",
+          "originalInferenceVerified": false,
+          "sourceInferenceRule": null,
+          "diagnostics": [],
+          "declaredDependencies": null
+        },
+        {
+          "route": "route_wrong_proof",
+          "node": "r_final",
+          "status": "passed",
+          "mathematicalStatus": "conditionally_established",
+          "failureClass": null,
+          "sourceAssessment": "supported",
+          "proofTermOrigin": "proof_only_generation",
+          "originalInferenceVerified": false,
+          "sourceInferenceRule": null,
+          "diagnostics": [],
+          "declaredDependencies": null
+        }
+      ],
+      "sourceRuleCertifiedSteps": 0,
+      "sourceUnconfirmed": [
+        {
+          "routeId": "route_wrong_proof",
+          "nodeId": "r_adj_even",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "unsupported_or_non_authored_predicate"
+        },
+        {
+          "routeId": "route_wrong_proof",
+          "nodeId": "r_prod_even",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "unsupported_or_non_authored_predicate"
+        },
+        {
+          "routeId": "route_wrong_proof",
+          "nodeId": "r_even_implies_div4",
+          "reason": "original_step_proof_missing",
+          "ruleCheckReason": "ambiguous_source_step_identity"
+        },
+        {
+          "routeId": "route_wrong_proof",
+          "nodeId": "r_final",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "unsupported_or_non_authored_predicate"
+        }
+      ],
+      "rawCaseEvidenceDirectory": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/live-three-wrong-proofs-868349b-20261024-1223/wrong_B_false_divisibility_by_four",
+      "backendEvidenceZipSha256": "79f07ee2f9d4f1f4eb7da013b79ff43f608aae306d226d2bde9beaa443472059"
+    },
+    {
+      "caseId": "wrong_C_true_existential_invalid_witness",
+      "kind": "true_theorem_invalid_witness",
+      "title": "真定理、存在量词错误见证 y=x",
+      "sourceText": "命题：对每个实数 x∈ℝ，存在实数 y∈ℝ，使 x+y=0。错误证明：任取实数 x，取 y=x。于是 x+y=x+x=2x=0。因此存在所需的 y，命题成立。证毕。",
+      "sourceSha256": "483661b1fd39d7c20e90a3bca32ae5929be8fe70366cd6a0391d88f21de139ed",
+      "jobId": "fddc96e5-40d1-470c-b8db-3ea0dd57e1f3",
+      "jobTerminalStatus": "completed",
+      "testVersion": "868349bf1fbec7ffae5e45c01d671f3552ba56d2",
+      "providerCalls": 5,
+      "inputTokens": 76779,
+      "outputTokens": 34117,
+      "durationSeconds": 280.3,
+      "modelResponses": [
+        {
+          "request_id": "4a23acca-b8af-4f82-acbd-b7af34d55761",
+          "stage": "mathir",
+          "reason": "StructureOnlyMathIRV2",
+          "model": "deepseek-flash",
+          "status": "response_received",
+          "input_tokens": 11566,
+          "output_tokens": 27007,
+          "retry_index": 0,
+          "cache_hit": null,
+          "real_request_attempted": true,
+          "started_at": null,
+          "finished_at": null
+        },
+        {
+          "request_id": "f219b4c1-2959-4747-8f0b-d00cca0c238d",
+          "stage": "formalization",
+          "reason": "FormalProofs",
+          "model": "deepseek-flash",
+          "status": "response_received",
+          "input_tokens": 3384,
+          "output_tokens": 4654,
+          "retry_index": 0,
+          "cache_hit": null,
+          "real_request_attempted": true,
+          "started_at": null,
+          "finished_at": null
+        },
+        {
+          "request_id": "8b223f27-7191-47ce-bace-c01d7b229b0e",
+          "stage": "formalization",
+          "reason": "FormalProofs",
+          "model": "deepseek-flash",
+          "status": "response_received",
+          "input_tokens": 2041,
+          "output_tokens": 373,
+          "retry_index": 0,
+          "cache_hit": null,
+          "real_request_attempted": true,
+          "started_at": null,
+          "finished_at": null
+        },
+        {
+          "request_id": "728cf144-8db8-4b24-9e59-492843975bf2",
+          "stage": "other",
+          "reason": "LibraryPlan",
+          "model": "deepseek-flash",
+          "status": "response_received",
+          "input_tokens": 5181,
+          "output_tokens": 1769,
+          "retry_index": 0,
+          "cache_hit": null,
+          "real_request_attempted": true,
+          "started_at": null,
+          "finished_at": null
+        },
+        {
+          "request_id": "7b8b0da5-89b8-48a4-add9-ac5a6dc61050",
+          "stage": "repair",
+          "reason": "FormalProofs",
+          "model": "deepseek-flash",
+          "status": "response_received",
+          "input_tokens": 54607,
+          "output_tokens": 314,
+          "retry_index": 0,
+          "cache_hit": null,
+          "real_request_attempted": true,
+          "started_at": null,
+          "finished_at": null
+        }
+      ],
+      "providerUsageGaps": 0,
+      "runStatus": "incomplete",
+      "termination": "proof_generation_returned_no_patch",
+      "finalFormalKernelVerified": false,
+      "sourceOriginalProofVerified": false,
+      "leanTheorem": "(∀ (v_d_x : ℝ), (∃ (v_d_y_goal : ℝ), ((v_d_x + v_d_y_goal) = (0 : ℝ))))",
+      "kernelCertificate": null,
+      "stepCount": 5,
+      "verifiedStepCount": 4,
+      "incompleteSteps": [
+        {
+          "node": "c_chain3",
+          "failureClass": "missing_proof",
+          "mathematicalStatus": "not_established"
+        }
+      ],
+      "kernelSteps": [
+        {
+          "route": "route_wrong_proof",
+          "node": "c_chain1",
+          "status": "passed",
+          "mathematicalStatus": "established",
+          "failureClass": null,
+          "sourceAssessment": "supported",
+          "proofTermOrigin": "diagnostic_repair",
+          "originalInferenceVerified": false,
+          "sourceInferenceRule": null,
+          "diagnostics": [],
+          "declaredDependencies": null
+        },
+        {
+          "route": "route_wrong_proof",
+          "node": "c_chain2",
+          "status": "passed",
+          "mathematicalStatus": "established",
+          "failureClass": null,
+          "sourceAssessment": "supported",
+          "proofTermOrigin": "proof_only_generation",
+          "originalInferenceVerified": false,
+          "sourceInferenceRule": null,
+          "diagnostics": [],
+          "declaredDependencies": null
+        },
+        {
+          "route": "route_wrong_proof",
+          "node": "c_chain3",
+          "status": "incomplete",
+          "mathematicalStatus": "not_established",
+          "failureClass": "missing_proof",
+          "sourceAssessment": "supported",
+          "proofTermOrigin": "missing",
+          "originalInferenceVerified": false,
+          "sourceInferenceRule": null,
+          "diagnostics": [],
+          "declaredDependencies": null
+        },
+        {
+          "route": "route_wrong_proof",
+          "node": "c_exists",
+          "status": "passed",
+          "mathematicalStatus": "conditionally_established",
+          "failureClass": null,
+          "sourceAssessment": "supported",
+          "proofTermOrigin": "proof_only_generation",
+          "originalInferenceVerified": false,
+          "sourceInferenceRule": null,
+          "diagnostics": [],
+          "declaredDependencies": null
+        },
+        {
+          "route": "route_wrong_proof",
+          "node": "c_goal",
+          "status": "passed",
+          "mathematicalStatus": "conditionally_established",
+          "failureClass": null,
+          "sourceAssessment": "supported",
+          "proofTermOrigin": "proof_only_generation",
+          "originalInferenceVerified": false,
+          "sourceInferenceRule": null,
+          "diagnostics": [],
+          "declaredDependencies": null
+        }
+      ],
+      "sourceRuleCertifiedSteps": 0,
+      "sourceUnconfirmed": [
+        {
+          "routeId": "route_wrong_proof",
+          "nodeId": "c_chain1",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "missing_kernel_or_supported_source"
+        },
+        {
+          "routeId": "route_wrong_proof",
+          "nodeId": "c_chain2",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "missing_kernel_or_supported_source"
+        },
+        {
+          "routeId": "route_wrong_proof",
+          "nodeId": "c_chain3",
+          "reason": "original_step_proof_missing",
+          "ruleCheckReason": "ambiguous_source_step_identity"
+        },
+        {
+          "routeId": "route_wrong_proof",
+          "nodeId": "c_exists",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "unsupported_or_non_authored_predicate"
+        },
+        {
+          "routeId": "route_wrong_proof",
+          "nodeId": "c_goal",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "unsupported_or_non_authored_predicate"
+        }
+      ],
+      "rawCaseEvidenceDirectory": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/live-three-wrong-proofs-868349b-20261024-1223/wrong_C_true_existential_invalid_witness",
+      "backendEvidenceZipSha256": "81a44b8b761505085a01e39ac223ad75e29df4938a558a7125a8590a7a99f836"
+    }
+  ],
+  "totals": {
+    "requests": 11,
+    "inputTokens": 124063,
+    "outputTokens": 76198,
+    "totalTokens": 200261,
+    "formalProofPassed": 1,
+    "sourceProofCertified": 0,
+    "leanStepsPassed": 12,
+    "leanStepsTotal": 14,
+    "sumOfConcurrentCaseDurationsSeconds": 553.39
+  },
+  "originalReport": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/live-three-wrong-proofs-868349b-20261024-1223/final_report.json",
+  "notes": [
+    "Lean kernel formal success for A is NOT original proof validation.",
+    "Status incomplete for B or C is NOT explicit mathematical counterexample detection.",
+    "All three original reasoning documents were NOT authenticated.",
+    "No DeepSeek source model-side debug token budget claims beyond observed usage."
+  ],
+  "independentLeanCounterexamples": {
+    "artifact": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-三道错误证明独立反例Lean证书.json",
+    "verifiedNegations": 3,
+    "extraDeepSeekCalls": 0,
+    "origin": "independent_postrun_diagnostic_not_app_feedback"
+  }
+}

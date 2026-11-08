@@ -1,0 +1,3589 @@
+{
+  "baseline": "3804bae",
+  "providerCalls": 0,
+  "statementLockPreserved": true,
+  "cases": {
+    "C05": {
+      "input": "reports/mathir-v2-stage8-live/C05.json",
+      "sourceTextMatches": true,
+      "expectedStatementHash": "a8b3779e6b1798245cd53cd244f03855ccaa95aeba67ab83018c0b2d099abe79",
+      "actualStatementHash": "a8b3779e6b1798245cd53cd244f03855ccaa95aeba67ab83018c0b2d099abe79",
+      "statementLockPreserved": true,
+      "fixedStatementKernelPassed": false,
+      "originalRouteKernelPassed": false,
+      "routes": [
+        {
+          "routeId": "route_induction",
+          "routeHash": "255606d08fad635ba930dd7cd23582099bc7ceb866d7d27c09e474f25a6a3bac",
+          "sourceEvidenceHash": "f5817a57bfd84cfc0a614eec09da86649de300ce3f4bb7357f268a14dbb28855",
+          "goalNodeId": "final_conclusion",
+          "goalProofTerm": "by\n  intro v_m\n  exact Nat.le_induction (m := (1 : ℕ)) (P := fun ind_ind_n_motive _ => (((2 : ℕ) * (∑ v_k ∈ Finset.Icc (1 : ℕ) ind_ind_n_motive, (v_k + v_m))) = ((((2 : ℕ) * v_m) * ind_ind_n_motive) + (ind_ind_n_motive * (ind_ind_n_motive + (1 : ℕ)))))) (by exact False.elim (by assumption)) (by\n  intro v_m ind_ind_n_n hcondition ih\n  have hsum : (∑ v_k ∈ Finset.Icc (1 : ℕ) (ind_ind_n_n + (1 : ℕ)), (v_k + v_m)) = (∑ v_k ∈ Finset.Icc (1 : ℕ) ind_ind_n_n, (v_k + v_m)) + (ind_ind_n_n + (1 : ℕ) + v_m) := by\n    apply Finset.sum_Icc_succ_top\n    omega\n  rw [hsum]\n  rw [Nat.mul_add, ih]\n  ring)",
+          "proofComposition": {
+            "status": "structural_induction",
+            "error": null,
+            "kernelChecked": false
+          },
+          "status": "incomplete",
+          "completeOriginalRouteKernelPassed": false,
+          "fixedStatementKernelPassed": false,
+          "routeConnectivity": {
+            "status": "connected",
+            "goalNodeIdPresent": true,
+            "unconnectedNodeIds": [],
+            "unconnectedClaimNodeIds": [],
+            "basis": "goal dependency closure plus explicit induction-case edges"
+          },
+          "dependencyEvidence": {
+            "status": "incomplete",
+            "basis": "Kernel proof expression binder-use audit for declared claim dependencies"
+          },
+          "stepResults": [
+            {
+              "sourceId": "mathir-v2/route_induction/ind_n/base",
+              "routeId": "route_induction",
+              "nodeId": "base_conclusion",
+              "kind": "induction_base",
+              "expectedType": "(∀ (v_m : ℕ), (((2 : ℕ) * (∑ v_k ∈ Finset.Icc (1 : ℕ) (1 : ℕ), (v_k + v_m))) = ((((2 : ℕ) * v_m) * (1 : ℕ)) + ((1 : ℕ) * ((1 : ℕ) + (1 : ℕ))))))",
+              "proofTerm": null,
+              "originalProofTerm": null,
+              "context": [],
+              "dependsOn": [],
+              "proofAttemptStatus": "missing_proof",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "failureClass": "missing_proof",
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 59,
+                  "end": 263
+                }
+              ],
+              "status": "incomplete",
+              "lean": {
+                "status": "missing_proof",
+                "localVerified": false,
+                "diagnostics": [],
+                "certificate": null
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_induction/ind_n/step",
+              "routeId": "route_induction",
+              "nodeId": "step4_conclusion",
+              "kind": "induction_step",
+              "expectedType": "(∀ (v_m : ℕ), (∀ (v_n : ℕ), (v_n ≥ (1 : ℕ)) → (∀ (ind_ind_n_n : ℕ), (∀ (jjdep_induction_ind_n_lower_bound : ((ind_ind_n_n ≥ (1 : ℕ)))), (∀ (jjdep_step4 : ((((2 : ℕ) * (∑ v_k ∈ Finset.Icc (1 : ℕ) (ind_ind_n_n + (1 : ℕ)), (v_k + v_m))) = ((((2 : ℕ) * v_m) * (ind_ind_n_n + (1 : ℕ))) + ((ind_ind_n_n + (1 : ℕ)) * (ind_ind_n_n + (2 : ℕ))))))), (((2 : ℕ) * (∑ v_k ∈ Finset.Icc (1 : ℕ) (ind_ind_n_n + (1 : ℕ)), (v_k + v_m))) = ((((2 : ℕ) * v_m) * (ind_ind_n_n + (1 : ℕ))) + ((ind_ind_n_n + (1 : ℕ)) * ((ind_ind_n_n + (1 : ℕ)) + (1 : ℕ))))))))))",
+              "proofTerm": "by\n  intro v_m ind_ind_n_n hcondition ih\n  have hsum : (∑ v_k ∈ Finset.Icc (1 : ℕ) (ind_ind_n_n + (1 : ℕ)), (v_k + v_m)) = (∑ v_k ∈ Finset.Icc (1 : ℕ) ind_ind_n_n, (v_k + v_m)) + (ind_ind_n_n + (1 : ℕ) + v_m) := by\n    apply Finset.sum_Icc_succ_top\n    omega\n  rw [hsum]\n  rw [Nat.mul_add, ih]\n  ring",
+              "originalProofTerm": null,
+              "context": [
+                {
+                  "source_id": "step4",
+                  "kind": "claim",
+                  "name": "jjdep_step4",
+                  "type": "(((2 : ℕ) * (∑ v_k ∈ Finset.Icc (1 : ℕ) (ind_ind_n_n + (1 : ℕ)), (v_k + v_m))) = ((((2 : ℕ) * v_m) * (ind_ind_n_n + (1 : ℕ))) + ((ind_ind_n_n + (1 : ℕ)) * (ind_ind_n_n + (2 : ℕ)))))"
+                },
+                {
+                  "source_id": "induction:ind_n:lower_bound",
+                  "kind": "structural_step_condition",
+                  "name": "jjdep_induction_ind_n_lower_bound",
+                  "type": "(ind_ind_n_n ≥ (1 : ℕ))"
+                }
+              ],
+              "dependsOn": [
+                "step4"
+              ],
+              "proofAttemptStatus": "not_proved",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "dependency_usage_not_audited",
+              "dependencyUsage": [],
+              "failureClass": "lean_proof_compile_failed",
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 59,
+                  "end": 263
+                }
+              ],
+              "status": "incomplete",
+              "lean": {
+                "localVerified": false,
+                "status": "not_proved",
+                "diagnostics": [
+                  {
+                    "severity": "error",
+                    "message": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ∑ v_k ∈ Finset.Icc 1 (ind_ind_n_n + 1), (v_k + v_m)\nin the target expression\n  ih ≥ 1 →\n    2 * ∑ v_k ∈ Finset.Icc 1 (ih + 1), (v_k + v_m) = 2 * v_m * (ih + 1) + (ih + 1) * (ih + 2) →\n      2 * ∑ v_k ∈ Finset.Icc 1 (ih + 1), (v_k + v_m) = 2 * v_m * (ih + 1) + (ih + 1) * (ih + 1 + 1)\n\nv_m ind_ind_n_n : ℕ\nhcondition : ind_ind_n_n ≥ 1\nih : ℕ\nhsum :\n  ∑ v_k ∈ Finset.Icc 1 (ind_ind_n_n + 1), (v_k + v_m) =\n    ∑ v_k ∈ Finset.Icc 1 ind_ind_n_n, (v_k + v_m) + (ind_ind_n_n + 1 + v_m)\n⊢ ih ≥ 1 →\n    2 * ∑ v_k ∈ Finset.Icc 1 (ih + 1), (v_k + v_m) = 2 * v_m * (ih + 1) + (ih + 1) * (ih + 2) →\n      2 * ∑ v_k ∈ Finset.Icc 1 (ih + 1), (v_k + v_m) = 2 * v_m * (ih + 1) + (ih + 1) * (ih + 1 + 1)",
+                    "leanPosition": {
+                      "column": 167,
+                      "line": 5
+                    },
+                    "leanEndPosition": {
+                      "column": 171,
+                      "line": 5
+                    },
+                    "stepId": "mathir-v2/route_induction/ind_n/step",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b_text",
+                        "start": 59,
+                        "end": 263
+                      }
+                    ],
+                    "mappingPrecision": "step",
+                    "raw": {
+                      "caption": "",
+                      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ∑ v_k ∈ Finset.Icc 1 (ind_ind_n_n + 1), (v_k + v_m)\nin the target expression\n  ih ≥ 1 →\n    2 * ∑ v_k ∈ Finset.Icc 1 (ih + 1), (v_k + v_m) = 2 * v_m * (ih + 1) + (ih + 1) * (ih + 2) →\n      2 * ∑ v_k ∈ Finset.Icc 1 (ih + 1), (v_k + v_m) = 2 * v_m * (ih + 1) + (ih + 1) * (ih + 1 + 1)\n\nv_m ind_ind_n_n : ℕ\nhcondition : ind_ind_n_n ≥ 1\nih : ℕ\nhsum :\n  ∑ v_k ∈ Finset.Icc 1 (ind_ind_n_n + 1), (v_k + v_m) =\n    ∑ v_k ∈ Finset.Icc 1 ind_ind_n_n, (v_k + v_m) + (ind_ind_n_n + 1 + v_m)\n⊢ ih ≥ 1 →\n    2 * ∑ v_k ∈ Finset.Icc 1 (ih + 1), (v_k + v_m) = 2 * v_m * (ih + 1) + (ih + 1) * (ih + 2) →\n      2 * ∑ v_k ∈ Finset.Icc 1 (ih + 1), (v_k + v_m) = 2 * v_m * (ih + 1) + (ih + 1) * (ih + 1 + 1)",
+                      "endPos": {
+                        "column": 171,
+                        "line": 5
+                      },
+                      "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-6r3eb4y4/Task.lean",
+                      "isSilent": false,
+                      "keepFullRange": false,
+                      "kind": "[anonymous]",
+                      "pos": {
+                        "column": 167,
+                        "line": 5
+                      },
+                      "severity": "error"
+                    }
+                  }
+                ],
+                "certificate": null
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_induction/base_calc_1",
+              "routeId": "route_induction",
+              "nodeId": "base_calc_1",
+              "kind": "claim",
+              "expectedType": "(∀ (v_m : ℕ), (∀ (v_n : ℕ), (v_n ≥ (1 : ℕ)) → (let v_S_n_def : ℕ := (∑ v_k ∈ Finset.Icc (1 : ℕ) v_n, (v_k + v_m)); (((2 : ℕ) * (∑ v_k ∈ Finset.Icc (1 : ℕ) (1 : ℕ), (v_k + v_m))) = ((2 : ℕ) * ((1 : ℕ) + v_m))))))",
+              "proofTerm": "by\n  intro v_m v_n _hv_n\n  dsimp\n  simp",
+              "originalProofTerm": "by\n  intro v_m v_n _hv_n\n  dsimp\n  simp",
+              "context": [
+                {
+                  "source_id": "m",
+                  "scope_id": "scope_problem",
+                  "kind": "variable",
+                  "name": "v_m",
+                  "type": "ℕ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "n",
+                  "scope_id": "scope_problem",
+                  "kind": "variable",
+                  "name": "v_n",
+                  "type": "ℕ",
+                  "value": null,
+                  "constraints": [
+                    {
+                      "op": "ge",
+                      "args": [
+                        {
+                          "op": "symbol",
+                          "args": [],
+                          "symbolId": "n"
+                        },
+                        {
+                          "op": "literal",
+                          "args": [],
+                          "literal": {
+                            "type": "Nat",
+                            "interpretation": "fixed",
+                            "value": "1"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "S_n_def",
+                  "scope_id": "scope_proof",
+                  "kind": "definition",
+                  "name": "v_S_n_def",
+                  "type": "ℕ",
+                  "value": {
+                    "op": "finite_sum",
+                    "args": [
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "k"
+                          },
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "m"
+                          }
+                        ]
+                      }
+                    ],
+                    "binderId": "k",
+                    "lower": {
+                      "op": "literal",
+                      "args": [],
+                      "literal": {
+                        "type": "Nat",
+                        "interpretation": "fixed",
+                        "value": "1"
+                      }
+                    },
+                    "upper": {
+                      "op": "symbol",
+                      "args": [],
+                      "symbolId": "n"
+                    },
+                    "upperInclusive": true
+                  },
+                  "constraints": [],
+                  "bindingClass": "local"
+                }
+              ],
+              "dependsOn": [],
+              "proofAttemptStatus": "verified",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "failureClass": null,
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 81,
+                  "end": 113
+                }
+              ],
+              "status": "passed",
+              "lean": {
+                "localVerified": true,
+                "status": "verified",
+                "diagnostics": [],
+                "certificate": {
+                  "auditMethod": "fresh_environment_data_only_kernel_replay",
+                  "axioms": [
+                    "propext",
+                    "Classical.choice",
+                    "Quot.sound"
+                  ],
+                  "checked": true,
+                  "dependencyUsage": [],
+                  "formalStatement": "∀ (v_m v_n : ℕ),\n  v_n ≥ 1 →\n    have v_S_n_def := ∑ v_k ∈ Finset.Icc 1 v_n, (v_k + v_m);\n    2 * ∑ v_k ∈ Finset.Icc 1 1, (v_k + v_m) = 2 * (1 + v_m)",
+                  "statementMatched": true,
+                  "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                  "expectedExpressionSha256": "a0a278d28278930a56cc92ceb796ed583e7c186721246bff5fee11d81d29c863",
+                  "proofExpressionSha256": "329bdc819fd26931f3f8ea3e180cde0ac50d430cbdf9c096ab29c846374fd626",
+                  "statement_hash": "a8b3779e6b1798245cd53cd244f03855ccaa95aeba67ab83018c0b2d099abe79",
+                  "nativeExpressionComparison": "structural_equal",
+                  "sourceTypeSha256": "e9fe4bb82ce0b6b3d8b78186371ea6ec08a68b0327a9d2fa0d6492a25a08a8bf",
+                  "sourceProofSha256": "4dd1745b18ace92717d4ea3f6a1c096fc5bbac4e48ae9ec9d63ebc79c673d7a9",
+                  "runtime": {
+                    "configured": true,
+                    "executableFound": true,
+                    "projectFound": true,
+                    "runtimeBuilt": true,
+                    "sandbox": "macos",
+                    "isolated": true,
+                    "ready": true,
+                    "toolchain": "leanprover/lean4:v4.34.0",
+                    "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                    "liveTestedInThisDistribution": false
+                  },
+                  "additionalAxioms": [],
+                  "auditIsolation": "fresh_import_environment_reset_between_candidates"
+                },
+                "evidence": {
+                  "schema": "lean-proof-evidence-v1",
+                  "sha256": "7965afdff06229c3fc4fb117c720bd029d234cb9ff5652dc168a3f11f8a644a6",
+                  "artifact": "reports/mathir-v2-stage7-proof-evidence/7965afdff06229c3fc4fb117c720bd029d234cb9ff5652dc168a3f11f8a644a6.json.gz",
+                  "uncompressedBytes": 94805,
+                  "compressedBytes": 1655
+                }
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_induction/base_calc_2",
+              "routeId": "route_induction",
+              "nodeId": "base_calc_2",
+              "kind": "claim",
+              "expectedType": "(∀ (v_m : ℕ), (∀ (v_n : ℕ), (v_n ≥ (1 : ℕ)) → (let v_S_n_def : ℕ := (∑ v_k ∈ Finset.Icc (1 : ℕ) v_n, (v_k + v_m)); (((2 : ℕ) * ((1 : ℕ) + v_m)) = (((2 : ℕ) * v_m) + (2 : ℕ))))))",
+              "proofTerm": "by\n  intro v_m v_n _hv_n\n  dsimp\n  ring",
+              "originalProofTerm": "by\n  intro v_m v_n _hv_n\n  dsimp\n  ring",
+              "context": [
+                {
+                  "source_id": "m",
+                  "scope_id": "scope_problem",
+                  "kind": "variable",
+                  "name": "v_m",
+                  "type": "ℕ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "n",
+                  "scope_id": "scope_problem",
+                  "kind": "variable",
+                  "name": "v_n",
+                  "type": "ℕ",
+                  "value": null,
+                  "constraints": [
+                    {
+                      "op": "ge",
+                      "args": [
+                        {
+                          "op": "symbol",
+                          "args": [],
+                          "symbolId": "n"
+                        },
+                        {
+                          "op": "literal",
+                          "args": [],
+                          "literal": {
+                            "type": "Nat",
+                            "interpretation": "fixed",
+                            "value": "1"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "S_n_def",
+                  "scope_id": "scope_proof",
+                  "kind": "definition",
+                  "name": "v_S_n_def",
+                  "type": "ℕ",
+                  "value": {
+                    "op": "finite_sum",
+                    "args": [
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "k"
+                          },
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "m"
+                          }
+                        ]
+                      }
+                    ],
+                    "binderId": "k",
+                    "lower": {
+                      "op": "literal",
+                      "args": [],
+                      "literal": {
+                        "type": "Nat",
+                        "interpretation": "fixed",
+                        "value": "1"
+                      }
+                    },
+                    "upper": {
+                      "op": "symbol",
+                      "args": [],
+                      "symbolId": "n"
+                    },
+                    "upperInclusive": true
+                  },
+                  "constraints": [],
+                  "bindingClass": "local"
+                }
+              ],
+              "dependsOn": [],
+              "proofAttemptStatus": "verified",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "failureClass": null,
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 81,
+                  "end": 113
+                }
+              ],
+              "status": "passed",
+              "lean": {
+                "localVerified": true,
+                "status": "verified",
+                "diagnostics": [],
+                "certificate": {
+                  "auditMethod": "fresh_environment_data_only_kernel_replay",
+                  "axioms": [
+                    "propext",
+                    "Classical.choice",
+                    "Quot.sound"
+                  ],
+                  "checked": true,
+                  "dependencyUsage": [],
+                  "formalStatement": "∀ (v_m v_n : ℕ),\n  v_n ≥ 1 →\n    have v_S_n_def := ∑ v_k ∈ Finset.Icc 1 v_n, (v_k + v_m);\n    2 * (1 + v_m) = 2 * v_m + 2",
+                  "statementMatched": true,
+                  "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                  "expectedExpressionSha256": "7510d6646b4432422e1c68145a53703cede0e70579382d9e5758de71c8bbded5",
+                  "proofExpressionSha256": "aed9d1aa7bd188e710998a5ab93adc631e0a104be7539f2948e4a0cde940e219",
+                  "statement_hash": "a8b3779e6b1798245cd53cd244f03855ccaa95aeba67ab83018c0b2d099abe79",
+                  "nativeExpressionComparison": "structural_equal",
+                  "sourceTypeSha256": "a821aed9a677acc0a26e846c75d7d1dae4b84a3f702eb62f165ce1e03b9020bc",
+                  "sourceProofSha256": "16b8528b2851c3aff51cf33452e8719e44c9399a6e8df42d156501d3231d3e49",
+                  "runtime": {
+                    "configured": true,
+                    "executableFound": true,
+                    "projectFound": true,
+                    "runtimeBuilt": true,
+                    "sandbox": "macos",
+                    "isolated": true,
+                    "ready": true,
+                    "toolchain": "leanprover/lean4:v4.34.0",
+                    "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                    "liveTestedInThisDistribution": false
+                  },
+                  "additionalAxioms": [],
+                  "auditIsolation": "fresh_import_environment_reset_between_candidates"
+                },
+                "evidence": {
+                  "schema": "lean-proof-evidence-v1",
+                  "sha256": "73643691edc859af0092e7c696ba3c834cddea613cd2cbf8c9a27042eddf6761",
+                  "artifact": "reports/mathir-v2-stage7-proof-evidence/73643691edc859af0092e7c696ba3c834cddea613cd2cbf8c9a27042eddf6761.json.gz",
+                  "uncompressedBytes": 726230,
+                  "compressedBytes": 8168
+                }
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_induction/step3",
+              "routeId": "route_induction",
+              "nodeId": "step3",
+              "kind": "claim",
+              "expectedType": "(∀ (v_m : ℕ), (∀ (v_n : ℕ), (v_n ≥ (1 : ℕ)) → (let v_S_n_def : ℕ := (∑ v_k ∈ Finset.Icc (1 : ℕ) v_n, (v_k + v_m)); ((∑ v_k ∈ Finset.Icc (1 : ℕ) (v_n + (1 : ℕ)), (v_k + v_m)) = ((∑ v_k ∈ Finset.Icc (1 : ℕ) v_n, (v_k + v_m)) + (v_n + v_m))))))",
+              "proofTerm": null,
+              "originalProofTerm": null,
+              "context": [
+                {
+                  "source_id": "m",
+                  "scope_id": "scope_problem",
+                  "kind": "variable",
+                  "name": "v_m",
+                  "type": "ℕ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "n",
+                  "scope_id": "scope_problem",
+                  "kind": "variable",
+                  "name": "v_n",
+                  "type": "ℕ",
+                  "value": null,
+                  "constraints": [
+                    {
+                      "op": "ge",
+                      "args": [
+                        {
+                          "op": "symbol",
+                          "args": [],
+                          "symbolId": "n"
+                        },
+                        {
+                          "op": "literal",
+                          "args": [],
+                          "literal": {
+                            "type": "Nat",
+                            "interpretation": "fixed",
+                            "value": "1"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "S_n_def",
+                  "scope_id": "scope_proof",
+                  "kind": "definition",
+                  "name": "v_S_n_def",
+                  "type": "ℕ",
+                  "value": {
+                    "op": "finite_sum",
+                    "args": [
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "k"
+                          },
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "m"
+                          }
+                        ]
+                      }
+                    ],
+                    "binderId": "k",
+                    "lower": {
+                      "op": "literal",
+                      "args": [],
+                      "literal": {
+                        "type": "Nat",
+                        "interpretation": "fixed",
+                        "value": "1"
+                      }
+                    },
+                    "upper": {
+                      "op": "symbol",
+                      "args": [],
+                      "symbolId": "n"
+                    },
+                    "upperInclusive": true
+                  },
+                  "constraints": [],
+                  "bindingClass": "local"
+                }
+              ],
+              "dependsOn": [],
+              "proofAttemptStatus": "missing_proof",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "failureClass": "missing_proof",
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 144,
+                  "end": 194
+                }
+              ],
+              "status": "incomplete",
+              "lean": {
+                "status": "missing_proof",
+                "localVerified": false,
+                "diagnostics": [],
+                "certificate": null
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_induction/step4",
+              "routeId": "route_induction",
+              "nodeId": "step4",
+              "kind": "claim",
+              "expectedType": "(∀ (v_m : ℕ), (∀ (v_n : ℕ), (v_n ≥ (1 : ℕ)) → (let v_S_n_def : ℕ := (∑ v_k ∈ Finset.Icc (1 : ℕ) v_n, (v_k + v_m)); (∀ (jjdep_induction_hypothesis : (((2 : ℕ) * (∑ v_k ∈ Finset.Icc (1 : ℕ) v_n, (v_k + v_m))) = ((((2 : ℕ) * v_m) * v_n) + (v_n * (v_n + (1 : ℕ)))))), (∀ (jjdep_step3 : ((∑ v_k ∈ Finset.Icc (1 : ℕ) (v_n + (1 : ℕ)), (v_k + v_m)) = ((∑ v_k ∈ Finset.Icc (1 : ℕ) v_n, (v_k + v_m)) + (v_n + v_m)))), (((2 : ℕ) * (∑ v_k ∈ Finset.Icc (1 : ℕ) (v_n + (1 : ℕ)), (v_k + v_m))) = ((((2 : ℕ) * v_m) * (v_n + (1 : ℕ))) + ((v_n + (1 : ℕ)) * (v_n + (2 : ℕ))))))))))",
+              "proofTerm": "by\n  intro v_m v_n hv_n v_S_n_def ih step3\n  have hsum : (∑ v_k ∈ Finset.Icc (1 : ℕ) (v_n + (1 : ℕ)), (v_k + v_m)) = (∑ v_k ∈ Finset.Icc (1 : ℕ) v_n, (v_k + v_m)) + (v_n + (1 : ℕ) + v_m) := by\n    apply Finset.sum_Icc_succ_top\n    omega\n  rw [hsum]\n  rw [Nat.mul_add, ih]\n  ring",
+              "originalProofTerm": "by\n  intro v_m v_n hv_n v_S_n_def ih step3\n  have hsum : (∑ v_k ∈ Finset.Icc (1 : ℕ) (v_n + (1 : ℕ)), (v_k + v_m)) = (∑ v_k ∈ Finset.Icc (1 : ℕ) v_n, (v_k + v_m)) + (v_n + (1 : ℕ) + v_m) := by\n    apply Finset.sum_Icc_succ_top\n    omega\n  rw [hsum]\n  rw [Nat.mul_add, ih]\n  ring",
+              "context": [
+                {
+                  "source_id": "m",
+                  "scope_id": "scope_problem",
+                  "kind": "variable",
+                  "name": "v_m",
+                  "type": "ℕ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "n",
+                  "scope_id": "scope_problem",
+                  "kind": "variable",
+                  "name": "v_n",
+                  "type": "ℕ",
+                  "value": null,
+                  "constraints": [
+                    {
+                      "op": "ge",
+                      "args": [
+                        {
+                          "op": "symbol",
+                          "args": [],
+                          "symbolId": "n"
+                        },
+                        {
+                          "op": "literal",
+                          "args": [],
+                          "literal": {
+                            "type": "Nat",
+                            "interpretation": "fixed",
+                            "value": "1"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "S_n_def",
+                  "scope_id": "scope_proof",
+                  "kind": "definition",
+                  "name": "v_S_n_def",
+                  "type": "ℕ",
+                  "value": {
+                    "op": "finite_sum",
+                    "args": [
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "k"
+                          },
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "m"
+                          }
+                        ]
+                      }
+                    ],
+                    "binderId": "k",
+                    "lower": {
+                      "op": "literal",
+                      "args": [],
+                      "literal": {
+                        "type": "Nat",
+                        "interpretation": "fixed",
+                        "value": "1"
+                      }
+                    },
+                    "upper": {
+                      "op": "symbol",
+                      "args": [],
+                      "symbolId": "n"
+                    },
+                    "upperInclusive": true
+                  },
+                  "constraints": [],
+                  "bindingClass": "local"
+                },
+                {
+                  "source_id": "induction_hypothesis",
+                  "kind": "local_assumption",
+                  "name": "h_route_induction_induction_hypothesis",
+                  "type": "(((2 : ℕ) * (∑ v_k ∈ Finset.Icc (1 : ℕ) v_n, (v_k + v_m))) = ((((2 : ℕ) * v_m) * v_n) + (v_n * (v_n + (1 : ℕ)))))"
+                },
+                {
+                  "source_id": "step3",
+                  "kind": "claim",
+                  "name": "h_route_induction_step3",
+                  "type": "((∑ v_k ∈ Finset.Icc (1 : ℕ) (v_n + (1 : ℕ)), (v_k + v_m)) = ((∑ v_k ∈ Finset.Icc (1 : ℕ) v_n, (v_k + v_m)) + (v_n + v_m)))"
+                }
+              ],
+              "dependsOn": [
+                "induction_hypothesis",
+                "step3"
+              ],
+              "proofAttemptStatus": "verified",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "all_declared_dependencies_used",
+              "dependencyUsage": [
+                {
+                  "dependencyId": "induction_hypothesis",
+                  "used": true
+                },
+                {
+                  "dependencyId": "step3",
+                  "used": true
+                }
+              ],
+              "failureClass": null,
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 195,
+                  "end": 240
+                }
+              ],
+              "status": "passed",
+              "lean": {
+                "localVerified": true,
+                "status": "verified",
+                "diagnostics": [],
+                "certificate": {
+                  "auditMethod": "fresh_environment_data_only_kernel_replay",
+                  "axioms": [
+                    "propext",
+                    "Classical.choice",
+                    "Quot.sound"
+                  ],
+                  "checked": true,
+                  "dependencyUsage": [
+                    {
+                      "dependencyId": "induction_hypothesis",
+                      "used": true
+                    },
+                    {
+                      "dependencyId": "step3",
+                      "used": true
+                    }
+                  ],
+                  "formalStatement": "∀ (v_m v_n : ℕ),\n  v_n ≥ 1 →\n    have v_S_n_def := ∑ v_k ∈ Finset.Icc 1 v_n, (v_k + v_m);\n    2 * ∑ v_k ∈ Finset.Icc 1 v_n, (v_k + v_m) = 2 * v_m * v_n + v_n * (v_n + 1) →\n      ∑ v_k ∈ Finset.Icc 1 (v_n + 1), (v_k + v_m) = ∑ v_k ∈ Finset.Icc 1 v_n, (v_k + v_m) + (v_n + v_m) →\n        2 * ∑ v_k ∈ Finset.Icc 1 (v_n + 1), (v_k + v_m) = 2 * v_m * (v_n + 1) + (v_n + 1) * (v_n + 2)",
+                  "statementMatched": true,
+                  "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                  "expectedExpressionSha256": "e228478210a37af7bb09caaa116a78a7efd769a5a946f3ff53f65ecbb0caa42c",
+                  "proofExpressionSha256": "cdcec175554390358d1e15f288139a1f759ab6af81c9bc86040cad1bf8317c65",
+                  "statement_hash": "a8b3779e6b1798245cd53cd244f03855ccaa95aeba67ab83018c0b2d099abe79",
+                  "nativeExpressionComparison": "structural_equal",
+                  "sourceTypeSha256": "068ccc09c9e025edc6b6346837b956ac99ffaf386d779047f895907655c538aa",
+                  "sourceProofSha256": "5abf89e641c989133bfe44702732dbde8937a7c6ffe5c6937555a0bd4d24198e",
+                  "runtime": {
+                    "configured": true,
+                    "executableFound": true,
+                    "projectFound": true,
+                    "runtimeBuilt": true,
+                    "sandbox": "macos",
+                    "isolated": true,
+                    "ready": true,
+                    "toolchain": "leanprover/lean4:v4.34.0",
+                    "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                    "liveTestedInThisDistribution": false
+                  },
+                  "additionalAxioms": [],
+                  "auditIsolation": "fresh_import_environment_reset_between_candidates"
+                },
+                "evidence": {
+                  "schema": "lean-proof-evidence-v1",
+                  "sha256": "b6519cc5846014cda764a70bc3b2ec7476e298683f87926be7e5721c361ed7b4",
+                  "artifact": "reports/mathir-v2-stage7-proof-evidence/b6519cc5846014cda764a70bc3b2ec7476e298683f87926be7e5721c361ed7b4.json.gz",
+                  "uncompressedBytes": 7669797,
+                  "compressedBytes": 75022
+                }
+              }
+            }
+          ],
+          "kernel": {
+            "localVerified": false,
+            "status": "not_proved",
+            "diagnostics": [
+              {
+                "severity": "error",
+                "message": "Tactic `assumption` failed\n\nv_m : ℕ\n⊢ False",
+                "leanPosition": {
+                  "column": 179,
+                  "line": 5
+                },
+                "leanEndPosition": {
+                  "column": 189,
+                  "line": 5
+                },
+                "stepId": "mathir-v2/route_induction/locked-goal",
+                "sourceRefs": [],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "Tactic `assumption` failed\n\nv_m : ℕ\n⊢ False",
+                  "endPos": {
+                    "column": 189,
+                    "line": 5
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-6r3eb4y4/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "[anonymous]",
+                  "pos": {
+                    "column": 179,
+                    "line": 5
+                  },
+                  "severity": "error"
+                }
+              },
+              {
+                "severity": "error",
+                "message": "Tactic `introN` failed: There are no additional binders or `let` bindings in the goal to introduce\n\nv_m✝ v_m : ℕ\nind_ind_n_n : 1 ≤ v_m\nhcondition : 2 * ∑ v_k ∈ Finset.Icc 1 v_m, (v_k + v_m✝) = 2 * v_m✝ * v_m + v_m * (v_m + 1)\n⊢ 2 * ∑ v_k ∈ Finset.Icc 1 (v_m + 1), (v_k + v_m✝) = 2 * v_m✝ * (v_m + 1) + (v_m + 1) * (v_m + 1 + 1)",
+                "leanPosition": {
+                  "column": 225,
+                  "line": 5
+                },
+                "leanEndPosition": {
+                  "column": 227,
+                  "line": 5
+                },
+                "stepId": "mathir-v2/route_induction/locked-goal",
+                "sourceRefs": [],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "Tactic `introN` failed: There are no additional binders or `let` bindings in the goal to introduce\n\nv_m✝ v_m : ℕ\nind_ind_n_n : 1 ≤ v_m\nhcondition : 2 * ∑ v_k ∈ Finset.Icc 1 v_m, (v_k + v_m✝) = 2 * v_m✝ * v_m + v_m * (v_m + 1)\n⊢ 2 * ∑ v_k ∈ Finset.Icc 1 (v_m + 1), (v_k + v_m✝) = 2 * v_m✝ * (v_m + 1) + (v_m + 1) * (v_m + 1 + 1)",
+                  "endPos": {
+                    "column": 227,
+                    "line": 5
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-6r3eb4y4/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "[anonymous]",
+                  "pos": {
+                    "column": 225,
+                    "line": 5
+                  },
+                  "severity": "error"
+                }
+              }
+            ],
+            "certificate": null
+          },
+          "sourceAlignment": {
+            "status": "not_assessed",
+            "sourceRefsValidated": true,
+            "semanticAlignmentKernelProven": false
+          }
+        }
+      ],
+      "leanMetrics": {
+        "processCount": 3,
+        "elapsedSeconds": 41.142,
+        "processes": [
+          {
+            "phase": "proposition_elaboration",
+            "wallSeconds": 13.04,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 10546,
+            "kernelInputJsonBytes": 0,
+            "status": "completed",
+            "userCpuSeconds": 2.17,
+            "systemCpuSeconds": 10.82,
+            "maxRssBytes": 6047563776,
+            "peakMemoryFootprintBytes": 932622464,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 114117,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 41566208,
+            "leanReturnCode": 0
+          },
+          {
+            "phase": "expected_wire_materialization",
+            "wallSeconds": 0.0037,
+            "leanStdoutBytes": 114117,
+            "recordCount": 5,
+            "pythonPeakRssBytes": 41959424
+          },
+          {
+            "phase": "proof_export_batch",
+            "wallSeconds": 13.49,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 10574,
+            "kernelInputJsonBytes": 0,
+            "status": "completed",
+            "userCpuSeconds": 2.56,
+            "systemCpuSeconds": 10.82,
+            "maxRssBytes": 6125420544,
+            "peakMemoryFootprintBytes": 991588608,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 10467955,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 73515008,
+            "leanReturnCode": 1
+          },
+          {
+            "phase": "proof_wire_materialization",
+            "wallSeconds": 0.5603,
+            "leanStdoutBytes": 10467955,
+            "candidateCount": 3,
+            "pythonPeakRssBytes": 246906880
+          },
+          {
+            "phase": "independent_kernel_replay_batch",
+            "wallSeconds": 13.91,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 10588,
+            "kernelInputJsonBytes": 9479774,
+            "status": "completed",
+            "userCpuSeconds": 2.58,
+            "systemCpuSeconds": 11.27,
+            "maxRssBytes": 6158467072,
+            "peakMemoryFootprintBytes": 1044050240,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 2766,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 262356992,
+            "leanReturnCode": 0
+          },
+          {
+            "phase": "kernel_certificate_materialization",
+            "wallSeconds": 0.1385,
+            "leanStdoutBytes": 2766,
+            "certificateCount": 3,
+            "pythonPeakRssBytes": 271417344
+          }
+        ],
+        "measurement": "Lean subprocess groups; each invocation includes the sandbox launcher and Lean process. Kernel batch resets the imported environment between evidence replays."
+      }
+    },
+    "C10": {
+      "input": "reports/mathir-v2-stage8-live/C10.json",
+      "sourceTextMatches": true,
+      "expectedStatementHash": "e59d9afb006a43af8c97dbdd2aa9170466e59581754ca7ab355a70b184be6e2d",
+      "actualStatementHash": "e59d9afb006a43af8c97dbdd2aa9170466e59581754ca7ab355a70b184be6e2d",
+      "statementLockPreserved": true,
+      "fixedStatementKernelPassed": false,
+      "originalRouteKernelPassed": false,
+      "routes": [
+        {
+          "routeId": "route_A",
+          "routeHash": "0851cfcb2aeab774c56f02d8f93d51649151491e57dd5f49ca6527759a114665",
+          "sourceEvidenceHash": "b4e3a0f82a074366fac8929f6d53fcaf30a6bbb8600580b40f9b4c45a22a0ad9",
+          "goalNodeId": "nA4",
+          "goalProofTerm": "by\n  have jjproof_nA1 : ((let v_d_P : Polynomial ℝ := (((Polynomial.X ^ (2 : ℕ)) + ((Polynomial.C (2 : ℝ)) * Polynomial.X)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P * (Polynomial.X - (Polynomial.C (1 : ℝ)))); ((Polynomial.eval (2 : ℝ) v_d_P) = ((((2 : ℝ) ^ (2 : ℕ)) + ((2 : ℝ) * (2 : ℝ))) + (1 : ℝ)))))) := (by\n  intro v_d_P v_d_Q\n  exact (by\n  dsimp\n  norm_num [Polynomial.eval_add, Polynomial.eval_mul, Polynomial.eval_pow, Polynomial.eval_X, Polynomial.eval_C]))\n  have jjproof_nA2 : ((let v_d_P : Polynomial ℝ := (((Polynomial.X ^ (2 : ℕ)) + ((Polynomial.C (2 : ℝ)) * Polynomial.X)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P * (Polynomial.X - (Polynomial.C (1 : ℝ)))); (∀ (jjdep_nA1 : ((Polynomial.eval (2 : ℝ) v_d_P) = ((((2 : ℝ) ^ (2 : ℕ)) + ((2 : ℝ) * (2 : ℝ))) + (1 : ℝ)))), ((Polynomial.eval (2 : ℝ) v_d_P) = (9 : ℝ)))))) := (by\n  intro v_d_P v_d_Q jjdep_nA1\n  exact (by\n  dsimp\n  intro jjdep_nA1\n  rw [jjdep_nA1]\n  norm_num))\n  have jjproof_nA3 : ((let v_d_P : Polynomial ℝ := (((Polynomial.X ^ (2 : ℕ)) + ((Polynomial.C (2 : ℝ)) * Polynomial.X)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P * (Polynomial.X - (Polynomial.C (1 : ℝ)))); ((Polynomial.eval (2 : ℝ) v_d_Q) = ((Polynomial.eval (2 : ℝ) v_d_P) * ((2 : ℝ) - (1 : ℝ))))))) := (by\n  intro v_d_P v_d_Q\n  exact (by\n  dsimp\n  simp [Polynomial.eval_mul, Polynomial.eval_sub, Polynomial.eval_X, Polynomial.eval_C]))\n  have jjproof_nA4 : ((let v_d_P : Polynomial ℝ := (((Polynomial.X ^ (2 : ℕ)) + ((Polynomial.C (2 : ℝ)) * Polynomial.X)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P * (Polynomial.X - (Polynomial.C (1 : ℝ)))); (∀ (jjdep_nA2 : ((Polynomial.eval (2 : ℝ) v_d_P) = (9 : ℝ))), (∀ (jjdep_nA3 : ((Polynomial.eval (2 : ℝ) v_d_Q) = ((Polynomial.eval (2 : ℝ) v_d_P) * ((2 : ℝ) - (1 : ℝ))))), ((Polynomial.eval (2 : ℝ) v_d_Q) = (9 : ℝ))))))) := (by\n  intro v_d_P v_d_Q jjdep_nA2 jjdep_nA3\n  exact (by\n  dsimp\n  intro jjdep_nA2 jjdep_nA3\n  rw [jjdep_nA3, jjdep_nA2]\n  norm_num))\n  exact (jjproof_nA4 (jjproof_nA2 (jjproof_nA1)) (jjproof_nA3))",
+          "proofComposition": {
+            "status": "composed",
+            "error": null,
+            "kernelChecked": false
+          },
+          "status": "incomplete",
+          "completeOriginalRouteKernelPassed": false,
+          "fixedStatementKernelPassed": false,
+          "routeConnectivity": {
+            "status": "connected",
+            "goalNodeIdPresent": true,
+            "unconnectedNodeIds": [],
+            "unconnectedClaimNodeIds": [],
+            "basis": "goal dependency closure plus explicit induction-case edges"
+          },
+          "dependencyEvidence": {
+            "status": "incomplete",
+            "basis": "Kernel proof expression binder-use audit for declared claim dependencies"
+          },
+          "stepResults": [
+            {
+              "sourceId": "mathir-v2/route_A/nA1",
+              "routeId": "route_A",
+              "nodeId": "nA1",
+              "kind": "claim",
+              "expectedType": "(let v_d_P : Polynomial ℝ := (((Polynomial.X ^ (2 : ℕ)) + ((Polynomial.C (2 : ℝ)) * Polynomial.X)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P * (Polynomial.X - (Polynomial.C (1 : ℝ)))); ((Polynomial.eval (2 : ℝ) v_d_P) = ((((2 : ℝ) ^ (2 : ℕ)) + ((2 : ℝ) * (2 : ℝ))) + (1 : ℝ)))))",
+              "proofTerm": "by\n  intro v_d_P v_d_Q\n  exact (by\n  dsimp\n  norm_num [Polynomial.eval_add, Polynomial.eval_mul, Polynomial.eval_pow, Polynomial.eval_X, Polynomial.eval_C])",
+              "originalProofTerm": "by\n  dsimp\n  norm_num [Polynomial.eval_add, Polynomial.eval_mul, Polynomial.eval_pow, Polynomial.eval_X, Polynomial.eval_C]",
+              "context": [
+                {
+                  "source_id": "d_P",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_P",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "pow",
+                            "args": [
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              },
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Nat",
+                                  "interpretation": "fixed",
+                                  "value": "2"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "op": "mul",
+                            "args": [
+                              {
+                                "op": "poly_const",
+                                "args": [
+                                  {
+                                    "op": "literal",
+                                    "args": [],
+                                    "literal": {
+                                      "type": "Real",
+                                      "interpretation": "fixed",
+                                      "value": "2"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "op": "poly_const",
+                        "args": [
+                          {
+                            "op": "literal",
+                            "args": [],
+                            "literal": {
+                              "type": "Real",
+                              "interpretation": "fixed",
+                              "value": "1"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "d_Q",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_Q",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "mul",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "d_P"
+                      },
+                      {
+                        "op": "sub",
+                        "args": [
+                          {
+                            "op": "poly_x",
+                            "args": []
+                          },
+                          {
+                            "op": "poly_const",
+                            "args": [
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Real",
+                                  "interpretation": "fixed",
+                                  "value": "1"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                }
+              ],
+              "dependsOn": [],
+              "proofAttemptStatus": "not_proved",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "failureClass": "lean_proof_compile_failed",
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 72,
+                  "end": 99
+                }
+              ],
+              "status": "incomplete",
+              "lean": {
+                "localVerified": false,
+                "status": "not_proved",
+                "diagnostics": [
+                  {
+                    "severity": "error",
+                    "message": "`dsimp` made no progress",
+                    "leanPosition": {
+                      "column": 1,
+                      "line": 3
+                    },
+                    "leanEndPosition": {
+                      "column": 6,
+                      "line": 3
+                    },
+                    "stepId": "mathir-v2/route_A/nA1",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b_text",
+                        "start": 72,
+                        "end": 99
+                      }
+                    ],
+                    "mappingPrecision": "step",
+                    "raw": {
+                      "caption": "",
+                      "data": "`dsimp` made no progress",
+                      "endPos": {
+                        "column": 6,
+                        "line": 3
+                      },
+                      "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-tw7whtvc/Task.lean",
+                      "isSilent": false,
+                      "keepFullRange": false,
+                      "kind": "[anonymous]",
+                      "pos": {
+                        "column": 1,
+                        "line": 3
+                      },
+                      "severity": "error"
+                    }
+                  }
+                ],
+                "certificate": null
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_A/nA2",
+              "routeId": "route_A",
+              "nodeId": "nA2",
+              "kind": "claim",
+              "expectedType": "(let v_d_P : Polynomial ℝ := (((Polynomial.X ^ (2 : ℕ)) + ((Polynomial.C (2 : ℝ)) * Polynomial.X)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P * (Polynomial.X - (Polynomial.C (1 : ℝ)))); (∀ (jjdep_nA1 : ((Polynomial.eval (2 : ℝ) v_d_P) = ((((2 : ℝ) ^ (2 : ℕ)) + ((2 : ℝ) * (2 : ℝ))) + (1 : ℝ)))), ((Polynomial.eval (2 : ℝ) v_d_P) = (9 : ℝ)))))",
+              "proofTerm": "by\n  intro v_d_P v_d_Q jjdep_nA1\n  exact (by\n  dsimp\n  intro jjdep_nA1\n  rw [jjdep_nA1]\n  norm_num)",
+              "originalProofTerm": "by\n  dsimp\n  intro jjdep_nA1\n  rw [jjdep_nA1]\n  norm_num",
+              "context": [
+                {
+                  "source_id": "d_P",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_P",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "pow",
+                            "args": [
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              },
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Nat",
+                                  "interpretation": "fixed",
+                                  "value": "2"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "op": "mul",
+                            "args": [
+                              {
+                                "op": "poly_const",
+                                "args": [
+                                  {
+                                    "op": "literal",
+                                    "args": [],
+                                    "literal": {
+                                      "type": "Real",
+                                      "interpretation": "fixed",
+                                      "value": "2"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "op": "poly_const",
+                        "args": [
+                          {
+                            "op": "literal",
+                            "args": [],
+                            "literal": {
+                              "type": "Real",
+                              "interpretation": "fixed",
+                              "value": "1"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "d_Q",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_Q",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "mul",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "d_P"
+                      },
+                      {
+                        "op": "sub",
+                        "args": [
+                          {
+                            "op": "poly_x",
+                            "args": []
+                          },
+                          {
+                            "op": "poly_const",
+                            "args": [
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Real",
+                                  "interpretation": "fixed",
+                                  "value": "1"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "nA1",
+                  "kind": "claim",
+                  "name": "h_route_A_nA1",
+                  "type": "((Polynomial.eval (2 : ℝ) v_d_P) = ((((2 : ℝ) ^ (2 : ℕ)) + ((2 : ℝ) * (2 : ℝ))) + (1 : ℝ)))"
+                }
+              ],
+              "dependsOn": [
+                "nA1"
+              ],
+              "proofAttemptStatus": "not_proved",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "dependency_usage_not_audited",
+              "dependencyUsage": [],
+              "failureClass": "lean_proof_compile_failed",
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 100,
+                  "end": 122
+                }
+              ],
+              "status": "incomplete",
+              "lean": {
+                "localVerified": false,
+                "status": "not_proved",
+                "diagnostics": [
+                  {
+                    "severity": "error",
+                    "message": "`dsimp` made no progress",
+                    "leanPosition": {
+                      "column": 11,
+                      "line": 3
+                    },
+                    "leanEndPosition": {
+                      "column": 16,
+                      "line": 3
+                    },
+                    "stepId": "mathir-v2/route_A/nA2",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b_text",
+                        "start": 100,
+                        "end": 122
+                      }
+                    ],
+                    "mappingPrecision": "step",
+                    "raw": {
+                      "caption": "",
+                      "data": "`dsimp` made no progress",
+                      "endPos": {
+                        "column": 16,
+                        "line": 3
+                      },
+                      "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-tw7whtvc/Task.lean",
+                      "isSilent": false,
+                      "keepFullRange": false,
+                      "kind": "[anonymous]",
+                      "pos": {
+                        "column": 11,
+                        "line": 3
+                      },
+                      "severity": "error"
+                    }
+                  }
+                ],
+                "certificate": null
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_A/nA3",
+              "routeId": "route_A",
+              "nodeId": "nA3",
+              "kind": "claim",
+              "expectedType": "(let v_d_P : Polynomial ℝ := (((Polynomial.X ^ (2 : ℕ)) + ((Polynomial.C (2 : ℝ)) * Polynomial.X)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P * (Polynomial.X - (Polynomial.C (1 : ℝ)))); ((Polynomial.eval (2 : ℝ) v_d_Q) = ((Polynomial.eval (2 : ℝ) v_d_P) * ((2 : ℝ) - (1 : ℝ))))))",
+              "proofTerm": "by\n  intro v_d_P v_d_Q\n  exact (by\n  dsimp\n  simp [Polynomial.eval_mul, Polynomial.eval_sub, Polynomial.eval_X, Polynomial.eval_C])",
+              "originalProofTerm": "by\n  dsimp\n  simp [Polynomial.eval_mul, Polynomial.eval_sub, Polynomial.eval_X, Polynomial.eval_C]",
+              "context": [
+                {
+                  "source_id": "d_P",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_P",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "pow",
+                            "args": [
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              },
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Nat",
+                                  "interpretation": "fixed",
+                                  "value": "2"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "op": "mul",
+                            "args": [
+                              {
+                                "op": "poly_const",
+                                "args": [
+                                  {
+                                    "op": "literal",
+                                    "args": [],
+                                    "literal": {
+                                      "type": "Real",
+                                      "interpretation": "fixed",
+                                      "value": "2"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "op": "poly_const",
+                        "args": [
+                          {
+                            "op": "literal",
+                            "args": [],
+                            "literal": {
+                              "type": "Real",
+                              "interpretation": "fixed",
+                              "value": "1"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "d_Q",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_Q",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "mul",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "d_P"
+                      },
+                      {
+                        "op": "sub",
+                        "args": [
+                          {
+                            "op": "poly_x",
+                            "args": []
+                          },
+                          {
+                            "op": "poly_const",
+                            "args": [
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Real",
+                                  "interpretation": "fixed",
+                                  "value": "1"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                }
+              ],
+              "dependsOn": [],
+              "proofAttemptStatus": "not_proved",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "failureClass": "lean_proof_compile_failed",
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 123,
+                  "end": 150
+                }
+              ],
+              "status": "incomplete",
+              "lean": {
+                "localVerified": false,
+                "status": "not_proved",
+                "diagnostics": [
+                  {
+                    "severity": "error",
+                    "message": "`dsimp` made no progress",
+                    "leanPosition": {
+                      "column": 1,
+                      "line": 3
+                    },
+                    "leanEndPosition": {
+                      "column": 6,
+                      "line": 3
+                    },
+                    "stepId": "mathir-v2/route_A/nA3",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b_text",
+                        "start": 123,
+                        "end": 150
+                      }
+                    ],
+                    "mappingPrecision": "step",
+                    "raw": {
+                      "caption": "",
+                      "data": "`dsimp` made no progress",
+                      "endPos": {
+                        "column": 6,
+                        "line": 3
+                      },
+                      "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-tw7whtvc/Task.lean",
+                      "isSilent": false,
+                      "keepFullRange": false,
+                      "kind": "[anonymous]",
+                      "pos": {
+                        "column": 1,
+                        "line": 3
+                      },
+                      "severity": "error"
+                    }
+                  }
+                ],
+                "certificate": null
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_A/nA4",
+              "routeId": "route_A",
+              "nodeId": "nA4",
+              "kind": "claim",
+              "expectedType": "(let v_d_P : Polynomial ℝ := (((Polynomial.X ^ (2 : ℕ)) + ((Polynomial.C (2 : ℝ)) * Polynomial.X)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P * (Polynomial.X - (Polynomial.C (1 : ℝ)))); (∀ (jjdep_nA2 : ((Polynomial.eval (2 : ℝ) v_d_P) = (9 : ℝ))), (∀ (jjdep_nA3 : ((Polynomial.eval (2 : ℝ) v_d_Q) = ((Polynomial.eval (2 : ℝ) v_d_P) * ((2 : ℝ) - (1 : ℝ))))), ((Polynomial.eval (2 : ℝ) v_d_Q) = (9 : ℝ))))))",
+              "proofTerm": "by\n  intro v_d_P v_d_Q jjdep_nA2 jjdep_nA3\n  exact (by\n  dsimp\n  intro jjdep_nA2 jjdep_nA3\n  rw [jjdep_nA3, jjdep_nA2]\n  norm_num)",
+              "originalProofTerm": "by\n  dsimp\n  intro jjdep_nA2 jjdep_nA3\n  rw [jjdep_nA3, jjdep_nA2]\n  norm_num",
+              "context": [
+                {
+                  "source_id": "d_P",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_P",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "pow",
+                            "args": [
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              },
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Nat",
+                                  "interpretation": "fixed",
+                                  "value": "2"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "op": "mul",
+                            "args": [
+                              {
+                                "op": "poly_const",
+                                "args": [
+                                  {
+                                    "op": "literal",
+                                    "args": [],
+                                    "literal": {
+                                      "type": "Real",
+                                      "interpretation": "fixed",
+                                      "value": "2"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "op": "poly_const",
+                        "args": [
+                          {
+                            "op": "literal",
+                            "args": [],
+                            "literal": {
+                              "type": "Real",
+                              "interpretation": "fixed",
+                              "value": "1"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "d_Q",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_Q",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "mul",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "d_P"
+                      },
+                      {
+                        "op": "sub",
+                        "args": [
+                          {
+                            "op": "poly_x",
+                            "args": []
+                          },
+                          {
+                            "op": "poly_const",
+                            "args": [
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Real",
+                                  "interpretation": "fixed",
+                                  "value": "1"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "nA2",
+                  "kind": "claim",
+                  "name": "h_route_A_nA2",
+                  "type": "((Polynomial.eval (2 : ℝ) v_d_P) = (9 : ℝ))"
+                },
+                {
+                  "source_id": "nA3",
+                  "kind": "claim",
+                  "name": "h_route_A_nA3",
+                  "type": "((Polynomial.eval (2 : ℝ) v_d_Q) = ((Polynomial.eval (2 : ℝ) v_d_P) * ((2 : ℝ) - (1 : ℝ))))"
+                }
+              ],
+              "dependsOn": [
+                "nA2",
+                "nA3"
+              ],
+              "proofAttemptStatus": "not_proved",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "dependency_usage_not_audited",
+              "dependencyUsage": [],
+              "failureClass": "lean_proof_compile_failed",
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 151,
+                  "end": 182
+                }
+              ],
+              "status": "incomplete",
+              "lean": {
+                "localVerified": false,
+                "status": "not_proved",
+                "diagnostics": [
+                  {
+                    "severity": "error",
+                    "message": "`dsimp` made no progress",
+                    "leanPosition": {
+                      "column": 21,
+                      "line": 3
+                    },
+                    "leanEndPosition": {
+                      "column": 26,
+                      "line": 3
+                    },
+                    "stepId": "mathir-v2/route_A/nA4",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b_text",
+                        "start": 151,
+                        "end": 182
+                      }
+                    ],
+                    "mappingPrecision": "step",
+                    "raw": {
+                      "caption": "",
+                      "data": "`dsimp` made no progress",
+                      "endPos": {
+                        "column": 26,
+                        "line": 3
+                      },
+                      "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-tw7whtvc/Task.lean",
+                      "isSilent": false,
+                      "keepFullRange": false,
+                      "kind": "[anonymous]",
+                      "pos": {
+                        "column": 21,
+                        "line": 3
+                      },
+                      "severity": "error"
+                    }
+                  }
+                ],
+                "certificate": null
+              }
+            }
+          ],
+          "kernel": {
+            "localVerified": false,
+            "status": "not_proved",
+            "diagnostics": [
+              {
+                "severity": "error",
+                "message": "`dsimp` made no progress",
+                "leanPosition": {
+                  "column": 285,
+                  "line": 5
+                },
+                "leanEndPosition": {
+                  "column": 290,
+                  "line": 5
+                },
+                "stepId": "mathir-v2/route_A/locked-goal",
+                "sourceRefs": [],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "`dsimp` made no progress",
+                  "endPos": {
+                    "column": 290,
+                    "line": 5
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-tw7whtvc/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "[anonymous]",
+                  "pos": {
+                    "column": 285,
+                    "line": 5
+                  },
+                  "severity": "error"
+                }
+              },
+              {
+                "severity": "error",
+                "message": "`dsimp` made no progress",
+                "leanPosition": {
+                  "column": 300,
+                  "line": 6
+                },
+                "leanEndPosition": {
+                  "column": 305,
+                  "line": 6
+                },
+                "stepId": "mathir-v2/route_A/locked-goal",
+                "sourceRefs": [],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "`dsimp` made no progress",
+                  "endPos": {
+                    "column": 305,
+                    "line": 6
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-tw7whtvc/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "[anonymous]",
+                  "pos": {
+                    "column": 300,
+                    "line": 6
+                  },
+                  "severity": "error"
+                }
+              },
+              {
+                "severity": "error",
+                "message": "`dsimp` made no progress",
+                "leanPosition": {
+                  "column": 3622,
+                  "line": 7
+                },
+                "leanEndPosition": {
+                  "column": 166,
+                  "line": 7
+                },
+                "stepId": "mathir-v2/route_A/locked-goal",
+                "sourceRefs": [],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "`dsimp` made no progress",
+                  "endPos": {
+                    "column": 166,
+                    "line": 7
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-tw7whtvc/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "[anonymous]",
+                  "pos": {
+                    "column": 3622,
+                    "line": 7
+                  },
+                  "severity": "error"
+                }
+              },
+              {
+                "severity": "error",
+                "message": "`dsimp` made no progress",
+                "leanPosition": {
+                  "column": 253,
+                  "line": 8
+                },
+                "leanEndPosition": {
+                  "column": 258,
+                  "line": 8
+                },
+                "stepId": "mathir-v2/route_A/locked-goal",
+                "sourceRefs": [],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "`dsimp` made no progress",
+                  "endPos": {
+                    "column": 258,
+                    "line": 8
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-tw7whtvc/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "[anonymous]",
+                  "pos": {
+                    "column": 253,
+                    "line": 8
+                  },
+                  "severity": "error"
+                }
+              }
+            ],
+            "certificate": null
+          },
+          "sourceAlignment": {
+            "status": "supported",
+            "sourceRefsValidated": true,
+            "semanticAlignmentKernelProven": false
+          }
+        },
+        {
+          "routeId": "route_B",
+          "routeHash": "79ccd64d0eb135a863a21204e33a6f556a47a399e7dcaab4c37f740668d88f63",
+          "sourceEvidenceHash": "3d72e1b05aadab15c3c04ee57f2674dc496fb69e33e1425def7d1d30646d9fe4",
+          "goalNodeId": "nB3",
+          "goalProofTerm": "by\n  dsimp\n  intro jjdep_nB2\n  rw [jjdep_nB2]\n  simp only [Polynomial.eval_add, Polynomial.eval_mul, Polynomial.eval_pow, Polynomial.eval_sub, Polynomial.eval_X, Polynomial.eval_C]\n  norm_num",
+          "proofComposition": {
+            "status": "incomplete",
+            "error": "A claim in the route has no original proof term",
+            "kernelChecked": false
+          },
+          "status": "incomplete",
+          "completeOriginalRouteKernelPassed": false,
+          "fixedStatementKernelPassed": false,
+          "routeConnectivity": {
+            "status": "connected",
+            "goalNodeIdPresent": true,
+            "unconnectedNodeIds": [],
+            "unconnectedClaimNodeIds": [],
+            "basis": "goal dependency closure plus explicit induction-case edges"
+          },
+          "dependencyEvidence": {
+            "status": "incomplete",
+            "basis": "Kernel proof expression binder-use audit for declared claim dependencies"
+          },
+          "stepResults": [
+            {
+              "sourceId": "mathir-v2/route_B/nB1",
+              "routeId": "route_B",
+              "nodeId": "nB1",
+              "kind": "claim",
+              "expectedType": "(let v_d_P : Polynomial ℝ := (((Polynomial.X ^ (2 : ℕ)) + ((Polynomial.C (2 : ℝ)) * Polynomial.X)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P * (Polynomial.X - (Polynomial.C (1 : ℝ)))); (v_d_P = ((Polynomial.X + (Polynomial.C (1 : ℝ))) ^ (2 : ℕ)))))",
+              "proofTerm": "by\n  intro v_d_P v_d_Q\n  exact (by\n  dsimp\n  simp\n  ring)",
+              "originalProofTerm": "by\n  dsimp\n  simp\n  ring",
+              "context": [
+                {
+                  "source_id": "d_P",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_P",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "pow",
+                            "args": [
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              },
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Nat",
+                                  "interpretation": "fixed",
+                                  "value": "2"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "op": "mul",
+                            "args": [
+                              {
+                                "op": "poly_const",
+                                "args": [
+                                  {
+                                    "op": "literal",
+                                    "args": [],
+                                    "literal": {
+                                      "type": "Real",
+                                      "interpretation": "fixed",
+                                      "value": "2"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "op": "poly_const",
+                        "args": [
+                          {
+                            "op": "literal",
+                            "args": [],
+                            "literal": {
+                              "type": "Real",
+                              "interpretation": "fixed",
+                              "value": "1"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "d_Q",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_Q",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "mul",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "d_P"
+                      },
+                      {
+                        "op": "sub",
+                        "args": [
+                          {
+                            "op": "poly_x",
+                            "args": []
+                          },
+                          {
+                            "op": "poly_const",
+                            "args": [
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Real",
+                                  "interpretation": "fixed",
+                                  "value": "1"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                }
+              ],
+              "dependsOn": [],
+              "proofAttemptStatus": "not_proved",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "failureClass": "lean_proof_compile_failed",
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 193,
+                  "end": 230
+                }
+              ],
+              "status": "incomplete",
+              "lean": {
+                "localVerified": false,
+                "status": "not_proved",
+                "diagnostics": [
+                  {
+                    "severity": "error",
+                    "message": "`dsimp` made no progress",
+                    "leanPosition": {
+                      "column": 1,
+                      "line": 3
+                    },
+                    "leanEndPosition": {
+                      "column": 6,
+                      "line": 3
+                    },
+                    "stepId": "mathir-v2/route_B/nB1",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b_text",
+                        "start": 193,
+                        "end": 230
+                      }
+                    ],
+                    "mappingPrecision": "step",
+                    "raw": {
+                      "caption": "",
+                      "data": "`dsimp` made no progress",
+                      "endPos": {
+                        "column": 6,
+                        "line": 3
+                      },
+                      "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-2qdb5b3a/Task.lean",
+                      "isSilent": false,
+                      "keepFullRange": false,
+                      "kind": "[anonymous]",
+                      "pos": {
+                        "column": 1,
+                        "line": 3
+                      },
+                      "severity": "error"
+                    }
+                  }
+                ],
+                "certificate": null
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_B/nB2",
+              "routeId": "route_B",
+              "nodeId": "nB2",
+              "kind": "claim",
+              "expectedType": "(let v_d_P : Polynomial ℝ := (((Polynomial.X ^ (2 : ℕ)) + ((Polynomial.C (2 : ℝ)) * Polynomial.X)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P * (Polynomial.X - (Polynomial.C (1 : ℝ)))); (∀ (jjdep_nB1 : (v_d_P = ((Polynomial.X + (Polynomial.C (1 : ℝ))) ^ (2 : ℕ)))), (v_d_Q = ((((Polynomial.X + (Polynomial.C (1 : ℝ))) ^ (2 : ℕ)) * (Polynomial.X - (Polynomial.C (1 : ℝ)))) + (Polynomial.X - (Polynomial.C (2 : ℝ))))))))",
+              "proofTerm": null,
+              "originalProofTerm": null,
+              "context": [
+                {
+                  "source_id": "d_P",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_P",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "pow",
+                            "args": [
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              },
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Nat",
+                                  "interpretation": "fixed",
+                                  "value": "2"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "op": "mul",
+                            "args": [
+                              {
+                                "op": "poly_const",
+                                "args": [
+                                  {
+                                    "op": "literal",
+                                    "args": [],
+                                    "literal": {
+                                      "type": "Real",
+                                      "interpretation": "fixed",
+                                      "value": "2"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "op": "poly_const",
+                        "args": [
+                          {
+                            "op": "literal",
+                            "args": [],
+                            "literal": {
+                              "type": "Real",
+                              "interpretation": "fixed",
+                              "value": "1"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "d_Q",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_Q",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "mul",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "d_P"
+                      },
+                      {
+                        "op": "sub",
+                        "args": [
+                          {
+                            "op": "poly_x",
+                            "args": []
+                          },
+                          {
+                            "op": "poly_const",
+                            "args": [
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Real",
+                                  "interpretation": "fixed",
+                                  "value": "1"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "nB1",
+                  "kind": "claim",
+                  "name": "h_route_B_nB1",
+                  "type": "(v_d_P = ((Polynomial.X + (Polynomial.C (1 : ℝ))) ^ (2 : ℕ)))"
+                }
+              ],
+              "dependsOn": [
+                "nB1"
+              ],
+              "proofAttemptStatus": "missing_proof",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "dependency_usage_not_audited",
+              "dependencyUsage": [],
+              "failureClass": "missing_proof",
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 231,
+                  "end": 264
+                }
+              ],
+              "status": "incomplete",
+              "lean": {
+                "status": "missing_proof",
+                "localVerified": false,
+                "diagnostics": [],
+                "certificate": null
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_B/nB3",
+              "routeId": "route_B",
+              "nodeId": "nB3",
+              "kind": "claim",
+              "expectedType": "(let v_d_P : Polynomial ℝ := (((Polynomial.X ^ (2 : ℕ)) + ((Polynomial.C (2 : ℝ)) * Polynomial.X)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P * (Polynomial.X - (Polynomial.C (1 : ℝ)))); (∀ (jjdep_nB2 : (v_d_Q = ((((Polynomial.X + (Polynomial.C (1 : ℝ))) ^ (2 : ℕ)) * (Polynomial.X - (Polynomial.C (1 : ℝ)))) + (Polynomial.X - (Polynomial.C (2 : ℝ)))))), ((Polynomial.eval (2 : ℝ) v_d_Q) = (9 : ℝ)))))",
+              "proofTerm": "by\n  intro v_d_P v_d_Q jjdep_nB2\n  exact (by\n  dsimp\n  intro jjdep_nB2\n  rw [jjdep_nB2]\n  simp only [Polynomial.eval_add, Polynomial.eval_mul, Polynomial.eval_pow, Polynomial.eval_sub, Polynomial.eval_X, Polynomial.eval_C]\n  norm_num)",
+              "originalProofTerm": "by\n  dsimp\n  intro jjdep_nB2\n  rw [jjdep_nB2]\n  simp only [Polynomial.eval_add, Polynomial.eval_mul, Polynomial.eval_pow, Polynomial.eval_sub, Polynomial.eval_X, Polynomial.eval_C]\n  norm_num",
+              "context": [
+                {
+                  "source_id": "d_P",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_P",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "pow",
+                            "args": [
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              },
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Nat",
+                                  "interpretation": "fixed",
+                                  "value": "2"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "op": "mul",
+                            "args": [
+                              {
+                                "op": "poly_const",
+                                "args": [
+                                  {
+                                    "op": "literal",
+                                    "args": [],
+                                    "literal": {
+                                      "type": "Real",
+                                      "interpretation": "fixed",
+                                      "value": "2"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "op": "poly_const",
+                        "args": [
+                          {
+                            "op": "literal",
+                            "args": [],
+                            "literal": {
+                              "type": "Real",
+                              "interpretation": "fixed",
+                              "value": "1"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "d_Q",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_Q",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "mul",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "d_P"
+                      },
+                      {
+                        "op": "sub",
+                        "args": [
+                          {
+                            "op": "poly_x",
+                            "args": []
+                          },
+                          {
+                            "op": "poly_const",
+                            "args": [
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Real",
+                                  "interpretation": "fixed",
+                                  "value": "1"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "nB2",
+                  "kind": "claim",
+                  "name": "h_route_B_nB2",
+                  "type": "(v_d_Q = ((((Polynomial.X + (Polynomial.C (1 : ℝ))) ^ (2 : ℕ)) * (Polynomial.X - (Polynomial.C (1 : ℝ)))) + (Polynomial.X - (Polynomial.C (2 : ℝ)))))"
+                }
+              ],
+              "dependsOn": [
+                "nB2"
+              ],
+              "proofAttemptStatus": "not_proved",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "dependency_usage_not_audited",
+              "dependencyUsage": [],
+              "failureClass": "lean_proof_compile_failed",
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 265,
+                  "end": 306
+                }
+              ],
+              "status": "incomplete",
+              "lean": {
+                "localVerified": false,
+                "status": "not_proved",
+                "diagnostics": [
+                  {
+                    "severity": "error",
+                    "message": "`dsimp` made no progress",
+                    "leanPosition": {
+                      "column": 11,
+                      "line": 3
+                    },
+                    "leanEndPosition": {
+                      "column": 16,
+                      "line": 3
+                    },
+                    "stepId": "mathir-v2/route_B/nB3",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b_text",
+                        "start": 265,
+                        "end": 306
+                      }
+                    ],
+                    "mappingPrecision": "step",
+                    "raw": {
+                      "caption": "",
+                      "data": "`dsimp` made no progress",
+                      "endPos": {
+                        "column": 16,
+                        "line": 3
+                      },
+                      "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-2qdb5b3a/Task.lean",
+                      "isSilent": false,
+                      "keepFullRange": false,
+                      "kind": "[anonymous]",
+                      "pos": {
+                        "column": 11,
+                        "line": 3
+                      },
+                      "severity": "error"
+                    }
+                  }
+                ],
+                "certificate": null
+              }
+            }
+          ],
+          "kernel": {
+            "localVerified": false,
+            "status": "not_proved",
+            "diagnostics": [
+              {
+                "severity": "error",
+                "message": "Tactic `introN` failed: There are no additional binders or `let` bindings in the goal to introduce\n\n⊢ Polynomial.eval 2\n      ((Polynomial.X ^ 2 + Polynomial.C 2 * Polynomial.X + Polynomial.C 1) * (Polynomial.X - Polynomial.C 1)) =\n    9",
+                "leanPosition": {
+                  "column": 4,
+                  "line": 2
+                },
+                "leanEndPosition": {
+                  "column": 13,
+                  "line": 2
+                },
+                "stepId": "mathir-v2/route_B/locked-goal",
+                "sourceRefs": [],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "Tactic `introN` failed: There are no additional binders or `let` bindings in the goal to introduce\n\n⊢ Polynomial.eval 2\n      ((Polynomial.X ^ 2 + Polynomial.C 2 * Polynomial.X + Polynomial.C 1) * (Polynomial.X - Polynomial.C 1)) =\n    9",
+                  "endPos": {
+                    "column": 13,
+                    "line": 2
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-2qdb5b3a/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "[anonymous]",
+                  "pos": {
+                    "column": 4,
+                    "line": 2
+                  },
+                  "severity": "error"
+                }
+              }
+            ],
+            "certificate": null
+          },
+          "sourceAlignment": {
+            "status": "not_assessed",
+            "sourceRefsValidated": true,
+            "semanticAlignmentKernelProven": false
+          }
+        }
+      ],
+      "leanMetrics": {
+        "processCount": 4,
+        "elapsedSeconds": 54.824,
+        "processes": [
+          {
+            "phase": "proposition_elaboration",
+            "wallSeconds": 13.93,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 10618,
+            "kernelInputJsonBytes": 0,
+            "status": "completed",
+            "userCpuSeconds": 2.18,
+            "systemCpuSeconds": 11.63,
+            "maxRssBytes": 6051037184,
+            "peakMemoryFootprintBytes": 934982080,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 285959,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 280723456,
+            "leanReturnCode": 0
+          },
+          {
+            "phase": "expected_wire_materialization",
+            "wallSeconds": 0.0078,
+            "leanStdoutBytes": 285959,
+            "recordCount": 5,
+            "pythonPeakRssBytes": 280723456
+          },
+          {
+            "phase": "proof_export_batch",
+            "wallSeconds": 13.75,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 10642,
+            "kernelInputJsonBytes": 0,
+            "status": "completed",
+            "userCpuSeconds": 2.26,
+            "systemCpuSeconds": 11.45,
+            "maxRssBytes": 6061654016,
+            "peakMemoryFootprintBytes": 945975552,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 1069508,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 280723456,
+            "leanReturnCode": 1
+          },
+          {
+            "phase": "proof_wire_materialization",
+            "wallSeconds": 0.0348,
+            "leanStdoutBytes": 1069508,
+            "candidateCount": 0,
+            "pythonPeakRssBytes": 280723456
+          },
+          {
+            "phase": "proposition_elaboration",
+            "wallSeconds": 13.4,
+            "queueWaitSeconds": 0.0002,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 10666,
+            "kernelInputJsonBytes": 0,
+            "status": "completed",
+            "userCpuSeconds": 2.16,
+            "systemCpuSeconds": 11.19,
+            "maxRssBytes": 6049873920,
+            "peakMemoryFootprintBytes": 934195328,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 205589,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 280723456,
+            "leanReturnCode": 0
+          },
+          {
+            "phase": "expected_wire_materialization",
+            "wallSeconds": 0.005,
+            "leanStdoutBytes": 205589,
+            "recordCount": 3,
+            "pythonPeakRssBytes": 280723456
+          },
+          {
+            "phase": "proof_export_batch",
+            "wallSeconds": 13.68,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 10681,
+            "kernelInputJsonBytes": 0,
+            "status": "completed",
+            "userCpuSeconds": 2.19,
+            "systemCpuSeconds": 11.39,
+            "maxRssBytes": 6054445056,
+            "peakMemoryFootprintBytes": 935850240,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 462483,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 280723456,
+            "leanReturnCode": 1
+          },
+          {
+            "phase": "proof_wire_materialization",
+            "wallSeconds": 0.0168,
+            "leanStdoutBytes": 462483,
+            "candidateCount": 0,
+            "pythonPeakRssBytes": 280723456
+          }
+        ],
+        "measurement": "Lean subprocess groups; each invocation includes the sandbox launcher and Lean process. Kernel batch resets the imported environment between evidence replays."
+      }
+    },
+    "C12": {
+      "input": "reports/mathir-v2-stage8-live/C12.json",
+      "sourceTextMatches": true,
+      "expectedStatementHash": "a9199a64e2896e007b2862b430cd9c218dda7f0cb752cbb7008c2e5d01cbff44",
+      "actualStatementHash": "a9199a64e2896e007b2862b430cd9c218dda7f0cb752cbb7008c2e5d01cbff44",
+      "statementLockPreserved": true,
+      "fixedStatementKernelPassed": false,
+      "originalRouteKernelPassed": false,
+      "routes": [
+        {
+          "routeId": "pr_main",
+          "routeHash": "df06ef4da36207e1f1613c2105a28254596bc7711b0c5751631c35b295564a91",
+          "sourceEvidenceHash": "064d5a2a780b7fac90777df42094de7d43d936c013a1e3a713430dd6be0ce2f9",
+          "goalNodeId": "n6",
+          "goalProofTerm": null,
+          "proofComposition": {
+            "status": "incomplete",
+            "error": "A claim in the route has no original proof term",
+            "kernelChecked": false
+          },
+          "status": "incomplete",
+          "completeOriginalRouteKernelPassed": false,
+          "fixedStatementKernelPassed": false,
+          "routeConnectivity": {
+            "status": "connected",
+            "goalNodeIdPresent": true,
+            "unconnectedNodeIds": [],
+            "unconnectedClaimNodeIds": [],
+            "basis": "goal dependency closure plus explicit induction-case edges"
+          },
+          "dependencyEvidence": {
+            "status": "incomplete",
+            "basis": "Kernel proof expression binder-use audit for declared claim dependencies"
+          },
+          "stepResults": [
+            {
+              "sourceId": "mathir-v2/pr_main/n2",
+              "routeId": "pr_main",
+              "nodeId": "n2",
+              "kind": "claim",
+              "expectedType": "(∀ (v_x : ℝ), (∀ (v_M : ℝ), (v_M = (v_x + (1 : ℝ)))))",
+              "proofTerm": null,
+              "originalProofTerm": null,
+              "context": [
+                {
+                  "source_id": "x",
+                  "scope_id": "s_theorem",
+                  "kind": "variable",
+                  "name": "v_x",
+                  "type": "ℝ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "M",
+                  "scope_id": "s_theorem",
+                  "kind": "variable",
+                  "name": "v_M",
+                  "type": "ℝ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                }
+              ],
+              "dependsOn": [],
+              "proofAttemptStatus": "missing_proof",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "failureClass": "missing_proof",
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 78,
+                  "end": 93
+                }
+              ],
+              "status": "incomplete",
+              "lean": {
+                "status": "missing_proof",
+                "localVerified": false,
+                "diagnostics": [],
+                "certificate": null
+              }
+            },
+            {
+              "sourceId": "mathir-v2/pr_main/n3",
+              "routeId": "pr_main",
+              "nodeId": "n3",
+              "kind": "claim",
+              "expectedType": "(∀ (v_x : ℝ), (∀ (v_M : ℝ), (v_x < (v_x + (1 : ℝ)))))",
+              "proofTerm": "by\n  intro x M\n  linarith",
+              "originalProofTerm": "by\n  intro x M\n  linarith",
+              "context": [
+                {
+                  "source_id": "x",
+                  "scope_id": "s_theorem",
+                  "kind": "variable",
+                  "name": "v_x",
+                  "type": "ℝ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "M",
+                  "scope_id": "s_theorem",
+                  "kind": "variable",
+                  "name": "v_M",
+                  "type": "ℝ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                }
+              ],
+              "dependsOn": [],
+              "proofAttemptStatus": "verified",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "failureClass": null,
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 98,
+                  "end": 106
+                }
+              ],
+              "status": "passed",
+              "lean": {
+                "localVerified": true,
+                "status": "verified",
+                "diagnostics": [],
+                "certificate": {
+                  "auditMethod": "fresh_environment_data_only_kernel_replay",
+                  "axioms": [
+                    "propext",
+                    "Classical.choice",
+                    "Quot.sound"
+                  ],
+                  "checked": true,
+                  "dependencyUsage": [],
+                  "formalStatement": "∀ (v_x v_M : ℝ), v_x < v_x + 1",
+                  "statementMatched": true,
+                  "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                  "expectedExpressionSha256": "18912db8635537df512a53023d1536414b3cd5d32a2aa01664fc830a58c8fed9",
+                  "proofExpressionSha256": "0f688a4123908bee3c9713922192704af258ba2699653fe9a2f0fe4dc7e69e20",
+                  "statement_hash": "a9199a64e2896e007b2862b430cd9c218dda7f0cb752cbb7008c2e5d01cbff44",
+                  "nativeExpressionComparison": "structural_equal",
+                  "sourceTypeSha256": "719bc68c3bf4b39fea69b802d66d5994d4a35f18447d799427aa13ea495031ba",
+                  "sourceProofSha256": "bafe5c164781e8bc0a07d8270c9a0b5a1966c84ee13b65330e709bc533b52f3f",
+                  "runtime": {
+                    "configured": true,
+                    "executableFound": true,
+                    "projectFound": true,
+                    "runtimeBuilt": true,
+                    "sandbox": "macos",
+                    "isolated": true,
+                    "ready": true,
+                    "toolchain": "leanprover/lean4:v4.34.0",
+                    "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                    "liveTestedInThisDistribution": false
+                  },
+                  "additionalAxioms": [],
+                  "auditIsolation": "fresh_import_environment_reset_between_candidates"
+                },
+                "evidence": {
+                  "schema": "lean-proof-evidence-v1",
+                  "sha256": "a7bf0a939c012fddd27059b9aca1103d7575e0db7a97936db8d0494ac03a1fd6",
+                  "artifact": "reports/mathir-v2-stage7-proof-evidence/a7bf0a939c012fddd27059b9aca1103d7575e0db7a97936db8d0494ac03a1fd6.json.gz",
+                  "uncompressedBytes": 552913,
+                  "compressedBytes": 7400
+                }
+              }
+            },
+            {
+              "sourceId": "mathir-v2/pr_main/n4",
+              "routeId": "pr_main",
+              "nodeId": "n4",
+              "kind": "claim",
+              "expectedType": "(∀ (v_x : ℝ), (∀ (v_M : ℝ), (∀ (jjdep_n2 : (v_M = (v_x + (1 : ℝ)))), (∀ (jjdep_n3 : (v_x < (v_x + (1 : ℝ)))), (v_x < v_M)))))",
+              "proofTerm": "by\n  intro x M h1 h2\n  rw [h1]\n  exact h2",
+              "originalProofTerm": "by\n  intro x M h1 h2\n  rw [h1]\n  exact h2",
+              "context": [
+                {
+                  "source_id": "x",
+                  "scope_id": "s_theorem",
+                  "kind": "variable",
+                  "name": "v_x",
+                  "type": "ℝ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "M",
+                  "scope_id": "s_theorem",
+                  "kind": "variable",
+                  "name": "v_M",
+                  "type": "ℝ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "n2",
+                  "kind": "claim",
+                  "name": "h_pr_main_n2",
+                  "type": "(v_M = (v_x + (1 : ℝ)))"
+                },
+                {
+                  "source_id": "n3",
+                  "kind": "claim",
+                  "name": "h_pr_main_n3",
+                  "type": "(v_x < (v_x + (1 : ℝ)))"
+                }
+              ],
+              "dependsOn": [
+                "n2",
+                "n3"
+              ],
+              "proofAttemptStatus": "verified",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "all_declared_dependencies_used",
+              "dependencyUsage": [
+                {
+                  "dependencyId": "n2",
+                  "used": true
+                },
+                {
+                  "dependencyId": "n3",
+                  "used": true
+                }
+              ],
+              "failureClass": null,
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 107,
+                  "end": 114
+                }
+              ],
+              "status": "passed",
+              "lean": {
+                "localVerified": true,
+                "status": "verified",
+                "diagnostics": [],
+                "certificate": {
+                  "auditMethod": "fresh_environment_data_only_kernel_replay",
+                  "axioms": [
+                    "propext",
+                    "Classical.choice",
+                    "Quot.sound"
+                  ],
+                  "checked": true,
+                  "dependencyUsage": [
+                    {
+                      "dependencyId": "n2",
+                      "used": true
+                    },
+                    {
+                      "dependencyId": "n3",
+                      "used": true
+                    }
+                  ],
+                  "formalStatement": "∀ (v_x v_M : ℝ), v_M = v_x + 1 → v_x < v_x + 1 → v_x < v_M",
+                  "statementMatched": true,
+                  "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                  "expectedExpressionSha256": "bceaa4f89986ab4b8837375b8deedfa8486b86d811bb3d912d00f34dd4045bd1",
+                  "proofExpressionSha256": "96c0c304a7a7607ad199e298ec73b41fc58d4f1651cc9c2278b76cbf2ab7d527",
+                  "statement_hash": "a9199a64e2896e007b2862b430cd9c218dda7f0cb752cbb7008c2e5d01cbff44",
+                  "nativeExpressionComparison": "structural_equal",
+                  "sourceTypeSha256": "83e96dfbcdad12486326277bd9dc239457dda70580afc09a346eb2210d586625",
+                  "sourceProofSha256": "7cb990a40ff95fab34c8c68aafe1270181f3e5a4b6a26fb6e359c59966b0e27c",
+                  "runtime": {
+                    "configured": true,
+                    "executableFound": true,
+                    "projectFound": true,
+                    "runtimeBuilt": true,
+                    "sandbox": "macos",
+                    "isolated": true,
+                    "ready": true,
+                    "toolchain": "leanprover/lean4:v4.34.0",
+                    "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                    "liveTestedInThisDistribution": false
+                  },
+                  "additionalAxioms": [],
+                  "auditIsolation": "fresh_import_environment_reset_between_candidates"
+                },
+                "evidence": {
+                  "schema": "lean-proof-evidence-v1",
+                  "sha256": "6d58d394d7a98ce7c8a8840df8b03751a3ee774bb1407902122d0c15436955c7",
+                  "artifact": "reports/mathir-v2-stage7-proof-evidence/6d58d394d7a98ce7c8a8840df8b03751a3ee774bb1407902122d0c15436955c7.json.gz",
+                  "uncompressedBytes": 21033,
+                  "compressedBytes": 634
+                }
+              }
+            },
+            {
+              "sourceId": "mathir-v2/pr_main/n5",
+              "routeId": "pr_main",
+              "nodeId": "n5",
+              "kind": "claim",
+              "expectedType": "(∀ (jjdep_n2 : (∀ (v_x : ℝ), (∀ (v_M : ℝ), (v_M = (v_x + (1 : ℝ)))))), (∀ (jjdep_n3 : (∀ (v_x : ℝ), (v_x < (v_x + (1 : ℝ))))), (∀ (jjdep_n4 : (∀ (v_x : ℝ), (∀ (v_M : ℝ), (v_x < v_M)))), (∀ (v_x : ℝ), (∃ (v_M : ℝ), ((v_M = (v_x + (1 : ℝ))) ∧ (v_x < v_M)))))))",
+              "proofTerm": "by\n  intro h1 h2 h3 w\n  exact ⟨w + 1, by\n    constructor\n    · rfl\n    · linarith⟩",
+              "originalProofTerm": "by\n  intro h1 h2 h3 w\n  exact ⟨w + 1, by\n    constructor\n    · rfl\n    · linarith⟩",
+              "context": [
+                {
+                  "source_id": "x",
+                  "scope_id": "s_theorem",
+                  "kind": "variable",
+                  "name": "v_x",
+                  "type": "ℝ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "M",
+                  "scope_id": "s_theorem",
+                  "kind": "variable",
+                  "name": "v_M",
+                  "type": "ℝ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "n2",
+                  "kind": "claim",
+                  "name": "h_pr_main_n2",
+                  "type": "(∀ (v_x : ℝ), (∀ (v_M : ℝ), (v_M = (v_x + (1 : ℝ)))))"
+                },
+                {
+                  "source_id": "n3",
+                  "kind": "claim",
+                  "name": "h_pr_main_n3",
+                  "type": "(∀ (v_x : ℝ), (v_x < (v_x + (1 : ℝ))))"
+                },
+                {
+                  "source_id": "n4",
+                  "kind": "claim",
+                  "name": "h_pr_main_n4",
+                  "type": "(∀ (v_x : ℝ), (∀ (v_M : ℝ), (v_x < v_M)))"
+                }
+              ],
+              "dependsOn": [
+                "n2",
+                "n3",
+                "n4"
+              ],
+              "proofAttemptStatus": "verified",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "declared_dependency_unused",
+              "dependencyUsage": [
+                {
+                  "dependencyId": "n2",
+                  "used": false
+                },
+                {
+                  "dependencyId": "n3",
+                  "used": false
+                },
+                {
+                  "dependencyId": "n4",
+                  "used": false
+                }
+              ],
+              "failureClass": "dependency_usage_failed",
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 119,
+                  "end": 135
+                }
+              ],
+              "status": "passed",
+              "lean": {
+                "localVerified": true,
+                "status": "verified",
+                "diagnostics": [],
+                "certificate": {
+                  "auditMethod": "fresh_environment_data_only_kernel_replay",
+                  "axioms": [
+                    "propext",
+                    "Classical.choice",
+                    "Quot.sound"
+                  ],
+                  "checked": true,
+                  "dependencyUsage": [
+                    {
+                      "dependencyId": "n2",
+                      "used": false
+                    },
+                    {
+                      "dependencyId": "n3",
+                      "used": false
+                    },
+                    {
+                      "dependencyId": "n4",
+                      "used": false
+                    }
+                  ],
+                  "formalStatement": "(∀ (v_x v_M : ℝ), v_M = v_x + 1) →\n  (∀ (v_x : ℝ), v_x < v_x + 1) → (∀ (v_x v_M : ℝ), v_x < v_M) → ∀ (v_x : ℝ), ∃ v_M, v_M = v_x + 1 ∧ v_x < v_M",
+                  "statementMatched": true,
+                  "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                  "expectedExpressionSha256": "e79f0fdf87a1ef5ea561ddfd50d86a4eea85b3af1d32ba0f864167e4dc663fde",
+                  "proofExpressionSha256": "51fbd44344ea8355f6ce1135058db440b6724ca64bd3ae87039176cb35b7566d",
+                  "statement_hash": "a9199a64e2896e007b2862b430cd9c218dda7f0cb752cbb7008c2e5d01cbff44",
+                  "nativeExpressionComparison": "structural_equal",
+                  "sourceTypeSha256": "0b2102af595084c1e65155e52678324d80bea8637f2667d29e06c1f73bbdf5c0",
+                  "sourceProofSha256": "21c478c9eaa15c9c19b835e3fe3a0d8a7c012369dfad6b15b999a1f5cf295e3a",
+                  "runtime": {
+                    "configured": true,
+                    "executableFound": true,
+                    "projectFound": true,
+                    "runtimeBuilt": true,
+                    "sandbox": "macos",
+                    "isolated": true,
+                    "ready": true,
+                    "toolchain": "leanprover/lean4:v4.34.0",
+                    "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                    "liveTestedInThisDistribution": false
+                  },
+                  "additionalAxioms": [],
+                  "auditIsolation": "fresh_import_environment_reset_between_candidates"
+                },
+                "evidence": {
+                  "schema": "lean-proof-evidence-v1",
+                  "sha256": "2ad1297e934d704e6199d71f40394d450d2176caecf6c9ceaa1d56d2e9330f15",
+                  "artifact": "reports/mathir-v2-stage7-proof-evidence/2ad1297e934d704e6199d71f40394d450d2176caecf6c9ceaa1d56d2e9330f15.json.gz",
+                  "uncompressedBytes": 580789,
+                  "compressedBytes": 7812
+                }
+              }
+            },
+            {
+              "sourceId": "mathir-v2/pr_main/n6",
+              "routeId": "pr_main",
+              "nodeId": "n6",
+              "kind": "claim",
+              "expectedType": "(∀ (jjdep_n5 : (∀ (v_x : ℝ), (∃ (v_M : ℝ), ((v_M = (v_x + (1 : ℝ))) ∧ (v_x < v_M))))), (∃ (v_M : ℝ), (∀ (v_x : ℝ), (v_x < v_M))))",
+              "proofTerm": null,
+              "originalProofTerm": null,
+              "context": [
+                {
+                  "source_id": "x",
+                  "scope_id": "s_theorem",
+                  "kind": "variable",
+                  "name": "v_x",
+                  "type": "ℝ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "M",
+                  "scope_id": "s_theorem",
+                  "kind": "variable",
+                  "name": "v_M",
+                  "type": "ℝ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "n5",
+                  "kind": "claim",
+                  "name": "h_pr_main_n5",
+                  "type": "(∀ (v_x : ℝ), (∃ (v_M : ℝ), ((v_M = (v_x + (1 : ℝ))) ∧ (v_x < v_M))))"
+                }
+              ],
+              "dependsOn": [
+                "n5"
+              ],
+              "proofAttemptStatus": "missing_proof",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "dependency_usage_not_audited",
+              "dependencyUsage": [],
+              "failureClass": "missing_proof",
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 135,
+                  "end": 167
+                }
+              ],
+              "status": "incomplete",
+              "lean": {
+                "status": "missing_proof",
+                "localVerified": false,
+                "diagnostics": [],
+                "certificate": null
+              }
+            }
+          ],
+          "kernel": null,
+          "sourceAlignment": {
+            "status": "ambiguous",
+            "sourceRefsValidated": true,
+            "semanticAlignmentKernelProven": false
+          }
+        }
+      ],
+      "leanMetrics": {
+        "processCount": 3,
+        "elapsedSeconds": 40.813,
+        "processes": [
+          {
+            "phase": "proposition_elaboration",
+            "wallSeconds": 13.39,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 10701,
+            "kernelInputJsonBytes": 0,
+            "status": "completed",
+            "userCpuSeconds": 2.13,
+            "systemCpuSeconds": 11.24,
+            "maxRssBytes": 6048677888,
+            "peakMemoryFootprintBytes": 934047872,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 19492,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 280723456,
+            "leanReturnCode": 0
+          },
+          {
+            "phase": "expected_wire_materialization",
+            "wallSeconds": 0.0006,
+            "leanStdoutBytes": 19492,
+            "recordCount": 3,
+            "pythonPeakRssBytes": 280723456
+          },
+          {
+            "phase": "proof_export_batch",
+            "wallSeconds": 13.61,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 10720,
+            "kernelInputJsonBytes": 0,
+            "status": "completed",
+            "userCpuSeconds": 2.21,
+            "systemCpuSeconds": 11.37,
+            "maxRssBytes": 6064193536,
+            "peakMemoryFootprintBytes": 941977920,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 1389604,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 280723456,
+            "leanReturnCode": 0
+          },
+          {
+            "phase": "proof_wire_materialization",
+            "wallSeconds": 0.0739,
+            "leanStdoutBytes": 1389604,
+            "candidateCount": 3,
+            "pythonPeakRssBytes": 280723456
+          },
+          {
+            "phase": "independent_kernel_replay_batch",
+            "wallSeconds": 13.72,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 10742,
+            "kernelInputJsonBytes": 1286824,
+            "status": "completed",
+            "userCpuSeconds": 2.18,
+            "systemCpuSeconds": 11.39,
+            "maxRssBytes": 6055395328,
+            "peakMemoryFootprintBytes": 942796800,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 2408,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 280723456,
+            "leanReturnCode": 0
+          },
+          {
+            "phase": "kernel_certificate_materialization",
+            "wallSeconds": 0.0188,
+            "leanStdoutBytes": 2408,
+            "certificateCount": 3,
+            "pythonPeakRssBytes": 280723456
+          }
+        ],
+        "measurement": "Lean subprocess groups; each invocation includes the sandbox launcher and Lean process. Kernel batch resets the imported environment between evidence replays."
+      }
+    }
+  },
+  "proofWireReplay": "batch Lean check, then content-addressed evidence",
+  "proofWireBatches": [
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 28.243,
+      "stepId": "mathir-v2/route_induction/ind_n/step",
+      "proofTermBytes": 316,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 28.243,
+      "stepId": "mathir-v2/route_induction/base_calc_1",
+      "proofTermBytes": 39,
+      "externalizedWireBytes": 94805,
+      "evidence": {
+        "schema": "lean-proof-evidence-v1",
+        "sha256": "7965afdff06229c3fc4fb117c720bd029d234cb9ff5652dc168a3f11f8a644a6",
+        "artifact": "reports/mathir-v2-stage7-proof-evidence/7965afdff06229c3fc4fb117c720bd029d234cb9ff5652dc168a3f11f8a644a6.json.gz",
+        "uncompressedBytes": 94805,
+        "compressedBytes": 1655
+      }
+    },
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 28.243,
+      "stepId": "mathir-v2/route_induction/base_calc_2",
+      "proofTermBytes": 39,
+      "externalizedWireBytes": 726230,
+      "evidence": {
+        "schema": "lean-proof-evidence-v1",
+        "sha256": "73643691edc859af0092e7c696ba3c834cddea613cd2cbf8c9a27042eddf6761",
+        "artifact": "reports/mathir-v2-stage7-proof-evidence/73643691edc859af0092e7c696ba3c834cddea613cd2cbf8c9a27042eddf6761.json.gz",
+        "uncompressedBytes": 726230,
+        "compressedBytes": 8168
+      }
+    },
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 28.243,
+      "stepId": "mathir-v2/route_induction/step4",
+      "proofTermBytes": 294,
+      "externalizedWireBytes": 7669797,
+      "evidence": {
+        "schema": "lean-proof-evidence-v1",
+        "sha256": "b6519cc5846014cda764a70bc3b2ec7476e298683f87926be7e5721c361ed7b4",
+        "artifact": "reports/mathir-v2-stage7-proof-evidence/b6519cc5846014cda764a70bc3b2ec7476e298683f87926be7e5721c361ed7b4.json.gz",
+        "uncompressedBytes": 7669797,
+        "compressedBytes": 75022
+      }
+    },
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 28.243,
+      "stepId": "mathir-v2/route_induction/locked-goal",
+      "proofTermBytes": 624,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 28.243,
+      "stepId": "mathir-v2/route_induction/ind_n/step",
+      "proofTermBytes": 316,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 28.243,
+      "stepId": "mathir-v2/route_induction/base_calc_1",
+      "proofTermBytes": 39,
+      "externalizedWireBytes": 94805,
+      "evidence": {
+        "schema": "lean-proof-evidence-v1",
+        "sha256": "7965afdff06229c3fc4fb117c720bd029d234cb9ff5652dc168a3f11f8a644a6",
+        "artifact": "reports/mathir-v2-stage7-proof-evidence/7965afdff06229c3fc4fb117c720bd029d234cb9ff5652dc168a3f11f8a644a6.json.gz",
+        "uncompressedBytes": 94805,
+        "compressedBytes": 1655
+      }
+    },
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 28.243,
+      "stepId": "mathir-v2/route_induction/base_calc_2",
+      "proofTermBytes": 39,
+      "externalizedWireBytes": 726230,
+      "evidence": {
+        "schema": "lean-proof-evidence-v1",
+        "sha256": "73643691edc859af0092e7c696ba3c834cddea613cd2cbf8c9a27042eddf6761",
+        "artifact": "reports/mathir-v2-stage7-proof-evidence/73643691edc859af0092e7c696ba3c834cddea613cd2cbf8c9a27042eddf6761.json.gz",
+        "uncompressedBytes": 726230,
+        "compressedBytes": 8168
+      }
+    },
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 28.243,
+      "stepId": "mathir-v2/route_induction/step4",
+      "proofTermBytes": 294,
+      "externalizedWireBytes": 7669797,
+      "evidence": {
+        "schema": "lean-proof-evidence-v1",
+        "sha256": "b6519cc5846014cda764a70bc3b2ec7476e298683f87926be7e5721c361ed7b4",
+        "artifact": "reports/mathir-v2-stage7-proof-evidence/b6519cc5846014cda764a70bc3b2ec7476e298683f87926be7e5721c361ed7b4.json.gz",
+        "uncompressedBytes": 7669797,
+        "compressedBytes": 75022
+      }
+    },
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 28.243,
+      "stepId": "mathir-v2/route_induction/locked-goal",
+      "proofTermBytes": 624,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 2,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 13.797,
+      "stepId": "mathir-v2/route_A/nA1",
+      "proofTermBytes": 156,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 2,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 13.797,
+      "stepId": "mathir-v2/route_A/nA2",
+      "proofTermBytes": 99,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 2,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 13.797,
+      "stepId": "mathir-v2/route_A/nA3",
+      "proofTermBytes": 131,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 2,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 13.797,
+      "stepId": "mathir-v2/route_A/nA4",
+      "proofTermBytes": 130,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 2,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 13.797,
+      "stepId": "mathir-v2/route_A/locked-goal",
+      "proofTermBytes": 2193,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 3,
+      "batchCandidateCount": 3,
+      "batchElapsedSeconds": 13.715,
+      "stepId": "mathir-v2/route_B/nB1",
+      "proofTermBytes": 57,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 3,
+      "batchCandidateCount": 3,
+      "batchElapsedSeconds": 13.715,
+      "stepId": "mathir-v2/route_B/nB3",
+      "proofTermBytes": 234,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 3,
+      "batchCandidateCount": 3,
+      "batchElapsedSeconds": 13.715,
+      "stepId": "mathir-v2/route_B/locked-goal",
+      "proofTermBytes": 191,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 28.243,
+      "stepId": "mathir-v2/route_induction/ind_n/step",
+      "proofTermBytes": 316,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 28.243,
+      "stepId": "mathir-v2/route_induction/base_calc_1",
+      "proofTermBytes": 39,
+      "externalizedWireBytes": 94805,
+      "evidence": {
+        "schema": "lean-proof-evidence-v1",
+        "sha256": "7965afdff06229c3fc4fb117c720bd029d234cb9ff5652dc168a3f11f8a644a6",
+        "artifact": "reports/mathir-v2-stage7-proof-evidence/7965afdff06229c3fc4fb117c720bd029d234cb9ff5652dc168a3f11f8a644a6.json.gz",
+        "uncompressedBytes": 94805,
+        "compressedBytes": 1655
+      }
+    },
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 28.243,
+      "stepId": "mathir-v2/route_induction/base_calc_2",
+      "proofTermBytes": 39,
+      "externalizedWireBytes": 726230,
+      "evidence": {
+        "schema": "lean-proof-evidence-v1",
+        "sha256": "73643691edc859af0092e7c696ba3c834cddea613cd2cbf8c9a27042eddf6761",
+        "artifact": "reports/mathir-v2-stage7-proof-evidence/73643691edc859af0092e7c696ba3c834cddea613cd2cbf8c9a27042eddf6761.json.gz",
+        "uncompressedBytes": 726230,
+        "compressedBytes": 8168
+      }
+    },
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 28.243,
+      "stepId": "mathir-v2/route_induction/step4",
+      "proofTermBytes": 294,
+      "externalizedWireBytes": 7669797,
+      "evidence": {
+        "schema": "lean-proof-evidence-v1",
+        "sha256": "b6519cc5846014cda764a70bc3b2ec7476e298683f87926be7e5721c361ed7b4",
+        "artifact": "reports/mathir-v2-stage7-proof-evidence/b6519cc5846014cda764a70bc3b2ec7476e298683f87926be7e5721c361ed7b4.json.gz",
+        "uncompressedBytes": 7669797,
+        "compressedBytes": 75022
+      }
+    },
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 28.243,
+      "stepId": "mathir-v2/route_induction/locked-goal",
+      "proofTermBytes": 624,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 2,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 13.797,
+      "stepId": "mathir-v2/route_A/nA1",
+      "proofTermBytes": 156,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 2,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 13.797,
+      "stepId": "mathir-v2/route_A/nA2",
+      "proofTermBytes": 99,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 2,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 13.797,
+      "stepId": "mathir-v2/route_A/nA3",
+      "proofTermBytes": 131,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 2,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 13.797,
+      "stepId": "mathir-v2/route_A/nA4",
+      "proofTermBytes": 130,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 2,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 13.797,
+      "stepId": "mathir-v2/route_A/locked-goal",
+      "proofTermBytes": 2193,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 3,
+      "batchCandidateCount": 3,
+      "batchElapsedSeconds": 13.715,
+      "stepId": "mathir-v2/route_B/nB1",
+      "proofTermBytes": 57,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 3,
+      "batchCandidateCount": 3,
+      "batchElapsedSeconds": 13.715,
+      "stepId": "mathir-v2/route_B/nB3",
+      "proofTermBytes": 234,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 3,
+      "batchCandidateCount": 3,
+      "batchElapsedSeconds": 13.715,
+      "stepId": "mathir-v2/route_B/locked-goal",
+      "proofTermBytes": 191,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 4,
+      "batchCandidateCount": 3,
+      "batchElapsedSeconds": 27.474,
+      "stepId": "mathir-v2/pr_main/n3",
+      "proofTermBytes": 25,
+      "externalizedWireBytes": 552913,
+      "evidence": {
+        "schema": "lean-proof-evidence-v1",
+        "sha256": "a7bf0a939c012fddd27059b9aca1103d7575e0db7a97936db8d0494ac03a1fd6",
+        "artifact": "reports/mathir-v2-stage7-proof-evidence/a7bf0a939c012fddd27059b9aca1103d7575e0db7a97936db8d0494ac03a1fd6.json.gz",
+        "uncompressedBytes": 552913,
+        "compressedBytes": 7400
+      }
+    },
+    {
+      "batchIndex": 4,
+      "batchCandidateCount": 3,
+      "batchElapsedSeconds": 27.474,
+      "stepId": "mathir-v2/pr_main/n4",
+      "proofTermBytes": 41,
+      "externalizedWireBytes": 21033,
+      "evidence": {
+        "schema": "lean-proof-evidence-v1",
+        "sha256": "6d58d394d7a98ce7c8a8840df8b03751a3ee774bb1407902122d0c15436955c7",
+        "artifact": "reports/mathir-v2-stage7-proof-evidence/6d58d394d7a98ce7c8a8840df8b03751a3ee774bb1407902122d0c15436955c7.json.gz",
+        "uncompressedBytes": 21033,
+        "compressedBytes": 634
+      }
+    },
+    {
+      "batchIndex": 4,
+      "batchCandidateCount": 3,
+      "batchElapsedSeconds": 27.474,
+      "stepId": "mathir-v2/pr_main/n5",
+      "proofTermBytes": 88,
+      "externalizedWireBytes": 580789,
+      "evidence": {
+        "schema": "lean-proof-evidence-v1",
+        "sha256": "2ad1297e934d704e6199d71f40394d450d2176caecf6c9ceaa1d56d2e9330f15",
+        "artifact": "reports/mathir-v2-stage7-proof-evidence/2ad1297e934d704e6199d71f40394d450d2176caecf6c9ceaa1d56d2e9330f15.json.gz",
+        "uncompressedBytes": 580789,
+        "compressedBytes": 7812
+      }
+    }
+  ],
+  "checkManyInvocationMode": "single batch per route",
+  "sourceReport": "saved Stage 8 proof terms",
+  "compilerRevision": "current workspace under baseline 3804bae",
+  "leanBatchCalls": {
+    "C05": 1,
+    "C10": 2,
+    "C12": 1
+  }
+}

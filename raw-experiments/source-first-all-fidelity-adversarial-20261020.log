@@ -1,0 +1,28 @@
+........F..................................                              [100%]
+=================================== FAILURES ===================================
+_ test_changed_original_math_cannot_borrow_old_kernel_source_receipt[\u8bc1\u660e\u6570\u5217 (v\u2099+3)-\u8bc1\u660e\u6570\u5217 (v\u2099+4)] _
+
+old = '证明数列 (vₙ+3)', new = '证明数列 (vₙ+4)'
+
+    @pytest.mark.parametrize(("old","new"),[
+        ("任取 δ>0","任取 δ<0"),
+        ("vₙ→B","vₙ→C"),
+        ("存在自然数 K","存在任意数 K"),
+        ("n≥K","n≤K"),
+        ("|(vₙ+3)−(B+3)|","|(vₙ+4)−(B+3)|"),
+        ("|vₙ−B|<δ","|vₙ−B|<ε"),
+        ("vₙ+3→B+3","vₙ+3→B+4"),
+        ("证明数列 (vₙ+3)","证明数列 (vₙ+4)"),
+    ])
+    def test_changed_original_math_cannot_borrow_old_kernel_source_receipt(old,new):
+        ir,verified=evidence()
+        modified,metadata=edited_source(ir,verified,old,new)
+        report=audit_reasoning_fidelity(modified,metadata)
+>       assert report["originalProofVerified"] is False,(old,new)
+E       AssertionError: ('证明数列 (vₙ+3)', '证明数列 (vₙ+4)')
+E       assert True is False
+
+tests/v2/test_source_epsilon_N_real_seven.py:92: AssertionError
+=========================== short test summary info ============================
+FAILED tests/v2/test_source_epsilon_N_real_seven.py::test_changed_original_math_cannot_borrow_old_kernel_source_receipt[\u8bc1\u660e\u6570\u5217 (v\u2099+3)-\u8bc1\u660e\u6570\u5217 (v\u2099+4)]
+1 failed, 42 passed in 0.96s

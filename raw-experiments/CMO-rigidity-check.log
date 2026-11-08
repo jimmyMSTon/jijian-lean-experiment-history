@@ -1,0 +1,14 @@
+Finset.sum_eq_sum_iff_of_le.{u_8, u_9} {ι : Type u_8} {M : Type u_9} [AddCommMonoid M] [PartialOrder M]
+  [IsOrderedCancelAddMonoid M] {s : Finset ι} {f g : ι → M} (h : ∀ i ∈ s, f i ≤ g i) :
+  ∑ i ∈ s, f i = ∑ i ∈ s, g i ↔ ∀ i ∈ s, f i = g i
+Finset.sum_le_sum_of_subset_of_nonneg.{u_1, u_5} {ι : Type u_1} {N : Type u_5} [AddCommMonoid N] [Preorder N]
+  {f : ι → N} {s t : Finset ι} [AddLeftMono N] (h : s ⊆ t) (hf : ∀ i ∈ t, i ∉ s → 0 ≤ f i) : ∑ i ∈ s, f i ≤ ∑ i ∈ t, f i
+Finset.sum_eq_zero_iff_of_nonneg.{u_1, u_5} {ι : Type u_1} {N : Type u_5} [AddCommMonoid N] [PartialOrder N] {f : ι → N}
+  {s : Finset ι} [IsOrderedAddMonoid N] : (∀ i ∈ s, 0 ≤ f i) → (∑ i ∈ s, f i = 0 ↔ ∀ i ∈ s, f i = 0)
+Finset.sum_sdiff.{u_1, u_4} {ι : Type u_1} {M : Type u_4} {s₁ s₂ : Finset ι} [AddCommMonoid M] {f : ι → M}
+  [DecidableEq ι] (h : s₁ ⊆ s₂) : ∑ x ∈ s₂ \ s₁, f x + ∑ x ∈ s₁, f x = ∑ x ∈ s₂, f x
+Finset.sum_const_zero.{u_1, u_3} {ι : Type u_1} {M : Type u_3} {s : Finset ι} [AddCommMonoid M] : ∑ _x ∈ s, 0 = 0
+Finset.sum_ite.{u_1, u_2} {ι : Type u_1} {M : Type u_2} [AddCommMonoid M] {s : Finset ι} {p : ι → Prop}
+  [DecidablePred p] (f g : ι → M) : (∑ x ∈ s, if p x then f x else g x) = ∑ x ∈ s with p x, f x + ∑ x ∈ s with ¬p x, g x
+Finset.sum_filter.{u_1, u_4} {ι : Type u_1} {M : Type u_4} {s : Finset ι} [AddCommMonoid M] (p : ι → Prop)
+  [DecidablePred p] (f : ι → M) : ∑ a ∈ s with p a, f a = ∑ a ∈ s, if p a then f a else 0

@@ -1,0 +1,351 @@
+{
+  "id": "4651f172-d379-4607-a719-84749fbc676a",
+  "runId": "4f8df397-1a47-415f-93b6-0a844968468d",
+  "kind": "lean_first_explanation_only",
+  "verifiedFormalProof": false,
+  "sourceEquivalenceCertified": false,
+  "originalProofCertified": false,
+  "modelExplanationAuthority": "interpretation_only_not_a_certificate",
+  "formalProofCertified": false,
+  "verificationMode": "single_whole_theorem_kernel",
+  "sourceFidelityReview": {},
+  "authoredClaimRefutation": {
+    "status": "source_assertion_formal_negation_kernel_verified_source_unconfirmed",
+    "sourceSha256": "28424623153fc43dc3a7b31958002a82b2266df4f36d9a5fb4019f2e5a73d47d",
+    "kernelRefutationVerified": true,
+    "naturalLanguageClaimCertified": false,
+    "overallProblemDisproved": false,
+    "sourceEquivalenceCertified": false,
+    "mathClaimRefutationOnly": true,
+    "provider": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "766df6ed-9944-48c3-932c-2e1bf908008b",
+      "systemFingerprint": "bc19ba97cbe016479903222bb1578db6",
+      "usage": {
+        "prompt_tokens": 2229,
+        "completion_tokens": 15532,
+        "total_tokens": 17761,
+        "prompt_tokens_details": {
+          "cached_tokens": 1920
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 14720
+        },
+        "prompt_cache_hit_tokens": 1920,
+        "prompt_cache_miss_tokens": 309
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "candidate": {
+      "sourceExcerpt": "四个互异点U_i=(x_i,y_i)共圆，当且仅当行列式det[(x_i²+y_i²,x_i,y_i,1)]_{i=1}^4=0。",
+      "sourceStepIndex": 4,
+      "closedSourceAssertion": "∀ P : Fin 4 → ℝ × ℝ, Function.Injective P → ((∃ a b r : ℝ, 0 < r ∧ ∀ i : Fin 4, ((P i).1 - a) ^ 2 + ((P i).2 - b) ^ 2 = r ^ 2) ↔ ((Matrix.det (fun i j : Fin 4 => if j = 0 then (P i).1 ^ 2 + (P i).2 ^ 2 else if j = 1 then (P i).1 else if j = 2 then (P i).2 else (1 : ℝ))) = 0))",
+      "negationProofTerm": "by\n  intro h\n  let P : Fin 4 → ℝ × ℝ := fun i => (((i.val : ℕ) : ℝ), 0)\n  have hdist : Function.Injective P := by\n    intro i j hij\n    apply Fin.ext\n    have hreal : (((i.val : ℕ) : ℝ) = ((j.val : ℕ) : ℝ)) := by\n      have hfst := congrArg Prod.fst hij\n      simpa [P] using hfst\n    exact_mod_cast hreal\n  have hdet : (Matrix.det (fun i j : Fin 4 => if j = 0 then (P i).1 ^ 2 + (P i).2 ^ 2 else if j = 1 then (P i).1 else if j = 2 then (P i).2 else (1 : ℝ))) = 0 := by\n    exact Matrix.det_eq_zero_of_column_eq_zero (2 : Fin 4) (by\n      intro i\n      simp [P])\n  have hnot : ¬ (∃ a b r : ℝ, 0 < r ∧ ∀ i : Fin 4, ((P i).1 - a) ^ 2 + ((P i).2 - b) ^ 2 = r ^ 2) := by\n    rintro ⟨a, b, r, hr, hcirc⟩\n    have h0 : (0 - a) ^ 2 + (0 - b) ^ 2 = r ^ 2 := by\n      simpa [P] using hcirc (0 : Fin 4)\n    have h1 : (1 - a) ^ 2 + (0 - b) ^ 2 = r ^ 2 := by\n      simpa [P] using hcirc (1 : Fin 4)\n    have h2 : (2 - a) ^ 2 + (0 - b) ^ 2 = r ^ 2 := by\n      simpa [P] using hcirc (2 : Fin 4)\n    have h11 : (1 - a) ^ 2 = (0 - a) ^ 2 := by linarith\n    have h12 : (2 - a) ^ 2 = (0 - a) ^ 2 := by linarith\n    nlinarith [h11, h12]\n  exact hnot ((h P hdist).mpr hdet)",
+      "counterexampleDescription": "取四个互异共线点 (0,0)、(1,0)、(2,0)、(3,0)。矩阵第三列全为0，故行列式为0；但任何非退化圆与一条直线至多交于两点，不可能经过这四个互异共线点，因此它们不共圆。",
+      "candidateValid": true
+    },
+    "lockedRefutationStatement": "¬ (∀ P : Fin 4 → ℝ × ℝ, Function.Injective P → ((∃ a b r : ℝ, 0 < r ∧ ∀ i : Fin 4, ((P i).1 - a) ^ 2 + ((P i).2 - b) ^ 2 = r ^ 2) ↔ ((Matrix.det (fun i j : Fin 4 => if j = 0 then (P i).1 ^ 2 + (P i).2 ^ 2 else if j = 1 then (P i).1 else if j = 2 then (P i).2 else (1 : ℝ))) = 0)))",
+    "lean": {
+      "localVerified": true,
+      "status": "verified",
+      "diagnostics": [],
+      "certificate": {
+        "auditMethod": "fresh_environment_data_only_kernel_replay",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "checked": true,
+        "dependencyUsage": [],
+        "formalStatement": "¬∀ (P : Fin 4 → ℝ × ℝ),\n    Function.Injective P →\n      ((∃ a b r, 0 < r ∧ ∀ (i : Fin 4), ((P i).1 - a) ^ 2 + ((P i).2 - b) ^ 2 = r ^ 2) ↔\n        (Matrix.det fun i j =>\n            if j = 0 then (P i).1 ^ 2 + (P i).2 ^ 2 else if j = 1 then (P i).1 else if j = 2 then (P i).2 else 1) =\n          0)",
+        "statementMatched": true,
+        "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+        "expectedExpressionSha256": "2ebf8f1a3c4aac0d453f88a334d8dd22536609dd26f03d4c2caa27fbcc7075bd",
+        "proofExpressionSha256": "e918134ffc1b70e88f945253a38516e222599a9abbd5b267c6e689748436d4f6",
+        "statement_hash": "28424623153fc43dc3a7b31958002a82b2266df4f36d9a5fb4019f2e5a73d47d",
+        "nativeExpressionComparison": "structural_equal",
+        "sourceTypeSha256": "f5fb06bcb716897c5d637a7707744ad3d467e53735680db6397253e9ec9bbdf1",
+        "sourceProofSha256": "0ed9e6179911d6601190260914f4b1c58f484e243da19882005c5a6b92fd0e5b",
+        "runtime": {
+          "configured": true,
+          "executableFound": true,
+          "projectFound": true,
+          "runtimeBuilt": true,
+          "runtimeIntegrity": true,
+          "runtimeAttestation": "bbfe5800c297fd14f30d44eb49274921392f08d089a5544098bc3ea49d2b8881",
+          "sandbox": "macos",
+          "isolated": true,
+          "ready": true,
+          "toolchain": "leanprover/lean4:v4.34.0",
+          "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+          "liveTestedInThisDistribution": false
+        },
+        "additionalAxioms": [],
+        "auditIsolation": "fresh_import_environment_reset_between_candidates"
+      },
+      "evidence": {
+        "expected": "[oversized elaborated Lean expression omitted; see certificate SHA-256]",
+        "proof": "[oversized elaborated Lean expression omitted; see certificate SHA-256]",
+        "omissions": {
+          "expected": {
+            "omitted": true,
+            "utf8Bytes": 41902,
+            "canonicalSha256": "2ebf8f1a3c4aac0d453f88a334d8dd22536609dd26f03d4c2caa27fbcc7075bd",
+            "reason": "bounded_http_storage_evidence_after_kernel_check"
+          },
+          "proof": {
+            "omitted": true,
+            "utf8Bytes": 57270727,
+            "canonicalSha256": "e918134ffc1b70e88f945253a38516e222599a9abbd5b267c6e689748436d4f6",
+            "reason": "bounded_http_storage_evidence_after_kernel_check"
+          }
+        }
+      }
+    }
+  },
+  "goalExpressionRepair": {},
+  "sourceStepDiagnostics": {},
+  "atomicAlgebraDiagnostics": {},
+  "summary": "原稿中一项具体断言的形式命题已被 Lean Kernel 证明为假；这不是原题本身的反例，原稿语义对应尚需核对。",
+  "sourceSteps": [
+    {
+      "id": "source-0",
+      "index": 0,
+      "role": "inference",
+      "start": 155,
+      "end": 272,
+      "sourceExcerpt": "第1步。以A为原点，AC为正x轴，长度尺度固定；由于AC平分角BAD，可取实数u,v满足u²+v²=1、u>0、v>0，并取b,d,c>0，使B=(bu,bv)，D=(du,-dv)，C=(c,0)。这里b=AB、d=AD、c=AC。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_0",
+      "dependsOn": []
+    },
+    {
+      "id": "source-1",
+      "index": 1,
+      "role": "inference",
+      "start": 273,
+      "end": 392,
+      "sourceExcerpt": "第2步。因E∈BC、F∈CD且EF∥BD，依据以C为中心的相似比，存在共同参数0<t<1，使E=C+t(B-C)=(c(1-t)+tbu,tbv)，F=C+t(D-C)=(c(1-t)+tdu,-tdv)。这一步准确使用了原题的平行条件。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_1",
+      "dependsOn": []
+    },
+    {
+      "id": "source-2",
+      "index": 2,
+      "role": "inference",
+      "start": 393,
+      "end": 483,
+      "sourceExcerpt": "第3步。任何过原点且在原点切x轴的圆均有方程x²+y²+λy=0。通过B的第一圆系数λ_1=-b/v，通过D的第二圆系数λ_2=d/v，这是分别代入B,D并用u²+v²=1得到的。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_2",
+      "dependsOn": []
+    },
+    {
+      "id": "source-3",
+      "index": 3,
+      "role": "inference",
+      "start": 484,
+      "end": 643,
+      "sourceExcerpt": "第4步。由于P位于FA的延长线过A的另一侧，可写P=pF且p<0；因为P在第一圆上，代入得p²|F|²-(b/v)pF_y=0。由F_y=-tdv、p≠0，得p=-bdt/|F|²。完全类似，由Q=qE在第二圆上且E_y=tbv，得到q=-bdt/|E|²。记h=bdt，则P=-hF/|F|²、Q=-hE/|E|²。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_3",
+      "dependsOn": []
+    },
+    {
+      "id": "source-4",
+      "index": 4,
+      "role": "inference",
+      "start": 644,
+      "end": 751,
+      "sourceExcerpt": "第5步。四个互异点U_i=(x_i,y_i)共圆，当且仅当行列式det[(x_i²+y_i²,x_i,y_i,1)]_{i=1}^4=0。取顺序B,D,P,Q，并代入上面的显式坐标。分母|E|²|F|²均严格为正。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_4",
+      "dependsOn": []
+    },
+    {
+      "id": "source-5",
+      "index": 5,
+      "role": "inference",
+      "start": 752,
+      "end": 925,
+      "sourceExcerpt": "第6步。直接通分展开该4×4行列式，其分子必含因子u²+v²-1；事实上逐项整理得到行列式为 b²c d²t³ v(b-d)(t-1)(u²+v²-1)[b²(u²+v²)-2bd u²+2bd v²+d²(u²+v²)]/(|E|²|F|²)。由于u²+v²=1，该值严格等于0。代数整理仅使用第1至4步显式坐标和恒等式，无须新增原题几何假设。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_5",
+      "dependsOn": []
+    },
+    {
+      "id": "source-6",
+      "index": 6,
+      "role": "inference",
+      "start": 926,
+      "end": 963,
+      "sourceExcerpt": "第7步。因此B,D,P,Q四点位于同一个圆上，即B,P,Q,D共圆。证毕。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_6",
+      "dependsOn": []
+    }
+  ],
+  "localStepEvidence": [
+    {
+      "id": "source-0",
+      "status": "translation_mapped_only",
+      "start": 155,
+      "end": 272,
+      "kernelVerified": false,
+      "unverifiedDependencies": [],
+      "diagnostics": [],
+      "repairStatus": null,
+      "attemptCount": 0,
+      "originalDiagnostics": []
+    },
+    {
+      "id": "source-1",
+      "status": "translation_mapped_only",
+      "start": 273,
+      "end": 392,
+      "kernelVerified": false,
+      "unverifiedDependencies": [],
+      "diagnostics": [],
+      "repairStatus": null,
+      "attemptCount": 0,
+      "originalDiagnostics": []
+    },
+    {
+      "id": "source-2",
+      "status": "translation_mapped_only",
+      "start": 393,
+      "end": 483,
+      "kernelVerified": false,
+      "unverifiedDependencies": [],
+      "diagnostics": [],
+      "repairStatus": null,
+      "attemptCount": 0,
+      "originalDiagnostics": []
+    },
+    {
+      "id": "source-3",
+      "status": "translation_mapped_only",
+      "start": 484,
+      "end": 643,
+      "kernelVerified": false,
+      "unverifiedDependencies": [],
+      "diagnostics": [],
+      "repairStatus": null,
+      "attemptCount": 0,
+      "originalDiagnostics": []
+    },
+    {
+      "id": "source-4",
+      "status": "translation_mapped_only",
+      "start": 644,
+      "end": 751,
+      "kernelVerified": false,
+      "unverifiedDependencies": [],
+      "diagnostics": [],
+      "repairStatus": null,
+      "attemptCount": 0,
+      "originalDiagnostics": []
+    },
+    {
+      "id": "source-5",
+      "status": "translation_mapped_only",
+      "start": 752,
+      "end": 925,
+      "kernelVerified": false,
+      "unverifiedDependencies": [],
+      "diagnostics": [],
+      "repairStatus": null,
+      "attemptCount": 0,
+      "originalDiagnostics": []
+    },
+    {
+      "id": "source-6",
+      "status": "translation_mapped_only",
+      "start": 926,
+      "end": 963,
+      "kernelVerified": false,
+      "unverifiedDependencies": [],
+      "diagnostics": [],
+      "repairStatus": null,
+      "attemptCount": 0,
+      "originalDiagnostics": []
+    }
+  ],
+  "diagnostics": [],
+  "explanation": {
+    "summary": "本次 Lean 结果只能说明：整篇证明翻译不完整，wholeFormalProofVerified=false 且 kernelVerified=false；原稿第1至7步均仅为 translation_mapped_only，未获得 Kernel 验证。另有第5步的一条通用行列式判据的模型翻译命题被 Kernel 反证，但这只针对该翻译命题，不表示原题本身为假。",
+    "why": "authoredClaimRefutation.kernelRefutationVerified=true，且 status 为 source_assertion_formal_negation_kernel_verified_source_unconfirmed。被反证的原文片段是第5步的“四个互异点U_i=(x_i,y_i)共圆，当且仅当行列式det[(x_i²+y_i²,x_i,y_i,1)]_{i=1}^4=0。”其翻译命题缺少非共线/排除退化条件：四个互异共线点（如 (0,0),(1,0),(2,0),(3,0)）使上述行列式为0，但不存在正半径圆同时经过四点，故该翻译判据为假。该举例仅针对模型翻译的判据，不能推出 B,P,Q,D 共圆或原题被反证；翻译忠实性尚未经形式认证。整题方面，unsupportedOriginalSteps 列出第1至7步均未在 Lean 中由假设推导，包括坐标归一化、平行条件给出共同 t、圆相切方程、P/Q 消元、4×4 行列式判据及互异性、通分展开、由行列式为零推出 Concyclic。不能称整篇证明通过 Kernel，也不能把未验证步骤当作可信前提。",
+    "suggestedRevision": "应修正第5步的行列式判据：对四个互异点，行列式为0只保证共圆或共线；需补充 B,D,P,Q 不共线（或等价排除退化圆/直线条件）后才能推出共圆。Lean 中需先证明 B,D,P,Q 互异且不共线，再形式化第1至7步，尤其第2步共同 t、第3步切圆方程、第4步 P/Q 表达、第6步代数恒等式及第7步 Concyclic 构造。当前只能记录一条局部翻译判据被 Kernel 反证，不能声称原证明或整题已认证。",
+    "problematicSourceExcerpt": "四个互异点U_i=(x_i,y_i)共圆，当且仅当行列式det[(x_i²+y_i²,x_i,y_i,1)]_{i=1}^4=0。"
+  },
+  "explanationError": null,
+  "modelProvenance": {
+    "jsonParsing": {
+      "method": "deterministic_json_schema",
+      "recovered": false,
+      "edits": []
+    },
+    "provider": "deepseek",
+    "requestedModel": "deepseek-flash",
+    "model": "deepseek-flash",
+    "responseId": "48e3fc36-4a8e-4991-8774-d6a29b2fd88a",
+    "systemFingerprint": "bc19ba97cbe016479903222bb1578db6",
+    "usage": {
+      "prompt_tokens": 3813,
+      "completion_tokens": 2475,
+      "total_tokens": 6288,
+      "prompt_tokens_details": {
+        "cached_tokens": 896
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 1915
+      },
+      "prompt_cache_hit_tokens": 896,
+      "prompt_cache_miss_tokens": 2917
+    },
+    "thinking": "provider_default",
+    "promptSchemaEncoding": "compact_json_v1",
+    "structuredOutput": "json_mode_with_local_schema_validation",
+    "simulated": false
+  }
+}

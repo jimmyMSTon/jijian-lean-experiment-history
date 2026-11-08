@@ -1,0 +1,341 @@
+{
+  "id": "bc20938b-960d-441e-9762-76b62f1d7e21",
+  "status": "completed",
+  "stage": "completed",
+  "created": "2026-10-25T04:19:00.884152+00:00",
+  "updated": "2026-10-25T04:25:42.360614+00:00",
+  "request": {
+    "input": {
+      "kind": "text",
+      "text": "【2025 British Mathematical Olympiad Round 2，Problem 3，原题】n×n 棋盘相邻格黑白交错，允许反复交换任意两整行或任意两整列。扰乱后，恢复原图案所需交换次数的最大可能最小值是多少？\n【提交的原证明】\n第一步：用 0、1 代表两色，标准棋盘第 (i,j) 格为 (i+j) mod 2。任意交换两行只改变这两行的位置，不改变各行是否为某个标准交错行或其反色的性质；交换两列类似。每个扰乱后格子相对初始颜色的变化可以写成 r_i+c_j (mod 2)，其中 r_i、c_j∈{0,1} 分别是该行该列被互异颜色的行/列交换影响的奇偶次数。\n第二步：每次行交换改变恰好两个 r_i，列交换改变恰好两个 c_j，因此行位元中 1 的个数 R、列位元中 1 的个数 C 均为偶数。相对初始图案，全部恢复当且仅当 r_i+c_j≡0 对每个 i,j 成立，也即所有 r_i,c_j 都等于 0，或者所有 r_i,c_j 都等于 1。第二种情形只会在 n 为偶数时满足 R、C 的偶性。\n第三步：若 n 为奇数，只能恢复到全零位元配置。每个交换至多消除两个值为 1 的行或列位元，所以至少需 (R+C)/2 次，且分别把标记为 1 的行两两交换、列两两交换即可恰好做到。因此最少次数是 (R+C)/2。由于 R,C≤n−1，最大为 n−1；取 R=C=n−1 的扰乱配置即可达到，因 n−1 为偶数可由一系列两行、两列互换构造。\n第四步：若 n 为偶数，则既可恢复全零位元，也可恢复全一位元。恢复全零用 (R+C)/2 次，恢复全一用 (2n−R−C)/2 次，两者取小者为最优交换数。因为 R+C 介于 0 与 2n 之间，两个数之和为 n，所以最小值不超过 n/2。这个界可以达到：取 R=n、C=0（n 是偶数，因此是可达位元配置），此时两种恢复方式都需要 n/2 次。故答案：n 偶数时 n/2；n 奇数时 n−1。",
+      "assetId": null,
+      "dataUrl": null,
+      "strokes": null,
+      "recognitionId": null,
+      "parts": null
+    },
+    "explain": false
+  },
+  "result": {
+    "id": "9006df2f-befd-42a9-9335-848ab4e13d35",
+    "kind": "lean_first_local",
+    "mode": "single_whole_theorem_kernel",
+    "sourceSha256": "f2698c66fec85ed920a110f31f6d10c42cb666a25819d77003ed95093243e7dd",
+    "runTraceId": "37a76b85-5fbd-4431-b9d4-05454076e11d",
+    "status": "whole_proof_translation_incomplete",
+    "kernelVerified": false,
+    "formalProofCertified": false,
+    "originalProofCertified": false,
+    "sourceEquivalenceCertified": false,
+    "originalInferenceVerified": false,
+    "sourcePositionsValid": true,
+    "plannedStepCount": 4,
+    "localFormalVerifiedCount": 0,
+    "sourceSteps": [
+      {
+        "id": "source-0",
+        "index": 0,
+        "role": "inference",
+        "start": 126,
+        "end": 294,
+        "sourceExcerpt": "第一步：用 0、1 代表两色，标准棋盘第 (i,j) 格为 (i+j) mod 2。任意交换两行只改变这两行的位置，不改变各行是否为某个标准交错行或其反色的性质；交换两列类似。每个扰乱后格子相对初始颜色的变化可以写成 r_i+c_j (mod 2)，其中 r_i、c_j∈{0,1} 分别是该行该列被互异颜色的行/列交换影响的奇偶次数。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_0",
+        "dependsOn": []
+      },
+      {
+        "id": "source-1",
+        "index": 1,
+        "role": "inference",
+        "start": 295,
+        "end": 463,
+        "sourceExcerpt": "第二步：每次行交换改变恰好两个 r_i，列交换改变恰好两个 c_j，因此行位元中 1 的个数 R、列位元中 1 的个数 C 均为偶数。相对初始图案，全部恢复当且仅当 r_i+c_j≡0 对每个 i,j 成立，也即所有 r_i,c_j 都等于 0，或者所有 r_i,c_j 都等于 1。第二种情形只会在 n 为偶数时满足 R、C 的偶性。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_1",
+        "dependsOn": []
+      },
+      {
+        "id": "source-2",
+        "index": 2,
+        "role": "inference",
+        "start": 464,
+        "end": 634,
+        "sourceExcerpt": "第三步：若 n 为奇数，只能恢复到全零位元配置。每个交换至多消除两个值为 1 的行或列位元，所以至少需 (R+C)/2 次，且分别把标记为 1 的行两两交换、列两两交换即可恰好做到。因此最少次数是 (R+C)/2。由于 R,C≤n−1，最大为 n−1；取 R=C=n−1 的扰乱配置即可达到，因 n−1 为偶数可由一系列两行、两列互换构造。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_2",
+        "dependsOn": []
+      },
+      {
+        "id": "source-3",
+        "index": 3,
+        "role": "inference",
+        "start": 635,
+        "end": 832,
+        "sourceExcerpt": "第四步：若 n 为偶数，则既可恢复全零位元，也可恢复全一位元。恢复全零用 (R+C)/2 次，恢复全一用 (2n−R−C)/2 次，两者取小者为最优交换数。因为 R+C 介于 0 与 2n 之间，两个数之和为 n，所以最小值不超过 n/2。这个界可以达到：取 R=n、C=0（n 是偶数，因此是可达位元配置），此时两种恢复方式都需要 n/2 次。故答案：n 偶数时 n/2；n 奇数时 n−1。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_3",
+        "dependsOn": []
+      }
+    ],
+    "statement": "∀ n : ℕ, 0 < n →\n  let N : ℕ := n;\n  let stdBoard : Fin N × Fin N → ZMod 2 := fun p => ((p.1.val + p.2.val : ℕ) : ZMod 2);\n  let swapRows : (i j : Fin N) → (Fin N × Fin N → ZMod 2) → (Fin N × Fin N → ZMod 2) :=\n    fun i j b p => b (if p.1 = i then j else if p.1 = j then i else p.1, p.2);\n  let swapCols : (i j : Fin N) → (Fin N × Fin N → ZMod 2) → (Fin N × Fin N → ZMod 2) :=\n    fun i j b p => b (p.1, if p.2 = i then j else if p.2 = j then i else p.2);\n  let applyOp : ((Fin N × Fin N) ⊕ (Fin N × Fin N)) → (Fin N × Fin N → ZMod 2) → (Fin N × Fin N → ZMod 2) :=\n    fun op b => match op with\n      | Sum.inl (i, j) => swapRows i j b\n      | Sum.inr (i, j) => swapCols i j b;\n  let applyOps : List ((Fin N × Fin N) ⊕ (Fin N × Fin N)) → (Fin N × Fin N → ZMod 2) → (Fin N × Fin N → ZMod 2) :=\n    fun ops b => ops.foldl (fun b op => applyOp op b) b;\n  let A : ℕ := if Even N then N / 2 else N - 1;\n  (∀ (b : Fin N × Fin N → ZMod 2),\n      (∃ ops : List ((Fin N × Fin N) ⊕ (Fin N × Fin N)),\n        b = applyOps ops (stdBoard)) →\n      ∃ ops : List ((Fin N × Fin N) ⊕ (Fin N × Fin N)),\n        applyOps ops b = stdBoard ∧ ops.length ≤ A) ∧\n  (∃ (b : Fin N × Fin N → ZMod 2),\n      (∃ ops : List ((Fin N × Fin N) ⊕ (Fin N × Fin N)),\n        b = applyOps ops (stdBoard)) ∧\n      (∃ ops : List ((Fin N × Fin N) ⊕ (Fin N × Fin N)),\n        applyOps ops b = stdBoard) ∧\n      (∀ ops : List ((Fin N × Fin N) ⊕ (Fin N × Fin N)),\n        applyOps ops b = stdBoard → A ≤ ops.length))",
+    "proofTerm": "",
+    "lean": null,
+    "unsupportedOriginalSteps": [
+      "source_step_0 is not formalized: the proof never introduces Lean definitions/proofs for the row/column parity bits r_i,c_j, for the decomposition of any reachable board as b(i,j)=stdBoard(i,j)+r_i+c_j, or for the assertion that row/column swaps produce exactly those bits.",
+      "source_step_1 is not formalized: the evenness of R and C, the equivalence between restoration and the two all-equal bit configurations, and the parity obstruction for odd n are only sketched informally and are not translated into Lean local derivations.",
+      "source_step_2 is not formalized: the odd-n upper bound requires a precise construction pairing marked rows/columns of opposite parity, an explicit list of swaps, and proofs that the listed swaps remove all marked bits and have the claimed length. The source proof omits these details.",
+      "source_step_3 is not formalized: the even-n lower bound requires explicit reachable configurations with R=n,C=0 (and, for odd n, R=C=n-1), plus a rigorous proof that every restoring swap sequence has length at least the claimed bound. The informal Hamming-distance argument is not encoded in Lean.",
+      "The locked statement quantifies over Fin N, ZMod 2, concrete swapRows/swapCols/applyOps, and the exact A = if Even N then N/2 else N-1; no complete Lean by-term using named source_step_i declarations is supplied."
+    ],
+    "planProvenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "ffe70d3d-762b-4126-a018-c7ba7200c7b1",
+      "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+      "usage": {
+        "prompt_tokens": 1199,
+        "completion_tokens": 27108,
+        "total_tokens": 28307,
+        "prompt_tokens_details": {
+          "cached_tokens": 1024
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 25862
+        },
+        "prompt_cache_hit_tokens": 1024,
+        "prompt_cache_miss_tokens": 175
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "model": "deepseek-flash",
+    "goalExcerpt": "n×n 棋盘相邻格黑白交错，允许反复交换任意两整行或任意两整列。扰乱后，恢复原图案所需交换次数的最大可能最小值是多少？",
+    "originalGivenExcerpts": [
+      "n×n 棋盘相邻格黑白交错，允许反复交换任意两整行或任意两整列。"
+    ],
+    "sourceOffsetRepairs": [],
+    "proofProvenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "177ca9e8-b5f2-4b4f-9caa-5f1c402e8d12",
+      "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+      "usage": {
+        "prompt_tokens": 2352,
+        "completion_tokens": 13687,
+        "total_tokens": 16039,
+        "prompt_tokens_details": {
+          "cached_tokens": 896
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 13367
+        },
+        "prompt_cache_hit_tokens": 896,
+        "prompt_cache_miss_tokens": 1456
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "sourceFalsityScreen": {
+      "status": "source_anchored_suspected_false_assertion_not_certified",
+      "suspected": true,
+      "notAKernelVerdict": true,
+      "originalProofCertified": false,
+      "overallProblemDisproved": false,
+      "modelProvenance": {
+        "jsonParsing": {
+          "method": "deterministic_json_schema",
+          "recovered": false,
+          "edits": []
+        },
+        "provider": "deepseek",
+        "requestedModel": "deepseek-flash",
+        "model": "deepseek-flash",
+        "responseId": "6899d5bd-15e0-4573-aaa3-8bb8a9dbb2de",
+        "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+        "usage": {
+          "prompt_tokens": 1631,
+          "completion_tokens": 15045,
+          "total_tokens": 16676,
+          "prompt_tokens_details": {
+            "cached_tokens": 1408
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 14830
+          },
+          "prompt_cache_hit_tokens": 1408,
+          "prompt_cache_miss_tokens": 223
+        },
+        "thinking": "provider_default",
+        "promptSchemaEncoding": "compact_json_v1",
+        "structuredOutput": "json_mode_with_local_schema_validation",
+        "simulated": false
+      },
+      "candidate": {
+        "suspected": true,
+        "sourceStepIndex": 1,
+        "sourceQuote": "每次行交换改变恰好两个 r_i，列交换改变恰好两个 c_j",
+        "allegedMathematicalError": "该全称断言称每次交换任意两整行都会把恰好两个 r_i 翻转；但当交换的两行具有相同棋盘色型（即相同的行奇偶型）时，交换不改变图案，也不改变任何 r_i，实际改变数为 0。",
+        "concreteCounterexample": "取 n=3，标准棋盘（行按 0,1,2 计）为 [0 1 0; 1 0 1; 0 1 0]；交换第 0 行与第 2 行是题目允许的操作，但这两行完全相同，交换后棋盘不变。此时相对初始图案的位元仍为 r=(0,0,0), c=(0,0,0)，所以 r_i 改变的行数为 0，而不是断言中的恰好 2。"
+      }
+    },
+    "authoredClaimRefutation": {
+      "status": "source_assertion_formal_negation_kernel_verified_source_unconfirmed",
+      "sourceSha256": "f2698c66fec85ed920a110f31f6d10c42cb666a25819d77003ed95093243e7dd",
+      "kernelRefutationVerified": true,
+      "naturalLanguageClaimCertified": false,
+      "overallProblemDisproved": false,
+      "sourceEquivalenceCertified": false,
+      "mathClaimRefutationOnly": true,
+      "provider": {
+        "jsonParsing": {
+          "method": "deterministic_json_schema",
+          "recovered": false,
+          "edits": []
+        },
+        "provider": "deepseek",
+        "requestedModel": "deepseek-flash",
+        "model": "deepseek-flash",
+        "responseId": "e5dc0007-3e11-416b-b25f-25a47e02b08d",
+        "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+        "usage": {
+          "prompt_tokens": 1950,
+          "completion_tokens": 13962,
+          "total_tokens": 15912,
+          "prompt_tokens_details": {
+            "cached_tokens": 1536
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 13710
+          },
+          "prompt_cache_hit_tokens": 1536,
+          "prompt_cache_miss_tokens": 414
+        },
+        "thinking": "provider_default",
+        "promptSchemaEncoding": "compact_json_v1",
+        "structuredOutput": "json_mode_with_local_schema_validation",
+        "simulated": false
+      },
+      "candidate": {
+        "sourceExcerpt": "每次行交换改变恰好两个 r_i",
+        "sourceStepIndex": 1,
+        "closedSourceAssertion": "∀ (n : ℕ), 0 < n → ∀ (p : Equiv.Perm (Fin n)) (i j : Fin n), i ≠ j → ((Finset.univ : Finset (Fin n)).filter (fun k => (((p (Equiv.swap i j k)).val + k.val) % 2) ≠ (((p k).val + k.val) % 2))).card = 2",
+        "negationProofTerm": "by\n  intro h\n  have h0 := h 3 (by norm_num) (1 : Equiv.Perm (Fin 3)) (0 : Fin 3) (2 : Fin 3) (by decide)\n  revert h0\n  decide",
+        "counterexampleDescription": "取 n=3，p 为恒等排列（标准棋盘），交换第 0 行与第 2 行；二者行奇偶相同，所有 r_i=(p(i)+i) mod 2 保持不变，改变数为 0，而不是 2。",
+        "candidateValid": true
+      },
+      "lockedRefutationStatement": "¬ (∀ (n : ℕ), 0 < n → ∀ (p : Equiv.Perm (Fin n)) (i j : Fin n), i ≠ j → ((Finset.univ : Finset (Fin n)).filter (fun k => (((p (Equiv.swap i j k)).val + k.val) % 2) ≠ (((p k).val + k.val) % 2))).card = 2)",
+      "lean": {
+        "localVerified": true,
+        "status": "verified",
+        "diagnostics": [],
+        "certificate": {
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "checked": true,
+          "dependencyUsage": [],
+          "formalStatement": "¬∀ (n : ℕ),\n    0 < n →\n      ∀ (p : Equiv.Perm (Fin n)) (i j : Fin n),\n        i ≠ j → {k | (↑(p ((Equiv.swap i j) k)) + ↑k) % 2 ≠ (↑(p k) + ↑k) % 2}.card = 2",
+          "statementMatched": true,
+          "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+          "expectedExpressionSha256": "5cbb460a6a4d09d58e90eb8bd7aae6b4f94fe56f315cae482c58bd9f3572b06b",
+          "proofExpressionSha256": "ca7db57064b2f5d2f652af10b2f4a3e2ed72a4ca1aef4ac3be5e894da987de34",
+          "statement_hash": "f2698c66fec85ed920a110f31f6d10c42cb666a25819d77003ed95093243e7dd",
+          "nativeExpressionComparison": "structural_equal",
+          "sourceTypeSha256": "020f41bb636016e9e96dfff5c502314e9112cd966ed27e1a9aee0818d691fd04",
+          "sourceProofSha256": "e245327f6be1baf0d6d1c00212380c8af400ddd7b9a4ab64f8f72aca1be605dd",
+          "runtime": {
+            "configured": true,
+            "executableFound": true,
+            "projectFound": true,
+            "runtimeBuilt": true,
+            "runtimeIntegrity": true,
+            "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+            "sandbox": "macos",
+            "isolated": true,
+            "ready": true,
+            "toolchain": "leanprover/lean4:v4.34.0",
+            "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+            "liveTestedInThisDistribution": false
+          },
+          "additionalAxioms": [],
+          "auditIsolation": "fresh_import_environment_reset_between_candidates"
+        },
+        "evidence": {
+          "expected": "[oversized elaborated Lean expression omitted; see certificate SHA-256]",
+          "proof": "[oversized elaborated Lean expression omitted; see certificate SHA-256]",
+          "omissions": {
+            "expected": {
+              "omitted": true,
+              "utf8Bytes": 44845,
+              "canonicalSha256": "5cbb460a6a4d09d58e90eb8bd7aae6b4f94fe56f315cae482c58bd9f3572b06b",
+              "reason": "bounded_http_storage_evidence_after_kernel_check"
+            },
+            "proof": {
+              "omitted": true,
+              "utf8Bytes": 1323501,
+              "canonicalSha256": "ca7db57064b2f5d2f652af10b2f4a3e2ed72a4ca1aef4ac3be5e894da987de34",
+              "reason": "bounded_http_storage_evidence_after_kernel_check"
+            }
+          }
+        }
+      }
+    },
+    "version": "3.5.3",
+    "source": {
+      "kind": "text",
+      "raw": "【2025 British Mathematical Olympiad Round 2，Problem 3，原题】n×n 棋盘相邻格黑白交错，允许反复交换任意两整行或任意两整列。扰乱后，恢复原图案所需交换次数的最大可能最小值是多少？\n【提交的原证明】\n第一步：用 0、1 代表两色，标准棋盘第 (i,j) 格为 (i+j) mod 2。任意交换两行只改变这两行的位置，不改变各行是否为某个标准交错行或其反色的性质；交换两列类似。每个扰乱后格子相对初始颜色的变化可以写成 r_i+c_j (mod 2)，其中 r_i、c_j∈{0,1} 分别是该行该列被互异颜色的行/列交换影响的奇偶次数。\n第二步：每次行交换改变恰好两个 r_i，列交换改变恰好两个 c_j，因此行位元中 1 的个数 R、列位元中 1 的个数 C 均为偶数。相对初始图案，全部恢复当且仅当 r_i+c_j≡0 对每个 i,j 成立，也即所有 r_i,c_j 都等于 0，或者所有 r_i,c_j 都等于 1。第二种情形只会在 n 为偶数时满足 R、C 的偶性。\n第三步：若 n 为奇数，只能恢复到全零位元配置。每个交换至多消除两个值为 1 的行或列位元，所以至少需 (R+C)/2 次，且分别把标记为 1 的行两两交换、列两两交换即可恰好做到。因此最少次数是 (R+C)/2。由于 R,C≤n−1，最大为 n−1；取 R=C=n−1 的扰乱配置即可达到，因 n−1 为偶数可由一系列两行、两列互换构造。\n第四步：若 n 为偶数，则既可恢复全零位元，也可恢复全一位元。恢复全零用 (R+C)/2 次，恢复全一用 (2n−R−C)/2 次，两者取小者为最优交换数。因为 R+C 介于 0 与 2n 之间，两个数之和为 n，所以最小值不超过 n/2。这个界可以达到：取 R=n、C=0（n 是偶数，因此是可达位元配置），此时两种恢复方式都需要 n/2 次。故答案：n 偶数时 n/2；n 奇数时 n−1。",
+      "normalized": "【2025 British Mathematical Olympiad Round 2，Problem 3，原题】n×n 棋盘相邻格黑白交错，允许反复交换任意两整行或任意两整列。扰乱后，恢复原图案所需交换次数的最大可能最小值是多少？\n【提交的原证明】\n第一步：用 0、1 代表两色，标准棋盘第 (i,j) 格为 (i+j) mod 2。任意交换两行只改变这两行的位置，不改变各行是否为某个标准交错行或其反色的性质；交换两列类似。每个扰乱后格子相对初始颜色的变化可以写成 r_i+c_j (mod 2)，其中 r_i、c_j∈{0,1} 分别是该行该列被互异颜色的行/列交换影响的奇偶次数。\n第二步：每次行交换改变恰好两个 r_i，列交换改变恰好两个 c_j，因此行位元中 1 的个数 R、列位元中 1 的个数 C 均为偶数。相对初始图案，全部恢复当且仅当 r_i+c_j≡0 对每个 i,j 成立，也即所有 r_i,c_j 都等于 0，或者所有 r_i,c_j 都等于 1。第二种情形只会在 n 为偶数时满足 R、C 的偶性。\n第三步：若 n 为奇数，只能恢复到全零位元配置。每个交换至多消除两个值为 1 的行或列位元，所以至少需 (R+C)/2 次，且分别把标记为 1 的行两两交换、列两两交换即可恰好做到。因此最少次数是 (R+C)/2。由于 R,C≤n−1，最大为 n−1；取 R=C=n−1 的扰乱配置即可达到，因 n−1 为偶数可由一系列两行、两列互换构造。\n第四步：若 n 为偶数，则既可恢复全零位元，也可恢复全一位元。恢复全零用 (R+C)/2 次，恢复全一用 (2n−R−C)/2 次，两者取小者为最优交换数。因为 R+C 介于 0 与 2n 之间，两个数之和为 n，所以最小值不超过 n/2。这个界可以达到：取 R=n、C=0（n 是偶数，因此是可达位元配置），此时两种恢复方式都需要 n/2 次。故答案：n 偶数时 n/2；n 奇数时 n−1。",
+      "recognitionId": null,
+      "transcriptionEvidence": null,
+      "blocks": [
+        {
+          "id": "b0",
+          "text": "【2025 British Mathematical Olympiad Round 2，Problem 3，原题】n×n 棋盘相邻格黑白交错，允许反复交换任意两整行或任意两整列。扰乱后，恢复原图案所需交换次数的最大可能最小值是多少？\n【提交的原证明】\n第一步：用 0、1 代表两色，标准棋盘第 (i,j) 格为 (i+j) mod 2。任意交换两行只改变这两行的位置，不改变各行是否为某个标准交错行或其反色的性质；交换两列类似。每个扰乱后格子相对初始颜色的变化可以写成 r_i+c_j (mod 2)，其中 r_i、c_j∈{0,1} 分别是该行该列被互异颜色的行/列交换影响的奇偶次数。\n第二步：每次行交换改变恰好两个 r_i，列交换改变恰好两个 c_j，因此行位元中 1 的个数 R、列位元中 1 的个数 C 均为偶数。相对初始图案，全部恢复当且仅当 r_i+c_j≡0 对每个 i,j 成立，也即所有 r_i,c_j 都等于 0，或者所有 r_i,c_j 都等于 1。第二种情形只会在 n 为偶数时满足 R、C 的偶性。\n第三步：若 n 为奇数，只能恢复到全零位元配置。每个交换至多消除两个值为 1 的行或列位元，所以至少需 (R+C)/2 次，且分别把标记为 1 的行两两交换、列两两交换即可恰好做到。因此最少次数是 (R+C)/2。由于 R,C≤n−1，最大为 n−1；取 R=C=n−1 的扰乱配置即可达到，因 n−1 为偶数可由一系列两行、两列互换构造。\n第四步：若 n 为偶数，则既可恢复全零位元，也可恢复全一位元。恢复全零用 (R+C)/2 次，恢复全一用 (2n−R−C)/2 次，两者取小者为最优交换数。因为 R+C 介于 0 与 2n 之间，两个数之和为 n，所以最小值不超过 n/2。这个界可以达到：取 R=n、C=0（n 是偶数，因此是可达位元配置），此时两种恢复方式都需要 n/2 次。故答案：n 偶数时 n/2；n 奇数时 n−1。",
+          "page": null,
+          "bbox": null,
+          "confidence": null,
+          "assetId": null,
+          "providerData": {}
+        }
+      ]
+    },
+    "inputKind": "text",
+    "authority": "single_locked_complete_formal_theorem_kernel_not_natural_language_fidelity"
+  },
+  "error": null
+}

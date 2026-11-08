@@ -1,0 +1,78 @@
+[
+  {
+    "case": {
+      "id": "bmo2-2025-q4",
+      "input": "【2025 British Mathematical Olympiad Round 2，Problem 4，原题】正整数数列 u_1,u_2,… 满足 u_1=1，且对每个 n≥2 都有 u_{n+1}=(u_n²+u_n+1)^2025/u_{n−1}。问这样的数列有多少个？\n【提交的原证明】\n第一步：记 F(t)=t²+t+1，e=2025。只要选择 u_2 为正整数，给定 u_1=1 后，有理数递推便唯一确定全部后项；因此需找出恰好哪些 u_2 能使后项全为正整数。注意 F(t)>0 对正数 t 成立，所以只要各次除法合法，所有后项为正。\n第二步：由 u_1=1，u_3=F(u_2)^e。按模 u_2 计算，F(u_2)≡1，所以 u_3≡1 (mod u_2)。因为 u_4=F(u_3)^e/u_2 应为整数，所以 u_2 整除 F(u_3)^e≡F(1)^e=3^e (mod u_2)。于是 u_2|3^2025。正因子恰好为 1,3,3²,…,3^2025，共 2026 个，给出可能解数的上界。\n第三步：反过来，任取 u_2=3^j（0≤j≤2025），按原递推逐项定义正有理数 u_n。u_3=F(u_2)^e 是整数；第二步同余计算给出 u_2|F(u_3)^e，故 u_4 也是整数。此时 gcd(u_2,u_3)=1，因为 u_3≡1 (mod u_2)；并且 gcd(u_3,u_4)=1，由 u_4u_2=F(u_3)^e≡1 (mod u_3) 得 gcd(u_3,u_2)=1，再结合连续递推，后续相邻项互素性可归纳维护。\n第四步：给出归纳核心。设 n≥4，已知到 u_n 为止全为正整数，且连续的相邻项互素。记 b=u_{n−2}, c=u_{n−1}, d=u_n。递推给出 bd=F(c)^e，因此 bd≡1 (mod c)。此外 c u_{n−3}=F(b)^e，所以 F(b)^e≡0 (mod c)。由代数恒等式\nb²F(d)=(bd)²+b(bd)+b²≡1+b+b²=F(b) (mod c)，\n两侧取 e 次幂，得到 b^{2e}F(d)^e≡F(b)^e≡0 (mod c)。又 gcd(b,c)=1，因此 b^{2e} 在模 c 下可逆，推出 c|F(d)^e。所以 u_{n+1}=F(d)^e/c 是正整数。\n第五步：维护归纳所需互素性。由 u_{n+1}c=F(d)^e≡1 (mod d)，得 gcd(u_{n+1},d)=1。初始相邻项的互素性可由 u_3≡1 (mod u_2)、u_4u_2=F(u_3)^e≡1 (mod u_3) 与 gcd(u_2,u_3)=1 推出。于是用强归纳法所有 u_n 都是正整数，而且相邻两项互素。\n第六步：因此每一个 3^j（j=0,…,2025）都给出一列符合要求的正整数数列。不同 u_2 确定不同数列，且其他 u_2 无法成立。答案恰好为 2026 列。"
+    },
+    "jobId": "9175388f-4793-417a-913f-5b5bbef7911e",
+    "jobStatus": "completed",
+    "resultStatus": "whole_proof_translation_incomplete",
+    "kernelVerified": false,
+    "formalProofCertified": false,
+    "originalProofCertified": false,
+    "fidelityReview": null,
+    "fidelityIssues": 0,
+    "sourceSteps": 6,
+    "kernelCertificate": null,
+    "unsupportedOriginalSteps": [
+      "第三步：从任意 u_2=3^j 出发构造整列正整数并证明每一后项为整数、各项为正，未在 Lean 中完成形式化；需要定义由二阶递推产生、带整除性证明的数列。",
+      "第四步：归纳核心中的同余恒等式 b²F(d)=(bd)²+b(bd)+b²≡F(b) (mod c)、取 e 次幂、以及由 gcd(b,c)=1 推出 c | F(d)^e，未在 Lean 中完成形式化。",
+      "第五步：维护相邻项互素性并用强归纳证明所有项均为正整数，未在 Lean 中完成形式化。",
+      "第六步：建立满足条件的数列与 j∈{0,…,2025} 之间的双射，并据此证明 Nat.card 等于 2026，未在 Lean 中完成形式化。",
+      "第二步中 u_2 | 3^2025 蕴涵 u_2 必为 3^j (0≤j≤2025) 及正因子恰有 2026 个的完整 Lean 证明未完成。",
+      "第一步中把原题数列与锁定命题中的函数 v : ℕ → ℕ 建立严格对应并证明唯一确定性的形式化未完成。"
+    ],
+    "error": null,
+    "usage": {
+      "attempts": 5,
+      "inputTokens": 13998,
+      "outputTokens": 61945,
+      "missingUsage": 0,
+      "requests": [
+        {
+          "reason": "WholeProofPlan",
+          "status": "response_received",
+          "input_tokens": 1477,
+          "output_tokens": 21716,
+          "error_type": null,
+          "http_duration_ms": 85770.285
+        },
+        {
+          "reason": "WholeProofProgram",
+          "status": "response_received",
+          "input_tokens": 2445,
+          "output_tokens": 5431,
+          "error_type": null,
+          "http_duration_ms": 33394.32
+        },
+        {
+          "reason": "SuspectedAuthoredFault",
+          "status": "response_received",
+          "input_tokens": 2182,
+          "output_tokens": 6458,
+          "error_type": null,
+          "http_duration_ms": 33620.575
+        },
+        {
+          "reason": "StepObligations",
+          "status": "response_received",
+          "input_tokens": 3247,
+          "output_tokens": 27213,
+          "error_type": null,
+          "http_duration_ms": 132639.882
+        },
+        {
+          "reason": "Explanation",
+          "status": "response_received",
+          "input_tokens": 4647,
+          "output_tokens": 1127,
+          "error_type": null,
+          "http_duration_ms": 8573.239
+        }
+      ]
+    },
+    "feedbackError": null,
+    "elapsedSeconds": 328.33,
+    "totalElapsedSeconds": 329.16
+  }
+]

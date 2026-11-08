@@ -1,0 +1,134 @@
+[
+  {
+    "case": {
+      "id": "bmo2-2025-q4",
+      "input": "【2025 British Mathematical Olympiad Round 2，Problem 4，原题】正整数数列 u_1,u_2,… 满足 u_1=1，且对每个 n≥2 都有 u_{n+1}=(u_n²+u_n+1)^2025/u_{n−1}。问这样的数列有多少个？\n【提交的原证明】\n第一步：记 F(t)=t²+t+1，e=2025。只要选择 u_2 为正整数，给定 u_1=1 后，有理数递推便唯一确定全部后项；因此需找出恰好哪些 u_2 能使后项全为正整数。注意 F(t)>0 对正数 t 成立，所以只要各次除法合法，所有后项为正。\n第二步：由 u_1=1，u_3=F(u_2)^e。按模 u_2 计算，F(u_2)≡1，所以 u_3≡1 (mod u_2)。因为 u_4=F(u_3)^e/u_2 应为整数，所以 u_2 整除 F(u_3)^e≡F(1)^e=3^e (mod u_2)。于是 u_2|3^2025。正因子恰好为 1,3,3²,…,3^2025，共 2026 个，给出可能解数的上界。\n第三步：反过来，任取 u_2=3^j（0≤j≤2025），按原递推逐项定义正有理数 u_n。u_3=F(u_2)^e 是整数；第二步同余计算给出 u_2|F(u_3)^e，故 u_4 也是整数。此时 gcd(u_2,u_3)=1，因为 u_3≡1 (mod u_2)；并且 gcd(u_3,u_4)=1，由 u_4u_2=F(u_3)^e≡1 (mod u_3) 得 gcd(u_3,u_2)=1，再结合连续递推，后续相邻项互素性可归纳维护。\n第四步：给出归纳核心。设 n≥4，已知到 u_n 为止全为正整数，且连续的相邻项互素。记 b=u_{n−2}, c=u_{n−1}, d=u_n。递推给出 bd=F(c)^e，因此 bd≡1 (mod c)。此外 c u_{n−3}=F(b)^e，所以 F(b)^e≡0 (mod c)。由代数恒等式\nb²F(d)=(bd)²+b(bd)+b²≡1+b+b²=F(b) (mod c)，\n两侧取 e 次幂，得到 b^{2e}F(d)^e≡F(b)^e≡0 (mod c)。又 gcd(b,c)=1，因此 b^{2e} 在模 c 下可逆，推出 c|F(d)^e。所以 u_{n+1}=F(d)^e/c 是正整数。\n第五步：维护归纳所需互素性。由 u_{n+1}c=F(d)^e≡1 (mod d)，得 gcd(u_{n+1},d)=1。初始相邻项的互素性可由 u_3≡1 (mod u_2)、u_4u_2=F(u_3)^e≡1 (mod u_3) 与 gcd(u_2,u_3)=1 推出。于是用强归纳法所有 u_n 都是正整数，而且相邻两项互素。\n第六步：因此每一个 3^j（j=0,…,2025）都给出一列符合要求的正整数数列。不同 u_2 确定不同数列，且其他 u_2 无法成立。答案恰好为 2026 列。"
+    },
+    "jobId": "e925cd7d-b763-4b8e-afd7-f26bd6d0aaab",
+    "jobStatus": "completed",
+    "resultStatus": "whole_proof_translation_incomplete",
+    "kernelVerified": false,
+    "formalProofCertified": false,
+    "originalProofCertified": false,
+    "fidelityReview": null,
+    "fidelityIssues": 0,
+    "sourceSteps": 6,
+    "kernelCertificate": null,
+    "unsupportedOriginalSteps": [
+      "source_step_0: The uniqueness of the rational recurrence once u_2 (i.e. v 1) is chosen, and the positivity of all later terms under valid divisions, were not formalized in Lean.",
+      "source_step_1: The congruence argument showing v 1 ∣ 3^2025, and the enumeration of the positive divisors of 3^2025 as exactly 2026 values, were not formalized in Lean.",
+      "source_step_2: For v 1 = 3^j, the construction of the rational sequence, integrality of the first terms, and maintenance of adjacent coprimality were not formalized in Lean.",
+      "source_step_3: The induction core using b^2 F(d) ≡ F(b) (mod c), raising to the 2025th power, and cancelling b^(2·2025) modulo c using gcd(b,c)=1 was not formalized in Lean.",
+      "source_step_4: The strong induction proving all terms are positive integers and adjacent terms remain coprime was not formalized in Lean.",
+      "source_step_5: The final bijection between admissible sequences and the 2026 choices of v 1, and hence the conclusion Set.ncard = 2026, was not formalized in Lean."
+    ],
+    "error": null,
+    "usage": {
+      "attempts": 12,
+      "inputTokens": 59290,
+      "outputTokens": 205973,
+      "missingUsage": 0,
+      "requests": [
+        {
+          "reason": "WholeProofPlan",
+          "status": "response_received",
+          "input_tokens": 1477,
+          "output_tokens": 21954,
+          "error_type": null,
+          "http_duration_ms": 88019.109
+        },
+        {
+          "reason": "WholeProofProgram",
+          "status": "response_received",
+          "input_tokens": 2589,
+          "output_tokens": 4603,
+          "error_type": null,
+          "http_duration_ms": 27616.842
+        },
+        {
+          "reason": "LeanProofScaffold",
+          "status": "response_received",
+          "input_tokens": 2548,
+          "output_tokens": 16012,
+          "error_type": null,
+          "http_duration_ms": 81822.431
+        },
+        {
+          "reason": "LeanSourceHoleFillBatch",
+          "status": "response_received",
+          "input_tokens": 10974,
+          "output_tokens": 20962,
+          "error_type": null,
+          "http_duration_ms": 110482.658
+        },
+        {
+          "reason": "LeanSourceHoleFill",
+          "status": "response_received",
+          "input_tokens": 3380,
+          "output_tokens": 23469,
+          "error_type": null,
+          "http_duration_ms": 113946.747
+        },
+        {
+          "reason": "LeanSourceHoleFill",
+          "status": "response_received",
+          "input_tokens": 4808,
+          "output_tokens": 22359,
+          "error_type": null,
+          "http_duration_ms": 113496.613
+        },
+        {
+          "reason": "LeanSourceHoleFill",
+          "status": "response_received",
+          "input_tokens": 6045,
+          "output_tokens": 30892,
+          "error_type": null,
+          "http_duration_ms": 146823.05
+        },
+        {
+          "reason": "LeanSourceHoleFill",
+          "status": "response_received",
+          "input_tokens": 8715,
+          "output_tokens": 21618,
+          "error_type": null,
+          "http_duration_ms": 125608.221
+        },
+        {
+          "reason": "LeanSourceHoleFill",
+          "status": "response_received",
+          "input_tokens": 8867,
+          "output_tokens": 19591,
+          "error_type": null,
+          "http_duration_ms": 99945.491
+        },
+        {
+          "reason": "SuspectedAuthoredFault",
+          "status": "response_received",
+          "input_tokens": 2182,
+          "output_tokens": 4610,
+          "error_type": null,
+          "http_duration_ms": 25070.239
+        },
+        {
+          "reason": "StepObligations",
+          "status": "response_received",
+          "input_tokens": 3277,
+          "output_tokens": 18291,
+          "error_type": null,
+          "http_duration_ms": 91591.953
+        },
+        {
+          "reason": "Explanation",
+          "status": "response_received",
+          "input_tokens": 4428,
+          "output_tokens": 1612,
+          "error_type": null,
+          "http_duration_ms": 11003.866
+        }
+      ]
+    },
+    "feedbackError": null,
+    "elapsedSeconds": 1122.27,
+    "totalElapsedSeconds": 1122.88
+  }
+]

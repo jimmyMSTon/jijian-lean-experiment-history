@@ -1,0 +1,22 @@
+LIVE_RAW_SOURCE_SHA 73bcce94d4c07e1c10ee98aeacf212d5fd5db91c6a80c8557002e46af7d4b53f
+LIVE_RUN /[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.venv/bin/python scripts/run_v2_single_live_smoke.py
+Traceback (most recent call last):
+  File "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/scripts/run_v2_single_live_smoke.py", line 181, in <module>
+    asyncio.run(run(arguments.input, arguments.output))
+  File "/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/scripts/run_v2_single_live_smoke.py", line 79, in run
+    raise RuntimeError("DeepSeek is not configured; no provider request was sent")
+RuntimeError: DeepSeek is not configured; no provider request was sent
+Traceback (most recent call last):
+  File "<stdin>", line 10, in <module>
+  File "/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.venv/bin/python', '-u', 'scripts/run_v2_single_live_smoke.py', '--input', '设 f:[0,1]→ℝ 连续，且 f(0)<0<f(1)。证明存在 c∈(0,1)，使 f(c)=0。原证明：令 S={x∈[0,1]∣f(x)<0}。因为 f(0)<0，所以 S 非空；又 S⊆[0,1]，故 S 有上确界 c=sup S。由 f 在 0 处连续且 f(0)<0，可知存在 η>0，使得 x∈[0,η] 时 f(x)<0，故 c>0。由 f(1)>0 及连续性可知在 1 的某个左邻域内 f(x)>0，故 c<1。若 f(c)<0，则连续性给出 c 右侧的某点 x∈[0,1] 满足 f(x)<0，与 c 为 S 的上界矛盾。若 f(c)>0，则连续性给出 c 左侧一个邻域内 f(x)>0；但根据上确界定义，存在 x∈S 落在该邻域，与 f(x)<0 矛盾。因此 f(c)=0，且 c∈(0,1)。', '--output', 'reports/hard-three-ivt-typed-feedback-live-20261022.json']' returned non-zero exit status 1.

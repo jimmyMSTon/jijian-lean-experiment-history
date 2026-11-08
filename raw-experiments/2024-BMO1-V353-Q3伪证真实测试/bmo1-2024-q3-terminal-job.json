@@ -1,0 +1,1511 @@
+{
+  "id": "b97ab952-b8cf-470f-8f70-649bdfba8115",
+  "status": "completed",
+  "stage": "completed",
+  "created": "2026-10-25T04:25:09.157422+00:00",
+  "updated": "2026-10-25T04:27:46.442674+00:00",
+  "request": {
+    "input": {
+      "kind": "text",
+      "text": "2024 BMO Round 1 第3题。题目：黑板起初写有 10^6。两位玩家 Rhian 和 Jack 轮流操作，Rhian 先手。当前数 N 可以写成两个不同正整数 a、b 的积 N=ab 时，可选择一组这样的 a,b，把 N 替换成 |a-b|；无法操作的人输。求谁有必胜策略并证明。\n\n证明：\n第一步，注意任何一次合法操作都严格使棋盘数字减小：由于 a,b 为正整数而且 ab=N，必有 |a-b|<ab=N。因此游戏有限，必然终结。\n第二步，任何大于1的偶数 N，只要取不同的正整数因子 a,b 满足 ab=N，这两个因子必然一奇一偶，所以 |a-b| 必为奇数。换言之，从偶数局面出发，无论执行哪一种合法操作，下一个局面一定是奇数。\n第三步，若当前 N 为奇数，则 N=ab 中 a 和 b 必定都是奇数，因此 |a-b| 一定是偶数。\n第四步，起始数字 10^6 为偶数。由第二步及第三步，奇偶性在每一步必严格交替，不依赖任何玩家选择的因子分解方式。Rhian 每次面对偶数，而 Jack 每次面对奇数。\n第五步，数字每回合严格下降，游戏最后会到达不能移动的 1；由于 1 是奇数，它只可能轮到 Jack，因此 Rhian 必胜。",
+      "assetId": null,
+      "dataUrl": null,
+      "strokes": null,
+      "recognitionId": null,
+      "parts": null
+    },
+    "explain": false
+  },
+  "result": {
+    "id": "d8b6a320-097c-4066-a9a7-0360a5e7ae62",
+    "kind": "lean_first_local",
+    "mode": "single_whole_theorem_kernel",
+    "sourceSha256": "7f181c935d4f818675d355d8549a6375b386787945fe3cbe1f66a88b807be59d",
+    "runTraceId": "ad6106dc-5171-4586-b8ec-52d05f75792b",
+    "status": "whole_proof_translation_incomplete",
+    "kernelVerified": false,
+    "formalProofCertified": false,
+    "originalProofCertified": false,
+    "sourceEquivalenceCertified": false,
+    "originalInferenceVerified": false,
+    "sourcePositionsValid": true,
+    "plannedStepCount": 5,
+    "localFormalVerifiedCount": 0,
+    "sourceSteps": [
+      {
+        "id": "source-0",
+        "index": 0,
+        "role": "inference",
+        "start": 152,
+        "end": 222,
+        "sourceExcerpt": "第一步，注意任何一次合法操作都严格使棋盘数字减小：由于 a,b 为正整数而且 ab=N，必有 |a-b|<ab=N。因此游戏有限，必然终结。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_0",
+        "dependsOn": []
+      },
+      {
+        "id": "source-1",
+        "index": 1,
+        "role": "inference",
+        "start": 223,
+        "end": 323,
+        "sourceExcerpt": "第二步，任何大于1的偶数 N，只要取不同的正整数因子 a,b 满足 ab=N，这两个因子必然一奇一偶，所以 |a-b| 必为奇数。换言之，从偶数局面出发，无论执行哪一种合法操作，下一个局面一定是奇数。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_1",
+        "dependsOn": []
+      },
+      {
+        "id": "source-2",
+        "index": 2,
+        "role": "inference",
+        "start": 324,
+        "end": 375,
+        "sourceExcerpt": "第三步，若当前 N 为奇数，则 N=ab 中 a 和 b 必定都是奇数，因此 |a-b| 一定是偶数。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_2",
+        "dependsOn": []
+      },
+      {
+        "id": "source-3",
+        "index": 3,
+        "role": "inference",
+        "start": 376,
+        "end": 460,
+        "sourceExcerpt": "第四步，起始数字 10^6 为偶数。由第二步及第三步，奇偶性在每一步必严格交替，不依赖任何玩家选择的因子分解方式。Rhian 每次面对偶数，而 Jack 每次面对奇数。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_3",
+        "dependsOn": []
+      },
+      {
+        "id": "source-4",
+        "index": 4,
+        "role": "inference",
+        "start": 461,
+        "end": 523,
+        "sourceExcerpt": "第五步，数字每回合严格下降，游戏最后会到达不能移动的 1；由于 1 是奇数，它只可能轮到 Jack，因此 Rhian 必胜。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_4",
+        "dependsOn": []
+      }
+    ],
+    "statement": "let Move : ℕ → ℕ → Prop := fun N M => ∃ a b : ℕ, 0 < a ∧ 0 < b ∧ a ≠ b ∧ N = a * b ∧ M = Nat.dist a b; ∃ σ : ℕ → ℕ, (∀ N, (∃ M, Move N M) → Move N (σ N)) ∧ (∀ n : ℕ → ℕ, n 0 = 10^6 → (∀ i, Even i → (∃ M, Move (n i) M) → n (i+1) = σ (n i) ∧ Move (n i) (n (i+1))) → (∀ i, Odd i → (∃ M, Move (n i) M) → Move (n i) (n (i+1))) → ∃ k, (∀ i < k, ∃ M, Move (n i) M) ∧ (¬ ∃ M, Move (n k) M) ∧ Odd k)",
+    "proofTerm": "by\n  -- Incomplete: source_step_1 is false (counterexample N = 8, a = 2, b = 4), so the original parity-alternation proof cannot be translated into a kernel-checkable Lean proof without changing the argument.",
+    "lean": null,
+    "unsupportedOriginalSteps": [
+      "source_step_1（第二步）错误：偶数 N 的不同正因子不一定一奇一偶。反例 N=8=2*4，取 a=2,b=4，二者不同且均为偶数，此时 |a-b|=2 仍为偶数。因此‘从偶数局面出发下一步一定是奇数’不成立。",
+      "source_step_3（第四步）依赖第二步的奇偶交替结论；由于第二步错误，无法推出奇偶性在每一步严格交替，也无法推出 Rhian 每次面对偶数、Jack 每次面对奇数。",
+      "source_step_4（第五步）依赖奇偶交替来断定终局 1（奇数）只可能轮到 Jack。由于第二步不成立，无法由原推理推出终局序号为奇数或 Rhian 必胜。"
+    ],
+    "planProvenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "ab6af26e-3f33-4ecf-ac64-d8d49bbef99f",
+      "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+      "usage": {
+        "prompt_tokens": 972,
+        "completion_tokens": 17656,
+        "total_tokens": 18628,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 16992
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 588
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "model": "deepseek-flash",
+    "goalExcerpt": "黑板起初写有 10^6。两位玩家 Rhian 和 Jack 轮流操作，Rhian 先手。当前数 N 可以写成两个不同正整数 a、b 的积 N=ab 时，可选择一组这样的 a,b，把 N 替换成 |a-b|；无法操作的人输。求谁有必胜策略并证明。",
+    "originalGivenExcerpts": [
+      "黑板起初写有 10^6。",
+      "两位玩家 Rhian 和 Jack 轮流操作，Rhian 先手。",
+      "当前数 N 可以写成两个不同正整数 a、b 的积 N=ab 时，可选择一组这样的 a,b，把 N 替换成 |a-b|；无法操作的人输。"
+    ],
+    "sourceOffsetRepairs": [],
+    "proofProvenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "d1004097-b0ae-4df9-a42b-a7e5272e327a",
+      "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+      "usage": {
+        "prompt_tokens": 1510,
+        "completion_tokens": 3708,
+        "total_tokens": 5218,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 3473
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 1126
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "authoredClaimRefutation": {
+      "status": "source_assertion_formal_negation_kernel_verified_source_unconfirmed",
+      "sourceSha256": "7f181c935d4f818675d355d8549a6375b386787945fe3cbe1f66a88b807be59d",
+      "kernelRefutationVerified": true,
+      "naturalLanguageClaimCertified": false,
+      "overallProblemDisproved": false,
+      "sourceEquivalenceCertified": false,
+      "mathClaimRefutationOnly": true,
+      "provider": {
+        "jsonParsing": {
+          "method": "deterministic_json_schema",
+          "recovered": false,
+          "edits": []
+        },
+        "provider": "deepseek",
+        "requestedModel": "deepseek-flash",
+        "model": "deepseek-flash",
+        "responseId": "e205a02b-7a02-4b7b-844a-90559f34f3b6",
+        "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+        "usage": {
+          "prompt_tokens": 1429,
+          "completion_tokens": 5358,
+          "total_tokens": 6787,
+          "prompt_tokens_details": {
+            "cached_tokens": 512
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 5008
+          },
+          "prompt_cache_hit_tokens": 512,
+          "prompt_cache_miss_tokens": 917
+        },
+        "thinking": "provider_default",
+        "promptSchemaEncoding": "compact_json_v1",
+        "structuredOutput": "json_mode_with_local_schema_validation",
+        "simulated": false
+      },
+      "candidate": {
+        "sourceExcerpt": "第二步，任何大于1的偶数 N，只要取不同的正整数因子 a,b 满足 ab=N，这两个因子必然一奇一偶，所以 |a-b| 必为奇数。换言之，从偶数局面出发，无论执行哪一种合法操作，下一个局面一定是奇数。",
+        "sourceStepIndex": 1,
+        "closedSourceAssertion": "∀ (N a b : ℕ), 1 < N → Even N → 0 < a → 0 < b → a ≠ b → N = a * b → ((Odd a ∧ Even b) ∨ (Even a ∧ Odd b))",
+        "negationProofTerm": "by\n  intro h\n  have hc := h 8 2 4 (by norm_num) ⟨4, by norm_num⟩ (by norm_num) (by norm_num) (by norm_num) (by norm_num)\n  rcases hc with hpar | hpar\n  · rcases hpar with ⟨ha, _⟩\n    rcases ha with ⟨k, hk⟩\n    omega\n  · rcases hpar with ⟨_, hb⟩\n    rcases hb with ⟨k, hk⟩\n    omega",
+        "counterexampleDescription": "取 N=8，a=2，b=4。N 是大于 1 的偶数，a,b 是不同正整数且 2·4=8，但 a 和 b 都是偶数，并非一奇一偶；因此该步声称的“不同正因子必然一奇一偶”不成立，且 |2-4|=2 仍为偶数。",
+        "candidateValid": true
+      },
+      "lockedRefutationStatement": "¬ (∀ (N a b : ℕ), 1 < N → Even N → 0 < a → 0 < b → a ≠ b → N = a * b → ((Odd a ∧ Even b) ∨ (Even a ∧ Odd b)))",
+      "lean": {
+        "localVerified": true,
+        "status": "verified",
+        "diagnostics": [],
+        "certificate": {
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "checked": true,
+          "dependencyUsage": [],
+          "formalStatement": "¬∀ (N a b : ℕ), 1 < N → Even N → 0 < a → 0 < b → a ≠ b → N = a * b → Odd a ∧ Even b ∨ Even a ∧ Odd b",
+          "statementMatched": true,
+          "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+          "expectedExpressionSha256": "78c53308235d61016ca223a1c54e539c447dca6a76d09c729e69f8eaf2aad157",
+          "proofExpressionSha256": "7e2ae636fd2401cd4300aa8777df6a3554cdb229feab91ce3ad9be74935effb6",
+          "statement_hash": "7f181c935d4f818675d355d8549a6375b386787945fe3cbe1f66a88b807be59d",
+          "nativeExpressionComparison": "structural_equal",
+          "sourceTypeSha256": "0e8eb60b551220f2aec887b2d0be5edd736064d7d88c67254959e6b8f018b7f9",
+          "sourceProofSha256": "4714e7b5beb96891f654faf743d09aca81a631f617d9cb225b35855dbc6c2016",
+          "runtime": {
+            "configured": true,
+            "executableFound": true,
+            "projectFound": true,
+            "runtimeBuilt": true,
+            "runtimeIntegrity": true,
+            "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+            "sandbox": "macos",
+            "isolated": true,
+            "ready": true,
+            "toolchain": "leanprover/lean4:v4.34.0",
+            "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+            "liveTestedInThisDistribution": false
+          },
+          "additionalAxioms": [],
+          "auditIsolation": "fresh_import_environment_reset_between_candidates"
+        },
+        "evidence": {
+          "expected": {
+            "auxiliary": [],
+            "levelParams": [],
+            "type": {
+              "app": {
+                "arg": {
+                  "forallE": {
+                    "binder": "explicit",
+                    "body": {
+                      "forallE": {
+                        "binder": "explicit",
+                        "body": {
+                          "forallE": {
+                            "binder": "explicit",
+                            "body": {
+                              "forallE": {
+                                "binder": "explicit",
+                                "body": {
+                                  "forallE": {
+                                    "binder": "explicit",
+                                    "body": {
+                                      "forallE": {
+                                        "binder": "explicit",
+                                        "body": {
+                                          "forallE": {
+                                            "binder": "explicit",
+                                            "body": {
+                                              "forallE": {
+                                                "binder": "explicit",
+                                                "body": {
+                                                  "forallE": {
+                                                    "binder": "explicit",
+                                                    "body": {
+                                                      "app": {
+                                                        "arg": {
+                                                          "app": {
+                                                            "arg": {
+                                                              "app": {
+                                                                "arg": {
+                                                                  "bvar": {
+                                                                    "index": 6
+                                                                  }
+                                                                },
+                                                                "fn": {
+                                                                  "app": {
+                                                                    "arg": {
+                                                                      "const": {
+                                                                        "levels": [],
+                                                                        "name": {
+                                                                          "str": {
+                                                                            "parent": {
+                                                                              "str": {
+                                                                                "parent": "anonymous",
+                                                                                "value": "Nat"
+                                                                              }
+                                                                            },
+                                                                            "value": "instSemiring"
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    },
+                                                                    "fn": {
+                                                                      "app": {
+                                                                        "arg": {
+                                                                          "const": {
+                                                                            "levels": [],
+                                                                            "name": {
+                                                                              "str": {
+                                                                                "parent": "anonymous",
+                                                                                "value": "Nat"
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        },
+                                                                        "fn": {
+                                                                          "const": {
+                                                                            "levels": [
+                                                                              "zero"
+                                                                            ],
+                                                                            "name": {
+                                                                              "str": {
+                                                                                "parent": "anonymous",
+                                                                                "value": "Odd"
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            },
+                                                            "fn": {
+                                                              "app": {
+                                                                "arg": {
+                                                                  "app": {
+                                                                    "arg": {
+                                                                      "bvar": {
+                                                                        "index": 7
+                                                                      }
+                                                                    },
+                                                                    "fn": {
+                                                                      "app": {
+                                                                        "arg": {
+                                                                          "const": {
+                                                                            "levels": [],
+                                                                            "name": {
+                                                                              "str": {
+                                                                                "parent": "anonymous",
+                                                                                "value": "instAddNat"
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        },
+                                                                        "fn": {
+                                                                          "app": {
+                                                                            "arg": {
+                                                                              "const": {
+                                                                                "levels": [],
+                                                                                "name": {
+                                                                                  "str": {
+                                                                                    "parent": "anonymous",
+                                                                                    "value": "Nat"
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            },
+                                                                            "fn": {
+                                                                              "const": {
+                                                                                "levels": [
+                                                                                  "zero"
+                                                                                ],
+                                                                                "name": {
+                                                                                  "str": {
+                                                                                    "parent": "anonymous",
+                                                                                    "value": "Even"
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                },
+                                                                "fn": {
+                                                                  "const": {
+                                                                    "levels": [],
+                                                                    "name": {
+                                                                      "str": {
+                                                                        "parent": "anonymous",
+                                                                        "value": "And"
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        },
+                                                        "fn": {
+                                                          "app": {
+                                                            "arg": {
+                                                              "app": {
+                                                                "arg": {
+                                                                  "app": {
+                                                                    "arg": {
+                                                                      "bvar": {
+                                                                        "index": 6
+                                                                      }
+                                                                    },
+                                                                    "fn": {
+                                                                      "app": {
+                                                                        "arg": {
+                                                                          "const": {
+                                                                            "levels": [],
+                                                                            "name": {
+                                                                              "str": {
+                                                                                "parent": "anonymous",
+                                                                                "value": "instAddNat"
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        },
+                                                                        "fn": {
+                                                                          "app": {
+                                                                            "arg": {
+                                                                              "const": {
+                                                                                "levels": [],
+                                                                                "name": {
+                                                                                  "str": {
+                                                                                    "parent": "anonymous",
+                                                                                    "value": "Nat"
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            },
+                                                                            "fn": {
+                                                                              "const": {
+                                                                                "levels": [
+                                                                                  "zero"
+                                                                                ],
+                                                                                "name": {
+                                                                                  "str": {
+                                                                                    "parent": "anonymous",
+                                                                                    "value": "Even"
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                },
+                                                                "fn": {
+                                                                  "app": {
+                                                                    "arg": {
+                                                                      "app": {
+                                                                        "arg": {
+                                                                          "bvar": {
+                                                                            "index": 7
+                                                                          }
+                                                                        },
+                                                                        "fn": {
+                                                                          "app": {
+                                                                            "arg": {
+                                                                              "const": {
+                                                                                "levels": [],
+                                                                                "name": {
+                                                                                  "str": {
+                                                                                    "parent": {
+                                                                                      "str": {
+                                                                                        "parent": "anonymous",
+                                                                                        "value": "Nat"
+                                                                                      }
+                                                                                    },
+                                                                                    "value": "instSemiring"
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            },
+                                                                            "fn": {
+                                                                              "app": {
+                                                                                "arg": {
+                                                                                  "const": {
+                                                                                    "levels": [],
+                                                                                    "name": {
+                                                                                      "str": {
+                                                                                        "parent": "anonymous",
+                                                                                        "value": "Nat"
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                },
+                                                                                "fn": {
+                                                                                  "const": {
+                                                                                    "levels": [
+                                                                                      "zero"
+                                                                                    ],
+                                                                                    "name": {
+                                                                                      "str": {
+                                                                                        "parent": "anonymous",
+                                                                                        "value": "Odd"
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    },
+                                                                    "fn": {
+                                                                      "const": {
+                                                                        "levels": [],
+                                                                        "name": {
+                                                                          "str": {
+                                                                            "parent": "anonymous",
+                                                                            "value": "And"
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            },
+                                                            "fn": {
+                                                              "const": {
+                                                                "levels": [],
+                                                                "name": {
+                                                                  "str": {
+                                                                    "parent": "anonymous",
+                                                                    "value": "Or"
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                    "name": {
+                                                      "num": {
+                                                        "parent": {
+                                                          "str": {
+                                                            "parent": {
+                                                              "str": {
+                                                                "parent": {
+                                                                  "str": {
+                                                                    "parent": {
+                                                                      "str": {
+                                                                        "parent": "anonymous",
+                                                                        "value": "a"
+                                                                      }
+                                                                    },
+                                                                    "value": "_@"
+                                                                  }
+                                                                },
+                                                                "value": "_internal"
+                                                              }
+                                                            },
+                                                            "value": "_hyg"
+                                                          }
+                                                        },
+                                                        "value": 0
+                                                      }
+                                                    },
+                                                    "type": {
+                                                      "app": {
+                                                        "arg": {
+                                                          "app": {
+                                                            "arg": {
+                                                              "bvar": {
+                                                                "index": 5
+                                                              }
+                                                            },
+                                                            "fn": {
+                                                              "app": {
+                                                                "arg": {
+                                                                  "bvar": {
+                                                                    "index": 6
+                                                                  }
+                                                                },
+                                                                "fn": {
+                                                                  "app": {
+                                                                    "arg": {
+                                                                      "app": {
+                                                                        "arg": {
+                                                                          "const": {
+                                                                            "levels": [],
+                                                                            "name": {
+                                                                              "str": {
+                                                                                "parent": "anonymous",
+                                                                                "value": "instMulNat"
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        },
+                                                                        "fn": {
+                                                                          "app": {
+                                                                            "arg": {
+                                                                              "const": {
+                                                                                "levels": [],
+                                                                                "name": {
+                                                                                  "str": {
+                                                                                    "parent": "anonymous",
+                                                                                    "value": "Nat"
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            },
+                                                                            "fn": {
+                                                                              "const": {
+                                                                                "levels": [
+                                                                                  "zero"
+                                                                                ],
+                                                                                "name": {
+                                                                                  "str": {
+                                                                                    "parent": "anonymous",
+                                                                                    "value": "instHMul"
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    },
+                                                                    "fn": {
+                                                                      "app": {
+                                                                        "arg": {
+                                                                          "const": {
+                                                                            "levels": [],
+                                                                            "name": {
+                                                                              "str": {
+                                                                                "parent": "anonymous",
+                                                                                "value": "Nat"
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        },
+                                                                        "fn": {
+                                                                          "app": {
+                                                                            "arg": {
+                                                                              "const": {
+                                                                                "levels": [],
+                                                                                "name": {
+                                                                                  "str": {
+                                                                                    "parent": "anonymous",
+                                                                                    "value": "Nat"
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            },
+                                                                            "fn": {
+                                                                              "app": {
+                                                                                "arg": {
+                                                                                  "const": {
+                                                                                    "levels": [],
+                                                                                    "name": {
+                                                                                      "str": {
+                                                                                        "parent": "anonymous",
+                                                                                        "value": "Nat"
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                },
+                                                                                "fn": {
+                                                                                  "const": {
+                                                                                    "levels": [
+                                                                                      "zero",
+                                                                                      "zero",
+                                                                                      "zero"
+                                                                                    ],
+                                                                                    "name": {
+                                                                                      "str": {
+                                                                                        "parent": {
+                                                                                          "str": {
+                                                                                            "parent": "anonymous",
+                                                                                            "value": "HMul"
+                                                                                          }
+                                                                                        },
+                                                                                        "value": "hMul"
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        },
+                                                        "fn": {
+                                                          "app": {
+                                                            "arg": {
+                                                              "bvar": {
+                                                                "index": 7
+                                                              }
+                                                            },
+                                                            "fn": {
+                                                              "app": {
+                                                                "arg": {
+                                                                  "const": {
+                                                                    "levels": [],
+                                                                    "name": {
+                                                                      "str": {
+                                                                        "parent": "anonymous",
+                                                                        "value": "Nat"
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                },
+                                                                "fn": {
+                                                                  "const": {
+                                                                    "levels": [
+                                                                      {
+                                                                        "succ": {
+                                                                          "value": "zero"
+                                                                        }
+                                                                      }
+                                                                    ],
+                                                                    "name": {
+                                                                      "str": {
+                                                                        "parent": "anonymous",
+                                                                        "value": "Eq"
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "name": {
+                                                  "num": {
+                                                    "parent": {
+                                                      "str": {
+                                                        "parent": {
+                                                          "str": {
+                                                            "parent": {
+                                                              "str": {
+                                                                "parent": {
+                                                                  "str": {
+                                                                    "parent": "anonymous",
+                                                                    "value": "a"
+                                                                  }
+                                                                },
+                                                                "value": "_@"
+                                                              }
+                                                            },
+                                                            "value": "_internal"
+                                                          }
+                                                        },
+                                                        "value": "_hyg"
+                                                      }
+                                                    },
+                                                    "value": 0
+                                                  }
+                                                },
+                                                "type": {
+                                                  "app": {
+                                                    "arg": {
+                                                      "bvar": {
+                                                        "index": 4
+                                                      }
+                                                    },
+                                                    "fn": {
+                                                      "app": {
+                                                        "arg": {
+                                                          "bvar": {
+                                                            "index": 5
+                                                          }
+                                                        },
+                                                        "fn": {
+                                                          "app": {
+                                                            "arg": {
+                                                              "const": {
+                                                                "levels": [],
+                                                                "name": {
+                                                                  "str": {
+                                                                    "parent": "anonymous",
+                                                                    "value": "Nat"
+                                                                  }
+                                                                }
+                                                              }
+                                                            },
+                                                            "fn": {
+                                                              "const": {
+                                                                "levels": [
+                                                                  {
+                                                                    "succ": {
+                                                                      "value": "zero"
+                                                                    }
+                                                                  }
+                                                                ],
+                                                                "name": {
+                                                                  "str": {
+                                                                    "parent": "anonymous",
+                                                                    "value": "Ne"
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "name": {
+                                              "num": {
+                                                "parent": {
+                                                  "str": {
+                                                    "parent": {
+                                                      "str": {
+                                                        "parent": {
+                                                          "str": {
+                                                            "parent": {
+                                                              "str": {
+                                                                "parent": "anonymous",
+                                                                "value": "a"
+                                                              }
+                                                            },
+                                                            "value": "_@"
+                                                          }
+                                                        },
+                                                        "value": "_internal"
+                                                      }
+                                                    },
+                                                    "value": "_hyg"
+                                                  }
+                                                },
+                                                "value": 0
+                                              }
+                                            },
+                                            "type": {
+                                              "app": {
+                                                "arg": {
+                                                  "bvar": {
+                                                    "index": 3
+                                                  }
+                                                },
+                                                "fn": {
+                                                  "app": {
+                                                    "arg": {
+                                                      "app": {
+                                                        "arg": {
+                                                          "app": {
+                                                            "arg": {
+                                                              "natLit": {
+                                                                "value": 0
+                                                              }
+                                                            },
+                                                            "fn": {
+                                                              "const": {
+                                                                "levels": [],
+                                                                "name": {
+                                                                  "str": {
+                                                                    "parent": "anonymous",
+                                                                    "value": "instOfNatNat"
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        },
+                                                        "fn": {
+                                                          "app": {
+                                                            "arg": {
+                                                              "natLit": {
+                                                                "value": 0
+                                                              }
+                                                            },
+                                                            "fn": {
+                                                              "app": {
+                                                                "arg": {
+                                                                  "const": {
+                                                                    "levels": [],
+                                                                    "name": {
+                                                                      "str": {
+                                                                        "parent": "anonymous",
+                                                                        "value": "Nat"
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                },
+                                                                "fn": {
+                                                                  "const": {
+                                                                    "levels": [
+                                                                      "zero"
+                                                                    ],
+                                                                    "name": {
+                                                                      "str": {
+                                                                        "parent": {
+                                                                          "str": {
+                                                                            "parent": "anonymous",
+                                                                            "value": "OfNat"
+                                                                          }
+                                                                        },
+                                                                        "value": "ofNat"
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                    "fn": {
+                                                      "app": {
+                                                        "arg": {
+                                                          "const": {
+                                                            "levels": [],
+                                                            "name": {
+                                                              "str": {
+                                                                "parent": "anonymous",
+                                                                "value": "instLTNat"
+                                                              }
+                                                            }
+                                                          }
+                                                        },
+                                                        "fn": {
+                                                          "app": {
+                                                            "arg": {
+                                                              "const": {
+                                                                "levels": [],
+                                                                "name": {
+                                                                  "str": {
+                                                                    "parent": "anonymous",
+                                                                    "value": "Nat"
+                                                                  }
+                                                                }
+                                                              }
+                                                            },
+                                                            "fn": {
+                                                              "const": {
+                                                                "levels": [
+                                                                  "zero"
+                                                                ],
+                                                                "name": {
+                                                                  "str": {
+                                                                    "parent": {
+                                                                      "str": {
+                                                                        "parent": "anonymous",
+                                                                        "value": "LT"
+                                                                      }
+                                                                    },
+                                                                    "value": "lt"
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "name": {
+                                          "num": {
+                                            "parent": {
+                                              "str": {
+                                                "parent": {
+                                                  "str": {
+                                                    "parent": {
+                                                      "str": {
+                                                        "parent": {
+                                                          "str": {
+                                                            "parent": "anonymous",
+                                                            "value": "a"
+                                                          }
+                                                        },
+                                                        "value": "_@"
+                                                      }
+                                                    },
+                                                    "value": "_internal"
+                                                  }
+                                                },
+                                                "value": "_hyg"
+                                              }
+                                            },
+                                            "value": 0
+                                          }
+                                        },
+                                        "type": {
+                                          "app": {
+                                            "arg": {
+                                              "bvar": {
+                                                "index": 3
+                                              }
+                                            },
+                                            "fn": {
+                                              "app": {
+                                                "arg": {
+                                                  "app": {
+                                                    "arg": {
+                                                      "app": {
+                                                        "arg": {
+                                                          "natLit": {
+                                                            "value": 0
+                                                          }
+                                                        },
+                                                        "fn": {
+                                                          "const": {
+                                                            "levels": [],
+                                                            "name": {
+                                                              "str": {
+                                                                "parent": "anonymous",
+                                                                "value": "instOfNatNat"
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                    "fn": {
+                                                      "app": {
+                                                        "arg": {
+                                                          "natLit": {
+                                                            "value": 0
+                                                          }
+                                                        },
+                                                        "fn": {
+                                                          "app": {
+                                                            "arg": {
+                                                              "const": {
+                                                                "levels": [],
+                                                                "name": {
+                                                                  "str": {
+                                                                    "parent": "anonymous",
+                                                                    "value": "Nat"
+                                                                  }
+                                                                }
+                                                              }
+                                                            },
+                                                            "fn": {
+                                                              "const": {
+                                                                "levels": [
+                                                                  "zero"
+                                                                ],
+                                                                "name": {
+                                                                  "str": {
+                                                                    "parent": {
+                                                                      "str": {
+                                                                        "parent": "anonymous",
+                                                                        "value": "OfNat"
+                                                                      }
+                                                                    },
+                                                                    "value": "ofNat"
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "fn": {
+                                                  "app": {
+                                                    "arg": {
+                                                      "const": {
+                                                        "levels": [],
+                                                        "name": {
+                                                          "str": {
+                                                            "parent": "anonymous",
+                                                            "value": "instLTNat"
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                    "fn": {
+                                                      "app": {
+                                                        "arg": {
+                                                          "const": {
+                                                            "levels": [],
+                                                            "name": {
+                                                              "str": {
+                                                                "parent": "anonymous",
+                                                                "value": "Nat"
+                                                              }
+                                                            }
+                                                          }
+                                                        },
+                                                        "fn": {
+                                                          "const": {
+                                                            "levels": [
+                                                              "zero"
+                                                            ],
+                                                            "name": {
+                                                              "str": {
+                                                                "parent": {
+                                                                  "str": {
+                                                                    "parent": "anonymous",
+                                                                    "value": "LT"
+                                                                  }
+                                                                },
+                                                                "value": "lt"
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "name": {
+                                      "num": {
+                                        "parent": {
+                                          "str": {
+                                            "parent": {
+                                              "str": {
+                                                "parent": {
+                                                  "str": {
+                                                    "parent": {
+                                                      "str": {
+                                                        "parent": "anonymous",
+                                                        "value": "a"
+                                                      }
+                                                    },
+                                                    "value": "_@"
+                                                  }
+                                                },
+                                                "value": "_internal"
+                                              }
+                                            },
+                                            "value": "_hyg"
+                                          }
+                                        },
+                                        "value": 0
+                                      }
+                                    },
+                                    "type": {
+                                      "app": {
+                                        "arg": {
+                                          "bvar": {
+                                            "index": 3
+                                          }
+                                        },
+                                        "fn": {
+                                          "app": {
+                                            "arg": {
+                                              "const": {
+                                                "levels": [],
+                                                "name": {
+                                                  "str": {
+                                                    "parent": "anonymous",
+                                                    "value": "instAddNat"
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "fn": {
+                                              "app": {
+                                                "arg": {
+                                                  "const": {
+                                                    "levels": [],
+                                                    "name": {
+                                                      "str": {
+                                                        "parent": "anonymous",
+                                                        "value": "Nat"
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "fn": {
+                                                  "const": {
+                                                    "levels": [
+                                                      "zero"
+                                                    ],
+                                                    "name": {
+                                                      "str": {
+                                                        "parent": "anonymous",
+                                                        "value": "Even"
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "name": {
+                                  "num": {
+                                    "parent": {
+                                      "str": {
+                                        "parent": {
+                                          "str": {
+                                            "parent": {
+                                              "str": {
+                                                "parent": {
+                                                  "str": {
+                                                    "parent": "anonymous",
+                                                    "value": "a"
+                                                  }
+                                                },
+                                                "value": "_@"
+                                              }
+                                            },
+                                            "value": "_internal"
+                                          }
+                                        },
+                                        "value": "_hyg"
+                                      }
+                                    },
+                                    "value": 0
+                                  }
+                                },
+                                "type": {
+                                  "app": {
+                                    "arg": {
+                                      "bvar": {
+                                        "index": 2
+                                      }
+                                    },
+                                    "fn": {
+                                      "app": {
+                                        "arg": {
+                                          "app": {
+                                            "arg": {
+                                              "app": {
+                                                "arg": {
+                                                  "natLit": {
+                                                    "value": 1
+                                                  }
+                                                },
+                                                "fn": {
+                                                  "const": {
+                                                    "levels": [],
+                                                    "name": {
+                                                      "str": {
+                                                        "parent": "anonymous",
+                                                        "value": "instOfNatNat"
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "fn": {
+                                              "app": {
+                                                "arg": {
+                                                  "natLit": {
+                                                    "value": 1
+                                                  }
+                                                },
+                                                "fn": {
+                                                  "app": {
+                                                    "arg": {
+                                                      "const": {
+                                                        "levels": [],
+                                                        "name": {
+                                                          "str": {
+                                                            "parent": "anonymous",
+                                                            "value": "Nat"
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                    "fn": {
+                                                      "const": {
+                                                        "levels": [
+                                                          "zero"
+                                                        ],
+                                                        "name": {
+                                                          "str": {
+                                                            "parent": {
+                                                              "str": {
+                                                                "parent": "anonymous",
+                                                                "value": "OfNat"
+                                                              }
+                                                            },
+                                                            "value": "ofNat"
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "fn": {
+                                          "app": {
+                                            "arg": {
+                                              "const": {
+                                                "levels": [],
+                                                "name": {
+                                                  "str": {
+                                                    "parent": "anonymous",
+                                                    "value": "instLTNat"
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "fn": {
+                                              "app": {
+                                                "arg": {
+                                                  "const": {
+                                                    "levels": [],
+                                                    "name": {
+                                                      "str": {
+                                                        "parent": "anonymous",
+                                                        "value": "Nat"
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "fn": {
+                                                  "const": {
+                                                    "levels": [
+                                                      "zero"
+                                                    ],
+                                                    "name": {
+                                                      "str": {
+                                                        "parent": {
+                                                          "str": {
+                                                            "parent": "anonymous",
+                                                            "value": "LT"
+                                                          }
+                                                        },
+                                                        "value": "lt"
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "name": {
+                              "str": {
+                                "parent": "anonymous",
+                                "value": "b"
+                              }
+                            },
+                            "type": {
+                              "const": {
+                                "levels": [],
+                                "name": {
+                                  "str": {
+                                    "parent": "anonymous",
+                                    "value": "Nat"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "name": {
+                          "str": {
+                            "parent": "anonymous",
+                            "value": "a"
+                          }
+                        },
+                        "type": {
+                          "const": {
+                            "levels": [],
+                            "name": {
+                              "str": {
+                                "parent": "anonymous",
+                                "value": "Nat"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "name": {
+                      "str": {
+                        "parent": "anonymous",
+                        "value": "N"
+                      }
+                    },
+                    "type": {
+                      "const": {
+                        "levels": [],
+                        "name": {
+                          "str": {
+                            "parent": "anonymous",
+                            "value": "Nat"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "fn": {
+                  "const": {
+                    "levels": [],
+                    "name": {
+                      "str": {
+                        "parent": "anonymous",
+                        "value": "Not"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "value": null
+          },
+          "proof": "[oversized elaborated Lean expression omitted; see certificate SHA-256]",
+          "omissions": {
+            "proof": {
+              "omitted": true,
+              "utf8Bytes": 668507,
+              "canonicalSha256": "7e2ae636fd2401cd4300aa8777df6a3554cdb229feab91ce3ad9be74935effb6",
+              "reason": "bounded_http_storage_evidence_after_kernel_check"
+            }
+          }
+        }
+      }
+    },
+    "version": "3.5.3",
+    "source": {
+      "kind": "text",
+      "raw": "2024 BMO Round 1 第3题。题目：黑板起初写有 10^6。两位玩家 Rhian 和 Jack 轮流操作，Rhian 先手。当前数 N 可以写成两个不同正整数 a、b 的积 N=ab 时，可选择一组这样的 a,b，把 N 替换成 |a-b|；无法操作的人输。求谁有必胜策略并证明。\n\n证明：\n第一步，注意任何一次合法操作都严格使棋盘数字减小：由于 a,b 为正整数而且 ab=N，必有 |a-b|<ab=N。因此游戏有限，必然终结。\n第二步，任何大于1的偶数 N，只要取不同的正整数因子 a,b 满足 ab=N，这两个因子必然一奇一偶，所以 |a-b| 必为奇数。换言之，从偶数局面出发，无论执行哪一种合法操作，下一个局面一定是奇数。\n第三步，若当前 N 为奇数，则 N=ab 中 a 和 b 必定都是奇数，因此 |a-b| 一定是偶数。\n第四步，起始数字 10^6 为偶数。由第二步及第三步，奇偶性在每一步必严格交替，不依赖任何玩家选择的因子分解方式。Rhian 每次面对偶数，而 Jack 每次面对奇数。\n第五步，数字每回合严格下降，游戏最后会到达不能移动的 1；由于 1 是奇数，它只可能轮到 Jack，因此 Rhian 必胜。",
+      "normalized": "2024 BMO Round 1 第3题。题目：黑板起初写有 10^6。两位玩家 Rhian 和 Jack 轮流操作，Rhian 先手。当前数 N 可以写成两个不同正整数 a、b 的积 N=ab 时，可选择一组这样的 a,b，把 N 替换成 |a-b|；无法操作的人输。求谁有必胜策略并证明。\n\n证明：\n第一步，注意任何一次合法操作都严格使棋盘数字减小：由于 a,b 为正整数而且 ab=N，必有 |a-b|<ab=N。因此游戏有限，必然终结。\n第二步，任何大于1的偶数 N，只要取不同的正整数因子 a,b 满足 ab=N，这两个因子必然一奇一偶，所以 |a-b| 必为奇数。换言之，从偶数局面出发，无论执行哪一种合法操作，下一个局面一定是奇数。\n第三步，若当前 N 为奇数，则 N=ab 中 a 和 b 必定都是奇数，因此 |a-b| 一定是偶数。\n第四步，起始数字 10^6 为偶数。由第二步及第三步，奇偶性在每一步必严格交替，不依赖任何玩家选择的因子分解方式。Rhian 每次面对偶数，而 Jack 每次面对奇数。\n第五步，数字每回合严格下降，游戏最后会到达不能移动的 1；由于 1 是奇数，它只可能轮到 Jack，因此 Rhian 必胜。",
+      "recognitionId": null,
+      "transcriptionEvidence": null,
+      "blocks": [
+        {
+          "id": "b0",
+          "text": "2024 BMO Round 1 第3题。题目：黑板起初写有 10^6。两位玩家 Rhian 和 Jack 轮流操作，Rhian 先手。当前数 N 可以写成两个不同正整数 a、b 的积 N=ab 时，可选择一组这样的 a,b，把 N 替换成 |a-b|；无法操作的人输。求谁有必胜策略并证明。\n\n证明：\n第一步，注意任何一次合法操作都严格使棋盘数字减小：由于 a,b 为正整数而且 ab=N，必有 |a-b|<ab=N。因此游戏有限，必然终结。\n第二步，任何大于1的偶数 N，只要取不同的正整数因子 a,b 满足 ab=N，这两个因子必然一奇一偶，所以 |a-b| 必为奇数。换言之，从偶数局面出发，无论执行哪一种合法操作，下一个局面一定是奇数。\n第三步，若当前 N 为奇数，则 N=ab 中 a 和 b 必定都是奇数，因此 |a-b| 一定是偶数。\n第四步，起始数字 10^6 为偶数。由第二步及第三步，奇偶性在每一步必严格交替，不依赖任何玩家选择的因子分解方式。Rhian 每次面对偶数，而 Jack 每次面对奇数。\n第五步，数字每回合严格下降，游戏最后会到达不能移动的 1；由于 1 是奇数，它只可能轮到 Jack，因此 Rhian 必胜。",
+          "page": null,
+          "bbox": null,
+          "confidence": null,
+          "assetId": null,
+          "providerData": {}
+        }
+      ]
+    },
+    "inputKind": "text",
+    "authority": "single_locked_complete_formal_theorem_kernel_not_natural_language_fidelity"
+  },
+  "error": null
+}

@@ -1,0 +1,171 @@
+{
+  "version": "proof-fidelity-local-kernel-replay/1",
+  "sourceLiveReport": "proof-fidelity-wrong-square-2026-10-14.json",
+  "sourceInputSha256": "e13f1eb7b320d77f755c1b92bc0e58072cc9929b426f0bfdc09ed282e89be68f",
+  "mathIRSha256": "68bfd74dfe12993638d56c3afc4d716138d979794c17a6ac5acc0ce52986de90",
+  "statementHash": "0eece1a39a8c6b00cef663dc30d646565818f0fbc946f1b145a2cc1f1c4c0a67",
+  "providerRequests": 0,
+  "executionKind": "saved real DeepSeek MathIR and generated proof term replayed on current source-attested Lean/Kernel; no new provider calls",
+  "leanRuntime": {
+    "configured": true,
+    "executableFound": true,
+    "projectFound": true,
+    "runtimeBuilt": true,
+    "runtimeIntegrity": true,
+    "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+    "sandbox": "macos",
+    "isolated": true,
+    "ready": true,
+    "toolchain": "leanprover/lean4:v4.34.0",
+    "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+    "liveTestedInThisDistribution": false
+  },
+  "fixedStatementKernelPassed": false,
+  "originalRouteKernelPassed": false,
+  "routeStatus": "incomplete",
+  "proofComposition": {
+    "status": "incomplete",
+    "error": "A claim in the route has no original proof term",
+    "kernelChecked": false
+  },
+  "sourceAlignment": {
+    "status": "ambiguous",
+    "modelAssessment": "supported",
+    "transcriptionStatus": "confirmed",
+    "unresolvedAmbiguityIds": [
+      "amb_square_condition"
+    ],
+    "sourceRefsValidated": true,
+    "semanticAlignmentKernelProven": false
+  },
+  "steps": [
+    {
+      "nodeId": "n_square_step",
+      "status": "incomplete",
+      "proofAttemptStatus": "missing_proof",
+      "mathematicalStatus": "not_established",
+      "failureClass": "missing_proof",
+      "expectedType": "(∀ (v_x_decl : ℝ), (∀ (v_y_decl : ℝ), ((v_x_decl ≤ v_y_decl) → (∀ (jjdep_n_ass_xy_le : (v_x_decl ≤ v_y_decl)), ((v_x_decl ^ (2 : ℕ)) ≤ (v_y_decl ^ (2 : ℕ)))))))",
+      "sourceRefs": [
+        {
+          "blockId": "b0",
+          "start": 21,
+          "end": 41
+        },
+        {
+          "blockId": "b0",
+          "start": 35,
+          "end": 40
+        }
+      ],
+      "dependsOn": [
+        "n_ass_xy_le"
+      ],
+      "dependencyEvidence": "dependency_usage_not_audited",
+      "kernel": {
+        "checked": null,
+        "statementMatched": null,
+        "additionalAxioms": null
+      },
+      "diagnostics": []
+    },
+    {
+      "nodeId": "n_conclusion",
+      "status": "passed",
+      "proofAttemptStatus": "verified",
+      "mathematicalStatus": "conditionally_established",
+      "failureClass": null,
+      "expectedType": "(∀ (v_x_decl : ℝ), (∀ (v_y_decl : ℝ), ((v_x_decl ≤ v_y_decl) → (∀ (jjdep_n_square_step : ((v_x_decl ^ (2 : ℕ)) ≤ (v_y_decl ^ (2 : ℕ)))), ((v_x_decl ^ (2 : ℕ)) ≤ (v_y_decl ^ (2 : ℕ)))))))",
+      "sourceRefs": [
+        {
+          "blockId": "b0",
+          "start": 41,
+          "end": 53
+        },
+        {
+          "blockId": "b0",
+          "start": 47,
+          "end": 52
+        }
+      ],
+      "dependsOn": [
+        "n_square_step"
+      ],
+      "dependencyEvidence": "all_declared_dependencies_used",
+      "kernel": {
+        "checked": true,
+        "statementMatched": true,
+        "additionalAxioms": []
+      },
+      "diagnostics": []
+    }
+  ],
+  "aggregateKernel": {
+    "checked": null,
+    "statementMatched": null,
+    "additionalAxioms": null
+  },
+  "leanMetrics": {
+    "processCount": 2,
+    "elapsedSeconds": 28.096,
+    "processes": [
+      {
+        "phase": "statement_proof_export_batch",
+        "wallSeconds": 14.65,
+        "queueWaitSeconds": 0.0004,
+        "slot": 0,
+        "parallelism": 1,
+        "activeProcessGroupsAtStart": 1,
+        "processGroupPid": 26134,
+        "kernelInputJsonBytes": 0,
+        "status": "completed",
+        "userCpuSeconds": 2.2,
+        "systemCpuSeconds": 10.79,
+        "maxRssBytes": 6055542784,
+        "peakMemoryFootprintBytes": 937947264,
+        "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+        "leanStdoutBytes": 57765,
+        "leanStderrBytes": 755,
+        "pythonPeakRssBytes": 40714240,
+        "leanReturnCode": 1
+      },
+      {
+        "phase": "statement_proof_wire_materialization",
+        "wallSeconds": 0.0056,
+        "leanStdoutBytes": 57765,
+        "candidateCount": 1,
+        "expectedStatementCount": 2,
+        "pythonPeakRssBytes": 41271296
+      },
+      {
+        "phase": "independent_kernel_replay",
+        "wallSeconds": 13.44,
+        "queueWaitSeconds": 0.0001,
+        "slot": 0,
+        "parallelism": 1,
+        "activeProcessGroupsAtStart": 1,
+        "processGroupPid": 26148,
+        "kernelInputJsonBytes": 26358,
+        "status": "completed",
+        "userCpuSeconds": 2.18,
+        "systemCpuSeconds": 11.19,
+        "maxRssBytes": 6050775040,
+        "peakMemoryFootprintBytes": 937226432,
+        "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+        "leanStdoutBytes": 783,
+        "leanStderrBytes": 755,
+        "pythonPeakRssBytes": 41304064,
+        "leanReturnCode": 0
+      },
+      {
+        "phase": "kernel_certificate_materialization",
+        "wallSeconds": 0.0007,
+        "leanStdoutBytes": 783,
+        "certificateCount": 1,
+        "pythonPeakRssBytes": 41304064
+      }
+    ],
+    "measurement": "Lean subprocess groups; each invocation includes the sandbox launcher and Lean process. Kernel batch resets the imported environment between evidence replays."
+  },
+  "elapsedSecondsIncludingPython": 28.133
+}

@@ -1,0 +1,101 @@
+{
+  "case": {
+    "id": "gaolian-2024-r2-q2",
+    "input": "2024年全国高中数学联赛二试A卷第2题（40分）。\n原题：在凸四边形ABCD中，AC平分∠BAD，E、F分别在边BC、CD上，满足EF∥BD。分别延长FA、EA至点P、Q，使过A,B,P的圆以及过A,D,Q的圆均与AC相切。证明B,P,Q,D四点共圆。\n我的坐标证明（完整保留几何假设，不将结论写进假设）：\n第1步。以A为原点，AC为正x轴，长度尺度固定；由于AC平分角BAD，可取实数u,v满足u²+v²=1、u>0、v>0，并取b,d,c>0，使B=(bu,bv)，D=(du,-dv)，C=(c,0)。这里b=AB、d=AD、c=AC。\n第2步。因E∈BC、F∈CD且EF∥BD，依据以C为中心的相似比，存在共同参数0<t<1，使E=C+t(B-C)=(c(1-t)+tbu,tbv)，F=C+t(D-C)=(c(1-t)+tdu,-tdv)。这一步准确使用了原题的平行条件。\n第3步。任何过原点且在原点切x轴的圆均有方程x²+y²+λy=0。通过B的第一圆系数λ_1=-b/v，通过D的第二圆系数λ_2=d/v，这是分别代入B,D并用u²+v²=1得到的。\n第4步。由于P位于FA的延长线过A的另一侧，可写P=pF且p<0；因为P在第一圆上，代入得p²|F|²-(b/v)pF_y=0。由F_y=-tdv、p≠0，得p=-bdt/|F|²。完全类似，由Q=qE在第二圆上且E_y=tbv，得到q=-bdt/|E|²。记h=bdt，则P=-hF/|F|²、Q=-hE/|E|²。\n第5步。四个互异点U_i=(x_i,y_i)共圆，当且仅当行列式det[(x_i²+y_i²,x_i,y_i,1)]_{i=1}^4=0。取顺序B,D,P,Q，并代入上面的显式坐标。分母|E|²|F|²均严格为正。\n第6步。直接通分展开该4×4行列式，其分子必含因子u²+v²-1；事实上逐项整理得到行列式为 b²c d²t³ v(b-d)(t-1)(u²+v²-1)[b²(u²+v²)-2bd u²+2bd v²+d²(u²+v²)]/(|E|²|F|²)。由于u²+v²=1，该值严格等于0。代数整理仅使用第1至4步显式坐标和恒等式，无须新增原题几何假设。\n第7步。因此B,D,P,Q四点位于同一个圆上，即B,P,Q,D共圆。证毕。"
+  },
+  "jobId": "abd1dd5a-9044-45e3-8dec-6fc58595045a",
+  "jobStatus": "completed",
+  "resultStatus": "whole_proof_translation_incomplete",
+  "kernelVerified": false,
+  "formalProofCertified": false,
+  "originalProofCertified": false,
+  "fidelityReview": null,
+  "fidelityIssues": 0,
+  "sourceSteps": 7,
+  "kernelCertificate": null,
+  "unsupportedOriginalSteps": [
+    "第1步：将一般复平面构型通过旋转/缩放化为 A=0、AC 为 x 轴、B=(bu,bv)、D=(du,-dv)、C=(c,0)，并保证 u²+v²=1、u,v>0、b,d,c>0，未在 Lean 中构造并证明。",
+    "第2步：由 E∈BC、F∈CD 且 EF∥BD 推出共同的 0<t<1 参数表示 E=C+t(B-C), F=C+t(D-C)，未在 Lean 中由 OnSegment 和 Cross 条件形式化。",
+    "第3步：把圆与 AC 在 A 相切且过 B/D 化为方程 x²+y²+λy=0 并求出 λ₁=-b/v、λ₂=d/v，未在 Lean 中从 CircleTangentAt 定义推导。",
+    "第4步：由 P=pF, p<0 及 P 在第一圆上推得 P=-hF/|F|²，以及 Q=-hE/|E|²，未在 Lean 中完成点乘/范数消元。",
+    "第5步：四互异点共圆当且仅当 4×4 行列式为零，并代入 B,D,P,Q 的显式坐标，未在 Lean 中建立该行列式判据与 B,D,P,Q 互异性。",
+    "第6步：4×4 行列式的通分展开及恒等式化为含因子 (u²+v²-1) 的表达式，未在 Lean 中由 ring/field_simp 等步骤验证。",
+    "第7步：由行列式为零推出 Concyclic B P Q D，未在 Lean 中完成最后的存在圆心和半径验证。"
+  ],
+  "error": null,
+  "usage": {
+    "attempts": 8,
+    "inputTokens": 21989,
+    "outputTokens": 99753,
+    "missingUsage": 0,
+    "requests": [
+      {
+        "reason": "WholeProofPlan",
+        "status": "response_received",
+        "input_tokens": 1344,
+        "output_tokens": 24067,
+        "error_type": null,
+        "http_duration_ms": 113328.788
+      },
+      {
+        "reason": "WholeProofProgram",
+        "status": "response_received",
+        "input_tokens": 2742,
+        "output_tokens": 4643,
+        "error_type": null,
+        "http_duration_ms": 31400.002
+      },
+      {
+        "reason": "LeanProofScaffold",
+        "status": "response_received",
+        "input_tokens": 2803,
+        "output_tokens": 23840,
+        "error_type": null,
+        "http_duration_ms": 119898.271
+      },
+      {
+        "reason": "LeanSourceHoleFillBatch",
+        "status": "response_received",
+        "input_tokens": 3913,
+        "output_tokens": 7324,
+        "error_type": null,
+        "http_duration_ms": 46624.831
+      },
+      {
+        "reason": "LeanSourceHoleFill",
+        "status": "response_received",
+        "input_tokens": 3252,
+        "output_tokens": 7627,
+        "error_type": null,
+        "http_duration_ms": 50131.154
+      },
+      {
+        "reason": "SuspectedAuthoredFault",
+        "status": "response_received",
+        "input_tokens": 1893,
+        "output_tokens": 14245,
+        "error_type": null,
+        "http_duration_ms": 88690.895
+      },
+      {
+        "reason": "SourceClaimRefutation",
+        "status": "response_received",
+        "input_tokens": 2229,
+        "output_tokens": 15532,
+        "error_type": null,
+        "http_duration_ms": 79891.828
+      },
+      {
+        "reason": "Explanation",
+        "status": "response_received",
+        "input_tokens": 3813,
+        "output_tokens": 2475,
+        "error_type": null,
+        "http_duration_ms": 16107.952
+      }
+    ]
+  },
+  "feedbackError": null,
+  "elapsedSeconds": 627.51,
+  "totalElapsedSeconds": 628.08
+}

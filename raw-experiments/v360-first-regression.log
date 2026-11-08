@@ -1,0 +1,131 @@
+.....................................................................F.. [ 82%]
+........F......                                                          [100%]
+=================================== FAILURES ===================================
+_________ test_unchanged_single_goal_cannot_be_weakened_during_repair __________
+
+    def test_unchanged_single_goal_cannot_be_weakened_during_repair():
+        ai=AI(proof=TERM.replace('omega','nonexistent'),repair=TERM)
+        kernel=Kernel(first=ERR)
+>       result,_,kernel=call(ai,kernel)
+                        ^^^^^^^^^^^^^^^
+
+tests/test_lean_first_whole.py:116: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_lean_first_whole.py:66: in call
+    result=asyncio.run(verify_whole_original(SOURCE,ai,kernel))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+backend/lean_first_whole.py:387: in verify_whole_original
+    repair = await repair_locked_proof(
+backend/lean_first_repair.py:166: in repair_locked_proof
+    reply, provenance = await provider.structured(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_lean_first_whole.AI object at 0x104a38bf0>
+schema = <class 'backend.lean_first_patch_repair.LeanProofPatch'>
+instructions = '你只执行 Lean4/Mathlib 证明代码的 **局部源码补丁**，不是数学解题器。\n输入 lockedFormalStatement、originalSource、currentProofTerm 和真实 Lean 编译诊断。...mit、axiom、native_decide、unsafe。\n没有忠实且可确定的局部修法时，oldText 与 newText 输出相同并说明原因；不会冒充成功。\n此补丁仍将接受整篇 Lean Kernel 和来源忠实性独立审计。'
+payload = {'currentProofTerm': 'by\n  intro a b h\n  have source_step_0 : a + 1 = b + 1 := by nonexistent\n  have source_step_1 ...], 'kind': 'installed_mathlib_lean_check', 'missingNames': [], ...}, 'installedMathlibFiniteCountingEvidence': [], ...}
+
+    async def structured(self, schema, instructions, payload):
+        self.calls.append((schema.__name__,payload))
+        if schema.__name__=='SuspectedAuthoredFault':
+            return schema(suspected=False,sourceStepIndex=0,sourceQuote='',allegedMathematicalError='none',concreteCounterexample=''),{'model':'fixture'}
+        if schema.__name__ == 'WholeProofPlan':
+            return schema(formalStatement=self.statement,goalExcerpt=self.goal,
+                givenExcerpts=[GIVEN],steps=[
+                    {'sourceExcerpt':t,'start':SOURCE.index(t),'end':SOURCE.index(t)+len(t)}
+                    for t in (A,B)]), {'model':'fake-real-schema'}
+        if schema.__name__=='WholeProofProgram':
+            assert payload['lockedFormalStatement']==self.statement
+            assert payload['mandatoryMarkerNames']==['source_step_0','source_step_1']
+            return schema(complete=self.complete,proofTerm=self.proof,
+                unsupportedOriginalSteps=[] if self.complete else ['缺少数学推理']), {'model':'fixture'}
+        if schema.__name__=='StepObligations':
+            return schema(steps=[dict(index=i,sourceExcerpt=x['sourceExcerpt'],complete=False,formalStatement='',proofTerm='',dependsOn=[],limitations=['fixture']) for i,x in enumerate(payload['sourceSteps'])]),{'model':'fixture'}
+        if schema.__name__=='LockedProofRepair':
+            return schema(proofTerm=self.repair,repairNote='Only correct Lean syntax'), {'model':'fixture'}
+        if schema.__name__=='SourceReasonAudit':
+            return schema(steps=[{'index':i,'originalExcerpt':t,
+                          'leanEvidenceExcerpt':f'have source_step_{i}',
+                          'assessment':'matches_authored_reason','explanation':'fixture'}
+                         for i,t in enumerate((A,B))],
+                          overallAssessment='no_specific_mismatch_identified',
+                          summary='fixture audit no mathematical equivalence certificate'), {'model':'fixture'}
+>       raise AssertionError(schema.__name__)
+E       AssertionError: LeanProofPatch
+
+tests/test_lean_first_whole.py:51: AssertionError
+_____________ test_repair_deleting_step_is_rejected_before_kernel ______________
+
+    def test_repair_deleting_step_is_rejected_before_kernel():
+        first=TERM.replace('omega','unknown_lemma')
+        ai=AI(proof=first,repair="by\n  intro a b h\n  omega")
+>       result,_,kernel=call(ai,Kernel(first=ERR))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_lean_first_whole.py:235: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_lean_first_whole.py:66: in call
+    result=asyncio.run(verify_whole_original(SOURCE,ai,kernel))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+backend/lean_first_whole.py:387: in verify_whole_original
+    repair = await repair_locked_proof(
+backend/lean_first_repair.py:166: in repair_locked_proof
+    reply, provenance = await provider.structured(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_lean_first_whole.AI object at 0x104a3a1e0>
+schema = <class 'backend.lean_first_patch_repair.LeanProofPatch'>
+instructions = '你只执行 Lean4/Mathlib 证明代码的 **局部源码补丁**，不是数学解题器。\n输入 lockedFormalStatement、originalSource、currentProofTerm 和真实 Lean 编译诊断。...mit、axiom、native_decide、unsafe。\n没有忠实且可确定的局部修法时，oldText 与 newText 输出相同并说明原因；不会冒充成功。\n此补丁仍将接受整篇 Lean Kernel 和来源忠实性独立审计。'
+payload = {'currentProofTerm': 'by\n  intro a b h\n  have source_step_0 : a + 1 = b + 1 := by unknown_lemma\n  have source_step_...], 'kind': 'installed_mathlib_lean_check', 'missingNames': [], ...}, 'installedMathlibFiniteCountingEvidence': [], ...}
+
+    async def structured(self, schema, instructions, payload):
+        self.calls.append((schema.__name__,payload))
+        if schema.__name__=='SuspectedAuthoredFault':
+            return schema(suspected=False,sourceStepIndex=0,sourceQuote='',allegedMathematicalError='none',concreteCounterexample=''),{'model':'fixture'}
+        if schema.__name__ == 'WholeProofPlan':
+            return schema(formalStatement=self.statement,goalExcerpt=self.goal,
+                givenExcerpts=[GIVEN],steps=[
+                    {'sourceExcerpt':t,'start':SOURCE.index(t),'end':SOURCE.index(t)+len(t)}
+                    for t in (A,B)]), {'model':'fake-real-schema'}
+        if schema.__name__=='WholeProofProgram':
+            assert payload['lockedFormalStatement']==self.statement
+            assert payload['mandatoryMarkerNames']==['source_step_0','source_step_1']
+            return schema(complete=self.complete,proofTerm=self.proof,
+                unsupportedOriginalSteps=[] if self.complete else ['缺少数学推理']), {'model':'fixture'}
+        if schema.__name__=='StepObligations':
+            return schema(steps=[dict(index=i,sourceExcerpt=x['sourceExcerpt'],complete=False,formalStatement='',proofTerm='',dependsOn=[],limitations=['fixture']) for i,x in enumerate(payload['sourceSteps'])]),{'model':'fixture'}
+        if schema.__name__=='LockedProofRepair':
+            return schema(proofTerm=self.repair,repairNote='Only correct Lean syntax'), {'model':'fixture'}
+        if schema.__name__=='SourceReasonAudit':
+            return schema(steps=[{'index':i,'originalExcerpt':t,
+                          'leanEvidenceExcerpt':f'have source_step_{i}',
+                          'assessment':'matches_authored_reason','explanation':'fixture'}
+                         for i,t in enumerate((A,B))],
+                          overallAssessment='no_specific_mismatch_identified',
+                          summary='fixture audit no mathematical equivalence certificate'), {'model':'fixture'}
+>       raise AssertionError(schema.__name__)
+E       AssertionError: LeanProofPatch
+
+tests/test_lean_first_whole.py:51: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_lean_first_whole.py::test_unchanged_single_goal_cannot_be_weakened_during_repair
+FAILED tests/test_lean_first_whole.py::test_repair_deleting_step_is_rejected_before_kernel
+2 failed, 85 passed in 0.69s

@@ -1,0 +1,1010 @@
+{
+  "baseline": "3804bae",
+  "providerCalls": 0,
+  "statementLockPreserved": true,
+  "cases": {
+    "C05": {
+      "input": "reports/mathir-v2-stage8-live/C05.json",
+      "sourceTextMatches": true,
+      "expectedStatementHash": "a8b3779e6b1798245cd53cd244f03855ccaa95aeba67ab83018c0b2d099abe79",
+      "actualStatementHash": "a8b3779e6b1798245cd53cd244f03855ccaa95aeba67ab83018c0b2d099abe79",
+      "statementLockPreserved": true,
+      "fixedStatementKernelPassed": false,
+      "originalRouteKernelPassed": false,
+      "routes": [
+        {
+          "routeId": "route_induction",
+          "routeHash": "255606d08fad635ba930dd7cd23582099bc7ceb866d7d27c09e474f25a6a3bac",
+          "sourceEvidenceHash": "f5817a57bfd84cfc0a614eec09da86649de300ce3f4bb7357f268a14dbb28855",
+          "goalNodeId": "final_conclusion",
+          "goalProofTerm": "by\n  intro v_m\n  exact Nat.le_induction (m := (1 : ℕ)) (P := fun ind_ind_n_motive _ => (((2 : ℕ) * (∑ v_k ∈ Finset.Icc (1 : ℕ) ind_ind_n_motive, (v_k + v_m))) = ((((2 : ℕ) * v_m) * ind_ind_n_motive) + (ind_ind_n_motive * (ind_ind_n_motive + (1 : ℕ)))))) (by exact False.elim (by assumption)) (by\n  intro v_m ind_ind_n_n hcondition ih\n  have hsum : (∑ v_k ∈ Finset.Icc (1 : ℕ) (ind_ind_n_n + (1 : ℕ)), (v_k + v_m)) = (∑ v_k ∈ Finset.Icc (1 : ℕ) ind_ind_n_n, (v_k + v_m)) + (ind_ind_n_n + (1 : ℕ) + v_m) := by\n    apply Finset.sum_Icc_succ_top\n    omega\n  rw [hsum]\n  rw [Nat.mul_add, ih]\n  ring)",
+          "proofComposition": {
+            "status": "structural_induction",
+            "error": null,
+            "kernelChecked": false
+          },
+          "status": "incomplete",
+          "completeOriginalRouteKernelPassed": false,
+          "fixedStatementKernelPassed": false,
+          "routeConnectivity": {
+            "status": "connected",
+            "goalNodeIdPresent": true,
+            "unconnectedNodeIds": [],
+            "unconnectedClaimNodeIds": [],
+            "basis": "goal dependency closure plus explicit induction-case edges"
+          },
+          "dependencyEvidence": {
+            "status": "incomplete",
+            "basis": "Kernel proof expression binder-use audit for declared claim dependencies"
+          },
+          "stepResults": [
+            {
+              "sourceId": "mathir-v2/route_induction/ind_n/base",
+              "routeId": "route_induction",
+              "nodeId": "base_conclusion",
+              "kind": "induction_base",
+              "expectedType": "(∀ (v_m : ℕ), (((2 : ℕ) * (∑ v_k ∈ Finset.Icc (1 : ℕ) (1 : ℕ), (v_k + v_m))) = ((((2 : ℕ) * v_m) * (1 : ℕ)) + ((1 : ℕ) * ((1 : ℕ) + (1 : ℕ))))))",
+              "proofTerm": null,
+              "originalProofTerm": null,
+              "context": [],
+              "dependsOn": [],
+              "proofAttemptStatus": "missing_proof",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "failureClass": "missing_proof",
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 59,
+                  "end": 263
+                }
+              ],
+              "status": "incomplete",
+              "lean": {
+                "status": "missing_proof",
+                "localVerified": false,
+                "diagnostics": [],
+                "certificate": null
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_induction/ind_n/step",
+              "routeId": "route_induction",
+              "nodeId": "step4_conclusion",
+              "kind": "induction_step",
+              "expectedType": "(∀ (v_m : ℕ), (∀ (v_n : ℕ), (v_n ≥ (1 : ℕ)) → (∀ (ind_ind_n_n : ℕ), (∀ (jjdep_induction_ind_n_lower_bound : ((ind_ind_n_n ≥ (1 : ℕ)))), (∀ (jjdep_step4 : ((((2 : ℕ) * (∑ v_k ∈ Finset.Icc (1 : ℕ) (ind_ind_n_n + (1 : ℕ)), (v_k + v_m))) = ((((2 : ℕ) * v_m) * (ind_ind_n_n + (1 : ℕ))) + ((ind_ind_n_n + (1 : ℕ)) * (ind_ind_n_n + (2 : ℕ))))))), (((2 : ℕ) * (∑ v_k ∈ Finset.Icc (1 : ℕ) (ind_ind_n_n + (1 : ℕ)), (v_k + v_m))) = ((((2 : ℕ) * v_m) * (ind_ind_n_n + (1 : ℕ))) + ((ind_ind_n_n + (1 : ℕ)) * ((ind_ind_n_n + (1 : ℕ)) + (1 : ℕ))))))))))",
+              "proofTerm": "by\n  intro v_m ind_ind_n_n hcondition ih\n  have hsum : (∑ v_k ∈ Finset.Icc (1 : ℕ) (ind_ind_n_n + (1 : ℕ)), (v_k + v_m)) = (∑ v_k ∈ Finset.Icc (1 : ℕ) ind_ind_n_n, (v_k + v_m)) + (ind_ind_n_n + (1 : ℕ) + v_m) := by\n    apply Finset.sum_Icc_succ_top\n    omega\n  rw [hsum]\n  rw [Nat.mul_add, ih]\n  ring",
+              "originalProofTerm": null,
+              "context": [
+                {
+                  "source_id": "step4",
+                  "kind": "claim",
+                  "name": "jjdep_step4",
+                  "type": "(((2 : ℕ) * (∑ v_k ∈ Finset.Icc (1 : ℕ) (ind_ind_n_n + (1 : ℕ)), (v_k + v_m))) = ((((2 : ℕ) * v_m) * (ind_ind_n_n + (1 : ℕ))) + ((ind_ind_n_n + (1 : ℕ)) * (ind_ind_n_n + (2 : ℕ)))))"
+                },
+                {
+                  "source_id": "induction:ind_n:lower_bound",
+                  "kind": "structural_step_condition",
+                  "name": "jjdep_induction_ind_n_lower_bound",
+                  "type": "(ind_ind_n_n ≥ (1 : ℕ))"
+                }
+              ],
+              "dependsOn": [
+                "step4"
+              ],
+              "proofAttemptStatus": "not_proved",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "dependency_usage_not_audited",
+              "dependencyUsage": [],
+              "failureClass": "lean_proof_compile_failed",
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 59,
+                  "end": 263
+                }
+              ],
+              "status": "incomplete",
+              "lean": {
+                "localVerified": false,
+                "status": "not_proved",
+                "diagnostics": [
+                  {
+                    "severity": "error",
+                    "message": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ∑ v_k ∈ Finset.Icc 1 (ind_ind_n_n + 1), (v_k + v_m)\nin the target expression\n  ih ≥ 1 →\n    2 * ∑ v_k ∈ Finset.Icc 1 (ih + 1), (v_k + v_m) = 2 * v_m * (ih + 1) + (ih + 1) * (ih + 2) →\n      2 * ∑ v_k ∈ Finset.Icc 1 (ih + 1), (v_k + v_m) = 2 * v_m * (ih + 1) + (ih + 1) * (ih + 1 + 1)\n\nv_m ind_ind_n_n : ℕ\nhcondition : ind_ind_n_n ≥ 1\nih : ℕ\nhsum :\n  ∑ v_k ∈ Finset.Icc 1 (ind_ind_n_n + 1), (v_k + v_m) =\n    ∑ v_k ∈ Finset.Icc 1 ind_ind_n_n, (v_k + v_m) + (ind_ind_n_n + 1 + v_m)\n⊢ ih ≥ 1 →\n    2 * ∑ v_k ∈ Finset.Icc 1 (ih + 1), (v_k + v_m) = 2 * v_m * (ih + 1) + (ih + 1) * (ih + 2) →\n      2 * ∑ v_k ∈ Finset.Icc 1 (ih + 1), (v_k + v_m) = 2 * v_m * (ih + 1) + (ih + 1) * (ih + 1 + 1)",
+                    "leanPosition": {
+                      "column": 167,
+                      "line": 5
+                    },
+                    "leanEndPosition": {
+                      "column": 171,
+                      "line": 5
+                    },
+                    "stepId": "mathir-v2/route_induction/ind_n/step",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b_text",
+                        "start": 59,
+                        "end": 263
+                      }
+                    ],
+                    "mappingPrecision": "step",
+                    "raw": {
+                      "caption": "",
+                      "data": "Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ∑ v_k ∈ Finset.Icc 1 (ind_ind_n_n + 1), (v_k + v_m)\nin the target expression\n  ih ≥ 1 →\n    2 * ∑ v_k ∈ Finset.Icc 1 (ih + 1), (v_k + v_m) = 2 * v_m * (ih + 1) + (ih + 1) * (ih + 2) →\n      2 * ∑ v_k ∈ Finset.Icc 1 (ih + 1), (v_k + v_m) = 2 * v_m * (ih + 1) + (ih + 1) * (ih + 1 + 1)\n\nv_m ind_ind_n_n : ℕ\nhcondition : ind_ind_n_n ≥ 1\nih : ℕ\nhsum :\n  ∑ v_k ∈ Finset.Icc 1 (ind_ind_n_n + 1), (v_k + v_m) =\n    ∑ v_k ∈ Finset.Icc 1 ind_ind_n_n, (v_k + v_m) + (ind_ind_n_n + 1 + v_m)\n⊢ ih ≥ 1 →\n    2 * ∑ v_k ∈ Finset.Icc 1 (ih + 1), (v_k + v_m) = 2 * v_m * (ih + 1) + (ih + 1) * (ih + 2) →\n      2 * ∑ v_k ∈ Finset.Icc 1 (ih + 1), (v_k + v_m) = 2 * v_m * (ih + 1) + (ih + 1) * (ih + 1 + 1)",
+                      "endPos": {
+                        "column": 171,
+                        "line": 5
+                      },
+                      "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-mhiwjy98/Task.lean",
+                      "isSilent": false,
+                      "keepFullRange": false,
+                      "kind": "[anonymous]",
+                      "pos": {
+                        "column": 167,
+                        "line": 5
+                      },
+                      "severity": "error"
+                    }
+                  }
+                ],
+                "certificate": null
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_induction/base_calc_1",
+              "routeId": "route_induction",
+              "nodeId": "base_calc_1",
+              "kind": "claim",
+              "expectedType": "(∀ (v_m : ℕ), (∀ (v_n : ℕ), (v_n ≥ (1 : ℕ)) → (let v_S_n_def : ℕ := (∑ v_k ∈ Finset.Icc (1 : ℕ) v_n, (v_k + v_m)); (((2 : ℕ) * (∑ v_k ∈ Finset.Icc (1 : ℕ) (1 : ℕ), (v_k + v_m))) = ((2 : ℕ) * ((1 : ℕ) + v_m))))))",
+              "proofTerm": "by\n  intro v_m v_n _hv_n\n  dsimp\n  simp",
+              "originalProofTerm": "by\n  intro v_m v_n _hv_n\n  dsimp\n  simp",
+              "context": [
+                {
+                  "source_id": "m",
+                  "scope_id": "scope_problem",
+                  "kind": "variable",
+                  "name": "v_m",
+                  "type": "ℕ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "n",
+                  "scope_id": "scope_problem",
+                  "kind": "variable",
+                  "name": "v_n",
+                  "type": "ℕ",
+                  "value": null,
+                  "constraints": [
+                    {
+                      "op": "ge",
+                      "args": [
+                        {
+                          "op": "symbol",
+                          "args": [],
+                          "symbolId": "n"
+                        },
+                        {
+                          "op": "literal",
+                          "args": [],
+                          "literal": {
+                            "type": "Nat",
+                            "interpretation": "fixed",
+                            "value": "1"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "S_n_def",
+                  "scope_id": "scope_proof",
+                  "kind": "definition",
+                  "name": "v_S_n_def",
+                  "type": "ℕ",
+                  "value": {
+                    "op": "finite_sum",
+                    "args": [
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "k"
+                          },
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "m"
+                          }
+                        ]
+                      }
+                    ],
+                    "binderId": "k",
+                    "lower": {
+                      "op": "literal",
+                      "args": [],
+                      "literal": {
+                        "type": "Nat",
+                        "interpretation": "fixed",
+                        "value": "1"
+                      }
+                    },
+                    "upper": {
+                      "op": "symbol",
+                      "args": [],
+                      "symbolId": "n"
+                    },
+                    "upperInclusive": true
+                  },
+                  "constraints": [],
+                  "bindingClass": "local"
+                }
+              ],
+              "dependsOn": [],
+              "proofAttemptStatus": "verified",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "failureClass": null,
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 81,
+                  "end": 113
+                }
+              ],
+              "status": "passed",
+              "lean": {
+                "localVerified": true,
+                "status": "verified",
+                "diagnostics": [],
+                "certificate": {
+                  "auditMethod": "fresh_environment_data_only_kernel_replay",
+                  "axioms": [
+                    "propext",
+                    "Classical.choice",
+                    "Quot.sound"
+                  ],
+                  "checked": true,
+                  "dependencyUsage": [],
+                  "formalStatement": "∀ (v_m v_n : ℕ),\n  v_n ≥ 1 →\n    have v_S_n_def := ∑ v_k ∈ Finset.Icc 1 v_n, (v_k + v_m);\n    2 * ∑ v_k ∈ Finset.Icc 1 1, (v_k + v_m) = 2 * (1 + v_m)",
+                  "statementMatched": true,
+                  "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                  "expectedExpressionSha256": "a0a278d28278930a56cc92ceb796ed583e7c186721246bff5fee11d81d29c863",
+                  "proofExpressionSha256": "329bdc819fd26931f3f8ea3e180cde0ac50d430cbdf9c096ab29c846374fd626",
+                  "statement_hash": "a8b3779e6b1798245cd53cd244f03855ccaa95aeba67ab83018c0b2d099abe79",
+                  "nativeExpressionComparison": "structural_equal",
+                  "sourceTypeSha256": "e9fe4bb82ce0b6b3d8b78186371ea6ec08a68b0327a9d2fa0d6492a25a08a8bf",
+                  "sourceProofSha256": "4dd1745b18ace92717d4ea3f6a1c096fc5bbac4e48ae9ec9d63ebc79c673d7a9",
+                  "runtime": {
+                    "configured": true,
+                    "executableFound": true,
+                    "projectFound": true,
+                    "runtimeBuilt": true,
+                    "sandbox": "macos",
+                    "isolated": true,
+                    "ready": true,
+                    "toolchain": "leanprover/lean4:v4.34.0",
+                    "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                    "liveTestedInThisDistribution": false
+                  },
+                  "additionalAxioms": [],
+                  "auditIsolation": "fresh_import_environment_reset_between_candidates"
+                },
+                "evidence": {
+                  "schema": "lean-proof-evidence-v1",
+                  "sha256": "7965afdff06229c3fc4fb117c720bd029d234cb9ff5652dc168a3f11f8a644a6",
+                  "artifact": "reports/mathir-v2-stage7-proof-evidence/7965afdff06229c3fc4fb117c720bd029d234cb9ff5652dc168a3f11f8a644a6.json.gz",
+                  "uncompressedBytes": 94805,
+                  "compressedBytes": 1655
+                }
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_induction/base_calc_2",
+              "routeId": "route_induction",
+              "nodeId": "base_calc_2",
+              "kind": "claim",
+              "expectedType": "(∀ (v_m : ℕ), (∀ (v_n : ℕ), (v_n ≥ (1 : ℕ)) → (let v_S_n_def : ℕ := (∑ v_k ∈ Finset.Icc (1 : ℕ) v_n, (v_k + v_m)); (((2 : ℕ) * ((1 : ℕ) + v_m)) = (((2 : ℕ) * v_m) + (2 : ℕ))))))",
+              "proofTerm": "by\n  intro v_m v_n _hv_n\n  dsimp\n  ring",
+              "originalProofTerm": "by\n  intro v_m v_n _hv_n\n  dsimp\n  ring",
+              "context": [
+                {
+                  "source_id": "m",
+                  "scope_id": "scope_problem",
+                  "kind": "variable",
+                  "name": "v_m",
+                  "type": "ℕ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "n",
+                  "scope_id": "scope_problem",
+                  "kind": "variable",
+                  "name": "v_n",
+                  "type": "ℕ",
+                  "value": null,
+                  "constraints": [
+                    {
+                      "op": "ge",
+                      "args": [
+                        {
+                          "op": "symbol",
+                          "args": [],
+                          "symbolId": "n"
+                        },
+                        {
+                          "op": "literal",
+                          "args": [],
+                          "literal": {
+                            "type": "Nat",
+                            "interpretation": "fixed",
+                            "value": "1"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "S_n_def",
+                  "scope_id": "scope_proof",
+                  "kind": "definition",
+                  "name": "v_S_n_def",
+                  "type": "ℕ",
+                  "value": {
+                    "op": "finite_sum",
+                    "args": [
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "k"
+                          },
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "m"
+                          }
+                        ]
+                      }
+                    ],
+                    "binderId": "k",
+                    "lower": {
+                      "op": "literal",
+                      "args": [],
+                      "literal": {
+                        "type": "Nat",
+                        "interpretation": "fixed",
+                        "value": "1"
+                      }
+                    },
+                    "upper": {
+                      "op": "symbol",
+                      "args": [],
+                      "symbolId": "n"
+                    },
+                    "upperInclusive": true
+                  },
+                  "constraints": [],
+                  "bindingClass": "local"
+                }
+              ],
+              "dependsOn": [],
+              "proofAttemptStatus": "verified",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "failureClass": null,
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 81,
+                  "end": 113
+                }
+              ],
+              "status": "passed",
+              "lean": {
+                "localVerified": true,
+                "status": "verified",
+                "diagnostics": [],
+                "certificate": {
+                  "auditMethod": "fresh_environment_data_only_kernel_replay",
+                  "axioms": [
+                    "propext",
+                    "Classical.choice",
+                    "Quot.sound"
+                  ],
+                  "checked": true,
+                  "dependencyUsage": [],
+                  "formalStatement": "∀ (v_m v_n : ℕ),\n  v_n ≥ 1 →\n    have v_S_n_def := ∑ v_k ∈ Finset.Icc 1 v_n, (v_k + v_m);\n    2 * (1 + v_m) = 2 * v_m + 2",
+                  "statementMatched": true,
+                  "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                  "expectedExpressionSha256": "7510d6646b4432422e1c68145a53703cede0e70579382d9e5758de71c8bbded5",
+                  "proofExpressionSha256": "aed9d1aa7bd188e710998a5ab93adc631e0a104be7539f2948e4a0cde940e219",
+                  "statement_hash": "a8b3779e6b1798245cd53cd244f03855ccaa95aeba67ab83018c0b2d099abe79",
+                  "nativeExpressionComparison": "structural_equal",
+                  "sourceTypeSha256": "a821aed9a677acc0a26e846c75d7d1dae4b84a3f702eb62f165ce1e03b9020bc",
+                  "sourceProofSha256": "16b8528b2851c3aff51cf33452e8719e44c9399a6e8df42d156501d3231d3e49",
+                  "runtime": {
+                    "configured": true,
+                    "executableFound": true,
+                    "projectFound": true,
+                    "runtimeBuilt": true,
+                    "sandbox": "macos",
+                    "isolated": true,
+                    "ready": true,
+                    "toolchain": "leanprover/lean4:v4.34.0",
+                    "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                    "liveTestedInThisDistribution": false
+                  },
+                  "additionalAxioms": [],
+                  "auditIsolation": "fresh_import_environment_reset_between_candidates"
+                },
+                "evidence": {
+                  "schema": "lean-proof-evidence-v1",
+                  "sha256": "73643691edc859af0092e7c696ba3c834cddea613cd2cbf8c9a27042eddf6761",
+                  "artifact": "reports/mathir-v2-stage7-proof-evidence/73643691edc859af0092e7c696ba3c834cddea613cd2cbf8c9a27042eddf6761.json.gz",
+                  "uncompressedBytes": 726230,
+                  "compressedBytes": 8168
+                }
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_induction/step3",
+              "routeId": "route_induction",
+              "nodeId": "step3",
+              "kind": "claim",
+              "expectedType": "(∀ (v_m : ℕ), (∀ (v_n : ℕ), (v_n ≥ (1 : ℕ)) → (let v_S_n_def : ℕ := (∑ v_k ∈ Finset.Icc (1 : ℕ) v_n, (v_k + v_m)); ((∑ v_k ∈ Finset.Icc (1 : ℕ) (v_n + (1 : ℕ)), (v_k + v_m)) = ((∑ v_k ∈ Finset.Icc (1 : ℕ) v_n, (v_k + v_m)) + (v_n + v_m))))))",
+              "proofTerm": null,
+              "originalProofTerm": null,
+              "context": [
+                {
+                  "source_id": "m",
+                  "scope_id": "scope_problem",
+                  "kind": "variable",
+                  "name": "v_m",
+                  "type": "ℕ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "n",
+                  "scope_id": "scope_problem",
+                  "kind": "variable",
+                  "name": "v_n",
+                  "type": "ℕ",
+                  "value": null,
+                  "constraints": [
+                    {
+                      "op": "ge",
+                      "args": [
+                        {
+                          "op": "symbol",
+                          "args": [],
+                          "symbolId": "n"
+                        },
+                        {
+                          "op": "literal",
+                          "args": [],
+                          "literal": {
+                            "type": "Nat",
+                            "interpretation": "fixed",
+                            "value": "1"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "S_n_def",
+                  "scope_id": "scope_proof",
+                  "kind": "definition",
+                  "name": "v_S_n_def",
+                  "type": "ℕ",
+                  "value": {
+                    "op": "finite_sum",
+                    "args": [
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "k"
+                          },
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "m"
+                          }
+                        ]
+                      }
+                    ],
+                    "binderId": "k",
+                    "lower": {
+                      "op": "literal",
+                      "args": [],
+                      "literal": {
+                        "type": "Nat",
+                        "interpretation": "fixed",
+                        "value": "1"
+                      }
+                    },
+                    "upper": {
+                      "op": "symbol",
+                      "args": [],
+                      "symbolId": "n"
+                    },
+                    "upperInclusive": true
+                  },
+                  "constraints": [],
+                  "bindingClass": "local"
+                }
+              ],
+              "dependsOn": [],
+              "proofAttemptStatus": "missing_proof",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "failureClass": "missing_proof",
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 144,
+                  "end": 194
+                }
+              ],
+              "status": "incomplete",
+              "lean": {
+                "status": "missing_proof",
+                "localVerified": false,
+                "diagnostics": [],
+                "certificate": null
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_induction/step4",
+              "routeId": "route_induction",
+              "nodeId": "step4",
+              "kind": "claim",
+              "expectedType": "(∀ (v_m : ℕ), (∀ (v_n : ℕ), (v_n ≥ (1 : ℕ)) → (let v_S_n_def : ℕ := (∑ v_k ∈ Finset.Icc (1 : ℕ) v_n, (v_k + v_m)); (∀ (jjdep_induction_hypothesis : (((2 : ℕ) * (∑ v_k ∈ Finset.Icc (1 : ℕ) v_n, (v_k + v_m))) = ((((2 : ℕ) * v_m) * v_n) + (v_n * (v_n + (1 : ℕ)))))), (∀ (jjdep_step3 : ((∑ v_k ∈ Finset.Icc (1 : ℕ) (v_n + (1 : ℕ)), (v_k + v_m)) = ((∑ v_k ∈ Finset.Icc (1 : ℕ) v_n, (v_k + v_m)) + (v_n + v_m)))), (((2 : ℕ) * (∑ v_k ∈ Finset.Icc (1 : ℕ) (v_n + (1 : ℕ)), (v_k + v_m))) = ((((2 : ℕ) * v_m) * (v_n + (1 : ℕ))) + ((v_n + (1 : ℕ)) * (v_n + (2 : ℕ))))))))))",
+              "proofTerm": "by\n  intro v_m v_n hv_n v_S_n_def ih step3\n  have hsum : (∑ v_k ∈ Finset.Icc (1 : ℕ) (v_n + (1 : ℕ)), (v_k + v_m)) = (∑ v_k ∈ Finset.Icc (1 : ℕ) v_n, (v_k + v_m)) + (v_n + (1 : ℕ) + v_m) := by\n    apply Finset.sum_Icc_succ_top\n    omega\n  rw [hsum]\n  rw [Nat.mul_add, ih]\n  ring",
+              "originalProofTerm": "by\n  intro v_m v_n hv_n v_S_n_def ih step3\n  have hsum : (∑ v_k ∈ Finset.Icc (1 : ℕ) (v_n + (1 : ℕ)), (v_k + v_m)) = (∑ v_k ∈ Finset.Icc (1 : ℕ) v_n, (v_k + v_m)) + (v_n + (1 : ℕ) + v_m) := by\n    apply Finset.sum_Icc_succ_top\n    omega\n  rw [hsum]\n  rw [Nat.mul_add, ih]\n  ring",
+              "context": [
+                {
+                  "source_id": "m",
+                  "scope_id": "scope_problem",
+                  "kind": "variable",
+                  "name": "v_m",
+                  "type": "ℕ",
+                  "value": null,
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "n",
+                  "scope_id": "scope_problem",
+                  "kind": "variable",
+                  "name": "v_n",
+                  "type": "ℕ",
+                  "value": null,
+                  "constraints": [
+                    {
+                      "op": "ge",
+                      "args": [
+                        {
+                          "op": "symbol",
+                          "args": [],
+                          "symbolId": "n"
+                        },
+                        {
+                          "op": "literal",
+                          "args": [],
+                          "literal": {
+                            "type": "Nat",
+                            "interpretation": "fixed",
+                            "value": "1"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "S_n_def",
+                  "scope_id": "scope_proof",
+                  "kind": "definition",
+                  "name": "v_S_n_def",
+                  "type": "ℕ",
+                  "value": {
+                    "op": "finite_sum",
+                    "args": [
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "k"
+                          },
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "m"
+                          }
+                        ]
+                      }
+                    ],
+                    "binderId": "k",
+                    "lower": {
+                      "op": "literal",
+                      "args": [],
+                      "literal": {
+                        "type": "Nat",
+                        "interpretation": "fixed",
+                        "value": "1"
+                      }
+                    },
+                    "upper": {
+                      "op": "symbol",
+                      "args": [],
+                      "symbolId": "n"
+                    },
+                    "upperInclusive": true
+                  },
+                  "constraints": [],
+                  "bindingClass": "local"
+                },
+                {
+                  "source_id": "induction_hypothesis",
+                  "kind": "local_assumption",
+                  "name": "h_route_induction_induction_hypothesis",
+                  "type": "(((2 : ℕ) * (∑ v_k ∈ Finset.Icc (1 : ℕ) v_n, (v_k + v_m))) = ((((2 : ℕ) * v_m) * v_n) + (v_n * (v_n + (1 : ℕ)))))"
+                },
+                {
+                  "source_id": "step3",
+                  "kind": "claim",
+                  "name": "h_route_induction_step3",
+                  "type": "((∑ v_k ∈ Finset.Icc (1 : ℕ) (v_n + (1 : ℕ)), (v_k + v_m)) = ((∑ v_k ∈ Finset.Icc (1 : ℕ) v_n, (v_k + v_m)) + (v_n + v_m)))"
+                }
+              ],
+              "dependsOn": [
+                "induction_hypothesis",
+                "step3"
+              ],
+              "proofAttemptStatus": "verified",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "all_declared_dependencies_used",
+              "dependencyUsage": [
+                {
+                  "dependencyId": "induction_hypothesis",
+                  "used": true
+                },
+                {
+                  "dependencyId": "step3",
+                  "used": true
+                }
+              ],
+              "failureClass": null,
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 195,
+                  "end": 240
+                }
+              ],
+              "status": "passed",
+              "lean": {
+                "localVerified": true,
+                "status": "verified",
+                "diagnostics": [],
+                "certificate": {
+                  "auditMethod": "fresh_environment_data_only_kernel_replay",
+                  "axioms": [
+                    "propext",
+                    "Classical.choice",
+                    "Quot.sound"
+                  ],
+                  "checked": true,
+                  "dependencyUsage": [
+                    {
+                      "dependencyId": "induction_hypothesis",
+                      "used": true
+                    },
+                    {
+                      "dependencyId": "step3",
+                      "used": true
+                    }
+                  ],
+                  "formalStatement": "∀ (v_m v_n : ℕ),\n  v_n ≥ 1 →\n    have v_S_n_def := ∑ v_k ∈ Finset.Icc 1 v_n, (v_k + v_m);\n    2 * ∑ v_k ∈ Finset.Icc 1 v_n, (v_k + v_m) = 2 * v_m * v_n + v_n * (v_n + 1) →\n      ∑ v_k ∈ Finset.Icc 1 (v_n + 1), (v_k + v_m) = ∑ v_k ∈ Finset.Icc 1 v_n, (v_k + v_m) + (v_n + v_m) →\n        2 * ∑ v_k ∈ Finset.Icc 1 (v_n + 1), (v_k + v_m) = 2 * v_m * (v_n + 1) + (v_n + 1) * (v_n + 2)",
+                  "statementMatched": true,
+                  "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+                  "expectedExpressionSha256": "e228478210a37af7bb09caaa116a78a7efd769a5a946f3ff53f65ecbb0caa42c",
+                  "proofExpressionSha256": "cdcec175554390358d1e15f288139a1f759ab6af81c9bc86040cad1bf8317c65",
+                  "statement_hash": "a8b3779e6b1798245cd53cd244f03855ccaa95aeba67ab83018c0b2d099abe79",
+                  "nativeExpressionComparison": "structural_equal",
+                  "sourceTypeSha256": "068ccc09c9e025edc6b6346837b956ac99ffaf386d779047f895907655c538aa",
+                  "sourceProofSha256": "5abf89e641c989133bfe44702732dbde8937a7c6ffe5c6937555a0bd4d24198e",
+                  "runtime": {
+                    "configured": true,
+                    "executableFound": true,
+                    "projectFound": true,
+                    "runtimeBuilt": true,
+                    "sandbox": "macos",
+                    "isolated": true,
+                    "ready": true,
+                    "toolchain": "leanprover/lean4:v4.34.0",
+                    "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+                    "liveTestedInThisDistribution": false
+                  },
+                  "additionalAxioms": [],
+                  "auditIsolation": "fresh_import_environment_reset_between_candidates"
+                },
+                "evidence": {
+                  "schema": "lean-proof-evidence-v1",
+                  "sha256": "b6519cc5846014cda764a70bc3b2ec7476e298683f87926be7e5721c361ed7b4",
+                  "artifact": "reports/mathir-v2-stage7-proof-evidence/b6519cc5846014cda764a70bc3b2ec7476e298683f87926be7e5721c361ed7b4.json.gz",
+                  "uncompressedBytes": 7669797,
+                  "compressedBytes": 75022
+                }
+              }
+            }
+          ],
+          "kernel": {
+            "localVerified": false,
+            "status": "not_proved",
+            "diagnostics": [
+              {
+                "severity": "error",
+                "message": "Tactic `assumption` failed\n\nv_m : ℕ\n⊢ False",
+                "leanPosition": {
+                  "column": 179,
+                  "line": 5
+                },
+                "leanEndPosition": {
+                  "column": 189,
+                  "line": 5
+                },
+                "stepId": "mathir-v2/route_induction/locked-goal",
+                "sourceRefs": [],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "Tactic `assumption` failed\n\nv_m : ℕ\n⊢ False",
+                  "endPos": {
+                    "column": 189,
+                    "line": 5
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-mhiwjy98/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "[anonymous]",
+                  "pos": {
+                    "column": 179,
+                    "line": 5
+                  },
+                  "severity": "error"
+                }
+              },
+              {
+                "severity": "error",
+                "message": "Tactic `introN` failed: There are no additional binders or `let` bindings in the goal to introduce\n\nv_m✝ v_m : ℕ\nind_ind_n_n : 1 ≤ v_m\nhcondition : 2 * ∑ v_k ∈ Finset.Icc 1 v_m, (v_k + v_m✝) = 2 * v_m✝ * v_m + v_m * (v_m + 1)\n⊢ 2 * ∑ v_k ∈ Finset.Icc 1 (v_m + 1), (v_k + v_m✝) = 2 * v_m✝ * (v_m + 1) + (v_m + 1) * (v_m + 1 + 1)",
+                "leanPosition": {
+                  "column": 225,
+                  "line": 5
+                },
+                "leanEndPosition": {
+                  "column": 227,
+                  "line": 5
+                },
+                "stepId": "mathir-v2/route_induction/locked-goal",
+                "sourceRefs": [],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "Tactic `introN` failed: There are no additional binders or `let` bindings in the goal to introduce\n\nv_m✝ v_m : ℕ\nind_ind_n_n : 1 ≤ v_m\nhcondition : 2 * ∑ v_k ∈ Finset.Icc 1 v_m, (v_k + v_m✝) = 2 * v_m✝ * v_m + v_m * (v_m + 1)\n⊢ 2 * ∑ v_k ∈ Finset.Icc 1 (v_m + 1), (v_k + v_m✝) = 2 * v_m✝ * (v_m + 1) + (v_m + 1) * (v_m + 1 + 1)",
+                  "endPos": {
+                    "column": 227,
+                    "line": 5
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-mhiwjy98/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "[anonymous]",
+                  "pos": {
+                    "column": 225,
+                    "line": 5
+                  },
+                  "severity": "error"
+                }
+              }
+            ],
+            "certificate": null
+          },
+          "sourceAlignment": {
+            "status": "not_assessed",
+            "sourceRefsValidated": true,
+            "semanticAlignmentKernelProven": false
+          }
+        }
+      ],
+      "leanMetrics": {
+        "processCount": 3,
+        "elapsedSeconds": 38.9,
+        "processes": [
+          {
+            "phase": "proposition_elaboration",
+            "wallSeconds": 11.88,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 5808,
+            "kernelInputJsonBytes": 0,
+            "status": "completed",
+            "userCpuSeconds": 2.14,
+            "systemCpuSeconds": 9.71,
+            "maxRssBytes": 6049284096,
+            "peakMemoryFootprintBytes": 933114112,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 114117,
+            "leanStderrBytes": 754,
+            "pythonPeakRssBytes": 41189376,
+            "leanReturnCode": 0
+          },
+          {
+            "phase": "expected_wire_materialization",
+            "wallSeconds": 0.0037,
+            "leanStdoutBytes": 114117,
+            "recordCount": 5,
+            "pythonPeakRssBytes": 41566208
+          },
+          {
+            "phase": "proof_export_batch",
+            "wallSeconds": 12.88,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 5825,
+            "kernelInputJsonBytes": 0,
+            "status": "completed",
+            "userCpuSeconds": 2.48,
+            "systemCpuSeconds": 10.39,
+            "maxRssBytes": 6125453312,
+            "peakMemoryFootprintBytes": 1002418752,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 10467955,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 73121792,
+            "leanReturnCode": 1
+          },
+          {
+            "phase": "proof_wire_materialization",
+            "wallSeconds": 0.5583,
+            "leanStdoutBytes": 10467955,
+            "candidateCount": 3,
+            "pythonPeakRssBytes": 244514816
+          },
+          {
+            "phase": "independent_kernel_replay_batch",
+            "wallSeconds": 13.44,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 5836,
+            "kernelInputJsonBytes": 9479774,
+            "status": "completed",
+            "userCpuSeconds": 2.57,
+            "systemCpuSeconds": 10.83,
+            "maxRssBytes": 6156353536,
+            "peakMemoryFootprintBytes": 1036743104,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 2766,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 259129344,
+            "leanReturnCode": 0
+          },
+          {
+            "phase": "kernel_certificate_materialization",
+            "wallSeconds": 0.1378,
+            "leanStdoutBytes": 2766,
+            "certificateCount": 3,
+            "pythonPeakRssBytes": 259866624
+          }
+        ],
+        "measurement": "Lean subprocess groups; each invocation includes the sandbox launcher and Lean process. Kernel batch resets the imported environment between evidence replays."
+      }
+    }
+  },
+  "proofWireReplay": "batch Lean check, then content-addressed evidence",
+  "proofWireBatches": [
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 27.157,
+      "stepId": "mathir-v2/route_induction/ind_n/step",
+      "proofTermBytes": 316,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 27.157,
+      "stepId": "mathir-v2/route_induction/base_calc_1",
+      "proofTermBytes": 39,
+      "externalizedWireBytes": 94805,
+      "evidence": {
+        "schema": "lean-proof-evidence-v1",
+        "sha256": "7965afdff06229c3fc4fb117c720bd029d234cb9ff5652dc168a3f11f8a644a6",
+        "artifact": "reports/mathir-v2-stage7-proof-evidence/7965afdff06229c3fc4fb117c720bd029d234cb9ff5652dc168a3f11f8a644a6.json.gz",
+        "uncompressedBytes": 94805,
+        "compressedBytes": 1655
+      }
+    },
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 27.157,
+      "stepId": "mathir-v2/route_induction/base_calc_2",
+      "proofTermBytes": 39,
+      "externalizedWireBytes": 726230,
+      "evidence": {
+        "schema": "lean-proof-evidence-v1",
+        "sha256": "73643691edc859af0092e7c696ba3c834cddea613cd2cbf8c9a27042eddf6761",
+        "artifact": "reports/mathir-v2-stage7-proof-evidence/73643691edc859af0092e7c696ba3c834cddea613cd2cbf8c9a27042eddf6761.json.gz",
+        "uncompressedBytes": 726230,
+        "compressedBytes": 8168
+      }
+    },
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 27.157,
+      "stepId": "mathir-v2/route_induction/step4",
+      "proofTermBytes": 294,
+      "externalizedWireBytes": 7669797,
+      "evidence": {
+        "schema": "lean-proof-evidence-v1",
+        "sha256": "b6519cc5846014cda764a70bc3b2ec7476e298683f87926be7e5721c361ed7b4",
+        "artifact": "reports/mathir-v2-stage7-proof-evidence/b6519cc5846014cda764a70bc3b2ec7476e298683f87926be7e5721c361ed7b4.json.gz",
+        "uncompressedBytes": 7669797,
+        "compressedBytes": 75022
+      }
+    },
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 27.157,
+      "stepId": "mathir-v2/route_induction/locked-goal",
+      "proofTermBytes": 624,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    }
+  ],
+  "checkManyInvocationMode": "single batch per route",
+  "sourceReport": "saved Stage 8 proof terms",
+  "compilerRevision": "current workspace under baseline 3804bae",
+  "leanBatchCalls": {
+    "C05": 1
+  }
+}

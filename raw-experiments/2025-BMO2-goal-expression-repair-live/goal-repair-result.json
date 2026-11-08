@@ -1,0 +1,48 @@
+{
+  "status": "goal_expression_elaborated_source_unconfirmed",
+  "originalStatement": "import Mathlib\n\nnamespace BMO2025R2P3\n\ndef Board (n : ℕ) := Fin n → Fin n → Bool\n\ndef checkerboard (n : ℕ) : Board n :=\n  fun i j => (i.val + j.val) % 2 = 0\n\ninductive SwapOp (n : ℕ) where\n  | row (i j : Fin n)\n  | col (i j : Fin n)\n\ndef applyOp {n : ℕ} (op : SwapOp n) (b : Board n) : Board n :=\n  match op with\n  | .row i j => fun r c => if r = i then b j c else if r = j then b i c else b r c\n  | .col i j => fun r c => if c = i then b r j else if c = j then b r i else b r c\n\ndef applyOps {n : ℕ} (ops : List (SwapOp n)) (b : Board n) : Board n :=\n  ops.foldl (fun b op => applyOp op b) b\n\ndef ReachableFromCheckerboard (n : ℕ) (b : Board n) : Prop :=\n  ∃ ops : List (SwapOp n), applyOps ops (checkerboard n) = b\n\ndef RestoreCost (n : ℕ) (b : Board n) : ℕ :=\n  sInf { k : ℕ | ∃ ops : List (SwapOp n), ops.length = k ∧ applyOps ops b = checkerboard n }\n\ndef answer (n : ℕ) : ℕ :=\n  if n % 2 = 0 then n / 2 else n - 1\n\ndef formalStatement : Prop :=\n  ∀ n : ℕ, 0 < n →\n    (∀ b : Board n, ReachableFromCheckerboard n b → RestoreCost n b ≤ answer n) ∧\n    (∃ b : Board n, ReachableFromCheckerboard n b ∧ answer n ≤ RestoreCost n b)\n\nend BMO2025R2P3",
+  "sourceSha256": "f2698c66fec85ed920a110f31f6d10c42cb666a25819d77003ed95093243e7dd",
+  "formalStatement": "let Board : ℕ → Type := fun n => Fin n → Fin n → Bool; let checkerboard : (n : ℕ) → Board n := fun n i j => decide ((i.val + j.val) % 2 = 0); let SwapOp : ℕ → Type := fun n => Bool × (Fin n × Fin n); let applyOp : (n : ℕ) → SwapOp n → Board n → Board n := fun n op b => fun r c => if op.1 then (if r = op.2.1 then b op.2.2 c else if r = op.2.2 then b op.2.1 c else b r c) else (if c = op.2.1 then b r op.2.2 else if c = op.2.2 then b r op.2.1 else b r c); let applyOps : (n : ℕ) → List (SwapOp n) → Board n → Board n := fun n ops b => List.foldl (fun b op => applyOp n op b) b ops; let Reachable : (n : ℕ) → Board n → Prop := fun n b => ∃ ops : List (SwapOp n), applyOps n ops (checkerboard n) = b; let Restoring : (n : ℕ) → Board n → ℕ → Prop := fun n b k => ∃ ops : List (SwapOp n), ops.length = k ∧ applyOps n ops b = checkerboard n; let MinCost : (n : ℕ) → Board n → ℕ → Prop := fun n b k => Restoring n b k ∧ ∀ m : ℕ, Restoring n b m → k ≤ m; let answer : ℕ → ℕ := fun n => if n % 2 = 0 then n / 2 else n - 1; ∀ n : ℕ, 0 < n → (∀ b : Board n, Reachable n b → ∃ k : ℕ, MinCost n b k ∧ k ≤ answer n) ∧ (∃ b : Board n, Reachable n b ∧ MinCost n b (answer n))",
+  "sourceEquivalenceCertified": false,
+  "originalProofCertified": false,
+  "kernelVerified": false,
+  "representationRepairOnly": true,
+  "modelProvenance": {
+    "jsonParsing": {
+      "method": "deterministic_json_schema",
+      "recovered": false,
+      "edits": []
+    },
+    "provider": "deepseek",
+    "requestedModel": "deepseek-flash",
+    "model": "deepseek-flash",
+    "responseId": "016149b6-9e22-4901-bb8e-1a872fe2a5d4",
+    "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "usage": {
+      "prompt_tokens": 1826,
+      "completion_tokens": 8278,
+      "total_tokens": 10104,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 7661
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 1826
+    },
+    "thinking": "provider_default",
+    "promptSchemaEncoding": "compact_json_v1",
+    "structuredOutput": "json_mode_with_local_schema_validation",
+    "simulated": false
+  },
+  "modelEncodingNotes": "Representational encodings only: boards are Fin n -> Fin n -> Bool; the standard checkerboard is (i+j) mod 2 = 0; a swap operation is encoded as Bool × (Fin n × Fin n), with true meaning swap the two indicated rows and false meaning swap the two indicated columns; operation lists and their fold define reachability and restoration. The minimum restoration cost is expressed relationally by Restoring and MinCost instead of using sInf or Nat.find. The answer formula is encoded as n/2 for even n and n-1 for odd n, with n restricted to positive naturals.",
+  "unresolvedMathematicalConcepts": [],
+  "candidateFormalStatement": "let Board : ℕ → Type := fun n => Fin n → Fin n → Bool; let checkerboard : (n : ℕ) → Board n := fun n i j => decide ((i.val + j.val) % 2 = 0); let SwapOp : ℕ → Type := fun n => Bool × (Fin n × Fin n); let applyOp : (n : ℕ) → SwapOp n → Board n → Board n := fun n op b => fun r c => if op.1 then (if r = op.2.1 then b op.2.2 c else if r = op.2.2 then b op.2.1 c else b r c) else (if c = op.2.1 then b r op.2.2 else if c = op.2.2 then b r op.2.1 else b r c); let applyOps : (n : ℕ) → List (SwapOp n) → Board n → Board n := fun n ops b => List.foldl (fun b op => applyOp n op b) b ops; let Reachable : (n : ℕ) → Board n → Prop := fun n b => ∃ ops : List (SwapOp n), applyOps n ops (checkerboard n) = b; let Restoring : (n : ℕ) → Board n → ℕ → Prop := fun n b k => ∃ ops : List (SwapOp n), ops.length = k ∧ applyOps n ops b = checkerboard n; let MinCost : (n : ℕ) → Board n → ℕ → Prop := fun n b k => Restoring n b k ∧ ∀ m : ℕ, Restoring n b m → k ≤ m; let answer : ℕ → ℕ := fun n => if n % 2 = 0 then n / 2 else n - 1; ∀ n : ℕ, 0 < n → (∀ b : Board n, Reachable n b → ∃ k : ℕ, MinCost n b k ∧ k ≤ answer n) ∧ (∃ b : Board n, Reachable n b ∧ MinCost n b (answer n))",
+  "modelClaimsSourceMeaningPreserved": true,
+  "leanProbe": {
+    "status": "elaborated",
+    "elaborated": true,
+    "diagnostics": []
+  }
+}

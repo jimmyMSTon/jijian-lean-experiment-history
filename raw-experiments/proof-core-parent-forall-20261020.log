@@ -1,0 +1,16 @@
+...............F.........                                                [100%]
+=================================== FAILURES ===================================
+_______ test_real_witness_scope_and_all_six_independent_steps_certified ________
+
+    def test_real_witness_scope_and_all_six_independent_steps_certified():
+        ir,verification=loaded()
+        assert all(s.get("status")=="passed" for route in verification["routes"]
+                   for s in route.get("steps",[]))
+        a=audit_reasoning_fidelity(ir,verification)
+>       assert a["originalProofVerified"] is True
+E       assert False is True
+
+tests/v2/test_source_existential_witness.py:46: AssertionError
+=========================== short test summary info ============================
+FAILED tests/v2/test_source_existential_witness.py::test_real_witness_scope_and_all_six_independent_steps_certified
+1 failed, 24 passed in 0.56s

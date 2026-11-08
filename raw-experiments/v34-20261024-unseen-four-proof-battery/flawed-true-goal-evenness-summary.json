@@ -1,0 +1,60 @@
+{
+  "case": {
+    "id": "flawed-true-goal-evenness",
+    "domain": "logic and proof fidelity",
+    "expected": "invalid_proof_true_goal",
+    "source": "命题：对任意整数 n，有 n²≥0。证明：任意整数 n 都是偶数，所以存在整数 k 使 n=2k。于是 n²=4k²≥0，故原命题成立。证毕。"
+  },
+  "jobId": "d929a6fb-6cd6-417b-abc1-332a85d19b4f",
+  "jobStatus": "completed",
+  "resultStatus": "whole_proof_translation_incomplete",
+  "kernelVerified": false,
+  "formalProofCertified": false,
+  "originalProofCertified": false,
+  "fidelityReview": null,
+  "fidelityIssues": 0,
+  "sourceSteps": 4,
+  "kernelCertificate": null,
+  "unsupportedOriginalSteps": [
+    "source_step_0：原稿断言“任意整数 n 都是偶数”，该命题为假（例如 n=1 是奇数），不能由题设或已有事实推出。",
+    "source_step_1：由于“任意整数 n 都是偶数”不成立，不能推出对任意整数 n 都存在整数 k 使 n=2k。",
+    "source_step_2：n²=4k²≥0 依赖不成立的 n=2k；即使等式部分可由 k 的表达式形式计算，整体推理依赖前面无效的存在性结论，不能作为原证明的有效中间步骤。",
+    "source_step_3：由于核心前置步骤 source_step_0/source_step_1 未被建立，原稿不能完成 lockedFormalStatement 的证明。"
+  ],
+  "error": null,
+  "usage": {
+    "attempts": 3,
+    "inputTokens": 2553,
+    "outputTokens": 7943,
+    "missingUsage": 0,
+    "requests": [
+      {
+        "reason": "WholeProofPlan",
+        "status": "response_received",
+        "input_tokens": 701,
+        "output_tokens": 5170,
+        "error_type": null,
+        "http_duration_ms": 26516.721
+      },
+      {
+        "reason": "WholeProofProgram",
+        "status": "response_received",
+        "input_tokens": 770,
+        "output_tokens": 997,
+        "error_type": null,
+        "http_duration_ms": 7082.515
+      },
+      {
+        "reason": "Explanation",
+        "status": "response_received",
+        "input_tokens": 1082,
+        "output_tokens": 1776,
+        "error_type": null,
+        "http_duration_ms": 10890.098
+      }
+    ]
+  },
+  "feedbackError": null,
+  "elapsedSeconds": 45.32,
+  "totalElapsedSeconds": 333.37
+}

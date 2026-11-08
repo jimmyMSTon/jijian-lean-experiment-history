@@ -1,0 +1,1408 @@
+{
+  "id": "9e52d9a9-df8f-43e1-a7d2-6acf7d23b497",
+  "status": "completed",
+  "stage": "completed",
+  "created": "2026-10-31T07:27:38.917392+00:00",
+  "updated": "2026-10-31T07:45:33.695581+00:00",
+  "request": {
+    "input": {
+      "kind": "text",
+      "text": "2024年全国高中数学联赛二试A卷第1题（40分）。\n原题：给定正整数r，求最大的实数C，使存在一个公比为r的实数等比数列(a_n)（n≥1），满足对所有正整数n都有 ||a_n||≥C，其中||x||为x到最近整数的距离。\n我写出的完整证明：\n第1步。记dist(x,Z)=min_{k∈Z}|x-k|。对任意实数x均有0≤dist(x,Z)≤1/2，且dist(x+k,Z)=dist(x,Z)（整数k）。我们在固定正整数r后求使上述条件能成立的最大C。\n第2步。若r为奇数，所有数列均受C≤1/2限制。取a_1=1/2，a_n=r^(n-1)/2。因r^(n-1)为奇数，a_n是半整数，故所有n的dist(a_n,Z)=1/2，最佳C为1/2。\n第3步。以下设r=2m，其中m≥1为整数。令c=m/(2m+1)=r/(2(r+1))，则0<c<1/2。对任意实数x选最邻近整数k，写x=k+δ且|δ|≤1/2。若|δ|≤c，则dist(x,Z)≤c。\n第4步。若c<|δ|≤1/2，则r|δ|=2m|δ|落在(m-c,m]。由于r为整数，rx=rk+rδ的最近整数可以选rk±m，所以dist(rx,Z)≤m-r|δ|<c。因而对每个x必有min(dist(x,Z),dist(rx,Z))≤c。\n第5步。任何公比为r的数列满足a_2=ra_1。将第4步用在x=a_1，得dist(a_1,Z)与dist(a_2,Z)至少一个不大于c。所以任何适用的C≤c。\n第6步。取a_1=m/(2m+1)，并设a_n=r^(n-1)a_1。模整数计算：2m≡-1 (mod 2m+1)，故对任意n，a_n与(-1)^(n-1)m/(2m+1)相差整数。因0<m/(2m+1)<1/2，所以dist(a_n,Z)=m/(2m+1)=c。\n第7步。上界与构造均成立，故r奇数时最大C=1/2，r偶数时最大C=r/(2(r+1))。证毕。",
+      "assetId": null,
+      "dataUrl": null,
+      "strokes": null,
+      "recognitionId": null,
+      "parts": null
+    },
+    "explain": false
+  },
+  "result": {
+    "id": "97bf98b0-88c1-4905-a8f5-2f4cc38cb107",
+    "kind": "lean_first_local",
+    "mode": "single_whole_theorem_kernel",
+    "sourceSha256": "18a5a55d2db3a7048a89554c2e9c4e2b931e8d2514b3f9e5ac611a8aa5878a98",
+    "runTraceId": "5c71c1a9-c24d-41a4-a848-3fe7c1e36d42",
+    "status": "whole_proof_translation_incomplete",
+    "kernelVerified": false,
+    "formalProofCertified": false,
+    "originalProofCertified": false,
+    "sourceEquivalenceCertified": false,
+    "originalInferenceVerified": false,
+    "sourcePositionsValid": true,
+    "plannedStepCount": 7,
+    "localFormalVerifiedCount": 0,
+    "sourceSteps": [
+      {
+        "id": "source-0",
+        "index": 0,
+        "role": "inference",
+        "start": 123,
+        "end": 229,
+        "sourceExcerpt": "第1步。记dist(x,Z)=min_{k∈Z}|x-k|。对任意实数x均有0≤dist(x,Z)≤1/2，且dist(x+k,Z)=dist(x,Z)（整数k）。我们在固定正整数r后求使上述条件能成立的最大C。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_0",
+        "dependsOn": []
+      },
+      {
+        "id": "source-1",
+        "index": 1,
+        "role": "inference",
+        "start": 230,
+        "end": 326,
+        "sourceExcerpt": "第2步。若r为奇数，所有数列均受C≤1/2限制。取a_1=1/2，a_n=r^(n-1)/2。因r^(n-1)为奇数，a_n是半整数，故所有n的dist(a_n,Z)=1/2，最佳C为1/2。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_1",
+        "dependsOn": []
+      },
+      {
+        "id": "source-2",
+        "index": 2,
+        "role": "inference",
+        "start": 327,
+        "end": 429,
+        "sourceExcerpt": "第3步。以下设r=2m，其中m≥1为整数。令c=m/(2m+1)=r/(2(r+1))，则0<c<1/2。对任意实数x选最邻近整数k，写x=k+δ且|δ|≤1/2。若|δ|≤c，则dist(x,Z)≤c。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_2",
+        "dependsOn": []
+      },
+      {
+        "id": "source-3",
+        "index": 3,
+        "role": "inference",
+        "start": 430,
+        "end": 552,
+        "sourceExcerpt": "第4步。若c<|δ|≤1/2，则r|δ|=2m|δ|落在(m-c,m]。由于r为整数，rx=rk+rδ的最近整数可以选rk±m，所以dist(rx,Z)≤m-r|δ|<c。因而对每个x必有min(dist(x,Z),dist(rx,Z))≤c。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_3",
+        "dependsOn": []
+      },
+      {
+        "id": "source-4",
+        "index": 4,
+        "role": "inference",
+        "start": 553,
+        "end": 633,
+        "sourceExcerpt": "第5步。任何公比为r的数列满足a_2=ra_1。将第4步用在x=a_1，得dist(a_1,Z)与dist(a_2,Z)至少一个不大于c。所以任何适用的C≤c。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_4",
+        "dependsOn": []
+      },
+      {
+        "id": "source-5",
+        "index": 5,
+        "role": "inference",
+        "start": 634,
+        "end": 766,
+        "sourceExcerpt": "第6步。取a_1=m/(2m+1)，并设a_n=r^(n-1)a_1。模整数计算：2m≡-1 (mod 2m+1)，故对任意n，a_n与(-1)^(n-1)m/(2m+1)相差整数。因0<m/(2m+1)<1/2，所以dist(a_n,Z)=m/(2m+1)=c。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_5",
+        "dependsOn": []
+      },
+      {
+        "id": "source-6",
+        "index": 6,
+        "role": "inference",
+        "start": 767,
+        "end": 815,
+        "sourceExcerpt": "第7步。上界与构造均成立，故r奇数时最大C=1/2，r偶数时最大C=r/(2(r+1))。证毕。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_6",
+        "dependsOn": []
+      }
+    ],
+    "statement": "∀ r : ℕ, 0 < r → IsGreatest {C : ℝ | ∃ a : ℕ → ℝ, a 1 ≠ 0 ∧ (∀ n : ℕ, 1 ≤ n → a n = a 1 * (r : ℝ) ^ (n - 1)) ∧ (∀ n : ℕ, 1 ≤ n → (⨅ k : ℤ, |a n - (k : ℝ)|) ≥ C)} (if r % 2 = 1 then (1 / 2 : ℝ) else (r : ℝ) / (2 * ((r : ℝ) + 1)))",
+    "proofTerm": "by\n  intro r hr\n  -- Full Lean formalization of the original seven-step proof was not completed.",
+    "lean": null,
+    "unsupportedOriginalSteps": [
+      "第1步：需要形式化实数到整数集的下确界 ⨅ k : ℤ, |x-k| 满足 0≤dist≤1/2 及整数平移不变性；这依赖最近整数存在性等 Mathlib API，未在本证明项中完成。",
+      "第2步：需要证明奇数 r 时 a_n=r^(n-1)/2 为半整数，从而其到整数集的距离恒为 1/2，并完成该构造属于可行集的下界证明。",
+      "第3步：需要在 r=2m 时形式化 c=m/(2m+1) 的性质，并证明若 |δ|≤c 则 dist(x,Z)≤c。",
+      "第4步：需要完成关键不等式 min(dist(x,Z),dist(2mx,Z))≤c 的 Lean 形式化，包括最近整数选择、δ 的正负分支及代数估计。",
+      "第5步：需要从第4步推出任何可行数列的 C≤c，这依赖前述 dist 和下确界的 API 形式化。",
+      "第6步：需要证明构造数列 a_1=m/(2m+1), a_n=(2m)^(n-1)a_1 对所有 n 满足 dist(a_n,Z)=m/(2m+1)，原稿中的模整数/奇偶符号论证尚未在 Lean 中完成。",
+      "第7步：最终合并奇数与偶数情形的最大性结论依赖以上所有步骤，因此未能形成完整 Lean 证明项。"
+    ],
+    "planProvenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "f87c92fd-58be-48de-bc5f-b7da3bae40fb",
+      "systemFingerprint": "bc19ba97cbe016479903222bb1578db6",
+      "usage": {
+        "prompt_tokens": 1244,
+        "completion_tokens": 21140,
+        "total_tokens": 22384,
+        "prompt_tokens_details": {
+          "cached_tokens": 1024
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 20316
+        },
+        "prompt_cache_hit_tokens": 1024,
+        "prompt_cache_miss_tokens": 220
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "model": "deepseek-flash",
+    "goalExcerpt": "给定正整数r，求最大的实数C，使存在一个公比为r的实数等比数列(a_n)（n≥1），满足对所有正整数n都有 ||a_n||≥C，其中||x||为x到最近整数的距离。",
+    "originalGivenExcerpts": [
+      "给定正整数r",
+      "公比为r的实数等比数列(a_n)（n≥1）",
+      "满足对所有正整数n都有 ||a_n||≥C"
+    ],
+    "sourceOffsetRepairs": [],
+    "goalPlanCachedAfterLeanElaboration": true,
+    "proofProvenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "c97fc186-609b-479d-9a81-7aab81f20870",
+      "systemFingerprint": "bc19ba97cbe016479903222bb1578db6",
+      "usage": {
+        "prompt_tokens": 2128,
+        "completion_tokens": 20157,
+        "total_tokens": 22285,
+        "prompt_tokens_details": {
+          "cached_tokens": 1152
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 19794
+        },
+        "prompt_cache_hit_tokens": 1152,
+        "prompt_cache_miss_tokens": 976
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "finiteCountingFormalization": {
+      "status": "no_new_verified_counting_evidence",
+      "used": false,
+      "checkedDeclarations": [],
+      "unsupportedOriginalSteps": [
+        "第1步：需要形式化实数到整数集的下确界 ⨅ k : ℤ, |x-k| 满足 0≤dist≤1/2 及整数平移不变性；这依赖最近整数存在性等 Mathlib API，未在本证明项中完成。",
+        "第2步：需要证明奇数 r 时 a_n=r^(n-1)/2 为半整数，从而其到整数集的距离恒为 1/2，并完成该构造属于可行集的下界证明。",
+        "第3步：需要在 r=2m 时形式化 c=m/(2m+1) 的性质，并证明若 |δ|≤c 则 dist(x,Z)≤c。",
+        "第4步：需要完成关键不等式 min(dist(x,Z),dist(2mx,Z))≤c 的 Lean 形式化，包括最近整数选择、δ 的正负分支及代数估计。",
+        "第5步：需要从第4步推出任何可行数列的 C≤c，这依赖前述 dist 和下确界的 API 形式化。",
+        "第6步：需要证明构造数列 a_1=m/(2m+1), a_n=(2m)^(n-1)a_1 对所有 n 满足 dist(a_n,Z)=m/(2m+1)，原稿中的模整数/奇偶符号论证尚未在 Lean 中完成。",
+        "第7步：最终合并奇数与偶数情形的最大性结论依赖以上所有步骤，因此未能形成完整 Lean 证明项。"
+      ]
+    },
+    "modularProofAssembly": {
+      "status": "fragment_rejected",
+      "mode": "source_indexed_proof_assembly",
+      "kernelVerified": false,
+      "originalProofCertified": false,
+      "sourceEquivalenceCertified": false,
+      "sourceSha256": "18a5a55d2db3a7048a89554c2e9c4e2b931e8d2514b3f9e5ac611a8aa5878a98",
+      "lockedStatement": "∀ r : ℕ, 0 < r → IsGreatest {C : ℝ | ∃ a : ℕ → ℝ, a 1 ≠ 0 ∧ (∀ n : ℕ, 1 ≤ n → a n = a 1 * (r : ℝ) ^ (n - 1)) ∧ (∀ n : ℕ, 1 ≤ n → (⨅ k : ℤ, |a n - (k : ℝ)|) ≥ C)} (if r % 2 = 1 then (1 / 2 : ℝ) else (r : ℝ) / (2 * ((r : ℝ) + 1)))",
+      "filledSteps": [
+        {
+          "index": 0,
+          "sourceExcerpt": "第1步。记dist(x,Z)=min_{k∈Z}|x-k|。对任意实数x均有0≤dist(x,Z)≤1/2，且dist(x+k,Z)=dist(x,Z)（整数k）。我们在固定正整数r后求使上述条件能成立的最大C。",
+          "sourceStart": 123,
+          "sourceEnd": 229,
+          "fragmentSha256": "22433eaaeade78bcd2c4c0cf4f668b0dc91464a9c46774c7382e7f734942a6c2",
+          "modelProvenance": {
+            "jsonParsing": {
+              "method": "deterministic_json_schema",
+              "recovered": false,
+              "edits": []
+            },
+            "provider": "deepseek",
+            "requestedModel": "deepseek-flash",
+            "model": "deepseek-flash",
+            "responseId": "98ed2a4f-67a7-4e88-a92d-c8c3b47c30ac",
+            "systemFingerprint": "bc19ba97cbe016479903222bb1578db6",
+            "usage": {
+              "prompt_tokens": 2661,
+              "completion_tokens": 8787,
+              "total_tokens": 11448,
+              "prompt_tokens_details": {
+                "cached_tokens": 0
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 8290
+              },
+              "prompt_cache_hit_tokens": 0,
+              "prompt_cache_miss_tokens": 2661
+            },
+            "thinking": "provider_default",
+            "promptSchemaEncoding": "compact_json_v1",
+            "structuredOutput": "json_mode_with_local_schema_validation",
+            "simulated": false
+          }
+        },
+        {
+          "index": 1,
+          "sourceExcerpt": "第2步。若r为奇数，所有数列均受C≤1/2限制。取a_1=1/2，a_n=r^(n-1)/2。因r^(n-1)为奇数，a_n是半整数，故所有n的dist(a_n,Z)=1/2，最佳C为1/2。",
+          "sourceStart": 230,
+          "sourceEnd": 326,
+          "fragmentSha256": "f64a5d7cff576c05b66876fa9015ea18e1a74fc7d42274f939206d74b3292a82",
+          "modelProvenance": {
+            "jsonParsing": {
+              "method": "deterministic_json_schema",
+              "recovered": false,
+              "edits": []
+            },
+            "provider": "deepseek",
+            "requestedModel": "deepseek-flash",
+            "model": "deepseek-flash",
+            "responseId": "8a4daa7f-2960-4a92-8801-3d5ed911cfcf",
+            "systemFingerprint": "bc19ba97cbe016479903222bb1578db6",
+            "usage": {
+              "prompt_tokens": 3145,
+              "completion_tokens": 20625,
+              "total_tokens": 23770,
+              "prompt_tokens_details": {
+                "cached_tokens": 256
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 19895
+              },
+              "prompt_cache_hit_tokens": 256,
+              "prompt_cache_miss_tokens": 2889
+            },
+            "thinking": "provider_default",
+            "promptSchemaEncoding": "compact_json_v1",
+            "structuredOutput": "json_mode_with_local_schema_validation",
+            "simulated": false
+          }
+        },
+        {
+          "index": 2,
+          "sourceExcerpt": "第3步。以下设r=2m，其中m≥1为整数。令c=m/(2m+1)=r/(2(r+1))，则0<c<1/2。对任意实数x选最邻近整数k，写x=k+δ且|δ|≤1/2。若|δ|≤c，则dist(x,Z)≤c。",
+          "sourceStart": 327,
+          "sourceEnd": 429,
+          "fragmentSha256": "b6be14edea65a78fe836e707ba326f51787edbc72ca07c29d6ba06ffa04110a1",
+          "modelProvenance": {
+            "jsonParsing": {
+              "method": "deterministic_json_schema",
+              "recovered": false,
+              "edits": []
+            },
+            "provider": "deepseek",
+            "requestedModel": "deepseek-flash",
+            "model": "deepseek-flash",
+            "responseId": "7019fbf5-063e-4893-b712-df54e3c01d04",
+            "systemFingerprint": "bc19ba97cbe016479903222bb1578db6",
+            "usage": {
+              "prompt_tokens": 3852,
+              "completion_tokens": 10615,
+              "total_tokens": 14467,
+              "prompt_tokens_details": {
+                "cached_tokens": 256
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 9907
+              },
+              "prompt_cache_hit_tokens": 256,
+              "prompt_cache_miss_tokens": 3596
+            },
+            "thinking": "provider_default",
+            "promptSchemaEncoding": "compact_json_v1",
+            "structuredOutput": "json_mode_with_local_schema_validation",
+            "simulated": false
+          }
+        },
+        {
+          "index": 3,
+          "sourceExcerpt": "第4步。若c<|δ|≤1/2，则r|δ|=2m|δ|落在(m-c,m]。由于r为整数，rx=rk+rδ的最近整数可以选rk±m，所以dist(rx,Z)≤m-r|δ|<c。因而对每个x必有min(dist(x,Z),dist(rx,Z))≤c。",
+          "sourceStart": 430,
+          "sourceEnd": 552,
+          "fragmentSha256": "47b90547469cc2b45274cf1be5c7723bde00c6a2c15b184aeab7cab708189506",
+          "modelProvenance": {
+            "jsonParsing": {
+              "method": "deterministic_json_schema",
+              "recovered": false,
+              "edits": []
+            },
+            "provider": "deepseek",
+            "requestedModel": "deepseek-flash",
+            "model": "deepseek-flash",
+            "responseId": "0412d71a-7ec6-47b8-9179-758be0b47076",
+            "systemFingerprint": "bc19ba97cbe016479903222bb1578db6",
+            "usage": {
+              "prompt_tokens": 4530,
+              "completion_tokens": 20592,
+              "total_tokens": 25122,
+              "prompt_tokens_details": {
+                "cached_tokens": 256
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 19073
+              },
+              "prompt_cache_hit_tokens": 256,
+              "prompt_cache_miss_tokens": 4274
+            },
+            "thinking": "provider_default",
+            "promptSchemaEncoding": "compact_json_v1",
+            "structuredOutput": "json_mode_with_local_schema_validation",
+            "simulated": false
+          }
+        },
+        {
+          "index": 4,
+          "sourceExcerpt": "第5步。任何公比为r的数列满足a_2=ra_1。将第4步用在x=a_1，得dist(a_1,Z)与dist(a_2,Z)至少一个不大于c。所以任何适用的C≤c。",
+          "sourceStart": 553,
+          "sourceEnd": 633,
+          "fragmentSha256": "513cd96842fdebcb6b0cd15519f8592fa80a99757b1496de7e596adfb0a936d1",
+          "modelProvenance": {
+            "jsonParsing": {
+              "method": "deterministic_json_schema",
+              "recovered": false,
+              "edits": []
+            },
+            "provider": "deepseek",
+            "requestedModel": "deepseek-flash",
+            "model": "deepseek-flash",
+            "responseId": "56c52a1d-de91-416b-bc1f-21b4ffc87381",
+            "systemFingerprint": "bc19ba97cbe016479903222bb1578db6",
+            "usage": {
+              "prompt_tokens": 3251,
+              "completion_tokens": 15564,
+              "total_tokens": 18815,
+              "prompt_tokens_details": {
+                "cached_tokens": 256
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 15044
+              },
+              "prompt_cache_hit_tokens": 256,
+              "prompt_cache_miss_tokens": 2995
+            },
+            "thinking": "provider_default",
+            "promptSchemaEncoding": "compact_json_v1",
+            "structuredOutput": "json_mode_with_local_schema_validation",
+            "simulated": false
+          }
+        },
+        {
+          "index": 5,
+          "sourceExcerpt": "第6步。取a_1=m/(2m+1)，并设a_n=r^(n-1)a_1。模整数计算：2m≡-1 (mod 2m+1)，故对任意n，a_n与(-1)^(n-1)m/(2m+1)相差整数。因0<m/(2m+1)<1/2，所以dist(a_n,Z)=m/(2m+1)=c。",
+          "sourceStart": 634,
+          "sourceEnd": 766,
+          "fragmentSha256": "a64887b64f9bca57026c928f3c275b190221b4541329c141dd5352323c2f3833",
+          "modelProvenance": {
+            "jsonParsing": {
+              "method": "deterministic_json_schema",
+              "recovered": false,
+              "edits": []
+            },
+            "provider": "deepseek",
+            "requestedModel": "deepseek-flash",
+            "model": "deepseek-flash",
+            "responseId": "93fc806f-d6f9-42b3-ac4d-4426f2f193e0",
+            "systemFingerprint": "bc19ba97cbe016479903222bb1578db6",
+            "usage": {
+              "prompt_tokens": 6253,
+              "completion_tokens": 30897,
+              "total_tokens": 37150,
+              "prompt_tokens_details": {
+                "cached_tokens": 256
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 28785
+              },
+              "prompt_cache_hit_tokens": 256,
+              "prompt_cache_miss_tokens": 5997
+            },
+            "thinking": "provider_default",
+            "promptSchemaEncoding": "compact_json_v1",
+            "structuredOutput": "json_mode_with_local_schema_validation",
+            "simulated": false
+          }
+        }
+      ],
+      "unsupportedOriginalSteps": [],
+      "fragmentCompilerDiagnostics": [],
+      "scaffoldProvenance": {
+        "jsonParsing": {
+          "method": "deterministic_json_schema",
+          "recovered": false,
+          "edits": []
+        },
+        "provider": "deepseek",
+        "requestedModel": "deepseek-flash",
+        "model": "deepseek-flash",
+        "responseId": "bb61f784-045b-4a9e-8e57-bd8950496d51",
+        "systemFingerprint": "bc19ba97cbe016479903222bb1578db6",
+        "usage": {
+          "prompt_tokens": 2157,
+          "completion_tokens": 22484,
+          "total_tokens": 24641,
+          "prompt_tokens_details": {
+            "cached_tokens": 256
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 21097
+          },
+          "prompt_cache_hit_tokens": 256,
+          "prompt_cache_miss_tokens": 1901
+        },
+        "thinking": "provider_default",
+        "promptSchemaEncoding": "compact_json_v1",
+        "structuredOutput": "json_mode_with_local_schema_validation",
+        "simulated": false
+      },
+      "scaffoldProofTemplate": "by\n  intro r hr\n  let distZ : ℝ → ℝ := fun x => ⨅ k : ℤ, |x - (k : ℝ)|\n  have source_step_1 : (∀ x : ℝ, 0 ≤ distZ x ∧ distZ x ≤ (1 / 2 : ℝ) ∧ ∀ k : ℤ, distZ (x + (k : ℝ)) = distZ x) := by\n    JJ_SOURCE_HOLE_1\n  let S : Set ℝ := {C : ℝ | ∃ a : ℕ → ℝ, a 1 ≠ 0 ∧ (∀ n : ℕ, 1 ≤ n → a n = a 1 * (r : ℝ) ^ (n - 1)) ∧ (∀ n : ℕ, 1 ≤ n → (⨅ k : ℤ, |a n - (k : ℝ)|) ≥ C)}\n  let C0 : ℝ := if r % 2 = 1 then (1 / 2 : ℝ) else (r : ℝ) / (2 * ((r : ℝ) + 1))\n  change IsGreatest S C0\n  have h_odd : r % 2 = 1 → IsGreatest S C0 := by\n    intro hodd\n    have source_step_2 : (∀ C : ℝ, C ∈ S → C ≤ (1 / 2 : ℝ)) ∧ (∃ a : ℕ → ℝ, a 1 = (1 / 2 : ℝ) ∧ a 1 ≠ 0 ∧ (∀ n : ℕ, 1 ≤ n → a n = a 1 * (r : ℝ) ^ (n - 1)) ∧ (∀ n : ℕ, 1 ≤ n → (⨅ k : ℤ, |a n - (k : ℝ)|) ≥ (1 / 2 : ℝ))) := by\n      JJ_SOURCE_HOLE_2\n    have hC0 : C0 = (1 / 2 : ℝ) := by\n      dsimp [C0]\n      rw [if_pos hodd]\n      rfl\n    rw [hC0]\n    refine ⟨?_, ?_⟩\n    · rcases source_step_2.2 with ⟨a, ha1half, ha1ne, hgeom, hdist⟩\n      exact ⟨a, ha1ne, hgeom, hdist⟩\n    · intro C hC\n      exact source_step_2.1 C hC\n  have h_even : r % 2 ≠ 1 → IsGreatest S C0 := by\n    intro hne\n    have source_step_3 : ∃ (m : ℕ) (c : ℝ), 1 ≤ m ∧ r = 2 * m ∧ c = (m : ℝ) / (2 * (m : ℝ) + 1) ∧ c = (r : ℝ) / (2 * ((r : ℝ) + 1)) ∧ 0 < c ∧ c < (1 / 2 : ℝ) ∧ (∀ x : ℝ, ∃ k : ℤ, ∃ δ : ℝ, x = (k : ℝ) + δ ∧ |δ| ≤ (1 / 2 : ℝ) ∧ (|δ| ≤ c → distZ x ≤ c)) := by\n      JJ_SOURCE_HOLE_3\n    rcases source_step_3 with ⟨m, c, hmpos, hr2m, hcdef, hcr, hcpos, hclt, hnear⟩\n    have source_step_4 : (∀ x : ℝ, ∃ k : ℤ, ∃ δ : ℝ, x = (k : ℝ) + δ ∧ |δ| ≤ (1 / 2 : ℝ) ∧ ((c < |δ| ∧ |δ| ≤ (1 / 2 : ℝ)) → distZ ((r : ℝ) * x) ≤ (m : ℝ) - (r : ℝ) * |δ| ∧ (m : ℝ) - (r : ℝ) * |δ| < c)) ∧ (∀ x : ℝ, min (distZ x) (distZ ((r : ℝ) * x)) ≤ c) := by\n      JJ_SOURCE_HOLE_4\n    have source_step_5 : (∀ a : ℕ → ℝ, a 1 ≠ 0 → (∀ n : ℕ, 1 ≤ n → a n = a 1 * (r : ℝ) ^ (n - 1)) → a 2 = (r : ℝ) * a 1) ∧ (∀ C : ℝ, C ∈ S → C ≤ c) := by\n      JJ_SOURCE_HOLE_5\n    have source_step_6 : ∃ a : ℕ → ℝ, a 1 = (m : ℝ) / (2 * (m : ℝ) + 1) ∧ a 1 ≠ 0 ∧ (∀ n : ℕ, 1 ≤ n → a n = a 1 * (r : ℝ) ^ (n - 1)) ∧ (∀ n : ℕ, 1 ≤ n → ∃ z : ℤ, a n = (z : ℝ) + (-1 : ℝ) ^ (n - 1) * c) ∧ (∀ n : ℕ, 1 ≤ n → (⨅ k : ℤ, |a n - (k : ℝ)|) = c) := by\n      JJ_SOURCE_HOLE_6\n    rcases source_step_6 with ⟨a, ha1def, ha1ne, hgeom, hmod, hdist⟩\n    have hc_mem : c ∈ S := by\n      refine ⟨a, ha1ne, hgeom, ?_⟩\n      intro n hn\n      rw [hdist n hn]\n      exact le_rfl\n    have hC0 : C0 = c := by\n      dsimp [C0]\n      rw [if_neg hne]\n      exact hcr.symm\n    rw [hC0]\n    exact ⟨hc_mem, fun C hC => source_step_5.2 C hC⟩\n  have source_step_7 : IsGreatest S C0 := by\n    JJ_SOURCE_HOLE_7\n  exact source_step_7",
+      "scaffoldSyntaxNormalization": {
+        "operations": [
+          "translate_complete_one_based_source_indices"
+        ],
+        "lockedStatementUnchanged": true,
+        "wrapperStatementMatchesLocked": null,
+        "normalizedTemplateSha256": "ff04987a110d681c78a040e2ae59e55701124bafcf56b05bde655abaf9135af6"
+      },
+      "scaffoldSha256": "ff04987a110d681c78a040e2ae59e55701124bafcf56b05bde655abaf9135af6",
+      "batchProvenance": {
+        "jsonParsing": {
+          "method": "deterministic_json_schema",
+          "recovered": false,
+          "edits": []
+        },
+        "provider": "deepseek",
+        "requestedModel": "deepseek-flash",
+        "model": "deepseek-flash",
+        "responseId": "56c52a1d-de91-416b-bc1f-21b4ffc87381",
+        "systemFingerprint": "bc19ba97cbe016479903222bb1578db6",
+        "usage": {
+          "prompt_tokens": 3251,
+          "completion_tokens": 15564,
+          "total_tokens": 18815,
+          "prompt_tokens_details": {
+            "cached_tokens": 256
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 15044
+          },
+          "prompt_cache_hit_tokens": 256,
+          "prompt_cache_miss_tokens": 2995
+        },
+        "thinking": "provider_default",
+        "promptSchemaEncoding": "compact_json_v1",
+        "structuredOutput": "json_mode_with_local_schema_validation",
+        "simulated": false
+      },
+      "batchedCompleteFragments": 2,
+      "fragmentError": "empty_or_nested_by_tactic_body"
+    },
+    "sourceFalsityScreen": {
+      "status": "no_specific_false_assertion_identified_by_model",
+      "suspected": false,
+      "notAKernelVerdict": true,
+      "originalProofCertified": false,
+      "overallProblemDisproved": false,
+      "modelProvenance": {
+        "jsonParsing": {
+          "method": "deterministic_json_schema",
+          "recovered": false,
+          "edits": []
+        },
+        "provider": "deepseek",
+        "requestedModel": "deepseek-flash",
+        "model": "deepseek-flash",
+        "responseId": "af50a484-da23-4dd2-8972-43c0af62a043",
+        "systemFingerprint": "bc19ba97cbe016479903222bb1578db6",
+        "usage": {
+          "prompt_tokens": 1706,
+          "completion_tokens": 6724,
+          "total_tokens": 8430,
+          "prompt_tokens_details": {
+            "cached_tokens": 384
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 6636
+          },
+          "prompt_cache_hit_tokens": 384,
+          "prompt_cache_miss_tokens": 1322
+        },
+        "thinking": "provider_default",
+        "promptSchemaEncoding": "compact_json_v1",
+        "structuredOutput": "json_mode_with_local_schema_validation",
+        "simulated": false
+      },
+      "candidate": {
+        "suspected": false,
+        "sourceStepIndex": 0,
+        "sourceQuote": "",
+        "allegedMathematicalError": "未发现原稿中存在可由具体反例推翻的数学断言。各步中的全称判断与构造在给定“r为正整数、实数等比数列、所有n均满足距离条件”的前提下均成立。",
+        "concreteCounterexample": "无；未发现满足原题全部假设的反例。"
+      }
+    },
+    "sourceStepDiagnostics": {
+      "status": "source_step_diagnostics_complete_whole_unverified",
+      "mode": "source_step_formal_diagnostics",
+      "sourceSha256": "18a5a55d2db3a7048a89554c2e9c4e2b931e8d2514b3f9e5ac611a8aa5878a98",
+      "lockedGoal": "∀ r : ℕ, 0 < r → IsGreatest {C : ℝ | ∃ a : ℕ → ℝ, a 1 ≠ 0 ∧ (∀ n : ℕ, 1 ≤ n → a n = a 1 * (r : ℝ) ^ (n - 1)) ∧ (∀ n : ℕ, 1 ≤ n → (⨅ k : ℤ, |a n - (k : ℝ)|) ≥ C)} (if r % 2 = 1 then (1 / 2 : ℝ) else (r : ℝ) / (2 * ((r : ℝ) + 1)))",
+      "kernelVerified": false,
+      "wholeFormalProofCertified": false,
+      "originalProofCertified": false,
+      "sourceEquivalenceCertified": false,
+      "localFormalVerifiedCount": 0,
+      "atomicFormalVerifiedCount": 0,
+      "atomicConditionalVerifiedCount": 0,
+      "atomicUnconditionalVerifiedCount": 0,
+      "sourcePositionsValid": true,
+      "steps": [
+        {
+          "id": "source-0",
+          "index": 0,
+          "sourceExcerpt": "第1步。记dist(x,Z)=min_{k∈Z}|x-k|。对任意实数x均有0≤dist(x,Z)≤1/2，且dist(x+k,Z)=dist(x,Z)（整数k）。我们在固定正整数r后求使上述条件能成立的最大C。",
+          "start": 123,
+          "end": 229,
+          "dependsOn": [],
+          "limitations": [
+            "原文只陈述距离函数的基本性质，未给出 Lean 中最近整数存在性、下确界实现及整数平移不变性的证明项。"
+          ],
+          "statement": "∀ x : ℝ, (0 ≤ (⨅ k : ℤ, |x - (k : ℝ)|) ∧ (⨅ k : ℤ, |x - (k : ℝ)|) ≤ (1 / 2 : ℝ)) ∧ ∀ k : ℤ, (⨅ j : ℤ, |(x + (k : ℝ)) - (j : ℝ)|) = (⨅ j : ℤ, |x - (j : ℝ)|)",
+          "proofTerm": "",
+          "translationComplete": false,
+          "kernelVerified": false,
+          "atoms": [],
+          "sourceEquivalenceCertified": false,
+          "originalInferenceVerified": false,
+          "status": "translation_incomplete"
+        },
+        {
+          "id": "source-1",
+          "index": 1,
+          "sourceExcerpt": "第2步。若r为奇数，所有数列均受C≤1/2限制。取a_1=1/2，a_n=r^(n-1)/2。因r^(n-1)为奇数，a_n是半整数，故所有n的dist(a_n,Z)=1/2，最佳C为1/2。",
+          "start": 230,
+          "end": 326,
+          "dependsOn": [
+            0
+          ],
+          "limitations": [
+            "未形式化奇数 r 时 a_n=r^(n-1)/2 为半整数及 dist(a_n,Z)=1/2 的证明。",
+            "最佳 C 的 IsGreatest 结论依赖构造可行性与上界两部分，原稿未给 Lean 证明项。"
+          ],
+          "statement": "∀ r : ℕ, 0 < r → r % 2 = 1 → IsGreatest {C : ℝ | ∃ a : ℕ → ℝ, a 1 ≠ 0 ∧ (∀ n : ℕ, 1 ≤ n → a n = a 1 * (r : ℝ) ^ (n - 1)) ∧ (∀ n : ℕ, 1 ≤ n → (⨅ k : ℤ, |a n - (k : ℝ)|) ≥ C)} (1 / 2 : ℝ)",
+          "proofTerm": "",
+          "translationComplete": false,
+          "kernelVerified": false,
+          "atoms": [],
+          "sourceEquivalenceCertified": false,
+          "originalInferenceVerified": false,
+          "status": "translation_incomplete"
+        },
+        {
+          "id": "source-2",
+          "index": 2,
+          "sourceExcerpt": "第3步。以下设r=2m，其中m≥1为整数。令c=m/(2m+1)=r/(2(r+1))，则0<c<1/2。对任意实数x选最邻近整数k，写x=k+δ且|δ|≤1/2。若|δ|≤c，则dist(x,Z)≤c。",
+          "start": 327,
+          "end": 429,
+          "dependsOn": [
+            0
+          ],
+          "limitations": [
+            "需要形式化最邻近整数的存在性、误差 |δ|≤1/2，以及由 |δ|≤c 推出 dist(x,Z)≤c。"
+          ],
+          "statement": "∀ m : ℕ, 1 ≤ m → let r : ℝ := 2 * (m : ℝ); let c : ℝ := (m : ℝ) / (2 * (m : ℝ) + 1); c = r / (2 * (r + 1)) ∧ 0 < c ∧ c < (1 / 2 : ℝ) ∧ ∀ x : ℝ, ∃ k : ℤ, ∃ δ : ℝ, x = (k : ℝ) + δ ∧ |δ| ≤ (1 / 2 : ℝ) ∧ (|δ| ≤ c → (⨅ j : ℤ, |x - (j : ℝ)|) ≤ c)",
+          "proofTerm": "",
+          "translationComplete": false,
+          "kernelVerified": false,
+          "atoms": [
+            {
+              "id": "atom-2-0",
+              "index": 0,
+              "sourceQuote": "c=m/(2m+1)=r/(2(r+1))",
+              "start": 349,
+              "end": 370,
+              "statement": "∀ m : ℕ, 1 ≤ m → let r : ℝ := 2 * (m : ℝ); let c : ℝ := (m : ℝ) / (2 * (m : ℝ) + 1); c = r / (2 * (r + 1))",
+              "proofTerm": "by intro m hm; dsimp; have h1 : (2 * (m:ℝ) + 1) ≠ 0 := by positivity; have h2 : (2 * ((2 * (m:ℝ)) + 1)) ≠ 0 := by positivity; field_simp [h1, h2]; ring",
+              "kernelVerified": false,
+              "originalInferenceVerified": false,
+              "sourceEquivalenceCertified": false,
+              "limitations": [],
+              "conditionalOnFormalPremises": true,
+              "sourcePremisesIndependentlyCertified": false,
+              "status": "atomic_kernel_not_verified",
+              "lean": {
+                "localVerified": false,
+                "status": "not_proved",
+                "diagnostics": [
+                  {
+                    "severity": "error",
+                    "message": "No goals to be solved",
+                    "leanPosition": {
+                      "column": 5,
+                      "line": 4
+                    },
+                    "leanEndPosition": {
+                      "column": 9,
+                      "line": 4
+                    },
+                    "stepId": "atom-2-0",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b0",
+                        "start": 349,
+                        "end": 370
+                      }
+                    ],
+                    "mappingPrecision": "step",
+                    "raw": {
+                      "caption": "",
+                      "data": "No goals to be solved",
+                      "endPos": {
+                        "column": 9,
+                        "line": 4
+                      },
+                      "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/olympiad-20261031-nonCMO-V369-source-fresh-real-runtime-live/data/work/lean-alsl8_7j/Task.lean",
+                      "isSilent": false,
+                      "keepFullRange": false,
+                      "kind": "[anonymous]",
+                      "pos": {
+                        "column": 5,
+                        "line": 4
+                      },
+                      "severity": "error"
+                    }
+                  },
+                  {
+                    "severity": "error",
+                    "message": "unsolved goals\nm : ℕ\nhm : 1 ≤ m\nh1 : 2 * ↑m + 1 ≠ 0\n⊢ ↑m / (2 * ↑m + 1) = 2 * ↑m / (2 * (2 * ↑m + 1))",
+                    "leanPosition": {
+                      "column": 0,
+                      "line": 1
+                    },
+                    "leanEndPosition": {
+                      "column": 11,
+                      "line": 7
+                    },
+                    "stepId": "atom-2-0",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b0",
+                        "start": 349,
+                        "end": 370
+                      }
+                    ],
+                    "mappingPrecision": "step",
+                    "raw": {
+                      "caption": "",
+                      "data": "unsolved goals\nm : ℕ\nhm : 1 ≤ m\nh1 : 2 * ↑m + 1 ≠ 0\n⊢ ↑m / (2 * ↑m + 1) = 2 * ↑m / (2 * (2 * ↑m + 1))",
+                      "endPos": {
+                        "column": 11,
+                        "line": 7
+                      },
+                      "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/olympiad-20261031-nonCMO-V369-source-fresh-real-runtime-live/data/work/lean-alsl8_7j/Task.lean",
+                      "isSilent": false,
+                      "keepFullRange": false,
+                      "kind": "Tactic.unsolvedGoals",
+                      "pos": {
+                        "column": 0,
+                        "line": 1
+                      },
+                      "severity": "error"
+                    }
+                  }
+                ],
+                "certificate": null
+              }
+            },
+            {
+              "id": "atom-2-1",
+              "index": 1,
+              "sourceQuote": "0<c<1/2",
+              "start": 372,
+              "end": 379,
+              "statement": "∀ m : ℕ, 1 ≤ m → 0 < (m : ℝ) / (2 * (m : ℝ) + 1) ∧ (m : ℝ) / (2 * (m : ℝ) + 1) < (1 / 2 : ℝ)",
+              "proofTerm": "by intro m hm; have hmR : (0:ℝ) < (m:ℝ) := by have h : (1:ℝ) ≤ (m:ℝ) := by exact_mod_cast hm; linarith; have hden : (0:ℝ) < 2 * (m:ℝ) + 1 := by positivity; constructor; · exact div_pos hmR hden; · rw [div_lt_iff₀ hden]; linarith",
+              "kernelVerified": false,
+              "originalInferenceVerified": false,
+              "sourceEquivalenceCertified": false,
+              "limitations": [],
+              "conditionalOnFormalPremises": true,
+              "sourcePremisesIndependentlyCertified": false,
+              "status": "atomic_kernel_not_verified",
+              "lean": {
+                "localVerified": false,
+                "status": "not_proved",
+                "diagnostics": [
+                  {
+                    "severity": "error",
+                    "message": "No goals to be solved",
+                    "leanPosition": {
+                      "column": 14,
+                      "line": 5
+                    },
+                    "leanEndPosition": {
+                      "column": 22,
+                      "line": 5
+                    },
+                    "stepId": "atom-2-1",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b0",
+                        "start": 372,
+                        "end": 379
+                      }
+                    ],
+                    "mappingPrecision": "step",
+                    "raw": {
+                      "caption": "",
+                      "data": "No goals to be solved",
+                      "endPos": {
+                        "column": 22,
+                        "line": 5
+                      },
+                      "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/olympiad-20261031-nonCMO-V369-source-fresh-real-runtime-live/data/work/lean-alsl8_7j/Task.lean",
+                      "isSilent": false,
+                      "keepFullRange": false,
+                      "kind": "[anonymous]",
+                      "pos": {
+                        "column": 14,
+                        "line": 5
+                      },
+                      "severity": "error"
+                    }
+                  },
+                  {
+                    "severity": "error",
+                    "message": "unsolved goals\nm : ℕ\nhm : 1 ≤ m\nh : 1 ≤ ↑m\n⊢ 0 < ↑m",
+                    "leanPosition": {
+                      "column": 3,
+                      "line": 3
+                    },
+                    "leanEndPosition": {
+                      "column": 96,
+                      "line": 7
+                    },
+                    "stepId": "atom-2-1",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b0",
+                        "start": 372,
+                        "end": 379
+                      }
+                    ],
+                    "mappingPrecision": "step",
+                    "raw": {
+                      "caption": "",
+                      "data": "unsolved goals\nm : ℕ\nhm : 1 ≤ m\nh : 1 ≤ ↑m\n⊢ 0 < ↑m",
+                      "endPos": {
+                        "column": 96,
+                        "line": 7
+                      },
+                      "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/olympiad-20261031-nonCMO-V369-source-fresh-real-runtime-live/data/work/lean-alsl8_7j/Task.lean",
+                      "isSilent": false,
+                      "keepFullRange": false,
+                      "kind": "Tactic.unsolvedGoals",
+                      "pos": {
+                        "column": 3,
+                        "line": 3
+                      },
+                      "severity": "error"
+                    }
+                  },
+                  {
+                    "severity": "error",
+                    "message": "unsolved goals\nm : ℕ\nhm : 1 ≤ m\nhmR : 0 < ↑m\n⊢ 0 < ↑m / (2 * ↑m + 1) ∧ ↑m / (2 * ↑m + 1) < 1 / 2",
+                    "leanPosition": {
+                      "column": 0,
+                      "line": 1
+                    },
+                    "leanEndPosition": {
+                      "column": 96,
+                      "line": 7
+                    },
+                    "stepId": "atom-2-1",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b0",
+                        "start": 372,
+                        "end": 379
+                      }
+                    ],
+                    "mappingPrecision": "step",
+                    "raw": {
+                      "caption": "",
+                      "data": "unsolved goals\nm : ℕ\nhm : 1 ≤ m\nhmR : 0 < ↑m\n⊢ 0 < ↑m / (2 * ↑m + 1) ∧ ↑m / (2 * ↑m + 1) < 1 / 2",
+                      "endPos": {
+                        "column": 96,
+                        "line": 7
+                      },
+                      "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/olympiad-20261031-nonCMO-V369-source-fresh-real-runtime-live/data/work/lean-alsl8_7j/Task.lean",
+                      "isSilent": false,
+                      "keepFullRange": false,
+                      "kind": "Tactic.unsolvedGoals",
+                      "pos": {
+                        "column": 0,
+                        "line": 1
+                      },
+                      "severity": "error"
+                    }
+                  }
+                ],
+                "certificate": null
+              }
+            }
+          ],
+          "sourceEquivalenceCertified": false,
+          "originalInferenceVerified": false,
+          "status": "translation_incomplete"
+        },
+        {
+          "id": "source-3",
+          "index": 3,
+          "sourceExcerpt": "第4步。若c<|δ|≤1/2，则r|δ|=2m|δ|落在(m-c,m]。由于r为整数，rx=rk+rδ的最近整数可以选rk±m，所以dist(rx,Z)≤m-r|δ|<c。因而对每个x必有min(dist(x,Z),dist(rx,Z))≤c。",
+          "start": 430,
+          "end": 552,
+          "dependsOn": [
+            2
+          ],
+          "limitations": [
+            "关键步骤 min(dist(x,Z),dist(rx,Z))≤c 需要最近整数选择、δ 分支及 dist 下确界 API 的形式化。",
+            "原文关于最近整数可选 rk±m 的论证未形成 Lean 证明项。"
+          ],
+          "statement": "∀ m : ℕ, 1 ≤ m → let r : ℝ := 2 * (m : ℝ); let c : ℝ := (m : ℝ) / (2 * (m : ℝ) + 1); ∀ x : ℝ, ∃ k : ℤ, ∃ δ : ℝ, x = (k : ℝ) + δ ∧ |δ| ≤ (1 / 2 : ℝ) ∧ (c < |δ| → (⨅ j : ℤ, |r * x - (j : ℝ)|) ≤ c) ∧ min (⨅ j : ℤ, |x - (j : ℝ)|) (⨅ j : ℤ, |r * x - (j : ℝ)|) ≤ c",
+          "proofTerm": "",
+          "translationComplete": false,
+          "kernelVerified": false,
+          "atoms": [
+            {
+              "id": "atom-3-0",
+              "index": 0,
+              "sourceQuote": "r|δ|=2m|δ|落在(m-c,m]",
+              "start": 446,
+              "end": 465,
+              "statement": "∀ m : ℕ, 1 ≤ m → ∀ δ : ℝ, (m : ℝ) / (2 * (m : ℝ) + 1) < |δ| → |δ| ≤ (1 / 2 : ℝ) → (m : ℝ) - (m : ℝ) / (2 * (m : ℝ) + 1) < 2 * (m : ℝ) * |δ| ∧ 2 * (m : ℝ) * |δ| ≤ (m : ℝ)",
+              "proofTerm": "by intro m hm δ hc hδ; have hmR : (0:ℝ) < (m:ℝ) := by have h : (1:ℝ) ≤ (m:ℝ) := by exact_mod_cast hm; linarith; have h2m : (0:ℝ) < 2 * (m:ℝ) := by positivity; have hdenpos : (0:ℝ) < 2 * (m:ℝ) + 1 := by positivity; have hden : (2 * (m:ℝ) + 1) ≠ 0 := ne_of_gt hdenpos; constructor; · have h := mul_lt_mul_of_pos_left hc h2m; have hleft : 2 * (m:ℝ) * ((m:ℝ)/(2*(m:ℝ)+1)) = (m:ℝ) - (m:ℝ)/(2*(m:ℝ)+1) := by field_simp [hden]; ring; simpa [hleft] using h; · have h : 2 * (m:ℝ) * |δ| ≤ 2 * (m:ℝ) * (1/2) := by exact mul_le_mul_of_nonneg_left hδ (le_of_lt h2m); calc 2 * (m:ℝ) * |δ| ≤ 2 * (m:ℝ) * (1/2) := h; _ = (m:ℝ) := by ring",
+              "kernelVerified": false,
+              "originalInferenceVerified": false,
+              "sourceEquivalenceCertified": false,
+              "limitations": [],
+              "conditionalOnFormalPremises": true,
+              "sourcePremisesIndependentlyCertified": false,
+              "status": "atomic_kernel_not_verified",
+              "lean": {
+                "localVerified": false,
+                "status": "not_proved",
+                "diagnostics": [
+                  {
+                    "severity": "error",
+                    "message": "Term parsing failed: <input>:1:611: expected end of input",
+                    "stepId": "atom-3-0",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b0",
+                        "start": 446,
+                        "end": 465
+                      }
+                    ]
+                  }
+                ],
+                "certificate": null
+              }
+            }
+          ],
+          "sourceEquivalenceCertified": false,
+          "originalInferenceVerified": false,
+          "status": "translation_incomplete"
+        },
+        {
+          "id": "source-4",
+          "index": 4,
+          "sourceExcerpt": "第5步。任何公比为r的数列满足a_2=ra_1。将第4步用在x=a_1，得dist(a_1,Z)与dist(a_2,Z)至少一个不大于c。所以任何适用的C≤c。",
+          "start": 553,
+          "end": 633,
+          "dependsOn": [
+            3
+          ],
+          "limitations": [
+            "从第4步的 min(dist(a_1,Z),dist(a_2,Z))≤c 推出任何可行 C≤c 需要把步骤4作为已证前提并处理可行集定义，当前未完成。"
+          ],
+          "statement": "∀ r : ℕ, 0 < r → r % 2 = 0 → let m : ℕ := r / 2; let c : ℝ := (m : ℝ) / (2 * (m : ℝ) + 1); ∀ C : ℝ, (∃ a : ℕ → ℝ, a 1 ≠ 0 ∧ (∀ n : ℕ, 1 ≤ n → a n = a 1 * (r : ℝ) ^ (n - 1)) ∧ (∀ n : ℕ, 1 ≤ n → (⨅ k : ℤ, |a n - (k : ℝ)|) ≥ C)) → C ≤ c",
+          "proofTerm": "",
+          "translationComplete": false,
+          "kernelVerified": false,
+          "atoms": [
+            {
+              "id": "atom-4-0",
+              "index": 0,
+              "sourceQuote": "a_2=ra_1",
+              "start": 568,
+              "end": 576,
+              "statement": "∀ (r : ℝ) (a : ℕ → ℝ), (∀ n : ℕ, 1 ≤ n → a n = a 1 * r ^ (n - 1)) → a 2 = r * a 1",
+              "proofTerm": "by intro r a h; have h2 : a 2 = a 1 * r := by simpa using h 2 (by norm_num); simpa [mul_comm] using h2",
+              "kernelVerified": false,
+              "originalInferenceVerified": false,
+              "sourceEquivalenceCertified": false,
+              "limitations": [],
+              "conditionalOnFormalPremises": true,
+              "sourcePremisesIndependentlyCertified": false,
+              "status": "atomic_kernel_not_verified",
+              "lean": {
+                "localVerified": false,
+                "status": "not_proved",
+                "diagnostics": [
+                  {
+                    "severity": "error",
+                    "message": "No goals to be solved",
+                    "leanPosition": {
+                      "column": 8,
+                      "line": 4
+                    },
+                    "leanEndPosition": {
+                      "column": 12,
+                      "line": 5
+                    },
+                    "stepId": "atom-4-0",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b0",
+                        "start": 568,
+                        "end": 576
+                      }
+                    ],
+                    "mappingPrecision": "step",
+                    "raw": {
+                      "caption": "",
+                      "data": "No goals to be solved",
+                      "endPos": {
+                        "column": 12,
+                        "line": 5
+                      },
+                      "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/olympiad-20261031-nonCMO-V369-source-fresh-real-runtime-live/data/work/lean-alsl8_7j/Task.lean",
+                      "isSilent": false,
+                      "keepFullRange": false,
+                      "kind": "[anonymous]",
+                      "pos": {
+                        "column": 8,
+                        "line": 4
+                      },
+                      "severity": "error"
+                    }
+                  },
+                  {
+                    "severity": "error",
+                    "message": "unsolved goals\nr : ℝ\na : ℕ → ℝ\nh : ∀ (n : ℕ), 1 ≤ n → a n = a 1 * r ^ (n - 1)\nh2 : a 2 = a 1 * r\n⊢ a 2 = r * a 1",
+                    "leanPosition": {
+                      "column": 0,
+                      "line": 1
+                    },
+                    "leanEndPosition": {
+                      "column": 12,
+                      "line": 5
+                    },
+                    "stepId": "atom-4-0",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b0",
+                        "start": 568,
+                        "end": 576
+                      }
+                    ],
+                    "mappingPrecision": "step",
+                    "raw": {
+                      "caption": "",
+                      "data": "unsolved goals\nr : ℝ\na : ℕ → ℝ\nh : ∀ (n : ℕ), 1 ≤ n → a n = a 1 * r ^ (n - 1)\nh2 : a 2 = a 1 * r\n⊢ a 2 = r * a 1",
+                      "endPos": {
+                        "column": 12,
+                        "line": 5
+                      },
+                      "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/olympiad-20261031-nonCMO-V369-source-fresh-real-runtime-live/data/work/lean-alsl8_7j/Task.lean",
+                      "isSilent": false,
+                      "keepFullRange": false,
+                      "kind": "Tactic.unsolvedGoals",
+                      "pos": {
+                        "column": 0,
+                        "line": 1
+                      },
+                      "severity": "error"
+                    }
+                  }
+                ],
+                "certificate": null
+              }
+            }
+          ],
+          "sourceEquivalenceCertified": false,
+          "originalInferenceVerified": false,
+          "status": "translation_incomplete"
+        },
+        {
+          "id": "source-5",
+          "index": 5,
+          "sourceExcerpt": "第6步。取a_1=m/(2m+1)，并设a_n=r^(n-1)a_1。模整数计算：2m≡-1 (mod 2m+1)，故对任意n，a_n与(-1)^(n-1)m/(2m+1)相差整数。因0<m/(2m+1)<1/2，所以dist(a_n,Z)=m/(2m+1)=c。",
+          "start": 634,
+          "end": 766,
+          "dependsOn": [
+            2
+          ],
+          "limitations": [
+            "需要完整形式化模整数奇偶符号论证：a_n 与 (-1)^(n-1)c 相差整数。",
+            "由相差整数及 0<c<1/2 推出 dist(a_n,Z)=c 依赖最近整数/下确界 API，原稿未给 Lean 证明项。"
+          ],
+          "statement": "∀ m : ℕ, 1 ≤ m → let r : ℝ := 2 * (m : ℝ); let c : ℝ := (m : ℝ) / (2 * (m : ℝ) + 1); let a : ℕ → ℝ := fun n => r ^ (n - 1) * c; (∀ n : ℕ, 1 ≤ n → ∃ z : ℤ, a n = ((-1 : ℝ) ^ (n - 1)) * c + (z : ℝ)) ∧ (∀ n : ℕ, 1 ≤ n → (⨅ k : ℤ, |a n - (k : ℝ)|) = c)",
+          "proofTerm": "",
+          "translationComplete": false,
+          "kernelVerified": false,
+          "atoms": [
+            {
+              "id": "atom-5-0",
+              "index": 0,
+              "sourceQuote": "2m≡-1 (mod 2m+1)",
+              "start": 675,
+              "end": 691,
+              "statement": "∀ m : ℕ, Int.ModEq (2 * (m : ℤ) + 1) (2 * (m : ℤ)) (-1)",
+              "proofTerm": "by intro m; unfold Int.ModEq; have h : 2 * (m : ℤ) - (-1) = 2 * (m : ℤ) + 1 := by ring; rw [h]; exact dvd_refl _",
+              "kernelVerified": false,
+              "originalInferenceVerified": false,
+              "sourceEquivalenceCertified": false,
+              "limitations": [],
+              "conditionalOnFormalPremises": false,
+              "sourcePremisesIndependentlyCertified": false,
+              "status": "atomic_kernel_not_verified",
+              "lean": {
+                "localVerified": false,
+                "status": "not_proved",
+                "diagnostics": [
+                  {
+                    "severity": "error",
+                    "message": "No goals to be solved",
+                    "leanPosition": {
+                      "column": 6,
+                      "line": 5
+                    },
+                    "leanEndPosition": {
+                      "column": 7,
+                      "line": 5
+                    },
+                    "stepId": "atom-5-0",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b0",
+                        "start": 675,
+                        "end": 691
+                      }
+                    ],
+                    "mappingPrecision": "step",
+                    "raw": {
+                      "caption": "",
+                      "data": "No goals to be solved",
+                      "endPos": {
+                        "column": 7,
+                        "line": 5
+                      },
+                      "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/olympiad-20261031-nonCMO-V369-source-fresh-real-runtime-live/data/work/lean-alsl8_7j/Task.lean",
+                      "isSilent": false,
+                      "keepFullRange": false,
+                      "kind": "[anonymous]",
+                      "pos": {
+                        "column": 6,
+                        "line": 5
+                      },
+                      "severity": "error"
+                    }
+                  },
+                  {
+                    "severity": "error",
+                    "message": "unsolved goals\nm : ℕ\nh : 2 * ↑m - -1 = 2 * ↑m + 1\n⊢ 2 * ↑m % (2 * ↑m + 1) = -1 % (2 * ↑m + 1)",
+                    "leanPosition": {
+                      "column": 0,
+                      "line": 1
+                    },
+                    "leanEndPosition": {
+                      "column": 26,
+                      "line": 5
+                    },
+                    "stepId": "atom-5-0",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b0",
+                        "start": 675,
+                        "end": 691
+                      }
+                    ],
+                    "mappingPrecision": "step",
+                    "raw": {
+                      "caption": "",
+                      "data": "unsolved goals\nm : ℕ\nh : 2 * ↑m - -1 = 2 * ↑m + 1\n⊢ 2 * ↑m % (2 * ↑m + 1) = -1 % (2 * ↑m + 1)",
+                      "endPos": {
+                        "column": 26,
+                        "line": 5
+                      },
+                      "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/olympiad-20261031-nonCMO-V369-source-fresh-real-runtime-live/data/work/lean-alsl8_7j/Task.lean",
+                      "isSilent": false,
+                      "keepFullRange": false,
+                      "kind": "Tactic.unsolvedGoals",
+                      "pos": {
+                        "column": 0,
+                        "line": 1
+                      },
+                      "severity": "error"
+                    }
+                  }
+                ],
+                "certificate": null
+              }
+            },
+            {
+              "id": "atom-5-1",
+              "index": 1,
+              "sourceQuote": "0<m/(2m+1)<1/2",
+              "start": 726,
+              "end": 740,
+              "statement": "∀ m : ℕ, 1 ≤ m → 0 < (m : ℝ) / (2 * (m : ℝ) + 1) ∧ (m : ℝ) / (2 * (m : ℝ) + 1) < (1 / 2 : ℝ)",
+              "proofTerm": "by intro m hm; have hmR : (0:ℝ) < (m:ℝ) := by have h : (1:ℝ) ≤ (m:ℝ) := by exact_mod_cast hm; linarith; have hden : (0:ℝ) < 2 * (m:ℝ) + 1 := by positivity; constructor; · exact div_pos hmR hden; · rw [div_lt_iff₀ hden]; linarith",
+              "kernelVerified": false,
+              "originalInferenceVerified": false,
+              "sourceEquivalenceCertified": false,
+              "limitations": [],
+              "conditionalOnFormalPremises": true,
+              "sourcePremisesIndependentlyCertified": false,
+              "status": "atomic_kernel_not_verified",
+              "lean": {
+                "localVerified": false,
+                "status": "not_proved",
+                "diagnostics": [
+                  {
+                    "severity": "error",
+                    "message": "No goals to be solved",
+                    "leanPosition": {
+                      "column": 14,
+                      "line": 5
+                    },
+                    "leanEndPosition": {
+                      "column": 22,
+                      "line": 5
+                    },
+                    "stepId": "atom-5-1",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b0",
+                        "start": 726,
+                        "end": 740
+                      }
+                    ],
+                    "mappingPrecision": "step",
+                    "raw": {
+                      "caption": "",
+                      "data": "No goals to be solved",
+                      "endPos": {
+                        "column": 22,
+                        "line": 5
+                      },
+                      "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/olympiad-20261031-nonCMO-V369-source-fresh-real-runtime-live/data/work/lean-alsl8_7j/Task.lean",
+                      "isSilent": false,
+                      "keepFullRange": false,
+                      "kind": "[anonymous]",
+                      "pos": {
+                        "column": 14,
+                        "line": 5
+                      },
+                      "severity": "error"
+                    }
+                  },
+                  {
+                    "severity": "error",
+                    "message": "unsolved goals\nm : ℕ\nhm : 1 ≤ m\nh : 1 ≤ ↑m\n⊢ 0 < ↑m",
+                    "leanPosition": {
+                      "column": 3,
+                      "line": 3
+                    },
+                    "leanEndPosition": {
+                      "column": 96,
+                      "line": 7
+                    },
+                    "stepId": "atom-5-1",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b0",
+                        "start": 726,
+                        "end": 740
+                      }
+                    ],
+                    "mappingPrecision": "step",
+                    "raw": {
+                      "caption": "",
+                      "data": "unsolved goals\nm : ℕ\nhm : 1 ≤ m\nh : 1 ≤ ↑m\n⊢ 0 < ↑m",
+                      "endPos": {
+                        "column": 96,
+                        "line": 7
+                      },
+                      "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/olympiad-20261031-nonCMO-V369-source-fresh-real-runtime-live/data/work/lean-alsl8_7j/Task.lean",
+                      "isSilent": false,
+                      "keepFullRange": false,
+                      "kind": "Tactic.unsolvedGoals",
+                      "pos": {
+                        "column": 3,
+                        "line": 3
+                      },
+                      "severity": "error"
+                    }
+                  },
+                  {
+                    "severity": "error",
+                    "message": "unsolved goals\nm : ℕ\nhm : 1 ≤ m\nhmR : 0 < ↑m\n⊢ 0 < ↑m / (2 * ↑m + 1) ∧ ↑m / (2 * ↑m + 1) < 1 / 2",
+                    "leanPosition": {
+                      "column": 0,
+                      "line": 1
+                    },
+                    "leanEndPosition": {
+                      "column": 96,
+                      "line": 7
+                    },
+                    "stepId": "atom-5-1",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b0",
+                        "start": 726,
+                        "end": 740
+                      }
+                    ],
+                    "mappingPrecision": "step",
+                    "raw": {
+                      "caption": "",
+                      "data": "unsolved goals\nm : ℕ\nhm : 1 ≤ m\nhmR : 0 < ↑m\n⊢ 0 < ↑m / (2 * ↑m + 1) ∧ ↑m / (2 * ↑m + 1) < 1 / 2",
+                      "endPos": {
+                        "column": 96,
+                        "line": 7
+                      },
+                      "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/olympiad-20261031-nonCMO-V369-source-fresh-real-runtime-live/data/work/lean-alsl8_7j/Task.lean",
+                      "isSilent": false,
+                      "keepFullRange": false,
+                      "kind": "Tactic.unsolvedGoals",
+                      "pos": {
+                        "column": 0,
+                        "line": 1
+                      },
+                      "severity": "error"
+                    }
+                  }
+                ],
+                "certificate": null
+              }
+            }
+          ],
+          "sourceEquivalenceCertified": false,
+          "originalInferenceVerified": false,
+          "status": "translation_incomplete"
+        },
+        {
+          "id": "source-6",
+          "index": 6,
+          "sourceExcerpt": "第7步。上界与构造均成立，故r奇数时最大C=1/2，r偶数时最大C=r/(2(r+1))。证毕。",
+          "start": 767,
+          "end": 815,
+          "dependsOn": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "limitations": [
+            "最终合并奇数与偶数情形的最大性结论依赖前面各步骤，而前面关键构造与上界均未完成 Lean 证明项。"
+          ],
+          "statement": "∀ r : ℕ, 0 < r → IsGreatest {C : ℝ | ∃ a : ℕ → ℝ, a 1 ≠ 0 ∧ (∀ n : ℕ, 1 ≤ n → a n = a 1 * (r : ℝ) ^ (n - 1)) ∧ (∀ n : ℕ, 1 ≤ n → (⨅ k : ℤ, |a n - (k : ℝ)|) ≥ C)} (if r % 2 = 1 then (1 / 2 : ℝ) else (r : ℝ) / (2 * ((r : ℝ) + 1)))",
+          "proofTerm": "",
+          "translationComplete": false,
+          "kernelVerified": false,
+          "atoms": [],
+          "sourceEquivalenceCertified": false,
+          "originalInferenceVerified": false,
+          "status": "translation_incomplete"
+        }
+      ],
+      "modelProvenance": {
+        "jsonParsing": {
+          "method": "deterministic_json_schema",
+          "recovered": false,
+          "edits": []
+        },
+        "provider": "deepseek",
+        "requestedModel": "deepseek-flash",
+        "model": "deepseek-flash",
+        "responseId": "35d1934d-dedf-4eb6-8fbf-7fb493f770f5",
+        "systemFingerprint": "bc19ba97cbe016479903222bb1578db6",
+        "usage": {
+          "prompt_tokens": 2890,
+          "completion_tokens": 23853,
+          "total_tokens": 26743,
+          "prompt_tokens_details": {
+            "cached_tokens": 1024
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 20581
+          },
+          "prompt_cache_hit_tokens": 1024,
+          "prompt_cache_miss_tokens": 1866
+        },
+        "thinking": "provider_default",
+        "promptSchemaEncoding": "compact_json_v1",
+        "structuredOutput": "json_mode_with_local_schema_validation",
+        "simulated": false
+      }
+    },
+    "version": "3.6.1",
+    "source": {
+      "kind": "text",
+      "raw": "2024年全国高中数学联赛二试A卷第1题（40分）。\n原题：给定正整数r，求最大的实数C，使存在一个公比为r的实数等比数列(a_n)（n≥1），满足对所有正整数n都有 ||a_n||≥C，其中||x||为x到最近整数的距离。\n我写出的完整证明：\n第1步。记dist(x,Z)=min_{k∈Z}|x-k|。对任意实数x均有0≤dist(x,Z)≤1/2，且dist(x+k,Z)=dist(x,Z)（整数k）。我们在固定正整数r后求使上述条件能成立的最大C。\n第2步。若r为奇数，所有数列均受C≤1/2限制。取a_1=1/2，a_n=r^(n-1)/2。因r^(n-1)为奇数，a_n是半整数，故所有n的dist(a_n,Z)=1/2，最佳C为1/2。\n第3步。以下设r=2m，其中m≥1为整数。令c=m/(2m+1)=r/(2(r+1))，则0<c<1/2。对任意实数x选最邻近整数k，写x=k+δ且|δ|≤1/2。若|δ|≤c，则dist(x,Z)≤c。\n第4步。若c<|δ|≤1/2，则r|δ|=2m|δ|落在(m-c,m]。由于r为整数，rx=rk+rδ的最近整数可以选rk±m，所以dist(rx,Z)≤m-r|δ|<c。因而对每个x必有min(dist(x,Z),dist(rx,Z))≤c。\n第5步。任何公比为r的数列满足a_2=ra_1。将第4步用在x=a_1，得dist(a_1,Z)与dist(a_2,Z)至少一个不大于c。所以任何适用的C≤c。\n第6步。取a_1=m/(2m+1)，并设a_n=r^(n-1)a_1。模整数计算：2m≡-1 (mod 2m+1)，故对任意n，a_n与(-1)^(n-1)m/(2m+1)相差整数。因0<m/(2m+1)<1/2，所以dist(a_n,Z)=m/(2m+1)=c。\n第7步。上界与构造均成立，故r奇数时最大C=1/2，r偶数时最大C=r/(2(r+1))。证毕。",
+      "normalized": "2024年全国高中数学联赛二试A卷第1题（40分）。\n原题：给定正整数r，求最大的实数C，使存在一个公比为r的实数等比数列(a_n)（n≥1），满足对所有正整数n都有 ||a_n||≥C，其中||x||为x到最近整数的距离。\n我写出的完整证明：\n第1步。记dist(x,Z)=min_{k∈Z}|x-k|。对任意实数x均有0≤dist(x,Z)≤1/2，且dist(x+k,Z)=dist(x,Z)（整数k）。我们在固定正整数r后求使上述条件能成立的最大C。\n第2步。若r为奇数，所有数列均受C≤1/2限制。取a_1=1/2，a_n=r^(n-1)/2。因r^(n-1)为奇数，a_n是半整数，故所有n的dist(a_n,Z)=1/2，最佳C为1/2。\n第3步。以下设r=2m，其中m≥1为整数。令c=m/(2m+1)=r/(2(r+1))，则0<c<1/2。对任意实数x选最邻近整数k，写x=k+δ且|δ|≤1/2。若|δ|≤c，则dist(x,Z)≤c。\n第4步。若c<|δ|≤1/2，则r|δ|=2m|δ|落在(m-c,m]。由于r为整数，rx=rk+rδ的最近整数可以选rk±m，所以dist(rx,Z)≤m-r|δ|<c。因而对每个x必有min(dist(x,Z),dist(rx,Z))≤c。\n第5步。任何公比为r的数列满足a_2=ra_1。将第4步用在x=a_1，得dist(a_1,Z)与dist(a_2,Z)至少一个不大于c。所以任何适用的C≤c。\n第6步。取a_1=m/(2m+1)，并设a_n=r^(n-1)a_1。模整数计算：2m≡-1 (mod 2m+1)，故对任意n，a_n与(-1)^(n-1)m/(2m+1)相差整数。因0<m/(2m+1)<1/2，所以dist(a_n,Z)=m/(2m+1)=c。\n第7步。上界与构造均成立，故r奇数时最大C=1/2，r偶数时最大C=r/(2(r+1))。证毕。",
+      "recognitionId": null,
+      "transcriptionEvidence": null,
+      "blocks": [
+        {
+          "id": "b0",
+          "text": "2024年全国高中数学联赛二试A卷第1题（40分）。\n原题：给定正整数r，求最大的实数C，使存在一个公比为r的实数等比数列(a_n)（n≥1），满足对所有正整数n都有 ||a_n||≥C，其中||x||为x到最近整数的距离。\n我写出的完整证明：\n第1步。记dist(x,Z)=min_{k∈Z}|x-k|。对任意实数x均有0≤dist(x,Z)≤1/2，且dist(x+k,Z)=dist(x,Z)（整数k）。我们在固定正整数r后求使上述条件能成立的最大C。\n第2步。若r为奇数，所有数列均受C≤1/2限制。取a_1=1/2，a_n=r^(n-1)/2。因r^(n-1)为奇数，a_n是半整数，故所有n的dist(a_n,Z)=1/2，最佳C为1/2。\n第3步。以下设r=2m，其中m≥1为整数。令c=m/(2m+1)=r/(2(r+1))，则0<c<1/2。对任意实数x选最邻近整数k，写x=k+δ且|δ|≤1/2。若|δ|≤c，则dist(x,Z)≤c。\n第4步。若c<|δ|≤1/2，则r|δ|=2m|δ|落在(m-c,m]。由于r为整数，rx=rk+rδ的最近整数可以选rk±m，所以dist(rx,Z)≤m-r|δ|<c。因而对每个x必有min(dist(x,Z),dist(rx,Z))≤c。\n第5步。任何公比为r的数列满足a_2=ra_1。将第4步用在x=a_1，得dist(a_1,Z)与dist(a_2,Z)至少一个不大于c。所以任何适用的C≤c。\n第6步。取a_1=m/(2m+1)，并设a_n=r^(n-1)a_1。模整数计算：2m≡-1 (mod 2m+1)，故对任意n，a_n与(-1)^(n-1)m/(2m+1)相差整数。因0<m/(2m+1)<1/2，所以dist(a_n,Z)=m/(2m+1)=c。\n第7步。上界与构造均成立，故r奇数时最大C=1/2，r偶数时最大C=r/(2(r+1))。证毕。",
+          "page": null,
+          "bbox": null,
+          "confidence": null,
+          "assetId": null,
+          "providerData": {}
+        }
+      ]
+    },
+    "inputKind": "text",
+    "authority": "single_locked_complete_formal_theorem_kernel_not_natural_language_fidelity"
+  },
+  "error": null
+}

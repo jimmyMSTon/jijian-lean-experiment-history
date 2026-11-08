@@ -1,0 +1,104 @@
+{
+  "case": {
+    "id": "gaolian-2023-r2-q2",
+    "expected": "correct",
+    "source": "2023年全国高中数学联赛二试（加试）第2题，组合证明题（40分）。原题：设 m,n 是给定的整数，m≥n≥3。求具有下述性质的最小正整数 k：无论将 1,2,…,k 中的每个数任意染成红色或蓝色，或者存在 m 个红色的数 x₁,…,x_m（允许相同），满足 x₁+x₂+⋯+x_{m−1}<x_m；或者存在 n 个蓝色的数 y₁,…,y_n（允许相同），满足 y₁+y₂+⋯+y_{n−1}<y_n。\n\n我的完整证明：\n第一步，记 K=(m−1)n+1。先证 k=K−1 不够。将 1,2,…,n−1 全部染为蓝色，将 n,n+1,…,(m−1)n 全部染为红色。任何 m 个红数的前 m−1 项各不小于 n，故其和至少为 (m−1)n，而末项至多为 (m−1)n，因此不能严格小于末项。任何 n 个蓝数的前 n−1 项都是正整数，故其和至少为 n−1，而末项至多为 n−1，也不能满足严格不等式。所以该染色不符合题设性质，故最小可行 k 至少是 K。\n第二步，现对 1,…,K 的任意红蓝染色证明题设性质。按整数 1 的颜色分情况。\n第三步，若 1 为蓝色：只要存在一个蓝数 b≥n，就取 n−1 个蓝数 1 与最后一个蓝数 b，得到 1+⋯+1=n−1<b，立即满足蓝色条件。因此若蓝色条件不成立，那么所有 n,n+1,…,K 必须都是红色。此时 n 和 K 都为红色，取前 m−1 个红数都等于 n，末项取 K=(m−1)n+1，则前 m−1 项之和为 (m−1)n<K，满足红色条件。故不论如何，必有一色满足。\n第四步，若 1 为红色：只要存在一个红数 a≥m，就取 m−1 个红数 1 与末项 a，得到 m−1<a，满足红色条件。反之若红色条件不成立，则 m,m+1,…,K 必须都是蓝色。由于 m≥n，整数 T=(n−1)m+1 满足 m<T≤K，其中 T≤K 等价于 (n−1)m≤(m−1)n，即 n≤m。取前 n−1 个蓝数都等于 m，末项取蓝数 T，得到 (n−1)m<T，满足蓝色条件。\n第五步，两种情形穷尽整数 1 的所有可能颜色，故每个对 1,…,K 的染色都满足要求。结合第一步的反例，可行的最小正整数恰为 k=(m−1)n+1。证明完毕。"
+  },
+  "jobId": "ae2c6495-e9bb-4bff-8f7d-e986a859ed29",
+  "jobStatus": "completed",
+  "resultStatus": "whole_formal_kernel_verified_source_unconfirmed",
+  "kernelVerified": true,
+  "formalProofCertified": true,
+  "originalProofCertified": false,
+  "fidelityReview": "suspected_proof_reconstruction_or_gap",
+  "fidelityIssues": 1,
+  "sourceSteps": 5,
+  "kernelCertificate": {
+    "auditMethod": "fresh_environment_data_only_kernel_replay",
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "checked": true,
+    "dependencyUsage": [],
+    "formalStatement": "∀ (m n : ℕ) (hmn : m ≥ n) (hn : n ≥ 3),\n  IsLeast\n    {k |\n      0 < k ∧\n        ∀ (c : ℕ → Bool),\n          (∃ x, (∀ (i : Fin m), 1 ≤ x i ∧ x i ≤ k ∧ c (x i) = true) ∧ ∑ i with ↑i < m - 1, x i < x ⟨m - 1, ⋯⟩) ∨\n            ∃ y, (∀ (i : Fin n), 1 ≤ y i ∧ y i ≤ k ∧ c (y i) = false) ∧ ∑ i with ↑i < n - 1, y i < y ⟨n - 1, ⋯⟩}\n    ((m - 1) * n + 1)",
+    "statementMatched": true,
+    "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+    "expectedExpressionSha256": "49d654a8cd1ccdbf5f86e6beec437d4653b198c902aee9b756ec92fcf737601c",
+    "proofExpressionSha256": "4a6a1fe330f13c87e4eed858b33ea716ce168fb0371542f718dbc9f874d87b89",
+    "statement_hash": "d3b0c40d880d2f7fe9b74ae5d7c033adecbac68866663633c9dcca316d7b4522",
+    "nativeExpressionComparison": "requires_lean_definitional_comparison",
+    "sourceTypeSha256": "43918339f33510cea91de7da3db5554afce1281082f366f90214a6a122458b0b",
+    "sourceProofSha256": "db4c39b91de80ec704f487afc3384813de561dc859817963853272cf5bfa8ce7",
+    "runtime": {
+      "configured": true,
+      "executableFound": true,
+      "projectFound": true,
+      "runtimeBuilt": true,
+      "runtimeIntegrity": true,
+      "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+      "sandbox": "macos",
+      "isolated": true,
+      "ready": true,
+      "toolchain": "leanprover/lean4:v4.34.0",
+      "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+      "liveTestedInThisDistribution": false
+    },
+    "additionalAxioms": [],
+    "auditIsolation": "fresh_import_environment_reset_between_candidates"
+  },
+  "unsupportedOriginalSteps": [],
+  "error": null,
+  "usage": {
+    "attempts": 5,
+    "inputTokens": 27465,
+    "outputTokens": 106593,
+    "missingUsage": 0,
+    "requests": [
+      {
+        "reason": "WholeProofPlan",
+        "status": "response_received",
+        "input_tokens": 1313,
+        "output_tokens": 21453,
+        "error_type": null,
+        "http_duration_ms": 95169.517
+      },
+      {
+        "reason": "WholeProofProgram",
+        "status": "response_received",
+        "input_tokens": 2139,
+        "output_tokens": 41511,
+        "error_type": null,
+        "http_duration_ms": 197137.987
+      },
+      {
+        "reason": "LockedProofRepair",
+        "status": "response_received",
+        "input_tokens": 9478,
+        "output_tokens": 18465,
+        "error_type": null,
+        "http_duration_ms": 85415.657
+      },
+      {
+        "reason": "SourceReasonAudit",
+        "status": "response_received",
+        "input_tokens": 9133,
+        "output_tokens": 22222,
+        "error_type": null,
+        "http_duration_ms": 130486.072
+      },
+      {
+        "reason": "Explanation",
+        "status": "response_received",
+        "input_tokens": 5402,
+        "output_tokens": 2942,
+        "error_type": null,
+        "http_duration_ms": 18753.801
+      }
+    ]
+  },
+  "feedbackError": null,
+  "elapsedSeconds": 603.43,
+  "totalElapsedSeconds": 604.14
+}

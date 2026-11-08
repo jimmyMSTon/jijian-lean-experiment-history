@@ -1,0 +1,218 @@
+{
+  "study": "MathIR v2 stage 4 live sidecar",
+  "baselineCommit": "841e412",
+  "workflowId": "ae65dfcf-ee83-4d84-b24f-093f1365c298",
+  "provider": "DeepSeek",
+  "requestedModel": "deepseek-flash",
+  "realProvider": true,
+  "requestCount": 5,
+  "cases": {
+    "correct_equality": {
+      "case": "correct_equality",
+      "sourceText": "设 a,b∈ℝ，已知 a=b。证明 a+1=b+1。证明：由 a=b，在等式两边同时加 1，得到 a+1=b+1。",
+      "rawAndNormalizedMatchInput": true,
+      "requestCount": 1,
+      "request": {
+        "provider": "deepseek",
+        "requestedModel": "deepseek-flash",
+        "model": "deepseek-flash",
+        "responseId": "e3044c18-b325-4d0e-8007-ac8a19526c85",
+        "systemFingerprint": "aeb56401ca74e127821c4f9126dcb669",
+        "thinking": "provider_default",
+        "simulated": false
+      },
+      "usage": {
+        "prompt_tokens": 4149,
+        "completion_tokens": 8155,
+        "total_tokens": 12304
+      },
+      "elapsedSeconds": 93.306,
+      "firstLivePass": {
+        "fixedStatementKernelPassed": false,
+        "originalRouteKernelPassed": false
+      },
+      "firstFailingSteps": [
+        {
+          "routeId": "r_main",
+          "stepId": "mathir-v2/r_main/n_concl",
+          "status": "failed",
+          "diagnostics": [
+            {
+              "severity": "error",
+              "message": "Unknown identifier `h_ab`",
+              "leanPosition": {
+                "column": 5,
+                "line": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "incorrect_equality": {
+      "case": "incorrect_equality",
+      "sourceText": "设 a,b∈ℝ，已知 a=b。证明 a+1=b+2。证明：由 a=b，两边同时加 1，所以 a+1=b+2。",
+      "rawAndNormalizedMatchInput": true,
+      "requestCount": 1,
+      "request": {
+        "provider": "deepseek",
+        "requestedModel": "deepseek-flash",
+        "model": "deepseek-flash",
+        "responseId": "886f55c6-b603-40b6-a146-4cd210e6055f",
+        "systemFingerprint": "aeb56401ca74e127821c4f9126dcb669",
+        "thinking": "provider_default",
+        "simulated": false
+      },
+      "usage": {
+        "prompt_tokens": 4148,
+        "completion_tokens": 7571,
+        "total_tokens": 11719
+      },
+      "elapsedSeconds": 32.03,
+      "firstLivePass": {
+        "fixedStatementKernelPassed": false,
+        "originalRouteKernelPassed": false
+      },
+      "firstFailingSteps": [
+        {
+          "routeId": "r_main",
+          "stepId": "mathir-v2/r_main/n_conclusion",
+          "status": "incomplete",
+          "diagnostics": []
+        }
+      ]
+    },
+    "nat_induction_from_one": {
+      "case": "nat_induction_from_one",
+      "sourceText": "证明：对所有自然数 n，若 n≥1，则 n+0=n。用从 1 开始的归纳法：基例 n=1 时 1+0=1。归纳步假设 k≥1 且 k+0=k，由归纳假设可得 (k+1)+0=k+1。",
+      "rawAndNormalizedMatchInput": true,
+      "requestCount": 1,
+      "request": {
+        "provider": "deepseek",
+        "requestedModel": "deepseek-flash",
+        "model": "deepseek-flash",
+        "responseId": "692a0e7e-865d-4669-8237-d4b93192ac90",
+        "systemFingerprint": "aeb56401ca74e127821c4f9126dcb669",
+        "thinking": "provider_default",
+        "simulated": false
+      },
+      "usage": {
+        "prompt_tokens": 4179,
+        "completion_tokens": 15215,
+        "total_tokens": 19394
+      },
+      "elapsedSeconds": 142.107,
+      "firstLivePass": {
+        "fixedStatementKernelPassed": false,
+        "originalRouteKernelPassed": false
+      },
+      "firstFailingSteps": [
+        {
+          "routeId": "pr_main",
+          "stepId": "mathir-v2/pr_main/ind_main/step",
+          "status": "incomplete",
+          "diagnostics": []
+        }
+      ]
+    },
+    "rational_finite_sum": {
+      "case": "rational_finite_sum",
+      "sourceText": "证明有限和：∑_{k=1}^{2}(1/2)^k=3/4，其中所有分数都在有理数 ℚ 中。计算：1/2+1/4=3/4。",
+      "rawAndNormalizedMatchInput": true,
+      "requestCount": 1,
+      "request": {
+        "provider": "deepseek",
+        "requestedModel": "deepseek-flash",
+        "model": "deepseek-flash",
+        "responseId": "df9fa16c-e89e-48f7-8af8-75bf37f32609",
+        "systemFingerprint": "aeb56401ca74e127821c4f9126dcb669",
+        "thinking": "provider_default",
+        "simulated": false
+      },
+      "usage": {
+        "prompt_tokens": 4156,
+        "completion_tokens": 16010,
+        "total_tokens": 20166
+      },
+      "elapsedSeconds": 120.25,
+      "firstLivePass": {
+        "fixedStatementKernelPassed": false,
+        "originalRouteKernelPassed": false
+      },
+      "firstFailingSteps": [
+        {
+          "routeId": "r_direct_compute",
+          "stepId": "mathir-v2/r_direct_compute/c_goal",
+          "status": "incomplete",
+          "diagnostics": []
+        }
+      ]
+    },
+    "dependent_polynomial_definitions": {
+      "case": "dependent_polynomial_definitions",
+      "sourceText": "定义实系数多项式 P(x)=x^2+1，再定义 Q(x)=P(x)+1。证明 Q(0)=2。证明：由 Q(x)=P(x)+1 和 P(x)=x^2+1，代入 x=0 得 Q(0)=0^2+1+1=2。",
+      "rawAndNormalizedMatchInput": true,
+      "requestCount": 1,
+      "request": {
+        "provider": "deepseek",
+        "requestedModel": "deepseek-flash",
+        "model": "deepseek-flash",
+        "responseId": "96526dd5-4d16-4921-823b-4f16b183d984",
+        "systemFingerprint": "aeb56401ca74e127821c4f9126dcb669",
+        "thinking": "provider_default",
+        "simulated": false
+      },
+      "usage": {
+        "prompt_tokens": 4182,
+        "completion_tokens": 16789,
+        "total_tokens": 20971
+      },
+      "elapsedSeconds": 222.136,
+      "firstLivePass": {
+        "fixedStatementKernelPassed": false,
+        "originalRouteKernelPassed": false
+      },
+      "firstFailingSteps": [
+        {
+          "routeId": "r_main",
+          "stepId": "mathir-v2/r_main/r_conclusion",
+          "status": "failed",
+          "diagnostics": [
+            {
+              "severity": "warning",
+              "message": "Variable name `jjdep_r_q_def` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _jjdep_r_q_def\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+              "leanPosition": {
+                "column": 79,
+                "line": 5
+              }
+            },
+            {
+              "severity": "warning",
+              "message": "Variable name `jjdep_r_p_def` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _jjdep_r_p_def\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+              "leanPosition": {
+                "column": 148,
+                "line": 5
+              }
+            },
+            {
+              "severity": "error",
+              "message": "Unknown identifier `r_q_def`",
+              "leanPosition": {
+                "column": 7,
+                "line": 1
+              }
+            },
+            {
+              "severity": "error",
+              "message": "unsolved goals\n⊢ let v_d_P := Polynomial.X ^ 2 + Polynomial.C (1 / 1);\n  let v_d_Q := v_d_P + Polynomial.C (1 / 1);\n  v_d_Q = v_d_P + Polynomial.C (1 / 1) →\n    v_d_P = Polynomial.X ^ 2 + Polynomial.C (1 / 1) → Polynomial.eval (0 / 1) v_d_Q = 2 / 1",
+              "leanPosition": {
+                "column": 0,
+                "line": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

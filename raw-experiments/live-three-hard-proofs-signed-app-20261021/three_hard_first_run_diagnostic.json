@@ -1,0 +1,89 @@
+{
+  "createdUtc": "2026-10-21T16:21:40.563736+00:00",
+  "testedSignedMacAppSourceCommit": "90a6e5b703cdec4911611d4aafcd7fbcce4dbf27",
+  "method": "Real three authored text proofs -> real signed Mac app backend -> real DeepSeek Flash; no fixtures, hand-written Lean or hand-written MathIR",
+  "result": "3/3 fail to parse DeepSeek-produced MathIR JSON before Lean or original-source fidelity",
+  "cases": [
+    {
+      "case": "hard_analysis_ivt_sup",
+      "source": "设 f:[0,1]→ℝ 连续，且 f(0)<0<f(1)。证明存在 c∈(0,1)，使 f(c)=0。原证明：令 S={x∈[0,1]∣f(x)<0}。因为 f(0)<0，所以 S 非空；又 S⊆[0,1]，故 S 有上确界 c=sup S。由 f 在 0 处连续且 f(0)<0，可知存在 η>0，使得 x∈[0,η] 时 f(x)<0，故 c>0。由 f(1)>0 及连续性可知在 1 的某个左邻域内 f(x)>0，故 c<1。若 f(c)<0，则连续性给出 c 右侧的某点 x∈[0,1] 满足 f(x)<0，与 c 为 S 的上界矛盾。若 f(c)>0，则连续性给出 c 左侧一个邻域内 f(x)>0；但根据上确界定义，存在 x∈S 落在该邻域，与 f(x)<0 矛盾。因此 f(c)=0，且 c∈(0,1)。",
+      "sourceSha256": "73bcce94d4c07e1c10ee98aeacf212d5fd5db91c6a80c8557002e46af7d4b53f",
+      "jobId": "19527514-150d-47ea-b588-20520aa3d494",
+      "status": "failed",
+      "mathirParseErrorCode": "PARSE_ERROR",
+      "parsingErrorSyntax": "Expecting ',' delimiter",
+      "parsingErrorPosition": 11927,
+      "savedInvalidOutputId": "27365dac-5b20-4b49-ac65-eb97bd467101",
+      "providerResponseId": "f452da59-9ee3-4ffe-ad04-e0b189435d7b",
+      "rawInvalidOutputCharacters": 26309,
+      "rawInvalidOutputSha256": "ccb822c460632268fbf062313e5528d9ed098c78be10cc44d726587a4e40d6e7",
+      "realDeepSeekRequests": 1,
+      "providerRequestIds": [
+        "9cd90edc-b710-4efc-bc46-d89ecd22e59f"
+      ],
+      "inputTokens": 11495,
+      "outputTokens": 31422,
+      "elapsedSeconds": 130.96,
+      "kernelAttempted": false,
+      "independentAuthorSourceFidelityAttempted": false,
+      "isolatedEvidenceZipSha256": "790df4f9f2a792a305718d5b345974df71aeb88ce628e42fa8d2bdd888d2f820"
+    },
+    {
+      "case": "hard_linear_algebra_spectral",
+      "source": "设 n≥1，A 为 n×n 实对称矩阵，即 Aᵀ=A。证明存在实正交矩阵 Q 与实对角矩阵 D，使 QᵀAQ=D。原证明：对 n 作归纳。n=1 显然。设 n>1。在单位球面 S={x∈ℝⁿ∣∥x∥=1} 上，连续函数 R(x)=xᵀAx 取得最大值 λ，设最大值点为单位向量 v。对任意与 v 正交的 w，考虑 g(t)=R((v+tw)/∥v+tw∥)，在 t=0 取得极大值，故 g′(0)=2wᵀAv=0。因此 Av 与 v 的正交补正交，存在实数 μ 使 Av=μv，且 μ=vᵀAv=λ。由于 A 对称，若 w⊥v，则 ⟨Aw,v⟩=⟨w,Av⟩=λ⟨w,v⟩=0，所以 v⊥ 在 A 下不变。将 A 限制在维数 n−1 的空间 v⊥ 上仍为实对称算子。依归纳假设，v⊥ 有一组由 A 的特征向量组成的标准正交基；与 v 合并得到 ℝⁿ 的标准正交特征向量基。以这些向量为列构成 Q，则 QᵀQ=I，且 QᵀAQ 为实对角矩阵。证毕。",
+      "sourceSha256": "f1f3240a93c04b59a15f6d685d57aa00a9b0e6c27388f08bc857e819021c839c",
+      "jobId": "79a030de-d384-4da0-a870-b39337595633",
+      "status": "failed",
+      "mathirParseErrorCode": "PARSE_ERROR",
+      "parsingErrorSyntax": "Expecting ',' delimiter",
+      "parsingErrorPosition": 33891,
+      "savedInvalidOutputId": "dd505ac4-e105-41b6-85f8-b75798da7b5f",
+      "providerResponseId": "74d37d70-9afa-49ba-a1a9-de0629b1154b",
+      "rawInvalidOutputCharacters": 84028,
+      "rawInvalidOutputSha256": "bb7e5d21063f732427535546f56b1c87f115ed90e27f876bc7850af6e07f93e5",
+      "realDeepSeekRequests": 1,
+      "providerRequestIds": [
+        "61f24947-c722-4b40-98a2-54c01b5421b7"
+      ],
+      "inputTokens": 11788,
+      "outputTokens": 65106,
+      "elapsedSeconds": 246.27,
+      "kernelAttempted": false,
+      "independentAuthorSourceFidelityAttempted": false,
+      "isolatedEvidenceZipSha256": "59b7c21b1d1e4a4f174b431e89f615d289661e6f0a360c534b30f38c5ee1f002"
+    },
+    {
+      "case": "hard_number_theory_4k3",
+      "source": "证明存在无穷多个满足 p≡3 (mod 4) 的素数。原证明：反设所有这样的素数只有 p₁,…,pᵣ。令 P=p₁p₂⋯pᵣ，N=4P−1。N>1 且 N≡3 (mod 4)，所以 N 的素因子中至少一个 q≡3 (mod 4)，否则全部素因子都≡1 (mod 4)，其乘积不可能≡3 (mod 4)。另一方面，对每个 i，有 N=4P−1≡−1 (mod pᵢ)，故 pᵢ 不整除 N。于是 q 不属于 p₁,…,pᵣ，与假设矛盾。因此满足 p≡3 (mod 4) 的素数有无穷多个。",
+      "sourceSha256": "25ed79056365bd1c13a3391a1bafd9aec6befbf3085e00efdef302d680d1d24b",
+      "jobId": "fd5bd417-da5b-462d-b8c2-59a9c627446c",
+      "status": "failed",
+      "mathirParseErrorCode": "PARSE_ERROR",
+      "parsingErrorSyntax": "Expecting ',' delimiter",
+      "parsingErrorPosition": 8557,
+      "savedInvalidOutputId": "5f316167-d866-466f-b14c-82597810be1e",
+      "providerResponseId": "330e1ac9-fbd0-40c5-86e1-b746fa705a3a",
+      "rawInvalidOutputCharacters": 15616,
+      "rawInvalidOutputSha256": "2d442c9c215228a8883d770c584b0b0deb5c5527658a913a560513f0e55f3e7f",
+      "realDeepSeekRequests": 1,
+      "providerRequestIds": [
+        "e1262cd6-ef28-4519-8b47-03ba243edb08"
+      ],
+      "inputTokens": 11021,
+      "outputTokens": 27983,
+      "elapsedSeconds": 125.58,
+      "kernelAttempted": false,
+      "independentAuthorSourceFidelityAttempted": false,
+      "isolatedEvidenceZipSha256": "415d9cb82b7fb214c3070bd328df3685d90e476bc4e8b2929c24a5eadf369521"
+    }
+  ],
+  "totals": {
+    "cases": 3,
+    "realDeepSeekRequests": 3,
+    "inputTokens": 34304,
+    "outputTokens": 124511,
+    "elapsedSeconds": 502.81,
+    "completeLeanKernelSuccesses": 0,
+    "independentOriginalProofSuccesses": 0
+  }
+}

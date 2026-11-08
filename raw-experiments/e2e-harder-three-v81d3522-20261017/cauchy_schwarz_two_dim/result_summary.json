@@ -1,0 +1,521 @@
+{
+  "ambiguitites": [],
+  "fixedStatementKernelPassed": true,
+  "kernelVerified": true,
+  "leanMetrics": {
+    "elapsedSeconds": 84.576,
+    "measurement": "Lean subprocess groups; each invocation includes the sandbox launcher and Lean process. Kernel batch resets the imported environment between evidence replays.",
+    "processCount": 2,
+    "processes": [
+      {
+        "activeProcessGroupsAtStart": 1,
+        "kernelInputJsonBytes": 0,
+        "leanReturnCode": 0,
+        "leanStderrBytes": 755,
+        "leanStdoutBytes": 52606430,
+        "maxRssBytes": 6277529600,
+        "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+        "parallelism": 1,
+        "peakMemoryFootprintBytes": 1142535168,
+        "phase": "statement_proof_export_batch",
+        "processGroupPid": 8621,
+        "pythonPeakRssBytes": 191070208,
+        "queueWaitSeconds": 0.0001,
+        "slot": 0,
+        "status": "completed",
+        "systemCpuSeconds": 24.55,
+        "userCpuSeconds": 4.73,
+        "wallSeconds": 52.75
+      },
+      {
+        "candidateCount": 6,
+        "expectedStatementCount": 6,
+        "leanStdoutBytes": 52606430,
+        "phase": "statement_proof_wire_materialization",
+        "pythonPeakRssBytes": 838352896,
+        "wallSeconds": 3.9622
+      },
+      {
+        "activeProcessGroupsAtStart": 1,
+        "kernelInputJsonBytes": 48116186,
+        "leanReturnCode": 0,
+        "leanStderrBytes": 755,
+        "leanStdoutBytes": 5154,
+        "maxRssBytes": 6355976192,
+        "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+        "parallelism": 1,
+        "peakMemoryFootprintBytes": 1223619328,
+        "phase": "independent_kernel_replay_batch",
+        "processGroupPid": 8714,
+        "pythonPeakRssBytes": 838352896,
+        "queueWaitSeconds": 0.0002,
+        "slot": 0,
+        "status": "completed",
+        "systemCpuSeconds": 18.71,
+        "userCpuSeconds": 5.24,
+        "wallSeconds": 27.11
+      },
+      {
+        "certificateCount": 6,
+        "leanStdoutBytes": 5154,
+        "phase": "kernel_certificate_materialization",
+        "pythonPeakRssBytes": 838352896,
+        "wallSeconds": 0.7543
+      }
+    ]
+  },
+  "mathirDeclarations": [
+    {
+      "id": "d_a",
+      "name": "a",
+      "type": {
+        "argumentOrder": [],
+        "binderId": null,
+        "candidateKinds": [],
+        "codomain": null,
+        "coefficient": null,
+        "cols": null,
+        "declaredStructures": [],
+        "dimension": null,
+        "domain": null,
+        "element": null,
+        "kind": "Real",
+        "rows": null,
+        "structureConstraints": [],
+        "termArguments": [],
+        "typeArguments": [],
+        "typeConstructor": null,
+        "typeVarId": null,
+        "typeVarMode": "unresolved"
+      }
+    },
+    {
+      "id": "d_b",
+      "name": "b",
+      "type": {
+        "argumentOrder": [],
+        "binderId": null,
+        "candidateKinds": [],
+        "codomain": null,
+        "coefficient": null,
+        "cols": null,
+        "declaredStructures": [],
+        "dimension": null,
+        "domain": null,
+        "element": null,
+        "kind": "Real",
+        "rows": null,
+        "structureConstraints": [],
+        "termArguments": [],
+        "typeArguments": [],
+        "typeConstructor": null,
+        "typeVarId": null,
+        "typeVarMode": "unresolved"
+      }
+    },
+    {
+      "id": "d_c",
+      "name": "c",
+      "type": {
+        "argumentOrder": [],
+        "binderId": null,
+        "candidateKinds": [],
+        "codomain": null,
+        "coefficient": null,
+        "cols": null,
+        "declaredStructures": [],
+        "dimension": null,
+        "domain": null,
+        "element": null,
+        "kind": "Real",
+        "rows": null,
+        "structureConstraints": [],
+        "termArguments": [],
+        "typeArguments": [],
+        "typeConstructor": null,
+        "typeVarId": null,
+        "typeVarMode": "unresolved"
+      }
+    },
+    {
+      "id": "d_d",
+      "name": "d",
+      "type": {
+        "argumentOrder": [],
+        "binderId": null,
+        "candidateKinds": [],
+        "codomain": null,
+        "coefficient": null,
+        "cols": null,
+        "declaredStructures": [],
+        "dimension": null,
+        "domain": null,
+        "element": null,
+        "kind": "Real",
+        "rows": null,
+        "structureConstraints": [],
+        "termArguments": [],
+        "typeArguments": [],
+        "typeConstructor": null,
+        "typeVarId": null,
+        "typeVarMode": "unresolved"
+      }
+    },
+    {
+      "id": "d_x",
+      "name": "x",
+      "type": {
+        "argumentOrder": [],
+        "binderId": null,
+        "candidateKinds": [],
+        "codomain": null,
+        "coefficient": null,
+        "cols": null,
+        "declaredStructures": [],
+        "dimension": null,
+        "domain": null,
+        "element": null,
+        "kind": "Real",
+        "rows": null,
+        "structureConstraints": [],
+        "termArguments": [],
+        "typeArguments": [],
+        "typeConstructor": null,
+        "typeVarId": null,
+        "typeVarMode": "unresolved"
+      }
+    }
+  ],
+  "mathirGoalExpr": "((((d_a mul d_c) add (d_b mul d_d)) pow 2) le (((d_a pow 2) add (d_b pow 2)) mul ((d_c pow 2) add (d_d pow 2))))",
+  "mathirNodes": [
+    {
+      "goalNodeId": "n_conclusion",
+      "label": "展开差并利用平方非负",
+      "nodes": [
+        {
+          "assessmentBasis": "原稿明确展开右边与左边的差，并给出等式链 (a²+b²)(c²+d²)−(ac+bd)²=a²d²+b²c²−2abcd=(ad−bc)²",
+          "closedDependencies": [],
+          "dependsOn": [],
+          "expression": "and((((((d_a pow 2) add (d_b pow 2)) mul ((d_c pow 2) add (d_d pow 2))) sub (((d_a mul d_c) add (d_b mul d_d)) pow 2)) eq ((((d_a pow 2) mul (d_d pow 2)) add ((d_b pow 2) mul (d_c pow 2))) sub (2 mul (d_a mul (d_b mul (d_c mul d_d)))))), (((((d_a pow 2) mul (d_d pow 2)) add ((d_b pow 2) mul (d_c pow 2))) sub (2 mul (d_a mul (d_b mul (d_c mul d_d))))) eq (((d_a mul d_d) sub (d_b mul d_c)) pow 2)))",
+          "kind": "claim",
+          "nodeId": "n_expand",
+          "proofTermPresent": true,
+          "sourceAssessment": "supported"
+        },
+        {
+          "assessmentBasis": "原文明示“任意实数的平方非负”",
+          "closedDependencies": [],
+          "dependsOn": [],
+          "expression": "forall(((d_x pow 2) ge 0))",
+          "kind": "claim",
+          "nodeId": "n_square_nonneg_general",
+          "proofTermPresent": true,
+          "sourceAssessment": "supported"
+        },
+        {
+          "assessmentBasis": "原稿由“任意实数的平方非负”推出 (ad−bc)²≥0",
+          "closedDependencies": [],
+          "dependsOn": [
+            "n_square_nonneg_general"
+          ],
+          "expression": "((((d_a mul d_d) sub (d_b mul d_c)) pow 2) ge 0)",
+          "kind": "claim",
+          "nodeId": "n_ad_bc_square_nonneg",
+          "proofTermPresent": true,
+          "sourceAssessment": "supported"
+        },
+        {
+          "assessmentBasis": "原稿由展开等式与 (ad−bc)²≥0 得出右边减去左边非负",
+          "closedDependencies": [],
+          "dependsOn": [
+            "n_expand",
+            "n_ad_bc_square_nonneg"
+          ],
+          "expression": "(((((d_a pow 2) add (d_b pow 2)) mul ((d_c pow 2) add (d_d pow 2))) sub (((d_a mul d_c) add (d_b mul d_d)) pow 2)) ge 0)",
+          "kind": "claim",
+          "nodeId": "n_right_minus_left_nonneg",
+          "proofTermPresent": true,
+          "sourceAssessment": "supported"
+        },
+        {
+          "assessmentBasis": "原稿由右边减去左边非负得到所证不等式",
+          "closedDependencies": [],
+          "dependsOn": [
+            "n_right_minus_left_nonneg"
+          ],
+          "expression": "((((d_a mul d_c) add (d_b mul d_d)) pow 2) le (((d_a pow 2) add (d_b pow 2)) mul ((d_c pow 2) add (d_d pow 2))))",
+          "kind": "claim",
+          "nodeId": "n_conclusion",
+          "proofTermPresent": true,
+          "sourceAssessment": "supported"
+        }
+      ],
+      "routeId": "route_expand_square"
+    }
+  ],
+  "mathirVersion": "2.0",
+  "originalMeaning": "model_interpretation",
+  "originalProofFidelity": {
+    "basis": "Kernel checks Lean proof terms for the locked formal statement; it cannot certify that generated tactics faithfully express each inference in the original human manuscript.",
+    "routes": [
+      {
+        "formalRouteKernelPassed": true,
+        "routeId": "route_expand_square",
+        "sourceReasoningStatus": "not_independently_established",
+        "sourceReasoningVerified": false,
+        "steps": [
+          {
+            "formalStepKernelPassed": true,
+            "nodeId": "n_expand",
+            "proofTermOrigin": "proof_only_generation",
+            "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+            "sourceReasoningVerified": false
+          },
+          {
+            "formalStepKernelPassed": true,
+            "nodeId": "n_square_nonneg_general",
+            "proofTermOrigin": "proof_only_generation",
+            "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+            "sourceReasoningVerified": false
+          },
+          {
+            "formalStepKernelPassed": true,
+            "nodeId": "n_ad_bc_square_nonneg",
+            "proofTermOrigin": "proof_only_generation",
+            "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+            "sourceReasoningVerified": false
+          },
+          {
+            "formalStepKernelPassed": true,
+            "nodeId": "n_right_minus_left_nonneg",
+            "proofTermOrigin": "proof_only_generation",
+            "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+            "sourceReasoningVerified": false
+          },
+          {
+            "formalStepKernelPassed": true,
+            "nodeId": "n_conclusion",
+            "proofTermOrigin": "proof_only_generation",
+            "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+            "sourceReasoningVerified": false
+          }
+        ]
+      }
+    ],
+    "sourceProofVerified": false,
+    "status": "not_independently_established"
+  },
+  "originalRouteKernelPassed": true,
+  "routes": [
+    {
+      "dependencyEvidence": {
+        "basis": "Kernel proof expression binder-use audit for declared claim dependencies",
+        "status": "checked"
+      },
+      "formalRouteKernelPassed": true,
+      "kernel": {
+        "certificate": {
+          "additionalAxioms": [],
+          "auditIsolation": "fresh_import_environment_reset_between_candidates",
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "checked": true,
+          "expectedExpressionSha256": "55f4de1a243ed9c7384a441e59e4f1ed7b4a73f042a87e63213b207b37e0b67f",
+          "nativeExpressionComparison": "structural_equal",
+          "proofExpressionSha256": "57875faf0366df365a8015a97a7bfb1afcd07d9f950ad51db7d0b71828d472d8",
+          "statementMatched": true,
+          "statement_hash": "c067984e1b5c2c818fa52c40906039b2bc431965664ad008843f498fbb9388fe"
+        },
+        "diagnostics": [],
+        "evidenceRef": null,
+        "status": "verified"
+      },
+      "proofComposition": {
+        "error": null,
+        "kernelChecked": true,
+        "status": "composed"
+      },
+      "routeConnectivity": {
+        "basis": "goal dependency closure plus explicit induction-case edges",
+        "goalNodeIdPresent": true,
+        "status": "connected",
+        "unconnectedClaimNodeIds": [],
+        "unconnectedNodeIds": []
+      },
+      "routeId": "route_expand_square",
+      "sourceAlignment": {
+        "modelAssessment": "supported",
+        "semanticAlignmentKernelProven": false,
+        "sourceRefsValidated": true,
+        "status": "supported",
+        "transcriptionStatus": "confirmed",
+        "unresolvedAmbiguityIds": []
+      },
+      "status": "passed",
+      "steps": [
+        {
+          "declaredDependencies": [],
+          "dependencyEvidence": "not_required",
+          "diagnostics": [],
+          "expectedType": "(∀ (v_d_a : ℝ), (∀ (v_d_b : ℝ), (∀ (v_d_c : ℝ), (∀ (v_d_d : ℝ), ((((((v_d_a ^ (2 : ℕ)) + (v_d_b ^ (2 : ℕ))) * ((v_d_c ^ (2 : ℕ)) + (v_d_d ^ (2 : ℕ)))) - (((v_d_a * v_d_c) + (v_d_b * v_d_d)) ^ (2 : ℕ))) = ((((v_d_a ^ (2 : ℕ)) * (v_d_d ^ (2 : ℕ))) + ((v_d_b ^ (2 : ℕ)) * (v_d_c ^ (2 : ℕ)))) - ((2 : ℝ) * (v_d_a * (v_d_b * (v_d_c * v_d_d)))))) ∧ (((((v_d_a ^ (2 : ℕ)) * (v_d_d ^ (2 : ℕ))) + ((v_d_b ^ (2 : ℕ)) * (v_d_c ^ (2 : ℕ)))) - ((2 : ℝ) * (v_d_a * (v_d_b * (v_d_c * v_d_d))))) = (((v_d_a * v_d_d) - (v_d_b * v_d_c)) ^ (2 : ℕ))))))))",
+          "failureClass": null,
+          "mathematicalStatus": "established",
+          "nodeId": "n_expand",
+          "proofTermOrigin": "proof_only_generation",
+          "proofTermSha256": "8e4aa8f92709cd86ce16ce5c33dc780f87c4f65ba6e79af4d8089a721fc816fa",
+          "sourceAssessment": "supported",
+          "status": "passed",
+          "stepKernelCertificate": {
+            "additionalAxioms": [],
+            "auditIsolation": "fresh_import_environment_reset_between_candidates",
+            "auditMethod": "fresh_environment_data_only_kernel_replay",
+            "axioms": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "checked": true,
+            "expectedExpressionSha256": "cb51b07b61187f6db9acb9c15d0bdc5e543d3e7f57e19523b5cfb690ca47f3d2",
+            "nativeExpressionComparison": "structural_equal",
+            "proofExpressionSha256": "9a866852c2c211a4f67f818afa66b1868f1e8d91fa366ecf1f1653e9289bdd93",
+            "statementMatched": true,
+            "statement_hash": "c067984e1b5c2c818fa52c40906039b2bc431965664ad008843f498fbb9388fe"
+          }
+        },
+        {
+          "declaredDependencies": [],
+          "dependencyEvidence": "not_required",
+          "diagnostics": [],
+          "expectedType": "(∀ (v_d_a : ℝ), (∀ (v_d_b : ℝ), (∀ (v_d_c : ℝ), (∀ (v_d_d : ℝ), (∀ (v_d_x : ℝ), ((v_d_x ^ (2 : ℕ)) ≥ (0 : ℝ)))))))",
+          "failureClass": null,
+          "mathematicalStatus": "established",
+          "nodeId": "n_square_nonneg_general",
+          "proofTermOrigin": "proof_only_generation",
+          "proofTermSha256": "864957c72b76c3b1bc0f0ab1d263300a62f7e03f290416ad5b0264b9af0b616d",
+          "sourceAssessment": "supported",
+          "status": "passed",
+          "stepKernelCertificate": {
+            "additionalAxioms": [],
+            "auditIsolation": "fresh_import_environment_reset_between_candidates",
+            "auditMethod": "fresh_environment_data_only_kernel_replay",
+            "axioms": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "checked": true,
+            "expectedExpressionSha256": "513b18df64977a4e7eb40fefe6c00731d4b335387fa2e0421d3baa7d27710110",
+            "nativeExpressionComparison": "structural_equal",
+            "proofExpressionSha256": "3a0bf22093fababd8d551574f0f3ab410b01d9a4d10d32a35927c83f97cf8f84",
+            "statementMatched": true,
+            "statement_hash": "c067984e1b5c2c818fa52c40906039b2bc431965664ad008843f498fbb9388fe"
+          }
+        },
+        {
+          "declaredDependencies": [
+            "n_square_nonneg_general"
+          ],
+          "dependencyEvidence": "all_declared_dependencies_used",
+          "diagnostics": [],
+          "expectedType": "(∀ (v_d_a : ℝ), (∀ (v_d_b : ℝ), (∀ (v_d_c : ℝ), (∀ (v_d_d : ℝ), (∀ (jjdep_n_square_nonneg_general : (∀ (v_d_x : ℝ), ((v_d_x ^ (2 : ℕ)) ≥ (0 : ℝ)))), ((((v_d_a * v_d_d) - (v_d_b * v_d_c)) ^ (2 : ℕ)) ≥ (0 : ℝ)))))))",
+          "failureClass": null,
+          "mathematicalStatus": "conditionally_established",
+          "nodeId": "n_ad_bc_square_nonneg",
+          "proofTermOrigin": "proof_only_generation",
+          "proofTermSha256": "8946931ea85c882dad0101b7f07415a22f0a22fa7e037d1ea2da7b919980778d",
+          "sourceAssessment": "supported",
+          "status": "passed",
+          "stepKernelCertificate": {
+            "additionalAxioms": [],
+            "auditIsolation": "fresh_import_environment_reset_between_candidates",
+            "auditMethod": "fresh_environment_data_only_kernel_replay",
+            "axioms": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "checked": true,
+            "expectedExpressionSha256": "a210f55162c1613b22da7c6a1cbe88a403a0d1165fdb27e1925cfc2fb8f6832e",
+            "nativeExpressionComparison": "structural_equal",
+            "proofExpressionSha256": "d968201923784830f67b0d4b92e72846ee1c652b7a5c75e28d4c8a2d18137b3f",
+            "statementMatched": true,
+            "statement_hash": "c067984e1b5c2c818fa52c40906039b2bc431965664ad008843f498fbb9388fe"
+          }
+        },
+        {
+          "declaredDependencies": [
+            "n_expand",
+            "n_ad_bc_square_nonneg"
+          ],
+          "dependencyEvidence": "all_declared_dependencies_used",
+          "diagnostics": [],
+          "expectedType": "(∀ (v_d_a : ℝ), (∀ (v_d_b : ℝ), (∀ (v_d_c : ℝ), (∀ (v_d_d : ℝ), (∀ (jjdep_n_expand : ((((((v_d_a ^ (2 : ℕ)) + (v_d_b ^ (2 : ℕ))) * ((v_d_c ^ (2 : ℕ)) + (v_d_d ^ (2 : ℕ)))) - (((v_d_a * v_d_c) + (v_d_b * v_d_d)) ^ (2 : ℕ))) = ((((v_d_a ^ (2 : ℕ)) * (v_d_d ^ (2 : ℕ))) + ((v_d_b ^ (2 : ℕ)) * (v_d_c ^ (2 : ℕ)))) - ((2 : ℝ) * (v_d_a * (v_d_b * (v_d_c * v_d_d)))))) ∧ (((((v_d_a ^ (2 : ℕ)) * (v_d_d ^ (2 : ℕ))) + ((v_d_b ^ (2 : ℕ)) * (v_d_c ^ (2 : ℕ)))) - ((2 : ℝ) * (v_d_a * (v_d_b * (v_d_c * v_d_d))))) = (((v_d_a * v_d_d) - (v_d_b * v_d_c)) ^ (2 : ℕ))))), (∀ (jjdep_n_ad_bc_square_nonneg : ((((v_d_a * v_d_d) - (v_d_b * v_d_c)) ^ (2 : ℕ)) ≥ (0 : ℝ))), (((((v_d_a ^ (2 : ℕ)) + (v_d_b ^ (2 : ℕ))) * ((v_d_c ^ (2 : ℕ)) + (v_d_d ^ (2 : ℕ)))) - (((v_d_a * v_d_c) + (v_d_b * v_d_d)) ^ (2 : ℕ))) ≥ (0 : ℝ))))))))",
+          "failureClass": null,
+          "mathematicalStatus": "conditionally_established",
+          "nodeId": "n_right_minus_left_nonneg",
+          "proofTermOrigin": "proof_only_generation",
+          "proofTermSha256": "8794f9975eae464198e268c6632f5077cde598d0219a5a227f5041aae4a04d8f",
+          "sourceAssessment": "supported",
+          "status": "passed",
+          "stepKernelCertificate": {
+            "additionalAxioms": [],
+            "auditIsolation": "fresh_import_environment_reset_between_candidates",
+            "auditMethod": "fresh_environment_data_only_kernel_replay",
+            "axioms": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "checked": true,
+            "expectedExpressionSha256": "14cb96fc916ec5f9ac3c4ad12e5c1ae53bc722825c922c71fce835128254d93c",
+            "nativeExpressionComparison": "structural_equal",
+            "proofExpressionSha256": "beaf80e5fe04be6d4c84f90e24f718c6a7bb7461834fce36c1edbfe742483ea0",
+            "statementMatched": true,
+            "statement_hash": "c067984e1b5c2c818fa52c40906039b2bc431965664ad008843f498fbb9388fe"
+          }
+        },
+        {
+          "declaredDependencies": [
+            "n_right_minus_left_nonneg"
+          ],
+          "dependencyEvidence": "all_declared_dependencies_used",
+          "diagnostics": [],
+          "expectedType": "(∀ (v_d_a : ℝ), (∀ (v_d_b : ℝ), (∀ (v_d_c : ℝ), (∀ (v_d_d : ℝ), (∀ (jjdep_n_right_minus_left_nonneg : (((((v_d_a ^ (2 : ℕ)) + (v_d_b ^ (2 : ℕ))) * ((v_d_c ^ (2 : ℕ)) + (v_d_d ^ (2 : ℕ)))) - (((v_d_a * v_d_c) + (v_d_b * v_d_d)) ^ (2 : ℕ))) ≥ (0 : ℝ))), ((((v_d_a * v_d_c) + (v_d_b * v_d_d)) ^ (2 : ℕ)) ≤ (((v_d_a ^ (2 : ℕ)) + (v_d_b ^ (2 : ℕ))) * ((v_d_c ^ (2 : ℕ)) + (v_d_d ^ (2 : ℕ))))))))))",
+          "failureClass": null,
+          "mathematicalStatus": "conditionally_established",
+          "nodeId": "n_conclusion",
+          "proofTermOrigin": "proof_only_generation",
+          "proofTermSha256": "e8ddfb7be03a6feaba90b87c7bcffe369db37cd670a61dafd63180390bac192e",
+          "sourceAssessment": "supported",
+          "status": "passed",
+          "stepKernelCertificate": {
+            "additionalAxioms": [],
+            "auditIsolation": "fresh_import_environment_reset_between_candidates",
+            "auditMethod": "fresh_environment_data_only_kernel_replay",
+            "axioms": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "checked": true,
+            "expectedExpressionSha256": "816d0db9ca4f7b388d8b99185b1925115f63295184effd2bce35d1ed40c06fed",
+            "nativeExpressionComparison": "structural_equal",
+            "proofExpressionSha256": "e5972875124140bcb3839e368b9303c97e6c6f48add7caf22067dc6eae1e2059",
+            "statementMatched": true,
+            "statement_hash": "c067984e1b5c2c818fa52c40906039b2bc431965664ad008843f498fbb9388fe"
+          }
+        }
+      ]
+    }
+  ],
+  "runStatus": "formal_verified_source_unconfirmed",
+  "sourceProofVerified": false,
+  "statement": "(∀ (v_d_a : ℝ), (∀ (v_d_b : ℝ), (∀ (v_d_c : ℝ), (∀ (v_d_d : ℝ), ((((v_d_a * v_d_c) + (v_d_b * v_d_d)) ^ (2 : ℕ)) ≤ (((v_d_a ^ (2 : ℕ)) + (v_d_b ^ (2 : ℕ))) * ((v_d_c ^ (2 : ℕ)) + (v_d_d ^ (2 : ℕ)))))))))",
+  "statementHash": "c067984e1b5c2c818fa52c40906039b2bc431965664ad008843f498fbb9388fe",
+  "termination": "original_route_kernel_passed",
+  "unresolvedAmbiguityIds": []
+}

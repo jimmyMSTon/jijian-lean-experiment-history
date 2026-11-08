@@ -1,0 +1,492 @@
+{
+  "id": "packaged_control_integer_7",
+  "topic": "control - genuine signed newest Mac App end-to-end integer existential witness",
+  "source": "设 t 是整数，已知 7 整除 t。证明 49 整除 t²。原证明：因为 7 整除 t，根据整除定义，存在整数 j 使得 t=7j。取这样的 j，则 t²=(7j)²=49j²。由于 j² 为整数，所以 t² 是49的整数倍，即 49 整除 t²。证毕。",
+  "reference": "Positive control only, independently report Kernel and original source; NOT one of three hard test problems",
+  "appSourceCommit": "8d32c6222fd6426125eb978148313dbb62becf2e",
+  "providerFixture": false,
+  "kernelFixture": false,
+  "handWrittenLean": false,
+  "handWrittenMathIR": false,
+  "transport": "signed installed App packaged backend POST /api/v2/jobs",
+  "guiInteracted": false,
+  "startedUtc": "2026-10-21T16:46:55.875401+00:00",
+  "sourceSha256": "6ae7d76882928f70556a02997a077cf7548ca04252374d66579d1ed65238c43d",
+  "capabilities": {
+    "ai": {
+      "configured": true,
+      "provider": "deepseek",
+      "model": "deepseek-flash",
+      "thinking": "provider_default",
+      "liveTested": false
+    },
+    "lean": {
+      "configured": true,
+      "executableFound": true,
+      "projectFound": true,
+      "runtimeBuilt": true,
+      "runtimeIntegrity": true,
+      "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+      "sandbox": "macos",
+      "isolated": true,
+      "ready": true,
+      "toolchain": "leanprover/lean4:v4.34.0",
+      "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+      "liveTestedInThisDistribution": false
+    },
+    "mockFallback": false,
+    "health": "running"
+  },
+  "jobId": "0ccebf8a-e568-4cff-bd25-da72c13f6d8e",
+  "submittedUtc": "2026-10-21T16:46:56.554409+00:00",
+  "stageTransitions": [
+    {
+      "status": "running",
+      "stage": "recognizing",
+      "seconds": 0.68,
+      "utc": "2026-10-21T16:46:56.558764+00:00"
+    },
+    {
+      "status": "running",
+      "stage": "lean_verification",
+      "seconds": 69.22,
+      "utc": "2026-10-21T16:48:05.098531+00:00"
+    },
+    {
+      "status": "running",
+      "stage": "proof_only_generation",
+      "seconds": 80.76,
+      "utc": "2026-10-21T16:48:16.631683+00:00"
+    },
+    {
+      "status": "completed",
+      "stage": "completed",
+      "seconds": 106.87,
+      "utc": "2026-10-21T16:48:42.741552+00:00"
+    }
+  ],
+  "terminalStatus": "completed",
+  "terminalStage": "completed",
+  "terminalError": null,
+  "result": {
+    "runStatus": "formal_verified_source_unconfirmed",
+    "termination": "original_route_kernel_passed",
+    "kernelVerified": true,
+    "fixedStatementKernelPassed": true,
+    "originalRouteKernelPassed": true,
+    "sourceProofVerified": false,
+    "originalProofVerified": false,
+    "originalMeaning": "model_interpretation",
+    "statement": null,
+    "failure": null,
+    "mathIRId": "beed2fad-a1fb-40d5-b45c-cee59f092bd3",
+    "sourceStructureId": "4c9428ad-5788-43f7-b133-48681b5da635",
+    "originalProofFidelity": {
+      "sourceProofVerified": false,
+      "status": "not_independently_established",
+      "basis": "Formal Kernel proof alone cannot certify an author's natural-language reasoning. Unrecognized source rule remains unconfirmed.",
+      "routes": [
+        {
+          "routeId": "r_main",
+          "formalRouteKernelPassed": true,
+          "sourceReasoningVerified": false,
+          "sourceReasoningStatus": "not_independently_established",
+          "steps": [
+            {
+              "nodeId": "n_exists_j",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": true,
+              "sourceReasoningStatus": "source_rule_certified",
+              "sourceInferenceRule": "explicit_divisibility_definition_existence",
+              "sourceInferenceEvidence": {
+                "blockId": "b0",
+                "start": 34,
+                "end": 65,
+                "quote": "因为 7 整除 t，根据整除定义，存在整数 j 使得 t=7j",
+                "quoteSha256": "de22ac00db85393ca4175e1572c8c932b6b74593d112b18298ccc2b91839367b",
+                "dependsOn": [
+                  "n_hyp_dvd"
+                ],
+                "method": "independent_authored_scope_and_quantifier_rule",
+                "kernelStepCertificate": true
+              }
+            },
+            {
+              "nodeId": "n_t_sq_eq_7j_sq",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": true,
+              "sourceReasoningStatus": "source_rule_certified",
+              "sourceInferenceRule": "equality_power_congruence",
+              "sourceInferenceEvidence": {
+                "blockId": "b0",
+                "start": 75,
+                "end": 83,
+                "quote": "t²=(7j)²",
+                "quoteSha256": "65e565b19138f04fed1b76641ee0ccea65663ffa06b7ddb1520dd6c249fb4499",
+                "dependsOn": [
+                  "n_take_j"
+                ],
+                "method": "independent_authored_scope_and_quantifier_rule",
+                "kernelStepCertificate": true
+              }
+            },
+            {
+              "nodeId": "n_7j_sq_eq_49j_sq",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": true,
+              "sourceReasoningStatus": "source_rule_certified",
+              "sourceInferenceRule": "explicit_polynomial_identity",
+              "sourceInferenceEvidence": {
+                "blockId": "b0",
+                "start": 78,
+                "end": 88,
+                "formulaStart": 78,
+                "formulaEnd": 88,
+                "quote": "(7j)²=49j²",
+                "quoteSha256": "424e942ee13ad72df0ec40ca1579d2c2a03d929cece4ed4fb7069206bf2bd688",
+                "dependsOn": [],
+                "method": "deterministic_source_formula_parser_and_exact_arithmetic_rule",
+                "kernelStepCertificate": true
+              }
+            },
+            {
+              "nodeId": "n_local_dvd_49_t_sq",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": false,
+              "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+              "sourceInferenceRule": null,
+              "sourceInferenceEvidence": null
+            },
+            {
+              "nodeId": "n_global_goal",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": false,
+              "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+              "sourceInferenceRule": null,
+              "sourceInferenceEvidence": null
+            }
+          ]
+        }
+      ]
+    },
+    "reasoningFidelity": {
+      "version": 2,
+      "authority": "independent_source_inference_certificate",
+      "status": "source_rules_partially_certified",
+      "formalRouteKernelPassed": true,
+      "sourceEvidenceBoundToStatement": true,
+      "expectedStatementHash": "7c17726fad1cb919342ed04aeb505d2f3fb3be6f22357e6253335d48e15f1a84",
+      "originalProofVerified": false,
+      "sourceInferenceCertificationAvailable": true,
+      "sourceRuleVerifiedStepCount": 3,
+      "sourceRuleVerifiedRouteCount": 0,
+      "unconfirmedSourceStepCount": 2,
+      "unconfirmedSourceSteps": [
+        {
+          "routeId": "r_main",
+          "nodeId": "n_local_dvd_49_t_sq",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "no_source_matched_quantifier_inference"
+        },
+        {
+          "routeId": "r_main",
+          "nodeId": "n_global_goal",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "author_quantifier_or_local_step_not_identified"
+        }
+      ],
+      "routes": [
+        {
+          "routeId": "r_main",
+          "formalRouteKernelPassed": true,
+          "originalReasoningVerified": false,
+          "originalReasoningStatus": "not_independently_certified",
+          "goalSourceMatch": {
+            "blockId": "b0",
+            "start": 18,
+            "end": 30,
+            "quote": "证明 49 整除 t²。",
+            "quoteSha256": "08ce957c544610e690fe7d9c6f3eedb50439d9291357934490740fd4c0873fdd",
+            "formulaStart": 18,
+            "formulaEnd": 30,
+            "rule": "source_attested_divisibility",
+            "sourceMatchReason": "divides_expression_matches_source"
+          },
+          "theoremPremisesSourceMatched": true,
+          "declarationTypesSourceMatched": true,
+          "unresolvedAmbiguitiesAbsent": true,
+          "authoredFormulaCoverageMatched": true,
+          "statementIdentityMatched": true,
+          "steps": [
+            {
+              "nodeId": "n_exists_j",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": true,
+              "originalInferenceStatus": "source_rule_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [
+                "n_hyp_dvd"
+              ],
+              "rule": "explicit_divisibility_definition_existence",
+              "ruleEvidence": {
+                "blockId": "b0",
+                "start": 34,
+                "end": 65,
+                "quote": "因为 7 整除 t，根据整除定义，存在整数 j 使得 t=7j",
+                "quoteSha256": "de22ac00db85393ca4175e1572c8c932b6b74593d112b18298ccc2b91839367b",
+                "dependsOn": [
+                  "n_hyp_dvd"
+                ],
+                "method": "independent_authored_scope_and_quantifier_rule",
+                "kernelStepCertificate": true
+              },
+              "ruleCheckReason": "independent_scoped_quantifier_rule",
+              "statementIdentityMatched": true,
+              "reason": "independent_scoped_quantifier_rule"
+            },
+            {
+              "nodeId": "n_t_sq_eq_7j_sq",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": true,
+              "originalInferenceStatus": "source_rule_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [
+                "n_take_j"
+              ],
+              "rule": "equality_power_congruence",
+              "ruleEvidence": {
+                "blockId": "b0",
+                "start": 75,
+                "end": 83,
+                "quote": "t²=(7j)²",
+                "quoteSha256": "65e565b19138f04fed1b76641ee0ccea65663ffa06b7ddb1520dd6c249fb4499",
+                "dependsOn": [
+                  "n_take_j"
+                ],
+                "method": "independent_authored_scope_and_quantifier_rule",
+                "kernelStepCertificate": true
+              },
+              "ruleCheckReason": "independent_scoped_quantifier_rule",
+              "statementIdentityMatched": true,
+              "reason": "independent_scoped_quantifier_rule"
+            },
+            {
+              "nodeId": "n_7j_sq_eq_49j_sq",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": true,
+              "originalInferenceStatus": "source_rule_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [],
+              "rule": "explicit_polynomial_identity",
+              "ruleEvidence": {
+                "blockId": "b0",
+                "start": 78,
+                "end": 88,
+                "formulaStart": 78,
+                "formulaEnd": 88,
+                "quote": "(7j)²=49j²",
+                "quoteSha256": "424e942ee13ad72df0ec40ca1579d2c2a03d929cece4ed4fb7069206bf2bd688",
+                "dependsOn": [],
+                "method": "deterministic_source_formula_parser_and_exact_arithmetic_rule",
+                "kernelStepCertificate": true
+              },
+              "ruleCheckReason": "independent_source_formula_and_rule_check",
+              "statementIdentityMatched": true,
+              "reason": "independent_source_formula_and_rule_check"
+            },
+            {
+              "nodeId": "n_local_dvd_49_t_sq",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": false,
+              "originalInferenceStatus": "not_independently_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [
+                "n_take_j",
+                "n_t_sq_eq_7j_sq",
+                "n_7j_sq_eq_49j_sq",
+                "n_j_sq_int"
+              ],
+              "rule": null,
+              "ruleEvidence": null,
+              "ruleCheckReason": "no_source_matched_quantifier_inference",
+              "statementIdentityMatched": true,
+              "reason": "ai_generated_formal_reconstruction"
+            },
+            {
+              "nodeId": "n_global_goal",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": false,
+              "originalInferenceStatus": "not_independently_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [
+                "n_exists_j",
+                "n_local_dvd_49_t_sq"
+              ],
+              "rule": null,
+              "ruleEvidence": null,
+              "ruleCheckReason": "author_quantifier_or_local_step_not_identified",
+              "statementIdentityMatched": true,
+              "reason": "ai_generated_formal_reconstruction"
+            }
+          ]
+        }
+      ],
+      "explanation": "Only exact source-anchored equations with an independently checked arithmetic inference rule and a genuine Kernel certificate are certified. Model proof reconstruction alone never qualifies. Unrecognized natural language is unconfirmed, not disproved."
+    },
+    "routeSummary": [
+      {
+        "routeId": "r_main",
+        "status": "passed",
+        "formalRouteKernelPassed": null,
+        "completeOriginalRouteKernelPassed": true,
+        "originalReasoningVerified": false,
+        "certificate": {
+          "checked": true,
+          "statementMatched": true,
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext"
+          ],
+          "additionalAxioms": [],
+          "statement_hash": "7c17726fad1cb919342ed04aeb505d2f3fb3be6f22357e6253335d48e15f1a84",
+          "expectedExpressionSha256": "5e04b29fa461ea6806b10ad45aa669944c2c83c716769edaabdabcca5985c941",
+          "proofExpressionSha256": "21c429e03770b57109b8961058e5389daa39d64e9840ad544c05ddfe7319065b",
+          "nativeExpressionComparison": "structural_equal",
+          "auditIsolation": "fresh_import_environment_reset_between_candidates"
+        },
+        "steps": 5
+      }
+    ],
+    "steps": [
+      {
+        "route": "r_main",
+        "node": "n_exists_j",
+        "status": "passed",
+        "mathematicalStatus": "conditionally_established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": true,
+        "sourceInferenceRule": "explicit_divisibility_definition_existence",
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "r_main",
+        "node": "n_t_sq_eq_7j_sq",
+        "status": "passed",
+        "mathematicalStatus": "conditionally_established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": true,
+        "sourceInferenceRule": "equality_power_congruence",
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "r_main",
+        "node": "n_7j_sq_eq_49j_sq",
+        "status": "passed",
+        "mathematicalStatus": "established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": true,
+        "sourceInferenceRule": "explicit_polynomial_identity",
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "r_main",
+        "node": "n_local_dvd_49_t_sq",
+        "status": "passed",
+        "mathematicalStatus": "conditionally_established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": false,
+        "sourceInferenceRule": null,
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "r_main",
+        "node": "n_global_goal",
+        "status": "passed",
+        "mathematicalStatus": "conditionally_established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": false,
+        "sourceInferenceRule": null,
+        "diagnostics": [],
+        "declaredDependencies": null
+      }
+    ]
+  },
+  "finishedUtc": "2026-10-21T16:48:42.750353+00:00",
+  "wallSeconds": 106.87,
+  "provider": {
+    "realAttempts": 2,
+    "started": 2,
+    "finished": 2,
+    "requestCount": 2,
+    "usage": {
+      "input_tokens": 14888,
+      "output_tokens": 19061,
+      "incompleteUsageRecords": 0
+    },
+    "records": [
+      {
+        "request_id": "62de38f8-ea93-4250-99da-83a22a619ee0",
+        "stage": "mathir",
+        "reason": "StructureOnlyMathIRV2",
+        "model": "deepseek-flash",
+        "status": "response_received",
+        "input_tokens": 10983,
+        "output_tokens": 16624,
+        "retry_index": 0,
+        "cache_hit": null,
+        "real_request_attempted": true,
+        "started_at": null,
+        "finished_at": null
+      },
+      {
+        "request_id": "1ee5858d-55cf-40f3-85b4-0c7796e61ce1",
+        "stage": "formalization",
+        "reason": "FormalProofs",
+        "model": "deepseek-flash",
+        "status": "response_received",
+        "input_tokens": 3905,
+        "output_tokens": 2437,
+        "retry_index": 0,
+        "cache_hit": null,
+        "real_request_attempted": true,
+        "started_at": null,
+        "finished_at": null
+      }
+    ]
+  },
+  "dbCounts": {
+    "artifacts": 7,
+    "jobs": 1,
+    "events": 13
+  },
+  "archiveSha256": "b5b27806ff2c4ac15e9e56a2cf61fb35008c8f11ff2c69af1bc67c82a62d7b3c"
+}

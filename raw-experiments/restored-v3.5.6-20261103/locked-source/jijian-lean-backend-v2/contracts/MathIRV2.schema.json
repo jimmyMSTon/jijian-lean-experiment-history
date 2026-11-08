@@ -1,0 +1,2121 @@
+{
+  "$defs": {
+    "Assumption": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "sourceAssessment": {
+                "const": "supported"
+              }
+            },
+            "required": [
+              "sourceAssessment"
+            ]
+          },
+          "then": {
+            "properties": {
+              "assessmentBasis": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "assessmentBasis"
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "expression": {
+          "$ref": "#/$defs/Expr"
+        },
+        "scopeId": {
+          "title": "Scopeid",
+          "type": "string"
+        },
+        "sourceRefs": {
+          "items": {
+            "$ref": "#/$defs/SourceRef"
+          },
+          "title": "Sourcerefs",
+          "type": "array"
+        },
+        "sourceAssessment": {
+          "default": "not_assessed",
+          "enum": [
+            "not_assessed",
+            "ambiguous",
+            "supported",
+            "contradicted",
+            "uncovered"
+          ],
+          "title": "Sourceassessment",
+          "type": "string"
+        },
+        "assessmentBasis": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Assessmentbasis"
+        }
+      },
+      "required": [
+        "id",
+        "expression",
+        "scopeId"
+      ],
+      "title": "Assumption",
+      "type": "object"
+    },
+    "Box": {
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "title": "X",
+          "type": "number"
+        },
+        "y": {
+          "title": "Y",
+          "type": "number"
+        },
+        "width": {
+          "minimum": 0,
+          "title": "Width",
+          "type": "number"
+        },
+        "height": {
+          "minimum": 0,
+          "title": "Height",
+          "type": "number"
+        }
+      },
+      "required": [
+        "x",
+        "y",
+        "width",
+        "height"
+      ],
+      "title": "Box",
+      "type": "object"
+    },
+    "Declaration": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "sourceAssessment": {
+                "const": "supported"
+              }
+            },
+            "required": [
+              "sourceAssessment"
+            ]
+          },
+          "then": {
+            "properties": {
+              "assessmentBasis": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "assessmentBasis"
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "kind": {
+          "default": "variable",
+          "enum": [
+            "variable",
+            "definition"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/$defs/MathType"
+        },
+        "typeAssessment": {
+          "default": "explicit",
+          "description": "Whether the declared type is stated by the source, uniquely inferred, or unresolved.",
+          "enum": [
+            "explicit",
+            "inferred",
+            "ambiguous"
+          ],
+          "title": "Typeassessment",
+          "type": "string"
+        },
+        "typeAssessmentBasis": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Source-backed reason for an inferred or unresolved type; never a Lean assumption.",
+          "title": "Typeassessmentbasis"
+        },
+        "scopeId": {
+          "title": "Scopeid",
+          "type": "string"
+        },
+        "constraints": {
+          "items": {
+            "$ref": "#/$defs/Expr"
+          },
+          "title": "Constraints",
+          "type": "array"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Expr"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "sourceRefs": {
+          "items": {
+            "$ref": "#/$defs/SourceRef"
+          },
+          "title": "Sourcerefs",
+          "type": "array"
+        },
+        "sourceAssessment": {
+          "default": "not_assessed",
+          "enum": [
+            "not_assessed",
+            "ambiguous",
+            "supported",
+            "contradicted",
+            "uncovered"
+          ],
+          "title": "Sourceassessment",
+          "type": "string"
+        },
+        "assessmentBasis": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Assessmentbasis"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "type",
+        "scopeId"
+      ],
+      "title": "Declaration",
+      "type": "object"
+    },
+    "Expr": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "else": {
+            "not": {
+              "required": [
+                "targetType"
+              ]
+            }
+          },
+          "if": {
+            "properties": {
+              "op": {
+                "enum": [
+                  "ascribe",
+                  "cast",
+                  "coerce",
+                  "interval_subtype_point"
+                ]
+              }
+            },
+            "required": [
+              "op"
+            ]
+          },
+          "then": {
+            "required": [
+              "targetType"
+            ]
+          }
+        },
+        {
+          "else": {
+            "not": {
+              "required": [
+                "mathlibConstant"
+              ]
+            }
+          },
+          "if": {
+            "properties": {
+              "op": {
+                "const": "mathlib_const"
+              }
+            },
+            "required": [
+              "op"
+            ]
+          },
+          "then": {
+            "required": [
+              "mathlibConstant"
+            ]
+          }
+        }
+      ],
+      "description": "Typed data expression. It contains no Lean source snippets.",
+      "properties": {
+        "op": {
+          "enum": [
+            "symbol",
+            "literal",
+            "poly_x",
+            "poly_const",
+            "ascribe",
+            "coerce",
+            "interval_subtype_point",
+            "apply",
+            "lambda",
+            "ite",
+            "mathlib_const",
+            "add",
+            "sub",
+            "mul",
+            "div",
+            "pow",
+            "neg",
+            "eq",
+            "lt",
+            "le",
+            "gt",
+            "ge",
+            "and",
+            "or",
+            "implies",
+            "iff",
+            "not",
+            "forall",
+            "exists",
+            "finite_sum",
+            "cos",
+            "sin",
+            "eval",
+            "cast",
+            "mod",
+            "divides",
+            "gcd",
+            "lcm",
+            "choose",
+            "coprime",
+            "factorial",
+            "is_prime",
+            "even",
+            "odd",
+            "nat_abs",
+            "min",
+            "max",
+            "abs",
+            "sqrt",
+            "exp",
+            "log",
+            "tan",
+            "floor",
+            "ceil",
+            "compose",
+            "set_mem",
+            "set_subset",
+            "set_union",
+            "set_inter",
+            "set_diff",
+            "set_compl",
+            "set_empty",
+            "set_univ",
+            "set_singleton",
+            "set_of",
+            "set_insert",
+            "set_image",
+            "set_preimage",
+            "set_finite",
+            "set_infinite",
+            "finset_mem",
+            "finset_card",
+            "finset_sum",
+            "finset_prod",
+            "finset_empty",
+            "finite_prod",
+            "complex_mk",
+            "complex_i",
+            "complex_of_real",
+            "complex_conj",
+            "complex_re",
+            "complex_im",
+            "complex_norm",
+            "complex_norm_sq",
+            "poly_nat_degree",
+            "poly_coeff",
+            "poly_div",
+            "poly_mod",
+            "poly_divides",
+            "poly_is_root",
+            "ratfunc_make",
+            "ratfunc_of_polynomial",
+            "matrix_identity",
+            "matrix_mul",
+            "matrix_add",
+            "matrix_sub",
+            "matrix_scale",
+            "matrix_transpose",
+            "matrix_trace",
+            "matrix_det",
+            "matrix_mul_vector",
+            "vector_add",
+            "vector_sub",
+            "vector_scale",
+            "vector_dot",
+            "vector_norm_sq",
+            "function_identity",
+            "function_injective",
+            "function_surjective",
+            "function_bijective",
+            "function_derivative",
+            "function_has_deriv_at",
+            "function_continuous",
+            "function_continuous_at",
+            "sequence_tends_to",
+            "function_tends_to",
+            "function_derivative_function",
+            "function_even",
+            "function_odd",
+            "function_periodic",
+            "function_monotone",
+            "function_strict_monotone",
+            "function_bounded_above",
+            "function_bounded_below",
+            "function_const",
+            "interval_integral",
+            "interval_integrable",
+            "matrix_literal",
+            "vector_literal"
+          ],
+          "title": "Op",
+          "type": "string"
+        },
+        "args": {
+          "items": {
+            "$ref": "#/$defs/Expr"
+          },
+          "title": "Args",
+          "type": "array"
+        },
+        "symbolId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Symbolid"
+        },
+        "binderId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Binderid"
+        },
+        "literal": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LiteralValue"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "mathlibConstant": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MathlibConstantReference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "lower": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Expr"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "upper": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Expr"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "upperInclusive": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Upperinclusive"
+        },
+        "targetType": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MathType"
+            },
+            {
+              "enum": [
+                "Nat",
+                "Int",
+                "Rat",
+                "Real"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Targettype"
+        }
+      },
+      "required": [
+        "op"
+      ],
+      "title": "Expr",
+      "type": "object"
+    },
+    "Goal": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "sourceAssessment": {
+                "const": "supported"
+              }
+            },
+            "required": [
+              "sourceAssessment"
+            ]
+          },
+          "then": {
+            "properties": {
+              "assessmentBasis": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "assessmentBasis"
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "expression": {
+          "$ref": "#/$defs/Expr"
+        },
+        "scopeId": {
+          "title": "Scopeid",
+          "type": "string"
+        },
+        "sourceRefs": {
+          "items": {
+            "$ref": "#/$defs/SourceRef"
+          },
+          "title": "Sourcerefs",
+          "type": "array"
+        },
+        "sourceAssessment": {
+          "default": "not_assessed",
+          "enum": [
+            "not_assessed",
+            "ambiguous",
+            "supported",
+            "contradicted",
+            "uncovered"
+          ],
+          "title": "Sourceassessment",
+          "type": "string"
+        },
+        "assessmentBasis": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Assessmentbasis"
+        }
+      },
+      "required": [
+        "id",
+        "expression",
+        "scopeId"
+      ],
+      "title": "Goal",
+      "type": "object"
+    },
+    "InductionBaseCase": {
+      "additionalProperties": false,
+      "description": "An explicitly sourced base proposition at one natural index.",
+      "properties": {
+        "nodeId": {
+          "title": "Nodeid",
+          "type": "string"
+        },
+        "index": {
+          "$ref": "#/$defs/LiteralValue"
+        }
+      },
+      "required": [
+        "nodeId",
+        "index"
+      ],
+      "title": "InductionBaseCase",
+      "type": "object"
+    },
+    "InductionCase": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "sourceAssessment": {
+                "const": "supported"
+              }
+            },
+            "required": [
+              "sourceAssessment"
+            ]
+          },
+          "then": {
+            "properties": {
+              "assessmentBasis": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "assessmentBasis"
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "principle": {
+          "enum": [
+            "NatInduction",
+            "NatLowerBoundInduction",
+            "NatStrongInduction"
+          ],
+          "title": "Principle",
+          "type": "string"
+        },
+        "variableId": {
+          "title": "Variableid",
+          "type": "string"
+        },
+        "stepVariableId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Stepvariableid"
+        },
+        "lowerBound": {
+          "$ref": "#/$defs/LiteralValue"
+        },
+        "predicate": {
+          "$ref": "#/$defs/Expr"
+        },
+        "baseNodeId": {
+          "title": "Basenodeid",
+          "type": "string"
+        },
+        "baseCases": {
+          "items": {
+            "$ref": "#/$defs/InductionBaseCase"
+          },
+          "title": "Basecases",
+          "type": "array"
+        },
+        "hypothesisNodeId": {
+          "title": "Hypothesisnodeid",
+          "type": "string"
+        },
+        "hypothesisVariableId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Hypothesisvariableid"
+        },
+        "stepNodeId": {
+          "title": "Stepnodeid",
+          "type": "string"
+        },
+        "conclusionNodeId": {
+          "title": "Conclusionnodeid",
+          "type": "string"
+        },
+        "stepScopeId": {
+          "title": "Stepscopeid",
+          "type": "string"
+        },
+        "stepCondition": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Expr"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "stepConditionNodeId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Stepconditionnodeid"
+        },
+        "sourceRefs": {
+          "items": {
+            "$ref": "#/$defs/SourceRef"
+          },
+          "title": "Sourcerefs",
+          "type": "array"
+        },
+        "sourceAssessment": {
+          "default": "not_assessed",
+          "enum": [
+            "not_assessed",
+            "ambiguous",
+            "supported",
+            "contradicted",
+            "uncovered"
+          ],
+          "title": "Sourceassessment",
+          "type": "string"
+        },
+        "assessmentBasis": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Assessmentbasis"
+        }
+      },
+      "required": [
+        "id",
+        "principle",
+        "variableId",
+        "lowerBound",
+        "predicate",
+        "baseNodeId",
+        "hypothesisNodeId",
+        "stepNodeId",
+        "conclusionNodeId",
+        "stepScopeId"
+      ],
+      "title": "InductionCase",
+      "type": "object"
+    },
+    "LiteralValue": {
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "enum": [
+            "Nat",
+            "Int",
+            "Rat",
+            "Real"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "interpretation": {
+          "default": "fixed",
+          "enum": [
+            "fixed",
+            "contextual"
+          ],
+          "title": "Interpretation",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "value"
+      ],
+      "title": "LiteralValue",
+      "type": "object"
+    },
+    "MathType": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "Set",
+                  "Finset"
+                ]
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "coefficient": {
+                "type": "null"
+              },
+              "domain": {
+                "type": "null"
+              },
+              "codomain": {
+                "type": "null"
+              },
+              "dimension": {
+                "type": "null"
+              },
+              "rows": {
+                "type": "null"
+              },
+              "cols": {
+                "type": "null"
+              }
+            },
+            "required": [
+              "element"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "Polynomial"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "coefficient": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/MathType"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "enum": [
+                          "Nat",
+                          "Int",
+                          "Rat",
+                          "Real",
+                          "Complex",
+                          "TypeVar",
+                          "TypeApplication"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "domain": {
+                "type": "null"
+              },
+              "codomain": {
+                "type": "null"
+              },
+              "element": {
+                "type": "null"
+              },
+              "dimension": {
+                "type": "null"
+              },
+              "rows": {
+                "type": "null"
+              },
+              "cols": {
+                "type": "null"
+              }
+            },
+            "required": [
+              "coefficient"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "RationalFunction"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "coefficient": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/MathType"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "enum": [
+                          "Rat",
+                          "Real",
+                          "Complex",
+                          "TypeVar",
+                          "TypeApplication"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "domain": {
+                "type": "null"
+              },
+              "codomain": {
+                "type": "null"
+              },
+              "element": {
+                "type": "null"
+              },
+              "dimension": {
+                "type": "null"
+              },
+              "rows": {
+                "type": "null"
+              },
+              "cols": {
+                "type": "null"
+              }
+            },
+            "required": [
+              "coefficient"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "TypeVar"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "coefficient": {
+                "type": "null"
+              },
+              "domain": {
+                "type": "null"
+              },
+              "codomain": {
+                "type": "null"
+              },
+              "element": {
+                "type": "null"
+              },
+              "dimension": {
+                "type": "null"
+              },
+              "rows": {
+                "type": "null"
+              },
+              "cols": {
+                "type": "null"
+              }
+            },
+            "required": [
+              "typeVarId"
+            ]
+          }
+        },
+        {
+          "else": {
+            "properties": {
+              "typeConstructor": {
+                "type": "null"
+              },
+              "typeArguments": {
+                "maxItems": 0
+              },
+              "termArguments": {
+                "maxItems": 0
+              },
+              "argumentOrder": {
+                "maxItems": 0
+              }
+            }
+          },
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "TypeApplication"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "coefficient": {
+                "type": "null"
+              },
+              "domain": {
+                "type": "null"
+              },
+              "codomain": {
+                "type": "null"
+              },
+              "element": {
+                "type": "null"
+              },
+              "dimension": {
+                "type": "null"
+              },
+              "rows": {
+                "type": "null"
+              },
+              "cols": {
+                "type": "null"
+              }
+            },
+            "required": [
+              "typeConstructor"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "Matrix"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "element": {
+                "type": "null"
+              },
+              "domain": {
+                "type": "null"
+              },
+              "codomain": {
+                "type": "null"
+              },
+              "coefficient": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/MathType"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "enum": [
+                          "Nat",
+                          "Int",
+                          "Rat",
+                          "Real",
+                          "Complex",
+                          "TypeVar",
+                          "TypeApplication"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "dimension": {
+                "type": "null"
+              }
+            },
+            "required": [
+              "coefficient",
+              "rows",
+              "cols"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "Vector"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "element": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/MathType"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "enum": [
+                          "Nat",
+                          "Int",
+                          "Rat",
+                          "Real",
+                          "Complex",
+                          "TypeVar",
+                          "TypeApplication"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "coefficient": {
+                "type": "null"
+              },
+              "rows": {
+                "type": "null"
+              },
+              "cols": {
+                "type": "null"
+              },
+              "domain": {
+                "type": "null"
+              },
+              "codomain": {
+                "type": "null"
+              }
+            },
+            "required": [
+              "element",
+              "dimension"
+            ]
+          }
+        },
+        {
+          "else": {
+            "properties": {
+              "binderId": {
+                "type": "null"
+              }
+            }
+          },
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "Function"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "coefficient": {
+                "type": "null"
+              },
+              "element": {
+                "type": "null"
+              },
+              "dimension": {
+                "type": "null"
+              },
+              "rows": {
+                "type": "null"
+              },
+              "cols": {
+                "type": "null"
+              }
+            },
+            "required": [
+              "domain",
+              "codomain"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "Nat",
+                  "Int",
+                  "Rat",
+                  "Real",
+                  "Complex",
+                  "Prop"
+                ]
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "coefficient": {
+                "type": "null"
+              },
+              "domain": {
+                "type": "null"
+              },
+              "codomain": {
+                "type": "null"
+              },
+              "element": {
+                "type": "null"
+              },
+              "rows": {
+                "type": "null"
+              },
+              "cols": {
+                "type": "null"
+              },
+              "dimension": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "Nat",
+            "Int",
+            "Rat",
+            "Real",
+            "Complex",
+            "Prop",
+            "Polynomial",
+            "RationalFunction",
+            "Function",
+            "Set",
+            "Finset",
+            "Vector",
+            "Matrix",
+            "TypeVar",
+            "TypeApplication"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "coefficient": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MathType"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "domain": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MathType"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "codomain": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MathType"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "element": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MathType"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "dimension": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Dimension"
+        },
+        "rows": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rows"
+        },
+        "cols": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cols"
+        },
+        "typeVarId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Typevarid"
+        },
+        "typeVarMode": {
+          "default": "unresolved",
+          "enum": [
+            "unresolved",
+            "abstract"
+          ],
+          "title": "Typevarmode",
+          "type": "string"
+        },
+        "typeConstructor": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z_][A-Za-z0-9_']*(?:\\.[A-Za-z_][A-Za-z0-9_']*)*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "A qualified Lean type constructor name, never a Lean expression.",
+          "title": "Typeconstructor"
+        },
+        "typeArguments": {
+          "description": "Type arguments to a qualified Lean type constructor.",
+          "items": {
+            "$ref": "#/$defs/MathType"
+          },
+          "title": "Typearguments",
+          "type": "array"
+        },
+        "termArguments": {
+          "description": "Source-backed Lean term arguments to a dependent type constructor.",
+          "items": {
+            "$ref": "#/$defs/Expr"
+          },
+          "title": "Termarguments",
+          "type": "array"
+        },
+        "argumentOrder": {
+          "description": "Optional order of all type and term arguments. When omitted, type arguments precede term arguments; when present, each entry consumes the next argument of that kind.",
+          "items": {
+            "enum": [
+              "type",
+              "term"
+            ],
+            "type": "string"
+          },
+          "title": "Argumentorder",
+          "type": "array"
+        },
+        "binderId": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "For a dependent Function/Pi type, the stable ID of its bound variable declaration.",
+          "title": "Binderid"
+        },
+        "candidateKinds": {
+          "description": "Concrete numeric carrier candidates supported by source evidence; empty means not enumerated.",
+          "items": {
+            "enum": [
+              "Nat",
+              "Int",
+              "Rat",
+              "Real",
+              "Complex"
+            ],
+            "type": "string"
+          },
+          "title": "Candidatekinds",
+          "type": "array"
+        },
+        "structureConstraints": {
+          "items": {
+            "$ref": "#/$defs/TypeConstraintEvidence"
+          },
+          "title": "Structureconstraints",
+          "type": "array"
+        },
+        "declaredStructures": {
+          "description": "Source-attested Lean typeclasses for an explicitly abstract carrier.",
+          "items": {
+            "$ref": "#/$defs/TypeStructureEvidence"
+          },
+          "title": "Declaredstructures",
+          "type": "array"
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "title": "MathType",
+      "type": "object"
+    },
+    "MathlibConstantReference": {
+      "additionalProperties": false,
+      "description": "A source-mapped reference to a named Mathlib declaration.\n\n`type` is a typed MathIR claim used by deterministic checking. The actual\ndeclaration and this type are checked again when the locked Lean statement\nelaborates; this record never injects a new theorem assumption.",
+      "properties": {
+        "name": {
+          "description": "A Lean constant identifier, never Lean source code or a command.",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_']*(?:\\.[A-Za-z_][A-Za-z0-9_']*)*$",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/$defs/MathType"
+        },
+        "typeArguments": {
+          "description": "Explicit leading Lean type arguments, in declaration order; implicit parameters remain inferred by Lean.",
+          "items": {
+            "$ref": "#/$defs/MathType"
+          },
+          "title": "Typearguments",
+          "type": "array"
+        },
+        "sourceRefs": {
+          "items": {
+            "$ref": "#/$defs/SourceRef"
+          },
+          "minItems": 1,
+          "title": "Sourcerefs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "sourceRefs"
+      ],
+      "title": "MathlibConstantReference",
+      "type": "object"
+    },
+    "ProofRoute": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "sourceAssessment": {
+                "const": "supported"
+              }
+            },
+            "required": [
+              "sourceAssessment"
+            ]
+          },
+          "then": {
+            "properties": {
+              "assessmentBasis": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "assessmentBasis"
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "nodes": {
+          "items": {
+            "$ref": "#/$defs/RouteNode"
+          },
+          "title": "Nodes",
+          "type": "array"
+        },
+        "goalNodeId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Goalnodeid"
+        },
+        "inductions": {
+          "items": {
+            "$ref": "#/$defs/InductionCase"
+          },
+          "title": "Inductions",
+          "type": "array"
+        },
+        "sourceRefs": {
+          "items": {
+            "$ref": "#/$defs/SourceRef"
+          },
+          "title": "Sourcerefs",
+          "type": "array"
+        },
+        "sourceAssessment": {
+          "default": "not_assessed",
+          "enum": [
+            "not_assessed",
+            "ambiguous",
+            "supported",
+            "contradicted",
+            "uncovered"
+          ],
+          "title": "Sourceassessment",
+          "type": "string"
+        },
+        "assessmentBasis": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Assessmentbasis"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "nodes"
+      ],
+      "title": "ProofRoute",
+      "type": "object"
+    },
+    "RouteNode": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "sourceAssessment": {
+                "const": "supported"
+              }
+            },
+            "required": [
+              "sourceAssessment"
+            ]
+          },
+          "then": {
+            "properties": {
+              "assessmentBasis": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "assessmentBasis"
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "claim",
+            "local_assumption",
+            "typing"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "expression": {
+          "$ref": "#/$defs/Expr"
+        },
+        "scopeId": {
+          "title": "Scopeid",
+          "type": "string"
+        },
+        "dependsOn": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Dependson",
+          "type": "array"
+        },
+        "closedDependencies": {
+          "description": "Subset of dependsOn exported as complete independently checked lemma types, including their explicit variable and premise binders. This records source scope discharge/generalization, never an additional theorem premise.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Closeddependencies",
+          "type": "array"
+        },
+        "proofTerm": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Proofterm"
+        },
+        "sourceRefs": {
+          "items": {
+            "$ref": "#/$defs/SourceRef"
+          },
+          "title": "Sourcerefs",
+          "type": "array"
+        },
+        "sourceAssessment": {
+          "default": "not_assessed",
+          "enum": [
+            "not_assessed",
+            "ambiguous",
+            "supported",
+            "contradicted",
+            "uncovered"
+          ],
+          "title": "Sourceassessment",
+          "type": "string"
+        },
+        "assessmentBasis": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Assessmentbasis"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "expression",
+        "scopeId"
+      ],
+      "title": "RouteNode",
+      "type": "object"
+    },
+    "Scope": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "parentId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parentid"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "sourceRefs": {
+          "items": {
+            "$ref": "#/$defs/SourceRef"
+          },
+          "title": "Sourcerefs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "Scope",
+      "type": "object"
+    },
+    "SourceBlock": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "bbox": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Box"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "assetId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Assetid"
+        }
+      },
+      "required": [
+        "id",
+        "text"
+      ],
+      "title": "SourceBlock",
+      "type": "object"
+    },
+    "SourceEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "text",
+            "photo",
+            "handwriting",
+            "file",
+            "mixed"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "raw": {
+          "title": "Raw",
+          "type": "string"
+        },
+        "normalized": {
+          "title": "Normalized",
+          "type": "string"
+        },
+        "blocks": {
+          "items": {
+            "$ref": "#/$defs/SourceBlock"
+          },
+          "title": "Blocks",
+          "type": "array"
+        },
+        "transcriptStatus": {
+          "default": "not_assessed",
+          "enum": [
+            "not_assessed",
+            "confirmed",
+            "ambiguous",
+            "corrected"
+          ],
+          "title": "Transcriptstatus",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "raw",
+        "normalized",
+        "blocks"
+      ],
+      "title": "SourceEvidence",
+      "type": "object"
+    },
+    "SourceRef": {
+      "additionalProperties": false,
+      "properties": {
+        "blockId": {
+          "title": "Blockid",
+          "type": "string"
+        },
+        "start": {
+          "minimum": 0,
+          "title": "Start",
+          "type": "integer"
+        },
+        "end": {
+          "minimum": 0,
+          "title": "End",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "blockId",
+        "start",
+        "end"
+      ],
+      "title": "SourceRef",
+      "type": "object"
+    },
+    "TypeConstraintEvidence": {
+      "additionalProperties": false,
+      "description": "A typeclass-like requirement inferred from recorded source syntax.\n\nThis is evidence about which operations the source uses; it is never\nlowered to a Lean assumption. Explicit source-attested class applications\nlive separately in TypeStructureEvidence.",
+      "properties": {
+        "structure": {
+          "enum": [
+            "Add",
+            "Sub",
+            "Mul",
+            "Div",
+            "Pow",
+            "Neg",
+            "Eq",
+            "LT",
+            "LE",
+            "SMul",
+            "Semiring",
+            "CommSemiring",
+            "AddCommMonoid",
+            "Monoid",
+            "Field",
+            "FiniteSum",
+            "FiniteProduct",
+            "Function"
+          ],
+          "title": "Structure",
+          "type": "string"
+        },
+        "operator": {
+          "title": "Operator",
+          "type": "string"
+        },
+        "expressionPath": {
+          "title": "Expressionpath",
+          "type": "string"
+        },
+        "sourceRefs": {
+          "items": {
+            "$ref": "#/$defs/SourceRef"
+          },
+          "title": "Sourcerefs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "structure",
+        "operator",
+        "expressionPath"
+      ],
+      "title": "TypeConstraintEvidence",
+      "type": "object"
+    },
+    "TypeStructureEvidence": {
+      "additionalProperties": false,
+      "description": "A source-attested Lean class application for an abstract carrier.",
+      "properties": {
+        "leanClass": {
+          "pattern": "^[A-Za-z_][A-Za-z0-9_']*(?:\\.[A-Za-z_][A-Za-z0-9_']*)*$",
+          "title": "Leanclass",
+          "type": "string"
+        },
+        "typeArguments": {
+          "description": "Other Lean type arguments; the abstract carrier is inserted at carrierPosition.",
+          "items": {
+            "$ref": "#/$defs/MathType"
+          },
+          "title": "Typearguments",
+          "type": "array"
+        },
+        "carrierPosition": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Carrierposition",
+          "type": "integer"
+        },
+        "sourceRefs": {
+          "items": {
+            "$ref": "#/$defs/SourceRef"
+          },
+          "minItems": 1,
+          "title": "Sourcerefs",
+          "type": "array"
+        },
+        "assessmentBasis": {
+          "minLength": 1,
+          "title": "Assessmentbasis",
+          "type": "string"
+        }
+      },
+      "required": [
+        "leanClass",
+        "sourceRefs",
+        "assessmentBasis"
+      ],
+      "title": "TypeStructureEvidence",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": "2.0",
+      "title": "Version",
+      "type": "string"
+    },
+    "source": {
+      "$ref": "#/$defs/SourceEvidence"
+    },
+    "scopes": {
+      "items": {
+        "$ref": "#/$defs/Scope"
+      },
+      "title": "Scopes",
+      "type": "array"
+    },
+    "declarations": {
+      "items": {
+        "$ref": "#/$defs/Declaration"
+      },
+      "title": "Declarations",
+      "type": "array"
+    },
+    "assumptions": {
+      "items": {
+        "$ref": "#/$defs/Assumption"
+      },
+      "title": "Assumptions",
+      "type": "array"
+    },
+    "goal": {
+      "$ref": "#/$defs/Goal"
+    },
+    "proofRoutes": {
+      "items": {
+        "$ref": "#/$defs/ProofRoute"
+      },
+      "title": "Proofroutes",
+      "type": "array"
+    },
+    "ambiguities": {
+      "items": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "title": "Ambiguities",
+      "type": "array"
+    }
+  },
+  "required": [
+    "version",
+    "source",
+    "scopes",
+    "declarations",
+    "goal"
+  ],
+  "title": "MathIRV2",
+  "type": "object"
+}

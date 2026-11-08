@@ -1,0 +1,49 @@
+{
+  "case": {
+    "id": "bmo2-2025-q3",
+    "topic": "棋盘行列交换",
+    "expected": "valid",
+    "source": "【2025 British Mathematical Olympiad Round 2，Problem 3，原题】n×n 棋盘相邻格黑白交错，允许反复交换任意两整行或任意两整列。扰乱后，恢复原图案所需交换次数的最大可能最小值是多少？\n【提交的原证明】\n第一步：用 0、1 代表两色，标准棋盘第 (i,j) 格为 (i+j) mod 2。任意交换两行只改变这两行的位置，不改变各行是否为某个标准交错行或其反色的性质；交换两列类似。每个扰乱后格子相对初始颜色的变化可以写成 r_i+c_j (mod 2)，其中 r_i、c_j∈{0,1} 分别是该行该列被互异颜色的行/列交换影响的奇偶次数。\n第二步：每次行交换改变恰好两个 r_i，列交换改变恰好两个 c_j，因此行位元中 1 的个数 R、列位元中 1 的个数 C 均为偶数。相对初始图案，全部恢复当且仅当 r_i+c_j≡0 对每个 i,j 成立，也即所有 r_i,c_j 都等于 0，或者所有 r_i,c_j 都等于 1。第二种情形只会在 n 为偶数时满足 R、C 的偶性。\n第三步：若 n 为奇数，只能恢复到全零位元配置。每个交换至多消除两个值为 1 的行或列位元，所以至少需 (R+C)/2 次，且分别把标记为 1 的行两两交换、列两两交换即可恰好做到。因此最少次数是 (R+C)/2。由于 R,C≤n−1，最大为 n−1；取 R=C=n−1 的扰乱配置即可达到，因 n−1 为偶数可由一系列两行、两列互换构造。\n第四步：若 n 为偶数，则既可恢复全零位元，也可恢复全一位元。恢复全零用 (R+C)/2 次，恢复全一用 (2n−R−C)/2 次，两者取小者为最优交换数。因为 R+C 介于 0 与 2n 之间，两个数之和为 n，所以最小值不超过 n/2。这个界可以达到：取 R=n、C=0（n 是偶数，因此是可达位元配置），此时两种恢复方式都需要 n/2 次。故答案：n 偶数时 n/2；n 奇数时 n−1。"
+  },
+  "jobId": "103621c8-3161-4455-8cd3-93b886daa5a9",
+  "jobStatus": "completed",
+  "resultStatus": "whole_invalid_source_plan",
+  "kernelVerified": false,
+  "formalProofCertified": false,
+  "originalProofCertified": false,
+  "fidelityReview": null,
+  "fidelityIssues": 0,
+  "sourceSteps": 0,
+  "kernelCertificate": null,
+  "unsupportedOriginalSteps": [
+    "invalid_goal_expression"
+  ],
+  "error": null,
+  "usage": {
+    "attempts": 2,
+    "inputTokens": 2699,
+    "outputTokens": 19271,
+    "missingUsage": 0,
+    "requests": [
+      {
+        "reason": "WholeProofPlan",
+        "status": "response_received",
+        "input_tokens": 1199,
+        "output_tokens": 17849,
+        "error_type": null,
+        "http_duration_ms": 76378.934
+      },
+      {
+        "reason": "Explanation",
+        "status": "response_received",
+        "input_tokens": 1500,
+        "output_tokens": 1422,
+        "error_type": null,
+        "http_duration_ms": 9859.938
+      }
+    ]
+  },
+  "feedbackError": null,
+  "elapsedSeconds": 86.91,
+  "totalElapsedSeconds": 322.52
+}

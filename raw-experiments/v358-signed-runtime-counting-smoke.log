@@ -1,0 +1,38 @@
+LEAN_READY True MODEL deepseek-flash
+DECL Jijian.GenericCounting.symmetric_filtered_pairs FOUND True STATUS lean_checked SIGNATURE @Jijian.GenericCounting.symmetric_filtered_pairs.{u_1} : ∀ {β : Type u_1} [inst : Fintype.{u_1} β]
+  [inst_1 : LinearOrder.{u_1} β] (P : β → β → Prop) [inst_2 : DecidableRel.{u_1 + 1, u_1 + 1} P],
+  (∀ (i j : β), P i j ↔ P j i) →
+    Eq.{1} (HMul.hMul.{0, 0, 0} 2 (Finset.card.{u_1} {q | LE.le.{u_1} q.1 q.2 ∧ P q.1 q.2}
+DECL Jijian.GenericCounting.card_subtype_as_filter FOUND True STATUS lean_checked SIGNATURE @Jijian.GenericCounting.card_subtype_as_filter.{u_1} : ∀ {γ : Type u_1} [inst : Fintype.{u_1} γ] (P : γ → Prop)
+  [inst_1 : DecidablePred.{u_1 + 1} P],
+  Eq.{1} (Nat.card.{u_1} (Subtype.{u_1 + 1} fun x => P x)) (Finset.card.{u_1} (Finset.filter.{u_1} P Finset.univ.{u_1}))
+DECL Jijian.GenericCounting.symmetric_support_pairs FOUND True STATUS lean_checked SIGNATURE @Jijian.GenericCounting.symmetric_support_pairs.{u_1} : ∀ {α : Type u_1} [inst : Fintype.{u_1} α]
+  [inst_1 : LinearOrder.{u_1} α] (s : Finset.{u_1} α),
+  Eq.{1}
+    (HMul.hMul.{0, 0, 0} 2
+      (Finset.card.{u_1} {q | LE.le.{u_1} q.1 q.2 ∧ Membership.mem.{u_1, u_1} s q.1 ∧ Membership.mem.{u_1, u_1} s q.2}))
+    (HAdd.
+DECL Jijian.GenericCounting.sum_equals_card_rigidity FOUND True STATUS lean_checked SIGNATURE @Jijian.GenericCounting.sum_equals_card_rigidity.{u_1} : ∀ {α : Type u_1} [inst : Fintype.{u_1} α] (s : Finset.{u_1} α)
+  (f : α → ℝ),
+  (∀ (i : α), LE.le.{0} 0 (f i)) →
+    (∀ (i : α), Membership.mem.{u_1, u_1} s i → LE.le.{0} 1 (f i)) →
+      Eq.{1} (∑ i, f i) ↑(Finset.card.{u_1} s) →
+        (∀ (i : α), Membership.m
+DECL Finset.sum_le_sum FOUND True STATUS lean_checked SIGNATURE @Finset.sum_le_sum.{u_1,
+    u_2} : ∀ {ι : Type u_1} {N : Type u_2} [inst : AddCommMonoid.{u_2} N] [inst_1 : Preorder.{u_2} N] {f g : ι → N}
+  {s : Finset.{u_1} ι} [AddLeftMono.{u_2} N],
+  (∀ (i : ι), Membership.mem.{u_1, u_1} s i → LE.le.{u_2} (f i) (g i)) → LE.le.{u_2} (∑ i ∈ s, f i) (∑ i ∈ s, g i)
+DECL Finset.sum_nonneg FOUND True STATUS lean_checked SIGNATURE @Finset.sum_nonneg.{u_1,
+    u_2} : ∀ {ι : Type u_1} {N : Type u_2} [inst : AddCommMonoid.{u_2} N] [inst_1 : Preorder.{u_2} N] {f : ι → N}
+  {s : Finset.{u_1} ι} [AddLeftMono.{u_2} N],
+  (∀ (i : ι), Membership.mem.{u_1, u_1} s i → LE.le.{u_2} 0 (f i)) → LE.le.{u_2} 0 (∑ i ∈ s, f i)
+DECL Finset.card_product FOUND True STATUS lean_checked SIGNATURE @Finset.card_product.{u_1,
+    u_2} : ∀ {α : Type u_1} {β : Type u_2} (s : Finset.{u_1} α) (t : Finset.{u_2} β),
+  Eq.{1} (Finset.card.{max u_1 u_2} (SProd.sprod.{u_1, u_2, max u_1 u_2} s t))
+    (HMul.hMul.{0, 0, 0} (Finset.card.{u_1} s) (Finset.card.{u_2} t))
+DECL Finset.sum_product FOUND True STATUS lean_checked SIGNATURE @Finset.sum_product.{u_1, u_2,
+    u_3} : ∀ {α : Type u_1} {β : Type u_2} {γ : Type u_3} [inst : AddCommMonoid.{u_2} β] (s : Finset.{u_3} γ)
+  (t : Finset.{u_1} α) (f : Prod.{u_3, u_1} γ α → β),
+  Eq.{u_2 + 1} (∑ x ∈ SProd.sprod.{u_3, u_1, max u_1 u_3} s t, f x) (∑ x ∈ s, ∑ y ∈ t, f (Prod.mk.{u_3, u_1} x y))
+DECL Nat.card_eq_fintype_card FOUND True STATUS lean_checked SIGNATURE @Nat.card_eq_fintype_card.{u_1} : ∀ {α : Type u_1} [inst : Fintype.{u_1} α],
+  Eq.{1} (Nat.card.{u_1} α) (Fintype.card.{u_1} α)

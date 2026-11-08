@@ -1,0 +1,36 @@
+OpenAI Codex v0.162.1
+--------
+workdir: /[LOCAL_USER]/Documents/ChatGPT/极简lean-mathlib-retrieval-20261031
+model: gpt-6-luna
+provider: openai
+approval: on-request
+sandbox: workspace-write [workdir, /tmp, $TMPDIR] (network access enabled)
+reasoning effort: high
+reasoning summaries: none
+session id: 01a1921d-9010-72a0-ab49-04800b21d85e
+--------
+user
+# 极简 Lean：Mathlib 已存在定理本地检索实验（不动产品默认）
+
+当前开发分支 research/mathlib-premise-retrieval-20261031，基于 b53115e。正式 App 不改，主 checkout 不改。用户要跨高联/BMO泛化，不能针对固定题号、年份、具体公式或模型输出拟合，不新增用户未批准的规则、Gate、数量上限、模型离线开关、审核条件。当前 DeepSeek V4.1 Flash 真实路径保持原状。已有独立实验 goal-model branch search 能把 Lean actual goal + failure feedback 传给模型，但缺乏系统的 Mathlib premise retrieval。
+
+任务：实现独立 research 组件，**只读检索已安装的 Mathlib 源码+实际 Lean #check 验证**；不要擅自更改正式业务或添加 provider。无需外网模型下载。
+1. 新模块 backend/experimental_mathlib_retrieval.py：扫描实际 installed Mathlib 源目录中 .lean 文件，提取存在的 lemma/theorem/def 声明名称、有限局部源码片段、来源文件和位置；构建可复用本地 SQLite FTS5 只读检索索引（index path 放在项目数据目录或外部研究目录，不修改 Mathlib）；尽力处理 namespace/section/end，无法确定完整名称时标 evidence-only。不要把启发式正则结果说成 Lean 实际存在的 API。
+2. 从 Lean 实际 source proof goal/context 提取词汇，检索名称、原始 snippet、类型相关词，并排序相关候选，附路径和行号；不要把缺失/未知的符号当成已确认事实。可扩展全量，不引入固定候选数量上限为产品规则；实验调用可自行指定展示数量但必须是可选参数而非产品限制。只使用已验证本地源和现成 SQLite/Python。
+3. 为真实调用设计 async retrieve_checked_premises(goal_state, source_step_excerpt, mathlib_source, runner) 可以将检索候选送 backend/lean/runner.py 已有 lookup_declarations 进行 #check，只有 Lean 真正解析的名称才放 checkedDeclarations；其余放 unverifiedSuggestions，保留原 snippet、符号和原始行位置。Lean #check 结果只是类型存在证据，不是给定证明已被证。
+4. 用合成跨域 fixture 测试检索相关性与 namespace、read-only、不假冒证书、invalid name 划分、空索引/不存在目录行为；另外给主机代理写真实 Mathlib smoke 示例，准备后续执行真实 Lean #check，不要在 Codex 沙盒执行真实 Lean（sandbox-exec 权限问题）。
+5. 该模块不得安装第三方服务、访问互联网、引入新的付费 AI 请求或额外发布要求。文档 MATHLIB_RETRIEVAL_EVIDENCE.md 区分静态候选与真实 #check，记录适用限制。
+6. Git 提交独立 branch，保持代码测试通过；若 worktree Git 写权限限制，主机代理会提交。注意现在模型整题通过仍是之前真实 batch 1/5、目标尚未达成，不得虚称成果。
+
+请立即实际写代码+单测，不要只提供策略。
+warning: Under-development features enabled: chronicle. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /[LOCAL_USER]/.codex/config.toml.
+2026-10-31T13:19:38.394145Z ERROR codex_models_manager::manager: failed to refresh available models: request timed out
+2026-10-31T13:19:38.521631Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when Client(HttpRequest(HttpRequest("http/request failed: error sending request for url (https://chatgpt.com/backend-api/ps/mcp)")))
+2026-10-31T13:19:43.793856Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when Client(HttpRequest(HttpRequest("http/request failed: error sending request for url (https://chatgpt.com/backend-api/ps/mcp)")))
+2026-10-31T13:19:49.817222Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when Client(HttpRequest(HttpRequest("http/request failed: error sending request for url (https://chatgpt.com/backend-api/ps/mcp)")))
+2026-10-31T13:19:54.839053Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when Client(HttpRequest(HttpRequest("http/request failed: error sending request for url (https://chatgpt.com/backend-api/ps/mcp)")))
+2026-10-31T13:20:00.112504Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when Client(HttpRequest(HttpRequest("http/request failed: error sending request for url (https://chatgpt.com/backend-api/ps/mcp)")))
+2026-10-31T13:20:06.134779Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when Client(HttpRequest(HttpRequest("http/request failed: error sending request for url (https://chatgpt.com/backend-api/ps/mcp)")))
+ERROR: Reconnecting... 2/5
+ERROR: Reconnecting... 3/5
+ERROR: Reconnecting... 4/5

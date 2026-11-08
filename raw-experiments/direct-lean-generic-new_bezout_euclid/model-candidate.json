@@ -1,0 +1,61 @@
+{
+  "provenance": {
+    "jsonParsing": {
+      "method": "deterministic_json_schema",
+      "recovered": false,
+      "edits": []
+    },
+    "provider": "deepseek",
+    "requestedModel": "deepseek-flash",
+    "model": "deepseek-flash",
+    "responseId": "d2f9e1b9-32c1-4441-9859-c0b8ba182de8",
+    "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "usage": {
+      "prompt_tokens": 941,
+      "completion_tokens": 6863,
+      "total_tokens": 7804,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 6313
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 941
+    },
+    "thinking": "provider_default",
+    "promptSchemaEncoding": "compact_json_v1",
+    "structuredOutput": "json_mode_with_local_schema_validation",
+    "simulated": false
+  },
+  "complete": true,
+  "statement": "∀ a b c : ℤ, (∃ u v : ℤ, u * a + v * b = 1) → a ∣ b * c → a ∣ c",
+  "proofTerm": "by\n  intro a b c hbez hdiv\n  rcases hbez with ⟨u, v, huv⟩\n  rcases hdiv with ⟨k, hk⟩\n  refine ⟨u * c + v * k, ?_⟩\n  calc\n    c = (u * a + v * b) * c := by\n      rw [huv]\n      ring\n    _ = a * (u * c) + v * (b * c) := by\n      ring\n    _ = a * (u * c) + v * (a * k) := by\n      rw [hk]\n    _ = a * (u * c + v * k) := by\n      ring",
+  "sourceSteps": [
+    {
+      "start": 53,
+      "end": 75,
+      "sourceExcerpt": "取原题给定的 u,v，满足 ua+vb=1。",
+      "leanWitness": "rcases hbez with ⟨u, v, huv⟩ and the first calc line c = (u * a + v * b) * c := by rw [huv]; ring"
+    },
+    {
+      "start": 75,
+      "end": 110,
+      "sourceExcerpt": "把等式两边乘以 c，得 c=(ua+vb)c=a(uc)+v(bc)。",
+      "leanWitness": "calc lines c = (u * a + v * b) * c := by rw [huv]; ring and _ = a * (u * c) + v * (b * c) := by ring"
+    },
+    {
+      "start": 110,
+      "end": 143,
+      "sourceExcerpt": "因为 a∣a(uc)，且原题已知 a∣bc，所以 a∣v(bc)。",
+      "leanWitness": "rcases hdiv with ⟨k, hk⟩ and the calc line _ = a * (u * c) + v * (a * k) := by rw [hk], which encodes replacing a∣bc by b*c = a*k"
+    },
+    {
+      "start": 143,
+      "end": 174,
+      "sourceExcerpt": "由整除对加法封闭，a∣a(uc)+v(bc)=c，故 a∣c。",
+      "leanWitness": "refine ⟨u * c + v * k, ?_⟩ and the final calc line _ = a * (u * c + v * k) := by ring"
+    }
+  ],
+  "unsupportedOriginalSteps": []
+}

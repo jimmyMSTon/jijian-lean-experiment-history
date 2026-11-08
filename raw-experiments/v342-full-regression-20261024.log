@@ -1,0 +1,367 @@
+................................................F....................... [  6%]
+........................................................................ [ 13%]
+..........ss......................sssssss............................... [ 19%]
+........................................................................ [ 26%]
+........................................................................ [ 33%]
+................................................................F....... [ 39%]
+...............s.s.............................sss...s.................. [ 46%]
+..........................................ssssss............s.....sssss. [ 52%]
+..........sssssssssss......s....................s.s..s........ss..s..sss [ 59%]
+....s................................................................... [ 66%]
+....................sss......................FFFs....................... [ 72%]
+...................s.................................................... [ 79%]
+........................................................................ [ 85%]
+.............................................s...................s...... [ 92%]
+.............F..............ssss..s........s......ssssssssss............ [ 99%]
+..........                                                               [100%]
+=================================== FAILURES ===================================
+___________ test_full_http_orchestration_with_explicit_test_doubles ____________
+
+tmp_path = PosixPath('/private/var/folders/_d/x5xldyk10v7_r3p9_74rnk2c0000gn/T/pytest-of-mac/pytest-81/test_full_http_orchestration_w0')
+ir = MathIR(inductions=[], version='1.0', source=Source(kind='text', raw='设 a,b 为实数，已知 a=b。两边加 1，得到 a+1=b+1，所求得证。', normali...rceRefs=[SourceRef(blockId='b0', start=0, end=39)], dependsOn=['step1'], reason='由上一步即得'), ambiguities=[], formal=None)
+types = FormalTypes(bindings=[FormalBinding(sourceId='a', type='ℝ', value=None), FormalBinding(sourceId='b', type='ℝ', value=N...='step1', proposition='v0 + 1 = v1 + 1'), FormalStatement(sourceId='target', proposition='v0 + 1 = v1 + 1')], notes=[])
+proofs = FormalProofs(fragments=[ProofFragment(sourceId='step1', proof='by rw [h0]', translationNotes='翻译用户的等式两边加 1'), ProofFragment(sourceId='target', proof='by exact s0 v0 v1 h0', translationNotes='引用上一步')])
+canonical_ir = MathIR(inductions=[], version='1.0', source=Source(kind='text', raw='设 a,b 为实数，已知 a=b。两边加 1，得到 a+1=b+1，所求得证。', normali..., binderId=None, value='1')], symbolId=None, binderId=None, value=None)], symbolId=None, binderId=None, value=None))]))
+
+    def test_full_http_orchestration_with_explicit_test_doubles(tmp_path,ir,types,proofs,canonical_ir):
+        """只验证后端 HTTP/数据流；模型和 Kernel 都是本测试文件内明确替换的夹具。"""
+        semantic=canonical_ir.model_dump(); semantic.pop('version'); semantic.pop('source')
+        queue=[semantic,{'proof':[f.proof for f in proofs.fragments]}]
+        def handler(request):
+            result=queue.pop(0)
+            return httpx.Response(200,json={"model":"fixture","choices":[{"finish_reason":"stop","message":{"content":json.dumps(result,ensure_ascii=False)}}]})
+        async_client=httpx.AsyncClient(transport=httpx.MockTransport(handler))
+        settings=Settings(data_dir=tmp_path,lean_project=tmp_path/"missing-runtime",deepseek_api_key="test",deepseek_model="fixture")
+        services=Services(settings,async_client)
+        async def check(obligation):
+            return {"status":"verified","localVerified":True,"diagnostics":[],"certificate":{"testFixture":True}}
+        services.runner.check=check
+        with TestClient(create_app(settings,services)) as c:
+            r=c.post('/api/pipeline',json={"input":{"kind":"text","text":ir.source.raw}})
+>           assert r.status_code==200, r.text
+E           AssertionError: {"error":{"code":"LEGACY_MATHIR_ARCHIVED","message":"旧版数学验证流水线已存档；新的正式验证使用 Lean-first。","details":{}}}
+E           assert 410 == 200
+E            +  where 410 = <Response [410 Gone]>.status_code
+
+tests/test_api_and_workflow.py:74: AssertionError
+_________ test_http_pipeline_repairs_with_diagnostics_keeps_statement __________
+
+tmp_path = PosixPath('/private/var/folders/_d/x5xldyk10v7_r3p9_74rnk2c0000gn/T/pytest-of-mac/pytest-81/test_http_pipeline_repairs_wit0')
+ir = MathIR(inductions=[], version='1.0', source=Source(kind='text', raw='设 a,b 为实数，已知 a=b。两边加 1，得到 a+1=b+1，所求得证。', normali...rceRefs=[SourceRef(blockId='b0', start=0, end=39)], dependsOn=['step1'], reason='由上一步即得'), ambiguities=[], formal=None)
+types = FormalTypes(bindings=[FormalBinding(sourceId='a', type='ℝ', value=None), FormalBinding(sourceId='b', type='ℝ', value=N...='step1', proposition='v0 + 1 = v1 + 1'), FormalStatement(sourceId='target', proposition='v0 + 1 = v1 + 1')], notes=[])
+proofs = FormalProofs(fragments=[ProofFragment(sourceId='step1', proof='by rw [h0]', translationNotes='翻译用户的等式两边加 1'), ProofFragment(sourceId='target', proof='by exact s0 v0 v1 h0', translationNotes='引用上一步')])
+canonical_ir = MathIR(inductions=[], version='1.0', source=Source(kind='text', raw='设 a,b 为实数，已知 a=b。两边加 1，得到 a+1=b+1，所求得证。', normali..., binderId=None, value='1')], symbolId=None, binderId=None, value=None)], symbolId=None, binderId=None, value=None))]))
+
+    def test_http_pipeline_repairs_with_diagnostics_keeps_statement(tmp_path,ir,types,proofs,canonical_ir):
+        semantic=canonical_ir.model_dump();semantic.pop('version');semantic.pop('source')
+        bad=proofs.model_copy(deep=True);bad.fragments[0].proof='by exact bad_name'
+        queue=[semantic,{'proof':[f.proof for f in bad.fragments]},{'proof':[proofs.fragments[0].proof]}]
+        bodies=[]
+        def handler(r):
+            body=json.loads(r.content);bodies.append(body)
+            return response(queue.pop(0))
+        client=httpx.AsyncClient(transport=httpx.MockTransport(handler))
+        settings=Settings(data_dir=tmp_path,deepseek_[REDACTED_SECRET]',lean_project=tmp_path/'runtime')
+        services=Services(settings,client)
+        async def check(ob):return lean_fixture(ob)
+        services.runner.check=check
+        with TestClient(create_app(settings,services)) as c:
+            out=c.post('/api/pipeline',json={'input':{'kind':'text','text':ir.source.raw}})
+>           assert out.status_code==200,out.text
+E           AssertionError: {"error":{"code":"LEGACY_MATHIR_ARCHIVED","message":"旧版数学验证流水线已存档；新的正式验证使用 Lean-first。","details":{}}}
+E           assert 410 == 200
+E            +  where 410 = <Response [410 Gone]>.status_code
+
+tests/test_workflow_patch.py:52: AssertionError
+________________ test_native_v2_submit_read_result_and_history _________________
+
+tmp_path = PosixPath('/private/var/folders/_d/x5xldyk10v7_r3p9_74rnk2c0000gn/T/pytest-of-mac/pytest-81/test_native_v2_submit_read_res0')
+
+    def test_native_v2_submit_read_result_and_history(tmp_path):
+>       asyncio.run(_run_contract(tmp_path))
+
+tests/v2/test_native_v2_api_contract.py:180: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py:204: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py:127: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py:719: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+tmp_path = PosixPath('/private/var/folders/_d/x5xldyk10v7_r3p9_74rnk2c0000gn/T/pytest-of-mac/pytest-81/test_native_v2_submit_read_res0')
+fail = False, real_kernel = False, step_assessment = None
+
+    async def _run_contract(tmp_path, fail=False, real_kernel=False, step_assessment=None):
+        settings = Settings.from_env()
+        settings.data_dir = tmp_path / "db"
+        app = create_app(settings)
+        provider = _AI(fail, step_assessment)
+        app.state.services.mathir_v2.provider = provider
+        app.state.services.mathir_v2.recognition = _Source()
+        checked_runner = LeanRunner(settings) if real_kernel else _FixtureLean()
+        app.state.services.mathir_v2.runner = checked_runner
+        app.state.services.mathir_v2.retriever = None
+        async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app),
+                                     base_url="http://native-test") as client:
+            try:
+                response = await client.post("/api/v2/jobs", json={
+                    "input": {"kind": "text", "text": "1=1"}, "explain": False})
+                assert response.status_code == 202, response.text
+                job_id = response.json()["id"]
+                # HTTP poll must tolerate genuine Lean/Mathlib startup. This is
+                # a test harness deadline only; not an application runtime limit.
+                async with asyncio.timeout(180):
+                    while True:
+                        job = (await client.get(f"/api/jobs/{job_id}")).json()
+                        if job["status"] not in ("queued", "running"):
+                            break
+                        await asyncio.sleep(0.1)
+                if fail:
+                    assert job["status"] == "failed"
+                    assert job["error"]["code"] == "AI_PROVIDER_ERROR"
+                    assert provider.calls == ["StructureOnlyMathIRV2"]
+                    assert (await client.get(
+                        "/api/history?kind=mathir_v2_run")).json()["records"] == []
+                    return
+                assert job["status"] == "completed", job
+                packet = job["result"]
+>               assert packet["version"] == "2.0"
+E               AssertionError: assert '3.4.2' == '2.0'
+E                 
+E                 - 2.0
+E                 + 3.4.2
+
+tests/v2/test_native_v2_api_contract.py:117: AssertionError
+________ test_native_v2_provider_failure_is_not_reported_as_math_error _________
+
+tmp_path = PosixPath('/private/var/folders/_d/x5xldyk10v7_r3p9_74rnk2c0000gn/T/pytest-of-mac/pytest-81/test_native_v2_provider_failur0')
+
+    def test_native_v2_provider_failure_is_not_reported_as_math_error(tmp_path):
+>       asyncio.run(_run_contract(tmp_path, fail=True))
+
+tests/v2/test_native_v2_api_contract.py:184: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py:204: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py:127: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py:719: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+tmp_path = PosixPath('/private/var/folders/_d/x5xldyk10v7_r3p9_74rnk2c0000gn/T/pytest-of-mac/pytest-81/test_native_v2_provider_failur0')
+fail = True, real_kernel = False, step_assessment = None
+
+    async def _run_contract(tmp_path, fail=False, real_kernel=False, step_assessment=None):
+        settings = Settings.from_env()
+        settings.data_dir = tmp_path / "db"
+        app = create_app(settings)
+        provider = _AI(fail, step_assessment)
+        app.state.services.mathir_v2.provider = provider
+        app.state.services.mathir_v2.recognition = _Source()
+        checked_runner = LeanRunner(settings) if real_kernel else _FixtureLean()
+        app.state.services.mathir_v2.runner = checked_runner
+        app.state.services.mathir_v2.retriever = None
+        async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app),
+                                     base_url="http://native-test") as client:
+            try:
+                response = await client.post("/api/v2/jobs", json={
+                    "input": {"kind": "text", "text": "1=1"}, "explain": False})
+                assert response.status_code == 202, response.text
+                job_id = response.json()["id"]
+                # HTTP poll must tolerate genuine Lean/Mathlib startup. This is
+                # a test harness deadline only; not an application runtime limit.
+                async with asyncio.timeout(180):
+                    while True:
+                        job = (await client.get(f"/api/jobs/{job_id}")).json()
+                        if job["status"] not in ("queued", "running"):
+                            break
+                        await asyncio.sleep(0.1)
+                if fail:
+>                   assert job["status"] == "failed"
+E                   AssertionError: assert 'completed' == 'failed'
+E                     
+E                     - failed
+E                     + completed
+
+tests/v2/test_native_v2_api_contract.py:109: AssertionError
+________ test_native_v2_result_and_history_keep_step_source_assessment _________
+
+tmp_path = PosixPath('/private/var/folders/_d/x5xldyk10v7_r3p9_74rnk2c0000gn/T/pytest-of-mac/pytest-81/test_native_v2_result_and_hist0')
+
+    def test_native_v2_result_and_history_keep_step_source_assessment(tmp_path):
+>       asyncio.run(_run_contract(tmp_path, step_assessment="contradicted"))
+
+tests/v2/test_native_v2_api_contract.py:188: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py:204: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py:127: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py:719: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+tmp_path = PosixPath('/private/var/folders/_d/x5xldyk10v7_r3p9_74rnk2c0000gn/T/pytest-of-mac/pytest-81/test_native_v2_result_and_hist0')
+fail = False, real_kernel = False, step_assessment = 'contradicted'
+
+    async def _run_contract(tmp_path, fail=False, real_kernel=False, step_assessment=None):
+        settings = Settings.from_env()
+        settings.data_dir = tmp_path / "db"
+        app = create_app(settings)
+        provider = _AI(fail, step_assessment)
+        app.state.services.mathir_v2.provider = provider
+        app.state.services.mathir_v2.recognition = _Source()
+        checked_runner = LeanRunner(settings) if real_kernel else _FixtureLean()
+        app.state.services.mathir_v2.runner = checked_runner
+        app.state.services.mathir_v2.retriever = None
+        async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app),
+                                     base_url="http://native-test") as client:
+            try:
+                response = await client.post("/api/v2/jobs", json={
+                    "input": {"kind": "text", "text": "1=1"}, "explain": False})
+                assert response.status_code == 202, response.text
+                job_id = response.json()["id"]
+                # HTTP poll must tolerate genuine Lean/Mathlib startup. This is
+                # a test harness deadline only; not an application runtime limit.
+                async with asyncio.timeout(180):
+                    while True:
+                        job = (await client.get(f"/api/jobs/{job_id}")).json()
+                        if job["status"] not in ("queued", "running"):
+                            break
+                        await asyncio.sleep(0.1)
+                if fail:
+                    assert job["status"] == "failed"
+                    assert job["error"]["code"] == "AI_PROVIDER_ERROR"
+                    assert provider.calls == ["StructureOnlyMathIRV2"]
+                    assert (await client.get(
+                        "/api/history?kind=mathir_v2_run")).json()["records"] == []
+                    return
+                assert job["status"] == "completed", job
+                packet = job["result"]
+>               assert packet["version"] == "2.0"
+E               AssertionError: assert '3.4.2' == '2.0'
+E                 
+E                 - 2.0
+E                 + 3.4.2
+
+tests/v2/test_native_v2_api_contract.py:117: AssertionError
+_ test_route_scope_failure_returns_the_original_step_location_without_running_lean _
+
+tmp_path = PosixPath('/private/var/folders/_d/x5xldyk10v7_r3p9_74rnk2c0000gn/T/pytest-of-mac/pytest-81/test_route_scope_failure_retur0')
+
+    def test_route_scope_failure_returns_the_original_step_location_without_running_lean(tmp_path):
+        from fastapi.testclient import TestClient
+    
+        structure = copy.deepcopy(_structure())
+        structure["scopes"].append({"id": "hidden", "parentId": "root"})
+        structure["declarations"].append({
+            "id": "x", "name": "x", "kind": "variable", "scopeId": "hidden",
+            "type": {"kind": "Nat"},
+            "sourceRefs": [{"blockId": "b0", "start": 0, "end": 3}],
+        })
+        node = structure["proofRoutes"][0]["nodes"][0]
+        node["expression"] = {"op": "eq", "args": [
+            {"op": "symbol", "symbolId": "x"},
+            {"op": "symbol", "symbolId": "x"},
+        ]}
+        node["scopeId"] = "root"
+        node["sourceRefs"] = [{"blockId": "b0", "start": 0, "end": 3}]
+    
+        class ScopedProvider:
+            async def structured(self, model, _instructions, _payload, *, images=None):
+                assert model is StructureOnlyMathIRV2 and images is None
+                return model.model_validate(structure), {"recorded": True}
+    
+        class NeverLean:
+            def __getattr__(self, name):
+                raise AssertionError(f"Lean must not run before MathIR validation: {name}")
+    
+        app = create_app(Settings(data_dir=tmp_path / "store"))
+        app.state.services.mathir_v2.provider = ScopedProvider()
+        app.state.services.mathir_v2.recognition = _FakeRecognition()
+        app.state.services.mathir_v2.runner = NeverLean()
+        app.state.services.mathir_v2.retriever = None
+        with TestClient(app) as client:
+            response = client.post("/api/v2/pipeline", json={
+                "input": {"kind": "text", "text": "1=1"}})
+>           assert response.status_code == 422
+E           assert 410 == 422
+E            +  where 410 = <Response [410 Gone]>.status_code
+
+tests/v2/test_structure_pipeline.py:410: AssertionError
+=============================== warnings summary ===============================
+../.venv/lib/python3.14/site-packages/starlette/testclient.py:45
+  /[LOCAL_USER]/Documents/ChatGPT/极简lean 2/.venv/lib/python3.14/site-packages/starlette/testclient.py:45: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_lean_process_scheduler.py:118: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/test_lean_process_scheduler.py:161: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/test_live.py:23: Lean/Mathlib/隔离器尚未准备完毕
+SKIPPED [1] tests/test_live.py:34: Lean 运行环境不可用
+SKIPPED [1] tests/test_live.py:43: 未配置真实 AI
+SKIPPED [1] tests/test_live.py:57: 未配置真实 OCR
+SKIPPED [1] tests/test_live.py:71: Lean / Mathlib 尚未准备完毕
+SKIPPED [1] tests/test_live.py:80: Lean / Mathlib 尚未准备完毕
+SKIPPED [1] tests/test_macos_live.py:15: Explicit real macOS runtime required
+SKIPPED [1] tests/v2/test_closed_lemma_dependencies.py:46: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_closed_lemma_dependencies.py:89: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_dependent_function_types.py:350: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_dependent_function_types.py:363: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_dependent_function_types.py:377: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_dependent_type_applications.py:214: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [5] tests/v2/test_elementary_operators.py:202: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_elementary_operators.py:226: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_explicit_quantifier_binders.py:343: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [5] tests/v2/test_general_math_domain_bundles.py:99: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [11] tests/v2/test_general_math_functions.py:63: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_general_math_functions.py:126: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_interval_subtype_semantic_preflight.py:143: Lean runtime missing
+SKIPPED [1] tests/v2/test_interval_subtype_semantic_preflight.py:183: Lean source runtime missing
+SKIPPED [1] tests/v2/test_interval_subtype_semantic_preflight.py:245: Lean runtime missing
+SKIPPED [2] tests/v2/test_mathir_analysis_ops.py:73: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [4] tests/v2/test_mathir_complex_algebra.py:69: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/v2/test_mathir_linear_algebra_types.py:57: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/v2/test_mathlib_constant_expression.py:162: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_mathlib_constant_expression.py:200: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_mathlib_constant_expression.py:213: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_native_v2_api_contract.py:191: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_real_lean_unproductive_tactic_repair.py:80: Source-matched Lean runtime not ready
+SKIPPED [1] tests/v2/test_source_interval_membership_constructor.py:69: Source matched Lean/Mathlib unavailable
+SKIPPED [1] tests/v2/test_spectral_compiler_validation_path.py:84: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:110: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:159: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:196: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:227: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:379: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:708: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:878: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:922: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:940: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:1045: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:1094: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:1162: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:1200: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:1230: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:1255: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:1287: installed isolated Lean/Mathlib Kernel runtime is not ready
+FAILED tests/test_api_and_workflow.py::test_full_http_orchestration_with_explicit_test_doubles
+FAILED tests/test_workflow_patch.py::test_http_pipeline_repairs_with_diagnostics_keeps_statement
+FAILED tests/v2/test_native_v2_api_contract.py::test_native_v2_submit_read_result_and_history
+FAILED tests/v2/test_native_v2_api_contract.py::test_native_v2_provider_failure_is_not_reported_as_math_error
+FAILED tests/v2/test_native_v2_api_contract.py::test_native_v2_result_and_history_keep_step_source_assessment
+FAILED tests/v2/test_structure_pipeline.py::test_route_scope_failure_returns_the_original_step_location_without_running_lean
+6 failed, 1012 passed, 72 skipped, 1 warning in 121.88s (0:02:01)

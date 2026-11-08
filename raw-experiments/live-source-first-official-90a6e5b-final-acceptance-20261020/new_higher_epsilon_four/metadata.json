@@ -1,0 +1,505 @@
+{
+  "id": "new_higher_epsilon_four",
+  "topic": "正确实分析证明：数列极限加4，使用δ和H",
+  "source": "设 (wₙ)ₙ∈ℕ 为实数数列，C 为实数，已知 wₙ→C。证明数列 (wₙ+4) 收敛到 C+4。原证明：任取 δ>0。由 wₙ→C，存在自然数 H，使所有 n≥H 都满足 |wₙ−C|<δ。对任意 n≥H，有 |(wₙ+4)−(C+4)|=|wₙ−C|<δ。因此根据数列极限的定义，wₙ+4→C+4。证毕。",
+  "reference": "正确源高等证明，要求δ-H数量关系、实数数列及定理原稿一致，全形式Lean及忠实性分别核验。",
+  "appSourceCommit": "90a6e5b703cdec4911611d4aafcd7fbcce4dbf27",
+  "providerFixture": false,
+  "kernelFixture": false,
+  "handWrittenLean": false,
+  "handWrittenMathIR": false,
+  "transport": "signed installed App packaged backend POST /api/v2/jobs",
+  "guiInteracted": false,
+  "startedUtc": "2026-10-20T15:32:37.584636+00:00",
+  "sourceSha256": "0cecc548bade545dcd53e0f3b71c02616bde0feb8c283bf822093065d3870b82",
+  "capabilities": {
+    "ai": {
+      "configured": true,
+      "provider": "deepseek",
+      "model": "deepseek-flash",
+      "thinking": "provider_default",
+      "liveTested": false
+    },
+    "lean": {
+      "configured": true,
+      "executableFound": true,
+      "projectFound": true,
+      "runtimeBuilt": true,
+      "runtimeIntegrity": true,
+      "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+      "sandbox": "macos",
+      "isolated": true,
+      "ready": true,
+      "toolchain": "leanprover/lean4:v4.34.0",
+      "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+      "liveTestedInThisDistribution": false
+    },
+    "mockFallback": false,
+    "health": "running"
+  },
+  "jobId": "c3a1611f-dbf2-41be-9246-20cd74b66e69",
+  "submittedUtc": "2026-10-20T15:32:39.724243+00:00",
+  "stageTransitions": [
+    {
+      "status": "running",
+      "stage": "recognizing",
+      "seconds": 2.64,
+      "utc": "2026-10-20T15:32:40.227644+00:00"
+    },
+    {
+      "status": "running",
+      "stage": "lean_verification",
+      "seconds": 113.55,
+      "utc": "2026-10-20T15:34:31.135844+00:00"
+    },
+    {
+      "status": "running",
+      "stage": "proof_only_generation",
+      "seconds": 160.82,
+      "utc": "2026-10-20T15:35:18.410319+00:00"
+    },
+    {
+      "status": "completed",
+      "stage": "completed",
+      "seconds": 194.53,
+      "utc": "2026-10-20T15:35:52.115901+00:00"
+    }
+  ],
+  "terminalStatus": "completed",
+  "terminalStage": "completed",
+  "terminalError": null,
+  "result": {
+    "runStatus": "formal_verified_source_unconfirmed",
+    "termination": "original_route_kernel_passed",
+    "kernelVerified": true,
+    "fixedStatementKernelPassed": true,
+    "originalRouteKernelPassed": true,
+    "sourceProofVerified": false,
+    "originalProofVerified": false,
+    "originalMeaning": "model_interpretation",
+    "statement": null,
+    "failure": null,
+    "mathIRId": "6912b132-ef2d-400c-a898-007fe41b326d",
+    "sourceStructureId": "8c87a778-e352-44c9-96c7-d0a0e335eb68",
+    "originalProofFidelity": {
+      "sourceProofVerified": false,
+      "status": "not_independently_established",
+      "basis": "Formal Kernel proof alone cannot certify an author's natural-language reasoning. Unrecognized source rule remains unconfirmed.",
+      "routes": [
+        {
+          "routeId": "r_original",
+          "formalRouteKernelPassed": true,
+          "sourceReasoningVerified": false,
+          "sourceReasoningStatus": "not_independently_established",
+          "steps": [
+            {
+              "nodeId": "n_exists_H",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": true,
+              "sourceReasoningStatus": "source_rule_certified",
+              "sourceInferenceRule": "explicit_epsilon_N_limit_definition",
+              "sourceInferenceEvidence": {
+                "blockId": "b0",
+                "start": 61,
+                "end": 97,
+                "quote": "由 wₙ→C，存在自然数 H，使所有 n≥H 都满足 |wₙ−C|<δ。",
+                "quoteSha256": "d744256de35ddb1762c7d9f5908399033beee00604c3d287d7faba4719f9f5ee",
+                "dependsOn": [
+                  "n_ass_w_limit",
+                  "n_delta_pos"
+                ],
+                "method": "typed_epsilon_N_source_rule_and_real_lean_kernel",
+                "kernelStepCertificate": true
+              }
+            },
+            {
+              "nodeId": "n_abs_eq",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": true,
+              "sourceReasoningStatus": "source_rule_certified",
+              "sourceInferenceRule": "explicit_absolute_difference_translation_identity",
+              "sourceInferenceEvidence": {
+                "blockId": "b0",
+                "start": 97,
+                "end": 128,
+                "quote": "对任意 n≥H，有 |(wₙ+4)−(C+4)|=|wₙ−C|",
+                "quoteSha256": "04bef0c44160a328e211dc8ea13493b03fc90a0d0d8131eed07298db8032c0d2",
+                "dependsOn": [],
+                "method": "typed_epsilon_N_source_rule_and_real_lean_kernel",
+                "kernelStepCertificate": true
+              }
+            },
+            {
+              "nodeId": "n_abs_lt",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": false,
+              "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+              "sourceInferenceRule": null,
+              "sourceInferenceEvidence": null
+            },
+            {
+              "nodeId": "n_conclusion",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": false,
+              "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+              "sourceInferenceRule": null,
+              "sourceInferenceEvidence": null
+            }
+          ]
+        }
+      ]
+    },
+    "reasoningFidelity": {
+      "version": 2,
+      "authority": "independent_source_inference_certificate",
+      "status": "source_rules_partially_certified",
+      "formalRouteKernelPassed": true,
+      "sourceEvidenceBoundToStatement": true,
+      "expectedStatementHash": "a2004eaaf49759b046098744beffa0aa689676b3d9ed479d8eb8bbf2f26a22e6",
+      "originalProofVerified": false,
+      "sourceInferenceCertificationAvailable": true,
+      "sourceRuleVerifiedStepCount": 2,
+      "sourceRuleVerifiedRouteCount": 0,
+      "unconfirmedSourceStepCount": 2,
+      "unconfirmedSourceSteps": [
+        {
+          "routeId": "r_original",
+          "nodeId": "n_abs_lt",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "epsilon_N_source_rule_unconfirmed"
+        },
+        {
+          "routeId": "r_original",
+          "nodeId": "n_conclusion",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "epsilon_N_source_rule_unconfirmed"
+        }
+      ],
+      "routes": [
+        {
+          "routeId": "r_original",
+          "formalRouteKernelPassed": true,
+          "originalReasoningVerified": false,
+          "originalReasoningStatus": "not_independently_certified",
+          "goalSourceMatch": {
+            "blockId": "b0",
+            "start": 30,
+            "end": 50,
+            "quote": "证明数列 (wₙ+4) 收敛到 C+4。",
+            "quoteSha256": "a8bc348978be8cc6c1a3a9b027ed3b3d451882bf00269b9762bc74cc5e18e5f7",
+            "formulaStart": 30,
+            "formulaEnd": 50
+          },
+          "theoremPremisesSourceMatched": true,
+          "declarationTypesSourceMatched": true,
+          "unresolvedAmbiguitiesAbsent": true,
+          "authoredFormulaCoverageMatched": false,
+          "statementIdentityMatched": true,
+          "steps": [
+            {
+              "nodeId": "n_exists_H",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": true,
+              "originalInferenceStatus": "source_rule_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [
+                "n_ass_w_limit",
+                "n_delta_pos"
+              ],
+              "rule": "explicit_epsilon_N_limit_definition",
+              "ruleEvidence": {
+                "blockId": "b0",
+                "start": 61,
+                "end": 97,
+                "quote": "由 wₙ→C，存在自然数 H，使所有 n≥H 都满足 |wₙ−C|<δ。",
+                "quoteSha256": "d744256de35ddb1762c7d9f5908399033beee00604c3d287d7faba4719f9f5ee",
+                "dependsOn": [
+                  "n_ass_w_limit",
+                  "n_delta_pos"
+                ],
+                "method": "typed_epsilon_N_source_rule_and_real_lean_kernel",
+                "kernelStepCertificate": true
+              },
+              "ruleCheckReason": "independent_source_epsilon_N_mathematical_rule",
+              "statementIdentityMatched": true,
+              "reason": "independent_source_epsilon_N_mathematical_rule"
+            },
+            {
+              "nodeId": "n_abs_eq",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": true,
+              "originalInferenceStatus": "source_rule_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [],
+              "rule": "explicit_absolute_difference_translation_identity",
+              "ruleEvidence": {
+                "blockId": "b0",
+                "start": 97,
+                "end": 128,
+                "quote": "对任意 n≥H，有 |(wₙ+4)−(C+4)|=|wₙ−C|",
+                "quoteSha256": "04bef0c44160a328e211dc8ea13493b03fc90a0d0d8131eed07298db8032c0d2",
+                "dependsOn": [],
+                "method": "typed_epsilon_N_source_rule_and_real_lean_kernel",
+                "kernelStepCertificate": true
+              },
+              "ruleCheckReason": "independent_source_epsilon_N_mathematical_rule",
+              "statementIdentityMatched": true,
+              "reason": "independent_source_epsilon_N_mathematical_rule"
+            },
+            {
+              "nodeId": "n_abs_lt",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": false,
+              "originalInferenceStatus": "not_independently_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [
+                "n_H_prop",
+                "n_abs_eq"
+              ],
+              "rule": null,
+              "ruleEvidence": null,
+              "ruleCheckReason": "epsilon_N_source_rule_unconfirmed",
+              "statementIdentityMatched": true,
+              "reason": "ai_generated_formal_reconstruction"
+            },
+            {
+              "nodeId": "n_conclusion",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": false,
+              "originalInferenceStatus": "not_independently_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [
+                "n_exists_H",
+                "n_abs_lt"
+              ],
+              "rule": null,
+              "ruleEvidence": null,
+              "ruleCheckReason": "epsilon_N_source_rule_unconfirmed",
+              "statementIdentityMatched": true,
+              "reason": "ai_generated_formal_reconstruction"
+            }
+          ]
+        }
+      ],
+      "explanation": "Only exact source-anchored equations with an independently checked arithmetic inference rule and a genuine Kernel certificate are certified. Model proof reconstruction alone never qualifies. Unrecognized natural language is unconfirmed, not disproved."
+    },
+    "routeSummary": [
+      {
+        "routeId": "r_original",
+        "status": "passed",
+        "formalRouteKernelPassed": null,
+        "completeOriginalRouteKernelPassed": true,
+        "originalReasoningVerified": false,
+        "certificate": {
+          "checked": true,
+          "statementMatched": true,
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "additionalAxioms": [],
+          "statement_hash": "a2004eaaf49759b046098744beffa0aa689676b3d9ed479d8eb8bbf2f26a22e6",
+          "expectedExpressionSha256": "39d3ab144dc677d97cfe2151942ede13b96f4d3be497e83d9973f466b4d36448",
+          "proofExpressionSha256": "fb21162c06835f971721216a33d894ec9884c2e2c80ebbf46d29759485e6d7e4",
+          "nativeExpressionComparison": "structural_equal",
+          "auditIsolation": "fresh_import_environment_reset_between_candidates"
+        },
+        "steps": 4
+      }
+    ],
+    "steps": [
+      {
+        "route": "r_original",
+        "node": "n_exists_H",
+        "status": "passed",
+        "mathematicalStatus": "conditionally_established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": true,
+        "sourceInferenceRule": "explicit_epsilon_N_limit_definition",
+        "diagnostics": [
+          {
+            "severity": "warning",
+            "message": "Variable name `jjdep_n_ass_w_limit` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _jjdep_n_ass_w_limit\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+            "leanPosition": {
+              "column": 40,
+              "line": 5
+            },
+            "leanEndPosition": {
+              "column": 59,
+              "line": 5
+            },
+            "stepId": "mathir-v2/r_original/n_exists_H",
+            "sourceRefs": [
+              {
+                "blockId": "b0",
+                "start": 61,
+                "end": 97
+              }
+            ],
+            "mappingPrecision": "step",
+            "raw": {
+              "caption": "",
+              "data": "Variable name `jjdep_n_ass_w_limit` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _jjdep_n_ass_w_limit\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+              "endPos": {
+                "column": 59,
+                "line": 5
+              },
+              "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/live-source-first-official-90a6e5b-final-acceptance-20261020/new_higher_epsilon_four/isolated-data/work/lean-n834bizn/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "linter.unusedVariables",
+              "pos": {
+                "column": 40,
+                "line": 5
+              },
+              "severity": "warning"
+            }
+          },
+          {
+            "severity": "warning",
+            "message": "Variable name `jjdep_n_delta_pos` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _jjdep_n_delta_pos\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+            "leanPosition": {
+              "column": 111,
+              "line": 5
+            },
+            "leanEndPosition": {
+              "column": 126,
+              "line": 5
+            },
+            "stepId": "mathir-v2/r_original/n_exists_H",
+            "sourceRefs": [
+              {
+                "blockId": "b0",
+                "start": 61,
+                "end": 97
+              }
+            ],
+            "mappingPrecision": "step",
+            "raw": {
+              "caption": "",
+              "data": "Variable name `jjdep_n_delta_pos` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _jjdep_n_delta_pos\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+              "endPos": {
+                "column": 126,
+                "line": 5
+              },
+              "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/live-source-first-official-90a6e5b-final-acceptance-20261020/new_higher_epsilon_four/isolated-data/work/lean-n834bizn/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "linter.unusedVariables",
+              "pos": {
+                "column": 111,
+                "line": 5
+              },
+              "severity": "warning"
+            }
+          }
+        ],
+        "declaredDependencies": null
+      },
+      {
+        "route": "r_original",
+        "node": "n_abs_eq",
+        "status": "passed",
+        "mathematicalStatus": "established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": true,
+        "sourceInferenceRule": "explicit_absolute_difference_translation_identity",
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "r_original",
+        "node": "n_abs_lt",
+        "status": "passed",
+        "mathematicalStatus": "conditionally_established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": false,
+        "sourceInferenceRule": null,
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "r_original",
+        "node": "n_conclusion",
+        "status": "passed",
+        "mathematicalStatus": "conditionally_established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": false,
+        "sourceInferenceRule": null,
+        "diagnostics": [],
+        "declaredDependencies": null
+      }
+    ]
+  },
+  "finishedUtc": "2026-10-20T15:35:52.122673+00:00",
+  "wallSeconds": 194.54,
+  "provider": {
+    "realAttempts": 2,
+    "started": 2,
+    "finished": 2,
+    "requestCount": 2,
+    "usage": {
+      "input_tokens": 15625,
+      "output_tokens": 35508,
+      "incompleteUsageRecords": 0
+    },
+    "records": [
+      {
+        "request_id": "0765f3c4-d96a-4767-9318-11746c72698d",
+        "stage": "mathir",
+        "reason": "StructureOnlyMathIRV2",
+        "model": "deepseek-flash",
+        "status": "response_received",
+        "input_tokens": 10958,
+        "output_tokens": 24734,
+        "retry_index": 0,
+        "cache_hit": null,
+        "real_request_attempted": true,
+        "started_at": null,
+        "finished_at": null
+      },
+      {
+        "request_id": "8e6d596e-5046-46da-8ced-3c6a5e6ec090",
+        "stage": "formalization",
+        "reason": "FormalProofs",
+        "model": "deepseek-flash",
+        "status": "response_received",
+        "input_tokens": 4667,
+        "output_tokens": 10774,
+        "retry_index": 0,
+        "cache_hit": null,
+        "real_request_attempted": true,
+        "started_at": null,
+        "finished_at": null
+      }
+    ]
+  },
+  "dbCounts": {
+    "artifacts": 7,
+    "jobs": 1,
+    "events": 13
+  },
+  "archiveSha256": "51b5a4b09736d55d84c43ece774f2489e576eb99bf345e9ecfb6e1e3459dd7e4"
+}

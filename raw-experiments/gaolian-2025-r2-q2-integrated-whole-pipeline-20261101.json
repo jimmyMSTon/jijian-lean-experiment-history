@@ -1,0 +1,210 @@
+{
+  "method": "verify_whole_original_end_to_end_with_saved_candidate",
+  "providerCalls": [
+    "WholeProofPlan",
+    "WholeProofProgram"
+  ],
+  "sourceSha256": "dc9a8765edaf7f36b109f05ca03c86c4b136146a82218285237201475c324027",
+  "proofTermSha256": "23a8dcf514be971e02b126bd4c44d52f7d4b5805251d9334f0f9189322afddc5",
+  "run": {
+    "kind": "lean_first_local",
+    "mode": "single_whole_theorem_kernel",
+    "sourceSha256": "dc9a8765edaf7f36b109f05ca03c86c4b136146a82218285237201475c324027",
+    "runTraceId": "a7287104-0f21-4a9d-bc4c-37dd5fa3d389",
+    "status": "whole_formal_kernel_verified_source_unconfirmed",
+    "kernelVerified": true,
+    "formalProofCertified": true,
+    "originalProofCertified": false,
+    "sourceEquivalenceCertified": false,
+    "originalInferenceVerified": false,
+    "sourcePositionsValid": true,
+    "plannedStepCount": 7,
+    "localFormalVerifiedCount": 0,
+    "sourceSteps": [
+      {
+        "id": "source-0",
+        "index": 0,
+        "role": "inference",
+        "start": 136,
+        "end": 214,
+        "sourceExcerpt": "令 t=x₁+⋯+x_k，反设 t<1，并令 u=x_k。由 x₁≥⋯≥x_k≥0 可知 0≤u≤t/k<1/k<1，且对 i≤k 有 u≤x_i≤t<1。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_0",
+        "dependsOn": []
+      },
+      {
+        "id": "source-1",
+        "index": 1,
+        "role": "inference",
+        "start": 216,
+        "end": 296,
+        "sourceExcerpt": "第一步，估计尾项。对 i>k，由 x_i≤u 和 m≥2 得 x_i^m=x_i·x_i^{m−1}≤x_i·u^{m−1}≤x_i u，因为 0≤u<1。于是",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_1",
+        "dependsOn": []
+      },
+      {
+        "id": "source-2",
+        "index": 2,
+        "role": "inference",
+        "start": 297,
+        "end": 356,
+        "sourceExcerpt": "Σ_{i=k+1}^n x_i^m≤u Σ_{i=k+1}^n x_i≤u(k−t)，其中最后一步由条件（ii）得到。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_2",
+        "dependsOn": []
+      },
+      {
+        "id": "source-3",
+        "index": 3,
+        "role": "inference",
+        "start": 358,
+        "end": 416,
+        "sourceExcerpt": "第二步，由条件（i）可得\nΣ_{i=1}^k x_i^m≥1−Σ_{i=k+1}^n x_i^m≥1−u(k−t)。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_3",
+        "dependsOn": []
+      },
+      {
+        "id": "source-4",
+        "index": 4,
+        "role": "inference",
+        "start": 418,
+        "end": 531,
+        "sourceExcerpt": "第三步，对每个 i≤k，因为 0≤u≤x_i≤1 且 m≥2，有\nx_i^m−u x_i≤x_i²−u x_i≤x_i−u。\n第一个不等式由 x_i^{m−2}≤1 得到；第二个不等式等价于 (x_i−u)(x_i−1)≤0。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_4",
+        "dependsOn": []
+      },
+      {
+        "id": "source-5",
+        "index": 5,
+        "role": "inference",
+        "start": 533,
+        "end": 609,
+        "sourceExcerpt": "第四步，将第二步两边减去 ut，并利用第三步求和：\n1−uk≤Σ_{i=1}^k(x_i^m−u x_i)≤Σ_{i=1}^k(x_i−u)=t−uk。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_5",
+        "dependsOn": []
+      },
+      {
+        "id": "source-6",
+        "index": 6,
+        "role": "inference",
+        "start": 610,
+        "end": 646,
+        "sourceExcerpt": "整理得 1≤t，与反设 t<1 矛盾。因此 x₁+⋯+x_k≥1，证毕。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_6",
+        "dependsOn": []
+      }
+    ],
+    "statement": "∀ (m n k : ℕ) (x : ℕ → ℝ), 2 ≤ m → 2 ≤ k → k ≤ n → (∀ i : ℕ, 1 ≤ i → i ≤ n → 0 ≤ x i) → (∀ i j : ℕ, 1 ≤ i → i ≤ j → j ≤ n → x j ≤ x i) → (1 : ℝ) ≤ Finset.sum (Finset.Icc 1 n) (fun i => (x i) ^ m) → Finset.sum (Finset.Icc 1 n) (fun i => x i) ≤ (k : ℝ) → (1 : ℝ) ≤ Finset.sum (Finset.Icc 1 k) (fun i => x i)",
+    "proofTerm": "by\n  intro m n k x hm hk hkn hx_nonneg hmono hpow hsum\n  let t : ℝ := Finset.sum (Finset.Icc 1 k) (fun i => x i)\n  let u : ℝ := x k\n  by_contra hnt\n  have ht : t < 1 := by\n    have hnt' : ¬ (1 : ℝ) ≤ t := by\n      simpa [t] using hnt\n    exact not_le.mp hnt'\n  have hk1 : 1 ≤ k := by omega\n  have hx_nonneg_Icc1k : ∀ j ∈ Finset.Icc 1 k, 0 ≤ x j := by\n    intro j hj\n    rw [Finset.mem_Icc] at hj\n    exact hx_nonneg j hj.1 (le_trans hj.2 hkn)\n  have hu_nonneg : 0 ≤ u := by\n    dsimp [u]\n    exact hx_nonneg k hk1 hkn\n  have hu_le_t : u ≤ t := by\n    have hk_mem : k ∈ Finset.Icc 1 k := by\n      rw [Finset.mem_Icc]\n      exact ⟨hk1, le_rfl⟩\n    have h := Finset.single_le_sum hx_nonneg_Icc1k hk_mem\n    simpa [t, u] using h\n  have hu_lt_one : u < 1 := lt_of_le_of_lt hu_le_t ht\n  have pow_le_sq_of_nonneg_le_one : ∀ a : ℝ, 0 ≤ a → a ≤ 1 → a ^ m ≤ a ^ 2 := by\n    intro a ha0 ha1\n    obtain ⟨d, rfl⟩ := Nat.exists_eq_add_of_le hm\n    calc\n      a ^ (2 + d) = a ^ 2 * a ^ d := by rw [pow_add]\n      _ ≤ a ^ 2 * 1 := by\n        apply mul_le_mul_of_nonneg_left\n        · exact pow_le_one₀ ha0 ha1\n        · exact sq_nonneg a\n      _ = a ^ 2 := by ring\n  have source_step_0 :\n      0 ≤ u ∧ u < 1 ∧\n        (∀ i : ℕ, 1 ≤ i → i ≤ k → 0 ≤ x i ∧ u ≤ x i ∧ x i ≤ t ∧ x i < 1) := by\n    refine ⟨hu_nonneg, hu_lt_one, ?_⟩\n    intro i hi1 hik\n    have hi_mem : i ∈ Finset.Icc 1 k := by\n      rw [Finset.mem_Icc]\n      exact ⟨hi1, hik⟩\n    have hxi_nonneg : 0 ≤ x i := hx_nonneg i hi1 (le_trans hik hkn)\n    have hxi_le_t : x i ≤ t := by\n      have h := Finset.single_le_sum hx_nonneg_Icc1k hi_mem\n      simpa [t] using h\n    have hux : u ≤ x i := by\n      dsimp [u]\n      exact hmono i k hi1 hik hkn\n    have hxi_lt_one : x i < 1 := lt_of_le_of_lt hxi_le_t ht\n    exact ⟨hxi_nonneg, hux, hxi_le_t, hxi_lt_one⟩\n  have source_step_1 : ∀ i : ℕ, k < i → i ≤ n → (x i) ^ m ≤ u * x i := by\n    intro i hki hin\n    have hi1 : 1 ≤ i := by omega\n    have hxi_nonneg : 0 ≤ x i := hx_nonneg i hi1 hin\n    have hxi_le_u : x i ≤ u := by\n      dsimp [u]\n      exact hmono k i hk1 (le_of_lt hki) hin\n    have hxi_le_one : x i ≤ 1 := le_trans hxi_le_u (le_of_lt hu_lt_one)\n    have hpow_le_sq : (x i) ^ m ≤ (x i) ^ 2 :=\n      pow_le_sq_of_nonneg_le_one (x i) hxi_nonneg hxi_le_one\n    have hsq_le : (x i) ^ 2 ≤ u * x i := by\n      calc\n        (x i) ^ 2 = x i * x i := by ring\n        _ ≤ u * x i := mul_le_mul_of_nonneg_right hxi_le_u hxi_nonneg\n    exact le_trans hpow_le_sq hsq_le\n  have hsplit : Finset.Icc 1 n = Finset.Icc 1 k ∪ Finset.Icc (k + 1) n := by\n    ext i\n    simp only [Finset.mem_Icc, Finset.mem_union]\n    constructor\n    · intro hi\n      by_cases hik : i ≤ k\n      · left\n        exact ⟨hi.1, hik⟩\n      · right\n        constructor\n        · omega\n        · exact hi.2\n    · intro hi\n      rcases hi with hi | hi\n      · exact ⟨hi.1, le_trans hi.2 hkn⟩\n      · exact ⟨by omega, hi.2⟩\n  have hdisj : Disjoint (Finset.Icc 1 k) (Finset.Icc (k + 1) n) := by\n    rw [Finset.disjoint_left]\n    intro i hik hit\n    simp only [Finset.mem_Icc] at hik hit\n    omega\n  have hsum_split :\n      Finset.sum (Finset.Icc 1 n) (fun i => x i)\n        = Finset.sum (Finset.Icc 1 k) (fun i => x i)\n          + Finset.sum (Finset.Icc (k + 1) n) (fun i => x i) := by\n    rw [hsplit, Finset.sum_union hdisj]\n  have hsum_pow_split :\n      Finset.sum (Finset.Icc 1 n) (fun i => (x i) ^ m)\n        = Finset.sum (Finset.Icc 1 k) (fun i => (x i) ^ m)\n          + Finset.sum (Finset.Icc (k + 1) n) (fun i => (x i) ^ m) := by\n    rw [hsplit, Finset.sum_union hdisj]\n  have source_step_2 :\n      Finset.sum (Finset.Icc (k + 1) n) (fun i => (x i) ^ m)\n        ≤ u * ((k : ℝ) - t) := by\n    have htail_x_le :\n        Finset.sum (Finset.Icc (k + 1) n) (fun i => x i) ≤ (k : ℝ) - t := by\n      have htail_eq :\n          Finset.sum (Finset.Icc (k + 1) n) (fun i => x i)\n            = Finset.sum (Finset.Icc 1 n) (fun i => x i) - t := by\n        rw [hsum_split]\n        simp only [t]\n        ring\n      linarith\n    have htail_pow_le :\n        Finset.sum (Finset.Icc (k + 1) n) (fun i => (x i) ^ m)\n          ≤ Finset.sum (Finset.Icc (k + 1) n) (fun i => u * x i) := by\n      apply Finset.sum_le_sum\n      intro i hi\n      rw [Finset.mem_Icc] at hi\n      exact source_step_1 i (by omega) hi.2\n    calc\n      Finset.sum (Finset.Icc (k + 1) n) (fun i => (x i) ^ m)\n          ≤ Finset.sum (Finset.Icc (k + 1) n) (fun i => u * x i) := htail_pow_le\n      _ = u * Finset.sum (Finset.Icc (k + 1) n) (fun i => x i) := by\n        rw [Finset.mul_sum]\n      _ ≤ u * ((k : ℝ) - t) := by\n        exact mul_le_mul_of_nonneg_left htail_x_le hu_nonneg\n  have source_step_3 :\n      (1 : ℝ) - u * ((k : ℝ) - t)\n        ≤ Finset.sum (Finset.Icc 1 k) (fun i => (x i) ^ m) := by\n    have hhead_ge :\n        (1 : ℝ) - Finset.sum (Finset.Icc (k + 1) n) (fun i => (x i) ^ m)\n          ≤ Finset.sum (Finset.Icc 1 k) (fun i => (x i) ^ m) := by\n      linarith [hpow, hsum_pow_split]\n    linarith [hhead_ge, source_step_2]\n  have source_step_4 :\n      ∀ i : ℕ, 1 ≤ i → i ≤ k → (x i) ^ m - u * x i ≤ x i - u := by\n    intro i hi1 hik\n    have hxi_nonneg : 0 ≤ x i := hx_nonneg i hi1 (le_trans hik hkn)\n    have hux : u ≤ x i := by\n      dsimp [u]\n      exact hmono i k hi1 hik hkn\n    have hi_mem : i ∈ Finset.Icc 1 k := by\n      rw [Finset.mem_Icc]\n      exact ⟨hi1, hik⟩\n    have hxi_le_t : x i ≤ t := by\n      have h := Finset.single_le_sum hx_nonneg_Icc1k hi_mem\n      simpa [t] using h\n    have hxi_le_one : x i ≤ 1 := le_trans hxi_le_t (le_of_lt ht)\n    have hpow_le_sq : (x i) ^ m ≤ (x i) ^ 2 :=\n      pow_le_sq_of_nonneg_le_one (x i) hxi_nonneg hxi_le_one\n    have hsq_sub : (x i) ^ 2 - u * x i ≤ x i - u := by\n      have hfac : (x i - u) * (x i - 1) ≤ 0 := by\n        exact mul_nonpos_of_nonneg_of_nonpos (by linarith) (by linarith)\n      nlinarith [hfac]\n    have hsub : (x i) ^ m - u * x i ≤ (x i) ^ 2 - u * x i :=\n      sub_le_sub_right hpow_le_sq (u * x i)\n    exact le_trans hsub hsq_sub\n  have hsum_sub :\n      Finset.sum (Finset.Icc 1 k) (fun i => (x i) ^ m - u * x i)\n        = Finset.sum (Finset.Icc 1 k) (fun i => (x i) ^ m) - u * t := by\n    calc\n      Finset.sum (Finset.Icc 1 k) (fun i => (x i) ^ m - u * x i)\n          = Finset.sum (Finset.Icc 1 k) (fun i => (x i) ^ m)\n            - Finset.sum (Finset.Icc 1 k) (fun i => u * x i) := by\n        rw [Finset.sum_sub_distrib]\n      _ = Finset.sum (Finset.Icc 1 k) (fun i => (x i) ^ m) - u * t := by\n        rw [← Finset.mul_sum]\n        all_goals simp [t]\n  have source_step_5 :\n      (1 : ℝ) - (k : ℝ) * u\n          ≤ Finset.sum (Finset.Icc 1 k) (fun i => (x i) ^ m - u * x i) ∧\n        Finset.sum (Finset.Icc 1 k) (fun i => (x i) ^ m - u * x i)\n          ≤ t - (k : ℝ) * u := by\n    constructor\n    · rw [hsum_sub]\n      have hring : (1 : ℝ) - u * ((k : ℝ) - t) - u * t = 1 - (k : ℝ) * u := by ring\n      linarith [source_step_3, hring]\n    · have hsum_le :\n          Finset.sum (Finset.Icc 1 k) (fun i => (x i) ^ m - u * x i)\n            ≤ Finset.sum (Finset.Icc 1 k) (fun i => x i - u) := by\n        apply Finset.sum_le_sum\n        intro i hi\n        rw [Finset.mem_Icc] at hi\n        exact source_step_4 i hi.1 hi.2\n      have hconst : Finset.sum (Finset.Icc 1 k) (fun i => u) = (k : ℝ) * u := by\n        have hcard : (Finset.Icc 1 k).card = k := by\n          rw [Nat.card_Icc]\n          omega\n        rw [Finset.sum_const, hcard, nsmul_eq_mul]\n      have hright :\n          Finset.sum (Finset.Icc 1 k) (fun i => x i - u) = t - (k : ℝ) * u := by\n        rw [Finset.sum_sub_distrib]\n        rw [hconst]\n        all_goals simp [t]\n      calc\n        Finset.sum (Finset.Icc 1 k) (fun i => (x i) ^ m - u * x i)\n            ≤ Finset.sum (Finset.Icc 1 k) (fun i => x i - u) := hsum_le\n        _ = t - (k : ℝ) * u := hright\n  have source_step_6 : (1 : ℝ) ≤ t := by\n    linarith [source_step_5.1, source_step_5.2]\n  linarith [source_step_6, ht]",
+    "lean": {
+      "status": "verified",
+      "localVerified": true,
+      "kernelVerified": true,
+      "certificate": {
+        "checked": true,
+        "statementMatched": true,
+        "additionalAxioms": [],
+        "verificationMethod": "Lean_declared_target_kernel_checked_with_axiom_audit",
+        "sourceSha256": "696a5276a33e275b5a443599d8f1f3fa29bf8bbc470de864da09c4cccc20b0ef"
+      },
+      "moduleProof": {
+        "supportingDeclarationsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "proofTermSha256": "23a8dcf514be971e02b126bd4c44d52f7d4b5805251d9334f0f9189322afddc5",
+        "sourceSha256": "696a5276a33e275b5a443599d8f1f3fa29bf8bbc470de864da09c4cccc20b0ef",
+        "auditTarget": "JijianWholeModuleProof_2d1f1ab8b84a45e38db957b2",
+        "requiredAxioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "additionalAxioms": [],
+        "auditReportPresent": true,
+        "runtimeReturnCode": 0,
+        "originalSourceProofCertified": false
+      },
+      "diagnostics": []
+    },
+    "unsupportedOriginalSteps": [],
+    "planProvenance": {
+      "model": "saved-candidate-replay",
+      "note": "No new model generation"
+    },
+    "model": "saved-candidate-replay",
+    "goalExcerpt": "证明：x₁+x₂+⋯+x_k≥1。",
+    "originalGivenExcerpts": [
+      "m,n,k 都是正整数，m≥2 且 n≥k≥2。",
+      "实数 x₁≥x₂≥⋯≥xₙ≥0，满足",
+      "（i）x₁^m+x₂^m+⋯+xₙ^m≥1；",
+      "（ii）x₁+x₂+⋯+xₙ≤k。"
+    ],
+    "sourceOffsetRepairs": [],
+    "goalPlanCachedAfterLeanElaboration": true,
+    "proofProvenance": {
+      "model": "saved-candidate-replay",
+      "note": "Previously saved high-league candidate"
+    },
+    "monolithicModuleAttempt": {
+      "status": "verified",
+      "localVerified": true,
+      "kernelVerified": true,
+      "certificate": {
+        "checked": true,
+        "statementMatched": true,
+        "additionalAxioms": [],
+        "verificationMethod": "Lean_declared_target_kernel_checked_with_axiom_audit",
+        "sourceSha256": "696a5276a33e275b5a443599d8f1f3fa29bf8bbc470de864da09c4cccc20b0ef"
+      },
+      "moduleProof": {
+        "supportingDeclarationsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "proofTermSha256": "23a8dcf514be971e02b126bd4c44d52f7d4b5805251d9334f0f9189322afddc5",
+        "sourceSha256": "696a5276a33e275b5a443599d8f1f3fa29bf8bbc470de864da09c4cccc20b0ef",
+        "auditTarget": "JijianWholeModuleProof_2d1f1ab8b84a45e38db957b2",
+        "requiredAxioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "additionalAxioms": [],
+        "auditReportPresent": true,
+        "runtimeReturnCode": 0,
+        "originalSourceProofCertified": false
+      },
+      "diagnostics": []
+    },
+    "proofModuleDeclarations": "",
+    "moduleProofSha256": "696a5276a33e275b5a443599d8f1f3fa29bf8bbc470de864da09c4cccc20b0ef"
+  }
+}

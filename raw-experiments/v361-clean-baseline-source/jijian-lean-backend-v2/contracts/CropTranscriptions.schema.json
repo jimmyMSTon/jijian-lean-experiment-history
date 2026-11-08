@@ -1,0 +1,71 @@
+{
+  "$defs": {
+    "CropReading": {
+      "additionalProperties": false,
+      "properties": {
+        "regionId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Regionid"
+        },
+        "blockIndex": {
+          "title": "Blockindex",
+          "type": "integer"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "unclearReadings": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Unclearreadings",
+          "type": "array"
+        },
+        "croppedAtEdges": {
+          "title": "Croppedatedges",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "blockIndex",
+        "text",
+        "unclearReadings",
+        "croppedAtEdges"
+      ],
+      "title": "CropReading",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "readings": {
+      "items": {
+        "$ref": "#/$defs/CropReading"
+      },
+      "title": "Readings",
+      "type": "array"
+    },
+    "notes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+    }
+  },
+  "required": [
+    "readings",
+    "notes"
+  ],
+  "title": "CropTranscriptions",
+  "type": "object"
+}

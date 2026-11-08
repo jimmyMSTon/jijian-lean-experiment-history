@@ -1,0 +1,6 @@
+import Mathlib
+import Jijian.FiniteCounting
+#print axioms Jijian.GenericCounting.symmetric_filtered_pairs
+#print axioms Jijian.GenericCounting.card_subtype_as_filter
+#print axioms Jijian.GenericCounting.symmetric_support_pairs
+#print axioms Jijian.GenericCounting.sum_equals_card_rigidity

@@ -1,0 +1,216 @@
+{
+  "sourceSha256": "9def33798bfeed13b58ad6fcd073977306f2b0d28c260f998bf2beff97484cf5",
+  "kernelCertifiedAtSave": true,
+  "statement": "∀ (m n k : ℕ) (x : Fin n → ℝ) (_hm : 2 ≤ m) (_hk : 2 ≤ k) (hkn : k ≤ n) (_hx_nonneg : ∀ i : Fin n, 0 ≤ x i) (_hx_antitone : ∀ i j : Fin n, i ≤ j → x j ≤ x i) (_h_sum_pow : 1 ≤ (∑ i : Fin n, (x i) ^ m)) (_h_sum : (∑ i : Fin n, x i) ≤ (k : ℝ)), 1 ≤ (∑ i : Fin k, x (Fin.castLE hkn i))",
+  "proofTerm": "by\n  intro m n k x hm hk hkn hx_nonneg hx_antitone h_sum_pow h_sum\n  classical\n  let t : ℝ := ∑ i : Fin k, x (Fin.castLE hkn i)\n  let kidx : Fin n := ⟨k - 1, by omega⟩\n  let u : ℝ := x kidx\n  change 1 ≤ t\n  by_contra hnot\n  have htlt : t < 1 := not_le.mp hnot\n  let front : Finset (Fin n) := Finset.univ.image (Fin.castLE hkn)\n  let tail : Finset (Fin n) := Finset.univ.filter (fun i : Fin n => i ∉ front)\n  have hsum_front_x : (∑ i ∈ front, x i) = t := by\n    dsimp [front, t]\n    refine Finset.sum_image ?_\n    intro a ha b hb hab\n    apply Fin.ext\n    have hv := congrArg Fin.val hab\n    simpa [Fin.castLE] using hv\n  have hpartition_x : (∑ i ∈ front, x i) + (∑ i ∈ tail, x i) = ∑ i : Fin n, x i := by\n    have h := Finset.sum_filter_add_sum_filter_not (s := Finset.univ) (p := fun i : Fin n => i ∈ front) (f := x)\n    simpa [tail, Finset.filter_mem_eq_inter] using h\n  have hsum_front_pow : (∑ i ∈ front, (x i) ^ m) = ∑ i : Fin k, (x (Fin.castLE hkn i)) ^ m := by\n    dsimp [front]\n    refine Finset.sum_image ?_\n    intro a ha b hb hab\n    apply Fin.ext\n    have hv := congrArg Fin.val hab\n    simpa [Fin.castLE] using hv\n  have hpartition_pow : (∑ i ∈ front, (x i) ^ m) + (∑ i ∈ tail, (x i) ^ m) = ∑ i : Fin n, (x i) ^ m := by\n    have h := Finset.sum_filter_add_sum_filter_not (s := Finset.univ) (p := fun i : Fin n => i ∈ front) (f := fun i : Fin n => (x i) ^ m)\n    simpa [tail, Finset.filter_mem_eq_inter] using h\n  have htail_le_x : (∑ i ∈ tail, x i) ≤ (k : ℝ) - t := by\n    all_goals nlinarith [hpartition_x, hsum_front_x, h_sum]\n  have hterm_le_t : ∀ i : Fin k, x (Fin.castLE hkn i) ≤ t := by\n    intro i\n    dsimp [t]\n    exact Finset.single_le_sum (fun j hj => hx_nonneg (Fin.castLE hkn j)) (Finset.mem_univ i)\n  have hu_nonneg : 0 ≤ u := by\n    dsimp [u]\n    exact hx_nonneg kidx\n  have hu_le_t : u ≤ t := by\n    let jlast : Fin k := ⟨k - 1, by omega⟩\n    have hcast : Fin.castLE hkn jlast = kidx := by\n      ext\n      all_goals simp [jlast, kidx, Fin.castLE]\n    have h := hterm_le_t jlast\n    all_goals rw [hcast] at h\n    simpa [u] using h\n  have hfirst_ge_u : ∀ i : Fin k, u ≤ x (Fin.castLE hkn i) := by\n    intro i\n    have hle : Fin.castLE hkn i ≤ kidx := by\n      change (Fin.castLE hkn i).val ≤ kidx.val\n      all_goals simp [kidx, Fin.castLE]\n      all_goals omega\n    have hanti := hx_antitone (Fin.castLE hkn i) kidx hle\n    simpa [u] using hanti\n  have htail_facts : ∀ i : Fin n, k ≤ i.val → 0 ≤ x i ∧ x i ≤ u := by\n    intro i hik\n    constructor\n    · exact hx_nonneg i\n    · have hle : kidx ≤ i := by\n        change kidx.val ≤ i.val\n        all_goals simp [kidx]\n        all_goals omega\n      have hanti := hx_antitone kidx i hle\n      simpa [u] using hanti\n  have hfirst : ∀ i : Fin k, 0 ≤ x (Fin.castLE hkn i) ∧ x (Fin.castLE hkn i) ≤ t := by\n    intro i\n    exact ⟨hx_nonneg (Fin.castLE hkn i), hterm_le_t i⟩\n  have source_step_0 :\n      t < 1 ∧\n      (∀ i : Fin k, 0 ≤ x (Fin.castLE hkn i) ∧ x (Fin.castLE hkn i) ≤ t) ∧\n      (0 ≤ u ∧ u ≤ t) ∧\n      (∀ i : Fin k, u ≤ x (Fin.castLE hkn i)) ∧\n      (∀ i : Fin n, k ≤ i.val → 0 ≤ x i ∧ x i ≤ u) := by\n    exact ⟨htlt, hfirst, ⟨hu_nonneg, hu_le_t⟩, hfirst_ge_u, htail_facts⟩\n  have htail_mem : ∀ {i : Fin n}, i ∈ tail → k ≤ i.val := by\n    intro i hi\n    have hi_not : i ∉ front := by\n      dsimp [tail] at hi\n      simpa using hi\n    by_contra hlt\n    have hltk : i.val < k := Nat.lt_of_not_ge hlt\n    let j : Fin k := ⟨i.val, hltk⟩\n    have hji : Fin.castLE hkn j = i := by\n      ext\n      all_goals simp [j, Fin.castLE]\n    have hmem : i ∈ front := by\n      dsimp [front]\n      exact Finset.mem_image.mpr ⟨j, Finset.mem_univ j, hji⟩\n    exact hi_not hmem\n  have source_step_1 : (∑ i ∈ tail, (x i) ^ m) ≤ u * ((k : ℝ) - t) := by\n    have htail_pow_le : (∑ i ∈ tail, (x i) ^ m) ≤ u * (∑ i ∈ tail, x i) := by\n      calc\n        (∑ i ∈ tail, (x i) ^ m) ≤ ∑ i ∈ tail, u * x i := by\n          apply Finset.sum_le_sum\n          intro i hi\n          have hik : k ≤ i.val := htail_mem hi\n          have hfacts := source_step_0.2.2.2.2 i hik\n          have hx0 : 0 ≤ x i := hfacts.1\n          have hxu : x i ≤ u := hfacts.2\n          have hx_le_t : x i ≤ t := le_trans hxu source_step_0.2.2.1.2\n          have hx_le1 : x i ≤ 1 := le_trans hx_le_t source_step_0.1.le\n          have hpow2 : (x i) ^ m ≤ (x i) ^ 2 := by\n            calc\n              (x i) ^ m = (x i) ^ (2 + (m - 2)) := by rw [Nat.add_sub_of_le hm]\n              _ = (x i) ^ 2 * (x i) ^ (m - 2) := by rw [pow_add]\n              _ ≤ (x i) ^ 2 * 1 := by\n                exact mul_le_mul_of_nonneg_left (pow_le_one₀ hx0 hx_le1) (sq_nonneg (x i))\n              _ = (x i) ^ 2 := by ring\n          have hx2_le : (x i) ^ 2 ≤ u * x i := by\n            calc\n              (x i) ^ 2 = x i * x i := by rw [pow_two]\n              _ ≤ u * x i := mul_le_mul_of_nonneg_right hxu hx0\n          all_goals linarith\n        _ = u * (∑ i ∈ tail, x i) := by rw [Finset.mul_sum]\n    calc\n      (∑ i ∈ tail, (x i) ^ m) ≤ u * (∑ i ∈ tail, x i) := htail_pow_le\n      _ ≤ u * ((k : ℝ) - t) := mul_le_mul_of_nonneg_left htail_le_x source_step_0.2.2.1.1\n  have source_step_2 : ∀ i : Fin k, (x (Fin.castLE hkn i)) ^ m ≤ (1 + u) * x (Fin.castLE hkn i) - u := by\n    intro i\n    have hfirst_i := source_step_0.2.1 i\n    have hx0 : 0 ≤ x (Fin.castLE hkn i) := hfirst_i.1\n    have hx_le_t : x (Fin.castLE hkn i) ≤ t := hfirst_i.2\n    have hx_le1 : x (Fin.castLE hkn i) ≤ 1 := le_trans hx_le_t source_step_0.1.le\n    have hu_le_x : u ≤ x (Fin.castLE hkn i) := source_step_0.2.2.2.1 i\n    have hpow2 : (x (Fin.castLE hkn i)) ^ m ≤ (x (Fin.castLE hkn i)) ^ 2 := by\n      calc\n        (x (Fin.castLE hkn i)) ^ m = (x (Fin.castLE hkn i)) ^ (2 + (m - 2)) := by rw [Nat.add_sub_of_le hm]\n        _ = (x (Fin.castLE hkn i)) ^ 2 * (x (Fin.castLE hkn i)) ^ (m - 2) := by rw [pow_add]\n        _ ≤ (x (Fin.castLE hkn i)) ^ 2 * 1 := by\n          exact mul_le_mul_of_nonneg_left (pow_le_one₀ hx0 hx_le1) (sq_nonneg (x (Fin.castLE hkn i)))\n        _ = (x (Fin.castLE hkn i)) ^ 2 := by ring\n    have hsquare_le : (x (Fin.castLE hkn i)) ^ 2 ≤ (1 + u) * x (Fin.castLE hkn i) - u := by\n      have hprod : (x (Fin.castLE hkn i) - u) * (x (Fin.castLE hkn i) - 1) ≤ 0 := by\n        exact mul_nonpos_of_nonneg_of_nonpos (sub_nonneg.mpr hu_le_x) (sub_nonpos.mpr hx_le1)\n      have hprod_expand : (x (Fin.castLE hkn i) - u) * (x (Fin.castLE hkn i) - 1) = (x (Fin.castLE hkn i)) ^ 2 - u * x (Fin.castLE hkn i) - x (Fin.castLE hkn i) + u := by ring\n      all_goals nlinarith [hprod, hprod_expand]\n    all_goals linarith\n  have hsum_const_u : (∑ i : Fin k, u) = (k : ℝ) * u := by\n    all_goals rw [Finset.sum_const, Finset.card_univ, Fintype.card_fin]\n    all_goals simp [nsmul_eq_mul]\n  have source_step_3 :\n      (∑ i : Fin k, (x (Fin.castLE hkn i)) ^ m) ≤ (1 + u) * t - (k : ℝ) * u ∧\n      (∑ i : Fin n, (x i) ^ m) ≤ t := by\n    have hfront_pow_le : (∑ i : Fin k, (x (Fin.castLE hkn i)) ^ m) ≤ (1 + u) * t - (k : ℝ) * u := by\n      calc\n        (∑ i : Fin k, (x (Fin.castLE hkn i)) ^ m) ≤ ∑ i : Fin k, ((1 + u) * x (Fin.castLE hkn i) - u) := by\n          apply Finset.sum_le_sum\n          intro i hi\n          exact source_step_2 i\n        _ = (1 + u) * (∑ i : Fin k, x (Fin.castLE hkn i)) - ∑ i : Fin k, u := by\n          all_goals rw [Finset.sum_sub_distrib, ← Finset.mul_sum]\n        _ = (1 + u) * t - (k : ℝ) * u := by\n          all_goals rw [hsum_const_u]\n          all_goals simp [t]\n    refine ⟨hfront_pow_le, ?_⟩\n    have htotal_decomp : (∑ i : Fin n, (x i) ^ m) = (∑ i : Fin k, (x (Fin.castLE hkn i)) ^ m) + (∑ i ∈ tail, (x i) ^ m) := by\n      calc\n        (∑ i : Fin n, (x i) ^ m) = (∑ i ∈ front, (x i) ^ m) + (∑ i ∈ tail, (x i) ^ m) := by rw [← hpartition_pow]\n        _ = (∑ i : Fin k, (x (Fin.castLE hkn i)) ^ m) + (∑ i ∈ tail, (x i) ^ m) := by rw [hsum_front_pow]\n    calc\n      (∑ i : Fin n, (x i) ^ m) = (∑ i : Fin k, (x (Fin.castLE hkn i)) ^ m) + (∑ i ∈ tail, (x i) ^ m) := htotal_decomp\n      _ ≤ ((1 + u) * t - (k : ℝ) * u) + u * ((k : ℝ) - t) := by\n        exact add_le_add hfront_pow_le source_step_1\n      _ = t := by ring\n  have source_step_4 : False := by\n    have htotal_lt : (∑ i : Fin n, (x i) ^ m) < 1 := lt_of_le_of_lt source_step_3.2 source_step_0.1\n    exact (not_lt_of_ge h_sum_pow) htotal_lt\n  exact source_step_4",
+  "sourceSteps": [
+    {
+      "id": "source-0",
+      "index": 0,
+      "role": "inference",
+      "start": 158,
+      "end": 288,
+      "sourceExcerpt": "第一步，令 t=∑_{i=1}^k x_i，u=x_k。反设 t<1。由于 x_i≥0 且这前 k 项之和小于 1，对每个 1≤i≤k 都有 0≤x_i≤t<1；同时 0≤u≤t/k<1，并且前 k 项均满足 x_i≥u，后 n−k 项均满足 0≤x_i≤u。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_0",
+      "dependsOn": []
+    },
+    {
+      "id": "source-1",
+      "index": 1,
+      "role": "inference",
+      "start": 289,
+      "end": 452,
+      "sourceExcerpt": "第二步，对于每个 i>k，由 m≥2 和 0≤x_i≤u<1，有 x_i^{m}=x_i·x_i^{m−1}≤x_i·u≤u x_i。故尾部幂和满足 ∑_{i=k+1}^n x_i^m≤u∑_{i=k+1}^n x_i≤u(k−t)，最后一个不等式使用 ∑_{i=1}^n x_i≤k。若 n=k，尾部为空和 0，此式仍成立。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_1",
+      "dependsOn": []
+    },
+    {
+      "id": "source-2",
+      "index": 2,
+      "role": "inference",
+      "start": 453,
+      "end": 593,
+      "sourceExcerpt": "第三步，对于每个 1≤i≤k，由 m≥2 和 0≤x_i<1，有 x_i^m≤x_i²。另一方面 u≤x_i<1，所以 (x_i−u)(x_i−1)≤0，即 x_i²−u x_i≤x_i−u。二式结合得到 x_i^m−u x_i≤x_i−u，即 x_i^m≤(1+u)x_i−u。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_2",
+      "dependsOn": []
+    },
+    {
+      "id": "source-3",
+      "index": 3,
+      "role": "inference",
+      "start": 594,
+      "end": 685,
+      "sourceExcerpt": "第四步，对前 k 项求和，得 ∑_{i=1}^k x_i^m≤(1+u)t−ku。与第二步的尾部估计合并，\n∑_{i=1}^n x_i^m≤(1+u)t−ku+u(k−t)=t<1。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_3",
+      "dependsOn": []
+    },
+    {
+      "id": "source-4",
+      "index": 4,
+      "role": "inference",
+      "start": 686,
+      "end": 760,
+      "sourceExcerpt": "第五步，这与题设 ∑_{i=1}^n x_i^m≥1 矛盾。故假设 t<1 不成立，于是 t≥1，也就是 ∑_{i=1}^k x_i≥1。证明完毕。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_4",
+      "dependsOn": []
+    }
+  ],
+  "goalExcerpt": "证明前 k 项之和 ∑_{i=1}^k x_i≥1。",
+  "originalGivenExcerpts": [
+    "设 m,n,k 均为正整数，m≥2，n≥k≥2；实数 x₁≥x₂≥⋯≥x_n≥0，满足 ∑_{i=1}^n x_i^m≥1 及 ∑_{i=1}^n x_i≤k。"
+  ],
+  "originalProofCertified": false,
+  "originalModel": "deepseek-flash",
+  "originalAudit": {
+    "assessment": "no_specific_mismatch_identified_by_model",
+    "sourceEquivalenceCertified": false,
+    "originalProofCertified": false,
+    "modelReviewOnly": true,
+    "reviewedStepCount": 5,
+    "sourceStepCount": 5,
+    "issues": [],
+    "auxiliaryAssertions": [
+      "have htlt : t < 1 := not_le.mp hnot",
+      "have hsum_front_x : (∑ i ∈ front, x i) = t := by",
+      "have hv := congrArg Fin.val hab",
+      "have hpartition_x : (∑ i ∈ front, x i) + (∑ i ∈ tail, x i) = ∑ i : Fin n, x i := by",
+      "have h := Finset.sum_filter_add_sum_filter_not (s := Finset.univ) (p := fun i : Fin n => i ∈ front) (f := x)",
+      "have hsum_front_pow : (∑ i ∈ front, (x i) ^ m) = ∑ i : Fin k, (x (Fin.castLE hkn i)) ^ m := by",
+      "have hv := congrArg Fin.val hab",
+      "have hpartition_pow : (∑ i ∈ front, (x i) ^ m) + (∑ i ∈ tail, (x i) ^ m) = ∑ i : Fin n, (x i) ^ m := by",
+      "have h := Finset.sum_filter_add_sum_filter_not (s := Finset.univ) (p := fun i : Fin n => i ∈ front) (f := fun i : Fin n => (x i) ^ m)",
+      "have htail_le_x : (∑ i ∈ tail, x i) ≤ (k : ℝ) - t := by",
+      "have hterm_le_t : ∀ i : Fin k, x (Fin.castLE hkn i) ≤ t := by",
+      "have hu_nonneg : 0 ≤ u := by",
+      "have hu_le_t : u ≤ t := by",
+      "have hcast : Fin.castLE hkn jlast = kidx := by",
+      "have h := hterm_le_t jlast",
+      "have hfirst_ge_u : ∀ i : Fin k, u ≤ x (Fin.castLE hkn i) := by",
+      "have hle : Fin.castLE hkn i ≤ kidx := by",
+      "have hanti := hx_antitone (Fin.castLE hkn i) kidx hle",
+      "have htail_facts : ∀ i : Fin n, k ≤ i.val → 0 ≤ x i ∧ x i ≤ u := by",
+      "have hanti := hx_antitone kidx i hle",
+      "have hfirst : ∀ i : Fin k, 0 ≤ x (Fin.castLE hkn i) ∧ x (Fin.castLE hkn i) ≤ t := by",
+      "have htail_mem : ∀ {i : Fin n}, i ∈ tail → k ≤ i.val := by",
+      "have hi_not : i ∉ front := by",
+      "have hltk : i.val < k := Nat.lt_of_not_ge hlt",
+      "have hji : Fin.castLE hkn j = i := by",
+      "have hmem : i ∈ front := by",
+      "have htail_pow_le : (∑ i ∈ tail, (x i) ^ m) ≤ u * (∑ i ∈ tail, x i) := by",
+      "have hik : k ≤ i.val := htail_mem hi",
+      "have hfacts := source_step_0.2.2.2.2 i hik",
+      "have hx0 : 0 ≤ x i := hfacts.1",
+      "have hxu : x i ≤ u := hfacts.2",
+      "have hx_le_t : x i ≤ t := le_trans hxu source_step_0.2.2.1.2",
+      "have hx_le1 : x i ≤ 1 := le_trans hx_le_t source_step_0.1.le",
+      "have hpow2 : (x i) ^ m ≤ (x i) ^ 2 := by",
+      "have hx2_le : (x i) ^ 2 ≤ u * x i := by",
+      "have hfirst_i := source_step_0.2.1 i",
+      "have hx0 : 0 ≤ x (Fin.castLE hkn i) := hfirst_i.1",
+      "have hx_le_t : x (Fin.castLE hkn i) ≤ t := hfirst_i.2",
+      "have hx_le1 : x (Fin.castLE hkn i) ≤ 1 := le_trans hx_le_t source_step_0.1.le",
+      "have hu_le_x : u ≤ x (Fin.castLE hkn i) := source_step_0.2.2.2.1 i",
+      "have hpow2 : (x (Fin.castLE hkn i)) ^ m ≤ (x (Fin.castLE hkn i)) ^ 2 := by",
+      "have hsquare_le : (x (Fin.castLE hkn i)) ^ 2 ≤ (1 + u) * x (Fin.castLE hkn i) - u := by",
+      "have hprod : (x (Fin.castLE hkn i) - u) * (x (Fin.castLE hkn i) - 1) ≤ 0 := by",
+      "have hprod_expand : (x (Fin.castLE hkn i) - u) * (x (Fin.castLE hkn i) - 1) = (x (Fin.castLE hkn i)) ^ 2 - u * x (Fin.castLE hkn i) - x (Fin.castLE hkn i) + u := by ring",
+      "have hsum_const_u : (∑ i : Fin k, u) = (k : ℝ) * u := by",
+      "have hfront_pow_le : (∑ i : Fin k, (x (Fin.castLE hkn i)) ^ m) ≤ (1 + u) * t - (k : ℝ) * u := by",
+      "have htotal_decomp : (∑ i : Fin n, (x i) ^ m) = (∑ i : Fin k, (x (Fin.castLE hkn i)) ^ m) + (∑ i ∈ tail, (x i) ^ m) := by",
+      "have htotal_lt : (∑ i : Fin n, (x i) ^ m) < 1 := lt_of_le_of_lt source_step_3.2 source_step_0.1"
+    ],
+    "modelProvenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "d72ef63a-9498-4d88-8ad9-a81cf3f2200b",
+      "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+      "usage": {
+        "prompt_tokens": 6837,
+        "completion_tokens": 9795,
+        "total_tokens": 16632,
+        "prompt_tokens_details": {
+          "cached_tokens": 640
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 8375
+        },
+        "prompt_cache_hit_tokens": 640,
+        "prompt_cache_miss_tokens": 6197
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "steps": [
+      {
+        "index": 0,
+        "originalExcerpt": "第一步，令 t=∑_{i=1}^k x_i，u=x_k。反设 t<1。由于 x_i≥0 且这前 k 项之和小于 1，对每个 1≤i≤k 都有 0≤x_i≤t<1；同时 0≤u≤t/k<1，并且前 k 项均满足 x_i≥u，后 n−k 项均满足 0≤x_i≤u。",
+        "leanEvidenceExcerpt": "have source_step_0 :\n      t < 1 ∧\n      (∀ i : Fin k, 0 ≤ x (Fin.castLE hkn i) ∧ x (Fin.castLE hkn i) ≤ t) ∧\n      (0 ≤ u ∧ u ≤ t) ∧\n      (∀ i : Fin k, u ≤ x (Fin.castLE hkn i)) ∧\n      (∀ i : Fin n, k ≤ i.val → 0 ≤ x i ∧ x i ≤ u) := by",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 建立了反设 t<1、前 k 项 0≤x≤t、u≥0 且 u≤t、前 k 项≥u、后 n-k 项 0≤x≤u，覆盖原文该步后续所需的界。Lean 未显式记录更强的 u≤t/k，但后续证明只用到 u≤t<1 和 x≤t<1，因此未见关键数学理由替换。"
+      },
+      {
+        "index": 1,
+        "originalExcerpt": "第二步，对于每个 i>k，由 m≥2 和 0≤x_i≤u<1，有 x_i^{m}=x_i·x_i^{m−1}≤x_i·u≤u x_i。故尾部幂和满足 ∑_{i=k+1}^n x_i^m≤u∑_{i=k+1}^n x_i≤u(k−t)，最后一个不等式使用 ∑_{i=1}^n x_i≤k。若 n=k，尾部为空和 0，此式仍成立。",
+        "leanEvidenceExcerpt": "have source_step_1 : (∑ i ∈ tail, (x i) ^ m) ≤ u * ((k : ℝ) - t) := by",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 用 tail 表示后 n-k 项，逐项从 0≤x_i≤u 与 x_i≤1 推出 x_i^m≤x_i²≤u x_i，再求和并用总和≤k 得到尾部估计≤u(k-t)。中间使用的基础幂估计与原文的 x_i^m≤x_i·u 路径不同，但由相同条件可得，未引入外部关键定理或补写核心难点。"
+      },
+      {
+        "index": 2,
+        "originalExcerpt": "第三步，对于每个 1≤i≤k，由 m≥2 和 0≤x_i<1，有 x_i^m≤x_i²。另一方面 u≤x_i<1，所以 (x_i−u)(x_i−1)≤0，即 x_i²−u x_i≤x_i−u。二式结合得到 x_i^m−u x_i≤x_i−u，即 x_i^m≤(1+u)x_i−u。",
+        "leanEvidenceExcerpt": "have source_step_2 : ∀ i : Fin k, (x (Fin.castLE hkn i)) ^ m ≤ (1 + u) * x (Fin.castLE hkn i) - u := by",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 对每个前 k 项先证 x_i^m≤x_i²，再使用 (x_i-u)(x_i-1)≤0 得到 x_i²-u x_i≤x_i-u，最终推出 x_i^m≤(1+u)x_i-u，与原文第三步一致。"
+      },
+      {
+        "index": 3,
+        "originalExcerpt": "第四步，对前 k 项求和，得 ∑_{i=1}^k x_i^m≤(1+u)t−ku。与第二步的尾部估计合并，\n∑_{i=1}^n x_i^m≤(1+u)t−ku+u(k−t)=t<1。",
+        "leanEvidenceExcerpt": "have source_step_3 :\n      (∑ i : Fin k, (x (Fin.castLE hkn i)) ^ m) ≤ (1 + u) * t - (k : ℝ) * u ∧\n      (∑ i : Fin n, (x i) ^ m) ≤ t := by",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 对前 k 项求和得到 (1+u)t-ku，并把 front 与 tail 的幂和分拆后与第二步尾部估计合并，得到总和≤t；与原文第四步的求和与合并对应，t<1 在下一步与总和≤t 结合使用。"
+      },
+      {
+        "index": 4,
+        "originalExcerpt": "第五步，这与题设 ∑_{i=1}^n x_i^m≥1 矛盾。故假设 t<1 不成立，于是 t≥1，也就是 ∑_{i=1}^k x_i≥1。证明完毕。",
+        "leanEvidenceExcerpt": "have source_step_4 : False := by\n    have htotal_lt : (∑ i : Fin n, (x i) ^ m) < 1 := lt_of_le_of_lt source_step_3.2 source_step_0.1\n    exact (not_lt_of_ge h_sum_pow) htotal_lt",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 由总和≤t 和 t<1 推出总和<1，再与题设 1≤总和矛盾，从而否定反设 t<1，对应原文最后一步的归谬结论。"
+      }
+    ],
+    "modelSummary": "逐项对照后，Lean 完整实现了反设 t<1、尾部幂和估计、前 k 项逐项上界、求和合并以及最终矛盾。尾部幂估计中 Lean 使用 x_i^m≤x_i²≤u x_i 的基础初等路径替代原文的 x_i^{m-1}≤u 说明，但条件相同且未引入关键外部定理；第一步未显式保留 u≤t/k，但后续只用 u≤t<1。未发现作者关键数学理由被缺失或由大定理重建的具体疑点。"
+  },
+  "meaning": "Previously checked formal Lean proof; MUST fresh-replay Kernel on every hit."
+}

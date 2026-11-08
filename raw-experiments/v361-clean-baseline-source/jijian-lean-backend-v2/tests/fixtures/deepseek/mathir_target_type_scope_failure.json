@@ -1,0 +1,238 @@
+{
+  "fixtureKind": "recorded_real_response",
+  "stage": "mathir",
+  "inputText": "任取自然数 n。证明 n + 0 = n。理由：自然数加法右单位元性质。",
+  "model": "deepseek-flash",
+  "responseId": "078f7466-1e03-4e53-ac41-264694ac3a97",
+  "priorPromptSchemaEncoding": "compact_json_titles_pruned_v1",
+  "usage": {
+    "prompt_tokens": 2572,
+    "completion_tokens": 16009,
+    "total_tokens": 18581,
+    "prompt_tokens_details": {
+      "cached_tokens": 256
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 15144
+    },
+    "prompt_cache_hit_tokens": 256,
+    "prompt_cache_miss_tokens": 2316
+  },
+  "expectedClassification": "PARSE_ERROR",
+  "output": {
+    "version": "2.0",
+    "scopes": [
+      {
+        "id": "scope_theorem",
+        "parentId": null,
+        "description": "定理作用域：任取自然数 n，结论为 n + 0 = n。",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 0,
+            "end": 21
+          }
+        ]
+      },
+      {
+        "id": "scope_proof",
+        "parentId": "scope_theorem",
+        "description": "证明作用域：证明 n + 0 = n，理由为自然数加法右单位元性质。",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 8,
+            "end": 36
+          }
+        ]
+      }
+    ],
+    "declarations": [
+      {
+        "id": "decl_n",
+        "name": "n",
+        "kind": "variable",
+        "type": {
+          "kind": "Nat"
+        },
+        "scopeId": "scope_theorem",
+        "constraints": [],
+        "value": null,
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 0,
+            "end": 7
+          }
+        ],
+        "sourceAssessment": "supported",
+        "assessmentBasis": "原稿写“任取自然数 n”，声明 n 为自然数。"
+      }
+    ],
+    "assumptions": [],
+    "goal": {
+      "id": "goal_n_plus_zero",
+      "expression": {
+        "op": "eq",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "symbol",
+                "symbolId": "decl_n"
+              },
+              {
+                "op": "literal",
+                "literal": {
+                  "type": "Nat",
+                  "value": "0"
+                }
+              }
+            ],
+            "targetType": "Nat"
+          },
+          {
+            "op": "symbol",
+            "symbolId": "decl_n"
+          }
+        ]
+      },
+      "scopeId": "scope_theorem",
+      "sourceRefs": [
+        {
+          "blockId": "b0",
+          "start": 11,
+          "end": 20
+        }
+      ],
+      "sourceAssessment": "supported",
+      "assessmentBasis": "原稿结论为 n + 0 = n。"
+    },
+    "proofRoutes": [
+      {
+        "id": "route_direct",
+        "label": "直接由自然数加法右单位元性质证明",
+        "nodes": [
+          {
+            "id": "node_right_identity",
+            "kind": "claim",
+            "expression": {
+              "op": "forall",
+              "binderId": "binder_m",
+              "targetType": "Nat",
+              "args": [
+                {
+                  "op": "eq",
+                  "args": [
+                    {
+                      "op": "add",
+                      "args": [
+                        {
+                          "op": "symbol",
+                          "binderId": "binder_m"
+                        },
+                        {
+                          "op": "literal",
+                          "literal": {
+                            "type": "Nat",
+                            "value": "0"
+                          }
+                        }
+                      ],
+                      "targetType": "Nat"
+                    },
+                    {
+                      "op": "symbol",
+                      "binderId": "binder_m"
+                    }
+                  ]
+                }
+              ]
+            },
+            "scopeId": "scope_proof",
+            "dependsOn": [],
+            "proofTerm": null,
+            "sourceRefs": [
+              {
+                "blockId": "b0",
+                "start": 24,
+                "end": 34
+              }
+            ],
+            "sourceAssessment": "ambiguous",
+            "assessmentBasis": "原稿仅以自然语言引用“自然数加法右单位元性质”，未写出形式化命题；此处按标准含义记录为全称命题 ∀ m, m + 0 = m。"
+          },
+          {
+            "id": "node_goal",
+            "kind": "claim",
+            "expression": {
+              "op": "eq",
+              "args": [
+                {
+                  "op": "add",
+                  "args": [
+                    {
+                      "op": "symbol",
+                      "symbolId": "decl_n"
+                    },
+                    {
+                      "op": "literal",
+                      "literal": {
+                        "type": "Nat",
+                        "value": "0"
+                      }
+                    }
+                  ],
+                  "targetType": "Nat"
+                },
+                {
+                  "op": "symbol",
+                  "symbolId": "decl_n"
+                }
+              ]
+            },
+            "scopeId": "scope_proof",
+            "dependsOn": [
+              "node_right_identity"
+            ],
+            "proofTerm": null,
+            "sourceRefs": [
+              {
+                "blockId": "b0",
+                "start": 8,
+                "end": 21
+              }
+            ],
+            "sourceAssessment": "supported",
+            "assessmentBasis": "原稿明确写出要证明 n + 0 = n，理由为自然数加法右单位元性质。"
+          }
+        ],
+        "goalNodeId": "node_goal",
+        "inductions": [],
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 8,
+            "end": 36
+          }
+        ],
+        "sourceAssessment": "supported",
+        "assessmentBasis": "原稿给出证明目标 n + 0 = n 及理由“自然数加法右单位元性质”。"
+      }
+    ],
+    "ambiguities": [
+      {
+        "id": "amb_right_identity_formalization",
+        "description": "原稿以自然语言引用“自然数加法右单位元性质”，未写出形式化命题。本结构将该性质记录为全称命题 ∀ m, m + 0 = m，作为使用该理由的 claim；其精确形式化可能需按所选形式系统调整。",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 24,
+            "end": 34
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "$defs": {
+    "ProofFragment": {
+      "additionalProperties": false,
+      "properties": {
+        "sourceId": {
+          "description": "原证明义务的 stepId/MathIR 节点 id；不能用 Lean 内部 s0/goal 别名替换来源编号。",
+          "title": "Sourceid",
+          "type": "string"
+        },
+        "proof": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Proof"
+        },
+        "translationNotes": {
+          "title": "Translationnotes",
+          "type": "string"
+        }
+      },
+      "required": [
+        "sourceId",
+        "proof",
+        "translationNotes"
+      ],
+      "title": "ProofFragment",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "fragments": {
+      "items": {
+        "$ref": "#/$defs/ProofFragment"
+      },
+      "title": "Fragments",
+      "type": "array"
+    }
+  },
+  "required": [
+    "fragments"
+  ],
+  "title": "FormalProofs",
+  "type": "object"
+}

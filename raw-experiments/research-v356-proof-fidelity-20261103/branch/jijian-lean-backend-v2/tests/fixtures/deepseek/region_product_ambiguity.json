@@ -1,0 +1,265 @@
+{
+  "fixtureKind": "recorded_real_response",
+  "sourceReport": "recorded-region-v9-live.json",
+  "newProviderCallsWhenReplaying": 0,
+  "output": {
+    "reviewTargets": [
+      {
+        "blockIndex": 0,
+        "cropRegionIds": [
+          "layout-row-3-ink-group-4",
+          "layout-row-3"
+        ],
+        "reason": "争议区域内两个相邻书写的 sin 因子（第二个为 sinθ 还是 sinnθ、两因子是相乘还是被文字连接）笔画不清：第一个因子读作 sinθ 较可靠，第二个因子 sinθ/sinnθ 的 θ 与 n 笔画粘连；同时需确认两因子间是否有'与/和'等连接文字。首次转录把二者读成'\\sin n\\theta 与 \\sin\\theta'，而局部裁切读作'\\sin\\theta \\sin n\\theta'，两种读法均与笔画相容，无法唯一确定。"
+      }
+    ],
+    "differences": [
+      {
+        "cropRegionIds": [
+          "layout-row-3",
+          "layout-row-3-ink-group-4"
+        ],
+        "blockIndex": 0,
+        "before": "法2. 证明 \\(\\cos n\\theta\\)，\\(\\sin n\\theta\\) 与 \\(\\sin\\theta\\) 同为",
+        "after": "法2. 证明 \\(\\cos n\\theta\\)，\\(\\sin\\theta \\sin n\\theta\\) 均可表示为",
+        "category": "因子拼接与文字替换：把相邻相乘因子误作'与'连接、因子次序颠倒、行末词语误读",
+        "imageEvidence": "行内可见'法2、证明'后为'cosnθ'，随后为逗号；逗号之后是两个紧邻书写的 sin 因子，第一因子笔画为 s-i-n-θ，第二因子为 s-i-n-n-θ，二者之间无'与'字连接笔画，呈并置（相乘）状；行末可见'均可表示为'的连笔字，未见'同'字与'为'字相连的收尾。",
+        "unambiguous": false,
+        "alternatives": [
+          "法2. 证明 \\(\\cos n\\theta\\)，\\(\\sin\\theta \\sin n\\theta\\) 均可表示为",
+          "法2. 证明 \\(\\cos n\\theta\\)，\\(\\sin n\\theta \\sin n\\theta\\) 均可表示为",
+          "法2. 证明 \\(\\cos n\\theta\\)，\\(\\sin n\\theta\\) 与 \\(\\sin\\theta\\) 同为（按原转录保留'与'的读法）"
+        ]
+      }
+    ],
+    "ambiguities": [
+      "第二个 sin 因子的角变量：局部裁切 regionId layout-row-3-ink-group-4 可读作 'sinθ sinnθ'，也留有 'sinnθ sinnθ' 的可能，θ 与 n 的笔画粘连，无法确定第二个因子是 sinθ 还是 sinnθ。",
+      "两个相邻 sin 因子之间是否存在'与/和/同'等连接文字：裁切中未见明显连接字形，但因笔画紧邻，不能完全排除存在一个被粘连的汉字；首次转录写作'与'，独立裁切读作并置（相乘）。",
+      "行首编号：局部裁切读作'证2'，整页与首次转录读作'法2'，笔画相近，本项按整页保留'法2'，但不视为已确定的差异。"
+    ],
+    "notes": [
+      "仅比对 blockIndex 0（context.allowedBlockIndices=[0]），未改动相邻块。",
+      "首次转录在 cos nθ 之后改动了因子次序并新增'与'，且把行末'均可表示为'读作'同为'；这些属于原图可见差异，非数学正确性判断。",
+      "独立裁切 layout-row-3 完整读数为 '证2. 证明 cosnθ , sinθ sinnθ 均可表示为'，与整页在读'法2'上不一致，已列入 ambiguities，未作为确定差异写入。",
+      "两种分数/并置读法均成立时按规则 unambiguous=false，给出 alternatives 与 reviewTargets，不按恒等式正确性选定读法。"
+    ]
+  },
+  "provenance": {
+    "provider": "deepseek",
+    "requestedModel": "deepseek-flash",
+    "model": "deepseek-flash",
+    "responseId": "70adfc76-7771-4056-873b-06bd4f17e41f",
+    "systemFingerprint": "aeb56401ca74e127821c4f9126dcb669",
+    "usage": {
+      "prompt_tokens": 2996,
+      "completion_tokens": 2771,
+      "total_tokens": 5767,
+      "prompt_tokens_details": {
+        "cached_tokens": 896
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 1883
+      },
+      "prompt_cache_hit_tokens": 896,
+      "prompt_cache_miss_tokens": 2100
+    },
+    "thinking": "provider_default",
+    "structuredOutput": "json_mode_with_local_schema_validation",
+    "simulated": false
+  },
+  "raw": {
+    "text": "例 4. 给定 \\(n\\in\\mathbb{N}^+\\)，试证明存在多项式 \\(P(x)\\)，使得 \\(\\cos n\\theta = P(\\cos\\theta)\\).\n法1. \\(2\\cos(k+2)\\theta = 2\\cos\\theta \\cdot \\cos(k+1)\\theta - \\cos k\\theta\\)\n法2. 证明 \\(\\cos n\\theta\\)，\\(\\sin n\\theta\\) 与 \\(\\sin\\theta\\) 同为\n\\(\\cos\\theta\\) 整系数多项式\n\\(n=1\\) 时，\\(\\cos\\theta = \\cos\\theta\\)\n\\(\\sin\\theta \\sin\\theta = 1 - \\cos^2\\theta\\)\n假设 \\(n=k\\) 时命题成立.\n当 \\(n=k+1\\) 时，\n\\(\\cos(k+1)\\theta = \\cos\\theta \\cos k\\theta - \\sin\\theta \\sin k\\theta\\)\n\\(\\sin\\theta \\sin(k+1)\\theta = \\sin\\theta \\cdot \\sin\\theta \\cos k\\theta\\)\n\\(+ \\sin\\theta \\cos\\theta \\sin k\\theta\\)\n\\(= (1 - \\cos^2\\theta) \\cos k\\theta\\)\n\\(+ \\sin\\theta \\sin k\\theta \\cdot \\cos\\theta\\)\n都为 \\(\\cos\\theta\\) 整系数多项式\n即 \\(n=k+1\\) 时成立。\n证明：成立.",
+    "line_data": [
+      {
+        "text": "例 4. 给定 \\(n\\in\\mathbb{N}^+\\)，试证明存在多项式 \\(P(x)\\)，使得 \\(\\cos n\\theta = P(\\cos\\theta)\\).",
+        "unclearReadings": [],
+        "formulaRegion": null
+      },
+      {
+        "text": "法1. \\(2\\cos(k+2)\\theta = 2\\cos\\theta \\cdot \\cos(k+1)\\theta - \\cos k\\theta\\)",
+        "unclearReadings": [],
+        "formulaRegion": null
+      },
+      {
+        "text": "法2. 证明 \\(\\cos n\\theta\\)，\\(\\sin n\\theta\\) 与 \\(\\sin\\theta\\) 同为",
+        "unclearReadings": [],
+        "formulaRegion": null
+      },
+      {
+        "text": "\\(\\cos\\theta\\) 整系数多项式",
+        "unclearReadings": [],
+        "formulaRegion": null
+      },
+      {
+        "text": "\\(n=1\\) 时，\\(\\cos\\theta = \\cos\\theta\\)",
+        "unclearReadings": [],
+        "formulaRegion": null
+      },
+      {
+        "text": "\\(\\sin\\theta \\sin\\theta = 1 - \\cos^2\\theta\\)",
+        "unclearReadings": [],
+        "formulaRegion": null
+      },
+      {
+        "text": "假设 \\(n=k\\) 时命题成立.",
+        "unclearReadings": [],
+        "formulaRegion": null
+      },
+      {
+        "text": "当 \\(n=k+1\\) 时，",
+        "unclearReadings": [],
+        "formulaRegion": null
+      },
+      {
+        "text": "\\(\\cos(k+1)\\theta = \\cos\\theta \\cos k\\theta - \\sin\\theta \\sin k\\theta\\)",
+        "unclearReadings": [],
+        "formulaRegion": null
+      },
+      {
+        "text": "\\(\\sin\\theta \\sin(k+1)\\theta = \\sin\\theta \\cdot \\sin\\theta \\cos k\\theta\\)",
+        "unclearReadings": [],
+        "formulaRegion": null
+      },
+      {
+        "text": "\\(+ \\sin\\theta \\cos\\theta \\sin k\\theta\\)",
+        "unclearReadings": [],
+        "formulaRegion": null
+      },
+      {
+        "text": "\\(= (1 - \\cos^2\\theta) \\cos k\\theta\\)",
+        "unclearReadings": [],
+        "formulaRegion": null
+      },
+      {
+        "text": "\\(+ \\sin\\theta \\sin k\\theta \\cdot \\cos\\theta\\)",
+        "unclearReadings": [],
+        "formulaRegion": null
+      },
+      {
+        "text": "都为 \\(\\cos\\theta\\) 整系数多项式",
+        "unclearReadings": [],
+        "formulaRegion": null
+      },
+      {
+        "text": "即 \\(n=k+1\\) 时成立。",
+        "unclearReadings": [],
+        "formulaRegion": null
+      },
+      {
+        "text": "证明：成立.",
+        "unclearReadings": [],
+        "formulaRegion": null
+      }
+    ],
+    "notes": [
+      "蓝色法1公式中 \\(\\cos(k+1)\\theta\\) 与 \\(\\cos k\\theta\\) 下方有蓝色下划短横/小三角标记，按批注处理，不读作分数线或分母。",
+      "红色 \\(\\cos(k+1)\\theta = \\cos\\theta \\cos k\\theta - \\sin\\theta \\sin k\\theta\\) 中 \\(\\cos\\theta \\cos k\\theta\\) 与 \\(\\sin\\theta \\sin k\\theta\\) 下方有蓝色小三角标记，按批注处理。",
+      "红色 \\(= (1-\\cos^2\\theta)\\cos k\\theta\\) 与 \\(+ \\sin\\theta \\sin k\\theta \\cdot \\cos\\theta\\) 下方有蓝色小三角标记，按批注处理。",
+      "底部“证明：成立”下方有红色横线，按划线批注处理。",
+      "按视觉保留 \\(\\sin\\theta \\sin\\theta\\) 与 \\(\\sin\\theta \\cdot \\sin\\theta \\cos k\\theta\\)，未合并为 \\(\\sin^2\\theta\\)，也未做恒等变形。",
+      "未提供 formulaRegion：无法可靠估计每个密集手写公式的归一化裁切框，故置为 null。"
+    ],
+    "provenance": {
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "2696d00a-4f71-452d-94a9-bcb23c733b12",
+      "systemFingerprint": "aeb56401ca74e127821c4f9126dcb669",
+      "usage": {
+        "prompt_tokens": 1695,
+        "completion_tokens": 11240,
+        "total_tokens": 12935,
+        "prompt_tokens_details": {
+          "cached_tokens": 1536
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 10167
+        },
+        "prompt_cache_hit_tokens": 1536,
+        "prompt_cache_miss_tokens": 159
+      },
+      "thinking": "provider_default",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "locationPrecision": "reading_order_only",
+    "provider": "deepseek"
+  },
+  "crops": [
+    {
+      "blockIndex": -1,
+      "regionId": "layout-row-3",
+      "assetId": "b4dbcae4-3629-4fe8-b112-5463132d6b45",
+      "pixelBox": [
+        1085,
+        289,
+        3047,
+        415
+      ],
+      "coordinatePrecision": "pixel_row_estimate_not_text_alignment",
+      "coordinateSpace": "processed_image_pixels",
+      "layoutMethod": "bright_connected_page_candidate",
+      "resized": false
+    },
+    {
+      "blockIndex": -1,
+      "regionId": "layout-row-3-ink-group-4",
+      "parentRegionId": "layout-row-3",
+      "parentBlockIndex": -1,
+      "assetId": "b22e9be7-fe27-4729-a8cf-7bb370448228",
+      "pixelBox": [
+        1943,
+        289,
+        2224,
+        415
+      ],
+      "coordinatePrecision": "ink_group_estimate_not_character_alignment",
+      "coordinateSpace": "processed_image_pixels",
+      "resized": false
+    }
+  ],
+  "readings": {
+    "readings": [
+      {
+        "regionId": "layout-row-3",
+        "blockIndex": -1,
+        "text": "证2. 证明 $\\cos n\\theta$ , $\\sin\\theta \\sin n\\theta$ 均可表示为",
+        "unclearReadings": [
+          "第二个表达式也可能读作“$\\sin n\\theta \\sin n\\theta$”"
+        ],
+        "croppedAtEdges": false
+      },
+      {
+        "regionId": "layout-row-3-ink-group-4",
+        "blockIndex": -1,
+        "text": "sinθ  sin nθ",
+        "unclearReadings": [
+          "sinθ sinnθ",
+          "sinθ sin nθ",
+          "cind cinnθ"
+        ],
+        "croppedAtEdges": true
+      }
+    ]
+  },
+  "checkInput": {
+    "differences": [],
+    "reviewTargets": [
+      {
+        "blockIndex": 2,
+        "cropRegionIds": [
+          "layout-row-3",
+          "layout-row-4"
+        ],
+        "reason": "裁切 layout-row-3 读作 `\\sin\\theta \\sin n\\theta 均可表示为`，首次已按乘积保留 `\\sin\\theta \\sin n\\theta`，但末尾 `同为` 与裁切 `均可表示为` 不一致；且首字 `法/证` 在裁切中读作 `证2`。"
+      }
+    ],
+    "ambiguities": [],
+    "notes": []
+  },
+  "assessment": {
+    "candidateProductFound": true,
+    "unambiguousCorrection": false,
+    "stableRecognitionProven": false
+  }
+}

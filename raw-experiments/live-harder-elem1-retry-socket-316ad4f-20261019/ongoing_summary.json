@@ -1,0 +1,989 @@
+{
+  "cases": [
+    {
+      "id": "elem_symmetric_inequality_equality_case",
+      "topic": "初等数学①｜三元对称不等式与等号充要条件",
+      "source": "设 a、b、c 是任意实数。证明 (a+b+c)²≥3(ab+bc+ca)，并证明等号成立当且仅当 a=b=c。原证明：展开并整理可得 2[(a+b+c)²−3(ab+bc+ca)]=(a−b)²+(b−c)²+(c−a)²。由于任意实数的平方都非负，右边三个平方之和≥0，所以 (a+b+c)²−3(ab+bc+ca)≥0，即所证不等式成立。若等号成立，则三个平方之和为0，因每个平方非负，必有 (a−b)²=(b−c)²=(c−a)²=0，从而 a=b=c。反过来若 a=b=c，则右边三个平方均为0，所以上述不等式取等号。证毕。",
+      "reference": "正确。需核对三元平方恒等式、非负性与等号当且仅当条件；Kernel 形式证书与原稿推理证书单独记录。",
+      "appSourceCommit": "316ad4fee89789633594757a277b81d6f90ca741",
+      "providerFixture": false,
+      "kernelFixture": false,
+      "handWrittenLean": false,
+      "handWrittenMathIR": false,
+      "transport": "signed installed App packaged backend POST /api/v2/jobs",
+      "guiInteracted": false,
+      "startedUtc": "2026-10-18T16:38:07.608750+00:00",
+      "sourceSha256": "27238794a42004b6bc9de6043e10234bc5b938b8df62dd3977acb38c2ce5bfc3",
+      "capabilities": {
+        "ai": {
+          "configured": true,
+          "provider": "deepseek",
+          "model": "deepseek-flash",
+          "thinking": "provider_default",
+          "liveTested": false
+        },
+        "lean": {
+          "configured": true,
+          "executableFound": true,
+          "projectFound": true,
+          "runtimeBuilt": true,
+          "runtimeIntegrity": true,
+          "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+          "sandbox": "macos",
+          "isolated": true,
+          "ready": true,
+          "toolchain": "leanprover/lean4:v4.34.0",
+          "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+          "liveTestedInThisDistribution": false
+        },
+        "mockFallback": false,
+        "health": "running"
+      },
+      "jobId": "54db34ff-1f5a-4aec-8cc0-db184bf3ddb5",
+      "submittedUtc": "2026-10-18T16:38:09.138631+00:00",
+      "stageTransitions": [
+        {
+          "status": "running",
+          "stage": "recognizing",
+          "seconds": 1.97,
+          "utc": "2026-10-18T16:38:09.579764+00:00"
+        },
+        {
+          "status": "running",
+          "stage": "lean_verification",
+          "seconds": 75.13,
+          "utc": "2026-10-18T16:39:22.743966+00:00"
+        },
+        {
+          "status": "running",
+          "stage": "proof_only_generation",
+          "seconds": 140.9,
+          "utc": "2026-10-18T16:40:28.506681+00:00"
+        },
+        {
+          "status": "running",
+          "stage": "lean_verification",
+          "seconds": 477.04,
+          "utc": "2026-10-18T16:46:04.647697+00:00"
+        },
+        {
+          "status": "running",
+          "stage": "diagnostic_repair",
+          "seconds": 540.36,
+          "utc": "2026-10-18T16:47:07.967560+00:00"
+        },
+        {
+          "status": "running",
+          "stage": "lean_verification",
+          "seconds": 716.0,
+          "utc": "2026-10-18T16:50:03.614583+00:00"
+        },
+        {
+          "status": "running",
+          "stage": "mathlib_retrieval",
+          "seconds": 782.68,
+          "utc": "2026-10-18T16:51:10.298715+00:00"
+        },
+        {
+          "status": "running",
+          "stage": "diagnostic_repair",
+          "seconds": 884.68,
+          "utc": "2026-10-18T16:52:52.297496+00:00"
+        },
+        {
+          "status": "running",
+          "stage": "lean_verification",
+          "seconds": 1133.0,
+          "utc": "2026-10-18T16:57:00.619355+00:00"
+        },
+        {
+          "status": "running",
+          "stage": "mathlib_retrieval",
+          "seconds": 1160.01,
+          "utc": "2026-10-18T16:57:27.633705+00:00"
+        },
+        {
+          "status": "running",
+          "stage": "diagnostic_repair",
+          "seconds": 1223.26,
+          "utc": "2026-10-18T16:58:30.890597+00:00"
+        },
+        {
+          "status": "running",
+          "stage": "lean_verification",
+          "seconds": 1602.23,
+          "utc": "2026-10-18T17:04:49.867352+00:00"
+        },
+        {
+          "status": "running",
+          "stage": "diagnostic_repair",
+          "seconds": 1628.88,
+          "utc": "2026-10-18T17:05:16.512422+00:00"
+        },
+        {
+          "status": "completed",
+          "stage": "completed",
+          "seconds": 2015.56,
+          "utc": "2026-10-18T17:11:43.191886+00:00"
+        }
+      ],
+      "terminalStatus": "completed",
+      "terminalStage": "completed",
+      "terminalError": null,
+      "result": {
+        "runStatus": "incomplete",
+        "termination": "repair_stalled_without_new_verification_evidence",
+        "kernelVerified": false,
+        "fixedStatementKernelPassed": true,
+        "originalRouteKernelPassed": false,
+        "sourceProofVerified": false,
+        "originalProofVerified": false,
+        "originalMeaning": "model_interpretation",
+        "statement": null,
+        "failure": null,
+        "mathIRId": "666a16a0-4512-46cd-807e-e6bfe035975a",
+        "sourceStructureId": "6190048f-2fb7-4f12-ad9d-f79cfd300c08",
+        "originalProofFidelity": {
+          "sourceProofVerified": false,
+          "status": "not_independently_established",
+          "basis": "Formal Kernel proof alone cannot certify an author's natural-language reasoning. Unrecognized source rule remains unconfirmed.",
+          "routes": [
+            {
+              "routeId": "route_original",
+              "formalRouteKernelPassed": false,
+              "sourceReasoningVerified": false,
+              "sourceReasoningStatus": "not_independently_established",
+              "steps": [
+                {
+                  "nodeId": "n_ident",
+                  "formalStepKernelPassed": true,
+                  "proofTermOrigin": "proof_only_generation",
+                  "sourceReasoningVerified": false,
+                  "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+                  "sourceInferenceRule": null,
+                  "sourceInferenceEvidence": null
+                },
+                {
+                  "nodeId": "n_sq_nonneg_each",
+                  "formalStepKernelPassed": true,
+                  "proofTermOrigin": "proof_only_generation",
+                  "sourceReasoningVerified": false,
+                  "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+                  "sourceInferenceRule": null,
+                  "sourceInferenceEvidence": null
+                },
+                {
+                  "nodeId": "n_sum_nonneg",
+                  "formalStepKernelPassed": true,
+                  "proofTermOrigin": "diagnostic_repair",
+                  "sourceReasoningVerified": false,
+                  "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+                  "sourceInferenceRule": null,
+                  "sourceInferenceEvidence": null
+                },
+                {
+                  "nodeId": "n_ineq_diff",
+                  "formalStepKernelPassed": true,
+                  "proofTermOrigin": "diagnostic_repair",
+                  "sourceReasoningVerified": false,
+                  "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+                  "sourceInferenceRule": null,
+                  "sourceInferenceEvidence": null
+                },
+                {
+                  "nodeId": "n_ineq_claim",
+                  "formalStepKernelPassed": true,
+                  "proofTermOrigin": "proof_only_generation",
+                  "sourceReasoningVerified": false,
+                  "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+                  "sourceInferenceRule": null,
+                  "sourceInferenceEvidence": null
+                },
+                {
+                  "nodeId": "n_sqsum_zero",
+                  "formalStepKernelPassed": true,
+                  "proofTermOrigin": "diagnostic_repair",
+                  "sourceReasoningVerified": false,
+                  "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+                  "sourceInferenceRule": null,
+                  "sourceInferenceEvidence": null
+                },
+                {
+                  "nodeId": "n_each_zero",
+                  "formalStepKernelPassed": true,
+                  "proofTermOrigin": "diagnostic_repair",
+                  "sourceReasoningVerified": false,
+                  "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+                  "sourceInferenceRule": null,
+                  "sourceInferenceEvidence": null
+                },
+                {
+                  "nodeId": "n_equal_abc_f",
+                  "formalStepKernelPassed": true,
+                  "proofTermOrigin": "proof_only_generation",
+                  "sourceReasoningVerified": false,
+                  "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+                  "sourceInferenceRule": null,
+                  "sourceInferenceEvidence": null
+                },
+                {
+                  "nodeId": "n_forward_imp",
+                  "formalStepKernelPassed": true,
+                  "proofTermOrigin": "proof_only_generation",
+                  "sourceReasoningVerified": false,
+                  "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+                  "sourceInferenceRule": null,
+                  "sourceInferenceEvidence": null
+                },
+                {
+                  "nodeId": "n_sq_zero_back",
+                  "formalStepKernelPassed": true,
+                  "proofTermOrigin": "proof_only_generation",
+                  "sourceReasoningVerified": false,
+                  "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+                  "sourceInferenceRule": null,
+                  "sourceInferenceEvidence": null
+                },
+                {
+                  "nodeId": "n_eq_holds_back",
+                  "formalStepKernelPassed": true,
+                  "proofTermOrigin": "diagnostic_repair",
+                  "sourceReasoningVerified": false,
+                  "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+                  "sourceInferenceRule": null,
+                  "sourceInferenceEvidence": null
+                },
+                {
+                  "nodeId": "n_converse_imp",
+                  "formalStepKernelPassed": true,
+                  "proofTermOrigin": "proof_only_generation",
+                  "sourceReasoningVerified": false,
+                  "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+                  "sourceInferenceRule": null,
+                  "sourceInferenceEvidence": null
+                },
+                {
+                  "nodeId": "n_iff",
+                  "formalStepKernelPassed": true,
+                  "proofTermOrigin": "proof_only_generation",
+                  "sourceReasoningVerified": false,
+                  "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+                  "sourceInferenceRule": null,
+                  "sourceInferenceEvidence": null
+                },
+                {
+                  "nodeId": "n_goal_conj",
+                  "formalStepKernelPassed": true,
+                  "proofTermOrigin": "proof_only_generation",
+                  "sourceReasoningVerified": false,
+                  "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+                  "sourceInferenceRule": null,
+                  "sourceInferenceEvidence": null
+                }
+              ]
+            }
+          ]
+        },
+        "reasoningFidelity": {
+          "version": 2,
+          "authority": "independent_source_inference_certificate",
+          "status": "formally_incomplete",
+          "formalRouteKernelPassed": false,
+          "sourceEvidenceBoundToStatement": true,
+          "expectedStatementHash": "710ab48911da4850900c43345b79d6b52b7e72746806b7c816e92cd4fdbef888",
+          "originalProofVerified": false,
+          "sourceInferenceCertificationAvailable": true,
+          "sourceRuleVerifiedStepCount": 0,
+          "sourceRuleVerifiedRouteCount": 0,
+          "unconfirmedSourceStepCount": 14,
+          "unconfirmedSourceSteps": [
+            {
+              "routeId": "route_original",
+              "nodeId": "n_ident",
+              "reason": "ai_generated_formal_reconstruction",
+              "ruleCheckReason": "missing_kernel_or_supported_source"
+            },
+            {
+              "routeId": "route_original",
+              "nodeId": "n_sq_nonneg_each",
+              "reason": "ai_generated_formal_reconstruction",
+              "ruleCheckReason": "missing_kernel_or_supported_source"
+            },
+            {
+              "routeId": "route_original",
+              "nodeId": "n_sum_nonneg",
+              "reason": "ai_generated_formal_reconstruction",
+              "ruleCheckReason": "missing_kernel_or_supported_source"
+            },
+            {
+              "routeId": "route_original",
+              "nodeId": "n_ineq_diff",
+              "reason": "ai_generated_formal_reconstruction",
+              "ruleCheckReason": "missing_kernel_or_supported_source"
+            },
+            {
+              "routeId": "route_original",
+              "nodeId": "n_ineq_claim",
+              "reason": "ai_generated_formal_reconstruction",
+              "ruleCheckReason": "missing_kernel_or_supported_source"
+            },
+            {
+              "routeId": "route_original",
+              "nodeId": "n_sqsum_zero",
+              "reason": "ai_generated_formal_reconstruction",
+              "ruleCheckReason": "missing_kernel_or_supported_source"
+            },
+            {
+              "routeId": "route_original",
+              "nodeId": "n_each_zero",
+              "reason": "ai_generated_formal_reconstruction",
+              "ruleCheckReason": "missing_kernel_or_supported_source"
+            },
+            {
+              "routeId": "route_original",
+              "nodeId": "n_equal_abc_f",
+              "reason": "ai_generated_formal_reconstruction",
+              "ruleCheckReason": "missing_kernel_or_supported_source"
+            },
+            {
+              "routeId": "route_original",
+              "nodeId": "n_forward_imp",
+              "reason": "ai_generated_formal_reconstruction",
+              "ruleCheckReason": "missing_kernel_or_supported_source"
+            },
+            {
+              "routeId": "route_original",
+              "nodeId": "n_sq_zero_back",
+              "reason": "ai_generated_formal_reconstruction",
+              "ruleCheckReason": "missing_kernel_or_supported_source"
+            },
+            {
+              "routeId": "route_original",
+              "nodeId": "n_eq_holds_back",
+              "reason": "ai_generated_formal_reconstruction",
+              "ruleCheckReason": "missing_kernel_or_supported_source"
+            },
+            {
+              "routeId": "route_original",
+              "nodeId": "n_converse_imp",
+              "reason": "ai_generated_formal_reconstruction",
+              "ruleCheckReason": "missing_kernel_or_supported_source"
+            },
+            {
+              "routeId": "route_original",
+              "nodeId": "n_iff",
+              "reason": "ai_generated_formal_reconstruction",
+              "ruleCheckReason": "missing_kernel_or_supported_source"
+            },
+            {
+              "routeId": "route_original",
+              "nodeId": "n_goal_conj",
+              "reason": "ai_generated_formal_reconstruction",
+              "ruleCheckReason": "missing_kernel_or_supported_source"
+            }
+          ],
+          "routes": [
+            {
+              "routeId": "route_original",
+              "formalRouteKernelPassed": false,
+              "originalReasoningVerified": false,
+              "originalReasoningStatus": "not_independently_certified",
+              "goalSourceMatch": null,
+              "theoremPremisesSourceMatched": true,
+              "declarationTypesSourceMatched": true,
+              "unresolvedAmbiguitiesAbsent": true,
+              "authoredFormulaCoverageMatched": true,
+              "statementIdentityMatched": true,
+              "steps": [
+                {
+                  "nodeId": "n_ident",
+                  "formalStepKernelPassed": true,
+                  "originalInferenceVerified": false,
+                  "originalInferenceStatus": "not_independently_certified",
+                  "proofTermOrigin": "proof_only_generation",
+                  "sourceClaimAssessment": "supported",
+                  "sourceReferenceCount": 1,
+                  "declaredDependencies": [],
+                  "rule": null,
+                  "ruleEvidence": null,
+                  "ruleCheckReason": "missing_kernel_or_supported_source",
+                  "statementIdentityMatched": true,
+                  "reason": "ai_generated_formal_reconstruction"
+                },
+                {
+                  "nodeId": "n_sq_nonneg_each",
+                  "formalStepKernelPassed": true,
+                  "originalInferenceVerified": false,
+                  "originalInferenceStatus": "not_independently_certified",
+                  "proofTermOrigin": "proof_only_generation",
+                  "sourceClaimAssessment": "supported",
+                  "sourceReferenceCount": 2,
+                  "declaredDependencies": [],
+                  "rule": null,
+                  "ruleEvidence": null,
+                  "ruleCheckReason": "missing_kernel_or_supported_source",
+                  "statementIdentityMatched": true,
+                  "reason": "ai_generated_formal_reconstruction"
+                },
+                {
+                  "nodeId": "n_sum_nonneg",
+                  "formalStepKernelPassed": true,
+                  "originalInferenceVerified": false,
+                  "originalInferenceStatus": "not_independently_certified",
+                  "proofTermOrigin": "diagnostic_repair",
+                  "sourceClaimAssessment": "supported",
+                  "sourceReferenceCount": 1,
+                  "declaredDependencies": [
+                    "n_sq_nonneg_each"
+                  ],
+                  "rule": null,
+                  "ruleEvidence": null,
+                  "ruleCheckReason": "missing_kernel_or_supported_source",
+                  "statementIdentityMatched": true,
+                  "reason": "ai_generated_formal_reconstruction"
+                },
+                {
+                  "nodeId": "n_ineq_diff",
+                  "formalStepKernelPassed": true,
+                  "originalInferenceVerified": false,
+                  "originalInferenceStatus": "not_independently_certified",
+                  "proofTermOrigin": "diagnostic_repair",
+                  "sourceClaimAssessment": "supported",
+                  "sourceReferenceCount": 1,
+                  "declaredDependencies": [
+                    "n_ident",
+                    "n_sum_nonneg"
+                  ],
+                  "rule": null,
+                  "ruleEvidence": null,
+                  "ruleCheckReason": "missing_kernel_or_supported_source",
+                  "statementIdentityMatched": true,
+                  "reason": "ai_generated_formal_reconstruction"
+                },
+                {
+                  "nodeId": "n_ineq_claim",
+                  "formalStepKernelPassed": true,
+                  "originalInferenceVerified": false,
+                  "originalInferenceStatus": "not_independently_certified",
+                  "proofTermOrigin": "proof_only_generation",
+                  "sourceClaimAssessment": "supported",
+                  "sourceReferenceCount": 1,
+                  "declaredDependencies": [
+                    "n_ineq_diff"
+                  ],
+                  "rule": null,
+                  "ruleEvidence": null,
+                  "ruleCheckReason": "missing_kernel_or_supported_source",
+                  "statementIdentityMatched": true,
+                  "reason": "ai_generated_formal_reconstruction"
+                },
+                {
+                  "nodeId": "n_sqsum_zero",
+                  "formalStepKernelPassed": true,
+                  "originalInferenceVerified": false,
+                  "originalInferenceStatus": "not_independently_certified",
+                  "proofTermOrigin": "diagnostic_repair",
+                  "sourceClaimAssessment": "supported",
+                  "sourceReferenceCount": 1,
+                  "declaredDependencies": [
+                    "n_eq_hyp",
+                    "n_ident"
+                  ],
+                  "rule": null,
+                  "ruleEvidence": null,
+                  "ruleCheckReason": "missing_kernel_or_supported_source",
+                  "statementIdentityMatched": true,
+                  "reason": "ai_generated_formal_reconstruction"
+                },
+                {
+                  "nodeId": "n_each_zero",
+                  "formalStepKernelPassed": true,
+                  "originalInferenceVerified": false,
+                  "originalInferenceStatus": "not_independently_certified",
+                  "proofTermOrigin": "diagnostic_repair",
+                  "sourceClaimAssessment": "supported",
+                  "sourceReferenceCount": 1,
+                  "declaredDependencies": [
+                    "n_sqsum_zero",
+                    "n_sq_nonneg_each"
+                  ],
+                  "rule": null,
+                  "ruleEvidence": null,
+                  "ruleCheckReason": "missing_kernel_or_supported_source",
+                  "statementIdentityMatched": true,
+                  "reason": "ai_generated_formal_reconstruction"
+                },
+                {
+                  "nodeId": "n_equal_abc_f",
+                  "formalStepKernelPassed": true,
+                  "originalInferenceVerified": false,
+                  "originalInferenceStatus": "not_independently_certified",
+                  "proofTermOrigin": "proof_only_generation",
+                  "sourceClaimAssessment": "supported",
+                  "sourceReferenceCount": 1,
+                  "declaredDependencies": [
+                    "n_each_zero"
+                  ],
+                  "rule": null,
+                  "ruleEvidence": null,
+                  "ruleCheckReason": "missing_kernel_or_supported_source",
+                  "statementIdentityMatched": true,
+                  "reason": "ai_generated_formal_reconstruction"
+                },
+                {
+                  "nodeId": "n_forward_imp",
+                  "formalStepKernelPassed": true,
+                  "originalInferenceVerified": false,
+                  "originalInferenceStatus": "not_independently_certified",
+                  "proofTermOrigin": "proof_only_generation",
+                  "sourceClaimAssessment": "supported",
+                  "sourceReferenceCount": 1,
+                  "declaredDependencies": [
+                    "n_equal_abc_f"
+                  ],
+                  "rule": null,
+                  "ruleEvidence": null,
+                  "ruleCheckReason": "missing_kernel_or_supported_source",
+                  "statementIdentityMatched": true,
+                  "reason": "ai_generated_formal_reconstruction"
+                },
+                {
+                  "nodeId": "n_sq_zero_back",
+                  "formalStepKernelPassed": true,
+                  "originalInferenceVerified": false,
+                  "originalInferenceStatus": "not_independently_certified",
+                  "proofTermOrigin": "proof_only_generation",
+                  "sourceClaimAssessment": "supported",
+                  "sourceReferenceCount": 1,
+                  "declaredDependencies": [
+                    "n_eq_abc_hyp"
+                  ],
+                  "rule": null,
+                  "ruleEvidence": null,
+                  "ruleCheckReason": "missing_kernel_or_supported_source",
+                  "statementIdentityMatched": true,
+                  "reason": "ai_generated_formal_reconstruction"
+                },
+                {
+                  "nodeId": "n_eq_holds_back",
+                  "formalStepKernelPassed": true,
+                  "originalInferenceVerified": false,
+                  "originalInferenceStatus": "not_independently_certified",
+                  "proofTermOrigin": "diagnostic_repair",
+                  "sourceClaimAssessment": "supported",
+                  "sourceReferenceCount": 1,
+                  "declaredDependencies": [
+                    "n_sq_zero_back",
+                    "n_ident"
+                  ],
+                  "rule": null,
+                  "ruleEvidence": null,
+                  "ruleCheckReason": "missing_kernel_or_supported_source",
+                  "statementIdentityMatched": true,
+                  "reason": "ai_generated_formal_reconstruction"
+                },
+                {
+                  "nodeId": "n_converse_imp",
+                  "formalStepKernelPassed": true,
+                  "originalInferenceVerified": false,
+                  "originalInferenceStatus": "not_independently_certified",
+                  "proofTermOrigin": "proof_only_generation",
+                  "sourceClaimAssessment": "supported",
+                  "sourceReferenceCount": 1,
+                  "declaredDependencies": [
+                    "n_eq_holds_back"
+                  ],
+                  "rule": null,
+                  "ruleEvidence": null,
+                  "ruleCheckReason": "missing_kernel_or_supported_source",
+                  "statementIdentityMatched": true,
+                  "reason": "ai_generated_formal_reconstruction"
+                },
+                {
+                  "nodeId": "n_iff",
+                  "formalStepKernelPassed": true,
+                  "originalInferenceVerified": false,
+                  "originalInferenceStatus": "not_independently_certified",
+                  "proofTermOrigin": "proof_only_generation",
+                  "sourceClaimAssessment": "supported",
+                  "sourceReferenceCount": 2,
+                  "declaredDependencies": [
+                    "n_forward_imp",
+                    "n_converse_imp"
+                  ],
+                  "rule": null,
+                  "ruleEvidence": null,
+                  "ruleCheckReason": "missing_kernel_or_supported_source",
+                  "statementIdentityMatched": true,
+                  "reason": "ai_generated_formal_reconstruction"
+                },
+                {
+                  "nodeId": "n_goal_conj",
+                  "formalStepKernelPassed": true,
+                  "originalInferenceVerified": false,
+                  "originalInferenceStatus": "not_independently_certified",
+                  "proofTermOrigin": "proof_only_generation",
+                  "sourceClaimAssessment": "supported",
+                  "sourceReferenceCount": 1,
+                  "declaredDependencies": [
+                    "n_ineq_claim",
+                    "n_iff"
+                  ],
+                  "rule": null,
+                  "ruleEvidence": null,
+                  "ruleCheckReason": "missing_kernel_or_supported_source",
+                  "statementIdentityMatched": true,
+                  "reason": "ai_generated_formal_reconstruction"
+                }
+              ]
+            }
+          ],
+          "explanation": "Only exact source-anchored equations with an independently checked arithmetic inference rule and a genuine Kernel certificate are certified. Model proof reconstruction alone never qualifies. Unrecognized natural language is unconfirmed, not disproved."
+        },
+        "routeSummary": [
+          {
+            "routeId": "route_original",
+            "status": "incomplete",
+            "formalRouteKernelPassed": null,
+            "completeOriginalRouteKernelPassed": false,
+            "originalReasoningVerified": false,
+            "certificate": {
+              "checked": true,
+              "statementMatched": true,
+              "auditMethod": "fresh_environment_data_only_kernel_replay",
+              "axioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "additionalAxioms": [],
+              "statement_hash": "710ab48911da4850900c43345b79d6b52b7e72746806b7c816e92cd4fdbef888",
+              "expectedExpressionSha256": "18ebdaca463f78e720626b8ff0a342817adfacbda2f86d034bc2af5abe93d364",
+              "proofExpressionSha256": "af23209a05c99c3d7b04080b786872eadff0306a353402c4030d04acdfb2c3ac",
+              "nativeExpressionComparison": "structural_equal",
+              "auditIsolation": "fresh_import_environment_reset_between_candidates"
+            },
+            "steps": 14
+          }
+        ],
+        "steps": [
+          {
+            "route": "route_original",
+            "node": "n_ident",
+            "status": "passed",
+            "mathematicalStatus": "established",
+            "failureClass": null,
+            "sourceAssessment": "supported",
+            "proofTermOrigin": "proof_only_generation",
+            "originalInferenceVerified": false,
+            "sourceInferenceRule": null,
+            "diagnostics": [],
+            "declaredDependencies": null
+          },
+          {
+            "route": "route_original",
+            "node": "n_sq_nonneg_each",
+            "status": "passed",
+            "mathematicalStatus": "established",
+            "failureClass": null,
+            "sourceAssessment": "supported",
+            "proofTermOrigin": "proof_only_generation",
+            "originalInferenceVerified": false,
+            "sourceInferenceRule": null,
+            "diagnostics": [],
+            "declaredDependencies": null
+          },
+          {
+            "route": "route_original",
+            "node": "n_sum_nonneg",
+            "status": "passed",
+            "mathematicalStatus": "conditionally_established",
+            "failureClass": null,
+            "sourceAssessment": "supported",
+            "proofTermOrigin": "diagnostic_repair",
+            "originalInferenceVerified": false,
+            "sourceInferenceRule": null,
+            "diagnostics": [],
+            "declaredDependencies": null
+          },
+          {
+            "route": "route_original",
+            "node": "n_ineq_diff",
+            "status": "passed",
+            "mathematicalStatus": "conditionally_established",
+            "failureClass": "dependency_usage_failed",
+            "sourceAssessment": "supported",
+            "proofTermOrigin": "diagnostic_repair",
+            "originalInferenceVerified": false,
+            "sourceInferenceRule": null,
+            "diagnostics": [],
+            "declaredDependencies": null
+          },
+          {
+            "route": "route_original",
+            "node": "n_ineq_claim",
+            "status": "passed",
+            "mathematicalStatus": "conditionally_established",
+            "failureClass": null,
+            "sourceAssessment": "supported",
+            "proofTermOrigin": "proof_only_generation",
+            "originalInferenceVerified": false,
+            "sourceInferenceRule": null,
+            "diagnostics": [],
+            "declaredDependencies": null
+          },
+          {
+            "route": "route_original",
+            "node": "n_sqsum_zero",
+            "status": "passed",
+            "mathematicalStatus": "conditionally_established",
+            "failureClass": null,
+            "sourceAssessment": "supported",
+            "proofTermOrigin": "diagnostic_repair",
+            "originalInferenceVerified": false,
+            "sourceInferenceRule": null,
+            "diagnostics": [],
+            "declaredDependencies": null
+          },
+          {
+            "route": "route_original",
+            "node": "n_each_zero",
+            "status": "passed",
+            "mathematicalStatus": "conditionally_established",
+            "failureClass": null,
+            "sourceAssessment": "supported",
+            "proofTermOrigin": "diagnostic_repair",
+            "originalInferenceVerified": false,
+            "sourceInferenceRule": null,
+            "diagnostics": [],
+            "declaredDependencies": null
+          },
+          {
+            "route": "route_original",
+            "node": "n_equal_abc_f",
+            "status": "passed",
+            "mathematicalStatus": "conditionally_established",
+            "failureClass": null,
+            "sourceAssessment": "supported",
+            "proofTermOrigin": "proof_only_generation",
+            "originalInferenceVerified": false,
+            "sourceInferenceRule": null,
+            "diagnostics": [],
+            "declaredDependencies": null
+          },
+          {
+            "route": "route_original",
+            "node": "n_forward_imp",
+            "status": "passed",
+            "mathematicalStatus": "conditionally_established",
+            "failureClass": null,
+            "sourceAssessment": "supported",
+            "proofTermOrigin": "proof_only_generation",
+            "originalInferenceVerified": false,
+            "sourceInferenceRule": null,
+            "diagnostics": [],
+            "declaredDependencies": null
+          },
+          {
+            "route": "route_original",
+            "node": "n_sq_zero_back",
+            "status": "passed",
+            "mathematicalStatus": "conditionally_established",
+            "failureClass": null,
+            "sourceAssessment": "supported",
+            "proofTermOrigin": "proof_only_generation",
+            "originalInferenceVerified": false,
+            "sourceInferenceRule": null,
+            "diagnostics": [],
+            "declaredDependencies": null
+          },
+          {
+            "route": "route_original",
+            "node": "n_eq_holds_back",
+            "status": "passed",
+            "mathematicalStatus": "conditionally_established",
+            "failureClass": "dependency_usage_failed",
+            "sourceAssessment": "supported",
+            "proofTermOrigin": "diagnostic_repair",
+            "originalInferenceVerified": false,
+            "sourceInferenceRule": null,
+            "diagnostics": [],
+            "declaredDependencies": null
+          },
+          {
+            "route": "route_original",
+            "node": "n_converse_imp",
+            "status": "passed",
+            "mathematicalStatus": "conditionally_established",
+            "failureClass": null,
+            "sourceAssessment": "supported",
+            "proofTermOrigin": "proof_only_generation",
+            "originalInferenceVerified": false,
+            "sourceInferenceRule": null,
+            "diagnostics": [],
+            "declaredDependencies": null
+          },
+          {
+            "route": "route_original",
+            "node": "n_iff",
+            "status": "passed",
+            "mathematicalStatus": "conditionally_established",
+            "failureClass": null,
+            "sourceAssessment": "supported",
+            "proofTermOrigin": "proof_only_generation",
+            "originalInferenceVerified": false,
+            "sourceInferenceRule": null,
+            "diagnostics": [],
+            "declaredDependencies": null
+          },
+          {
+            "route": "route_original",
+            "node": "n_goal_conj",
+            "status": "passed",
+            "mathematicalStatus": "conditionally_established",
+            "failureClass": null,
+            "sourceAssessment": "supported",
+            "proofTermOrigin": "proof_only_generation",
+            "originalInferenceVerified": false,
+            "sourceInferenceRule": null,
+            "diagnostics": [],
+            "declaredDependencies": null
+          }
+        ]
+      },
+      "finishedUtc": "2026-10-18T17:11:43.210813+00:00",
+      "wallSeconds": 2015.57,
+      "provider": {
+        "realAttempts": 8,
+        "started": 8,
+        "finished": 8,
+        "requestCount": 8,
+        "usage": {
+          "input_tokens": 151663,
+          "output_tokens": 107292,
+          "incompleteUsageRecords": 0
+        },
+        "records": [
+          {
+            "request_id": "a6d38ec9-e784-4158-a78c-de8130069c91",
+            "stage": "mathir",
+            "reason": "StructureOnlyMathIRV2",
+            "model": "deepseek-flash",
+            "status": "response_received",
+            "input_tokens": 10312,
+            "output_tokens": 19612,
+            "retry_index": 0,
+            "cache_hit": null,
+            "real_request_attempted": true,
+            "started_at": null,
+            "finished_at": null
+          },
+          {
+            "request_id": "81c01e62-7678-43de-b3e9-3aaace8d54e4",
+            "stage": "formalization",
+            "reason": "FormalProofs",
+            "model": "deepseek-flash",
+            "status": "response_received",
+            "input_tokens": 10231,
+            "output_tokens": 16693,
+            "retry_index": 0,
+            "cache_hit": null,
+            "real_request_attempted": true,
+            "started_at": null,
+            "finished_at": null
+          },
+          {
+            "request_id": "5b094b2a-4b96-49bc-8cc4-2b7037fc7f98",
+            "stage": "repair",
+            "reason": "FormalProofs",
+            "model": "deepseek-flash",
+            "status": "response_received",
+            "input_tokens": 14671,
+            "output_tokens": 15941,
+            "retry_index": 0,
+            "cache_hit": null,
+            "real_request_attempted": true,
+            "started_at": null,
+            "finished_at": null
+          },
+          {
+            "request_id": "c44f5f7a-97cb-4f2a-b20e-5d4101bbaa75",
+            "stage": "other",
+            "reason": "LibraryPlan",
+            "model": "deepseek-flash",
+            "status": "response_received",
+            "input_tokens": 36792,
+            "output_tokens": 923,
+            "retry_index": 0,
+            "cache_hit": null,
+            "real_request_attempted": true,
+            "started_at": null,
+            "finished_at": null
+          },
+          {
+            "request_id": "90f9a140-2b5f-40d6-8b2c-ef1bda5b1750",
+            "stage": "repair",
+            "reason": "FormalProofs",
+            "model": "deepseek-flash",
+            "status": "response_received",
+            "input_tokens": 11541,
+            "output_tokens": 29112,
+            "retry_index": 0,
+            "cache_hit": null,
+            "real_request_attempted": true,
+            "started_at": null,
+            "finished_at": null
+          },
+          {
+            "request_id": "945f0322-5eeb-4f96-b4b4-f86e25759680",
+            "stage": "other",
+            "reason": "LibraryPlan",
+            "model": "deepseek-flash",
+            "status": "response_received",
+            "input_tokens": 40317,
+            "output_tokens": 1259,
+            "retry_index": 0,
+            "cache_hit": null,
+            "real_request_attempted": true,
+            "started_at": null,
+            "finished_at": null
+          },
+          {
+            "request_id": "2b801f48-0274-449e-bb01-961519242f76",
+            "stage": "repair",
+            "reason": "FormalProofs",
+            "model": "deepseek-flash",
+            "status": "response_received",
+            "input_tokens": 20407,
+            "output_tokens": 17464,
+            "retry_index": 0,
+            "cache_hit": null,
+            "real_request_attempted": true,
+            "started_at": null,
+            "finished_at": null
+          },
+          {
+            "request_id": "45e32cc5-6b28-400b-8678-d26389e0cfe3",
+            "stage": "repair",
+            "reason": "FormalProofs",
+            "model": "deepseek-flash",
+            "status": "response_received",
+            "input_tokens": 7392,
+            "output_tokens": 6288,
+            "retry_index": 0,
+            "cache_hit": null,
+            "real_request_attempted": true,
+            "started_at": null,
+            "finished_at": null
+          }
+        ]
+      },
+      "dbCounts": {
+        "artifacts": 18,
+        "jobs": 1,
+        "events": 35
+      },
+      "archiveSha256": "0ea962e3f57c07b50ae057de635b7960842c173d35dd47f1e0df2c22f652fc13"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+START STEPS 5 GOAL_CHARS 1160
+MODEL False UNSUPPORTED 5 MARKER_ISSUE source_step_markers_missing_reordered_or_duplicated PROOF_BYTES 177
+MODEL_REFUSED_SOURCE_TRANSLATION ['第一步：需要把交换操作在 Lean 的 applyOp/applyOps 定义下约化为行、列奇偶位元 r_i,c_j，并证明任一可达棋盘的差异都形如 r_i xor c_j；原证明仅有文字说明，未形式化交换顺序、同奇偶行不可区分性以及 r_i,c_j 的精确构造。', '第二步：需要证明每次行交换/列交换对位元 1 的个数 R,C 的影响，并形式化恢复条件等价于全零位元配置或全一配置（n 偶数时）。原证明未在锁定定义下证明这些不变量和等价性。', '第三步：需要证明奇数 n 时最少次数为 (R+C)/2，包括下界“每次至多消除两个 1”和上界“两两交换构造”，还要证明 R,C≤n−1 以及 R=C=n−1 的可达扰乱配置可由合法行列交换构造。', '第四步：需要证明偶数 n 时最优次数为 min((R+C)/2,(2n−R−C)/2)，并由 R+C 的范围推出不超过 n/2；同时构造 R=n,C=0 的可达配置来达到下界。原证明的极值构造未在 Reachable/MinCost 定义下形式化。', '最后一步：需要把以上计数结论装配成 lockedFormalStatement 中关于所有可达棋盘的最优恢复次数上界，以及存在达到 answer n 的棋盘的完整证明；该装配在提交的原证明中只是结论性陈述，未给出 Lean 证明项。']
+USAGE attempts 1 input 2202 output 8719 time 54.62

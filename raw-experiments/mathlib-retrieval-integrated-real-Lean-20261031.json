@@ -1,0 +1,134 @@
+{
+  "experimentInput": {
+    "localContext": "f g : ℕ → ℝ\ns : Finset ℕ",
+    "goals": [
+      "⊢ (∑ i ∈ s, f i + g i) = (∑ i ∈ s, f i) + (∑ i ∈ s, g i)"
+    ]
+  },
+  "sourceExcerpt": "sum addition distributivity",
+  "realLean": true,
+  "realAI": false,
+  "experimentDisplayLimit": 8,
+  "result": {
+    "status": "type_checked_premise_suggestions",
+    "checkedDeclarations": [
+      {
+        "name": "Finset.sum_range_succ_mul_sum_range_succ",
+        "baseName": "sum_range_succ_mul_sum_range_succ",
+        "sourcePath": "Algebra/BigOperators/Ring/Finset.lean",
+        "sourceLine": 80,
+        "sourceSnippet": "lemma sum_range_succ_mul_sum_range_succ (m n : ℕ) (f g : ℕ → R) :\n    (∑ i ∈ range (m + 1), f i) * ∑ i ∈ range (n + 1), g i =\n      (∑ i ∈ range m, f i) * ∑ i ∈ range n, g i +\n        f m * ∑ i ∈ range n, g i + (∑ i ∈ range m, f i) * g n + f m * g n := by",
+        "relevanceScore": -21.962514004131453,
+        "nameLexicalOverlap": 2,
+        "sourceEvidenceOnly": false,
+        "leanChecked": true,
+        "certifiesMathematics": false,
+        "signature": "@Finset.sum_range_succ_mul_sum_range_succ.{u_1} : ∀ {R : Type u_1} [inst : NonUnitalNonAssocSemiring.{u_1} R] (m n : ℕ)\n  (f g : ℕ → R),\n  Eq.{u_1 + 1}\n    (HMul.hMul.{u_1, u_1, u_1} (∑ i ∈ Finset.range (HAdd.hAdd.{0, 0, 0} m 1), f i)\n      (∑ i ∈ Finset.range (HAdd.hAdd.{0, 0, 0} n 1), g i))\n    (HAdd.hAdd.{u_1, u_1, u_1}\n      (HAdd.hAdd.{u_1, u_1, u_1}\n        (HAdd.hAdd.{u_1, u_1, u_1} (HMul.hMul.{u_1, u_1, u_1} (∑ i ∈ Finset.range m, f i) (∑ i ∈ Finset.range n, g i))\n          (HMul.hMul.{u_1, u_1, u_1} (f m) (∑ i ∈ Finset.range n, g i)))\n        (HMul.hMul.{u_1, u_1, u_1} (∑ i ∈ Finset.range m, f i) (g n)))\n      (HMul.hMul.{u_1, u_1, u_1} (f m) (g n)))",
+        "requiredImport": "Mathlib"
+      },
+      {
+        "name": "Finset.sum_smul_sum",
+        "baseName": "Finset.sum_smul_sum",
+        "sourcePath": "Algebra/Module/BigOperators.lean",
+        "sourceLine": 41,
+        "sourceSnippet": "lemma Finset.sum_smul_sum (s : Finset α) (t : Finset β) {f : α → R} {g : β → M} :\n    (∑ i ∈ s, f i) • ∑ j ∈ t, g j = ∑ i ∈ s, ∑ j ∈ t, f i • g j := by\n  simp_rw [sum_smul, ← smul_sum]\n",
+        "relevanceScore": -21.805284240629177,
+        "nameLexicalOverlap": 2,
+        "sourceEvidenceOnly": false,
+        "leanChecked": true,
+        "certifiesMathematics": false,
+        "signature": "@Finset.sum_smul_sum.{u_1, u_2, u_3,\n    u_4} : ∀ {α : Type u_1} {β : Type u_2} {R : Type u_3} {M : Type u_4} [inst : Semiring.{u_3} R]\n  [inst_1 : AddCommMonoid.{u_4} M] [inst_2 : Module.{u_3, u_4} R M] (s : Finset.{u_1} α) (t : Finset.{u_2} β)\n  {f : α → R} {g : β → M},\n  Eq.{u_4 + 1} (HSMul.hSMul.{u_3, u_4, u_4} (∑ i ∈ s, f i) (∑ j ∈ t, g j))\n    (∑ i ∈ s, ∑ j ∈ t, HSMul.hSMul.{u_3, u_4, u_4} (f i) (g j))",
+        "requiredImport": "Mathlib"
+      },
+      {
+        "name": "Finset.sum_nat_mod",
+        "baseName": "sum_nat_mod",
+        "sourcePath": "Algebra/BigOperators/Group/Finset/Defs.lean",
+        "sourceLine": 688,
+        "sourceSnippet": "theorem sum_nat_mod (s : Finset ι) (n : ℕ) (f : ι → ℕ) :\n    (∑ i ∈ s, f i) % n = (∑ i ∈ s, f i % n) % n :=\n  (Multiset.sum_nat_mod _ _).trans <| by rw [Finset.sum, Multiset.map_map]; rfl\n",
+        "relevanceScore": -21.795858362460432,
+        "nameLexicalOverlap": 2,
+        "sourceEvidenceOnly": false,
+        "leanChecked": true,
+        "certifiesMathematics": false,
+        "signature": "@Finset.sum_nat_mod.{u_1} : ∀ {ι : Type u_1} (s : Finset.{u_1} ι) (n : ℕ) (f : ι → ℕ),\n  Eq.{1} (HMod.hMod.{0, 0, 0} (∑ i ∈ s, f i) n) (HMod.hMod.{0, 0, 0} (∑ i ∈ s, HMod.hMod.{0, 0, 0} (f i) n) n)",
+        "requiredImport": "Mathlib"
+      },
+      {
+        "name": "Finset.sum_mul_sum_eq_sum_perm",
+        "baseName": "sum_mul_sum_eq_sum_perm",
+        "sourcePath": "GroupTheory/Perm/Cycle/Basic.lean",
+        "sourceLine": 950,
+        "sourceSnippet": "theorem sum_mul_sum_eq_sum_perm (hσ : σ.IsCycleOn s) (f g : ι → α) :\n    ((∑ i ∈ s, f i) * ∑ i ∈ s, g i) = ∑ k ∈ range #s, ∑ i ∈ s, f i * g ((σ ^ k) i) :=\n  sum_smul_sum_eq_sum_perm hσ f g\n",
+        "relevanceScore": -21.73446855471385,
+        "nameLexicalOverlap": 2,
+        "sourceEvidenceOnly": false,
+        "leanChecked": true,
+        "certifiesMathematics": false,
+        "signature": "@Finset.sum_mul_sum_eq_sum_perm.{u_1,\n    u_2} : ∀ {ι : Type u_1} {α : Type u_2} [inst : Semiring.{u_2} α] {s : Finset.{u_1} ι} {σ : Equiv.Perm.{u_1 + 1} ι},\n  Equiv.Perm.IsCycleOn.{u_1} σ ↑s →\n    ∀ (f g : ι → α),\n      Eq.{u_2 + 1} (HMul.hMul.{u_2, u_2, u_2} (∑ i ∈ s, f i) (∑ i ∈ s, g i))\n        (∑ k ∈ Finset.range (Finset.card.{u_1} s),\n          ∑ i ∈ s, HMul.hMul.{u_2, u_2, u_2} (f i) (g ((HPow.hPow.{u_1, 0, u_1} σ k) i)))",
+        "requiredImport": "Mathlib"
+      },
+      {
+        "name": "Finset.abs_sum_le_sum_abs",
+        "baseName": "abs_sum_le_sum_abs",
+        "sourcePath": "Algebra/Order/BigOperators/Group/Finset.lean",
+        "sourceLine": 364,
+        "sourceSnippet": "theorem abs_sum_le_sum_abs {G : Type*} [AddCommGroup G] [LinearOrder G] [IsOrderedAddMonoid G]\n    (f : ι → G) (s : Finset ι) :\n    |∑ i ∈ s, f i| ≤ ∑ i ∈ s, |f i| := le_sum_of_subadditive _ abs_zero.le abs_add_le s f\n",
+        "relevanceScore": -21.68256787601157,
+        "nameLexicalOverlap": 2,
+        "sourceEvidenceOnly": false,
+        "leanChecked": true,
+        "certifiesMathematics": false,
+        "signature": "@Finset.abs_sum_le_sum_abs.{u_1,\n    u_2} : ∀ {ι : Type u_1} {G : Type u_2} [inst : AddCommGroup.{u_2} G] [inst_1 : LinearOrder.{u_2} G]\n  [IsOrderedAddMonoid.{u_2} G] (f : ι → G) (s : Finset.{u_1} ι),\n  LE.le.{u_2} (abs.{u_2} (∑ i ∈ s, f i)) (∑ i ∈ s, abs.{u_2} (f i))",
+        "requiredImport": "Mathlib"
+      },
+      {
+        "name": "Finset.abs_sum_of_nonneg",
+        "baseName": "abs_sum_of_nonneg",
+        "sourcePath": "Algebra/Order/BigOperators/Group/Finset.lean",
+        "sourceLine": 368,
+        "sourceSnippet": "theorem abs_sum_of_nonneg {G : Type*} [AddCommGroup G] [LinearOrder G] [AddLeftMono G]\n    {f : ι → G} {s : Finset ι}\n    (hf : ∀ i ∈ s, 0 ≤ f i) : |∑ i ∈ s, f i| = ∑ i ∈ s, f i := by\n  rw [abs_of_nonneg (Finset.sum_nonneg hf)]",
+        "relevanceScore": -21.65816882642977,
+        "nameLexicalOverlap": 2,
+        "sourceEvidenceOnly": false,
+        "leanChecked": true,
+        "certifiesMathematics": false,
+        "signature": "@Finset.abs_sum_of_nonneg.{u_1,\n    u_2} : ∀ {ι : Type u_1} {G : Type u_2} [inst : AddCommGroup.{u_2} G] [inst_1 : LinearOrder.{u_2} G]\n  [AddLeftMono.{u_2} G] {f : ι → G} {s : Finset.{u_1} ι},\n  (∀ (i : ι), Membership.mem.{u_1, u_1} s i → LE.le.{u_2} 0 (f i)) →\n    Eq.{u_2 + 1} (abs.{u_2} (∑ i ∈ s, f i)) (∑ i ∈ s, f i)",
+        "requiredImport": "Mathlib"
+      },
+      {
+        "name": "Finset.sum_mul_sum",
+        "baseName": "sum_mul_sum",
+        "sourcePath": "Algebra/BigOperators/Ring/Finset.lean",
+        "sourceLine": 62,
+        "sourceSnippet": "lemma sum_mul_sum (s : Finset ι) (t : Finset κ) (f : ι → R) (g : κ → R) :\n    (∑ i ∈ s, f i) * ∑ j ∈ t, g j = ∑ i ∈ s, ∑ j ∈ t, f i * g j := by\n  simp_rw [sum_mul, ← mul_sum]\n",
+        "relevanceScore": -21.566831554992728,
+        "nameLexicalOverlap": 2,
+        "sourceEvidenceOnly": false,
+        "leanChecked": true,
+        "certifiesMathematics": false,
+        "signature": "@Finset.sum_mul_sum.{u_1, u_2,\n    u_3} : ∀ {ι : Type u_1} {κ : Type u_2} {R : Type u_3} [inst : NonUnitalNonAssocSemiring.{u_3} R]\n  (s : Finset.{u_1} ι) (t : Finset.{u_2} κ) (f : ι → R) (g : κ → R),\n  Eq.{u_3 + 1} (HMul.hMul.{u_3, u_3, u_3} (∑ i ∈ s, f i) (∑ j ∈ t, g j))\n    (∑ i ∈ s, ∑ j ∈ t, HMul.hMul.{u_3, u_3, u_3} (f i) (g j))",
+        "requiredImport": "Mathlib"
+      },
+      {
+        "name": "Finset.abs_sum_of_nonneg'",
+        "baseName": "abs_sum_of_nonneg'",
+        "sourcePath": "Algebra/Order/BigOperators/Group/Finset.lean",
+        "sourceLine": 375,
+        "sourceSnippet": "theorem abs_sum_of_nonneg' {G : Type*} [AddCommGroup G] [LinearOrder G] [AddLeftMono G]\n    {f : ι → G} {s : Finset ι}\n    (hf : ∀ i, 0 ≤ f i) : |∑ i ∈ s, f i| = ∑ i ∈ s, f i := by\n  rw [abs_of_nonneg (Finset.sum_nonneg' hf)]",
+        "relevanceScore": -21.55961401556768,
+        "nameLexicalOverlap": 2,
+        "sourceEvidenceOnly": false,
+        "leanChecked": true,
+        "certifiesMathematics": false,
+        "signature": "@Finset.abs_sum_of_nonneg'.{u_1,\n    u_2} : ∀ {ι : Type u_1} {G : Type u_2} [inst : AddCommGroup.{u_2} G] [inst_1 : LinearOrder.{u_2} G]\n  [AddLeftMono.{u_2} G] {f : ι → G} {s : Finset.{u_1} ι},\n  (∀ (i : ι), LE.le.{u_2} 0 (f i)) → Eq.{u_2 + 1} (abs.{u_2} (∑ i ∈ s, f i)) (∑ i ∈ s, f i)",
+        "requiredImport": "Mathlib"
+      }
+    ],
+    "unverifiedSuggestions": [],
+    "sourceSuggestionCount": 8,
+    "leanCheckedCount": 8,
+    "kernelVerified": false,
+    "originalProofCertified": false
+  }
+}

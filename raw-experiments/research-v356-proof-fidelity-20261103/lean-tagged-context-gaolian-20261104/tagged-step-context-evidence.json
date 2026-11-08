@@ -1,0 +1,72 @@
+{
+  "case": "GAOLIAN",
+  "sourceSha256": "d3b0c40d880d2f7fe9b74ae5d7c033adecbac68866663633c9dcca316d7b4522",
+  "sourceStepCount": 5,
+  "taggedTacticCount": 5,
+  "capturedNamedLocalContexts": 5,
+  "observedIndices": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "kernelVerified": true,
+  "certificateChecked": true,
+  "statementMatched": true,
+  "additionalAxioms": [],
+  "otherDiagnostics": [],
+  "note": "Local context lists facts available to Lean, not facts actually referenced by the author's reason, and not a source-language semantic certificate.",
+  "steps": [
+    {
+      "index": 0,
+      "sourceExcerpt": "第一步，记 K=(m−1)n+1。先证 k=K−1 不够。将 1,2,…,n−1 全部染为蓝色，将 n,n+1,…,(m−1)n 全部染为红色。任何 m 个红数的前 m−1 项各不小于 n，故其和至少为 (m−1)n，而末项至多为 (m−1)n，因此不能严格小于末项。任何 n 个蓝数的前 n−1 项都是正整数，故其和至少为 n−1，而末项至多为 n−1，也不能满足严格不等式。所以该染色不符合题设性质，故最小可行 k 至少是 K。",
+      "availableLeanHypotheses": "m n : ℕ\nhmn : m ≥ n\nhn : n ≥ 3\nK : ℕ := (m - 1) * n + 1\nhm_ge3 : 3 ≤ m\nhn_pos : 0 < n\nhm_pos : 0 < m\nhK_pos : 0 < K\nhm1_ge1 : 1 ≤ m - 1\nhm1_ge2 : 2 ≤ m - 1\nhK_ge_n : n ≤ K\nhK_ge_m : m ≤ K\nhcard_first : ∀ (N : ℕ), 0 < N → {i | ↑i < N - 1}.card = N - 1\nhsum_const_first : ∀ (N C : ℕ), 0 < N → ∑ x with ↑x < N - 1, C = (N - 1) * C\nc0 : ℕ → Bool := fun z => if z < n then false else true",
+      "actualLeanGoal": "¬((∃ x, (∀ (i : Fin m), 1 ≤ x i ∧ x i ≤ (m - 1) * n ∧ c0 (x i) = true) ∧ ∑ i with ↑i < m - 1, x i < x ⟨m - 1, ⋯⟩) ∨\n      ∃ y, (∀ (i : Fin n), 1 ≤ y i ∧ y i ≤ (m - 1) * n ∧ c0 (y i) = false) ∧ ∑ i with ↑i < n - 1, y i < y ⟨n - 1, ⋯⟩)",
+      "leanPosition": {
+        "column": 2645,
+        "line": 5
+      }
+    },
+    {
+      "index": 1,
+      "sourceExcerpt": "第二步，现对 1,…,K 的任意红蓝染色证明题设性质。按整数 1 的颜色分情况。",
+      "availableLeanHypotheses": "m n : ℕ\nhmn : m ≥ n\nhn : n ≥ 3\nK : ℕ := (m - 1) * n + 1\nhm_ge3 : 3 ≤ m\nhn_pos : 0 < n\nhm_pos : 0 < m\nhK_pos : 0 < K\nhm1_ge1 : 1 ≤ m - 1\nhm1_ge2 : 2 ≤ m - 1\nhK_ge_n : n ≤ K\nhK_ge_m : m ≤ K\nhcard_first : ∀ (N : ℕ), 0 < N → {i | ↑i < N - 1}.card = N - 1\nhsum_const_first : ∀ (N C : ℕ), 0 < N → ∑ x with ↑x < N - 1, C = (N - 1) * C\nc0 : ℕ → Bool := fun z => if z < n then false else true\nsource_step_0 :\n  ¬((∃ x, (∀ (i : Fin m), 1 ≤ x i ∧ x i ≤ (m - 1) * n ∧ c0 (x i) = true) ∧ ∑ i with ↑i < m - 1, x i < x ⟨m - 1, ⋯⟩) ∨\n      ∃ y, (∀ (i : Fin n), 1 ≤ y i ∧ y i ≤ (m - 1) * n ∧ c0 (y i) = false) ∧ ∑ i with ↑i < n - 1, y i < y ⟨n - 1, ⋯⟩)",
+      "actualLeanGoal": "∀ (c : ℕ → Bool), c 1 = false ∨ c 1 = true",
+      "leanPosition": {
+        "column": 4898,
+        "line": 5
+      }
+    },
+    {
+      "index": 2,
+      "sourceExcerpt": "第三步，若 1 为蓝色：只要存在一个蓝数 b≥n，就取 n−1 个蓝数 1 与最后一个蓝数 b，得到 1+⋯+1=n−1<b，立即满足蓝色条件。因此若蓝色条件不成立，那么所有 n,n+1,…,K 必须都是红色。此时 n 和 K 都为红色，取前 m−1 个红数都等于 n，末项取 K=(m−1)n+1，则前 m−1 项之和为 (m−1)n<K，满足红色条件。故不论如何，必有一色满足。",
+      "availableLeanHypotheses": "m n : ℕ\nhmn : m ≥ n\nhn : n ≥ 3\nK : ℕ := (m - 1) * n + 1\nhm_ge3 : 3 ≤ m\nhn_pos : 0 < n\nhm_pos : 0 < m\nhK_pos : 0 < K\nhm1_ge1 : 1 ≤ m - 1\nhm1_ge2 : 2 ≤ m - 1\nhK_ge_n : n ≤ K\nhK_ge_m : m ≤ K\nhcard_first : ∀ (N : ℕ), 0 < N → {i | ↑i < N - 1}.card = N - 1\nhsum_const_first : ∀ (N C : ℕ), 0 < N → ∑ x with ↑x < N - 1, C = (N - 1) * C\nc0 : ℕ → Bool := fun z => if z < n then false else true\nsource_step_0 :\n  ¬((∃ x, (∀ (i : Fin m), 1 ≤ x i ∧ x i ≤ (m - 1) * n ∧ c0 (x i) = true) ∧ ∑ i with ↑i < m - 1, x i < x ⟨m - 1, ⋯⟩) ∨\n      ∃ y, (∀ (i : Fin n), 1 ≤ y i ∧ y i ≤ (m - 1) * n ∧ c0 (y i) = false) ∧ ∑ i with ↑i < n - 1, y i < y ⟨n - 1, ⋯⟩)\nsource_step_1 : ∀ (c : ℕ → Bool), c 1 = false ∨ c 1 = true",
+      "actualLeanGoal": "∀ (c : ℕ → Bool),\n    c 1 = false →\n      (∃ x, (∀ (i : Fin m), 1 ≤ x i ∧ x i ≤ K ∧ c (x i) = true) ∧ ∑ i with ↑i < m - 1, x i < x ⟨m - 1, ⋯⟩) ∨\n        ∃ y, (∀ (i : Fin n), 1 ≤ y i ∧ y i ≤ K ∧ c (y i) = false) ∧ ∑ i with ↑i < n - 1, y i < y ⟨n - 1, ⋯⟩",
+      "leanPosition": {
+        "column": 5572,
+        "line": 5
+      }
+    },
+    {
+      "index": 3,
+      "sourceExcerpt": "第四步，若 1 为红色：只要存在一个红数 a≥m，就取 m−1 个红数 1 与末项 a，得到 m−1<a，满足红色条件。反之若红色条件不成立，则 m,m+1,…,K 必须都是蓝色。由于 m≥n，整数 T=(n−1)m+1 满足 m<T≤K，其中 T≤K 等价于 (n−1)m≤(m−1)n，即 n≤m。取前 n−1 个蓝数都等于 m，末项取蓝数 T，得到 (n−1)m<T，满足蓝色条件。",
+      "availableLeanHypotheses": "m n : ℕ\nhmn : m ≥ n\nhn : n ≥ 3\nK : ℕ := (m - 1) * n + 1\nhm_ge3 : 3 ≤ m\nhn_pos : 0 < n\nhm_pos : 0 < m\nhK_pos : 0 < K\nhm1_ge1 : 1 ≤ m - 1\nhm1_ge2 : 2 ≤ m - 1\nhK_ge_n : n ≤ K\nhK_ge_m : m ≤ K\nhcard_first : ∀ (N : ℕ), 0 < N → {i | ↑i < N - 1}.card = N - 1\nhsum_const_first : ∀ (N C : ℕ), 0 < N → ∑ x with ↑x < N - 1, C = (N - 1) * C\nc0 : ℕ → Bool := fun z => if z < n then false else true\nsource_step_0 :\n  ¬((∃ x, (∀ (i : Fin m), 1 ≤ x i ∧ x i ≤ (m - 1) * n ∧ c0 (x i) = true) ∧ ∑ i with ↑i < m - 1, x i < x ⟨m - 1, ⋯⟩) ∨\n      ∃ y, (∀ (i : Fin n), 1 ≤ y i ∧ y i ≤ (m - 1) * n ∧ c0 (y i) = false) ∧ ∑ i with ↑i < n - 1, y i < y ⟨n - 1, ⋯⟩)\nsource_step_1 : ∀ (c : ℕ → Bool), c 1 = false ∨ c 1 = true\nsource_step_2 :\n  ∀ (c : ℕ → Bool),\n    c 1 = false →\n      (∃ x, (∀ (i : Fin m), 1 ≤ x i ∧ x i ≤ K ∧ c (x i) = true) ∧ ∑ i with ↑i < m - 1, x i < x ⟨m - 1, ⋯⟩) ∨\n        ∃ y, (∀ (i : Fin n), 1 ≤ y i ∧ y i ≤ K ∧ c (y i) = false) ∧ ∑ i with ↑i < n - 1, y i < y ⟨n - 1, ⋯⟩",
+      "actualLeanGoal": "∀ (c : ℕ → Bool),\n    c 1 = true →\n      (∃ x, (∀ (i : Fin m), 1 ≤ x i ∧ x i ≤ K ∧ c (x i) = true) ∧ ∑ i with ↑i < m - 1, x i < x ⟨m - 1, ⋯⟩) ∨\n        ∃ y, (∀ (i : Fin n), 1 ≤ y i ∧ y i ≤ K ∧ c (y i) = false) ∧ ∑ i with ↑i < n - 1, y i < y ⟨n - 1, ⋯⟩",
+      "leanPosition": {
+        "column": 9375,
+        "line": 5
+      }
+    },
+    {
+      "index": 4,
+      "sourceExcerpt": "第五步，两种情形穷尽整数 1 的所有可能颜色，故每个对 1,…,K 的染色都满足要求。结合第一步的反例，可行的最小正整数恰为 k=(m−1)n+1。证明完毕。",
+      "availableLeanHypotheses": "m n : ℕ\nhmn : m ≥ n\nhn : n ≥ 3\nK : ℕ := (m - 1) * n + 1\nhm_ge3 : 3 ≤ m\nhn_pos : 0 < n\nhm_pos : 0 < m\nhK_pos : 0 < K\nhm1_ge1 : 1 ≤ m - 1\nhm1_ge2 : 2 ≤ m - 1\nhK_ge_n : n ≤ K\nhK_ge_m : m ≤ K\nhcard_first : ∀ (N : ℕ), 0 < N → {i | ↑i < N - 1}.card = N - 1\nhsum_const_first : ∀ (N C : ℕ), 0 < N → ∑ x with ↑x < N - 1, C = (N - 1) * C\nc0 : ℕ → Bool := fun z => if z < n then false else true\nsource_step_0 :\n  ¬((∃ x, (∀ (i : Fin m), 1 ≤ x i ∧ x i ≤ (m - 1) * n ∧ c0 (x i) = true) ∧ ∑ i with ↑i < m - 1, x i < x ⟨m - 1, ⋯⟩) ∨\n      ∃ y, (∀ (i : Fin n), 1 ≤ y i ∧ y i ≤ (m - 1) * n ∧ c0 (y i) = false) ∧ ∑ i with ↑i < n - 1, y i < y ⟨n - 1, ⋯⟩)\nsource_step_1 : ∀ (c : ℕ → Bool), c 1 = false ∨ c 1 = true\nsource_step_2 :\n  ∀ (c : ℕ → Bool),\n    c 1 = false →\n      (∃ x, (∀ (i : Fin m), 1 ≤ x i ∧ x i ≤ K ∧ c (x i) = true) ∧ ∑ i with ↑i < m - 1, x i < x ⟨m - 1, ⋯⟩) ∨\n        ∃ y, (∀ (i : Fin n), 1 ≤ y i ∧ y i ≤ K ∧ c (y i) = false) ∧ ∑ i with ↑i < n - 1, y i < y ⟨n - 1, ⋯⟩\nsource_step_3 :\n  ∀ (c : ℕ → Bool),\n    c 1 = true →\n      (∃ x, (∀ (i : Fin m), 1 ≤ x i ∧ x i ≤ K ∧ c (x i) = true) ∧ ∑ i with ↑i < m - 1, x i < x ⟨m - 1, ⋯⟩) ∨\n        ∃ y, (∀ (i : Fin n), 1 ≤ y i ∧ y i ≤ K ∧ c (y i) = false) ∧ ∑ i with ↑i < n - 1, y i < y ⟨n - 1, ⋯⟩",
+      "actualLeanGoal": "IsLeast\n    {k |\n      0 < k ∧\n        ∀ (c : ℕ → Bool),\n          (∃ x, (∀ (i : Fin m), 1 ≤ x i ∧ x i ≤ k ∧ c (x i) = true) ∧ ∑ i with ↑i < m - 1, x i < x ⟨m - 1, ⋯⟩) ∨\n            ∃ y, (∀ (i : Fin n), 1 ≤ y i ∧ y i ≤ k ∧ c (y i) = false) ∧ ∑ i with ↑i < n - 1, y i < y ⟨n - 1, ⋯⟩}\n    K",
+      "leanPosition": {
+        "column": 14377,
+        "line": 5
+      }
+    }
+  ]
+}

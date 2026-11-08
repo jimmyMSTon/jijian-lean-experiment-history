@@ -1,0 +1,193 @@
+{
+  "id": "65dffbb8-de79-445c-a5d5-2e9a9c5a187f",
+  "status": "completed",
+  "stage": "completed",
+  "created": "2026-10-24T16:57:02.492316+00:00",
+  "updated": "2026-10-24T16:58:12.102839+00:00",
+  "request": {
+    "input": {
+      "kind": "text",
+      "text": "【2025 British Mathematical Olympiad Round 2，Problem 1，原题】证明：对每个正整数 n，1/n 可以写成有限个互不相同三角形数的倒数之和。三角形数 T_k=k(k+1)/2，k 为正整数。\n【提交的原证明】\n第一步：取正整数 n。对每个 k≥1，有 1/T_k=2/[k(k+1)]=2(1/k−1/(k+1))，这是分母拆项的恒等式。\n第二步：选择互不相同的三角形数 T_n,T_{n+1},…,T_{2n−2}。这些下标各不相同，且 k→T_k 严格递增，因此选出的三角形数互不相同。\n第三步：把第二步选出的倒数相加，裂项相消可得\n∑_{k=n}^{2n−2}1/T_k=2∑_{k=n}^{2n−2}(1/k−1/(k+1))=2(1/n−1/(2n−1))。\n第四步：由于 n 为正整数，2(1/n−1/(2n−1))=1/n。故选出的有限个互异三角形数倒数之和恰好等于 1/n，题目得证。",
+      "assetId": null,
+      "dataUrl": null,
+      "strokes": null,
+      "recognitionId": null,
+      "parts": null
+    },
+    "explain": false
+  },
+  "result": {
+    "id": "ffda4332-1161-4d21-ba0a-22ccffb9af2f",
+    "kind": "lean_first_local",
+    "mode": "single_whole_theorem_kernel",
+    "sourceSha256": "9ebeae6cbb69c9ffece037fe5b54b8d35d5fc2a2ab347138f7a4f3fa06b9a582",
+    "runTraceId": "56ae0b9c-7984-4ce7-837f-f517f077ff53",
+    "status": "whole_proof_translation_incomplete",
+    "kernelVerified": false,
+    "formalProofCertified": false,
+    "originalProofCertified": false,
+    "sourceEquivalenceCertified": false,
+    "originalInferenceVerified": false,
+    "sourcePositionsValid": true,
+    "plannedStepCount": 4,
+    "localFormalVerifiedCount": 0,
+    "sourceSteps": [
+      {
+        "id": "source-0",
+        "index": 0,
+        "role": "inference",
+        "start": 129,
+        "end": 193,
+        "sourceExcerpt": "第一步：取正整数 n。对每个 k≥1，有 1/T_k=2/[k(k+1)]=2(1/k−1/(k+1))，这是分母拆项的恒等式。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_0",
+        "dependsOn": []
+      },
+      {
+        "id": "source-1",
+        "index": 1,
+        "role": "inference",
+        "start": 194,
+        "end": 269,
+        "sourceExcerpt": "第二步：选择互不相同的三角形数 T_n,T_{n+1},…,T_{2n−2}。这些下标各不相同，且 k→T_k 严格递增，因此选出的三角形数互不相同。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_1",
+        "dependsOn": []
+      },
+      {
+        "id": "source-2",
+        "index": 2,
+        "role": "inference",
+        "start": 270,
+        "end": 358,
+        "sourceExcerpt": "第三步：把第二步选出的倒数相加，裂项相消可得\n∑_{k=n}^{2n−2}1/T_k=2∑_{k=n}^{2n−2}(1/k−1/(k+1))=2(1/n−1/(2n−1))。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_2",
+        "dependsOn": []
+      },
+      {
+        "id": "source-3",
+        "index": 3,
+        "role": "inference",
+        "start": 359,
+        "end": 424,
+        "sourceExcerpt": "第四步：由于 n 为正整数，2(1/n−1/(2n−1))=1/n。故选出的有限个互异三角形数倒数之和恰好等于 1/n，题目得证。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_3",
+        "dependsOn": []
+      }
+    ],
+    "statement": "∀ n : ℕ, 0 < n → ∃ S : Finset ℕ, (∀ x ∈ S, ∃ k : ℕ, 0 < k ∧ x = k * (k + 1) / 2) ∧ Finset.sum S (fun x : ℕ => (1 : ℚ) / (x : ℚ)) = (1 : ℚ) / (n : ℚ)",
+    "proofTerm": "by\n  -- A complete Lean proof is not supplied.\n  -- The submitted construction chooses T_n,...,T_{2n-2}. Its reciprocal sum is\n  -- 2(1/n - 1/(2n-1)) = 2(n-1)/(n(2n-1)), not 1/n.\n  -- Thus source_step_3 is false and the final conclusion does not follow.",
+    "lean": null,
+    "unsupportedOriginalSteps": [
+      "第四步（source_step_3）：命题 2(1/n−1/(2n−1))=1/n 一般不成立。事实上左边等于 2(n−1)/(n(2n−1))；与 1/n 相等会推出 2(n−1)=2n−1，即 −2=−1，矛盾。",
+      "因此对第二步所选集合 S={T_n,...,T_{2n−2}}，其倒数和等于 2(1/n−1/(2n−1))，不是 1/n（例如 n=2 时仅有 1/T_2=1/3，不等于 1/2；n=1 时所选范围还是空的）。",
+      "原证明未处理 n=1：按 T_1,T_2,... 到 T_0 的指示为空集，倒数和为 0，并不等于 1。",
+      "要得到原题结论需改变构造（例如用到 T_{2n−1} 而不是 T_{2n−2}，或另作构造），但这已不是原稿给出的证明，故不能在此作为 source_step 的忠实翻译。"
+    ],
+    "planProvenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "f51c1a8c-fbd7-4c3d-a694-b71778b422ed",
+      "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+      "usage": {
+        "prompt_tokens": 923,
+        "completion_tokens": 9882,
+        "total_tokens": 10805,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 9463
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 539
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "model": "deepseek-flash",
+    "goalExcerpt": "证明：对每个正整数 n，1/n 可以写成有限个互不相同三角形数的倒数之和。三角形数 T_k=k(k+1)/2，k 为正整数。",
+    "originalGivenExcerpts": [
+      "正整数 n",
+      "三角形数 T_k=k(k+1)/2，k 为正整数。"
+    ],
+    "sourceOffsetRepairs": [],
+    "proofProvenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "7d07a861-c348-44d9-8315-593698a6596a",
+      "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+      "usage": {
+        "prompt_tokens": 1250,
+        "completion_tokens": 4570,
+        "total_tokens": 5820,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 4226
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 866
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "version": "3.4.2",
+    "source": {
+      "kind": "text",
+      "raw": "【2025 British Mathematical Olympiad Round 2，Problem 1，原题】证明：对每个正整数 n，1/n 可以写成有限个互不相同三角形数的倒数之和。三角形数 T_k=k(k+1)/2，k 为正整数。\n【提交的原证明】\n第一步：取正整数 n。对每个 k≥1，有 1/T_k=2/[k(k+1)]=2(1/k−1/(k+1))，这是分母拆项的恒等式。\n第二步：选择互不相同的三角形数 T_n,T_{n+1},…,T_{2n−2}。这些下标各不相同，且 k→T_k 严格递增，因此选出的三角形数互不相同。\n第三步：把第二步选出的倒数相加，裂项相消可得\n∑_{k=n}^{2n−2}1/T_k=2∑_{k=n}^{2n−2}(1/k−1/(k+1))=2(1/n−1/(2n−1))。\n第四步：由于 n 为正整数，2(1/n−1/(2n−1))=1/n。故选出的有限个互异三角形数倒数之和恰好等于 1/n，题目得证。",
+      "normalized": "【2025 British Mathematical Olympiad Round 2，Problem 1，原题】证明：对每个正整数 n，1/n 可以写成有限个互不相同三角形数的倒数之和。三角形数 T_k=k(k+1)/2，k 为正整数。\n【提交的原证明】\n第一步：取正整数 n。对每个 k≥1，有 1/T_k=2/[k(k+1)]=2(1/k−1/(k+1))，这是分母拆项的恒等式。\n第二步：选择互不相同的三角形数 T_n,T_{n+1},…,T_{2n−2}。这些下标各不相同，且 k→T_k 严格递增，因此选出的三角形数互不相同。\n第三步：把第二步选出的倒数相加，裂项相消可得\n∑_{k=n}^{2n−2}1/T_k=2∑_{k=n}^{2n−2}(1/k−1/(k+1))=2(1/n−1/(2n−1))。\n第四步：由于 n 为正整数，2(1/n−1/(2n−1))=1/n。故选出的有限个互异三角形数倒数之和恰好等于 1/n，题目得证。",
+      "recognitionId": null,
+      "transcriptionEvidence": null,
+      "blocks": [
+        {
+          "id": "b0",
+          "text": "【2025 British Mathematical Olympiad Round 2，Problem 1，原题】证明：对每个正整数 n，1/n 可以写成有限个互不相同三角形数的倒数之和。三角形数 T_k=k(k+1)/2，k 为正整数。\n【提交的原证明】\n第一步：取正整数 n。对每个 k≥1，有 1/T_k=2/[k(k+1)]=2(1/k−1/(k+1))，这是分母拆项的恒等式。\n第二步：选择互不相同的三角形数 T_n,T_{n+1},…,T_{2n−2}。这些下标各不相同，且 k→T_k 严格递增，因此选出的三角形数互不相同。\n第三步：把第二步选出的倒数相加，裂项相消可得\n∑_{k=n}^{2n−2}1/T_k=2∑_{k=n}^{2n−2}(1/k−1/(k+1))=2(1/n−1/(2n−1))。\n第四步：由于 n 为正整数，2(1/n−1/(2n−1))=1/n。故选出的有限个互异三角形数倒数之和恰好等于 1/n，题目得证。",
+          "page": null,
+          "bbox": null,
+          "confidence": null,
+          "assetId": null,
+          "providerData": {}
+        }
+      ]
+    },
+    "inputKind": "text",
+    "authority": "single_locked_complete_formal_theorem_kernel_not_natural_language_fidelity"
+  },
+  "error": null
+}

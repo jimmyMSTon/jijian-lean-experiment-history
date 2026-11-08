@@ -1,0 +1,121 @@
+{
+  "provenance": {
+    "jsonParsing": {
+      "method": "deterministic_json_schema",
+      "recovered": false,
+      "edits": []
+    },
+    "provider": "deepseek",
+    "requestedModel": "deepseek-flash",
+    "model": "deepseek-flash",
+    "responseId": "4c1111ed-45fe-4e79-95e4-567fc60ba2ae",
+    "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "usage": {
+      "prompt_tokens": 1148,
+      "completion_tokens": 25736,
+      "total_tokens": 26884,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 23659
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 1148
+    },
+    "thinking": "provider_default",
+    "promptSchemaEncoding": "compact_json_v1",
+    "structuredOutput": "json_mode_with_local_schema_validation",
+    "simulated": false
+  },
+  "complete": true,
+  "statement": "∀ (a b : ℕ), 0 < a → 0 < b → Nat.gcd a b = 1 → ∀ (r s : ℤ), ∃ x : ℤ, (a : ℤ) ∣ (x - r) ∧ (b : ℤ) ∣ (x - s) ∧ (∀ y : ℤ, (a : ℤ) ∣ (y - r) → (b : ℤ) ∣ (y - s) → ((a : ℤ) * (b : ℤ)) ∣ (y - x))",
+  "proofTerm": "by\n  intro a b ha hb hgcd r s\n  have hg : Int.gcd (a : ℤ) (b : ℤ) = 1 := by\n    simpa using hgcd\n  let u : ℤ := Int.gcdA (a : ℤ) (b : ℤ)\n  let v : ℤ := Int.gcdB (a : ℤ) (b : ℤ)\n  have huv : (a : ℤ) * u + (b : ℤ) * v = 1 := by\n    have h := Int.gcd_eq_gcd_ab (a : ℤ) (b : ℤ)\n    simpa [u, v, hg] using h.symm\n  let x : ℤ := r * ((b : ℤ) * v) + s * ((a : ℤ) * u)\n  have hx_r : x - r = (a : ℤ) * u * (s - r) := by\n    have hbv : (b : ℤ) * v = 1 - (a : ℤ) * u := by linarith\n    dsimp [x]\n    rw [hbv]\n    ring\n  have hx_s : x - s = (b : ℤ) * v * (r - s) := by\n    have hau : (a : ℤ) * u = 1 - (b : ℤ) * v := by linarith\n    dsimp [x]\n    rw [hau]\n    ring\n  have hx_a : (a : ℤ) ∣ x - r := by\n    refine ⟨u * (s - r), ?_⟩\n    rw [hx_r]\n    ring\n  have hx_b : (b : ℤ) ∣ x - s := by\n    refine ⟨v * (r - s), ?_⟩\n    rw [hx_s]\n    ring\n  refine ⟨x, hx_a, hx_b, ?_⟩\n  intro y hy_a hy_b\n  have ha_yx : (a : ℤ) ∣ y - x := by\n    have hsub : (y - r) - (x - r) = y - x := by ring\n    simpa [hsub] using dvd_sub hy_a hx_a\n  have hb_yx : (b : ℤ) ∣ y - x := by\n    have hsub : (y - s) - (x - s) = y - x := by ring\n    simpa [hsub] using dvd_sub hy_b hx_b\n  rcases ha_yx with ⟨k, hk⟩\n  have hb_ak : (b : ℤ) ∣ (a : ℤ) * k := by\n    simpa [hk] using hb_yx\n  have hk_decomp : k = ((a : ℤ) * k) * u + (b : ℤ) * (k * v) := by\n    calc\n      k = k * ((a : ℤ) * u + (b : ℤ) * v) := by\n        simp [huv]\n      _ = ((a : ℤ) * k) * u + (b : ℤ) * (k * v) := by ring\n  have hb_k : (b : ℤ) ∣ k := by\n    rw [hk_decomp]\n    have h1 : (b : ℤ) ∣ ((a : ℤ) * k) * u := by\n      rcases hb_ak with ⟨l, hl⟩\n      refine ⟨l * u, ?_⟩\n      rw [hl]\n      ring\n    have h2 : (b : ℤ) ∣ (b : ℤ) * (k * v) := ⟨k * v, rfl⟩\n    exact dvd_add h1 h2\n  rcases hb_k with ⟨t, hkt⟩\n  refine ⟨t, ?_⟩\n  rw [hk, hkt]\n  ring",
+  "sourceSteps": [
+    {
+      "start": 102,
+      "end": 147,
+      "sourceExcerpt": "由 gcd(a,b)=1，依 Bézout 恒等式，存在整数 u,v 使 au+bv=1。",
+      "leanWitness": "lines 3-9: have hg : Int.gcd (a : ℤ) (b : ℤ) = 1; let u : ℤ := Int.gcdA ...; let v : ℤ := Int.gcdB ...; have huv : (a : ℤ) * u + (b : ℤ) * v = 1 := ..."
+    },
+    {
+      "start": 147,
+      "end": 161,
+      "sourceExcerpt": "令 x=r·bv+s·au。",
+      "leanWitness": "line 10: let x : ℤ := r * ((b : ℤ) * v) + s * ((a : ℤ) * u)"
+    },
+    {
+      "start": 161,
+      "end": 186,
+      "sourceExcerpt": "因为 x−r=au(s−r)，故 a∣(x−r)；",
+      "leanWitness": "lines 11-24: have hx_r ...; have hx_a : (a : ℤ) ∣ x - r := ..."
+    },
+    {
+      "start": 186,
+      "end": 211,
+      "sourceExcerpt": "因为 x−s=bv(r−s)，故 b∣(x−s)，",
+      "leanWitness": "lines 16-28: have hx_s ...; have hx_b : (b : ℤ) ∣ x - s := ..."
+    },
+    {
+      "start": 211,
+      "end": 219,
+      "sourceExcerpt": "于是存在性成立。",
+      "leanWitness": "line 29: refine ⟨x, hx_a, hx_b, ?_⟩"
+    },
+    {
+      "start": 219,
+      "end": 247,
+      "sourceExcerpt": "接着任取整数 y，假定 a∣(y−r)、b∣(y−s)。",
+      "leanWitness": "line 30: intro y hy_a hy_b"
+    },
+    {
+      "start": 247,
+      "end": 277,
+      "sourceExcerpt": "由 a∣(y−r) 及 a∣(x−r)，得 a∣(y−x)；",
+      "leanWitness": "lines 31-33: have ha_yx : (a : ℤ) ∣ y - x := by ... dvd_sub hy_a hx_a"
+    },
+    {
+      "start": 277,
+      "end": 288,
+      "sourceExcerpt": "同理 b∣(y−x)。",
+      "leanWitness": "lines 34-36: have hb_yx : (b : ℤ) ∣ y - x := by ... dvd_sub hy_b hx_b"
+    },
+    {
+      "start": 288,
+      "end": 314,
+      "sourceExcerpt": "从 a∣(y−x)，可取整数 k 使 y−x=ak。",
+      "leanWitness": "line 37: rcases ha_yx with ⟨k, hk⟩"
+    },
+    {
+      "start": 314,
+      "end": 333,
+      "sourceExcerpt": "又因 b∣(y−x)，所以 b∣ak。",
+      "leanWitness": "lines 38-39: have hb_ak : (b : ℤ) ∣ (a : ℤ) * k := by simpa [hk] using hb_yx"
+    },
+    {
+      "start": 333,
+      "end": 372,
+      "sourceExcerpt": "将 Bézout 等式乘 k，得到 k=k(au+bv)=(ak)u+bkv。",
+      "leanWitness": "lines 40-44: have hk_decomp : k = ((a : ℤ) * k) * u + (b : ℤ) * (k * v) := by calc ... simp [huv] ... ring"
+    },
+    {
+      "start": 372,
+      "end": 392,
+      "sourceExcerpt": "右边两项都能被 b 整除，因此 b∣k。",
+      "leanWitness": "lines 45-53: have hb_k : (b : ℤ) ∣ k := by rw [hk_decomp]; have h1 ...; have h2 ...; exact dvd_add h1 h2"
+    },
+    {
+      "start": 392,
+      "end": 430,
+      "sourceExcerpt": "故存在整数 t 使 k=bt，于是 y−x=ab t，即 ab∣(y−x)。",
+      "leanWitness": "lines 54-57: rcases hb_k with ⟨t, hkt⟩; refine ⟨t, ?_⟩; rw [hk, hkt]; ring"
+    },
+    {
+      "start": 430,
+      "end": 468,
+      "sourceExcerpt": "因此所有满足两同余式的整数解都与 x 模 ab 同余，存在性与唯一性均得证。",
+      "leanWitness": "lines 29 and 54-57: refine ⟨x, hx_a, hx_b, ?_⟩ ... rcases hb_k with ⟨t, hkt⟩; refine ⟨t, ?_⟩; rw [hk, hkt]; ring"
+    }
+  ],
+  "unsupportedOriginalSteps": []
+}

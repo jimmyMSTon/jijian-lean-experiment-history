@@ -1,0 +1,280 @@
+by
+  intro A B hA hB S hSpos hpow hdiv hmult hshift
+  have source_step_0 : 1 ∈ S ∧
+      (∀ n : ℕ, n ∈ S →
+        ∃ n0 nA : ℕ,
+          n = n0 * nA ∧
+          Nat.Coprime n0 A ∧
+          Nat.Coprime n0 nA ∧
+          n0 ∣ n ∧
+          n0 ∈ S ∧
+          (∀ p : ℕ, Nat.Prime p → p ∣ nA → p ∣ A)) := by
+    constructor
+    · simpa using hpow 0
+    · intro n hn
+      have hnpos : 0 < n := hSpos n hn
+      have hQ : ∀ n : ℕ, 0 < n → ∃ n0 nA : ℕ,
+          n = n0 * nA ∧
+          Nat.Coprime n0 A ∧
+          Nat.Coprime n0 nA ∧
+          n0 ∣ n ∧
+          (∀ p : ℕ, Nat.Prime p → p ∣ nA → p ∣ A) := by
+        intro n
+        induction' n using Nat.strong_induction_on with n ih
+        intro hnpos
+        by_cases hAll : ∀ p : ℕ, Nat.Prime p → p ∣ n → p ∣ A
+        · refine ⟨1, n, ?_, ?_, ?_, ?_, hAll⟩
+          · simp
+          · simp
+          · simp
+          · exact one_dvd n
+        · push_neg at hAll
+          rcases hAll with ⟨p, hp, hpdvdn, hpnotdvdA⟩
+          have hpgt1 : 1 < p := hp.one_lt
+          have hm_lt_n : n / p < n := Nat.div_lt_self hnpos hpgt1
+          have hmpos : 0 < n / p := by
+            by_contra h
+            have h0 : n / p = 0 := Nat.eq_zero_of_not_pos h
+            have hp_eq : p * (n / p) = n := Nat.mul_div_cancel' hpdvdn
+            rw [h0, mul_zero] at hp_eq
+            omega
+          obtain ⟨n0m, nAm, hm_eq, hcop0A, hcop0m, hdivm, hsmoothm⟩ :=
+            ih (n / p) hm_lt_n hmpos
+          have hn_eq : n = p * (n / p) := (Nat.mul_div_cancel' hpdvdn).symm
+          have hcop_pA : Nat.Coprime p A := hp.coprime_iff_not_dvd.mpr hpnotdvdA
+          have hnotp_nAm : ¬ p ∣ nAm := by
+            intro hpnAm
+            exact hpnotdvdA (hsmoothm p hp hpnAm)
+          have hcop_p_nAm : Nat.Coprime p nAm := hp.coprime_iff_not_dvd.mpr hnotp_nAm
+          have hn_eq2 : n = (p * n0m) * nAm := by
+            calc
+              n = p * (n / p) := hn_eq
+              _ = p * (n0m * nAm) := by rw [hm_eq]
+              _ = (p * n0m) * nAm := by ring
+          refine ⟨p * n0m, nAm, hn_eq2, ?_, ?_, ?_, hsmoothm⟩
+          · exact Nat.Coprime.mul_left hcop_pA hcop0A
+          · exact Nat.Coprime.mul_left hcop_p_nAm hcop0m
+          · exact ⟨nAm, hn_eq2⟩
+      obtain ⟨n0, nA, hn_eq, hcop0A, hcop0nA, hdivn0, hsmooth⟩ := hQ n hnpos
+      have hn0pos : 0 < n0 := Nat.pos_of_dvd_of_pos hdivn0 hnpos
+      exact ⟨n0, nA, hn_eq, hcop0A, hcop0nA, hdivn0,
+        hdiv n hn n0 hdivn0 hn0pos, hsmooth⟩
+  have source_step_1 : ∀ n : ℕ, n ∈ S → ∀ k : ℕ, A ^ k * n ∈ S := by
+    intro n hn k
+    obtain ⟨n0, nA, hn_eq, hcop0A, hcop0nA, hdivn0, hn0s, hsmooth⟩ := source_step_0.2 n hn
+    have hnpos : 0 < n := hSpos n hn
+    have hn0pos : 0 < n0 := hSpos n0 hn0s
+    have hnApos : 0 < nA := by
+      by_contra h
+      have h0 : nA = 0 := Nat.eq_zero_of_not_pos h
+      have hzero : n = 0 := by
+        rw [hn_eq, h0, mul_zero]
+      omega
+    have hnA_dvd_pow : nA ∣ A ^ nA := by
+      induction' nA using Nat.strong_induction_on with nA ih
+      · exact one_dvd _
+      · by_cases h1 : nA = 1
+        · subst h1
+          exact one_dvd _
+        · have hnA2 : 1 < nA := by
+            rcases Nat.eq_zero_or_pos nA with h0 | hp
+            · exact absurd h0 (by omega)
+            · omega
+          obtain ⟨p, hp, hpdvd⟩ := Nat.exists_prime_and_dvd hnA2
+          obtain ⟨q, hq⟩ := hpdvd
+          have hqpos : 0 < q := by
+            rcases Nat.eq_zero_or_pos q with h0 | hq'
+            · rw [h0, mul_zero] at hq
+              omega
+            · exact hq'
+          have hq_lt : q < nA := by
+            rw [hq] at *
+            nlinarith [hp.two_le]
+          have hpq_cop : Nat.Coprime p q := by
+            refine hp.coprime_iff_not_dvd.mpr ?_
+            intro hpdq
+            have : p * p ∣ p * q := mul_dvd_mul_left p hpdq
+            rw [hq] at this
+            exact absurd (Nat.dvd_of_mul_dvd_mul_left (by omega : 0 < p) this) (by
+              intro hpp
+              have := Nat.Prime.not_dvd_one hp
+              exact this (by
+                have h := Nat.dvd_of_mul_dvd_mul_left (by omega : 0 < p) (show p * p ∣ p * p from dvd_refl _)
+                sorry)) 
+          sorry
+    have hAkna_dvd : A ^ k * nA ∣ A ^ (k + nA) := by
+      rcases hnA_dvd_pow with ⟨q, hq⟩
+      refine ⟨q, ?_⟩
+      calc
+        A ^ (k + nA) = A ^ k * A ^ nA := by rw [pow_add]
+        _ = A ^ k * (nA * q) := by rw [hq]
+        _ = (A ^ k * nA) * q := by ring
+    have hAkna_mem : A ^ k * nA ∈ S := by
+      exact hdiv (A ^ (k + nA)) (hpow (k + nA)) (A ^ k * nA)
+        hAkna_dvd (Nat.mul_pos (pow_pos hA k) hnApos)
+    have hcop0Ak : Nat.Coprime n0 (A ^ k) := hcop0A.pow_right k
+    have hcop_prod : Nat.Coprime n0 (A ^ k * nA) := Nat.Coprime.mul_right hcop0Ak hcop0nA
+    have hprod_mem : n0 * (A ^ k * nA) ∈ S :=
+      hmult n0 (A ^ k * nA) hn0s hAkna_mem hcop_prod
+    have hprod_eq : n0 * (A ^ k * nA) = A ^ k * n := by
+      rw [hn_eq]
+      ac_rfl
+    simpa [hprod_eq] using hprod_mem
+  have source_step_2 : ∀ n : ℕ, n ∈ S → ∀ k : ℕ, 1 ≤ k → A ^ k * n + B ∈ S := by
+    intro n hn k hk
+    have h1 : A ^ (k - 1) * n ∈ S := source_step_1 n hn (k - 1)
+    have h2 : A * (A ^ (k - 1) * n) + B ∈ S := hshift (A ^ (k - 1) * n) h1
+    convert h2 using 1
+    have hk' : k = (k - 1) + 1 := by omega
+    rw [hk', pow_succ]
+    ring
+  have source_step_3 :
+      ∀ n : ℕ, n ∈ S →
+        ∃ tA t0 : ℕ,
+          n + B = tA * t0 ∧
+          Nat.Coprime t0 A ∧
+          Nat.Coprime tA t0 ∧
+          (∃ M : ℕ, 0 < M ∧ tA ∣ A ^ M) ∧
+          tA ∈ S := by
+    intro n hn
+    have hnpos : 0 < n := hSpos n hn
+    have htpos : 0 < n + B := by omega
+    have hQ : ∀ t : ℕ, 0 < t → ∃ t0 tA : ℕ,
+        t = t0 * tA ∧
+        Nat.Coprime t0 A ∧
+        Nat.Coprime t0 tA ∧
+        t0 ∣ t ∧
+        (∀ p : ℕ, Nat.Prime p → p ∣ tA → p ∣ A) := by
+      intro t
+      induction' t using Nat.strong_induction_on with t ih
+      intro htpos
+      by_cases hAll : ∀ p : ℕ, Nat.Prime p → p ∣ t → p ∣ A
+      · refine ⟨1, t, ?_, ?_, ?_, ?_, hAll⟩
+        · simp
+        · simp
+        · simp
+        · exact one_dvd t
+      · push_neg at hAll
+        rcases hAll with ⟨p, hp, hpdvdt, hpnotdvdA⟩
+        have hpgt1 : 1 < p := hp.one_lt
+        have hm_lt_t : t / p < t := Nat.div_lt_self htpos hpgt1
+        have hmpos : 0 < t / p := by
+          by_contra h
+          have h0 : t / p = 0 := Nat.eq_zero_of_not_pos h
+          have hp_eq : p * (t / p) = t := Nat.mul_div_cancel' hpdvdt
+          rw [h0, mul_zero] at hp_eq
+          omega
+        obtain ⟨t0m, tAm, hm_eq, hcop0A, hcop0m, hdivm, hsmoothm⟩ :=
+          ih (t / p) hm_lt_t hmpos
+        have ht_eq : t = p * (t / p) := (Nat.mul_div_cancel' hpdvdt).symm
+        have hcop_pA : Nat.Coprime p A := hp.coprime_iff_not_dvd.mpr hpnotdvdA
+        have hnotp_tAm : ¬ p ∣ tAm := by
+          intro hptAm
+          exact hpnotdvdA (hsmoothm p hp hptAm)
+        have hcop_p_tAm : Nat.Coprime p tAm := hp.coprime_iff_not_dvd.mpr hnotp_tAm
+        have ht_eq2 : t = (p * t0m) * tAm := by
+          calc
+            t = p * (t / p) := ht_eq
+            _ = p * (t0m * tAm) := by rw [hm_eq]
+            _ = (p * t0m) * tAm := by ring
+        refine ⟨p * t0m, tAm, ht_eq2, ?_, ?_, ?_, hsmoothm⟩
+        · exact Nat.Coprime.mul_left hcop_pA hcop0A
+        · exact Nat.Coprime.mul_left hcop_p_tAm hcop0m
+        · exact ⟨tAm, ht_eq2⟩
+    obtain ⟨t0, tA, ht_eq, hcop_t0A, hcop_t0tA, ht0_div, hsmooth⟩ := hQ (n + B) htpos
+    have htApos : 0 < tA := by
+      by_contra h
+      have h0 : tA = 0 := Nat.eq_zero_of_not_pos h
+      have htmp := ht_eq
+      rw [h0, mul_zero] at htmp
+      omega
+    have htA_dvd : tA ∣ A ^ tA := by
+      exact Nat.dvd_of_forall_prime_dvd (fun p hp hpd => hsmooth p hp hpd)
+    have htA_mem : tA ∈ S := by
+      exact hdiv (A ^ tA) (hpow tA) tA htA_dvd htApos
+    refine ⟨tA, t0, ?_, hcop_t0A, hcop_t0tA.symm, ⟨tA, htApos, htA_dvd⟩, htA_mem⟩
+    calc
+      n + B = t0 * tA := ht_eq
+      _ = tA * t0 := by ring
+  have source_step_4 : ∀ n : ℕ, n ∈ S → n + B ∈ S := by
+    intro n hn
+    obtain ⟨tA, t0, ht_eq, hcop_t0A, hcop_tAt0, ⟨M, hMpos, hMdiv⟩, htA_mem⟩ := source_step_3 n hn
+    have hnpos : 0 < n := hSpos n hn
+    have ht0pos : 0 < t0 := by
+      by_contra h
+      have h0 : t0 = 0 := Nat.eq_zero_of_not_pos h
+      have : n + B = 0 := by
+        simpa [h0] using ht_eq
+      omega
+    by_cases ht0_one : t0 = 1
+    · have ht0_mem : t0 ∈ S := by
+        rw [ht0_one]
+        exact source_step_0.1
+      have hprod_mem : tA * t0 ∈ S := hmult tA t0 htA_mem ht0_mem hcop_tAt0
+      simpa [ht_eq] using hprod_mem
+    · have ht0_gt1 : 1 < t0 := by omega
+      obtain ⟨k, hkpos, hkmod⟩ := Nat.exists_pow_modEq_one hcop_t0A.symm
+      have hk1 : 1 ≤ k := by omega
+      have hshift_mem : A ^ k * n + B ∈ S := source_step_2 n hn k hk1
+      have hcong1 : A ^ k * n ≡ n [MOD t0] := by
+        simpa using hkmod.mul_right n
+      have hcong2 : A ^ k * n + B ≡ n + B [MOD t0] := by
+        simpa using hcong1.add_right B
+      have htvdvd : t0 ∣ n + B := by
+        refine ⟨tA, ?_⟩
+        rw [ht_eq, mul_comm]
+      have hcong0 : n + B ≡ 0 [MOD t0] := Nat.modEq_zero_iff_dvd.mpr htvdvd
+      have hfinal : A ^ k * n + B ≡ 0 [MOD t0] := hcong2.trans hcong0
+      have hdivt0 : t0 ∣ A ^ k * n + B := Nat.modEq_zero_iff_dvd.mp hfinal
+      have ht0_mem : t0 ∈ S := hdiv (A ^ k * n + B) hshift_mem t0 hdivt0 ht0pos
+      have hprod_mem : tA * t0 ∈ S := hmult tA t0 htA_mem ht0_mem hcop_tAt0
+      simpa [ht_eq] using hprod_mem
+  have source_step_5 : ∀ j : ℕ, 1 + j * B ∈ S := by
+    intro j
+    induction j with
+    | zero =>
+        simpa using source_step_0.left
+    | succ j ih =>
+        have h := source_step_4 (1 + j * B) ih
+        convert h using 1
+        ring
+  have source_step_6 :
+      ∀ n : ℕ, 0 < n → Nat.Coprime n B →
+        ∃ x j : ℕ,
+          1 ≤ x ∧
+          n * x = 1 + j * B ∧
+          (1 + j * B ∈ S) ∧
+          n ∈ S := by
+    intro n hn hcop
+    by_cases hB1 : B = 1
+    · subst B
+      have hmem : 1 + (n - 1) * 1 ∈ S := source_step_5 (n - 1)
+      refine ⟨1, n - 1, ?_, ?_, ?_, ?_⟩
+      · omega
+      · omega
+      · exact hmem
+      · convert hmem using 1
+        omega
+    · have hBgt : 1 < B := by omega
+      obtain ⟨x, hx⟩ := Nat.exists_mul_emod_eq_one hcop hBgt
+      have hxpos : 1 ≤ x := by
+        by_contra hxlt
+        have hx0 : x = 0 := by omega
+        rw [hx0, Nat.mul_zero, Nat.zero_mod] at hx
+        omega
+      have hmul : n * x = 1 + (n * x / B) * B := by
+        have hdivmod : n * x / B * B + n * x % B = n * x := Nat.div_add_mod (n * x) B
+        rw [hx, Nat.add_comm] at hdivmod
+        exact hdivmod.symm
+      have hmem : 1 + (n * x / B) * B ∈ S := source_step_5 (n * x / B)
+      refine ⟨x, n * x / B, hxpos, ?_, ?_, ?_⟩
+      · exact hmul
+      · exact hmem
+      · have hnxS : n * x ∈ S := by
+          rw [hmul]
+          exact hmem
+        exact hdiv (n * x) hnxS n (dvd_mul_right n x) hn
+  have source_step_7 : ∀ n : ℕ, 0 < n → Nat.Coprime n B → n ∈ S := by
+    intro n hn hcop
+    exact source_step_6 n hn hcop
+  exact source_step_7

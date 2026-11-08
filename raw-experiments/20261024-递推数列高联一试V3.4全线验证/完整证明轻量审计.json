@@ -1,0 +1,657 @@
+{
+  "status": "whole_formal_kernel_verified_source_unconfirmed",
+  "statement": "∀ (a : ℕ → ℝ), a 1 = 1 → (∀ n : ℕ, 1 ≤ n → a (n + 1) = (3 * (a n) + 2) / ((a n) + 2)) → ∀ n : ℕ, 1 ≤ n → a n = (2 * ((4 : ℝ) ^ n - 1)) / (((4 : ℝ) ^ n) + 2)",
+  "proofTerm": "by\n  intro a ha1 hrec n hn\n  have source_step_0 : 0 < a 1 ∧ a 1 < 2 := by\n    all_goals rw [ha1]\n    all_goals norm_num\n  have source_step_1 : ∀ n : ℕ, 1 ≤ n → 0 < a n ∧ a n < 2 → 0 < a (n + 1) := by\n    intro m hm hb\n    have hden : 0 < a m + 2 := by linarith [hb.1]\n    have hnum : 0 < 3 * a m + 2 := by linarith [hb.1]\n    all_goals rw [hrec m hm]\n    exact div_pos hnum hden\n  have source_step_2 : ∀ m : ℕ, 1 ≤ m → 0 < a m ∧ a m < 2 →\n      (2 - a (m + 1) = (2 - a m) / (a m + 2)) ∧ 0 < 2 - a (m + 1) := by\n    intro m hm hb\n    have hden : 0 < a m + 2 := by linarith [hb.1]\n    have hneq : a m + 2 ≠ 0 := ne_of_gt hden\n    have heq : 2 - a (m + 1) = (2 - a m) / (a m + 2) := by\n      all_goals rw [hrec m hm]\n      field_simp [hneq]\n      all_goals ring\n    have hpos : 0 < 2 - a (m + 1) := by\n      all_goals rw [heq]\n      exact div_pos (by linarith [hb.2]) hden\n    exact ⟨heq, hpos⟩\n  have source_step_3 : ∀ m : ℕ, 1 ≤ m → 0 < a m ∧ a m < 2 := by\n    have hbound : ∀ k : ℕ, 0 < a (k + 1) ∧ a (k + 1) < 2 := by\n      intro k\n      induction k with\n      | zero =>\n          simpa using source_step_0\n      | succ k ih =>\n          have hm : 1 ≤ k + 1 := by omega\n          have hpos : 0 < a ((k + 1) + 1) := source_step_1 (k + 1) hm ih\n          have hlt : 0 < 2 - a ((k + 1) + 1) := (source_step_2 (k + 1) hm ih).2\n          have hpos2 : 0 < a (Nat.succ k + 1) := by\n            simpa [Nat.succ_eq_add_one, Nat.add_assoc] using hpos\n          have hlt2 : a (Nat.succ k + 1) < 2 := by\n            have hlt' : a ((k + 1) + 1) < 2 := by linarith\n            simpa [Nat.succ_eq_add_one, Nat.add_assoc] using hlt'\n          exact ⟨hpos2, hlt2⟩\n    intro m hm\n    cases m with\n    | zero => omega\n    | succ k =>\n        simpa [Nat.succ_eq_add_one] using hbound k\n  let b : ℕ → ℝ := fun m => (2 - a m) / (a m + 1)\n  have source_step_4 : ∀ m : ℕ, 1 ≤ m → b m = (2 - a m) / (a m + 1) := by\n    intro m hm\n    rfl\n  have source_step_5 : ∀ m : ℕ, 1 ≤ m → 0 < a m + 1 := by\n    intro m hm\n    have hp : 0 < a m := (source_step_3 m hm).1\n    all_goals linarith\n  have source_step_6 : ∀ m : ℕ, 1 ≤ m → 2 - a (m + 1) = (2 - a m) / (a m + 2) := by\n    intro m hm\n    exact (source_step_2 m hm (source_step_3 m hm)).1\n  have source_step_7 : ∀ m : ℕ, 1 ≤ m → a (m + 1) + 1 = 4 * (a m + 1) / (a m + 2) := by\n    intro m hm\n    have hden : a m + 2 ≠ 0 := by\n      have hp : 0 < a m := (source_step_3 m hm).1\n      all_goals linarith\n    all_goals rw [hrec m hm]\n    field_simp [hden]\n    all_goals ring\n  have source_step_8 : ∀ m : ℕ, 1 ≤ m → b (m + 1) = b m / 4 := by\n    intro m hm\n    have hbnd := source_step_3 m hm\n    have hden1 : a m + 1 ≠ 0 := by linarith [hbnd.1]\n    have hden2 : a m + 2 ≠ 0 := by linarith [hbnd.1]\n    have h6 := source_step_6 m hm\n    have h7 := source_step_7 m hm\n    change (2 - a (m + 1)) / (a (m + 1) + 1) = ((2 - a m) / (a m + 1)) / 4\n    all_goals rw [h6, h7]\n    field_simp [hden1, hden2]\n    all_goals ring\n  have source_step_9 : b 1 = (1 : ℝ) / 2 := by\n    dsimp [b]\n    all_goals rw [ha1]\n    all_goals norm_num\n  have hb_formula : ∀ k : ℕ, b (k + 1) = 2 / (4 : ℝ) ^ (k + 1) := by\n    intro k\n    induction k with\n    | zero =>\n        all_goals rw [show 0 + 1 = 1 by norm_num]\n        all_goals rw [source_step_9]\n        all_goals norm_num\n    | succ k ih =>\n        have hm : 1 ≤ k + 1 := by omega\n        have h8 := source_step_8 (k + 1) hm\n        have h8' : b (Nat.succ k + 1) = b (k + 1) / 4 := by\n          simpa [Nat.succ_eq_add_one, Nat.add_assoc] using h8\n        all_goals rw [h8', ih]\n        have hexp : Nat.succ k + 1 = (k + 1) + 1 := by omega\n        have hpow_succ : (4 : ℝ) ^ ((k + 1) + 1) = (4 : ℝ) ^ (k + 1) * 4 := by\n          all_goals rw [pow_succ]\n        all_goals rw [hexp, hpow_succ]\n        have hpow : (4 : ℝ) ^ (k + 1) ≠ 0 := by positivity\n        field_simp [hpow]\n        all_goals ring\n  have source_step_10 : ∀ m : ℕ, 1 ≤ m → b m = 2 / (4 : ℝ) ^ m := by\n    intro m hm\n    cases m with\n    | zero => omega\n    | succ k =>\n        simpa [Nat.succ_eq_add_one] using hb_formula k\n  have source_step_11 : ∀ m : ℕ, 1 ≤ m → (2 - a m) / (a m + 1) = 2 / (4 : ℝ) ^ m := by\n    intro m hm\n    have hb := source_step_10 m hm\n    simpa [b] using hb\n  have source_step_12 : ∀ m : ℕ, 1 ≤ m → (4 : ℝ) ^ m * (2 - a m) = 2 * (a m + 1) := by\n    intro m hm\n    have h := source_step_11 m hm\n    have hden1 : a m + 1 ≠ 0 := by\n      have hp := (source_step_3 m hm).1\n      all_goals linarith\n    have hpow : (4 : ℝ) ^ m ≠ 0 := by positivity\n    calc\n      (4 : ℝ) ^ m * (2 - a m)\n          = ((2 - a m) / (a m + 1)) * ((a m + 1) * (4 : ℝ) ^ m) := by\n              field_simp [hden1]\n              all_goals ring\n      _ = (2 / (4 : ℝ) ^ m) * ((a m + 1) * (4 : ℝ) ^ m) := by rw [h]\n      _ = 2 * (a m + 1) := by\n              field_simp [hpow]\n              all_goals ring\n  have source_step_13 : ∀ m : ℕ, 1 ≤ m → ((4 : ℝ) ^ m + 2) * a m = 2 * ((4 : ℝ) ^ m - 1) := by\n    intro m hm\n    have h := source_step_12 m hm\n    all_goals nlinarith\n  have source_step_14 : ∀ m : ℕ, 1 ≤ m → a m = (2 * ((4 : ℝ) ^ m - 1)) / (((4 : ℝ) ^ m) + 2) := by\n    intro m hm\n    have h13 := source_step_13 m hm\n    have hden : ((4 : ℝ) ^ m + 2) ≠ 0 := by positivity\n    all_goals rw [eq_div_iff hden]\n    calc\n      a m * ((4 : ℝ) ^ m + 2) = ((4 : ℝ) ^ m + 2) * a m := by ring\n      _ = 2 * ((4 : ℝ) ^ m - 1) := h13\n  have source_step_15 : a 1 = (2 * ((4 : ℝ) ^ 1 - 1)) / (((4 : ℝ) ^ 1) + 2) ∧ a 1 = 1 := by\n    constructor\n    · exact source_step_14 1 (by norm_num)\n    · exact ha1\n  exact source_step_14 n hn",
+  "sourceSha256": "a9f7d0081655e0f8a4b8bd2934ed52f4984192a6467aa19f1b312f406a15f5fd",
+  "plannedStepCount": 16,
+  "sourcePositionsValid": 1,
+  "kernelVerified": 1,
+  "originalProofCertified": 0,
+  "sourceEquivalenceCertified": 0,
+  "leanStatus": "verified",
+  "kernelCertificate": {
+    "auditMethod": "fresh_environment_data_only_kernel_replay",
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "checked": true,
+    "dependencyUsage": [],
+    "formalStatement": "∀ (a : ℕ → ℝ),\n  a 1 = 1 →\n    (∀ (n : ℕ), 1 ≤ n → a (n + 1) = (3 * a n + 2) / (a n + 2)) → ∀ (n : ℕ), 1 ≤ n → a n = 2 * (4 ^ n - 1) / (4 ^ n + 2)",
+    "statementMatched": true,
+    "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+    "expectedExpressionSha256": "7f04cee6a12ce344b0e01c60b56594788f0bacc80a51c50e2b01453c136af641",
+    "proofExpressionSha256": "f67d26cf35e7db1fb72e39980a2fea122f025c7026171608ce88f1d3d197879f",
+    "statement_hash": "a9f7d0081655e0f8a4b8bd2934ed52f4984192a6467aa19f1b312f406a15f5fd",
+    "nativeExpressionComparison": "structural_equal",
+    "sourceTypeSha256": "108c89d95210b784ef23b17cbfac9f02471f7593c9858c01fb5d46f1f55aa266",
+    "sourceProofSha256": "8e205b2dd3324305db03c0dfd3066199d194f5980e49dc4a0ca03901c734bd22",
+    "runtime": {
+      "configured": true,
+      "executableFound": true,
+      "projectFound": true,
+      "runtimeBuilt": true,
+      "runtimeIntegrity": true,
+      "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+      "sandbox": "macos",
+      "isolated": true,
+      "ready": true,
+      "toolchain": "leanprover/lean4:v4.34.0",
+      "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+      "liveTestedInThisDistribution": false
+    },
+    "additionalAxioms": [],
+    "auditIsolation": "fresh_import_environment_reset_between_candidates"
+  },
+  "technicalGuardStatus": "verified_technical_lean_proof",
+  "technicalGuardChangeCount": 26,
+  "sourceFidelityReview": {
+    "assessment": "no_specific_mismatch_identified_by_model",
+    "sourceEquivalenceCertified": false,
+    "originalProofCertified": false,
+    "modelReviewOnly": true,
+    "reviewedStepCount": 16,
+    "sourceStepCount": 16,
+    "issues": [],
+    "auxiliaryAssertions": [
+      "have hden : 0 < a m + 2 := by linarith [hb.1]",
+      "have hnum : 0 < 3 * a m + 2 := by linarith [hb.1]",
+      "have hden : 0 < a m + 2 := by linarith [hb.1]",
+      "have hneq : a m + 2 ≠ 0 := ne_of_gt hden",
+      "have heq : 2 - a (m + 1) = (2 - a m) / (a m + 2) := by",
+      "have hpos : 0 < 2 - a (m + 1) := by",
+      "have hbound : ∀ k : ℕ, 0 < a (k + 1) ∧ a (k + 1) < 2 := by",
+      "have hm : 1 ≤ k + 1 := by omega",
+      "have hpos : 0 < a ((k + 1) + 1) := source_step_1 (k + 1) hm ih",
+      "have hlt : 0 < 2 - a ((k + 1) + 1) := (source_step_2 (k + 1) hm ih).2",
+      "have hpos2 : 0 < a (Nat.succ k + 1) := by",
+      "have hlt2 : a (Nat.succ k + 1) < 2 := by",
+      "have hp : 0 < a m := (source_step_3 m hm).1",
+      "have hden : a m + 2 ≠ 0 := by",
+      "have hp : 0 < a m := (source_step_3 m hm).1",
+      "have hbnd := source_step_3 m hm",
+      "have hden1 : a m + 1 ≠ 0 := by linarith [hbnd.1]",
+      "have hden2 : a m + 2 ≠ 0 := by linarith [hbnd.1]",
+      "have h6 := source_step_6 m hm",
+      "have h7 := source_step_7 m hm",
+      "have hb_formula : ∀ k : ℕ, b (k + 1) = 2 / (4 : ℝ) ^ (k + 1) := by",
+      "have hm : 1 ≤ k + 1 := by omega",
+      "have h8 := source_step_8 (k + 1) hm",
+      "have hexp : Nat.succ k + 1 = (k + 1) + 1 := by omega",
+      "have hpow_succ : (4 : ℝ) ^ ((k + 1) + 1) = (4 : ℝ) ^ (k + 1) * 4 := by",
+      "have hpow : (4 : ℝ) ^ (k + 1) ≠ 0 := by positivity",
+      "have hb := source_step_10 m hm",
+      "have h := source_step_11 m hm",
+      "have hden1 : a m + 1 ≠ 0 := by",
+      "have hp := (source_step_3 m hm).1",
+      "have hpow : (4 : ℝ) ^ m ≠ 0 := by positivity",
+      "have h := source_step_12 m hm",
+      "have h13 := source_step_13 m hm",
+      "have hden : ((4 : ℝ) ^ m + 2) ≠ 0 := by positivity"
+    ],
+    "modelProvenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "3980036f-58ee-4184-8829-7cc41f17009c",
+      "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+      "usage": {
+        "prompt_tokens": 5603,
+        "completion_tokens": 13910,
+        "total_tokens": 19513,
+        "prompt_tokens_details": {
+          "cached_tokens": 640
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 11465
+        },
+        "prompt_cache_hit_tokens": 640,
+        "prompt_cache_miss_tokens": 4963
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "steps": [
+      {
+        "index": 0,
+        "originalExcerpt": "当 n=1 时 a_1=1，显然 0<a_1<2。",
+        "leanEvidenceExcerpt": "have source_step_0 : 0 < a 1 ∧ a 1 < 2 := by",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 用 ha1 改写后用数值化简证明 a_1=1 且 0<a_1<2，对应原文初始情形。"
+      },
+      {
+        "index": 1,
+        "originalExcerpt": "假设 0<a_n<2，则 a_n+2>0 且 3a_n+2>0，所以 a_{n+1}=(3a_n+2)/(a_n+2)>0。",
+        "leanEvidenceExcerpt": "have source_step_1 : ∀ n : ℕ, 1 ≤ n → 0 < a n ∧ a n < 2 → 0 < a (n + 1) := by",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 从 0<a_m 推出分母 a_m+2 与分子 3a_m+2 为正，并用 div_pos 得到 a_{m+1}>0，对应原文推理。"
+      },
+      {
+        "index": 2,
+        "originalExcerpt": "2-a_{n+1}\n=2-(3a_n+2)/(a_n+2)\n=(2-a_n)/(a_n+2)>0，",
+        "leanEvidenceExcerpt": "have source_step_2 : ∀ m : ℕ, 1 ≤ m → 0 < a m ∧ a m < 2 →\n      (2 - a (m + 1) = (2 - a m) / (a m + 2)) ∧ 0 < 2 - a (m + 1) := by",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 同时证明恒等式与正性；正性来自 2-a_m>0 和 a_m+2>0，分母正性在代码中显式建立。"
+      },
+      {
+        "index": 3,
+        "originalExcerpt": "故 a_{n+1}<2。由数学归纳法，对所有 n≥1 都有 0<a_n<2。",
+        "leanEvidenceExcerpt": "have source_step_3 : ∀ m : ℕ, 1 ≤ m → 0 < a m ∧ a m < 2 := by\n    have hbound : ∀ k : ℕ, 0 < a (k + 1) ∧ a (k + 1) < 2 := by\n      intro k\n      induction k with",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 以 a_1 为基始，用上一段的 a_{n+1}>0 与 0<2-a_{n+1} 推出 a_{n+1}<2，并做归纳；索引移位不影响原意。"
+      },
+      {
+        "index": 4,
+        "originalExcerpt": "第二步：找到分式递推的两个不动点 2 和 -1，并据此设\nb_n=(2-a_n)/(a_n+1)。",
+        "leanEvidenceExcerpt": "let b : ℕ → ℝ := fun m => (2 - a m) / (a m + 1)\n  have source_step_4 : ∀ m : ℕ, 1 ≤ m → b m = (2 - a m) / (a m + 1) := by",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 直接定义了与原文一致的 b_n=(2-a_n)/(a_n+1)。原文“2 和 -1 是不动点”是构造动机，Lean 未单独验证该句，但后续 b_n 的递推是实际使用并已形式化。"
+      },
+      {
+        "index": 5,
+        "originalExcerpt": "因为 a_n>0，所以 a_n+1>0，此定义对所有 n≥1 有意义。",
+        "leanEvidenceExcerpt": "have source_step_5 : ∀ m : ℕ, 1 ≤ m → 0 < a m + 1 := by",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 由 source_step_3 得到 a_m>0，再用线性算术推出 a_m+1>0，对应原文分母非零/正性的说明。"
+      },
+      {
+        "index": 6,
+        "originalExcerpt": "2-a_{n+1}\n=(2-a_n)/(a_n+2)，",
+        "leanEvidenceExcerpt": "have source_step_6 : ∀ m : ℕ, 1 ≤ m → 2 - a (m + 1) = (2 - a m) / (a m + 2) := by",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 取 source_step_2 中的恒等式部分，正是原文该恒等变形。"
+      },
+      {
+        "index": 7,
+        "originalExcerpt": "a_{n+1}+1\n=(3a_n+2)/(a_n+2)+1\n=4(a_n+1)/(a_n+2)。",
+        "leanEvidenceExcerpt": "have source_step_7 : ∀ m : ℕ, 1 ≤ m → a (m + 1) + 1 = 4 * (a m + 1) / (a m + 2) := by",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 代入递推式并用 field_simp/ring 做代数化简，得到与原文相同的表达式。"
+      },
+      {
+        "index": 8,
+        "originalExcerpt": "因为 a_n+2>0 且 a_n+1>0，故\nb_{n+1}\n=(2-a_{n+1})/(a_{n+1}+1)\n=(2-a_n)/(4(a_n+1))\n=b_n/4。",
+        "leanEvidenceExcerpt": "have source_step_8 : ∀ m : ℕ, 1 ≤ m → b (m + 1) = b m / 4 := by",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 用 source_step_6 与 source_step_7 代入 b 的定义，并在分母非零条件下用 field_simp/ring 证明 b_{n+1}=b_n/4，对应原文整体推理。"
+      },
+      {
+        "index": 9,
+        "originalExcerpt": "第四步：计算 b_1=(2-1)/(1+1)=1/2。",
+        "leanEvidenceExcerpt": "have source_step_9 : b 1 = (1 : ℝ) / 2 := by",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 展开 b 的定义、代入 a_1=1 并数值化简，得到 b_1=1/2。"
+      },
+      {
+        "index": 10,
+        "originalExcerpt": "由 b_{n+1}=b_n/4 及数学归纳法，\nb_n=(1/2)(1/4)^{n-1}=2/4^n，\n其中 n 为任意正整数。",
+        "leanEvidenceExcerpt": "have hb_formula : ∀ k : ℕ, b (k + 1) = 2 / (4 : ℝ) ^ (k + 1) := by\n    intro k\n    induction k with",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 以 k+1 表示正整数索引，用 b_1=1/2 和 b_{n+1}=b_n/4 归纳证明 b_{k+1}=2/4^{k+1}，与原文的 b_n=2/4^n 等价。"
+      },
+      {
+        "index": 11,
+        "originalExcerpt": "第五步：将 b_n 的表达式代回定义，得到\n(2-a_n)/(a_n+1)=2/4^n。",
+        "leanEvidenceExcerpt": "have source_step_11 : ∀ m : ℕ, 1 ≤ m → (2 - a m) / (a m + 1) = 2 / (4 : ℝ) ^ m := by",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 用 simpa [b] 将 b_m 的定义与已证公式合流，得到原文回代式。"
+      },
+      {
+        "index": 12,
+        "originalExcerpt": "因 4^n>0 且 a_n+1>0，两边交叉相乘：\n4^n(2-a_n)=2(a_n+1)，",
+        "leanEvidenceExcerpt": "have source_step_12 : ∀ m : ℕ, 1 ≤ m → (4 : ℝ) ^ m * (2 - a m) = 2 * (a m + 1) := by",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 显式建立 a_m+1≠0 与 4^m≠0，然后交叉相乘得到同式；这里使用 field_simp 属于技术性代数处理。"
+      },
+      {
+        "index": 13,
+        "originalExcerpt": "整理即 (4^n+2)a_n=2(4^n-1)。",
+        "leanEvidenceExcerpt": "have source_step_13 : ∀ m : ℕ, 1 ≤ m → ((4 : ℝ) ^ m + 2) * a m = 2 * ((4 : ℝ) ^ m - 1) := by",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 对上一交叉相乘式用 nlinarith 做线性重排，得到与原文相同的整理式。"
+      },
+      {
+        "index": 14,
+        "originalExcerpt": "又因为 4^n+2>0，所以\na_n=2(4^n-1)/(4^n+2)，对所有正整数 n 成立。",
+        "leanEvidenceExcerpt": "have source_step_14 : ∀ m : ℕ, 1 ≤ m → a m = (2 * ((4 : ℝ) ^ m - 1)) / (((4 : ℝ) ^ m) + 2) := by",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 先证 4^m+2≠0，再用 eq_div_iff 从 (4^m+2)a_m=2(4^m-1) 解出 a_m 的公式，对应原文除法步骤。"
+      },
+      {
+        "index": 15,
+        "originalExcerpt": "检验 n=1 得 a_1=2(4-1)/(4+2)=1，和题设一致。证毕。",
+        "leanEvidenceExcerpt": "have source_step_15 : a 1 = (2 * ((4 : ℝ) ^ 1 - 1)) / (((4 : ℝ) ^ 1) + 2) ∧ a 1 = 1 := by",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 验证 a_1 的公式值并与 ha1 结合，对应原文最后 n=1 检验。"
+      }
+    ],
+    "modelSummary": "逐项比对后，Lean 证明中的 source_step_0 到 source_step_15 与原文各步在数学内容上对应；field_simp、ring、linarith、nlinarith、positivity、omega 等仅用于基础代数、不等式与索引自动化，未发现用额外关键定理替代作者推理。原文步 2 的“不动点”构造说明没有被单独形式化，但 b 的定义及后续 b_n 递推均已形式化，且该句不承担后续推理。整体未识别出具体的不忠实疑点，但这只是基于所给代码与原文的审计，不等同于独立完全认证。"
+  },
+  "sourceOffsetRepairs": [
+    {
+      "step": 0,
+      "reportedStart": 171,
+      "reportedEnd": 196,
+      "exactStart": 172,
+      "exactEnd": 197,
+      "method": "unique_verbatim_substring"
+    },
+    {
+      "step": 1,
+      "reportedStart": 197,
+      "reportedEnd": 259,
+      "exactStart": 198,
+      "exactEnd": 260,
+      "method": "unique_verbatim_substring"
+    },
+    {
+      "step": 2,
+      "reportedStart": 266,
+      "reportedEnd": 315,
+      "exactStart": 267,
+      "exactEnd": 316,
+      "method": "unique_verbatim_substring"
+    },
+    {
+      "step": 3,
+      "reportedStart": 316,
+      "reportedEnd": 354,
+      "exactStart": 317,
+      "exactEnd": 355,
+      "method": "unique_verbatim_substring"
+    },
+    {
+      "step": 4,
+      "reportedStart": 356,
+      "reportedEnd": 405,
+      "exactStart": 357,
+      "exactEnd": 406,
+      "method": "unique_verbatim_substring"
+    },
+    {
+      "step": 5,
+      "reportedStart": 406,
+      "reportedEnd": 441,
+      "exactStart": 407,
+      "exactEnd": 442,
+      "method": "unique_verbatim_substring"
+    },
+    {
+      "step": 6,
+      "reportedStart": 459,
+      "reportedEnd": 486,
+      "exactStart": 460,
+      "exactEnd": 487,
+      "method": "unique_verbatim_substring"
+    },
+    {
+      "step": 7,
+      "reportedStart": 487,
+      "reportedEnd": 535,
+      "exactStart": 488,
+      "exactEnd": 536,
+      "method": "unique_verbatim_substring"
+    },
+    {
+      "step": 8,
+      "reportedStart": 536,
+      "reportedEnd": 619,
+      "exactStart": 537,
+      "exactEnd": 620,
+      "method": "unique_verbatim_substring"
+    },
+    {
+      "step": 9,
+      "reportedStart": 621,
+      "reportedEnd": 648,
+      "exactStart": 622,
+      "exactEnd": 649,
+      "method": "unique_verbatim_substring"
+    },
+    {
+      "step": 10,
+      "reportedStart": 649,
+      "reportedEnd": 713,
+      "exactStart": 650,
+      "exactEnd": 714,
+      "method": "unique_verbatim_substring"
+    },
+    {
+      "step": 11,
+      "reportedStart": 715,
+      "reportedEnd": 759,
+      "exactStart": 716,
+      "exactEnd": 760,
+      "method": "unique_verbatim_substring"
+    },
+    {
+      "step": 12,
+      "reportedStart": 760,
+      "reportedEnd": 806,
+      "exactStart": 761,
+      "exactEnd": 807,
+      "method": "unique_verbatim_substring"
+    },
+    {
+      "step": 13,
+      "reportedStart": 807,
+      "reportedEnd": 831,
+      "exactStart": 808,
+      "exactEnd": 832,
+      "method": "unique_verbatim_substring"
+    },
+    {
+      "step": 14,
+      "reportedStart": 832,
+      "reportedEnd": 880,
+      "exactStart": 833,
+      "exactEnd": 881,
+      "method": "unique_verbatim_substring"
+    },
+    {
+      "step": 15,
+      "reportedStart": 881,
+      "reportedEnd": 918,
+      "exactStart": 882,
+      "exactEnd": 919,
+      "method": "unique_verbatim_substring"
+    }
+  ],
+  "sourceSteps": [
+    {
+      "id": "source-0",
+      "index": 0,
+      "role": "inference",
+      "start": 172,
+      "end": 197,
+      "sourceExcerpt": "当 n=1 时 a_1=1，显然 0<a_1<2。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_0",
+      "dependsOn": []
+    },
+    {
+      "id": "source-1",
+      "index": 1,
+      "role": "inference",
+      "start": 198,
+      "end": 260,
+      "sourceExcerpt": "假设 0<a_n<2，则 a_n+2>0 且 3a_n+2>0，所以 a_{n+1}=(3a_n+2)/(a_n+2)>0。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_1",
+      "dependsOn": []
+    },
+    {
+      "id": "source-2",
+      "index": 2,
+      "role": "inference",
+      "start": 267,
+      "end": 316,
+      "sourceExcerpt": "2-a_{n+1}\n=2-(3a_n+2)/(a_n+2)\n=(2-a_n)/(a_n+2)>0，",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_2",
+      "dependsOn": []
+    },
+    {
+      "id": "source-3",
+      "index": 3,
+      "role": "inference",
+      "start": 317,
+      "end": 355,
+      "sourceExcerpt": "故 a_{n+1}<2。由数学归纳法，对所有 n≥1 都有 0<a_n<2。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_3",
+      "dependsOn": []
+    },
+    {
+      "id": "source-4",
+      "index": 4,
+      "role": "inference",
+      "start": 357,
+      "end": 406,
+      "sourceExcerpt": "第二步：找到分式递推的两个不动点 2 和 -1，并据此设\nb_n=(2-a_n)/(a_n+1)。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_4",
+      "dependsOn": []
+    },
+    {
+      "id": "source-5",
+      "index": 5,
+      "role": "inference",
+      "start": 407,
+      "end": 442,
+      "sourceExcerpt": "因为 a_n>0，所以 a_n+1>0，此定义对所有 n≥1 有意义。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_5",
+      "dependsOn": []
+    },
+    {
+      "id": "source-6",
+      "index": 6,
+      "role": "inference",
+      "start": 460,
+      "end": 487,
+      "sourceExcerpt": "2-a_{n+1}\n=(2-a_n)/(a_n+2)，",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_6",
+      "dependsOn": []
+    },
+    {
+      "id": "source-7",
+      "index": 7,
+      "role": "inference",
+      "start": 488,
+      "end": 536,
+      "sourceExcerpt": "a_{n+1}+1\n=(3a_n+2)/(a_n+2)+1\n=4(a_n+1)/(a_n+2)。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_7",
+      "dependsOn": []
+    },
+    {
+      "id": "source-8",
+      "index": 8,
+      "role": "inference",
+      "start": 537,
+      "end": 620,
+      "sourceExcerpt": "因为 a_n+2>0 且 a_n+1>0，故\nb_{n+1}\n=(2-a_{n+1})/(a_{n+1}+1)\n=(2-a_n)/(4(a_n+1))\n=b_n/4。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_8",
+      "dependsOn": []
+    },
+    {
+      "id": "source-9",
+      "index": 9,
+      "role": "inference",
+      "start": 622,
+      "end": 649,
+      "sourceExcerpt": "第四步：计算 b_1=(2-1)/(1+1)=1/2。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_9",
+      "dependsOn": []
+    },
+    {
+      "id": "source-10",
+      "index": 10,
+      "role": "inference",
+      "start": 650,
+      "end": 714,
+      "sourceExcerpt": "由 b_{n+1}=b_n/4 及数学归纳法，\nb_n=(1/2)(1/4)^{n-1}=2/4^n，\n其中 n 为任意正整数。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_10",
+      "dependsOn": []
+    },
+    {
+      "id": "source-11",
+      "index": 11,
+      "role": "inference",
+      "start": 716,
+      "end": 760,
+      "sourceExcerpt": "第五步：将 b_n 的表达式代回定义，得到\n(2-a_n)/(a_n+1)=2/4^n。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_11",
+      "dependsOn": []
+    },
+    {
+      "id": "source-12",
+      "index": 12,
+      "role": "inference",
+      "start": 761,
+      "end": 807,
+      "sourceExcerpt": "因 4^n>0 且 a_n+1>0，两边交叉相乘：\n4^n(2-a_n)=2(a_n+1)，",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_12",
+      "dependsOn": []
+    },
+    {
+      "id": "source-13",
+      "index": 13,
+      "role": "inference",
+      "start": 808,
+      "end": 832,
+      "sourceExcerpt": "整理即 (4^n+2)a_n=2(4^n-1)。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_13",
+      "dependsOn": []
+    },
+    {
+      "id": "source-14",
+      "index": 14,
+      "role": "inference",
+      "start": 833,
+      "end": 881,
+      "sourceExcerpt": "又因为 4^n+2>0，所以\na_n=2(4^n-1)/(4^n+2)，对所有正整数 n 成立。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_14",
+      "dependsOn": []
+    },
+    {
+      "id": "source-15",
+      "index": 15,
+      "role": "inference",
+      "start": 882,
+      "end": 919,
+      "sourceExcerpt": "检验 n=1 得 a_1=2(4-1)/(4+2)=1，和题设一致。证毕。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_15",
+      "dependsOn": []
+    }
+  ],
+  "kernelWireProofBytes": 47697891,
+  "storedArtifactBytes": 106533831,
+  "sourceMarkers": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "sourceMarkersExactSequence": true,
+  "usage": {
+    "requests": 3,
+    "inputTokens": 9149,
+    "outputTokens": 53819,
+    "missingUsage": 0,
+    "operations": [
+      {
+        "reason": "WholeProofPlan",
+        "status": "response_received",
+        "input_tokens": 1335,
+        "output_tokens": 14354
+      },
+      {
+        "reason": "WholeProofProgram",
+        "status": "response_received",
+        "input_tokens": 2211,
+        "output_tokens": 25555
+      },
+      {
+        "reason": "SourceReasonAudit",
+        "status": "response_received",
+        "input_tokens": 5603,
+        "output_tokens": 13910
+      }
+    ]
+  }
+}

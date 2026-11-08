@@ -1,0 +1,367 @@
+{
+  "cases": [
+    {
+      "id": "hard_number_theory_4k3",
+      "topic": "无穷多个模4余3的素数",
+      "source": "证明存在无穷多个满足 p≡3 (mod 4) 的素数。原证明：反设所有这样的素数只有 p₁,…,pᵣ。令 P=p₁p₂⋯pᵣ，N=4P−1。N>1 且 N≡3 (mod 4)，所以 N 的素因子中至少一个 q≡3 (mod 4)，否则全部素因子都≡1 (mod 4)，其乘积不可能≡3 (mod 4)。另一方面，对每个 i，有 N=4P−1≡−1 (mod pᵢ)，故 pᵢ 不整除 N。于是 q 不属于 p₁,…,pᵣ，与假设矛盾。因此满足 p≡3 (mod 4) 的素数有无穷多个。",
+      "reference": "真证明，反证法、素因子模4与整除同余",
+      "appSourceCommit": "90a6e5b703cdec4911611d4aafcd7fbcce4dbf27",
+      "providerFixture": false,
+      "kernelFixture": false,
+      "handWrittenLean": false,
+      "handWrittenMathIR": false,
+      "transport": "signed installed App packaged backend POST /api/v2/jobs",
+      "guiInteracted": false,
+      "startedUtc": "2026-10-21T14:49:31.911049+00:00",
+      "sourceSha256": "25ed79056365bd1c13a3391a1bafd9aec6befbf3085e00efdef302d680d1d24b",
+      "capabilities": {
+        "ai": {
+          "configured": true,
+          "provider": "deepseek",
+          "model": "deepseek-flash",
+          "thinking": "provider_default",
+          "liveTested": false
+        },
+        "lean": {
+          "configured": true,
+          "executableFound": true,
+          "projectFound": true,
+          "runtimeBuilt": true,
+          "runtimeIntegrity": true,
+          "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+          "sandbox": "macos",
+          "isolated": true,
+          "ready": true,
+          "toolchain": "leanprover/lean4:v4.34.0",
+          "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+          "liveTestedInThisDistribution": false
+        },
+        "mockFallback": false,
+        "health": "running"
+      },
+      "jobId": "fd5bd417-da5b-462d-b8c2-59a9c627446c",
+      "submittedUtc": "2026-10-21T14:49:32.853767+00:00",
+      "stageTransitions": [
+        {
+          "status": "running",
+          "stage": "recognizing",
+          "seconds": 0.95,
+          "utc": "2026-10-21T14:49:32.863151+00:00"
+        },
+        {
+          "status": "failed",
+          "stage": "failed",
+          "seconds": 125.57,
+          "utc": "2026-10-21T14:51:37.510886+00:00"
+        }
+      ],
+      "terminalStatus": "failed",
+      "terminalStage": "failed",
+      "terminalError": {
+        "code": "PARSE_ERROR",
+        "message": "JSON 无法确定性恢复；未重新调用 AI",
+        "details": {
+          "position": 8557,
+          "syntax": "Expecting ',' delimiter",
+          "responseId": "330e1ac9-fbd0-40c5-86e1-b746fa705a3a",
+          "unvalidatedAIOutputId": "5f316167-d866-466f-b14c-82597810be1e"
+        }
+      },
+      "result": {
+        "runStatus": null,
+        "termination": null,
+        "kernelVerified": null,
+        "fixedStatementKernelPassed": null,
+        "originalRouteKernelPassed": null,
+        "sourceProofVerified": null,
+        "originalProofVerified": null,
+        "originalMeaning": null,
+        "statement": null,
+        "failure": null,
+        "mathIRId": null,
+        "sourceStructureId": null,
+        "originalProofFidelity": null,
+        "reasoningFidelity": null,
+        "routeSummary": [],
+        "steps": []
+      },
+      "finishedUtc": "2026-10-21T14:51:37.516646+00:00",
+      "wallSeconds": 125.58,
+      "provider": {
+        "realAttempts": 1,
+        "started": 1,
+        "finished": 1,
+        "requestCount": 1,
+        "usage": {
+          "input_tokens": 11021,
+          "output_tokens": 27983,
+          "incompleteUsageRecords": 0
+        },
+        "records": [
+          {
+            "request_id": "e1262cd6-ef28-4519-8b47-03ba243edb08",
+            "stage": "mathir",
+            "reason": "StructureOnlyMathIRV2",
+            "model": "deepseek-flash",
+            "status": "response_received",
+            "input_tokens": 11021,
+            "output_tokens": 27983,
+            "retry_index": 0,
+            "cache_hit": null,
+            "real_request_attempted": true,
+            "started_at": null,
+            "finished_at": null
+          }
+        ]
+      },
+      "dbCounts": {
+        "artifacts": 1,
+        "jobs": 1,
+        "events": 3
+      },
+      "archiveSha256": "415d9cb82b7fb214c3070bd328df3685d90e476bc4e8b2929c24a5eadf369521"
+    },
+    {
+      "id": "hard_analysis_ivt_sup",
+      "topic": "连续函数介值定理的上确界证明",
+      "source": "设 f:[0,1]→ℝ 连续，且 f(0)<0<f(1)。证明存在 c∈(0,1)，使 f(c)=0。原证明：令 S={x∈[0,1]∣f(x)<0}。因为 f(0)<0，所以 S 非空；又 S⊆[0,1]，故 S 有上确界 c=sup S。由 f 在 0 处连续且 f(0)<0，可知存在 η>0，使得 x∈[0,η] 时 f(x)<0，故 c>0。由 f(1)>0 及连续性可知在 1 的某个左邻域内 f(x)>0，故 c<1。若 f(c)<0，则连续性给出 c 右侧的某点 x∈[0,1] 满足 f(x)<0，与 c 为 S 的上界矛盾。若 f(c)>0，则连续性给出 c 左侧一个邻域内 f(x)>0；但根据上确界定义，存在 x∈S 落在该邻域，与 f(x)<0 矛盾。因此 f(c)=0，且 c∈(0,1)。",
+      "reference": "真证明，实数完备性、连续性、上确界、双侧反证",
+      "appSourceCommit": "90a6e5b703cdec4911611d4aafcd7fbcce4dbf27",
+      "providerFixture": false,
+      "kernelFixture": false,
+      "handWrittenLean": false,
+      "handWrittenMathIR": false,
+      "transport": "signed installed App packaged backend POST /api/v2/jobs",
+      "guiInteracted": false,
+      "startedUtc": "2026-10-21T14:51:37.670235+00:00",
+      "sourceSha256": "73bcce94d4c07e1c10ee98aeacf212d5fd5db91c6a80c8557002e46af7d4b53f",
+      "capabilities": {
+        "ai": {
+          "configured": true,
+          "provider": "deepseek",
+          "model": "deepseek-flash",
+          "thinking": "provider_default",
+          "liveTested": false
+        },
+        "lean": {
+          "configured": true,
+          "executableFound": true,
+          "projectFound": true,
+          "runtimeBuilt": true,
+          "runtimeIntegrity": true,
+          "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+          "sandbox": "macos",
+          "isolated": true,
+          "ready": true,
+          "toolchain": "leanprover/lean4:v4.34.0",
+          "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+          "liveTestedInThisDistribution": false
+        },
+        "mockFallback": false,
+        "health": "running"
+      },
+      "jobId": "19527514-150d-47ea-b588-20520aa3d494",
+      "submittedUtc": "2026-10-21T14:51:38.313980+00:00",
+      "stageTransitions": [
+        {
+          "status": "running",
+          "stage": "recognizing",
+          "seconds": 0.65,
+          "utc": "2026-10-21T14:51:38.318455+00:00"
+        },
+        {
+          "status": "failed",
+          "stage": "failed",
+          "seconds": 130.95,
+          "utc": "2026-10-21T14:53:48.620279+00:00"
+        }
+      ],
+      "terminalStatus": "failed",
+      "terminalStage": "failed",
+      "terminalError": {
+        "code": "PARSE_ERROR",
+        "message": "JSON 无法确定性恢复；未重新调用 AI",
+        "details": {
+          "position": 11927,
+          "syntax": "Expecting ',' delimiter",
+          "responseId": "f452da59-9ee3-4ffe-ad04-e0b189435d7b",
+          "unvalidatedAIOutputId": "27365dac-5b20-4b49-ac65-eb97bd467101"
+        }
+      },
+      "result": {
+        "runStatus": null,
+        "termination": null,
+        "kernelVerified": null,
+        "fixedStatementKernelPassed": null,
+        "originalRouteKernelPassed": null,
+        "sourceProofVerified": null,
+        "originalProofVerified": null,
+        "originalMeaning": null,
+        "statement": null,
+        "failure": null,
+        "mathIRId": null,
+        "sourceStructureId": null,
+        "originalProofFidelity": null,
+        "reasoningFidelity": null,
+        "routeSummary": [],
+        "steps": []
+      },
+      "finishedUtc": "2026-10-21T14:53:48.623757+00:00",
+      "wallSeconds": 130.96,
+      "provider": {
+        "realAttempts": 1,
+        "started": 1,
+        "finished": 1,
+        "requestCount": 1,
+        "usage": {
+          "input_tokens": 11495,
+          "output_tokens": 31422,
+          "incompleteUsageRecords": 0
+        },
+        "records": [
+          {
+            "request_id": "9cd90edc-b710-4efc-bc46-d89ecd22e59f",
+            "stage": "mathir",
+            "reason": "StructureOnlyMathIRV2",
+            "model": "deepseek-flash",
+            "status": "response_received",
+            "input_tokens": 11495,
+            "output_tokens": 31422,
+            "retry_index": 0,
+            "cache_hit": null,
+            "real_request_attempted": true,
+            "started_at": null,
+            "finished_at": null
+          }
+        ]
+      },
+      "dbCounts": {
+        "artifacts": 1,
+        "jobs": 1,
+        "events": 3
+      },
+      "archiveSha256": "790df4f9f2a792a305718d5b345974df71aeb88ce628e42fa8d2bdd888d2f820"
+    },
+    {
+      "id": "hard_linear_algebra_spectral",
+      "topic": "实对称矩阵正交对角化",
+      "source": "设 n≥1，A 为 n×n 实对称矩阵，即 Aᵀ=A。证明存在实正交矩阵 Q 与实对角矩阵 D，使 QᵀAQ=D。原证明：对 n 作归纳。n=1 显然。设 n>1。在单位球面 S={x∈ℝⁿ∣∥x∥=1} 上，连续函数 R(x)=xᵀAx 取得最大值 λ，设最大值点为单位向量 v。对任意与 v 正交的 w，考虑 g(t)=R((v+tw)/∥v+tw∥)，在 t=0 取得极大值，故 g′(0)=2wᵀAv=0。因此 Av 与 v 的正交补正交，存在实数 μ 使 Av=μv，且 μ=vᵀAv=λ。由于 A 对称，若 w⊥v，则 ⟨Aw,v⟩=⟨w,Av⟩=λ⟨w,v⟩=0，所以 v⊥ 在 A 下不变。将 A 限制在维数 n−1 的空间 v⊥ 上仍为实对称算子。依归纳假设，v⊥ 有一组由 A 的特征向量组成的标准正交基；与 v 合并得到 ℝⁿ 的标准正交特征向量基。以这些向量为列构成 Q，则 QᵀQ=I，且 QᵀAQ 为实对角矩阵。证毕。",
+      "reference": "真证明，极值、Rayleigh 商、对称性、不变子空间、维数归纳",
+      "appSourceCommit": "90a6e5b703cdec4911611d4aafcd7fbcce4dbf27",
+      "providerFixture": false,
+      "kernelFixture": false,
+      "handWrittenLean": false,
+      "handWrittenMathIR": false,
+      "transport": "signed installed App packaged backend POST /api/v2/jobs",
+      "guiInteracted": false,
+      "startedUtc": "2026-10-21T14:53:48.856365+00:00",
+      "sourceSha256": "f1f3240a93c04b59a15f6d685d57aa00a9b0e6c27388f08bc857e819021c839c",
+      "capabilities": {
+        "ai": {
+          "configured": true,
+          "provider": "deepseek",
+          "model": "deepseek-flash",
+          "thinking": "provider_default",
+          "liveTested": false
+        },
+        "lean": {
+          "configured": true,
+          "executableFound": true,
+          "projectFound": true,
+          "runtimeBuilt": true,
+          "runtimeIntegrity": true,
+          "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+          "sandbox": "macos",
+          "isolated": true,
+          "ready": true,
+          "toolchain": "leanprover/lean4:v4.34.0",
+          "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+          "liveTestedInThisDistribution": false
+        },
+        "mockFallback": false,
+        "health": "running"
+      },
+      "jobId": "79a030de-d384-4da0-a870-b39337595633",
+      "submittedUtc": "2026-10-21T14:53:49.498221+00:00",
+      "stageTransitions": [
+        {
+          "status": "running",
+          "stage": "recognizing",
+          "seconds": 0.64,
+          "utc": "2026-10-21T14:53:49.502557+00:00"
+        },
+        {
+          "status": "failed",
+          "stage": "failed",
+          "seconds": 246.26,
+          "utc": "2026-10-21T14:57:55.116285+00:00"
+        }
+      ],
+      "terminalStatus": "failed",
+      "terminalStage": "failed",
+      "terminalError": {
+        "code": "PARSE_ERROR",
+        "message": "JSON 无法确定性恢复；未重新调用 AI",
+        "details": {
+          "position": 33891,
+          "syntax": "Expecting ',' delimiter",
+          "responseId": "74d37d70-9afa-49ba-a1a9-de0629b1154b",
+          "unvalidatedAIOutputId": "dd505ac4-e105-41b6-85f8-b75798da7b5f"
+        }
+      },
+      "result": {
+        "runStatus": null,
+        "termination": null,
+        "kernelVerified": null,
+        "fixedStatementKernelPassed": null,
+        "originalRouteKernelPassed": null,
+        "sourceProofVerified": null,
+        "originalProofVerified": null,
+        "originalMeaning": null,
+        "statement": null,
+        "failure": null,
+        "mathIRId": null,
+        "sourceStructureId": null,
+        "originalProofFidelity": null,
+        "reasoningFidelity": null,
+        "routeSummary": [],
+        "steps": []
+      },
+      "finishedUtc": "2026-10-21T14:57:55.121335+00:00",
+      "wallSeconds": 246.27,
+      "provider": {
+        "realAttempts": 1,
+        "started": 1,
+        "finished": 1,
+        "requestCount": 1,
+        "usage": {
+          "input_tokens": 11788,
+          "output_tokens": 65106,
+          "incompleteUsageRecords": 0
+        },
+        "records": [
+          {
+            "request_id": "61f24947-c722-4b40-98a2-54c01b5421b7",
+            "stage": "mathir",
+            "reason": "StructureOnlyMathIRV2",
+            "model": "deepseek-flash",
+            "status": "response_received",
+            "input_tokens": 11788,
+            "output_tokens": 65106,
+            "retry_index": 0,
+            "cache_hit": null,
+            "real_request_attempted": true,
+            "started_at": null,
+            "finished_at": null
+          }
+        ]
+      },
+      "dbCounts": {
+        "artifacts": 1,
+        "jobs": 1,
+        "events": 3
+      },
+      "archiveSha256": "59b7c21b1d1e4a4f174b431e89f615d289661e6f0a360c534b30f38c5ee1f002"
+    }
+  ]
+}

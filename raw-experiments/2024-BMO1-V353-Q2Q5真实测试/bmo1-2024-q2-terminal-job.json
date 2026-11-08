@@ -1,0 +1,342 @@
+{
+  "id": "3c41575c-8134-400f-9431-e0de2d97a002",
+  "status": "completed",
+  "stage": "completed",
+  "created": "2026-10-25T04:25:09.157151+00:00",
+  "updated": "2026-10-25T04:30:10.700183+00:00",
+  "request": {
+    "input": {
+      "kind": "text",
+      "text": "2024 BMO Round 1 第2题。题目：把编号 1 到 n 的 n 张卡片按某个排列依次翻开。黑板初值为任意整数 x；翻开数字 a 后将黑板值 y 改为 a-y。求所有能安排出这样一种排列，使无论初值 x 如何，终值与初值之和都为零的自然数 n。要求证明必要性和充分性。\n\n证明：\n设翻牌顺序是 a₁,a₂,…,a_n，它们恰为 1,…,n 的一个排列。令 y₀=x，y_j=a_j-y_{j-1}。通过对 j 归纳展开，有\ny_n=(-1)^n x + a_n-a_{n-1}+a_{n-2}-⋯+(-1)^{n-1}a₁。\n若要求对所有整数 x 均有 y_n+x=0，则 x 的系数必须为零，即 (-1)^n+1=0，所以 n 为奇数，并且卡片交错和必须为零。交错和为零意味着正号位置的卡片之和等于负号位置的卡片之和，故卡片总和 1+2+⋯+n=n(n+1)/2 为偶数，即 4|n(n+1)。在 n 奇数条件下 n 与 4 互素，因此 4|(n+1)，即 n≡3 (mod 4)。所以这是必要条件。\n再证充分性。n=3 时按 1,3,2 的顺序，终值为 2-3+1-x=-x，满足要求。假设某个奇数 m 的一组排列已使终值恒为 -x。把 m+1、m+2、m+4、m+3 四张新卡片依次接在这组排列末尾。经过四次更新，旧终值的系数恢复为 +1，新增常数为 (m+3)-(m+4)+(m+2)-(m+1)=0，因此扩展后终值仍然等于 -x，所有 m+4 张牌恰好使用一次。由 m=3 起反复加4的归纳，所有 n=4k+3 (k≥0) 都存在合适排列。\n故可行的自然数 n 恰好是 n≡3 (mod 4) 的正整数。",
+      "assetId": null,
+      "dataUrl": null,
+      "strokes": null,
+      "recognitionId": null,
+      "parts": null
+    },
+    "explain": false
+  },
+  "result": {
+    "id": "24a92311-2367-457b-82eb-858a5d49744e",
+    "kind": "lean_first_local",
+    "mode": "single_whole_theorem_kernel",
+    "sourceSha256": "d6e08057544cb93b9f346a4b9c7935c73d4f0e682fc141e0d13e19c896405435",
+    "runTraceId": "e75c50dd-3da4-4493-8797-1f5170bd7cfe",
+    "status": "whole_proof_source_witness_incomplete",
+    "kernelVerified": false,
+    "formalProofCertified": false,
+    "originalProofCertified": false,
+    "sourceEquivalenceCertified": false,
+    "originalInferenceVerified": false,
+    "sourcePositionsValid": true,
+    "plannedStepCount": 14,
+    "localFormalVerifiedCount": 0,
+    "sourceSteps": [
+      {
+        "id": "source-0",
+        "index": 0,
+        "role": "inference",
+        "start": 145,
+        "end": 181,
+        "sourceExcerpt": "设翻牌顺序是 a₁,a₂,…,a_n，它们恰为 1,…,n 的一个排列。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_0",
+        "dependsOn": []
+      },
+      {
+        "id": "source-1",
+        "index": 1,
+        "role": "inference",
+        "start": 181,
+        "end": 204,
+        "sourceExcerpt": "令 y₀=x，y_j=a_j-y_{j-1}。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_1",
+        "dependsOn": []
+      },
+      {
+        "id": "source-2",
+        "index": 2,
+        "role": "inference",
+        "start": 204,
+        "end": 267,
+        "sourceExcerpt": "通过对 j 归纳展开，有\ny_n=(-1)^n x + a_n-a_{n-1}+a_{n-2}-⋯+(-1)^{n-1}a₁。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_2",
+        "dependsOn": []
+      },
+      {
+        "id": "source-3",
+        "index": 3,
+        "role": "inference",
+        "start": 268,
+        "end": 336,
+        "sourceExcerpt": "若要求对所有整数 x 均有 y_n+x=0，则 x 的系数必须为零，即 (-1)^n+1=0，所以 n 为奇数，并且卡片交错和必须为零。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_3",
+        "dependsOn": []
+      },
+      {
+        "id": "source-4",
+        "index": 4,
+        "role": "inference",
+        "start": 336,
+        "end": 403,
+        "sourceExcerpt": "交错和为零意味着正号位置的卡片之和等于负号位置的卡片之和，故卡片总和 1+2+⋯+n=n(n+1)/2 为偶数，即 4|n(n+1)。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_4",
+        "dependsOn": []
+      },
+      {
+        "id": "source-5",
+        "index": 5,
+        "role": "inference",
+        "start": 403,
+        "end": 447,
+        "sourceExcerpt": "在 n 奇数条件下 n 与 4 互素，因此 4|(n+1)，即 n≡3 (mod 4)。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_5",
+        "dependsOn": []
+      },
+      {
+        "id": "source-6",
+        "index": 6,
+        "role": "inference",
+        "start": 447,
+        "end": 456,
+        "sourceExcerpt": "所以这是必要条件。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_6",
+        "dependsOn": []
+      },
+      {
+        "id": "source-7",
+        "index": 7,
+        "role": "inference",
+        "start": 457,
+        "end": 463,
+        "sourceExcerpt": "再证充分性。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_7",
+        "dependsOn": []
+      },
+      {
+        "id": "source-8",
+        "index": 8,
+        "role": "inference",
+        "start": 463,
+        "end": 500,
+        "sourceExcerpt": "n=3 时按 1,3,2 的顺序，终值为 2-3+1-x=-x，满足要求。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_8",
+        "dependsOn": []
+      },
+      {
+        "id": "source-9",
+        "index": 9,
+        "role": "inference",
+        "start": 500,
+        "end": 524,
+        "sourceExcerpt": "假设某个奇数 m 的一组排列已使终值恒为 -x。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_9",
+        "dependsOn": []
+      },
+      {
+        "id": "source-10",
+        "index": 10,
+        "role": "inference",
+        "start": 524,
+        "end": 558,
+        "sourceExcerpt": "把 m+1、m+2、m+4、m+3 四张新卡片依次接在这组排列末尾。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_10",
+        "dependsOn": []
+      },
+      {
+        "id": "source-11",
+        "index": 11,
+        "role": "inference",
+        "start": 558,
+        "end": 641,
+        "sourceExcerpt": "经过四次更新，旧终值的系数恢复为 +1，新增常数为 (m+3)-(m+4)+(m+2)-(m+1)=0，因此扩展后终值仍然等于 -x，所有 m+4 张牌恰好使用一次。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_11",
+        "dependsOn": []
+      },
+      {
+        "id": "source-12",
+        "index": 12,
+        "role": "inference",
+        "start": 641,
+        "end": 680,
+        "sourceExcerpt": "由 m=3 起反复加4的归纳，所有 n=4k+3 (k≥0) 都存在合适排列。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_12",
+        "dependsOn": []
+      },
+      {
+        "id": "source-13",
+        "index": 13,
+        "role": "inference",
+        "start": 681,
+        "end": 712,
+        "sourceExcerpt": "故可行的自然数 n 恰好是 n≡3 (mod 4) 的正整数。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_13",
+        "dependsOn": []
+      }
+    ],
+    "statement": "∀ n : ℕ, 1 ≤ n →\n  ((∃ l : List ℤ,\n      List.Perm l ((List.range n).map (fun i : ℕ => (i : ℤ) + 1)) ∧\n      ∀ x : ℤ, List.foldl (fun y a => a - y) x l + x = 0) ↔\n    n % 4 = 3)",
+    "proofTerm": "by\n  have h_affine : ∀ (l : List ℤ) (x c : ℤ),\n      List.foldl (fun y a => a - y) (x + c) l =\n        List.foldl (fun y a => a - y) x l + c * (-1 : ℤ) ^ l.length := by\n    intro l\n    induction l with\n    | nil =>\n        intro x c\n        simp\n    | cons a t ih =>\n        intro x c\n        simp only [List.foldl_cons, List.length_cons, pow_succ]\n        rw [show a - (x + c) = (a - x) + (-c) by ring]\n        rw [ih (a - x) (-c)]\n        ring\n  have h_mod2 : ∀ (l : List ℤ) (y : ℤ), ∃ k : ℤ,\n      List.foldl (fun y a => a - y) y l - (y + l.sum) = 2 * k := by\n    intro l\n    induction l with\n    | nil =>\n        intro y\n        refine ⟨0, ?_⟩\n        simp\n    | cons a t ih =>\n        intro y\n        rcases ih (a - y) with ⟨k, hk⟩\n        refine ⟨k - y, ?_⟩\n        simp only [List.foldl_cons, List.sum_cons]\n        calc\n          List.foldl (fun y a => a - y) (a - y) t - (y + (a + t.sum))\n              = (List.foldl (fun y a => a - y) (a - y) t - ((a - y) + t.sum)) +\n                (((a - y) + t.sum) - (y + (a + t.sum))) := by ring\n          _ = 2 * k + (((a - y) + t.sum) - (y + (a + t.sum))) := by rw [hk]\n          _ = 2 * (k - y) := by ring\n  have h_sum_range : ∀ n : ℕ,\n      2 * ((List.range n).map (fun i : ℕ => (i : ℤ) + 1)).sum =\n        (n : ℤ) * ((n : ℤ) + 1) := by\n    intro n\n    induction n with\n    | zero => simp\n    | succ n ih =>\n        rw [List.range_succ]\n        rw [List.map_append]\n        simp only [List.map_cons, List.map_nil, List.sum_append, List.sum_cons, List.sum_nil]\n        norm_num [Nat.cast_add, Nat.cast_one]\n        nlinarith [ih]\n  have hblock_perm_gen : ∀ m : ℕ,\n      (([((m : ℤ) + 1), ((m : ℤ) + 2), ((m : ℤ) + 4), ((m : ℤ) + 3)] : List ℤ).Perm\n        [((m : ℤ) + 1), ((m : ℤ) + 2), ((m : ℤ) + 3), ((m : ℤ) + 4)]) := by\n    intro m\n    have hswap : (([((m : ℤ) + 4), ((m : ℤ) + 3)] : List ℤ).Perm\n        [((m : ℤ) + 3), ((m : ℤ) + 4)]) := by\n      simpa using (List.Perm.swap ((m : ℤ) + 4) ((m : ℤ) + 3) ([] : List ℤ))\n    exact ((hswap.cons ((m : ℤ) + 2)).cons ((m : ℤ) + 1))\n  have hrange_gen : ∀ m : ℕ,\n      (List.range (m + 4)).map (fun i : ℕ => (i : ℤ) + 1) =\n        (List.range m).map (fun i : ℕ => (i : ℤ) + 1) ++\n          [((m : ℤ) + 1), ((m : ℤ) + 2), ((m : ℤ) + 3), ((m : ℤ) + 4)] := by\n    intro m\n    rw [show m + 4 = (m + 3) + 1 by omega, List.range_succ]\n    rw [show m + 3 = (m + 2) + 1 by omega, List.range_succ]\n    rw [show m + 2 = (m + 1) + 1 by omega, List.range_succ]\n    rw [List.range_succ]\n    simp only [List.map_append, List.map_cons, List.map_nil, List.append_assoc]\n    norm_num [Nat.cast_add, Nat.cast_one]\n    ring_nf\n  intro n hn\n  have hiff :\n      ((∃ l : List ℤ,\n          List.Perm l ((List.range n).map (fun i : ℕ => (i : ℤ) + 1)) ∧\n          ∀ x : ℤ, List.foldl (fun y a => a - y) x l + x = 0) ↔\n        n % 4 = 3) := by\n    constructor\n    · intro h\n      rcases h with ⟨l, hperm, hzero⟩\n      have hlen : l.length = n := by\n        simpa using hperm.length_eq\n      have hzero0 : List.foldl (fun y a => a - y) (0 : ℤ) l = 0 := by\n        have := hzero 0\n        simpa using this\n      have hcoef : (-1 : ℤ) ^ l.length = -1 := by\n        have h1 : List.foldl (fun y a => a - y) (1 : ℤ) l + 1 = 0 := hzero 1\n        have hsh := h_affine l 0 1\n        have hc : List.foldl (fun y a => a - y) (1 : ℤ) l = (-1 : ℤ) ^ l.length := by\n          simpa [hzero0] using hsh\n        linarith\n      have hodd_len : Odd l.length := by\n        rcases Nat.even_or_odd l.length with he | ho\n        · have hone : (-1 : ℤ) ^ l.length = 1 := he.neg_one_pow\n          linarith\n        · exact ho\n      have hodd_n : Odd n := by\n        simpa [hlen] using hodd_len\n      have hsum_even : ∃ k : ℤ, l.sum = 2 * k := by\n        rcases h_mod2 l 0 with ⟨k, hk⟩\n        refine ⟨-k, ?_⟩\n        linarith\n      have hsum_eq : l.sum = ((List.range n).map (fun i : ℕ => (i : ℤ) + 1)).sum := by\n        exact hperm.sum_eq\n      have h2sum : 2 * l.sum = (n : ℤ) * ((n : ℤ) + 1) := by\n        calc\n          2 * l.sum = 2 * ((List.range n).map (fun i : ℕ => (i : ℤ) + 1)).sum := by rw [hsum_eq]\n          _ = (n : ℤ) * ((n : ℤ) + 1) := h_sum_range n\n      have h4 : ∃ m : ℤ, (n : ℤ) * ((n : ℤ) + 1) = 4 * m := by\n        rcases hsum_even with ⟨s, hs⟩\n        refine ⟨s, ?_⟩\n        calc\n          (n : ℤ) * ((n : ℤ) + 1) = 2 * l.sum := by linarith [h2sum]\n          _ = 2 * (2 * s) := by rw [hs]\n          _ = 4 * s := by ring\n      have hodd_mod2 : n % 2 = 1 := by\n        rcases hodd_n with ⟨k, hk⟩\n        omega\n      have hmod4 : n % 4 = 3 := by\n        have hcases : n % 4 = 0 ∨ n % 4 = 1 ∨ n % 4 = 2 ∨ n % 4 = 3 := by\n          have hlt : n % 4 < 4 := Nat.mod_lt n (by norm_num)\n          omega\n        rcases hcases with h0 | h1 | h2 | h3\n        · omega\n        · have hn_eq : n = 4 * (n / 4) + 1 := by omega\n          rcases h4 with ⟨m, hm⟩\n          have hz : ((n : ZMod 4) * ((n : ZMod 4) + 1)) = 0 := by\n            have hcast : ((((n : ℤ) * ((n : ℤ) + 1) : ℤ) : ZMod 4)) = 0 := by\n              rw [hm]\n              norm_num\n            simpa using hcast\n          have hz' : ((((4 * (n / 4) + 1 : ℕ) : ZMod 4)) * ((((4 * (n / 4) + 1 : ℕ) : ZMod 4)) + 1)) = 0 := by\n            simpa [hn_eq, Nat.cast_add, Nat.cast_mul, Nat.cast_one] using hz\n          have h4z : (4 : ZMod 4) = 0 := by norm_num\n          rw [h4z, zero_mul, zero_add] at hz'\n          norm_num at hz'\n        · omega\n        · exact h3\n      have source_step_0 : List.Perm l ((List.range n).map (fun i : ℕ => (i : ℤ) + 1)) := hperm\n      have source_step_1 : l.length = n := hlen\n      have source_step_2 : ∀ x : ℤ,\n          List.foldl (fun y a => a - y) (x + 1) l =\n            List.foldl (fun y a => a - y) x l + (-1 : ℤ) ^ l.length := by\n        intro x\n        simpa using h_affine l x 1\n      have source_step_3 : (-1 : ℤ) ^ l.length = -1 := hcoef\n      have source_step_4 : ∃ k : ℤ, l.sum = 2 * k := hsum_even\n      have source_step_5 : ∃ m : ℤ, (n : ℤ) * ((n : ℤ) + 1) = 4 * m := h4\n      have source_step_6 : n % 4 = 3 := hmod4\n      exact hmod4\n    · intro hnmod\n      have source_step_7 : n % 4 = 3 := hnmod\n      have hex : ∃ k : ℕ, n = 4 * k + 3 := by\n        refine ⟨(n - 3) / 4, ?_⟩\n        omega\n      rcases hex with ⟨k, hk⟩\n      have hgen : ∀ k : ℕ, ∃ l : List ℤ,\n          List.Perm l ((List.range (4 * k + 3)).map (fun i : ℕ => (i : ℤ) + 1)) ∧\n          (∀ x : ℤ, List.foldl (fun y a => a - y) x l + x = 0) := by\n        intro k\n        induction k with\n        | zero =>\n            have source_step_8 : ∃ l : List ℤ,\n                List.Perm l ((List.range (4 * 0 + 3)).map (fun i : ℕ => (i : ℤ) + 1)) ∧\n                (∀ x : ℤ, List.foldl (fun y a => a - y) x l + x = 0) := by\n              refine ⟨[(1 : ℤ), 3, 2], ?_, ?_⟩\n              · decide\n              · intro x\n                simp [List.foldl]\n                ring\n            exact source_step_8\n        | succ k ih =>\n            rcases ih with ⟨l, hperm, hfold⟩\n            let m : ℕ := 4 * k + 3\n            let block : List ℤ := [((m : ℤ) + 1), ((m : ℤ) + 2), ((m : ℤ) + 4), ((m : ℤ) + 3)]\n            have source_step_9 : List.Perm l ((List.range m).map (fun i : ℕ => (i : ℤ) + 1)) := by\n              simpa [m] using hperm\n            have source_step_10 : block = [((m : ℤ) + 1), ((m : ℤ) + 2), ((m : ℤ) + 4), ((m : ℤ) + 3)] := rfl\n            have source_step_11 : ∀ y : ℤ,\n                List.foldl (fun y a => a - y) y block = y := by\n              intro y\n              dsimp [block]\n              simp\n              ring\n            refine ⟨l ++ block, ?_, ?_⟩\n            · have hblock : block.Perm [((m : ℤ) + 1), ((m : ℤ) + 2), ((m : ℤ) + 3), ((m : ℤ) + 4)] := by\n                exact hblock_perm_gen m\n              have hperm_append : (l ++ block).Perm\n                  (((List.range m).map (fun i : ℕ => (i : ℤ) + 1)) ++\n                    [((m : ℤ) + 1), ((m : ℤ) + 2), ((m : ℤ) + 3), ((m : ℤ) + 4)]) :=\n                source_step_9.append hblock\n              have hm : 4 * (k + 1) + 3 = m + 4 := by dsimp [m]; omega\n              rw [hm]\n              rw [hrange_gen m]\n              exact hperm_append\n            · intro x\n              rw [List.foldl_append]\n              have hblock_fold :\n                  List.foldl (fun y a => a - y) (List.foldl (fun y a => a - y) x l) block =\n                    List.foldl (fun y a => a - y) x l := by\n                exact source_step_11 (List.foldl (fun y a => a - y) x l)\n              rw [hblock_fold]\n              exact hfold x\n      have source_step_12 : ∃ l : List ℤ,\n          List.Perm l ((List.range (4 * k + 3)).map (fun i : ℕ => (i : ℤ) + 1)) ∧\n          (∀ x : ℤ, List.foldl (fun y a => a - y) x l + x = 0) := hgen k\n      rw [hk]\n      exact source_step_12\n  have source_step_13 :\n      ((∃ l : List ℤ,\n          List.Perm l ((List.range n).map (fun i : ℕ => (i : ℤ) + 1)) ∧\n          ∀ x : ℤ, List.foldl (fun y a => a - y) x l + x = 0) ↔\n        n % 4 = 3) := hiff\n  exact source_step_13",
+    "lean": null,
+    "unsupportedOriginalSteps": [
+      "source_step_markers_missing_reordered_or_duplicated"
+    ],
+    "planProvenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "b37f8988-b9b0-4431-b7b8-28f7c0f2c32a",
+      "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+      "usage": {
+        "prompt_tokens": 1146,
+        "completion_tokens": 19372,
+        "total_tokens": 20518,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 18586
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 762
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "model": "deepseek-flash",
+    "goalExcerpt": "求所有能安排出这样一种排列，使无论初值 x 如何，终值与初值之和都为零的自然数 n。",
+    "originalGivenExcerpts": [
+      "把编号 1 到 n 的 n 张卡片按某个排列依次翻开。",
+      "黑板初值为任意整数 x；翻开数字 a 后将黑板值 y 改为 a-y。",
+      "使无论初值 x 如何，终值与初值之和都为零",
+      "要求证明必要性和充分性。"
+    ],
+    "sourceOffsetRepairs": [],
+    "proofProvenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "b838d665-b057-4e4b-8d77-f7d509323e53",
+      "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+      "usage": {
+        "prompt_tokens": 1900,
+        "completion_tokens": 45243,
+        "total_tokens": 47143,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 41570
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 1516
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "version": "3.5.3",
+    "source": {
+      "kind": "text",
+      "raw": "2024 BMO Round 1 第2题。题目：把编号 1 到 n 的 n 张卡片按某个排列依次翻开。黑板初值为任意整数 x；翻开数字 a 后将黑板值 y 改为 a-y。求所有能安排出这样一种排列，使无论初值 x 如何，终值与初值之和都为零的自然数 n。要求证明必要性和充分性。\n\n证明：\n设翻牌顺序是 a₁,a₂,…,a_n，它们恰为 1,…,n 的一个排列。令 y₀=x，y_j=a_j-y_{j-1}。通过对 j 归纳展开，有\ny_n=(-1)^n x + a_n-a_{n-1}+a_{n-2}-⋯+(-1)^{n-1}a₁。\n若要求对所有整数 x 均有 y_n+x=0，则 x 的系数必须为零，即 (-1)^n+1=0，所以 n 为奇数，并且卡片交错和必须为零。交错和为零意味着正号位置的卡片之和等于负号位置的卡片之和，故卡片总和 1+2+⋯+n=n(n+1)/2 为偶数，即 4|n(n+1)。在 n 奇数条件下 n 与 4 互素，因此 4|(n+1)，即 n≡3 (mod 4)。所以这是必要条件。\n再证充分性。n=3 时按 1,3,2 的顺序，终值为 2-3+1-x=-x，满足要求。假设某个奇数 m 的一组排列已使终值恒为 -x。把 m+1、m+2、m+4、m+3 四张新卡片依次接在这组排列末尾。经过四次更新，旧终值的系数恢复为 +1，新增常数为 (m+3)-(m+4)+(m+2)-(m+1)=0，因此扩展后终值仍然等于 -x，所有 m+4 张牌恰好使用一次。由 m=3 起反复加4的归纳，所有 n=4k+3 (k≥0) 都存在合适排列。\n故可行的自然数 n 恰好是 n≡3 (mod 4) 的正整数。",
+      "normalized": "2024 BMO Round 1 第2题。题目：把编号 1 到 n 的 n 张卡片按某个排列依次翻开。黑板初值为任意整数 x；翻开数字 a 后将黑板值 y 改为 a-y。求所有能安排出这样一种排列，使无论初值 x 如何，终值与初值之和都为零的自然数 n。要求证明必要性和充分性。\n\n证明：\n设翻牌顺序是 a₁,a₂,…,a_n，它们恰为 1,…,n 的一个排列。令 y₀=x，y_j=a_j-y_{j-1}。通过对 j 归纳展开，有\ny_n=(-1)^n x + a_n-a_{n-1}+a_{n-2}-⋯+(-1)^{n-1}a₁。\n若要求对所有整数 x 均有 y_n+x=0，则 x 的系数必须为零，即 (-1)^n+1=0，所以 n 为奇数，并且卡片交错和必须为零。交错和为零意味着正号位置的卡片之和等于负号位置的卡片之和，故卡片总和 1+2+⋯+n=n(n+1)/2 为偶数，即 4|n(n+1)。在 n 奇数条件下 n 与 4 互素，因此 4|(n+1)，即 n≡3 (mod 4)。所以这是必要条件。\n再证充分性。n=3 时按 1,3,2 的顺序，终值为 2-3+1-x=-x，满足要求。假设某个奇数 m 的一组排列已使终值恒为 -x。把 m+1、m+2、m+4、m+3 四张新卡片依次接在这组排列末尾。经过四次更新，旧终值的系数恢复为 +1，新增常数为 (m+3)-(m+4)+(m+2)-(m+1)=0，因此扩展后终值仍然等于 -x，所有 m+4 张牌恰好使用一次。由 m=3 起反复加4的归纳，所有 n=4k+3 (k≥0) 都存在合适排列。\n故可行的自然数 n 恰好是 n≡3 (mod 4) 的正整数。",
+      "recognitionId": null,
+      "transcriptionEvidence": null,
+      "blocks": [
+        {
+          "id": "b0",
+          "text": "2024 BMO Round 1 第2题。题目：把编号 1 到 n 的 n 张卡片按某个排列依次翻开。黑板初值为任意整数 x；翻开数字 a 后将黑板值 y 改为 a-y。求所有能安排出这样一种排列，使无论初值 x 如何，终值与初值之和都为零的自然数 n。要求证明必要性和充分性。\n\n证明：\n设翻牌顺序是 a₁,a₂,…,a_n，它们恰为 1,…,n 的一个排列。令 y₀=x，y_j=a_j-y_{j-1}。通过对 j 归纳展开，有\ny_n=(-1)^n x + a_n-a_{n-1}+a_{n-2}-⋯+(-1)^{n-1}a₁。\n若要求对所有整数 x 均有 y_n+x=0，则 x 的系数必须为零，即 (-1)^n+1=0，所以 n 为奇数，并且卡片交错和必须为零。交错和为零意味着正号位置的卡片之和等于负号位置的卡片之和，故卡片总和 1+2+⋯+n=n(n+1)/2 为偶数，即 4|n(n+1)。在 n 奇数条件下 n 与 4 互素，因此 4|(n+1)，即 n≡3 (mod 4)。所以这是必要条件。\n再证充分性。n=3 时按 1,3,2 的顺序，终值为 2-3+1-x=-x，满足要求。假设某个奇数 m 的一组排列已使终值恒为 -x。把 m+1、m+2、m+4、m+3 四张新卡片依次接在这组排列末尾。经过四次更新，旧终值的系数恢复为 +1，新增常数为 (m+3)-(m+4)+(m+2)-(m+1)=0，因此扩展后终值仍然等于 -x，所有 m+4 张牌恰好使用一次。由 m=3 起反复加4的归纳，所有 n=4k+3 (k≥0) 都存在合适排列。\n故可行的自然数 n 恰好是 n≡3 (mod 4) 的正整数。",
+          "page": null,
+          "bbox": null,
+          "confidence": null,
+          "assetId": null,
+          "providerData": {}
+        }
+      ]
+    },
+    "inputKind": "text",
+    "authority": "single_locked_complete_formal_theorem_kernel_not_natural_language_fidelity"
+  },
+  "error": null
+}

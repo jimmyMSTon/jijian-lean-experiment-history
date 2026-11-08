@@ -1,0 +1,108 @@
+{
+  "status": "verified",
+  "localVerified": true,
+  "additionalAxioms": [],
+  "diagnostics": [
+    {
+      "severity": "warning",
+      "message": "Variable name `jjdep_N_S_nonempty` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _jjdep_N_S_nonempty\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+      "leanPosition": {
+        "column": 1778,
+        "line": 5
+      },
+      "leanEndPosition": {
+        "column": 385,
+        "line": 5
+      },
+      "stepId": "audit/ivt/arbitrary_sup_contradiction",
+      "sourceRefs": [],
+      "mappingPrecision": "step",
+      "raw": {
+        "caption": "",
+        "data": "Variable name `jjdep_N_S_nonempty` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _jjdep_N_S_nonempty\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+        "endPos": {
+          "column": 385,
+          "line": 5
+        },
+        "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data/work/lean-jwzwso9v/Task.lean",
+        "isSilent": false,
+        "keepFullRange": false,
+        "kind": "linter.unusedVariables",
+        "pos": {
+          "column": 1778,
+          "line": 5
+        },
+        "severity": "warning"
+      }
+    },
+    {
+      "severity": "warning",
+      "message": "Variable name `jjdep_N_S_subset` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _jjdep_N_S_subset\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+      "leanPosition": {
+        "column": 470,
+        "line": 5
+      },
+      "leanEndPosition": {
+        "column": 486,
+        "line": 5
+      },
+      "stepId": "audit/ivt/arbitrary_sup_contradiction",
+      "sourceRefs": [],
+      "mappingPrecision": "step",
+      "raw": {
+        "caption": "",
+        "data": "Variable name `jjdep_N_S_subset` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _jjdep_N_S_subset\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+        "endPos": {
+          "column": 486,
+          "line": 5
+        },
+        "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data/work/lean-jwzwso9v/Task.lean",
+        "isSilent": false,
+        "keepFullRange": false,
+        "kind": "linter.unusedVariables",
+        "pos": {
+          "column": 470,
+          "line": 5
+        },
+        "severity": "warning"
+      }
+    }
+  ],
+  "proofTerm": "by\n  intro h\n  let f : (Set.Icc (0 : ℝ) (1 : ℝ)) → ℝ := fun x => (x : ℝ) - (1 / 2 : ℝ)\n  have hfcont : Continuous f := by fun_prop\n  have hf0 : f (⟨0, by norm_num⟩ : Set.Icc (0 : ℝ) (1 : ℝ)) < (0 : ℝ) := by norm_num [f]\n  have hf1 : f (⟨1, by norm_num⟩ : Set.Icc (0 : ℝ) (1 : ℝ)) > (0 : ℝ) := by norm_num [f]\n  let S : Set (Set.Icc (0 : ℝ) (1 : ℝ)) := Set.ofPred (fun x => f x < (0 : ℝ))\n  let c : Set.Icc (0 : ℝ) (1 : ℝ) := ⟨0, by norm_num⟩\n  have hne : ∃ x : Set.Icc (0 : ℝ) (1 : ℝ), x ∈ S := by\n    refine ⟨⟨0, by norm_num⟩, ?_⟩\n    norm_num [S, f]\n  have hsubset : S ⊆ (Set.univ : Set (Set.Icc (0 : ℝ) (1 : ℝ))) := Set.subset_univ S\n  have hsup := h f hfcont hf0 hf1 c hne hsubset\n  let y : Set.Icc (0 : ℝ) (1 : ℝ) := ⟨(1/4 : ℝ), by norm_num⟩\n  have hy : y ∈ S := by norm_num [y, S, f]\n  have hbound : y ≤ c := hsup.1 hy\n  change ((y : ℝ) ≤ (c : ℝ)) at hbound\n  norm_num [y, c] at hbound\n",
+  "expectedType": "(∀ (v_decl_f : ((Set.Icc (0 : ℝ) (1 : ℝ)) → ℝ)), (let v_decl_S : (Set (Set.Icc (0 : ℝ) (1 : ℝ))) := (Set.ofPred (fun (v_decl_x_S : (Set.Icc (0 : ℝ) (1 : ℝ))) => ((v_decl_f v_decl_x_S) < (0 : ℝ)))); ((Continuous v_decl_f) → (((v_decl_f (⟨(0 : ℝ), by norm_num⟩ : (Set.Icc (0 : ℝ) (1 : ℝ)))) < (0 : ℝ)) → (((v_decl_f (⟨(1 : ℝ), by norm_num⟩ : (Set.Icc (0 : ℝ) (1 : ℝ)))) > (0 : ℝ)) → (∀ (v_decl_c_proof : (Set.Icc (0 : ℝ) (1 : ℝ))), (∀ (jjdep_N_S_nonempty : (∃ (v_decl_x_nonempty : (Set.Icc (0 : ℝ) (1 : ℝ))), (v_decl_x_nonempty ∈ v_decl_S))), (∀ (jjdep_N_S_subset : (v_decl_S ⊆ ((Set.univ : (Set (Set.Icc (0 : ℝ) (1 : ℝ)))) : (Set (Set.Icc (0 : ℝ) (1 : ℝ)))))), (((IsLUB : ((Set (Set.Icc (0 : ℝ) (1 : ℝ))) → ((Set.Icc (0 : ℝ) (1 : ℝ)) → Prop))) v_decl_S) v_decl_c_proof)))))))))",
+  "certificate": {
+    "auditMethod": "fresh_environment_data_only_kernel_replay",
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "checked": true,
+    "dependencyUsage": [],
+    "formalStatement": "¬∀ (v_decl_f : ↑(Set.Icc 0 1) → ℝ),\n    have v_decl_S := {v_decl_x_S | v_decl_f v_decl_x_S < 0};\n    Continuous v_decl_f →\n      v_decl_f ⟨0, JJExpected_0be4d3077f193927e4ac7ae51e22ea7ee32352df3ee493ab._proof_1⟩ < 0 →\n        v_decl_f ⟨1, JJExpected_0be4d3077f193927e4ac7ae51e22ea7ee32352df3ee493ab._proof_2⟩ > 0 →\n          ∀ (v_decl_c_proof : ↑(Set.Icc 0 1)),\n            (∃ v_decl_x_nonempty, v_decl_x_nonempty ∈ v_decl_S) → v_decl_S ⊆ Set.univ → IsLUB v_decl_S v_decl_c_proof",
+    "statementMatched": true,
+    "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+    "expectedExpressionSha256": "253e50d4ce00e7ce7c363a1278b005c6003b6b8dfdca890c7e18a886363d60ef",
+    "proofExpressionSha256": "1779b0b0afc74ce78db946ff236d629c694206ab6dc5f1ccbac24d047306cdcd",
+    "statement_hash": "source-structure-audit",
+    "nativeExpressionComparison": "structural_equal",
+    "sourceTypeSha256": "c0de1572707c16b89efc7c16f0d806d0893fc2c6c484da6cca7cd61b703f2798",
+    "sourceProofSha256": "81ec3803981e4d02c2f1bf33d258053b7a7dd2b2692c4941a564e227386eb7f6",
+    "runtime": {
+      "configured": true,
+      "executableFound": true,
+      "projectFound": true,
+      "runtimeBuilt": true,
+      "runtimeIntegrity": true,
+      "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+      "sandbox": "macos",
+      "isolated": true,
+      "ready": true,
+      "toolchain": "leanprover/lean4:v4.34.0",
+      "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+      "liveTestedInThisDistribution": false
+    },
+    "additionalAxioms": [],
+    "auditIsolation": "fresh_import_environment_reset_between_candidates"
+  }
+}

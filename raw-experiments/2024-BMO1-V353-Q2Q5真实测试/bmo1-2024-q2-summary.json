@@ -1,0 +1,56 @@
+{
+  "case": {
+    "id": "bmo1-2024-q2",
+    "expected": "correct",
+    "source": "2024 BMO Round 1 第2题。题目：把编号 1 到 n 的 n 张卡片按某个排列依次翻开。黑板初值为任意整数 x；翻开数字 a 后将黑板值 y 改为 a-y。求所有能安排出这样一种排列，使无论初值 x 如何，终值与初值之和都为零的自然数 n。要求证明必要性和充分性。\n\n证明：\n设翻牌顺序是 a₁,a₂,…,a_n，它们恰为 1,…,n 的一个排列。令 y₀=x，y_j=a_j-y_{j-1}。通过对 j 归纳展开，有\ny_n=(-1)^n x + a_n-a_{n-1}+a_{n-2}-⋯+(-1)^{n-1}a₁。\n若要求对所有整数 x 均有 y_n+x=0，则 x 的系数必须为零，即 (-1)^n+1=0，所以 n 为奇数，并且卡片交错和必须为零。交错和为零意味着正号位置的卡片之和等于负号位置的卡片之和，故卡片总和 1+2+⋯+n=n(n+1)/2 为偶数，即 4|n(n+1)。在 n 奇数条件下 n 与 4 互素，因此 4|(n+1)，即 n≡3 (mod 4)。所以这是必要条件。\n再证充分性。n=3 时按 1,3,2 的顺序，终值为 2-3+1-x=-x，满足要求。假设某个奇数 m 的一组排列已使终值恒为 -x。把 m+1、m+2、m+4、m+3 四张新卡片依次接在这组排列末尾。经过四次更新，旧终值的系数恢复为 +1，新增常数为 (m+3)-(m+4)+(m+2)-(m+1)=0，因此扩展后终值仍然等于 -x，所有 m+4 张牌恰好使用一次。由 m=3 起反复加4的归纳，所有 n=4k+3 (k≥0) 都存在合适排列。\n故可行的自然数 n 恰好是 n≡3 (mod 4) 的正整数。"
+  },
+  "jobId": "3c41575c-8134-400f-9431-e0de2d97a002",
+  "jobStatus": "completed",
+  "resultStatus": "whole_proof_source_witness_incomplete",
+  "kernelVerified": false,
+  "formalProofCertified": false,
+  "originalProofCertified": false,
+  "fidelityReview": null,
+  "fidelityIssues": 0,
+  "sourceSteps": 14,
+  "kernelCertificate": null,
+  "unsupportedOriginalSteps": [
+    "source_step_markers_missing_reordered_or_duplicated"
+  ],
+  "error": null,
+  "usage": {
+    "attempts": 3,
+    "inputTokens": 5961,
+    "outputTokens": 65848,
+    "missingUsage": 0,
+    "requests": [
+      {
+        "reason": "WholeProofPlan",
+        "status": "response_received",
+        "input_tokens": 1146,
+        "output_tokens": 19372,
+        "error_type": null,
+        "http_duration_ms": 83867.12
+      },
+      {
+        "reason": "WholeProofProgram",
+        "status": "response_received",
+        "input_tokens": 1900,
+        "output_tokens": 45243,
+        "error_type": null,
+        "http_duration_ms": 217633.26
+      },
+      {
+        "reason": "Explanation",
+        "status": "response_received",
+        "input_tokens": 2915,
+        "output_tokens": 1233,
+        "error_type": null,
+        "http_duration_ms": 7715.192
+      }
+    ]
+  },
+  "feedbackError": null,
+  "elapsedSeconds": 310.17,
+  "totalElapsedSeconds": 310.85
+}

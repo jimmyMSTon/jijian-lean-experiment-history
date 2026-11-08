@@ -1,0 +1,233 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_____ test_repair_unlocks_missing_authored_step_with_new_lean_certificate ______
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10458f020>
+
+    def test_repair_unlocks_missing_authored_step_with_new_lean_certificate(monkeypatch):
+        ir=sourced_two_step_ir()
+        lock=create_proof_lock(ir)
+        call_payloads=[]
+        repair_calls=[]
+        async def generate(_provider,current,*,lock,**extra):
+            from backend.v2.proof_only import proof_only_payload
+            payload=proof_only_payload(current,lock=lock,**extra)
+            call_payloads.append(payload)
+            if len(call_payloads)==1:
+                patches=[ProofPatch(nodeId="premise",proofTerm="by unknown_tactic")]
+            elif len(call_payloads)==2:
+                patches=[]
+            else:
+                rows=payload.get("verifiedPrerequisiteEvidence",{})
+                assert rows["newVerifiedEdges"]==[
+                    {"routeId":"route","missingNodeId":"conclusion",
+                     "verifiedDependencyId":"premise"}]
+                patches=[ProofPatch(nodeId="conclusion",proofTerm="by intro h; exact h")]
+            if not patches:
+                return None,{"model":"mock-provider","validated":False},lock
+            a=apply_proof_patches(current,FormalProofs(proofs=patches),lock=lock,
+                                  origin="proof_only_generation")
+            return a,{"model":"mock-provider","validated":False},lock
+        async def deterministic(*_args,**_kwargs):return None
+        async def repair(_provider,current,*,lock,generated_terms,verification,**_kwargs):
+            repair_calls.append(True)
+            patch=FormalProofs(proofs=[ProofPatch(nodeId="premise",proofTerm="by rfl")])
+            a=apply_proof_patches(current,patch,lock=lock,
+                                  origin="diagnostic_repair",generated_terms=generated_terms)
+            return a,{"model":"mock-provider","validated":False}
+        def repairs(_ir,*,lock,generated_terms,verification,**_kwargs):
+            if not generated_terms or generated_terms.get("premise")=="by rfl":
+                return {"repairs":[]}
+            return {"repairs":[{"nodeId":"premise","failureClass":"lean_proof_compile_failed",
+                                "diagnostics":[{"message":"unknown_tactic"}]}]}
+        monkeypatch.setattr(workflow,"verify_v2",mocked_verification)
+        monkeypatch.setattr(workflow,"generate_missing_proofs",generate)
+        monkeypatch.setattr(workflow,"deterministic_repair_generated_proofs",deterministic)
+        monkeypatch.setattr(workflow,"diagnostic_repair_payload",repairs)
+        monkeypatch.setattr(workflow,"repair_generated_proofs",repair)
+>       result=asyncio.run(workflow.complete_and_verify_proof_routes(
+            object(),ir,runner=object(),lock=lock))
+
+tests/v2/test_proof_regeneration_on_new_kernel_evidence.py:126: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+provider = <object object at 0x1004a5c40>
+ir = MathIRV2(version='2.0', source=SourceEvidence(id='s', kind='text', raw='已知1=1，所以1=1。', normalized='已知1=1，所以1=1。', bloc...ion', inductions=[], sourceRefs=[], sourceAssessment='supported', assessmentBasis='source two steps')], ambiguities=[])
+
+    async def complete_and_verify_proof_routes(provider, ir: MathIRV2, *, runner,
+                                                lock: ProofLock | None = None,
+                                                retriever=None,
+                                                previously_generated_terms: dict[str, str] | None = None,
+                                                emit: Callable[[str, dict[str, Any]], Awaitable[None]] | None = None,
+                                                checkpoint: Callable[[dict[str, Any]], Awaitable[None]] | None = None,
+                                                ) -> ProofWorkflowResult:
+        """Generate missing terms, verify all routes, and repair new Lean evidence.
+    
+        The loop ends on route success, no patch, a patch that changes no term, or
+        recurrence of the same mathematical verification state. Proof spelling
+        alone is not progress. It has no arbitrary retry/round count. A changed
+        proof is always checked against the same lock and followed by verification
+        of the entire original route.
+        """
+        compiled = compile_v2(ir)
+        lock = lock or create_proof_lock(ir, compiled)
+        if compiled.statement_hash != lock.statement_hash:
+            raise ValueError("PROOF_LOCK_CHANGED: initial theorem statement differs")
+        # A caller may resume a saved AI-generated proof only when it can provide
+        # its provenance. The exact term must still be present in the locked MathIR;
+        # user-authored pre-existing proofs stay protected by default.
+        prior_generated = dict(previously_generated_terms or {})
+        current_terms = {node.id: node.proofTerm for route in ir.proofRoutes
+                         for node in route.nodes if node.proofTerm is not None}
+        # Task-local immutable-identity reuse: unchanged proof obligations need
+        # no repeated Lean subprocess during repair. Changes always recheck.
+        verified_step_cache: dict[str, dict[str, Any]] = {}
+        proof_term_origins = {node_id: "preexisting" for node_id in current_terms}
+        for node_id, proof_term in prior_generated.items():
+            if current_terms.get(node_id) != proof_term:
+                raise ValueError(f"PRIOR_GENERATED_PROOF_MISMATCH: {node_id}")
+            proof_term_origins[node_id] = "previously_generated"
+    
+        events: list[WorkflowEvent] = []
+        retrieval_records: list[dict[str, Any]] = []
+        retrieval_scopes: list[dict[str, Any]] = []
+        seen_retrieval_inputs: set[str] = set()
+        seen_retrieval_records: set[str] = set()
+    
+        async def persist_checkpoint(snapshot: dict[str, Any]) -> None:
+            if checkpoint is None:
+                return
+            try:
+                await checkpoint(snapshot)
+            except Exception as error:
+                # Checkpointing is secondary to the verification result. Record its
+                # failure without replacing the current Lean/Kernel conclusion.
+                events.append(WorkflowEvent("checkpoint_persistence_failed", False, None, (),
+                    _sha({"stage": snapshot.get("stage"), "error": type(error).__name__}),
+                    {"stage": snapshot.get("stage"), "errorType": type(error).__name__}))
+                if emit:
+                    try:
+                        await emit("checkpoint_persistence_failed", {
+                            "stage": snapshot.get("stage"), "errorType": type(error).__name__})
+                    except Exception:
+                        pass
+    
+        async def append_event(event: WorkflowEvent) -> None:
+            events.append(event)
+            if checkpoint:
+                await persist_checkpoint({
+                    "stage": event.stage,
+                    "mathIR": ir.model_dump(mode="json"),
+                    "statementHash": lock.statement_hash,
+                    "verification": verification,
+                    "verificationHistory": list(verification_history),
+                    "events": [_checkpoint_event(row) for row in events],
+                    "mathlibRetrievalRecords": list(retrieval_records),
+                    "mathlibRetrievalScopes": list(retrieval_scopes),
+                    "termination": "in_progress",
+                })
+            if emit:
+                patch_rows = event.patch_records
+                provider = event.provider or {}
+                await emit(event.stage, {
+                    "providerCalled": event.provider_called,
+                    "requestId": provider.get("request_id"),
+                    "responseId": provider.get("response_id"),
+                    "model": provider.get("model"),
+                    "usage": provider.get("usage"),
+                    "inputHash": event.repair_input_hash,
+                    "nodeIds": [row.get("node_id") for row in patch_rows],
+                    "result": event.result,
+                })
+    
+        async def report_verification(value: dict, ordinal: int) -> None:
+            if checkpoint:
+                await persist_checkpoint({
+                    "stage": "lean_verification",
+                    "mathIR": ir.model_dump(mode="json"),
+                    "statementHash": lock.statement_hash,
+                    "verification": value,
+                    "verificationHistory": list(verification_history),
+                    "events": [_checkpoint_event(row) for row in events],
+                    "mathlibRetrievalRecords": list(retrieval_records),
+                    "mathlibRetrievalScopes": list(retrieval_scopes),
+                    "termination": "in_progress",
+                })
+            if emit:
+                await emit("lean_verification", {
+                    "verificationIndex": ordinal,
+                    "fixedStatementKernelPassed": value.get("fixedStatementKernelPassed"),
+                    "originalRouteKernelPassed": value.get("anyRouteKernelPassed"),
+                    "originalMeaning": value.get("originalMeaning"),
+                    "unresolvedAmbiguityIds": value.get("unresolvedAmbiguityIds", []),
+                    "routes": [{"routeId": route.get("routeId"),
+                                "status": route.get("status"),
+                                "proofComposition": route.get("proofComposition"),
+                                "dependencyEvidence": route.get("dependencyEvidence")}
+                               for route in value.get("routes", [])],
+                })
+    
+        async def retrieve_mathlib(task: dict, stage: str, *, repair_state: str,
+                                   repairs: list[dict[str, Any]]) -> None:
+            if retriever is None:
+                return
+            task_hash = _sha(task)
+            if task_hash in seen_retrieval_inputs:
+                return
+            seen_retrieval_inputs.add(task_hash)
+            retrieval = await retriever.context(task)
+            # Archive distinct records even when their checked context hash is the
+            # same: the search plan and its provenance can still differ.
+            record_key = _sha(retrieval)
+            if record_key not in seen_retrieval_records:
+                seen_retrieval_records.add(record_key)
+                retrieval_records.append(retrieval)
+            repair_targets = sorted({
+                (row.get("routeId"), row.get("nodeId"), row.get("expectedType"))
+                for row in repairs
+            }, key=repr)
+            retrieval_scopes.append({
+                "recordHash": record_key,
+                "contextHash": retrieval.get("contextHash"),
+                "repairStateHash": repair_state,
+                "repairTargets": [{"routeId": route_id, "nodeId": node_id,
+                                   "expectedType": expected_type}
+                                  for route_id, node_id, expected_type in repair_targets],
+            })
+            provider_record = retrieval.get("planProvenance")
+            await append_event(WorkflowEvent("mathlib_retrieval", provider_record is not None,
+                provider_record, (), task_hash,
+                {"phase": stage, "status": retrieval.get("status"),
+                 "contextHash": retrieval.get("contextHash"),
+                 "recordHash": record_key,
+                 "repairStateHash": repair_state,
+                 "repairTargets": [{"routeId": route_id, "nodeId": node_id,
+                                    "expectedType": expected_type}
+                                   for route_id, node_id, expected_type in repair_targets],
+                 "checkedDeclarations": sum(bool(row.get("found"))
+                                             for row in retrieval.get("declarations", [])),
+                 "sourceCandidateCount": len(retrieval.get("sourceMatches", [])),
+                 "errors": retrieval.get("errors", [])}))
+    
+        # Check every proof already present before any model request. A provider
+        # failure must not erase Lean/Kernel evidence for the source-authored or
+        # previously generated proof fragments in a partially filled route.
+>       verification = _annotate_proof_term_origins(await verify_v2(ir, runner=runner, step_cache=verified_step_cache),
+                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                                    proof_term_origins)
+E       TypeError: object dict can't be used in 'await' expression
+
+backend/v2/workflow.py:277: TypeError
+=========================== short test summary info ============================
+FAILED tests/v2/test_proof_regeneration_on_new_kernel_evidence.py::test_repair_unlocks_missing_authored_step_with_new_lean_certificate
+1 failed in 0.09s

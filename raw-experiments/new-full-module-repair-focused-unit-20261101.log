@@ -1,0 +1,66 @@
+....................................F..........                          [100%]
+=================================== FAILURES ===================================
+_ test_real_whole_failure_routes_to_source_step_diagnostics_and_preserves_overall _
+
+    def test_real_whole_failure_routes_to_source_step_diagnostics_and_preserves_overall():
+        ai=AI();runner=Runner()
+>       result=asyncio.run(verify_whole_original(SOURCE,ai,runner))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_lean_first_step_diagnostics.py:96: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py:204: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py:127: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py:719: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+backend/lean_first_whole.py:607: in verify_whole_original
+    recomposed = await recompose_from_verified_source_steps(
+backend/lean_first_verified_step_composition.py:79: in recompose_from_verified_source_steps
+    repaired=await repair_full_module(
+backend/lean_first_module_repair.py:100: in repair_full_module
+    candidate,provenance=await provider.structured(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_lean_first_step_diagnostics.AI object at 0x107713770>
+schema = <class 'backend.lean_first_module_repair.ModuleRepairCandidate'>
+prompt = 'Repair an ACTUAL failed Lean4+Mathlib multi-lemma proof\nmodule. Output ModuleRepairCandidate; the original mathemati...le, return the previous code exactly and explain why.\nModel self-assessment does not establish truth or provenance.\n'
+payload = {'currentProofTerm': 'by\n  skip', 'currentUnverifiedSupportingDeclarations': '', 'lastAxiomAudit': None, 'lastRealLeanCompilerErrors': [], ...}
+
+    async def structured(self,schema,prompt,payload):
+        self.schemas.append(schema.__name__)
+        if schema.__name__=='SuspectedAuthoredFault':
+            return schema(suspected=False,sourceStepIndex=0,sourceQuote='',allegedMathematicalError='none',concreteCounterexample=''),{'model':'fixture'}
+        if schema.__name__=="StepObligations":
+            rows=[]
+            for i,step in enumerate(STEPS):
+                rows.append({"index":i,"sourceExcerpt":step["sourceExcerpt"],
+                    "complete":i==1,"formalStatement":"∀ a b : ℤ, a=b → a+1=b+1" if i==1 else "",
+                    "proofTerm":"by\n  intros a b h\n  omega" if i==1 else "",
+                    "dependsOn":[0] if i==1 else [],
+                    "limitations":[] if i==1 else ["not enough mathematical argument"]})
+            if self.invalid: rows[1]["sourceExcerpt"]="model invented text"
+            if self.all_false: rows[1]["formalStatement"]="True"
+            if self.missing: rows.pop()
+            return schema(steps=[StepObligation(**r) for r in rows]),{"model":"fixture"}
+        if schema.__name__=="WholeProofPlan":
+            return schema(formalStatement="∀ a b : ℤ, a=b → a+1=b+1",
+                goalExcerpt="得出结论",givenExcerpts=[],
+                steps=[{"start":s["start"],"end":s["end"],
+                        "sourceExcerpt":s["sourceExcerpt"]} for s in STEPS]),{"model":"fixture"}
+        if schema.__name__=="WholeProofProgram":
+            return schema(complete=False,proofTerm="by\n  skip",
+                          unsupportedOriginalSteps=["step 1 cannot formalize as complete theorem"]),{"model":"fixture"}
+        if schema.__name__=='LeanProofScaffold':
+            return schema(complete=False,proofTemplate='',unsupportedOriginalSteps=['fixture incomplete']),{'model':'fixture'}
+>       raise AssertionError(schema.__name__)
+E       AssertionError: ModuleRepairCandidate
+
+tests/test_lean_first_step_diagnostics.py:49: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_lean_first_step_diagnostics.py::test_real_whole_failure_routes_to_source_step_diagnostics_and_preserves_overall
+1 failed, 46 passed in 0.14s

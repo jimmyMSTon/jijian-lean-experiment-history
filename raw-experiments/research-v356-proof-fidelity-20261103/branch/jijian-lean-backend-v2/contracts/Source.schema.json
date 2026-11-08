@@ -1,0 +1,159 @@
+{
+  "$defs": {
+    "Box": {
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "title": "X",
+          "type": "number"
+        },
+        "y": {
+          "title": "Y",
+          "type": "number"
+        },
+        "width": {
+          "title": "Width",
+          "type": "number"
+        },
+        "height": {
+          "title": "Height",
+          "type": "number"
+        }
+      },
+      "required": [
+        "x",
+        "y",
+        "width",
+        "height"
+      ],
+      "title": "Box",
+      "type": "object"
+    },
+    "SourceBlock": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "bbox": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Box"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence"
+        },
+        "assetId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Assetid"
+        },
+        "providerData": {
+          "additionalProperties": true,
+          "title": "Providerdata",
+          "type": "object"
+        }
+      },
+      "required": [
+        "id",
+        "text"
+      ],
+      "title": "SourceBlock",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "kind": {
+      "title": "Kind",
+      "type": "string"
+    },
+    "raw": {
+      "title": "Raw",
+      "type": "string"
+    },
+    "normalized": {
+      "title": "Normalized",
+      "type": "string"
+    },
+    "recognitionId": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Recognitionid"
+    },
+    "transcriptionEvidence": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Transcriptionevidence"
+    },
+    "blocks": {
+      "items": {
+        "$ref": "#/$defs/SourceBlock"
+      },
+      "title": "Blocks",
+      "type": "array"
+    }
+  },
+  "required": [
+    "kind",
+    "raw",
+    "normalized",
+    "blocks"
+  ],
+  "title": "Source",
+  "type": "object"
+}

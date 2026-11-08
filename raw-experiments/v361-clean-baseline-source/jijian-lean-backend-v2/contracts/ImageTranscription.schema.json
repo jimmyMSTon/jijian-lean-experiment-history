@@ -1,0 +1,94 @@
+{
+  "$defs": {
+    "FormulaRegion": {
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "title": "X",
+          "type": "number"
+        },
+        "y": {
+          "title": "Y",
+          "type": "number"
+        },
+        "width": {
+          "title": "Width",
+          "type": "number"
+        },
+        "height": {
+          "title": "Height",
+          "type": "number"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "x",
+        "y",
+        "width",
+        "height",
+        "reason"
+      ],
+      "title": "FormulaRegion",
+      "type": "object"
+    },
+    "TranscribedBlock": {
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "unclearReadings": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Unclearreadings",
+          "type": "array"
+        },
+        "formulaRegion": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FormulaRegion"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "text",
+        "unclearReadings"
+      ],
+      "title": "TranscribedBlock",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "blocks": {
+      "items": {
+        "$ref": "#/$defs/TranscribedBlock"
+      },
+      "title": "Blocks",
+      "type": "array"
+    },
+    "notes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+    }
+  },
+  "required": [
+    "blocks",
+    "notes"
+  ],
+  "title": "ImageTranscription",
+  "type": "object"
+}

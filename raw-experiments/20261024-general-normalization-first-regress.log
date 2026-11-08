@@ -1,0 +1,32 @@
+.....F....F.......s.s.........                                           [100%]
+=================================== FAILURES ===================================
+__ test_real_ai_output_causal_claim_no_dependencies_cannot_be_freely_assumed ___
+
+    def test_real_ai_output_causal_claim_no_dependencies_cannot_be_freely_assumed():
+        from backend.v2.source_assumption_integrity import normalize_unlicensed_local_assumptions
+        relative='live-source-only-cc04847-20261024-1300/wrong_A_true_inequality_invalid_assumption'
+        original=_previous_real_mathir(relative)
+        newer,issues=normalize_unlicensed_local_assumptions(original)
+>       assert len(issues)==1
+E       assert 0 == 1
+E        +  where 0 = len([])
+
+tests/v2/test_source_assumption_authority_and_feedback.py:149: AssertionError
+_____ test_real_deepseek_claim_cites_entire_because_phrase_and_is_blocked ______
+
+    def test_real_deepseek_claim_cites_entire_because_phrase_and_is_blocked():
+        original=_previous_real_mathir(
+            'live-source-only-e21bd2b-20261024-1308/wrong_A_true_inequality_invalid_assumption')
+        amended,issues=normalize_unlicensed_local_assumptions(original)
+        assert amended==original
+>       assert len(issues)==1
+E       assert 0 == 1
+E        +  where 0 = len([])
+
+tests/v2/test_source_assumption_authority_and_feedback.py:206: AssertionError
+=========================== short test summary info ============================
+SKIPPED [1] tests/v2/test_closed_lemma_dependencies.py:46: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_closed_lemma_dependencies.py:89: source-matched isolated Lean/Mathlib runtime is not ready
+FAILED tests/v2/test_source_assumption_authority_and_feedback.py::test_real_ai_output_causal_claim_no_dependencies_cannot_be_freely_assumed
+FAILED tests/v2/test_source_assumption_authority_and_feedback.py::test_real_deepseek_claim_cites_entire_because_phrase_and_is_blocked
+2 failed, 26 passed, 2 skipped in 0.21s

@@ -1,0 +1,54 @@
+........................................................................ [  8%]
+........................................................................ [ 16%]
+........................................................................ [ 25%]
+........................................................................ [ 33%]
+........................................................................ [ 42%]
+........................................................................ [ 50%]
+........................................................................ [ 59%]
+...........................................F............................ [ 67%]
+........................................................................ [ 76%]
+........................................................................ [ 84%]
+........................................................................ [ 93%]
+.........F.................................................              [100%]
+=================================== FAILURES ===================================
+______________ test_exported_schema_matches_the_runtime_contract _______________
+
+    def test_exported_schema_matches_the_runtime_contract():
+        from pathlib import Path
+        contracts = Path(__file__).parents[2] / "contracts"
+        for model in (MathIRV2, StructureOnlyMathIRV2):
+            exported = json.loads((contracts / f"{model.__name__}.schema.json").read_text())
+>           assert exported == model.model_json_schema()
+E           AssertionError: assert {'$defs': {'A... 'goal'], ...} == {'$defs': {'A... 'goal'], ...}
+E             
+E             Omitting 5 identical items, use -vv to show
+E             Differing items:
+E             {'$defs': {'Assumption': {'additionalProperties': False, 'allOf': [{'if': {'properties': {...}, 'required': [...]}, 't...al': {'anyOf': [{...}, {...}], 'default': None}, 'lower': {'anyOf': [{...}, {...}], 'default': None}, ...}, ...}, ...}} != {'$defs': {'Assumption': {'additionalProperties': False, 'allOf': [{'if': {'properties': {...}, 'required': [...]}, 't...al': {'anyOf': [{...}, {...}], 'default': None}, 'lower': {'anyOf': [{...}, {...}], 'default': None}, ...}, ...}, ...}}
+E             Use -v to get more diff
+
+tests/v2/test_mathir_v2.py:219: AssertionError
+__________ test_mixed_source_kind_is_in_the_exported_mathir_contract ___________
+
+    def test_mixed_source_kind_is_in_the_exported_mathir_contract():
+        from pathlib import Path
+    
+        exported = json.loads((Path(__file__).parents[2] / "contracts/MathIRV2.schema.json").read_text())
+>       assert exported == MathIRV2.model_json_schema()
+E       AssertionError: assert {'$defs': {'A... 'goal'], ...} == {'$defs': {'A... 'goal'], ...}
+E         
+E         Omitting 5 identical items, use -vv to show
+E         Differing items:
+E         {'$defs': {'Assumption': {'additionalProperties': False, 'allOf': [{'if': {'properties': {...}, 'required': [...]}, 't...al': {'anyOf': [{...}, {...}], 'default': None}, 'lower': {'anyOf': [{...}, {...}], 'default': None}, ...}, ...}, ...}} != {'$defs': {'Assumption': {'additionalProperties': False, 'allOf': [{'if': {'properties': {...}, 'required': [...]}, 't...al': {'anyOf': [{...}, {...}], 'default': None}, 'lower': {'anyOf': [{...}, {...}], 'default': None}, ...}, ...}, ...}}
+E         Use -v to get more diff
+
+tests/v2/test_structure_pipeline.py:435: AssertionError
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/starlette/testclient.py:45
+  /[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.venv/lib/python3.12/site-packages/starlette/testclient.py:45: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/v2/test_mathir_v2.py::test_exported_schema_matches_the_runtime_contract
+FAILED tests/v2/test_structure_pipeline.py::test_mixed_source_kind_is_in_the_exported_mathir_contract
+2 failed, 849 passed, 69 deselected, 1 warning in 9.07s

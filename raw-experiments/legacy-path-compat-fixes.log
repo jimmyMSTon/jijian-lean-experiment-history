@@ -1,0 +1,17 @@
+F..........................                                              [100%]
+=================================== FAILURES ===================================
+_____________ test_finite_sum_and_cardinality_domains_are_distinct _____________
+
+    def test_finite_sum_and_cardinality_domains_are_distinct():
+        statement='IsGreatest {c : ℝ | ∀ (n : ℕ), 0 < n → ∀ x : Fin n → ℝ, (∑ i : Fin n, ∑ j : Fin n, x i * x j) ≥ c} (1 / 2 : ℝ)'
+        author='作者在双计数展开时比较每个 x_i x_j 的系数，并取前缀和。'
+        failure=['双计数的系数恒等式尚未形式化', '有限和指标转换尚未处理']
+        assert needs_finite_sum_api(statement)
+>       assert not is_finite_counting_goal(author,statement)
+E       AssertionError: assert not True
+E        +  where True = is_finite_counting_goal('作者在双计数展开时比较每个 x_i x_j 的系数，并取前缀和。', 'IsGreatest {c : ℝ | ∀ (n : ℕ), 0 < n → ∀ x : Fin n → ℝ, (∑ i : Fin n, ∑ j : Fin n, x i * x j) ≥ c} (1 / 2 : ℝ)')
+
+tests/test_lean_first_math_api.py:14: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_lean_first_math_api.py::test_finite_sum_and_cardinality_domains_are_distinct
+1 failed, 26 passed in 0.10s

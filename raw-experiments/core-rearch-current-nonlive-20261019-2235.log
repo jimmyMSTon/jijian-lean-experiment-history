@@ -1,0 +1,342 @@
+........................................................................ [  9%]
+........................................................................ [ 19%]
+........................................................................ [ 29%]
+........................................................................ [ 39%]
+........................................................................ [ 49%]
+........................................................................ [ 58%]
+........................................................................ [ 68%]
+........................................................................ [ 78%]
+..................................................F.F...............FF.F [ 88%]
+...........................................FF..............F............ [ 98%]
+.............                                                            [100%]
+=================================== FAILURES ===================================
+________________ test_native_v2_submit_read_result_and_history _________________
+
+tmp_path = PosixPath('/private/tmp/pytest-of-mac/pytest-134/test_native_v2_submit_read_res0')
+
+    def test_native_v2_submit_read_result_and_history(tmp_path):
+>       asyncio.run(_run_contract(tmp_path))
+
+tests/v2/test_native_v2_api_contract.py:180: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+tmp_path = PosixPath('/private/tmp/pytest-of-mac/pytest-134/test_native_v2_submit_read_res0')
+fail = False, real_kernel = False, step_assessment = None
+
+    async def _run_contract(tmp_path, fail=False, real_kernel=False, step_assessment=None):
+        settings = Settings.from_env()
+        settings.data_dir = tmp_path / "db"
+        app = create_app(settings)
+        provider = _AI(fail, step_assessment)
+        app.state.services.mathir_v2.provider = provider
+        app.state.services.mathir_v2.recognition = _Source()
+        checked_runner = LeanRunner(settings) if real_kernel else _FixtureLean()
+        app.state.services.mathir_v2.runner = checked_runner
+        app.state.services.mathir_v2.retriever = None
+        async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app),
+                                     base_url="http://native-test") as client:
+            try:
+                response = await client.post("/api/v2/jobs", json={
+                    "input": {"kind": "text", "text": "1=1"}, "explain": False})
+                assert response.status_code == 202, response.text
+                job_id = response.json()["id"]
+                # HTTP poll must tolerate genuine Lean/Mathlib startup. This is
+                # a test harness deadline only; not an application runtime limit.
+                async with asyncio.timeout(180):
+                    while True:
+                        job = (await client.get(f"/api/jobs/{job_id}")).json()
+                        if job["status"] not in ("queued", "running"):
+                            break
+                        await asyncio.sleep(0.1)
+                if fail:
+                    assert job["status"] == "failed"
+                    assert job["error"]["code"] == "AI_PROVIDER_ERROR"
+                    assert provider.calls == ["StructureOnlyMathIRV2"]
+                    assert (await client.get(
+                        "/api/history?kind=mathir_v2_run")).json()["records"] == []
+                    return
+                assert job["status"] == "completed", job
+                packet = job["result"]
+                assert packet["version"] == "2.0"
+                assert packet["id"] and packet["mathIRId"]
+                assert "verificationId" not in packet
+                assert "formalizationId" not in packet
+>               assert packet["originalRouteKernelPassed"] is True
+E               assert False is True
+
+tests/v2/test_native_v2_api_contract.py:121: AssertionError
+________ test_native_v2_result_and_history_keep_step_source_assessment _________
+
+tmp_path = PosixPath('/private/tmp/pytest-of-mac/pytest-134/test_native_v2_result_and_hist0')
+
+    def test_native_v2_result_and_history_keep_step_source_assessment(tmp_path):
+>       asyncio.run(_run_contract(tmp_path, step_assessment="contradicted"))
+
+tests/v2/test_native_v2_api_contract.py:188: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+tmp_path = PosixPath('/private/tmp/pytest-of-mac/pytest-134/test_native_v2_result_and_hist0')
+fail = False, real_kernel = False, step_assessment = 'contradicted'
+
+    async def _run_contract(tmp_path, fail=False, real_kernel=False, step_assessment=None):
+        settings = Settings.from_env()
+        settings.data_dir = tmp_path / "db"
+        app = create_app(settings)
+        provider = _AI(fail, step_assessment)
+        app.state.services.mathir_v2.provider = provider
+        app.state.services.mathir_v2.recognition = _Source()
+        checked_runner = LeanRunner(settings) if real_kernel else _FixtureLean()
+        app.state.services.mathir_v2.runner = checked_runner
+        app.state.services.mathir_v2.retriever = None
+        async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app),
+                                     base_url="http://native-test") as client:
+            try:
+                response = await client.post("/api/v2/jobs", json={
+                    "input": {"kind": "text", "text": "1=1"}, "explain": False})
+                assert response.status_code == 202, response.text
+                job_id = response.json()["id"]
+                # HTTP poll must tolerate genuine Lean/Mathlib startup. This is
+                # a test harness deadline only; not an application runtime limit.
+                async with asyncio.timeout(180):
+                    while True:
+                        job = (await client.get(f"/api/jobs/{job_id}")).json()
+                        if job["status"] not in ("queued", "running"):
+                            break
+                        await asyncio.sleep(0.1)
+                if fail:
+                    assert job["status"] == "failed"
+                    assert job["error"]["code"] == "AI_PROVIDER_ERROR"
+                    assert provider.calls == ["StructureOnlyMathIRV2"]
+                    assert (await client.get(
+                        "/api/history?kind=mathir_v2_run")).json()["records"] == []
+                    return
+                assert job["status"] == "completed", job
+                packet = job["result"]
+                assert packet["version"] == "2.0"
+                assert packet["id"] and packet["mathIRId"]
+                assert "verificationId" not in packet
+                assert "formalizationId" not in packet
+>               assert packet["originalRouteKernelPassed"] is True
+E               assert False is True
+
+tests/v2/test_native_v2_api_contract.py:121: AssertionError
+_________ test_source_ambiguity_is_separate_from_a_kernel_route_result _________
+
+    def test_source_ambiguity_is_separate_from_a_kernel_route_result():
+        class FixtureKernelRunner:
+            async def check_many_with_probes(self, obligations):
+                return [{
+                    "localVerified": True,
+                    "status": "verified",
+                    "diagnostics": [],
+                    "certificate": {
+                        "checked": True,
+                        "statementMatched": True,
+                        "auditMethod": "fixture_only",
+                        "dependencyUsage": [],
+                    },
+                } for _ in obligations]
+    
+        data = _source_ir().model_dump(mode="json")
+        data["source"]["transcriptStatus"] = "ambiguous"
+        data["ambiguities"] = [{"id": "amb:relation", "resolvedAs": None}]
+        ir = MathIRV2.model_validate(data)
+    
+        result = asyncio.run(verify_v2(ir, runner=FixtureKernelRunner()))
+    
+>       assert result["fixedStatementKernelPassed"] is True
+E       assert False is True
+
+tests/v2/test_source_coverage.py:151: AssertionError
+___ test_route_and_step_source_assessments_are_included_in_alignment_summary ___
+
+tmp_path = PosixPath('/private/tmp/pytest-of-mac/pytest-134/test_route_and_step_source_ass0')
+
+    def test_route_and_step_source_assessments_are_included_in_alignment_summary(tmp_path):
+        class FixtureKernelRunner:
+            async def check_many_with_probes(self, obligations):
+                return [{
+                    "localVerified": True,
+                    "status": "verified",
+                    "diagnostics": [],
+                    "certificate": {"checked": True, "statementMatched": True,
+                                    "auditMethod": "fixture_only", "dependencyUsage": []},
+                } for _ in obligations]
+    
+        data = _source_ir().model_dump(mode="json")
+        data["goal"]["sourceAssessment"] = "supported"
+        data["goal"]["assessmentBasis"] = "The source explicitly states the goal."
+        data["proofRoutes"][0]["sourceAssessment"] = "supported"
+        data["proofRoutes"][0]["assessmentBasis"] = "The source explicitly presents this route."
+        data["proofRoutes"][0]["nodes"][0]["sourceAssessment"] = "contradicted"
+        data["proofRoutes"][0]["nodes"][0]["assessmentBasis"] = "The referenced source says the reverse relation."
+    
+        result = asyncio.run(verify_v2(MathIRV2.model_validate(data), runner=FixtureKernelRunner()))
+    
+        assert result["sourceAlignment"]["modelAssessment"] == "contradicted"
+        assert result["sourceAlignment"]["status"] == "contradicted"
+        assert result["routes"][0]["sourceAlignment"]["modelAssessment"] == "contradicted"
+        assert result["routes"][0]["sourceAlignment"]["status"] == "contradicted"
+        assert result["originalMeaning"] == "source_assessment_contradicted"
+        assert result["unresolvedAmbiguityIds"] == []
+        step = result["routes"][0]["stepResults"][0]
+        assert step["sourceAssessment"] == "contradicted"
+        assert step["assessmentBasis"] == "The referenced source says the reverse relation."
+        coverage_step = result["routes"][0]["sourceCoverage"]["steps"][0]
+        assert coverage_step["sourceAssessment"] == "contradicted"
+        # This source assessment does not alter what the independent Kernel checked.
+>       assert result["fixedStatementKernelPassed"] is True
+E       assert False is True
+
+tests/v2/test_source_coverage.py:196: AssertionError
+_ test_unassessed_visual_transcript_is_not_promoted_by_supported_mathir_or_kernel _
+
+tmp_path = PosixPath('/private/tmp/pytest-of-mac/pytest-134/test_unassessed_visual_transcr0')
+
+    def test_unassessed_visual_transcript_is_not_promoted_by_supported_mathir_or_kernel(tmp_path):
+        class FixtureKernelRunner:
+            async def check_many_with_probes(self, obligations):
+                return [{
+                    "localVerified": True,
+                    "status": "verified",
+                    "diagnostics": [],
+                    "certificate": {"checked": True, "statementMatched": True,
+                                    "auditMethod": "fixture_only", "dependencyUsage": []},
+                } for _ in obligations]
+    
+        data = _source_ir().model_dump(mode="json")
+        data["source"]["kind"] = "photo"
+        data["source"]["transcriptStatus"] = "not_assessed"
+        data["goal"]["sourceAssessment"] = "supported"
+        data["goal"]["assessmentBasis"] = "Model interpretation of recognized text."
+        data["proofRoutes"][0]["sourceAssessment"] = "supported"
+        data["proofRoutes"][0]["assessmentBasis"] = "Model interpretation of recognized text."
+        data["proofRoutes"][0]["nodes"][0]["sourceAssessment"] = "supported"
+        data["proofRoutes"][0]["nodes"][0]["assessmentBasis"] = "Model interpretation of recognized text."
+    
+        result = asyncio.run(verify_v2(MathIRV2.model_validate(data), runner=FixtureKernelRunner()))
+    
+        # The fixture certificate only exercises state composition; it is not a
+        # real Kernel claim. Source and proof statuses must remain independent.
+>       assert result["fixedStatementKernelPassed"] is True
+E       assert False is True
+
+tests/v2/test_source_coverage.py:262: AssertionError
+___ test_v2_pipeline_connects_structure_generation_to_locked_proof_workflow ____
+
+tmp_path = PosixPath('/private/tmp/pytest-of-mac/pytest-134/test_v2_pipeline_connects_stru0')
+
+    def test_v2_pipeline_connects_structure_generation_to_locked_proof_workflow(tmp_path):
+        store = Store(tmp_path / "store")
+        provider = _RecordedProvider()
+        runner = _RecordedLean()
+        class SavedPhotoRecognition:
+            async def resolve(self, _inp, _emit=None):
+                return Source(kind="image", raw="1=1", normalized="1=1",
+                              recognitionId="saved-photo-recognition",
+                              blocks=[SourceBlock(id="b0", text="1=1", assetId="saved-photo")],
+                              transcriptionEvidence={"original_image": "saved-photo"})
+    
+        service = MathIRV2Service(store, provider, SavedPhotoRecognition(), runner, retriever=None)
+        emitted = []
+    
+        async def emit(name, data):
+            emitted.append((name, data))
+    
+        try:
+            result = asyncio.run(service.pipeline(
+                PipelineRequest(input={"kind": "text", "text": "1=1"}), emit))
+            structure = store.get(result["mathIRId"], "mathir_v2")
+            assert structure["sourceRefAudit"]["allRangesValid"] is True
+            assert structure["sourceRefAudit"]["semanticAlignmentProven"] is False
+>           assert result["kernelVerified"] is True
+E           assert False is True
+
+tests/v2/test_structure_pipeline.py:524: AssertionError
+_____ test_v2_pipeline_keeps_ambiguity_visible_when_fixture_kernel_passes ______
+
+tmp_path = PosixPath('/private/tmp/pytest-of-mac/pytest-134/test_v2_pipeline_keeps_ambigui0')
+
+    def test_v2_pipeline_keeps_ambiguity_visible_when_fixture_kernel_passes(tmp_path):
+        store = Store(tmp_path / "store")
+        provider = _RecordedProvider(ambiguous=True)
+        service = MathIRV2Service(store, provider, _FakeRecognition(), _RecordedLean(), retriever=None)
+        emitted = []
+    
+        async def emit(name, data):
+            emitted.append((name, data))
+    
+        try:
+            result = asyncio.run(service.pipeline(
+                PipelineRequest(input={"kind": "text", "text": "1=1"}), emit))
+    
+>           assert result["kernelVerified"] is True
+E           assert False is True
+
+tests/v2/test_structure_pipeline.py:588: AssertionError
+________ test_v2_uses_combined_expected_and_proof_runner_when_available ________
+
+    def test_v2_uses_combined_expected_and_proof_runner_when_available():
+        class CombinedRunner:
+            def __init__(self):
+                self.metrics = {"processCount": 0, "elapsedSeconds": 0.0}
+                self.obligations = None
+    
+            async def check_many_with_probes(self, obligations):
+                self.obligations = obligations
+                return [{"localVerified": True, "status": "verified", "diagnostics": [],
+                         "certificate": {"checked": True, "statementMatched": True,
+                                         "dependencyUsage": [], "axioms": [],
+                                         "auditMethod": "fresh_environment_data_only_kernel_replay"}}
+                        for _ in obligations]
+    
+            async def probe_statements(self, _obligations):
+                raise AssertionError("combined production runner should avoid a separate probe")
+    
+            async def check_many(self, _obligations):
+                raise AssertionError("combined production runner should avoid a second export call")
+    
+        data = _single_route(_base(_eq(_lit("1"), _lit("1"))), "combined", "by rfl")
+        runner = CombinedRunner()
+        result = asyncio.run(verify_v2(MathIRV2.model_validate(data), runner=runner))
+        assert runner.obligations and runner.obligations[0]["expectedType"] == result["statement"]
+>       assert result["fixedStatementKernelPassed"] is True
+E       assert False is True
+
+tests/v2/test_v2_kernel.py:816: AssertionError
+=============================== warnings summary ===============================
+../../极简lean 2/jijian-lean-backend-v2/.venv/lib/python3.12/site-packages/starlette/testclient.py:45
+  /[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.venv/lib/python3.12/site-packages/starlette/testclient.py:45: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/v2/test_native_v2_api_contract.py::test_native_v2_submit_read_result_and_history
+FAILED tests/v2/test_native_v2_api_contract.py::test_native_v2_result_and_history_keep_step_source_assessment
+FAILED tests/v2/test_source_coverage.py::test_source_ambiguity_is_separate_from_a_kernel_route_result
+FAILED tests/v2/test_source_coverage.py::test_route_and_step_source_assessments_are_included_in_alignment_summary
+FAILED tests/v2/test_source_coverage.py::test_unassessed_visual_transcript_is_not_promoted_by_supported_mathir_or_kernel
+FAILED tests/v2/test_structure_pipeline.py::test_v2_pipeline_connects_structure_generation_to_locked_proof_workflow
+FAILED tests/v2/test_structure_pipeline.py::test_v2_pipeline_keeps_ambiguity_visible_when_fixture_kernel_passes
+FAILED tests/v2/test_v2_kernel.py::test_v2_uses_combined_expected_and_proof_runner_when_available
+8 failed, 725 passed, 69 deselected, 1 warning in 9.30s

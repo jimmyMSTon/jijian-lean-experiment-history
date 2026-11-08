@@ -1,0 +1,40 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.15, pytest-9.0.2, pluggy-1.6.0 -- /[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2
+configfile: pyproject.toml
+plugins: anyio-4.15.1
+collecting ... collected 11 items / 10 deselected / 1 selected
+
+tests/v2/test_real_lean_unproductive_tactic_repair.py::test_genuine_lean_kernel_accepts_only_true_fixed_mathematical_obligation FAILED [100%]
+
+=================================== FAILURES ===================================
+___ test_genuine_lean_kernel_accepts_only_true_fixed_mathematical_obligation ___
+
+    @pytest.mark.lean_local
+    def test_genuine_lean_kernel_accepts_only_true_fixed_mathematical_obligation():
+        from backend.config import Settings
+        from backend.lean.runner import LeanRunner
+        runner=LeanRunner(Settings.from_env())
+        if not runner.info().get('ready'):
+            pytest.skip('Source-matched Lean runtime not ready')
+        ir,lock=fixture()
+        ob=compile_v2(ir).routes[0].obligations[0]
+        invalid=asyncio.run(runner.check_many([{'stepId':ob.source_id,
+            'expectedType':ob.expected_type,'proofTerm':ir.proofRoutes[0].nodes[0].proofTerm,
+            'sourceRefs':list(ob.source_refs),'statement_hash':lock.statement_hash}]))[0]
+        # Test the independently captured *actual* diagnostics, not a handcrafted
+        # reason string. Cleaned syntax must be kernel-checked against same lock.
+        assert invalid['status']!='verified'
+        vr={'routes':[{'routeId':'route','stepResults':[{'nodeId':'final','status':'incomplete',
+            'lean':invalid}]}]}
+        patched=asyncio.run(_repair_dsimp_no_progress(ir,lock=lock,
+            generated_terms={'final':ir.proofRoutes[0].nodes[0].proofTerm},
+            verification=vr,runner=runner))
+>       assert patched is not None
+E       assert None is not None
+
+tests/v2/test_real_lean_unproductive_tactic_repair.py:89: AssertionError
+=========================== short test summary info ============================
+FAILED tests/v2/test_real_lean_unproductive_tactic_repair.py::test_genuine_lean_kernel_accepts_only_true_fixed_mathematical_obligation
+====================== 1 failed, 10 deselected in 30.21s =======================

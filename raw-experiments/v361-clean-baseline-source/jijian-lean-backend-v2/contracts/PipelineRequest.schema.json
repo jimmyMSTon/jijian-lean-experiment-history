@@ -1,0 +1,169 @@
+{
+  "$defs": {
+    "MathInput": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "default": "text",
+          "enum": [
+            "text",
+            "latex",
+            "image",
+            "photo",
+            "strokes",
+            "pdf",
+            "mixed"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Text"
+        },
+        "assetId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Assetid"
+        },
+        "dataUrl": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Dataurl"
+        },
+        "strokes": {
+          "anyOf": [
+            {
+              "items": {
+                "items": {
+                  "$ref": "#/$defs/Point"
+                },
+                "type": "array"
+              },
+              "type": "array"
+            },
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Strokes"
+        },
+        "recognitionId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Recognitionid"
+        },
+        "parts": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/MathInput"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parts"
+        }
+      },
+      "title": "MathInput",
+      "type": "object"
+    },
+    "Point": {
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "title": "X",
+          "type": "number"
+        },
+        "y": {
+          "title": "Y",
+          "type": "number"
+        },
+        "t": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "T"
+        },
+        "pressure": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pressure"
+        }
+      },
+      "required": [
+        "x",
+        "y"
+      ],
+      "title": "Point",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "input": {
+      "$ref": "#/$defs/MathInput"
+    },
+    "explain": {
+      "default": false,
+      "title": "Explain",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "input"
+  ],
+  "title": "PipelineRequest",
+  "type": "object"
+}

@@ -1,0 +1,431 @@
+{
+  "study": "isolated semantic-step roundtrip; deterministic/local; no provider calls",
+  "source": "saved Stage 7 raw text and Typed MathIR",
+  "results": [
+    {
+      "caseId": "C05",
+      "sourceFragment": "n+m",
+      "sourceSpan": [
+        169,
+        172
+      ],
+      "semanticStep": {
+        "op": "add",
+        "args": [
+          {
+            "op": "symbol",
+            "args": [],
+            "symbolId": "n",
+            "binderId": null,
+            "literal": null,
+            "lower": null,
+            "upper": null,
+            "upperInclusive": null,
+            "targetType": null
+          },
+          {
+            "op": "symbol",
+            "args": [],
+            "symbolId": "m",
+            "binderId": null,
+            "literal": null,
+            "lower": null,
+            "upper": null,
+            "upperInclusive": null,
+            "targetType": null
+          }
+        ],
+        "symbolId": null,
+        "binderId": null,
+        "literal": null,
+        "lower": null,
+        "upper": null,
+        "upperInclusive": null,
+        "targetType": null
+      },
+      "symbolBindings": {
+        "m": {
+          "id": "m",
+          "type": "Nat"
+        },
+        "n": {
+          "id": "n",
+          "type": "Nat"
+        },
+        "k": {
+          "id": "k",
+          "type": "Nat"
+        },
+        "S_n": {
+          "id": "S_n_def",
+          "type": "Nat"
+        }
+      },
+      "typeConstraints": [
+        "n,m : Nat",
+        "add operands have same type"
+      ],
+      "inferredType": "Nat",
+      "typeConstraintsVerified": true,
+      "loweredExprEqualsDirectMathIR": true,
+      "preservesSubmittedError": true
+    },
+    {
+      "caseId": "C10",
+      "sourceFragment": "Q(X)=P(X)(X−1)",
+      "sourceSpan": [
+        36,
+        50
+      ],
+      "semanticStep": {
+        "op": "mul",
+        "args": [
+          {
+            "op": "symbol",
+            "args": [],
+            "symbolId": "d_P",
+            "binderId": null,
+            "literal": null,
+            "lower": null,
+            "upper": null,
+            "upperInclusive": null,
+            "targetType": null
+          },
+          {
+            "op": "sub",
+            "args": [
+              {
+                "op": "poly_x",
+                "args": [],
+                "symbolId": null,
+                "binderId": null,
+                "literal": null,
+                "lower": null,
+                "upper": null,
+                "upperInclusive": null,
+                "targetType": null
+              },
+              {
+                "op": "literal",
+                "args": [],
+                "symbolId": null,
+                "binderId": null,
+                "literal": {
+                  "type": "Real",
+                  "value": "1"
+                },
+                "lower": null,
+                "upper": null,
+                "upperInclusive": null,
+                "targetType": null
+              }
+            ],
+            "symbolId": null,
+            "binderId": null,
+            "literal": null,
+            "lower": null,
+            "upper": null,
+            "upperInclusive": null,
+            "targetType": null
+          }
+        ],
+        "symbolId": null,
+        "binderId": null,
+        "literal": null,
+        "lower": null,
+        "upper": null,
+        "upperInclusive": null,
+        "targetType": null
+      },
+      "symbolBindings": {
+        "X": {
+          "op": "poly_x",
+          "type": "Polynomial"
+        },
+        "P": {
+          "id": "d_P",
+          "type": "Polynomial"
+        }
+      },
+      "typeConstraints": [
+        "P : Polynomial Real",
+        "X : Polynomial Real",
+        "factor subtraction remains in source order"
+      ],
+      "inferredType": "Polynomial",
+      "typeConstraintsVerified": true,
+      "loweredExprEqualsDirectMathIR": true,
+      "preservesSubmittedError": true
+    },
+    {
+      "caseId": "C12",
+      "sourceFragment": "存在 M∈ℝ，使对任意 x∈ℝ，有 x<M",
+      "sourceSpan": [
+        34,
+        55
+      ],
+      "semanticStep": {
+        "op": "exists",
+        "args": [
+          {
+            "op": "forall",
+            "args": [
+              {
+                "op": "lt",
+                "args": [
+                  {
+                    "op": "symbol",
+                    "args": [],
+                    "symbolId": "x",
+                    "binderId": null,
+                    "literal": null,
+                    "lower": null,
+                    "upper": null,
+                    "upperInclusive": null,
+                    "targetType": null
+                  },
+                  {
+                    "op": "symbol",
+                    "args": [],
+                    "symbolId": "M",
+                    "binderId": null,
+                    "literal": null,
+                    "lower": null,
+                    "upper": null,
+                    "upperInclusive": null,
+                    "targetType": null
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "literal": null,
+                "lower": null,
+                "upper": null,
+                "upperInclusive": null,
+                "targetType": null
+              }
+            ],
+            "symbolId": null,
+            "binderId": "x",
+            "literal": null,
+            "lower": null,
+            "upper": null,
+            "upperInclusive": null,
+            "targetType": null
+          }
+        ],
+        "symbolId": null,
+        "binderId": "M",
+        "literal": null,
+        "lower": null,
+        "upper": null,
+        "upperInclusive": null,
+        "targetType": null
+      },
+      "symbolBindings": {
+        "M": "outer existential binder : Real",
+        "x": "inner universal binder : Real"
+      },
+      "typeConstraints": [
+        "M,x : Real",
+        "lt : Real × Real → Prop"
+      ],
+      "inferredType": "Prop",
+      "typeConstraintsVerified": true,
+      "loweredExprEqualsDirectMathIR": true,
+      "preservesSubmittedError": true
+    },
+    {
+      "caseId": "C04",
+      "sourceFragment": "S_(n+1)=S_n+(n+1+m)",
+      "semanticStep": {
+        "op": "finite_sum_successor",
+        "index": "d_n",
+        "binder": "d_k",
+        "lower": 1,
+        "summand": "d_k+d_m",
+        "sourceRule": "S_(n+1)=S_n+(n+1+m)"
+      },
+      "symbolBindings": {
+        "n": "d_n : Nat",
+        "k": "d_k : Nat",
+        "m": "d_m : Nat"
+      },
+      "typeConstraints": [
+        "finite_sum index/lower/upper : Nat",
+        "summand : Nat"
+      ],
+      "inferredType": "Prop",
+      "typeConstraintsVerified": true,
+      "loweredExprEqualsDirectMathIR": true,
+      "preservesSubmittedError": true,
+      "proofResultSource": "current Lean replay remains authoritative"
+    },
+    {
+      "caseId": "C08",
+      "sourceFragment": "8/16+4/16+2/16+1/16",
+      "semanticStep": {
+        "op": "add",
+        "args": [
+          {
+            "op": "literal",
+            "args": [],
+            "symbolId": null,
+            "binderId": null,
+            "literal": {
+              "type": "Rat",
+              "value": "8/16"
+            },
+            "lower": null,
+            "upper": null,
+            "upperInclusive": null,
+            "targetType": null
+          },
+          {
+            "op": "literal",
+            "args": [],
+            "symbolId": null,
+            "binderId": null,
+            "literal": {
+              "type": "Rat",
+              "value": "4/16"
+            },
+            "lower": null,
+            "upper": null,
+            "upperInclusive": null,
+            "targetType": null
+          },
+          {
+            "op": "literal",
+            "args": [],
+            "symbolId": null,
+            "binderId": null,
+            "literal": {
+              "type": "Rat",
+              "value": "2/16"
+            },
+            "lower": null,
+            "upper": null,
+            "upperInclusive": null,
+            "targetType": null
+          },
+          {
+            "op": "literal",
+            "args": [],
+            "symbolId": null,
+            "binderId": null,
+            "literal": {
+              "type": "Rat",
+              "value": "1/16"
+            },
+            "lower": null,
+            "upper": null,
+            "upperInclusive": null,
+            "targetType": null
+          }
+        ],
+        "symbolId": null,
+        "binderId": null,
+        "literal": null,
+        "lower": null,
+        "upper": null,
+        "upperInclusive": null,
+        "targetType": null
+      },
+      "symbolBindings": {},
+      "typeConstraints": [
+        "all four operands are exact Rat literals",
+        "addition preserves Rat"
+      ],
+      "inferredType": "Rat",
+      "typeConstraintsVerified": true,
+      "loweredExprEqualsDirectMathIR": true,
+      "preservesSubmittedError": true,
+      "proofResultSource": "saved real Flash response replay and current Lean/Kernel"
+    }
+  ],
+  "compile": [
+    {
+      "caseId": "C04",
+      "compiled": true,
+      "directStatementHash": "575ccfcc4cb19b1ac1497743f0b3a65d1afc6d427833a31939203e94f02bf7be",
+      "loweredStatementHash": "575ccfcc4cb19b1ac1497743f0b3a65d1afc6d427833a31939203e94f02bf7be",
+      "sameStatementHash": true,
+      "routeCount": 1,
+      "directRouteStatuses": {
+        "r_main": "structural_induction"
+      },
+      "loweredRouteStatuses": {
+        "r_main": "structural_induction"
+      },
+      "routeStatusesUnchanged": true
+    },
+    {
+      "caseId": "C05",
+      "compiled": true,
+      "directStatementHash": "a8b3779e6b1798245cd53cd244f03855ccaa95aeba67ab83018c0b2d099abe79",
+      "loweredStatementHash": "a8b3779e6b1798245cd53cd244f03855ccaa95aeba67ab83018c0b2d099abe79",
+      "sameStatementHash": true,
+      "routeCount": 1,
+      "directRouteStatuses": {
+        "route_induction": "structural_induction"
+      },
+      "loweredRouteStatuses": {
+        "route_induction": "structural_induction"
+      },
+      "routeStatusesUnchanged": true
+    },
+    {
+      "caseId": "C08",
+      "compiled": true,
+      "directStatementHash": "d0dbaa648a8e41e790daa278e047e050ee52b7c536c12ae9432569591646bf41",
+      "loweredStatementHash": "d0dbaa648a8e41e790daa278e047e050ee52b7c536c12ae9432569591646bf41",
+      "sameStatementHash": true,
+      "routeCount": 1,
+      "directRouteStatuses": {
+        "route_main": "incomplete"
+      },
+      "loweredRouteStatuses": {
+        "route_main": "incomplete"
+      },
+      "routeStatusesUnchanged": true
+    },
+    {
+      "caseId": "C10",
+      "compiled": true,
+      "directStatementHash": "e59d9afb006a43af8c97dbdd2aa9170466e59581754ca7ab355a70b184be6e2d",
+      "loweredStatementHash": "e59d9afb006a43af8c97dbdd2aa9170466e59581754ca7ab355a70b184be6e2d",
+      "sameStatementHash": true,
+      "routeCount": 2,
+      "directRouteStatuses": {
+        "route_A": "incomplete",
+        "route_B": "incomplete"
+      },
+      "loweredRouteStatuses": {
+        "route_A": "incomplete",
+        "route_B": "incomplete"
+      },
+      "routeStatusesUnchanged": true
+    },
+    {
+      "caseId": "C12",
+      "compiled": true,
+      "directStatementHash": "a9199a64e2896e007b2862b430cd9c218dda7f0cb752cbb7008c2e5d01cbff44",
+      "loweredStatementHash": "a9199a64e2896e007b2862b430cd9c218dda7f0cb752cbb7008c2e5d01cbff44",
+      "sameStatementHash": true,
+      "routeCount": 1,
+      "directRouteStatuses": {
+        "pr_main": "incomplete"
+      },
+      "loweredRouteStatuses": {
+        "pr_main": "incomplete"
+      },
+      "routeStatusesUnchanged": true
+    }
+  ],
+  "elapsedSeconds": 0.428806,
+  "pythonPeakBytes": 4225970,
+  "tokenCount": 0,
+  "leanRuns": 0,
+  "limitation": "C10 uses the source convention P(X) as the polynomial declaration P; this parser supports only the reviewed fragments."
+}

@@ -1,0 +1,1390 @@
+{
+  "id": "ddd3211f-ecb7-4cb5-a856-d89a341c31c4",
+  "status": "completed",
+  "stage": "completed",
+  "created": "2026-10-24T12:53:50.049335+00:00",
+  "updated": "2026-10-24T13:02:47.804658+00:00",
+  "request": {
+    "input": {
+      "kind": "text",
+      "text": "【待验证题目｜本聊天上一条助理给出的证明，未改写推理，不将其身份当作官方参考答案】\n设 m,n,k 均为正整数，满足 m≥2，n≥k≥2。已知非负实数 x₁≥x₂≥⋯≥xₙ≥0 满足 ∑_{i=1}^n xᵢ^m≥1 及 ∑_{i=1}^n xᵢ≤k。求证 ∑_{i=1}^k xᵢ≥1。\n\n【原证明】\n第一步：假设结论不成立。\n假设 ∑_{i=1}^k xᵢ<1。记 t=∑_{i=1}^k xᵢ，u=xₖ。\n由条件可知 0≤u≤xᵢ≤t<1 (1≤i≤k)。\n另一方面，由数列的单调性，0≤xᵢ≤u<1 (k<i≤n)。\n\n第二步：估计前 k 项的 m 次幂。\n对任意 1≤i≤k，由于 0≤xᵢ<1，且 m≥2，有 xᵢ^m≤xᵢ²。\n又因为 u≤xᵢ<1，所以 (xᵢ−u)(1−xᵢ)≥0。\n展开并整理，得 xᵢ²≤xᵢ−u+uxᵢ。\n因此 xᵢ^m≤xᵢ−u+uxᵢ。\n对 i=1,2,…,k 求和，得到\n∑_{i=1}^k xᵢ^m ≤ ∑_{i=1}^k (xᵢ−u+uxᵢ) = t−ku+ut。\n\n第三步：估计后 n−k 项的 m 次幂。\n对任意 k<i≤n，由于 0≤xᵢ≤u<1，m≥2，有 xᵢ^(m−1)≤xᵢ≤u。\n两边乘以非负数 xᵢ，得 xᵢ^m≤uxᵢ。\n故 ∑_{i=k+1}^n xᵢ^m ≤ u∑_{i=k+1}^n xᵢ。\n当 n=k 时，上述两边均视为零，结论仍成立。\n\n第四步：合并两个估计。\n将前后两部分相加：\n∑_{i=1}^n xᵢ^m\n= ∑_{i=1}^k xᵢ^m + ∑_{i=k+1}^n xᵢ^m\n≤ t−ku+ut + u∑_{i=k+1}^n xᵢ\n= t−ku+u(t+∑_{i=k+1}^n xᵢ)\n= t−ku+u∑_{i=1}^n xᵢ。\n\n第五步：利用已知条件推出矛盾。\n由题设 ∑_{i=1}^n xᵢ≤k，又 u≥0，所以 u∑_{i=1}^n xᵢ≤uk。\n代入上式：\n∑_{i=1}^n xᵢ^m≤t−ku+u∑_{i=1}^n xᵢ≤t−ku+uk=t<1。\n这与已知条件 ∑_{i=1}^n xᵢ^m≥1 矛盾。\n因此原假设不成立，必有 ∑_{i=1}^k xᵢ≥1。证毕。",
+      "assetId": null,
+      "dataUrl": null,
+      "strokes": null,
+      "recognitionId": null,
+      "parts": null
+    },
+    "explain": false
+  },
+  "result": {
+    "id": "ebe38437-b22c-4485-b12d-b0ce9163c7a0",
+    "kind": "lean_first_local",
+    "mode": "single_whole_theorem_kernel",
+    "sourceSha256": "12a6e6fcb6927d5c9b950f091a3a13402ff80aeccb5ba52d2b8cd9d8ac6c8107",
+    "runTraceId": "72376bcd-200a-46ff-a09c-568142e6269b",
+    "status": "whole_formal_kernel_not_verified",
+    "kernelVerified": false,
+    "formalProofCertified": false,
+    "originalProofCertified": false,
+    "sourceEquivalenceCertified": false,
+    "originalInferenceVerified": false,
+    "sourcePositionsValid": true,
+    "plannedStepCount": 18,
+    "localFormalVerifiedCount": 0,
+    "sourceSteps": [
+      {
+        "id": "source-0",
+        "index": 0,
+        "role": "inference",
+        "start": 152,
+        "end": 164,
+        "sourceExcerpt": "第一步：假设结论不成立。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_0",
+        "dependsOn": []
+      },
+      {
+        "id": "source-1",
+        "index": 1,
+        "role": "inference",
+        "start": 165,
+        "end": 205,
+        "sourceExcerpt": "假设 ∑_{i=1}^k xᵢ<1。记 t=∑_{i=1}^k xᵢ，u=xₖ。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_1",
+        "dependsOn": []
+      },
+      {
+        "id": "source-2",
+        "index": 2,
+        "role": "inference",
+        "start": 206,
+        "end": 231,
+        "sourceExcerpt": "由条件可知 0≤u≤xᵢ≤t<1 (1≤i≤k)。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_2",
+        "dependsOn": []
+      },
+      {
+        "id": "source-3",
+        "index": 3,
+        "role": "inference",
+        "start": 232,
+        "end": 262,
+        "sourceExcerpt": "另一方面，由数列的单调性，0≤xᵢ≤u<1 (k<i≤n)。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_3",
+        "dependsOn": []
+      },
+      {
+        "id": "source-4",
+        "index": 4,
+        "role": "inference",
+        "start": 283,
+        "end": 320,
+        "sourceExcerpt": "对任意 1≤i≤k，由于 0≤xᵢ<1，且 m≥2，有 xᵢ^m≤xᵢ²。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_4",
+        "dependsOn": []
+      },
+      {
+        "id": "source-5",
+        "index": 5,
+        "role": "inference",
+        "start": 321,
+        "end": 350,
+        "sourceExcerpt": "又因为 u≤xᵢ<1，所以 (xᵢ−u)(1−xᵢ)≥0。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_5",
+        "dependsOn": []
+      },
+      {
+        "id": "source-6",
+        "index": 6,
+        "role": "inference",
+        "start": 351,
+        "end": 372,
+        "sourceExcerpt": "展开并整理，得 xᵢ²≤xᵢ−u+uxᵢ。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_6",
+        "dependsOn": []
+      },
+      {
+        "id": "source-7",
+        "index": 7,
+        "role": "inference",
+        "start": 373,
+        "end": 390,
+        "sourceExcerpt": "因此 xᵢ^m≤xᵢ−u+uxᵢ。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_7",
+        "dependsOn": []
+      },
+      {
+        "id": "source-8",
+        "index": 8,
+        "role": "inference",
+        "start": 391,
+        "end": 457,
+        "sourceExcerpt": "对 i=1,2,…,k 求和，得到\n∑_{i=1}^k xᵢ^m ≤ ∑_{i=1}^k (xᵢ−u+uxᵢ) = t−ku+ut。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_8",
+        "dependsOn": []
+      },
+      {
+        "id": "source-9",
+        "index": 9,
+        "role": "inference",
+        "start": 480,
+        "end": 522,
+        "sourceExcerpt": "对任意 k<i≤n，由于 0≤xᵢ≤u<1，m≥2，有 xᵢ^(m−1)≤xᵢ≤u。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_9",
+        "dependsOn": []
+      },
+      {
+        "id": "source-10",
+        "index": 10,
+        "role": "inference",
+        "start": 523,
+        "end": 545,
+        "sourceExcerpt": "两边乘以非负数 xᵢ，得 xᵢ^m≤uxᵢ。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_10",
+        "dependsOn": []
+      },
+      {
+        "id": "source-11",
+        "index": 11,
+        "role": "inference",
+        "start": 546,
+        "end": 583,
+        "sourceExcerpt": "故 ∑_{i=k+1}^n xᵢ^m ≤ u∑_{i=k+1}^n xᵢ。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_11",
+        "dependsOn": []
+      },
+      {
+        "id": "source-12",
+        "index": 12,
+        "role": "inference",
+        "start": 584,
+        "end": 607,
+        "sourceExcerpt": "当 n=k 时，上述两边均视为零，结论仍成立。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_12",
+        "dependsOn": []
+      },
+      {
+        "id": "source-13",
+        "index": 13,
+        "role": "inference",
+        "start": 621,
+        "end": 758,
+        "sourceExcerpt": "将前后两部分相加：\n∑_{i=1}^n xᵢ^m\n= ∑_{i=1}^k xᵢ^m + ∑_{i=k+1}^n xᵢ^m\n≤ t−ku+ut + u∑_{i=k+1}^n xᵢ\n= t−ku+u(t+∑_{i=k+1}^n xᵢ)\n= t−ku+u∑_{i=1}^n xᵢ。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_13",
+        "dependsOn": []
+      },
+      {
+        "id": "source-14",
+        "index": 14,
+        "role": "inference",
+        "start": 776,
+        "end": 821,
+        "sourceExcerpt": "由题设 ∑_{i=1}^n xᵢ≤k，又 u≥0，所以 u∑_{i=1}^n xᵢ≤uk。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_14",
+        "dependsOn": []
+      },
+      {
+        "id": "source-15",
+        "index": 15,
+        "role": "inference",
+        "start": 822,
+        "end": 874,
+        "sourceExcerpt": "代入上式：\n∑_{i=1}^n xᵢ^m≤t−ku+u∑_{i=1}^n xᵢ≤t−ku+uk=t<1。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_15",
+        "dependsOn": []
+      },
+      {
+        "id": "source-16",
+        "index": 16,
+        "role": "inference",
+        "start": 875,
+        "end": 902,
+        "sourceExcerpt": "这与已知条件 ∑_{i=1}^n xᵢ^m≥1 矛盾。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_16",
+        "dependsOn": []
+      },
+      {
+        "id": "source-17",
+        "index": 17,
+        "role": "inference",
+        "start": 903,
+        "end": 933,
+        "sourceExcerpt": "因此原假设不成立，必有 ∑_{i=1}^k xᵢ≥1。证毕。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_17",
+        "dependsOn": []
+      }
+    ],
+    "statement": "∀ (m n k : ℕ) (x : Fin n → ℝ) (hm : 2 ≤ m) (hk : 2 ≤ k) (hkn : k ≤ n), (∀ i j : Fin n, i ≤ j → x j ≤ x i) → (∀ i : Fin n, 0 ≤ x i) → (∑ i : Fin n, (x i) ^ m) ≥ 1 → (∑ i : Fin n, x i) ≤ (k : ℝ) → (∑ i : Fin k, x (Fin.castLE hkn i)) ≥ 1",
+    "proofTerm": "by\n  intro m n k x hm hk hkn hmono hnonneg hpow hsum\n  by_contra hcon\n  have hprefix_lt : (∑ i : Fin k, x (Fin.castLE hkn i)) < 1 := not_le.mp hcon\n  let f : ℕ → ℝ := fun j => if h : j < n then x ⟨j, h⟩ else 0\n  have hf_nonneg : ∀ j, j < n → 0 ≤ f j := by\n    intro j hj\n    dsimp [f]\n    rw [dif_pos hj]\n    exact hnonneg ⟨j, hj⟩\n  have hf_total : (∑ i : Fin n, x i) = ∑ i ∈ Finset.range n, f i := by\n    calc\n      (∑ i : Fin n, x i) = ∑ i : Fin n, f (i : ℕ) := by\n        apply Finset.sum_congr rfl\n        intro i hi\n        simp [f, i.isLt]\n      _ = ∑ i ∈ Finset.range n, f i := by\n        exact Fin.sum_univ_eq_sum_range (fun j => f j) n\n  have hf_prefix : (∑ i : Fin k, x (Fin.castLE hkn i)) = ∑ i ∈ Finset.range k, f i := by\n    calc\n      (∑ i : Fin k, x (Fin.castLE hkn i)) = ∑ i : Fin k, f (i : ℕ) := by\n        apply Finset.sum_congr rfl\n        intro i hi\n        have hik : (i : ℕ) < n := lt_of_lt_of_le i.isLt hkn\n        simp [f, hik, Fin.castLE]\n      _ = ∑ i ∈ Finset.range k, f i := by\n        exact Fin.sum_univ_eq_sum_range (fun j => f j) k\n  have hf_total_pow : (∑ i : Fin n, (x i)^m) = ∑ i ∈ Finset.range n, (f i)^m := by\n    calc\n      (∑ i : Fin n, (x i)^m) = ∑ i : Fin n, (f (i : ℕ))^m := by\n        apply Finset.sum_congr rfl\n        intro i hi\n        simp [f, i.isLt]\n      _ = ∑ i ∈ Finset.range n, (f i)^m := by\n        exact Fin.sum_univ_eq_sum_range (fun j => (f j)^m) n\n  let t : ℝ := ∑ i ∈ Finset.range k, f i\n  let u : ℝ := f (k - 1)\n  have source_step_0 : ¬ ((∑ i : Fin k, x (Fin.castLE hkn i)) ≥ 1) := hcon\n  have source_step_1 : t < 1 := by\n    dsimp [t]\n    rw [← hf_prefix]\n    exact hprefix_lt\n  have hk1_lt_k : k - 1 < k := by omega\n  have hk1_lt_n : k - 1 < n := lt_of_lt_of_le hk1_lt_k hkn\n  have hprefix_props : ∀ i, i < k → u ≤ f i ∧ f i ≤ t := by\n    intro i hi\n    have hin : i < n := lt_of_lt_of_le hi hkn\n    have hik : i ≤ k - 1 := by omega\n    have hle_fin : (⟨i, hin⟩ : Fin n) ≤ ⟨k - 1, hk1_lt_n⟩ := by\n      change i ≤ k - 1\n      exact hik\n    have hmono_i := hmono ⟨i, hin⟩ ⟨k - 1, hk1_lt_n⟩ hle_fin\n    have hu_le_fi : u ≤ f i := by\n      dsimp [u, f]\n      rw [dif_pos hk1_lt_n, dif_pos hin]\n      exact hmono_i\n    have hfi_le_t : f i ≤ t := by\n      dsimp [t]\n      exact Finset.single_le_sum\n        (fun j hj => hf_nonneg j (lt_of_lt_of_le (Finset.mem_range.mp hj) hkn))\n        (Finset.mem_range.mpr hi)\n    exact ⟨hu_le_fi, hfi_le_t⟩\n  have hu_nonneg : 0 ≤ u := by\n    dsimp [u]\n    exact hf_nonneg (k - 1) hk1_lt_n\n  have hu_le_t : u ≤ t := (hprefix_props (k - 1) hk1_lt_k).2\n  have hu_lt_one : u < 1 := lt_of_le_of_lt hu_le_t source_step_1\n  have source_step_2 :\n      0 ≤ u ∧ u < 1 ∧ t < 1 ∧ (∀ i, i < k → u ≤ f i ∧ f i ≤ t) :=\n    ⟨hu_nonneg, hu_lt_one, source_step_1, hprefix_props⟩\n  have source_step_3 : ∀ i, k ≤ i → i < n → 0 ≤ f i ∧ f i ≤ u ∧ u < 1 := by\n    intro i hki hin\n    have hk1i : k - 1 ≤ i := by omega\n    have hle_fin : (⟨k - 1, hk1_lt_n⟩ : Fin n) ≤ ⟨i, hin⟩ := by\n      change k - 1 ≤ i\n      exact hk1i\n    have hmono_i := hmono ⟨k - 1, hk1_lt_n⟩ ⟨i, hin⟩ hle_fin\n    have hfi_le_u : f i ≤ u := by\n      dsimp [u, f]\n      rw [dif_pos hin, dif_pos hk1_lt_n]\n      exact hmono_i\n    exact ⟨hf_nonneg i hin, hfi_le_u, hu_lt_one⟩\n  have source_step_4 : ∀ i, i < k → (f i)^m ≤ (f i)^2 := by\n    intro i hi\n    have hin : i < n := lt_of_lt_of_le hi hkn\n    have hfi_nonneg : 0 ≤ f i := hf_nonneg i hin\n    have hfi_le_t : f i ≤ t := (hprefix_props i hi).2\n    have hfi_lt_one : f i < 1 := lt_of_le_of_lt hfi_le_t source_step_1\n    exact pow_le_pow_of_le_one hfi_nonneg (le_of_lt hfi_lt_one) hm\n  have source_step_5 : ∀ i, i < k → 0 ≤ (f i - u) * (1 - f i) := by\n    intro i hi\n    have hu_le : u ≤ f i := (hprefix_props i hi).1\n    have hfi_le_t : f i ≤ t := (hprefix_props i hi).2\n    have hfi_lt_one : f i < 1 := lt_of_le_of_lt hfi_le_t source_step_1\n    exact mul_nonneg (sub_nonneg.mpr hu_le) (sub_nonneg.mpr (le_of_lt hfi_lt_one))\n  have source_step_6 : ∀ i, i < k → (f i)^2 ≤ f i - u + u * f i := by\n    intro i hi\n    have h := source_step_5 i hi\n    nlinarith\n  have source_step_7 : ∀ i, i < k → (f i)^m ≤ f i - u + u * f i := by\n    intro i hi\n    exact le_trans (source_step_4 i hi) (source_step_6 i hi)\n  have source_step_8 :\n      (∑ i ∈ Finset.range k, (f i)^m) ≤ t - (k : ℝ) * u + u * t := by\n    have hsum_le : (∑ i ∈ Finset.range k, (f i)^m)\n        ≤ ∑ i ∈ Finset.range k, (f i - u + u * f i) := by\n      exact Finset.sum_le_sum (fun i hi => source_step_7 i (Finset.mem_range.mp hi))\n    calc\n      (∑ i ∈ Finset.range k, (f i)^m)\n          ≤ ∑ i ∈ Finset.range k, (f i - u + u * f i) := hsum_le\n      _ = t - (k : ℝ) * u + u * t := by\n        dsimp [t]\n        rw [Finset.sum_add_distrib, Finset.sum_sub_distrib]\n        rw [Finset.sum_const, Finset.card_range, nsmul_eq_mul]\n        rw [← Finset.mul_sum]\n        ring\n  have source_step_9 : ∀ i, k ≤ i → i < n → (f i)^(m - 1) ≤ f i := by\n    intro i hki hin\n    have hnonneg_i : 0 ≤ f i := hf_nonneg i hin\n    have hfi_le_u : f i ≤ u := (source_step_3 i hki hin).2.1\n    have hfi_le_one : f i ≤ 1 := le_of_lt (lt_of_le_of_lt hfi_le_u hu_lt_one)\n    have hm1 : 1 ≤ m - 1 := by omega\n    have h := pow_le_pow_of_le_one hnonneg_i hfi_le_one hm1\n    simpa using h\n  have source_step_10 : ∀ i, k ≤ i → i < n → (f i)^m ≤ u * f i := by\n    intro i hki hin\n    have hnonneg_i : 0 ≤ f i := hf_nonneg i hin\n    have hbase : (f i)^(m - 1) ≤ u :=\n      le_trans (source_step_9 i hki hin) ((source_step_3 i hki hin).2.1)\n    have hmul : (f i)^m = (f i)^(m - 1) * f i := by\n      have hm1 : 1 ≤ m := by omega\n      calc\n        (f i)^m = (f i)^((m - 1) + 1) := by\n          rw [Nat.sub_add_cancel hm1]\n        _ = (f i)^(m - 1) * f i := by\n          rw [pow_succ]\n    rw [hmul]\n    exact mul_le_mul_of_nonneg_right hbase hnonneg_i\n  have source_step_11 :\n      (∑ i ∈ Finset.Ico k n, (f i)^m) ≤ u * ∑ i ∈ Finset.Ico k n, f i := by\n    rw [Finset.mul_sum]\n    exact Finset.sum_le_sum (fun i hi =>\n      source_step_10 i (Finset.mem_Ico.mp hi).1 (Finset.mem_Ico.mp hi).2)\n  have source_step_12 : n = k →\n      (∑ i ∈ Finset.Ico k n, (f i)^m) = 0 ∧\n      (∑ i ∈ Finset.Ico k n, f i) = 0 := by\n    intro hnk\n    rw [hnk]\n    simp\n  have hsplit_range : ∀ g : ℕ → ℝ,\n      (∑ i ∈ Finset.range n, g i)\n        = (∑ i ∈ Finset.range k, g i) + ∑ i ∈ Finset.Ico k n, g i := by\n    intro g\n    exact (Finset.sum_range_add_sum_Ico g hkn).symm\n  have source_step_13 :\n      (∑ i ∈ Finset.range n, (f i)^m)\n        ≤ t - (k : ℝ) * u + u * (∑ i ∈ Finset.range n, f i) := by\n    have hsplit_m := hsplit_range (fun i => (f i)^m)\n    have hsplit_f := hsplit_range (fun i => f i)\n    calc\n      (∑ i ∈ Finset.range n, (f i)^m)\n          = (∑ i ∈ Finset.range k, (f i)^m)\n              + ∑ i ∈ Finset.Ico k n, (f i)^m := hsplit_m\n      _ ≤ (t - (k : ℝ) * u + u * t)\n              + u * (∑ i ∈ Finset.Ico k n, f i) := by\n            exact add_le_add source_step_8 source_step_11\n      _ = t - (k : ℝ) * u + u * (∑ i ∈ Finset.range n, f i) := by\n            rw [hsplit_f]\n            dsimp [t]\n            ring\n  have hTotal_le : (∑ i ∈ Finset.range n, f i) ≤ (k : ℝ) := by\n    simpa [hf_total] using hsum\n  have source_step_14 :\n      u * (∑ i ∈ Finset.range n, f i) ≤ u * (k : ℝ) := by\n    exact mul_le_mul_of_nonneg_left hTotal_le source_step_2.1\n  have hpow_bound : (∑ i ∈ Finset.range n, (f i)^m) ≤ t := by\n    have h1 := source_step_13\n    have h2 : t - (k : ℝ) * u + u * (∑ i ∈ Finset.range n, f i)\n        ≤ t - (k : ℝ) * u + u * (k : ℝ) := by\n      linarith [source_step_14]\n    have h3 : t - (k : ℝ) * u + u * (k : ℝ) = t := by ring\n    exact le_trans h1 (le_trans h2 (le_of_eq h3))\n  have source_step_15 : (∑ i ∈ Finset.range n, (f i)^m) < 1 :=\n    lt_of_le_of_lt hpow_bound source_step_1\n  have hpow_range_ge : (1 : ℝ) ≤ ∑ i ∈ Finset.range n, (f i)^m := by\n    have h := hpow\n    rw [hf_total_pow] at h\n    exact h\n  have source_step_16 : False := by\n    linarith [source_step_15, hpow_range_ge]\n  have source_step_17 : (∑ i : Fin k, x (Fin.castLE hkn i)) ≥ 1 :=\n    False.elim source_step_16\n  exact source_step_16",
+    "lean": {
+      "localVerified": false,
+      "status": "not_proved",
+      "diagnostics": [
+        {
+          "severity": "error",
+          "message": "No goals to be solved",
+          "leanPosition": {
+            "column": 4700,
+            "line": 5
+          },
+          "leanEndPosition": {
+            "column": 8567,
+            "line": 5
+          },
+          "stepId": "whole-authored-proof",
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 0,
+              "end": 933
+            }
+          ],
+          "mappingPrecision": "step",
+          "raw": {
+            "caption": "",
+            "data": "No goals to be solved",
+            "endPos": {
+              "column": 8567,
+              "line": 5
+            },
+            "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线验收/data/work/lean-49jw_o3t/Task.lean",
+            "isSilent": false,
+            "keepFullRange": false,
+            "kind": "[anonymous]",
+            "pos": {
+              "column": 4700,
+              "line": 5
+            },
+            "severity": "error"
+          }
+        },
+        {
+          "severity": "warning",
+          "message": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+          "leanPosition": {
+            "column": 195,
+            "line": 5
+          },
+          "leanEndPosition": {
+            "column": 200,
+            "line": 5
+          },
+          "stepId": "whole-authored-proof",
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 0,
+              "end": 933
+            }
+          ],
+          "mappingPrecision": "step",
+          "raw": {
+            "caption": "",
+            "data": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+            "endPos": {
+              "column": 200,
+              "line": 5
+            },
+            "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线验收/data/work/lean-49jw_o3t/Task.lean",
+            "isSilent": false,
+            "keepFullRange": false,
+            "kind": "Lean.Linter.deprecatedAttr",
+            "pos": {
+              "column": 195,
+              "line": 5
+            },
+            "severity": "warning"
+          }
+        },
+        {
+          "severity": "warning",
+          "message": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+          "leanPosition": {
+            "column": 2013,
+            "line": 5
+          },
+          "leanEndPosition": {
+            "column": 2020,
+            "line": 5
+          },
+          "stepId": "whole-authored-proof",
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 0,
+              "end": 933
+            }
+          ],
+          "mappingPrecision": "step",
+          "raw": {
+            "caption": "",
+            "data": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+            "endPos": {
+              "column": 2020,
+              "line": 5
+            },
+            "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线验收/data/work/lean-49jw_o3t/Task.lean",
+            "isSilent": false,
+            "keepFullRange": false,
+            "kind": "Lean.Linter.deprecatedAttr",
+            "pos": {
+              "column": 2013,
+              "line": 5
+            },
+            "severity": "warning"
+          }
+        },
+        {
+          "severity": "warning",
+          "message": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+          "leanPosition": {
+            "column": 2031,
+            "line": 5
+          },
+          "leanEndPosition": {
+            "column": 2038,
+            "line": 5
+          },
+          "stepId": "whole-authored-proof",
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 0,
+              "end": 933
+            }
+          ],
+          "mappingPrecision": "step",
+          "raw": {
+            "caption": "",
+            "data": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+            "endPos": {
+              "column": 2038,
+              "line": 5
+            },
+            "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线验收/data/work/lean-49jw_o3t/Task.lean",
+            "isSilent": false,
+            "keepFullRange": false,
+            "kind": "Lean.Linter.deprecatedAttr",
+            "pos": {
+              "column": 2031,
+              "line": 5
+            },
+            "severity": "warning"
+          }
+        },
+        {
+          "severity": "warning",
+          "message": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+          "leanPosition": {
+            "column": 3036,
+            "line": 5
+          },
+          "leanEndPosition": {
+            "column": 8567,
+            "line": 5
+          },
+          "stepId": "whole-authored-proof",
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 0,
+              "end": 933
+            }
+          ],
+          "mappingPrecision": "step",
+          "raw": {
+            "caption": "",
+            "data": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+            "endPos": {
+              "column": 8567,
+              "line": 5
+            },
+            "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线验收/data/work/lean-49jw_o3t/Task.lean",
+            "isSilent": false,
+            "keepFullRange": false,
+            "kind": "Lean.Linter.deprecatedAttr",
+            "pos": {
+              "column": 3036,
+              "line": 5
+            },
+            "severity": "warning"
+          }
+        },
+        {
+          "severity": "warning",
+          "message": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+          "leanPosition": {
+            "column": 3045,
+            "line": 5
+          },
+          "leanEndPosition": {
+            "column": 3050,
+            "line": 5
+          },
+          "stepId": "whole-authored-proof",
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 0,
+              "end": 933
+            }
+          ],
+          "mappingPrecision": "step",
+          "raw": {
+            "caption": "",
+            "data": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+            "endPos": {
+              "column": 3050,
+              "line": 5
+            },
+            "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线验收/data/work/lean-49jw_o3t/Task.lean",
+            "isSilent": false,
+            "keepFullRange": false,
+            "kind": "Lean.Linter.deprecatedAttr",
+            "pos": {
+              "column": 3045,
+              "line": 5
+            },
+            "severity": "warning"
+          }
+        }
+      ],
+      "certificate": null
+    },
+    "unsupportedOriginalSteps": [
+      "完整 Lean 证明未获得 Kernel 证书；保留失败诊断"
+    ],
+    "planProvenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "56330541-5f78-4a65-a486-4e27d6e5e83f",
+      "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+      "usage": {
+        "prompt_tokens": 1468,
+        "completion_tokens": 31431,
+        "total_tokens": 32899,
+        "prompt_tokens_details": {
+          "cached_tokens": 1280
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 30286
+        },
+        "prompt_cache_hit_tokens": 1280,
+        "prompt_cache_miss_tokens": 188
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "model": "deepseek-flash",
+    "goalExcerpt": "设 m,n,k 均为正整数，满足 m≥2，n≥k≥2。已知非负实数 x₁≥x₂≥⋯≥xₙ≥0 满足 ∑_{i=1}^n xᵢ^m≥1 及 ∑_{i=1}^n xᵢ≤k。求证 ∑_{i=1}^k xᵢ≥1。",
+    "originalGivenExcerpts": [
+      "设 m,n,k 均为正整数，满足 m≥2，n≥k≥2。",
+      "已知非负实数 x₁≥x₂≥⋯≥xₙ≥0 满足 ∑_{i=1}^n xᵢ^m≥1 及 ∑_{i=1}^n xᵢ≤k。"
+    ],
+    "sourceOffsetRepairs": [],
+    "proofProvenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "2898b323-827c-47b9-8a59-f3913f26f7dc",
+      "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+      "usage": {
+        "prompt_tokens": 2544,
+        "completion_tokens": 40912,
+        "total_tokens": 43456,
+        "prompt_tokens_details": {
+          "cached_tokens": 1152
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 37466
+        },
+        "prompt_cache_hit_tokens": 1152,
+        "prompt_cache_miss_tokens": 1392
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "rawModelProofTerm": "by\n  intro m n k x hm hk hkn hmono hnonneg hpow hsum\n  by_contra hcon\n  have hprefix_lt : (∑ i : Fin k, x (Fin.castLE hkn i)) < 1 := not_le.mp hcon\n  let f : ℕ → ℝ := fun j => if h : j < n then x ⟨j, h⟩ else 0\n  have hf_nonneg : ∀ j, j < n → 0 ≤ f j := by\n    intro j hj\n    dsimp [f]\n    rw [dif_pos hj]\n    exact hnonneg ⟨j, hj⟩\n  have hf_total : (∑ i : Fin n, x i) = ∑ i in Finset.range n, f i := by\n    calc\n      (∑ i : Fin n, x i) = ∑ i : Fin n, f (i : ℕ) := by\n        apply Finset.sum_congr rfl\n        intro i hi\n        simp [f, i.isLt]\n      _ = ∑ i in Finset.range n, f i := by\n        exact Fin.sum_univ_eq_sum_range (fun j => f j) n\n  have hf_prefix : (∑ i : Fin k, x (Fin.castLE hkn i)) = ∑ i in Finset.range k, f i := by\n    calc\n      (∑ i : Fin k, x (Fin.castLE hkn i)) = ∑ i : Fin k, f (i : ℕ) := by\n        apply Finset.sum_congr rfl\n        intro i hi\n        have hik : (i : ℕ) < n := lt_of_lt_of_le i.isLt hkn\n        simp [f, hik, Fin.castLE]\n      _ = ∑ i in Finset.range k, f i := by\n        exact Fin.sum_univ_eq_sum_range (fun j => f j) k\n  have hf_total_pow : (∑ i : Fin n, (x i)^m) = ∑ i in Finset.range n, (f i)^m := by\n    calc\n      (∑ i : Fin n, (x i)^m) = ∑ i : Fin n, (f (i : ℕ))^m := by\n        apply Finset.sum_congr rfl\n        intro i hi\n        simp [f, i.isLt]\n      _ = ∑ i in Finset.range n, (f i)^m := by\n        exact Fin.sum_univ_eq_sum_range (fun j => (f j)^m) n\n  let t : ℝ := ∑ i in Finset.range k, f i\n  let u : ℝ := f (k - 1)\n  have source_step_0 : ¬ ((∑ i : Fin k, x (Fin.castLE hkn i)) ≥ 1) := hcon\n  have source_step_1 : t < 1 := by\n    dsimp [t]\n    rw [← hf_prefix]\n    exact hprefix_lt\n  have hk1_lt_k : k - 1 < k := by omega\n  have hk1_lt_n : k - 1 < n := lt_of_lt_of_le hk1_lt_k hkn\n  have hprefix_props : ∀ i, i < k → u ≤ f i ∧ f i ≤ t := by\n    intro i hi\n    have hin : i < n := lt_of_lt_of_le hi hkn\n    have hik : i ≤ k - 1 := by omega\n    have hle_fin : (⟨i, hin⟩ : Fin n) ≤ ⟨k - 1, hk1_lt_n⟩ := by\n      change i ≤ k - 1\n      exact hik\n    have hmono_i := hmono ⟨i, hin⟩ ⟨k - 1, hk1_lt_n⟩ hle_fin\n    have hu_le_fi : u ≤ f i := by\n      dsimp [u, f]\n      rw [dif_pos hk1_lt_n, dif_pos hin]\n      exact hmono_i\n    have hfi_le_t : f i ≤ t := by\n      dsimp [t]\n      exact Finset.single_le_sum\n        (fun j hj => hf_nonneg j (lt_of_lt_of_le (Finset.mem_range.mp hj) hkn))\n        (Finset.mem_range.mpr hi)\n    exact ⟨hu_le_fi, hfi_le_t⟩\n  have hu_nonneg : 0 ≤ u := by\n    dsimp [u]\n    exact hf_nonneg (k - 1) hk1_lt_n\n  have hu_le_t : u ≤ t := (hprefix_props (k - 1) hk1_lt_k).2\n  have hu_lt_one : u < 1 := lt_of_le_of_lt hu_le_t source_step_1\n  have source_step_2 :\n      0 ≤ u ∧ u < 1 ∧ t < 1 ∧ (∀ i, i < k → u ≤ f i ∧ f i ≤ t) :=\n    ⟨hu_nonneg, hu_lt_one, source_step_1, hprefix_props⟩\n  have source_step_3 : ∀ i, k ≤ i → i < n → 0 ≤ f i ∧ f i ≤ u ∧ u < 1 := by\n    intro i hki hin\n    have hk1i : k - 1 ≤ i := by omega\n    have hle_fin : (⟨k - 1, hk1_lt_n⟩ : Fin n) ≤ ⟨i, hin⟩ := by\n      change k - 1 ≤ i\n      exact hk1i\n    have hmono_i := hmono ⟨k - 1, hk1_lt_n⟩ ⟨i, hin⟩ hle_fin\n    have hfi_le_u : f i ≤ u := by\n      dsimp [u, f]\n      rw [dif_pos hin, dif_pos hk1_lt_n]\n      exact hmono_i\n    exact ⟨hf_nonneg i hin, hfi_le_u, hu_lt_one⟩\n  have source_step_4 : ∀ i, i < k → (f i)^m ≤ (f i)^2 := by\n    intro i hi\n    have hin : i < n := lt_of_lt_of_le hi hkn\n    have hfi_nonneg : 0 ≤ f i := hf_nonneg i hin\n    have hfi_le_t : f i ≤ t := (hprefix_props i hi).2\n    have hfi_lt_one : f i < 1 := lt_of_le_of_lt hfi_le_t source_step_1\n    exact pow_le_pow_of_le_one hfi_nonneg (le_of_lt hfi_lt_one) hm\n  have source_step_5 : ∀ i, i < k → 0 ≤ (f i - u) * (1 - f i) := by\n    intro i hi\n    have hu_le : u ≤ f i := (hprefix_props i hi).1\n    have hfi_le_t : f i ≤ t := (hprefix_props i hi).2\n    have hfi_lt_one : f i < 1 := lt_of_le_of_lt hfi_le_t source_step_1\n    exact mul_nonneg (sub_nonneg.mpr hu_le) (sub_nonneg.mpr (le_of_lt hfi_lt_one))\n  have source_step_6 : ∀ i, i < k → (f i)^2 ≤ f i - u + u * f i := by\n    intro i hi\n    have h := source_step_5 i hi\n    nlinarith\n  have source_step_7 : ∀ i, i < k → (f i)^m ≤ f i - u + u * f i := by\n    intro i hi\n    exact le_trans (source_step_4 i hi) (source_step_6 i hi)\n  have source_step_8 :\n      (∑ i in Finset.range k, (f i)^m) ≤ t - (k : ℝ) * u + u * t := by\n    have hsum_le : (∑ i in Finset.range k, (f i)^m)\n        ≤ ∑ i in Finset.range k, (f i - u + u * f i) := by\n      exact Finset.sum_le_sum (fun i hi => source_step_7 i (Finset.mem_range.mp hi))\n    calc\n      (∑ i in Finset.range k, (f i)^m)\n          ≤ ∑ i in Finset.range k, (f i - u + u * f i) := hsum_le\n      _ = t - (k : ℝ) * u + u * t := by\n        dsimp [t]\n        rw [Finset.sum_add_distrib, Finset.sum_sub_distrib]\n        rw [Finset.sum_const, Finset.card_range, nsmul_eq_mul]\n        rw [← Finset.mul_sum]\n        ring\n  have source_step_9 : ∀ i, k ≤ i → i < n → (f i)^(m - 1) ≤ f i := by\n    intro i hki hin\n    have hnonneg_i : 0 ≤ f i := hf_nonneg i hin\n    have hfi_le_u : f i ≤ u := (source_step_3 i hki hin).2.1\n    have hfi_le_one : f i ≤ 1 := le_of_lt (lt_of_le_of_lt hfi_le_u hu_lt_one)\n    have hm1 : 1 ≤ m - 1 := by omega\n    have h := pow_le_pow_of_le_one hnonneg_i hfi_le_one hm1\n    simpa using h\n  have source_step_10 : ∀ i, k ≤ i → i < n → (f i)^m ≤ u * f i := by\n    intro i hki hin\n    have hnonneg_i : 0 ≤ f i := hf_nonneg i hin\n    have hbase : (f i)^(m - 1) ≤ u :=\n      le_trans (source_step_9 i hki hin) ((source_step_3 i hki hin).2.1)\n    have hmul : (f i)^m = (f i)^(m - 1) * f i := by\n      have hm1 : 1 ≤ m := by omega\n      calc\n        (f i)^m = (f i)^((m - 1) + 1) := by\n          rw [Nat.sub_add_cancel hm1]\n        _ = (f i)^(m - 1) * f i := by\n          rw [pow_succ]\n    rw [hmul]\n    exact mul_le_mul_of_nonneg_right hbase hnonneg_i\n  have source_step_11 :\n      (∑ i in Finset.Ico k n, (f i)^m) ≤ u * ∑ i in Finset.Ico k n, f i := by\n    rw [Finset.mul_sum]\n    exact Finset.sum_le_sum (fun i hi =>\n      source_step_10 i (Finset.mem_Ico.mp hi).1 (Finset.mem_Ico.mp hi).2)\n  have source_step_12 : n = k →\n      (∑ i in Finset.Ico k n, (f i)^m) = 0 ∧\n      (∑ i in Finset.Ico k n, f i) = 0 := by\n    intro hnk\n    rw [hnk]\n    simp\n  have hsplit_range : ∀ g : ℕ → ℝ,\n      (∑ i in Finset.range n, g i)\n        = (∑ i in Finset.range k, g i) + ∑ i in Finset.Ico k n, g i := by\n    intro g\n    exact (Finset.sum_range_add_sum_Ico g hkn).symm\n  have source_step_13 :\n      (∑ i in Finset.range n, (f i)^m)\n        ≤ t - (k : ℝ) * u + u * (∑ i in Finset.range n, f i) := by\n    have hsplit_m := hsplit_range (fun i => (f i)^m)\n    have hsplit_f := hsplit_range (fun i => f i)\n    calc\n      (∑ i in Finset.range n, (f i)^m)\n          = (∑ i in Finset.range k, (f i)^m)\n              + ∑ i in Finset.Ico k n, (f i)^m := hsplit_m\n      _ ≤ (t - (k : ℝ) * u + u * t)\n              + u * (∑ i in Finset.Ico k n, f i) := by\n            exact add_le_add source_step_8 source_step_11\n      _ = t - (k : ℝ) * u + u * (∑ i in Finset.range n, f i) := by\n            rw [hsplit_f]\n            dsimp [t]\n            ring\n  have hTotal_le : (∑ i in Finset.range n, f i) ≤ (k : ℝ) := by\n    simpa [hf_total] using hsum\n  have source_step_14 :\n      u * (∑ i in Finset.range n, f i) ≤ u * (k : ℝ) := by\n    exact mul_le_mul_of_nonneg_left hTotal_le source_step_2.1\n  have hpow_bound : (∑ i in Finset.range n, (f i)^m) ≤ t := by\n    have h1 := source_step_13\n    have h2 : t - (k : ℝ) * u + u * (∑ i in Finset.range n, f i)\n        ≤ t - (k : ℝ) * u + u * (k : ℝ) := by\n      linarith [source_step_14]\n    have h3 : t - (k : ℝ) * u + u * (k : ℝ) = t := by ring\n    exact le_trans h1 (le_trans h2 (le_of_eq h3))\n  have source_step_15 : (∑ i in Finset.range n, (f i)^m) < 1 :=\n    lt_of_le_of_lt hpow_bound source_step_1\n  have hpow_range_ge : (1 : ℝ) ≤ ∑ i in Finset.range n, (f i)^m := by\n    have h := hpow\n    rw [hf_total_pow] at h\n    exact h\n  have source_step_16 : False := by\n    linarith [source_step_15, hpow_range_ge]\n  have source_step_17 : (∑ i : Fin k, x (Fin.castLE hkn i)) ≥ 1 :=\n    False.elim source_step_16\n  exact source_step_16",
+    "proofNotationRepairs": [
+      "mathlib_sum_product_binder_in_to_membership:32"
+    ],
+    "repair": {
+      "attempts": [
+        {
+          "origin": "original_translation",
+          "proofTerm": "by\n  intro m n k x hm hk hkn hmono hnonneg hpow hsum\n  by_contra hcon\n  have hprefix_lt : (∑ i : Fin k, x (Fin.castLE hkn i)) < 1 := not_le.mp hcon\n  let f : ℕ → ℝ := fun j => if h : j < n then x ⟨j, h⟩ else 0\n  have hf_nonneg : ∀ j, j < n → 0 ≤ f j := by\n    intro j hj\n    dsimp [f]\n    rw [dif_pos hj]\n    exact hnonneg ⟨j, hj⟩\n  have hf_total : (∑ i : Fin n, x i) = ∑ i ∈ Finset.range n, f i := by\n    calc\n      (∑ i : Fin n, x i) = ∑ i : Fin n, f (i : ℕ) := by\n        apply Finset.sum_congr rfl\n        intro i hi\n        simp [f, i.isLt]\n      _ = ∑ i ∈ Finset.range n, f i := by\n        exact Fin.sum_univ_eq_sum_range (fun j => f j) n\n  have hf_prefix : (∑ i : Fin k, x (Fin.castLE hkn i)) = ∑ i ∈ Finset.range k, f i := by\n    calc\n      (∑ i : Fin k, x (Fin.castLE hkn i)) = ∑ i : Fin k, f (i : ℕ) := by\n        apply Finset.sum_congr rfl\n        intro i hi\n        have hik : (i : ℕ) < n := lt_of_lt_of_le i.isLt hkn\n        simp [f, hik, Fin.castLE]\n      _ = ∑ i ∈ Finset.range k, f i := by\n        exact Fin.sum_univ_eq_sum_range (fun j => f j) k\n  have hf_total_pow : (∑ i : Fin n, (x i)^m) = ∑ i ∈ Finset.range n, (f i)^m := by\n    calc\n      (∑ i : Fin n, (x i)^m) = ∑ i : Fin n, (f (i : ℕ))^m := by\n        apply Finset.sum_congr rfl\n        intro i hi\n        simp [f, i.isLt]\n      _ = ∑ i ∈ Finset.range n, (f i)^m := by\n        exact Fin.sum_univ_eq_sum_range (fun j => (f j)^m) n\n  let t : ℝ := ∑ i ∈ Finset.range k, f i\n  let u : ℝ := f (k - 1)\n  have source_step_0 : ¬ ((∑ i : Fin k, x (Fin.castLE hkn i)) ≥ 1) := hcon\n  have source_step_1 : t < 1 := by\n    dsimp [t]\n    rw [← hf_prefix]\n    exact hprefix_lt\n  have hk1_lt_k : k - 1 < k := by omega\n  have hk1_lt_n : k - 1 < n := lt_of_lt_of_le hk1_lt_k hkn\n  have hprefix_props : ∀ i, i < k → u ≤ f i ∧ f i ≤ t := by\n    intro i hi\n    have hin : i < n := lt_of_lt_of_le hi hkn\n    have hik : i ≤ k - 1 := by omega\n    have hle_fin : (⟨i, hin⟩ : Fin n) ≤ ⟨k - 1, hk1_lt_n⟩ := by\n      change i ≤ k - 1\n      exact hik\n    have hmono_i := hmono ⟨i, hin⟩ ⟨k - 1, hk1_lt_n⟩ hle_fin\n    have hu_le_fi : u ≤ f i := by\n      dsimp [u, f]\n      rw [dif_pos hk1_lt_n, dif_pos hin]\n      exact hmono_i\n    have hfi_le_t : f i ≤ t := by\n      dsimp [t]\n      exact Finset.single_le_sum\n        (fun j hj => hf_nonneg j (lt_of_lt_of_le (Finset.mem_range.mp hj) hkn))\n        (Finset.mem_range.mpr hi)\n    exact ⟨hu_le_fi, hfi_le_t⟩\n  have hu_nonneg : 0 ≤ u := by\n    dsimp [u]\n    exact hf_nonneg (k - 1) hk1_lt_n\n  have hu_le_t : u ≤ t := (hprefix_props (k - 1) hk1_lt_k).2\n  have hu_lt_one : u < 1 := lt_of_le_of_lt hu_le_t source_step_1\n  have source_step_2 :\n      0 ≤ u ∧ u < 1 ∧ t < 1 ∧ (∀ i, i < k → u ≤ f i ∧ f i ≤ t) :=\n    ⟨hu_nonneg, hu_lt_one, source_step_1, hprefix_props⟩\n  have source_step_3 : ∀ i, k ≤ i → i < n → 0 ≤ f i ∧ f i ≤ u ∧ u < 1 := by\n    intro i hki hin\n    have hk1i : k - 1 ≤ i := by omega\n    have hle_fin : (⟨k - 1, hk1_lt_n⟩ : Fin n) ≤ ⟨i, hin⟩ := by\n      change k - 1 ≤ i\n      exact hk1i\n    have hmono_i := hmono ⟨k - 1, hk1_lt_n⟩ ⟨i, hin⟩ hle_fin\n    have hfi_le_u : f i ≤ u := by\n      dsimp [u, f]\n      rw [dif_pos hin, dif_pos hk1_lt_n]\n      exact hmono_i\n    exact ⟨hf_nonneg i hin, hfi_le_u, hu_lt_one⟩\n  have source_step_4 : ∀ i, i < k → (f i)^m ≤ (f i)^2 := by\n    intro i hi\n    have hin : i < n := lt_of_lt_of_le hi hkn\n    have hfi_nonneg : 0 ≤ f i := hf_nonneg i hin\n    have hfi_le_t : f i ≤ t := (hprefix_props i hi).2\n    have hfi_lt_one : f i < 1 := lt_of_le_of_lt hfi_le_t source_step_1\n    exact pow_le_pow_of_le_one hfi_nonneg (le_of_lt hfi_lt_one) hm\n  have source_step_5 : ∀ i, i < k → 0 ≤ (f i - u) * (1 - f i) := by\n    intro i hi\n    have hu_le : u ≤ f i := (hprefix_props i hi).1\n    have hfi_le_t : f i ≤ t := (hprefix_props i hi).2\n    have hfi_lt_one : f i < 1 := lt_of_le_of_lt hfi_le_t source_step_1\n    exact mul_nonneg (sub_nonneg.mpr hu_le) (sub_nonneg.mpr (le_of_lt hfi_lt_one))\n  have source_step_6 : ∀ i, i < k → (f i)^2 ≤ f i - u + u * f i := by\n    intro i hi\n    have h := source_step_5 i hi\n    nlinarith\n  have source_step_7 : ∀ i, i < k → (f i)^m ≤ f i - u + u * f i := by\n    intro i hi\n    exact le_trans (source_step_4 i hi) (source_step_6 i hi)\n  have source_step_8 :\n      (∑ i ∈ Finset.range k, (f i)^m) ≤ t - (k : ℝ) * u + u * t := by\n    have hsum_le : (∑ i ∈ Finset.range k, (f i)^m)\n        ≤ ∑ i ∈ Finset.range k, (f i - u + u * f i) := by\n      exact Finset.sum_le_sum (fun i hi => source_step_7 i (Finset.mem_range.mp hi))\n    calc\n      (∑ i ∈ Finset.range k, (f i)^m)\n          ≤ ∑ i ∈ Finset.range k, (f i - u + u * f i) := hsum_le\n      _ = t - (k : ℝ) * u + u * t := by\n        dsimp [t]\n        rw [Finset.sum_add_distrib, Finset.sum_sub_distrib]\n        rw [Finset.sum_const, Finset.card_range, nsmul_eq_mul]\n        rw [← Finset.mul_sum]\n        ring\n  have source_step_9 : ∀ i, k ≤ i → i < n → (f i)^(m - 1) ≤ f i := by\n    intro i hki hin\n    have hnonneg_i : 0 ≤ f i := hf_nonneg i hin\n    have hfi_le_u : f i ≤ u := (source_step_3 i hki hin).2.1\n    have hfi_le_one : f i ≤ 1 := le_of_lt (lt_of_le_of_lt hfi_le_u hu_lt_one)\n    have hm1 : 1 ≤ m - 1 := by omega\n    have h := pow_le_pow_of_le_one hnonneg_i hfi_le_one hm1\n    simpa using h\n  have source_step_10 : ∀ i, k ≤ i → i < n → (f i)^m ≤ u * f i := by\n    intro i hki hin\n    have hnonneg_i : 0 ≤ f i := hf_nonneg i hin\n    have hbase : (f i)^(m - 1) ≤ u :=\n      le_trans (source_step_9 i hki hin) ((source_step_3 i hki hin).2.1)\n    have hmul : (f i)^m = (f i)^(m - 1) * f i := by\n      have hm1 : 1 ≤ m := by omega\n      calc\n        (f i)^m = (f i)^((m - 1) + 1) := by\n          rw [Nat.sub_add_cancel hm1]\n        _ = (f i)^(m - 1) * f i := by\n          rw [pow_succ]\n    rw [hmul]\n    exact mul_le_mul_of_nonneg_right hbase hnonneg_i\n  have source_step_11 :\n      (∑ i ∈ Finset.Ico k n, (f i)^m) ≤ u * ∑ i ∈ Finset.Ico k n, f i := by\n    rw [Finset.mul_sum]\n    exact Finset.sum_le_sum (fun i hi =>\n      source_step_10 i (Finset.mem_Ico.mp hi).1 (Finset.mem_Ico.mp hi).2)\n  have source_step_12 : n = k →\n      (∑ i ∈ Finset.Ico k n, (f i)^m) = 0 ∧\n      (∑ i ∈ Finset.Ico k n, f i) = 0 := by\n    intro hnk\n    rw [hnk]\n    simp\n  have hsplit_range : ∀ g : ℕ → ℝ,\n      (∑ i ∈ Finset.range n, g i)\n        = (∑ i ∈ Finset.range k, g i) + ∑ i ∈ Finset.Ico k n, g i := by\n    intro g\n    exact (Finset.sum_range_add_sum_Ico g hkn).symm\n  have source_step_13 :\n      (∑ i ∈ Finset.range n, (f i)^m)\n        ≤ t - (k : ℝ) * u + u * (∑ i ∈ Finset.range n, f i) := by\n    have hsplit_m := hsplit_range (fun i => (f i)^m)\n    have hsplit_f := hsplit_range (fun i => f i)\n    calc\n      (∑ i ∈ Finset.range n, (f i)^m)\n          = (∑ i ∈ Finset.range k, (f i)^m)\n              + ∑ i ∈ Finset.Ico k n, (f i)^m := hsplit_m\n      _ ≤ (t - (k : ℝ) * u + u * t)\n              + u * (∑ i ∈ Finset.Ico k n, f i) := by\n            exact add_le_add source_step_8 source_step_11\n      _ = t - (k : ℝ) * u + u * (∑ i ∈ Finset.range n, f i) := by\n            rw [hsplit_f]\n            dsimp [t]\n            ring\n  have hTotal_le : (∑ i ∈ Finset.range n, f i) ≤ (k : ℝ) := by\n    simpa [hf_total] using hsum\n  have source_step_14 :\n      u * (∑ i ∈ Finset.range n, f i) ≤ u * (k : ℝ) := by\n    exact mul_le_mul_of_nonneg_left hTotal_le source_step_2.1\n  have hpow_bound : (∑ i ∈ Finset.range n, (f i)^m) ≤ t := by\n    have h1 := source_step_13\n    have h2 : t - (k : ℝ) * u + u * (∑ i ∈ Finset.range n, f i)\n        ≤ t - (k : ℝ) * u + u * (k : ℝ) := by\n      linarith [source_step_14]\n    have h3 : t - (k : ℝ) * u + u * (k : ℝ) = t := by ring\n    exact le_trans h1 (le_trans h2 (le_of_eq h3))\n  have source_step_15 : (∑ i ∈ Finset.range n, (f i)^m) < 1 :=\n    lt_of_le_of_lt hpow_bound source_step_1\n  have hpow_range_ge : (1 : ℝ) ≤ ∑ i ∈ Finset.range n, (f i)^m := by\n    have h := hpow\n    rw [hf_total_pow] at h\n    exact h\n  have source_step_16 : False := by\n    linarith [source_step_15, hpow_range_ge]\n  have source_step_17 : (∑ i : Fin k, x (Fin.castLE hkn i)) ≥ 1 :=\n    False.elim source_step_16\n  exact source_step_16",
+          "lean": {
+            "localVerified": false,
+            "status": "not_proved",
+            "diagnostics": [
+              {
+                "severity": "error",
+                "message": "No goals to be solved",
+                "leanPosition": {
+                  "column": 4700,
+                  "line": 5
+                },
+                "leanEndPosition": {
+                  "column": 8567,
+                  "line": 5
+                },
+                "stepId": "whole-authored-proof",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 0,
+                    "end": 933
+                  }
+                ],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "No goals to be solved",
+                  "endPos": {
+                    "column": 8567,
+                    "line": 5
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线验收/data/work/lean-49jw_o3t/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "[anonymous]",
+                  "pos": {
+                    "column": 4700,
+                    "line": 5
+                  },
+                  "severity": "error"
+                }
+              },
+              {
+                "severity": "warning",
+                "message": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+                "leanPosition": {
+                  "column": 195,
+                  "line": 5
+                },
+                "leanEndPosition": {
+                  "column": 200,
+                  "line": 5
+                },
+                "stepId": "whole-authored-proof",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 0,
+                    "end": 933
+                  }
+                ],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+                  "endPos": {
+                    "column": 200,
+                    "line": 5
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线验收/data/work/lean-49jw_o3t/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "Lean.Linter.deprecatedAttr",
+                  "pos": {
+                    "column": 195,
+                    "line": 5
+                  },
+                  "severity": "warning"
+                }
+              },
+              {
+                "severity": "warning",
+                "message": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+                "leanPosition": {
+                  "column": 2013,
+                  "line": 5
+                },
+                "leanEndPosition": {
+                  "column": 2020,
+                  "line": 5
+                },
+                "stepId": "whole-authored-proof",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 0,
+                    "end": 933
+                  }
+                ],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+                  "endPos": {
+                    "column": 2020,
+                    "line": 5
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线验收/data/work/lean-49jw_o3t/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "Lean.Linter.deprecatedAttr",
+                  "pos": {
+                    "column": 2013,
+                    "line": 5
+                  },
+                  "severity": "warning"
+                }
+              },
+              {
+                "severity": "warning",
+                "message": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+                "leanPosition": {
+                  "column": 2031,
+                  "line": 5
+                },
+                "leanEndPosition": {
+                  "column": 2038,
+                  "line": 5
+                },
+                "stepId": "whole-authored-proof",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 0,
+                    "end": 933
+                  }
+                ],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+                  "endPos": {
+                    "column": 2038,
+                    "line": 5
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线验收/data/work/lean-49jw_o3t/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "Lean.Linter.deprecatedAttr",
+                  "pos": {
+                    "column": 2031,
+                    "line": 5
+                  },
+                  "severity": "warning"
+                }
+              },
+              {
+                "severity": "warning",
+                "message": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+                "leanPosition": {
+                  "column": 3036,
+                  "line": 5
+                },
+                "leanEndPosition": {
+                  "column": 8567,
+                  "line": 5
+                },
+                "stepId": "whole-authored-proof",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 0,
+                    "end": 933
+                  }
+                ],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+                  "endPos": {
+                    "column": 8567,
+                    "line": 5
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线验收/data/work/lean-49jw_o3t/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "Lean.Linter.deprecatedAttr",
+                  "pos": {
+                    "column": 3036,
+                    "line": 5
+                  },
+                  "severity": "warning"
+                }
+              },
+              {
+                "severity": "warning",
+                "message": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+                "leanPosition": {
+                  "column": 3045,
+                  "line": 5
+                },
+                "leanEndPosition": {
+                  "column": 3050,
+                  "line": 5
+                },
+                "stepId": "whole-authored-proof",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 0,
+                    "end": 933
+                  }
+                ],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+                  "endPos": {
+                    "column": 3050,
+                    "line": 5
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线验收/data/work/lean-49jw_o3t/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "Lean.Linter.deprecatedAttr",
+                  "pos": {
+                    "column": 3045,
+                    "line": 5
+                  },
+                  "severity": "warning"
+                }
+              }
+            ],
+            "certificate": null
+          },
+          "kernelVerified": false
+        },
+        {
+          "origin": "locked_diagnostic_repair",
+          "proofTerm": "by\n  intro m n k x hm hk hkn hmono hnonneg hpow hsum\n  by_contra hcon\n  have hprefix_lt : (∑ i : Fin k, x (Fin.castLE hkn i)) < 1 := not_le.mp hcon\n  let f : ℕ → ℝ := fun j => if h : j < n then x ⟨j, h⟩ else 0\n  have hf_nonneg : ∀ j, j < n → 0 ≤ f j := by\n    intro j hj\n    dsimp [f]\n    rw [dif_pos hj]\n    exact hnonneg ⟨j, hj⟩\n  have hf_total : (∑ i : Fin n, x i) = ∑ i ∈ Finset.range n, f i := by\n    calc\n      (∑ i : Fin n, x i) = ∑ i : Fin n, f (i : ℕ) := by\n        apply Finset.sum_congr rfl\n        intro i hi\n        simp [f, i.isLt]\n      _ = ∑ i ∈ Finset.range n, f i := by\n        exact Fin.sum_univ_eq_sum_range (fun j => f j) n\n  have hf_prefix : (∑ i : Fin k, x (Fin.castLE hkn i)) = ∑ i ∈ Finset.range k, f i := by\n    calc\n      (∑ i : Fin k, x (Fin.castLE hkn i)) = ∑ i : Fin k, f (i : ℕ) := by\n        apply Finset.sum_congr rfl\n        intro i hi\n        have hik : (i : ℕ) < n := lt_of_lt_of_le i.isLt hkn\n        simp [f, hik, Fin.castLE]\n      _ = ∑ i ∈ Finset.range k, f i := by\n        exact Fin.sum_univ_eq_sum_range (fun j => f j) k\n  have hf_total_pow : (∑ i : Fin n, (x i)^m) = ∑ i ∈ Finset.range n, (f i)^m := by\n    calc\n      (∑ i : Fin n, (x i)^m) = ∑ i : Fin n, (f (i : ℕ))^m := by\n        apply Finset.sum_congr rfl\n        intro i hi\n        simp [f, i.isLt]\n      _ = ∑ i ∈ Finset.range n, (f i)^m := by\n        exact Fin.sum_univ_eq_sum_range (fun j => (f j)^m) n\n  let t : ℝ := ∑ i ∈ Finset.range k, f i\n  let u : ℝ := f (k - 1)\n  have source_step_0 : ¬ ((∑ i : Fin k, x (Fin.castLE hkn i)) ≥ 1) := hcon\n  have source_step_1 : t < 1 := by\n    dsimp [t]\n    rw [← hf_prefix]\n    exact hprefix_lt\n  have hk1_lt_k : k - 1 < k := by omega\n  have hk1_lt_n : k - 1 < n := lt_of_lt_of_le hk1_lt_k hkn\n  have hprefix_props : ∀ i, i < k → u ≤ f i ∧ f i ≤ t := by\n    intro i hi\n    have hin : i < n := lt_of_lt_of_le hi hkn\n    have hik : i ≤ k - 1 := by omega\n    have hle_fin : (⟨i, hin⟩ : Fin n) ≤ ⟨k - 1, hk1_lt_n⟩ := by\n      change i ≤ k - 1\n      exact hik\n    have hmono_i := hmono ⟨i, hin⟩ ⟨k - 1, hk1_lt_n⟩ hle_fin\n    have hu_le_fi : u ≤ f i := by\n      dsimp [u, f]\n      rw [dif_pos hk1_lt_n, dif_pos hin]\n      exact hmono_i\n    have hfi_le_t : f i ≤ t := by\n      dsimp [t]\n      exact Finset.single_le_sum\n        (fun j hj => hf_nonneg j (lt_of_lt_of_le (Finset.mem_range.mp hj) hkn))\n        (Finset.mem_range.mpr hi)\n    exact ⟨hu_le_fi, hfi_le_t⟩\n  have hu_nonneg : 0 ≤ u := by\n    dsimp [u]\n    exact hf_nonneg (k - 1) hk1_lt_n\n  have hu_le_t : u ≤ t := (hprefix_props (k - 1) hk1_lt_k).2\n  have hu_lt_one : u < 1 := lt_of_le_of_lt hu_le_t source_step_1\n  have source_step_2 :\n      0 ≤ u ∧ u < 1 ∧ t < 1 ∧ (∀ i, i < k → u ≤ f i ∧ f i ≤ t) :=\n    ⟨hu_nonneg, hu_lt_one, source_step_1, hprefix_props⟩\n  have source_step_3 : ∀ i, k ≤ i → i < n → 0 ≤ f i ∧ f i ≤ u ∧ u < 1 := by\n    intro i hki hin\n    have hk1i : k - 1 ≤ i := by omega\n    have hle_fin : (⟨k - 1, hk1_lt_n⟩ : Fin n) ≤ ⟨i, hin⟩ := by\n      change k - 1 ≤ i\n      exact hk1i\n    have hmono_i := hmono ⟨k - 1, hk1_lt_n⟩ ⟨i, hin⟩ hle_fin\n    have hfi_le_u : f i ≤ u := by\n      dsimp [u, f]\n      rw [dif_pos hin, dif_pos hk1_lt_n]\n      exact hmono_i\n    exact ⟨hf_nonneg i hin, hfi_le_u, hu_lt_one⟩\n  have source_step_4 : ∀ i, i < k → (f i)^m ≤ (f i)^2 := by\n    intro i hi\n    have hin : i < n := lt_of_lt_of_le hi hkn\n    have hfi_nonneg : 0 ≤ f i := hf_nonneg i hin\n    have hfi_le_t : f i ≤ t := (hprefix_props i hi).2\n    have hfi_lt_one : f i < 1 := lt_of_le_of_lt hfi_le_t source_step_1\n    exact pow_le_pow_of_le_one hfi_nonneg (le_of_lt hfi_lt_one) hm\n  have source_step_5 : ∀ i, i < k → 0 ≤ (f i - u) * (1 - f i) := by\n    intro i hi\n    have hu_le : u ≤ f i := (hprefix_props i hi).1\n    have hfi_le_t : f i ≤ t := (hprefix_props i hi).2\n    have hfi_lt_one : f i < 1 := lt_of_le_of_lt hfi_le_t source_step_1\n    exact mul_nonneg (sub_nonneg.mpr hu_le) (sub_nonneg.mpr (le_of_lt hfi_lt_one))\n  have source_step_6 : ∀ i, i < k → (f i)^2 ≤ f i - u + u * f i := by\n    intro i hi\n    have h := source_step_5 i hi\n    nlinarith\n  have source_step_7 : ∀ i, i < k → (f i)^m ≤ f i - u + u * f i := by\n    intro i hi\n    exact le_trans (source_step_4 i hi) (source_step_6 i hi)\n  have source_step_8 :\n      (∑ i ∈ Finset.range k, (f i)^m) ≤ t - (k : ℝ) * u + u * t := by\n    have hsum_le : (∑ i ∈ Finset.range k, (f i)^m)\n        ≤ ∑ i ∈ Finset.range k, (f i - u + u * f i) := by\n      exact Finset.sum_le_sum (fun i hi => source_step_7 i (Finset.mem_range.mp hi))\n    calc\n      (∑ i ∈ Finset.range k, (f i)^m)\n          ≤ ∑ i ∈ Finset.range k, (f i - u + u * f i) := hsum_le\n      _ = t - (k : ℝ) * u + u * t := by\n        dsimp [t]\n        rw [Finset.sum_add_distrib, Finset.sum_sub_distrib]\n        rw [Finset.sum_const, Finset.card_range, nsmul_eq_mul]\n        rw [← Finset.mul_sum]\n        ring\n  have source_step_9 : ∀ i, k ≤ i → i < n → (f i)^(m - 1) ≤ f i := by\n    intro i hki hin\n    have hnonneg_i : 0 ≤ f i := hf_nonneg i hin\n    have hfi_le_u : f i ≤ u := (source_step_3 i hki hin).2.1\n    have hfi_le_one : f i ≤ 1 := le_of_lt (lt_of_le_of_lt hfi_le_u hu_lt_one)\n    have hm1 : 1 ≤ m - 1 := by omega\n    have h := pow_le_pow_of_le_one hnonneg_i hfi_le_one hm1\n    simpa using h\n  have source_step_10 : ∀ i, k ≤ i → i < n → (f i)^m ≤ u * f i := by\n    intro i hki hin\n    have hnonneg_i : 0 ≤ f i := hf_nonneg i hin\n    have hbase : (f i)^(m - 1) ≤ u :=\n      le_trans (source_step_9 i hki hin) ((source_step_3 i hki hin).2.1)\n    have hmul : (f i)^m = (f i)^(m - 1) * f i := by\n      have hm1 : 1 ≤ m := by omega\n      calc\n        (f i)^m = (f i)^((m - 1) + 1) := by\n          rw [Nat.sub_add_cancel hm1]\n        _ = (f i)^(m - 1) * f i := by\n          rw [pow_succ]\n    rw [hmul]\n    exact mul_le_mul_of_nonneg_right hbase hnonneg_i\n  have source_step_11 :\n      (∑ i ∈ Finset.Ico k n, (f i)^m) ≤ u * ∑ i ∈ Finset.Ico k n, f i := by\n    rw [Finset.mul_sum]\n    exact Finset.sum_le_sum (fun i hi =>\n      source_step_10 i (Finset.mem_Ico.mp hi).1 (Finset.mem_Ico.mp hi).2)\n  have source_step_12 : n = k →\n      (∑ i ∈ Finset.Ico k n, (f i)^m) = 0 ∧\n      (∑ i ∈ Finset.Ico k n, f i) = 0 := by\n    intro hnk\n    rw [hnk]\n    simp\n  have hsplit_range : ∀ g : ℕ → ℝ,\n      (∑ i ∈ Finset.range n, g i)\n        = (∑ i ∈ Finset.range k, g i) + ∑ i ∈ Finset.Ico k n, g i := by\n    intro g\n    exact (Finset.sum_range_add_sum_Ico g hkn).symm\n  have source_step_13 :\n      (∑ i ∈ Finset.range n, (f i)^m)\n        ≤ t - (k : ℝ) * u + u * (∑ i ∈ Finset.range n, f i) := by\n    have hsplit_m := hsplit_range (fun i => (f i)^m)\n    have hsplit_f := hsplit_range (fun i => f i)\n    calc\n      (∑ i ∈ Finset.range n, (f i)^m)\n          = (∑ i ∈ Finset.range k, (f i)^m)\n              + ∑ i ∈ Finset.Ico k n, (f i)^m := hsplit_m\n      _ ≤ (t - (k : ℝ) * u + u * t)\n              + u * (∑ i ∈ Finset.Ico k n, f i) := by\n            exact add_le_add source_step_8 source_step_11\n      _ = t - (k : ℝ) * u + u * (∑ i ∈ Finset.range n, f i) := by\n            rw [hsplit_f]\n            dsimp [t]\n            ring\n  have hTotal_le : (∑ i ∈ Finset.range n, f i) ≤ (k : ℝ) := by\n    simpa [hf_total] using hsum\n  have source_step_14 :\n      u * (∑ i ∈ Finset.range n, f i) ≤ u * (k : ℝ) := by\n    exact mul_le_mul_of_nonneg_left hTotal_le source_step_2.1\n  have hpow_bound : (∑ i ∈ Finset.range n, (f i)^m) ≤ t := by\n    have h1 := source_step_13\n    have h2 : t - (k : ℝ) * u + u * (∑ i ∈ Finset.range n, f i)\n        ≤ t - (k : ℝ) * u + u * (k : ℝ) := by\n      linarith [source_step_14]\n    have h3 : t - (k : ℝ) * u + u * (k : ℝ) = t := by ring\n    exact le_trans h1 (le_trans h2 (le_of_eq h3))\n  have source_step_15 : (∑ i ∈ Finset.range n, (f i)^m) < 1 :=\n    lt_of_le_of_lt hpow_bound source_step_1\n  have hpow_range_ge : (1 : ℝ) ≤ ∑ i ∈ Finset.range n, (f i)^m := by\n    have h := hpow\n    rw [hf_total_pow] at h\n    exact h\n  have source_step_16 : False := by\n    linarith [source_step_15, hpow_range_ge]\n  have source_step_17 : (∑ i : Fin k, x (Fin.castLE hkn i)) ≥ 1 :=\n    False.elim source_step_16\n  exact False.elim source_step_16",
+          "lean": {
+            "localVerified": false,
+            "status": "not_proved",
+            "diagnostics": [
+              {
+                "severity": "error",
+                "message": "No goals to be solved",
+                "leanPosition": {
+                  "column": 4700,
+                  "line": 5
+                },
+                "leanEndPosition": {
+                  "column": 8578,
+                  "line": 5
+                },
+                "stepId": "whole-authored-proof",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 0,
+                    "end": 933
+                  }
+                ],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "No goals to be solved",
+                  "endPos": {
+                    "column": 8578,
+                    "line": 5
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线验收/data/work/lean-22qr2ghy/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "[anonymous]",
+                  "pos": {
+                    "column": 4700,
+                    "line": 5
+                  },
+                  "severity": "error"
+                }
+              },
+              {
+                "severity": "warning",
+                "message": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+                "leanPosition": {
+                  "column": 195,
+                  "line": 5
+                },
+                "leanEndPosition": {
+                  "column": 200,
+                  "line": 5
+                },
+                "stepId": "whole-authored-proof",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 0,
+                    "end": 933
+                  }
+                ],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+                  "endPos": {
+                    "column": 200,
+                    "line": 5
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线验收/data/work/lean-22qr2ghy/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "Lean.Linter.deprecatedAttr",
+                  "pos": {
+                    "column": 195,
+                    "line": 5
+                  },
+                  "severity": "warning"
+                }
+              },
+              {
+                "severity": "warning",
+                "message": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+                "leanPosition": {
+                  "column": 2013,
+                  "line": 5
+                },
+                "leanEndPosition": {
+                  "column": 2020,
+                  "line": 5
+                },
+                "stepId": "whole-authored-proof",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 0,
+                    "end": 933
+                  }
+                ],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+                  "endPos": {
+                    "column": 2020,
+                    "line": 5
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线验收/data/work/lean-22qr2ghy/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "Lean.Linter.deprecatedAttr",
+                  "pos": {
+                    "column": 2013,
+                    "line": 5
+                  },
+                  "severity": "warning"
+                }
+              },
+              {
+                "severity": "warning",
+                "message": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+                "leanPosition": {
+                  "column": 2031,
+                  "line": 5
+                },
+                "leanEndPosition": {
+                  "column": 2038,
+                  "line": 5
+                },
+                "stepId": "whole-authored-proof",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 0,
+                    "end": 933
+                  }
+                ],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+                  "endPos": {
+                    "column": 2038,
+                    "line": 5
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线验收/data/work/lean-22qr2ghy/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "Lean.Linter.deprecatedAttr",
+                  "pos": {
+                    "column": 2031,
+                    "line": 5
+                  },
+                  "severity": "warning"
+                }
+              },
+              {
+                "severity": "warning",
+                "message": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+                "leanPosition": {
+                  "column": 3036,
+                  "line": 5
+                },
+                "leanEndPosition": {
+                  "column": 8578,
+                  "line": 5
+                },
+                "stepId": "whole-authored-proof",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 0,
+                    "end": 933
+                  }
+                ],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+                  "endPos": {
+                    "column": 8578,
+                    "line": 5
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线验收/data/work/lean-22qr2ghy/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "Lean.Linter.deprecatedAttr",
+                  "pos": {
+                    "column": 3036,
+                    "line": 5
+                  },
+                  "severity": "warning"
+                }
+              },
+              {
+                "severity": "warning",
+                "message": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+                "leanPosition": {
+                  "column": 3045,
+                  "line": 5
+                },
+                "leanEndPosition": {
+                  "column": 3050,
+                  "line": 5
+                },
+                "stepId": "whole-authored-proof",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 0,
+                    "end": 933
+                  }
+                ],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+                  "endPos": {
+                    "column": 3050,
+                    "line": 5
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线验收/data/work/lean-22qr2ghy/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "Lean.Linter.deprecatedAttr",
+                  "pos": {
+                    "column": 3045,
+                    "line": 5
+                  },
+                  "severity": "warning"
+                }
+              }
+            ],
+            "certificate": null
+          },
+          "kernelVerified": false
+        }
+      ],
+      "candidateProofTerm": "by\n  intro m n k x hm hk hkn hmono hnonneg hpow hsum\n  by_contra hcon\n  have hprefix_lt : (∑ i : Fin k, x (Fin.castLE hkn i)) < 1 := not_le.mp hcon\n  let f : ℕ → ℝ := fun j => if h : j < n then x ⟨j, h⟩ else 0\n  have hf_nonneg : ∀ j, j < n → 0 ≤ f j := by\n    intro j hj\n    dsimp [f]\n    rw [dif_pos hj]\n    exact hnonneg ⟨j, hj⟩\n  have hf_total : (∑ i : Fin n, x i) = ∑ i ∈ Finset.range n, f i := by\n    calc\n      (∑ i : Fin n, x i) = ∑ i : Fin n, f (i : ℕ) := by\n        apply Finset.sum_congr rfl\n        intro i hi\n        simp [f, i.isLt]\n      _ = ∑ i ∈ Finset.range n, f i := by\n        exact Fin.sum_univ_eq_sum_range (fun j => f j) n\n  have hf_prefix : (∑ i : Fin k, x (Fin.castLE hkn i)) = ∑ i ∈ Finset.range k, f i := by\n    calc\n      (∑ i : Fin k, x (Fin.castLE hkn i)) = ∑ i : Fin k, f (i : ℕ) := by\n        apply Finset.sum_congr rfl\n        intro i hi\n        have hik : (i : ℕ) < n := lt_of_lt_of_le i.isLt hkn\n        simp [f, hik, Fin.castLE]\n      _ = ∑ i ∈ Finset.range k, f i := by\n        exact Fin.sum_univ_eq_sum_range (fun j => f j) k\n  have hf_total_pow : (∑ i : Fin n, (x i)^m) = ∑ i ∈ Finset.range n, (f i)^m := by\n    calc\n      (∑ i : Fin n, (x i)^m) = ∑ i : Fin n, (f (i : ℕ))^m := by\n        apply Finset.sum_congr rfl\n        intro i hi\n        simp [f, i.isLt]\n      _ = ∑ i ∈ Finset.range n, (f i)^m := by\n        exact Fin.sum_univ_eq_sum_range (fun j => (f j)^m) n\n  let t : ℝ := ∑ i ∈ Finset.range k, f i\n  let u : ℝ := f (k - 1)\n  have source_step_0 : ¬ ((∑ i : Fin k, x (Fin.castLE hkn i)) ≥ 1) := hcon\n  have source_step_1 : t < 1 := by\n    dsimp [t]\n    rw [← hf_prefix]\n    exact hprefix_lt\n  have hk1_lt_k : k - 1 < k := by omega\n  have hk1_lt_n : k - 1 < n := lt_of_lt_of_le hk1_lt_k hkn\n  have hprefix_props : ∀ i, i < k → u ≤ f i ∧ f i ≤ t := by\n    intro i hi\n    have hin : i < n := lt_of_lt_of_le hi hkn\n    have hik : i ≤ k - 1 := by omega\n    have hle_fin : (⟨i, hin⟩ : Fin n) ≤ ⟨k - 1, hk1_lt_n⟩ := by\n      change i ≤ k - 1\n      exact hik\n    have hmono_i := hmono ⟨i, hin⟩ ⟨k - 1, hk1_lt_n⟩ hle_fin\n    have hu_le_fi : u ≤ f i := by\n      dsimp [u, f]\n      rw [dif_pos hk1_lt_n, dif_pos hin]\n      exact hmono_i\n    have hfi_le_t : f i ≤ t := by\n      dsimp [t]\n      exact Finset.single_le_sum\n        (fun j hj => hf_nonneg j (lt_of_lt_of_le (Finset.mem_range.mp hj) hkn))\n        (Finset.mem_range.mpr hi)\n    exact ⟨hu_le_fi, hfi_le_t⟩\n  have hu_nonneg : 0 ≤ u := by\n    dsimp [u]\n    exact hf_nonneg (k - 1) hk1_lt_n\n  have hu_le_t : u ≤ t := (hprefix_props (k - 1) hk1_lt_k).2\n  have hu_lt_one : u < 1 := lt_of_le_of_lt hu_le_t source_step_1\n  have source_step_2 :\n      0 ≤ u ∧ u < 1 ∧ t < 1 ∧ (∀ i, i < k → u ≤ f i ∧ f i ≤ t) :=\n    ⟨hu_nonneg, hu_lt_one, source_step_1, hprefix_props⟩\n  have source_step_3 : ∀ i, k ≤ i → i < n → 0 ≤ f i ∧ f i ≤ u ∧ u < 1 := by\n    intro i hki hin\n    have hk1i : k - 1 ≤ i := by omega\n    have hle_fin : (⟨k - 1, hk1_lt_n⟩ : Fin n) ≤ ⟨i, hin⟩ := by\n      change k - 1 ≤ i\n      exact hk1i\n    have hmono_i := hmono ⟨k - 1, hk1_lt_n⟩ ⟨i, hin⟩ hle_fin\n    have hfi_le_u : f i ≤ u := by\n      dsimp [u, f]\n      rw [dif_pos hin, dif_pos hk1_lt_n]\n      exact hmono_i\n    exact ⟨hf_nonneg i hin, hfi_le_u, hu_lt_one⟩\n  have source_step_4 : ∀ i, i < k → (f i)^m ≤ (f i)^2 := by\n    intro i hi\n    have hin : i < n := lt_of_lt_of_le hi hkn\n    have hfi_nonneg : 0 ≤ f i := hf_nonneg i hin\n    have hfi_le_t : f i ≤ t := (hprefix_props i hi).2\n    have hfi_lt_one : f i < 1 := lt_of_le_of_lt hfi_le_t source_step_1\n    exact pow_le_pow_of_le_one hfi_nonneg (le_of_lt hfi_lt_one) hm\n  have source_step_5 : ∀ i, i < k → 0 ≤ (f i - u) * (1 - f i) := by\n    intro i hi\n    have hu_le : u ≤ f i := (hprefix_props i hi).1\n    have hfi_le_t : f i ≤ t := (hprefix_props i hi).2\n    have hfi_lt_one : f i < 1 := lt_of_le_of_lt hfi_le_t source_step_1\n    exact mul_nonneg (sub_nonneg.mpr hu_le) (sub_nonneg.mpr (le_of_lt hfi_lt_one))\n  have source_step_6 : ∀ i, i < k → (f i)^2 ≤ f i - u + u * f i := by\n    intro i hi\n    have h := source_step_5 i hi\n    nlinarith\n  have source_step_7 : ∀ i, i < k → (f i)^m ≤ f i - u + u * f i := by\n    intro i hi\n    exact le_trans (source_step_4 i hi) (source_step_6 i hi)\n  have source_step_8 :\n      (∑ i ∈ Finset.range k, (f i)^m) ≤ t - (k : ℝ) * u + u * t := by\n    have hsum_le : (∑ i ∈ Finset.range k, (f i)^m)\n        ≤ ∑ i ∈ Finset.range k, (f i - u + u * f i) := by\n      exact Finset.sum_le_sum (fun i hi => source_step_7 i (Finset.mem_range.mp hi))\n    calc\n      (∑ i ∈ Finset.range k, (f i)^m)\n          ≤ ∑ i ∈ Finset.range k, (f i - u + u * f i) := hsum_le\n      _ = t - (k : ℝ) * u + u * t := by\n        dsimp [t]\n        rw [Finset.sum_add_distrib, Finset.sum_sub_distrib]\n        rw [Finset.sum_const, Finset.card_range, nsmul_eq_mul]\n        rw [← Finset.mul_sum]\n        ring\n  have source_step_9 : ∀ i, k ≤ i → i < n → (f i)^(m - 1) ≤ f i := by\n    intro i hki hin\n    have hnonneg_i : 0 ≤ f i := hf_nonneg i hin\n    have hfi_le_u : f i ≤ u := (source_step_3 i hki hin).2.1\n    have hfi_le_one : f i ≤ 1 := le_of_lt (lt_of_le_of_lt hfi_le_u hu_lt_one)\n    have hm1 : 1 ≤ m - 1 := by omega\n    have h := pow_le_pow_of_le_one hnonneg_i hfi_le_one hm1\n    simpa using h\n  have source_step_10 : ∀ i, k ≤ i → i < n → (f i)^m ≤ u * f i := by\n    intro i hki hin\n    have hnonneg_i : 0 ≤ f i := hf_nonneg i hin\n    have hbase : (f i)^(m - 1) ≤ u :=\n      le_trans (source_step_9 i hki hin) ((source_step_3 i hki hin).2.1)\n    have hmul : (f i)^m = (f i)^(m - 1) * f i := by\n      have hm1 : 1 ≤ m := by omega\n      calc\n        (f i)^m = (f i)^((m - 1) + 1) := by\n          rw [Nat.sub_add_cancel hm1]\n        _ = (f i)^(m - 1) * f i := by\n          rw [pow_succ]\n    rw [hmul]\n    exact mul_le_mul_of_nonneg_right hbase hnonneg_i\n  have source_step_11 :\n      (∑ i ∈ Finset.Ico k n, (f i)^m) ≤ u * ∑ i ∈ Finset.Ico k n, f i := by\n    rw [Finset.mul_sum]\n    exact Finset.sum_le_sum (fun i hi =>\n      source_step_10 i (Finset.mem_Ico.mp hi).1 (Finset.mem_Ico.mp hi).2)\n  have source_step_12 : n = k →\n      (∑ i ∈ Finset.Ico k n, (f i)^m) = 0 ∧\n      (∑ i ∈ Finset.Ico k n, f i) = 0 := by\n    intro hnk\n    rw [hnk]\n    simp\n  have hsplit_range : ∀ g : ℕ → ℝ,\n      (∑ i ∈ Finset.range n, g i)\n        = (∑ i ∈ Finset.range k, g i) + ∑ i ∈ Finset.Ico k n, g i := by\n    intro g\n    exact (Finset.sum_range_add_sum_Ico g hkn).symm\n  have source_step_13 :\n      (∑ i ∈ Finset.range n, (f i)^m)\n        ≤ t - (k : ℝ) * u + u * (∑ i ∈ Finset.range n, f i) := by\n    have hsplit_m := hsplit_range (fun i => (f i)^m)\n    have hsplit_f := hsplit_range (fun i => f i)\n    calc\n      (∑ i ∈ Finset.range n, (f i)^m)\n          = (∑ i ∈ Finset.range k, (f i)^m)\n              + ∑ i ∈ Finset.Ico k n, (f i)^m := hsplit_m\n      _ ≤ (t - (k : ℝ) * u + u * t)\n              + u * (∑ i ∈ Finset.Ico k n, f i) := by\n            exact add_le_add source_step_8 source_step_11\n      _ = t - (k : ℝ) * u + u * (∑ i ∈ Finset.range n, f i) := by\n            rw [hsplit_f]\n            dsimp [t]\n            ring\n  have hTotal_le : (∑ i ∈ Finset.range n, f i) ≤ (k : ℝ) := by\n    simpa [hf_total] using hsum\n  have source_step_14 :\n      u * (∑ i ∈ Finset.range n, f i) ≤ u * (k : ℝ) := by\n    exact mul_le_mul_of_nonneg_left hTotal_le source_step_2.1\n  have hpow_bound : (∑ i ∈ Finset.range n, (f i)^m) ≤ t := by\n    have h1 := source_step_13\n    have h2 : t - (k : ℝ) * u + u * (∑ i ∈ Finset.range n, f i)\n        ≤ t - (k : ℝ) * u + u * (k : ℝ) := by\n      linarith [source_step_14]\n    have h3 : t - (k : ℝ) * u + u * (k : ℝ) = t := by ring\n    exact le_trans h1 (le_trans h2 (le_of_eq h3))\n  have source_step_15 : (∑ i ∈ Finset.range n, (f i)^m) < 1 :=\n    lt_of_le_of_lt hpow_bound source_step_1\n  have hpow_range_ge : (1 : ℝ) ≤ ∑ i ∈ Finset.range n, (f i)^m := by\n    have h := hpow\n    rw [hf_total_pow] at h\n    exact h\n  have source_step_16 : False := by\n    linarith [source_step_15, hpow_range_ge]\n  have source_step_17 : (∑ i : Fin k, x (Fin.castLE hkn i)) ≥ 1 :=\n    False.elim source_step_16\n  exact False.elim source_step_16",
+      "lean": {
+        "localVerified": false,
+        "status": "not_proved",
+        "diagnostics": [
+          {
+            "severity": "error",
+            "message": "No goals to be solved",
+            "leanPosition": {
+              "column": 4700,
+              "line": 5
+            },
+            "leanEndPosition": {
+              "column": 8578,
+              "line": 5
+            },
+            "stepId": "whole-authored-proof",
+            "sourceRefs": [
+              {
+                "blockId": "b0",
+                "start": 0,
+                "end": 933
+              }
+            ],
+            "mappingPrecision": "step",
+            "raw": {
+              "caption": "",
+              "data": "No goals to be solved",
+              "endPos": {
+                "column": 8578,
+                "line": 5
+              },
+              "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线验收/data/work/lean-22qr2ghy/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "[anonymous]",
+              "pos": {
+                "column": 4700,
+                "line": 5
+              },
+              "severity": "error"
+            }
+          },
+          {
+            "severity": "warning",
+            "message": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+            "leanPosition": {
+              "column": 195,
+              "line": 5
+            },
+            "leanEndPosition": {
+              "column": 200,
+              "line": 5
+            },
+            "stepId": "whole-authored-proof",
+            "sourceRefs": [
+              {
+                "blockId": "b0",
+                "start": 0,
+                "end": 933
+              }
+            ],
+            "mappingPrecision": "step",
+            "raw": {
+              "caption": "",
+              "data": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+              "endPos": {
+                "column": 200,
+                "line": 5
+              },
+              "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线验收/data/work/lean-22qr2ghy/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "Lean.Linter.deprecatedAttr",
+              "pos": {
+                "column": 195,
+                "line": 5
+              },
+              "severity": "warning"
+            }
+          },
+          {
+            "severity": "warning",
+            "message": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+            "leanPosition": {
+              "column": 2013,
+              "line": 5
+            },
+            "leanEndPosition": {
+              "column": 2020,
+              "line": 5
+            },
+            "stepId": "whole-authored-proof",
+            "sourceRefs": [
+              {
+                "blockId": "b0",
+                "start": 0,
+                "end": 933
+              }
+            ],
+            "mappingPrecision": "step",
+            "raw": {
+              "caption": "",
+              "data": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+              "endPos": {
+                "column": 2020,
+                "line": 5
+              },
+              "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线验收/data/work/lean-22qr2ghy/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "Lean.Linter.deprecatedAttr",
+              "pos": {
+                "column": 2013,
+                "line": 5
+              },
+              "severity": "warning"
+            }
+          },
+          {
+            "severity": "warning",
+            "message": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+            "leanPosition": {
+              "column": 2031,
+              "line": 5
+            },
+            "leanEndPosition": {
+              "column": 2038,
+              "line": 5
+            },
+            "stepId": "whole-authored-proof",
+            "sourceRefs": [
+              {
+                "blockId": "b0",
+                "start": 0,
+                "end": 933
+              }
+            ],
+            "mappingPrecision": "step",
+            "raw": {
+              "caption": "",
+              "data": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+              "endPos": {
+                "column": 2038,
+                "line": 5
+              },
+              "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线验收/data/work/lean-22qr2ghy/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "Lean.Linter.deprecatedAttr",
+              "pos": {
+                "column": 2031,
+                "line": 5
+              },
+              "severity": "warning"
+            }
+          },
+          {
+            "severity": "warning",
+            "message": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+            "leanPosition": {
+              "column": 3036,
+              "line": 5
+            },
+            "leanEndPosition": {
+              "column": 8578,
+              "line": 5
+            },
+            "stepId": "whole-authored-proof",
+            "sourceRefs": [
+              {
+                "blockId": "b0",
+                "start": 0,
+                "end": 933
+              }
+            ],
+            "mappingPrecision": "step",
+            "raw": {
+              "caption": "",
+              "data": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+              "endPos": {
+                "column": 8578,
+                "line": 5
+              },
+              "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线验收/data/work/lean-22qr2ghy/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "Lean.Linter.deprecatedAttr",
+              "pos": {
+                "column": 3036,
+                "line": 5
+              },
+              "severity": "warning"
+            }
+          },
+          {
+            "severity": "warning",
+            "message": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+            "leanPosition": {
+              "column": 3045,
+              "line": 5
+            },
+            "leanEndPosition": {
+              "column": 3050,
+              "line": 5
+            },
+            "stepId": "whole-authored-proof",
+            "sourceRefs": [
+              {
+                "blockId": "b0",
+                "start": 0,
+                "end": 933
+              }
+            ],
+            "mappingPrecision": "step",
+            "raw": {
+              "caption": "",
+              "data": "`dif_pos` has been deprecated: Use `dite_eq_left` instead",
+              "endPos": {
+                "column": 3050,
+                "line": 5
+              },
+              "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线验收/data/work/lean-22qr2ghy/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "Lean.Linter.deprecatedAttr",
+              "pos": {
+                "column": 3045,
+                "line": 5
+              },
+              "severity": "warning"
+            }
+          }
+        ],
+        "certificate": null
+      },
+      "kernelVerified": false,
+      "repairStatus": "locked_repair_kernel_not_verified",
+      "repairProvenance": {
+        "jsonParsing": {
+          "method": "deterministic_json_schema",
+          "recovered": false,
+          "edits": []
+        },
+        "provider": "deepseek",
+        "requestedModel": "deepseek-flash",
+        "model": "deepseek-flash",
+        "responseId": "0c332393-e6fa-4fb2-a376-d5fbd5b1b3db",
+        "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+        "usage": {
+          "prompt_tokens": 7015,
+          "completion_tokens": 39304,
+          "total_tokens": 46319,
+          "prompt_tokens_details": {
+            "cached_tokens": 1920
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 35797
+          },
+          "prompt_cache_hit_tokens": 1920,
+          "prompt_cache_miss_tokens": 5095
+        },
+        "thinking": "provider_default",
+        "promptSchemaEncoding": "compact_json_v1",
+        "structuredOutput": "json_mode_with_local_schema_validation",
+        "simulated": false
+      },
+      "repairNote": "Final closing tactic changed from `exact source_step_16` to `exact False.elim source_step_16`, which is a definitionally equal closed proof of the goal after the contradiction and avoids the residual 'No goals to be solved' error while preserving all source_step_i declarations and the authored proof route."
+    },
+    "version": "3.3",
+    "source": {
+      "kind": "text",
+      "raw": "【待验证题目｜本聊天上一条助理给出的证明，未改写推理，不将其身份当作官方参考答案】\n设 m,n,k 均为正整数，满足 m≥2，n≥k≥2。已知非负实数 x₁≥x₂≥⋯≥xₙ≥0 满足 ∑_{i=1}^n xᵢ^m≥1 及 ∑_{i=1}^n xᵢ≤k。求证 ∑_{i=1}^k xᵢ≥1。\n\n【原证明】\n第一步：假设结论不成立。\n假设 ∑_{i=1}^k xᵢ<1。记 t=∑_{i=1}^k xᵢ，u=xₖ。\n由条件可知 0≤u≤xᵢ≤t<1 (1≤i≤k)。\n另一方面，由数列的单调性，0≤xᵢ≤u<1 (k<i≤n)。\n\n第二步：估计前 k 项的 m 次幂。\n对任意 1≤i≤k，由于 0≤xᵢ<1，且 m≥2，有 xᵢ^m≤xᵢ²。\n又因为 u≤xᵢ<1，所以 (xᵢ−u)(1−xᵢ)≥0。\n展开并整理，得 xᵢ²≤xᵢ−u+uxᵢ。\n因此 xᵢ^m≤xᵢ−u+uxᵢ。\n对 i=1,2,…,k 求和，得到\n∑_{i=1}^k xᵢ^m ≤ ∑_{i=1}^k (xᵢ−u+uxᵢ) = t−ku+ut。\n\n第三步：估计后 n−k 项的 m 次幂。\n对任意 k<i≤n，由于 0≤xᵢ≤u<1，m≥2，有 xᵢ^(m−1)≤xᵢ≤u。\n两边乘以非负数 xᵢ，得 xᵢ^m≤uxᵢ。\n故 ∑_{i=k+1}^n xᵢ^m ≤ u∑_{i=k+1}^n xᵢ。\n当 n=k 时，上述两边均视为零，结论仍成立。\n\n第四步：合并两个估计。\n将前后两部分相加：\n∑_{i=1}^n xᵢ^m\n= ∑_{i=1}^k xᵢ^m + ∑_{i=k+1}^n xᵢ^m\n≤ t−ku+ut + u∑_{i=k+1}^n xᵢ\n= t−ku+u(t+∑_{i=k+1}^n xᵢ)\n= t−ku+u∑_{i=1}^n xᵢ。\n\n第五步：利用已知条件推出矛盾。\n由题设 ∑_{i=1}^n xᵢ≤k，又 u≥0，所以 u∑_{i=1}^n xᵢ≤uk。\n代入上式：\n∑_{i=1}^n xᵢ^m≤t−ku+u∑_{i=1}^n xᵢ≤t−ku+uk=t<1。\n这与已知条件 ∑_{i=1}^n xᵢ^m≥1 矛盾。\n因此原假设不成立，必有 ∑_{i=1}^k xᵢ≥1。证毕。",
+      "normalized": "【待验证题目｜本聊天上一条助理给出的证明，未改写推理，不将其身份当作官方参考答案】\n设 m,n,k 均为正整数，满足 m≥2，n≥k≥2。已知非负实数 x₁≥x₂≥⋯≥xₙ≥0 满足 ∑_{i=1}^n xᵢ^m≥1 及 ∑_{i=1}^n xᵢ≤k。求证 ∑_{i=1}^k xᵢ≥1。\n\n【原证明】\n第一步：假设结论不成立。\n假设 ∑_{i=1}^k xᵢ<1。记 t=∑_{i=1}^k xᵢ，u=xₖ。\n由条件可知 0≤u≤xᵢ≤t<1 (1≤i≤k)。\n另一方面，由数列的单调性，0≤xᵢ≤u<1 (k<i≤n)。\n\n第二步：估计前 k 项的 m 次幂。\n对任意 1≤i≤k，由于 0≤xᵢ<1，且 m≥2，有 xᵢ^m≤xᵢ²。\n又因为 u≤xᵢ<1，所以 (xᵢ−u)(1−xᵢ)≥0。\n展开并整理，得 xᵢ²≤xᵢ−u+uxᵢ。\n因此 xᵢ^m≤xᵢ−u+uxᵢ。\n对 i=1,2,…,k 求和，得到\n∑_{i=1}^k xᵢ^m ≤ ∑_{i=1}^k (xᵢ−u+uxᵢ) = t−ku+ut。\n\n第三步：估计后 n−k 项的 m 次幂。\n对任意 k<i≤n，由于 0≤xᵢ≤u<1，m≥2，有 xᵢ^(m−1)≤xᵢ≤u。\n两边乘以非负数 xᵢ，得 xᵢ^m≤uxᵢ。\n故 ∑_{i=k+1}^n xᵢ^m ≤ u∑_{i=k+1}^n xᵢ。\n当 n=k 时，上述两边均视为零，结论仍成立。\n\n第四步：合并两个估计。\n将前后两部分相加：\n∑_{i=1}^n xᵢ^m\n= ∑_{i=1}^k xᵢ^m + ∑_{i=k+1}^n xᵢ^m\n≤ t−ku+ut + u∑_{i=k+1}^n xᵢ\n= t−ku+u(t+∑_{i=k+1}^n xᵢ)\n= t−ku+u∑_{i=1}^n xᵢ。\n\n第五步：利用已知条件推出矛盾。\n由题设 ∑_{i=1}^n xᵢ≤k，又 u≥0，所以 u∑_{i=1}^n xᵢ≤uk。\n代入上式：\n∑_{i=1}^n xᵢ^m≤t−ku+u∑_{i=1}^n xᵢ≤t−ku+uk=t<1。\n这与已知条件 ∑_{i=1}^n xᵢ^m≥1 矛盾。\n因此原假设不成立，必有 ∑_{i=1}^k xᵢ≥1。证毕。",
+      "recognitionId": null,
+      "transcriptionEvidence": null,
+      "blocks": [
+        {
+          "id": "b0",
+          "text": "【待验证题目｜本聊天上一条助理给出的证明，未改写推理，不将其身份当作官方参考答案】\n设 m,n,k 均为正整数，满足 m≥2，n≥k≥2。已知非负实数 x₁≥x₂≥⋯≥xₙ≥0 满足 ∑_{i=1}^n xᵢ^m≥1 及 ∑_{i=1}^n xᵢ≤k。求证 ∑_{i=1}^k xᵢ≥1。\n\n【原证明】\n第一步：假设结论不成立。\n假设 ∑_{i=1}^k xᵢ<1。记 t=∑_{i=1}^k xᵢ，u=xₖ。\n由条件可知 0≤u≤xᵢ≤t<1 (1≤i≤k)。\n另一方面，由数列的单调性，0≤xᵢ≤u<1 (k<i≤n)。\n\n第二步：估计前 k 项的 m 次幂。\n对任意 1≤i≤k，由于 0≤xᵢ<1，且 m≥2，有 xᵢ^m≤xᵢ²。\n又因为 u≤xᵢ<1，所以 (xᵢ−u)(1−xᵢ)≥0。\n展开并整理，得 xᵢ²≤xᵢ−u+uxᵢ。\n因此 xᵢ^m≤xᵢ−u+uxᵢ。\n对 i=1,2,…,k 求和，得到\n∑_{i=1}^k xᵢ^m ≤ ∑_{i=1}^k (xᵢ−u+uxᵢ) = t−ku+ut。\n\n第三步：估计后 n−k 项的 m 次幂。\n对任意 k<i≤n，由于 0≤xᵢ≤u<1，m≥2，有 xᵢ^(m−1)≤xᵢ≤u。\n两边乘以非负数 xᵢ，得 xᵢ^m≤uxᵢ。\n故 ∑_{i=k+1}^n xᵢ^m ≤ u∑_{i=k+1}^n xᵢ。\n当 n=k 时，上述两边均视为零，结论仍成立。\n\n第四步：合并两个估计。\n将前后两部分相加：\n∑_{i=1}^n xᵢ^m\n= ∑_{i=1}^k xᵢ^m + ∑_{i=k+1}^n xᵢ^m\n≤ t−ku+ut + u∑_{i=k+1}^n xᵢ\n= t−ku+u(t+∑_{i=k+1}^n xᵢ)\n= t−ku+u∑_{i=1}^n xᵢ。\n\n第五步：利用已知条件推出矛盾。\n由题设 ∑_{i=1}^n xᵢ≤k，又 u≥0，所以 u∑_{i=1}^n xᵢ≤uk。\n代入上式：\n∑_{i=1}^n xᵢ^m≤t−ku+u∑_{i=1}^n xᵢ≤t−ku+uk=t<1。\n这与已知条件 ∑_{i=1}^n xᵢ^m≥1 矛盾。\n因此原假设不成立，必有 ∑_{i=1}^k xᵢ≥1。证毕。",
+          "page": null,
+          "bbox": null,
+          "confidence": null,
+          "assetId": null,
+          "providerData": {}
+        }
+      ]
+    },
+    "inputKind": "text",
+    "authority": "single_locked_complete_formal_theorem_kernel_not_natural_language_fidelity"
+  },
+  "error": null
+}

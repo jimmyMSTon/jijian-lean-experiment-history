@@ -1,0 +1,777 @@
+{
+  "id": "correct_A_six_divides_n_cube_minus_n",
+  "topic": "正确证明 / 初等数论 / 六整除 n³-n",
+  "source": "命题：对于每个整数 n∈ℤ，都有 6∣(n³−n)。证明：先分解因式，n³−n=(n−1)n(n+1)。这三个数是相邻的整数，其中至少有一个能被 3 整除，所以 3∣(n³−n)。另一方面，如果 n 是偶数，则 2∣n；如果 n 是奇数，则 n−1 是偶数。因此在两种情况下都有 2∣(n³−n)。因为 2 与 3 互素，所以由 2∣(n³−n) 和 3∣(n³−n) 得 6∣(n³−n)。证毕。",
+  "reference": "标准答案正确。需要严格保留相邻三数、分类证明奇偶以及互素整除的推理；不得添加新未写前提。",
+  "appSourceCommit": "2e01eaea71408cb6c74bb7bcb7c655c07e9b350b",
+  "providerFixture": false,
+  "kernelFixture": false,
+  "handWrittenLean": false,
+  "handWrittenMathIR": false,
+  "transport": "signed installed App packaged backend POST /api/v2/jobs",
+  "guiInteracted": false,
+  "startedUtc": "2026-10-24T06:24:24.494919+00:00",
+  "sourceSha256": "445c660362dffeecb0bbf772bf59bb991e34961883c180d6d195a783cd3f64ee",
+  "capabilities": {
+    "ai": {
+      "configured": true,
+      "provider": "deepseek",
+      "model": "deepseek-flash",
+      "thinking": "provider_default",
+      "liveTested": false
+    },
+    "lean": {
+      "configured": true,
+      "executableFound": true,
+      "projectFound": true,
+      "runtimeBuilt": true,
+      "runtimeIntegrity": true,
+      "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+      "sandbox": "macos",
+      "isolated": true,
+      "ready": true,
+      "toolchain": "leanprover/lean4:v4.34.0",
+      "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+      "liveTestedInThisDistribution": false
+    },
+    "mockFallback": false,
+    "health": "running"
+  },
+  "jobId": "37e2aec0-3ffe-4b31-8e82-3923e3332811",
+  "submittedUtc": "2026-10-24T06:24:25.219964+00:00",
+  "stageTransitions": [
+    {
+      "status": "running",
+      "stage": "recognizing",
+      "seconds": 0.75,
+      "utc": "2026-10-24T06:24:25.246517+00:00"
+    },
+    {
+      "status": "running",
+      "stage": "lean_verification",
+      "seconds": 70.65,
+      "utc": "2026-10-24T06:25:35.148339+00:00"
+    },
+    {
+      "status": "running",
+      "stage": "proof_only_generation",
+      "seconds": 208.79,
+      "utc": "2026-10-24T06:27:53.283968+00:00"
+    },
+    {
+      "status": "running",
+      "stage": "lean_verification",
+      "seconds": 272.01,
+      "utc": "2026-10-24T06:28:56.500179+00:00"
+    },
+    {
+      "status": "running",
+      "stage": "mathlib_retrieval",
+      "seconds": 335.38,
+      "utc": "2026-10-24T06:29:59.872210+00:00"
+    },
+    {
+      "status": "running",
+      "stage": "diagnostic_repair",
+      "seconds": 354.35,
+      "utc": "2026-10-24T06:30:18.840583+00:00"
+    },
+    {
+      "status": "running",
+      "stage": "lean_verification",
+      "seconds": 380.58,
+      "utc": "2026-10-24T06:30:45.078295+00:00"
+    },
+    {
+      "status": "running",
+      "stage": "mathlib_retrieval",
+      "seconds": 437.06,
+      "utc": "2026-10-24T06:31:41.554770+00:00"
+    },
+    {
+      "status": "running",
+      "stage": "diagnostic_repair",
+      "seconds": 458.35,
+      "utc": "2026-10-24T06:32:02.848276+00:00"
+    },
+    {
+      "status": "completed",
+      "stage": "completed",
+      "seconds": 515.79,
+      "utc": "2026-10-24T06:33:00.287347+00:00"
+    }
+  ],
+  "terminalStatus": "completed",
+  "terminalStage": "completed",
+  "terminalError": null,
+  "result": {
+    "runStatus": "formal_verified_source_unconfirmed",
+    "termination": "original_route_kernel_passed",
+    "kernelVerified": true,
+    "fixedStatementKernelPassed": true,
+    "originalRouteKernelPassed": true,
+    "sourceProofVerified": false,
+    "originalProofVerified": false,
+    "originalMeaning": "unresolved_ambiguities",
+    "statement": null,
+    "failure": null,
+    "mathIRId": "5703f78d-959a-41fc-af7a-4e29e9ec0c9b",
+    "sourceStructureId": "297ac688-3881-403d-b869-b52aceb7847f",
+    "originalProofFidelity": {
+      "sourceProofVerified": false,
+      "status": "not_independently_established",
+      "basis": "Formal Kernel proof alone cannot certify an author's natural-language reasoning. Unrecognized source rule remains unconfirmed.",
+      "routes": [
+        {
+          "routeId": "r_main",
+          "formalRouteKernelPassed": true,
+          "sourceReasoningVerified": false,
+          "sourceReasoningStatus": "not_independently_established",
+          "steps": [
+            {
+              "nodeId": "c_factor",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": false,
+              "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+              "sourceInferenceRule": null,
+              "sourceInferenceEvidence": null
+            },
+            {
+              "nodeId": "c_three_factor",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": false,
+              "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+              "sourceInferenceRule": null,
+              "sourceInferenceEvidence": null
+            },
+            {
+              "nodeId": "c_three_divides",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "diagnostic_repair",
+              "sourceReasoningVerified": false,
+              "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+              "sourceInferenceRule": null,
+              "sourceInferenceEvidence": null
+            },
+            {
+              "nodeId": "c_even_imp",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": false,
+              "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+              "sourceInferenceRule": null,
+              "sourceInferenceEvidence": null
+            },
+            {
+              "nodeId": "c_odd_imp",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": false,
+              "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+              "sourceInferenceRule": null,
+              "sourceInferenceEvidence": null
+            },
+            {
+              "nodeId": "c_two_divides",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": false,
+              "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+              "sourceInferenceRule": null,
+              "sourceInferenceEvidence": null
+            },
+            {
+              "nodeId": "c_coprime",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": true,
+              "sourceReasoningStatus": "source_rule_certified",
+              "sourceInferenceRule": "source_attested_coprimality",
+              "sourceInferenceEvidence": {
+                "blockId": "b0",
+                "start": 149,
+                "end": 160,
+                "quote": "因为 2 与 3 互素",
+                "quoteSha256": "fee0222b237915feeb2660a6cb1f35fc124b01f8330800adb949047d53e2094a",
+                "dependsOn": [],
+                "method": "deterministic_source_predicate_source_causality",
+                "kernelStepCertificate": true
+              }
+            },
+            {
+              "nodeId": "c_six_divides",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": false,
+              "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+              "sourceInferenceRule": null,
+              "sourceInferenceEvidence": null
+            },
+            {
+              "nodeId": "c_goal",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": false,
+              "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+              "sourceInferenceRule": null,
+              "sourceInferenceEvidence": null
+            }
+          ]
+        }
+      ]
+    },
+    "reasoningFidelity": {
+      "version": 2,
+      "authority": "independent_source_inference_certificate",
+      "status": "source_rules_partially_certified",
+      "formalRouteKernelPassed": true,
+      "sourceEvidenceBoundToStatement": true,
+      "sourceDomainConflicts": [],
+      "expectedStatementHash": "b70699b78e4e6ae993d7edb4e7e354b54ad0913e345038ffcf44ca34ab882481",
+      "originalProofVerified": false,
+      "sourceInferenceCertificationAvailable": true,
+      "sourceRuleVerifiedStepCount": 1,
+      "sourceRuleVerifiedRouteCount": 0,
+      "unconfirmedSourceStepCount": 8,
+      "unconfirmedSourceSteps": [
+        {
+          "routeId": "r_main",
+          "nodeId": "c_factor",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "missing_kernel_or_supported_source"
+        },
+        {
+          "routeId": "r_main",
+          "nodeId": "c_three_factor",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "unsupported_or_non_authored_predicate"
+        },
+        {
+          "routeId": "r_main",
+          "nodeId": "c_three_divides",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "author_quantifier_or_local_step_not_identified"
+        },
+        {
+          "routeId": "r_main",
+          "nodeId": "c_even_imp",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "unsupported_or_non_authored_predicate"
+        },
+        {
+          "routeId": "r_main",
+          "nodeId": "c_odd_imp",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "unsupported_or_non_authored_predicate"
+        },
+        {
+          "routeId": "r_main",
+          "nodeId": "c_two_divides",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "author_quantifier_or_local_step_not_identified"
+        },
+        {
+          "routeId": "r_main",
+          "nodeId": "c_six_divides",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "author_quantifier_or_local_step_not_identified"
+        },
+        {
+          "routeId": "r_main",
+          "nodeId": "c_goal",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "unsupported_or_non_authored_predicate"
+        }
+      ],
+      "routes": [
+        {
+          "routeId": "r_main",
+          "formalRouteKernelPassed": true,
+          "originalReasoningVerified": false,
+          "originalReasoningStatus": "not_independently_certified",
+          "goalSourceMatch": null,
+          "theoremPremisesSourceMatched": true,
+          "declarationTypesSourceMatched": true,
+          "sourceDomainConflicts": [],
+          "noExplicitSourceDomainDrift": true,
+          "unresolvedAmbiguitiesAbsent": false,
+          "authoredFormulaCoverageMatched": true,
+          "statementIdentityMatched": true,
+          "steps": [
+            {
+              "nodeId": "c_factor",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": false,
+              "originalInferenceStatus": "not_independently_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [],
+              "rule": null,
+              "ruleEvidence": null,
+              "ruleCheckReason": "missing_kernel_or_supported_source",
+              "statementIdentityMatched": true,
+              "reason": "ai_generated_formal_reconstruction"
+            },
+            {
+              "nodeId": "c_three_factor",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": false,
+              "originalInferenceStatus": "not_independently_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [],
+              "rule": null,
+              "ruleEvidence": null,
+              "ruleCheckReason": "unsupported_or_non_authored_predicate",
+              "statementIdentityMatched": true,
+              "reason": "ai_generated_formal_reconstruction"
+            },
+            {
+              "nodeId": "c_three_divides",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": false,
+              "originalInferenceStatus": "not_independently_certified",
+              "proofTermOrigin": "diagnostic_repair",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [
+                "c_factor",
+                "c_three_factor"
+              ],
+              "rule": null,
+              "ruleEvidence": null,
+              "ruleCheckReason": "author_quantifier_or_local_step_not_identified",
+              "statementIdentityMatched": true,
+              "reason": "ai_generated_formal_reconstruction"
+            },
+            {
+              "nodeId": "c_even_imp",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": false,
+              "originalInferenceStatus": "not_independently_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [],
+              "rule": null,
+              "ruleEvidence": null,
+              "ruleCheckReason": "unsupported_or_non_authored_predicate",
+              "statementIdentityMatched": true,
+              "reason": "ai_generated_formal_reconstruction"
+            },
+            {
+              "nodeId": "c_odd_imp",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": false,
+              "originalInferenceStatus": "not_independently_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [],
+              "rule": null,
+              "ruleEvidence": null,
+              "ruleCheckReason": "unsupported_or_non_authored_predicate",
+              "statementIdentityMatched": true,
+              "reason": "ai_generated_formal_reconstruction"
+            },
+            {
+              "nodeId": "c_two_divides",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": false,
+              "originalInferenceStatus": "not_independently_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [
+                "c_factor",
+                "c_even_imp",
+                "c_odd_imp"
+              ],
+              "rule": null,
+              "ruleEvidence": null,
+              "ruleCheckReason": "author_quantifier_or_local_step_not_identified",
+              "statementIdentityMatched": true,
+              "reason": "ai_generated_formal_reconstruction"
+            },
+            {
+              "nodeId": "c_coprime",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": true,
+              "originalInferenceStatus": "source_rule_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [],
+              "rule": "source_attested_coprimality",
+              "ruleEvidence": {
+                "blockId": "b0",
+                "start": 149,
+                "end": 160,
+                "quote": "因为 2 与 3 互素",
+                "quoteSha256": "fee0222b237915feeb2660a6cb1f35fc124b01f8330800adb949047d53e2094a",
+                "dependsOn": [],
+                "method": "deterministic_source_predicate_source_causality",
+                "kernelStepCertificate": true
+              },
+              "ruleCheckReason": "independent_source_predicate_and_kernel_check",
+              "statementIdentityMatched": true,
+              "reason": "independent_source_predicate_and_kernel_check"
+            },
+            {
+              "nodeId": "c_six_divides",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": false,
+              "originalInferenceStatus": "not_independently_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [
+                "c_two_divides",
+                "c_three_divides",
+                "c_coprime"
+              ],
+              "rule": null,
+              "ruleEvidence": null,
+              "ruleCheckReason": "author_quantifier_or_local_step_not_identified",
+              "statementIdentityMatched": true,
+              "reason": "ai_generated_formal_reconstruction"
+            },
+            {
+              "nodeId": "c_goal",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": false,
+              "originalInferenceStatus": "not_independently_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 2,
+              "declaredDependencies": [
+                "c_six_divides"
+              ],
+              "rule": null,
+              "ruleEvidence": null,
+              "ruleCheckReason": "unsupported_or_non_authored_predicate",
+              "statementIdentityMatched": true,
+              "reason": "ai_generated_formal_reconstruction"
+            }
+          ]
+        }
+      ],
+      "explanation": "Only exact source-anchored equations with an independently checked arithmetic inference rule and a genuine Kernel certificate are certified. Model proof reconstruction alone never qualifies. Unrecognized natural language is unconfirmed, not disproved."
+    },
+    "routeSummary": [
+      {
+        "routeId": "r_main",
+        "status": "passed",
+        "formalRouteKernelPassed": null,
+        "completeOriginalRouteKernelPassed": true,
+        "originalReasoningVerified": false,
+        "certificate": {
+          "checked": true,
+          "statementMatched": true,
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "additionalAxioms": [],
+          "statement_hash": "b70699b78e4e6ae993d7edb4e7e354b54ad0913e345038ffcf44ca34ab882481",
+          "expectedExpressionSha256": "65f147c2e7c08e52094cdfe4a9747c3eb448e30eab76cf99a7aa80442f11277a",
+          "proofExpressionSha256": "868e0f1315837fccda3d3d88baef4e44c2e4294f47dc582d28832aee3376cf40",
+          "nativeExpressionComparison": "structural_equal",
+          "auditIsolation": "fresh_import_environment_reset_between_candidates"
+        },
+        "steps": 9
+      }
+    ],
+    "steps": [
+      {
+        "route": "r_main",
+        "node": "c_factor",
+        "status": "passed",
+        "mathematicalStatus": "established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": false,
+        "sourceInferenceRule": null,
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "r_main",
+        "node": "c_three_factor",
+        "status": "passed",
+        "mathematicalStatus": "established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": false,
+        "sourceInferenceRule": null,
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "r_main",
+        "node": "c_three_divides",
+        "status": "passed",
+        "mathematicalStatus": "conditionally_established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "diagnostic_repair",
+        "originalInferenceVerified": false,
+        "sourceInferenceRule": null,
+        "diagnostics": [
+          {
+            "severity": "warning",
+            "message": "Variable name `jjdep_c_three_factor` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _jjdep_c_three_factor\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+            "leanPosition": {
+              "column": 33,
+              "line": 5
+            },
+            "leanEndPosition": {
+              "column": 53,
+              "line": 5
+            },
+            "stepId": "mathir-v2/r_main/c_three_divides",
+            "sourceRefs": [
+              {
+                "blockId": "b0",
+                "start": 52,
+                "end": 90
+              }
+            ],
+            "mappingPrecision": "step",
+            "raw": {
+              "caption": "",
+              "data": "Variable name `jjdep_c_three_factor` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _jjdep_c_three_factor\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+              "endPos": {
+                "column": 53,
+                "line": 5
+              },
+              "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/live-mixed-three-2e01eae-20261024-1423/correct_A_six_divides_n_cube_minus_n/isolated-data/work/lean-fr67fy6l/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "linter.unusedVariables",
+              "pos": {
+                "column": 33,
+                "line": 5
+              },
+              "severity": "warning"
+            }
+          }
+        ],
+        "declaredDependencies": null
+      },
+      {
+        "route": "r_main",
+        "node": "c_even_imp",
+        "status": "passed",
+        "mathematicalStatus": "established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": false,
+        "sourceInferenceRule": null,
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "r_main",
+        "node": "c_odd_imp",
+        "status": "passed",
+        "mathematicalStatus": "established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": false,
+        "sourceInferenceRule": null,
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "r_main",
+        "node": "c_two_divides",
+        "status": "passed",
+        "mathematicalStatus": "conditionally_established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": false,
+        "sourceInferenceRule": null,
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "r_main",
+        "node": "c_coprime",
+        "status": "passed",
+        "mathematicalStatus": "established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": true,
+        "sourceInferenceRule": "source_attested_coprimality",
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "r_main",
+        "node": "c_six_divides",
+        "status": "passed",
+        "mathematicalStatus": "conditionally_established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": false,
+        "sourceInferenceRule": null,
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "r_main",
+        "node": "c_goal",
+        "status": "passed",
+        "mathematicalStatus": "conditionally_established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": false,
+        "sourceInferenceRule": null,
+        "diagnostics": [],
+        "declaredDependencies": null
+      }
+    ]
+  },
+  "feedback": {
+    "runId": "08db9c15-0177-44d6-8d5c-da4fc53bb441",
+    "itemEvidenceCount": 8,
+    "explainedItemsCount": 8,
+    "allItemsCovered": true,
+    "error": null,
+    "authority": "deepseek_explanation_only_not_kernel_or_source_certificate"
+  },
+  "finishedUtc": "2026-10-24T06:33:22.624160+00:00",
+  "wallSeconds": 538.13,
+  "provider": {
+    "realAttempts": 7,
+    "started": 7,
+    "finished": 7,
+    "requestCount": 7,
+    "usage": {
+      "input_tokens": 78203,
+      "output_tokens": 58081,
+      "incompleteUsageRecords": 0
+    },
+    "records": [
+      {
+        "request_id": "1f7c1a26-4dda-49bb-9480-79c36a67f8a2",
+        "stage": "mathir",
+        "reason": "StructureOnlyMathIRV2",
+        "model": "deepseek-flash",
+        "status": "response_received",
+        "input_tokens": 12184,
+        "output_tokens": 12509,
+        "retry_index": 0,
+        "cache_hit": null,
+        "real_request_attempted": true,
+        "started_at": null,
+        "finished_at": null
+      },
+      {
+        "request_id": "c5a7c579-a095-400c-b247-7625104b3928",
+        "stage": "formalization",
+        "reason": "FormalProofs",
+        "model": "deepseek-flash",
+        "status": "response_received",
+        "input_tokens": 4568,
+        "output_tokens": 26711,
+        "retry_index": 0,
+        "cache_hit": null,
+        "real_request_attempted": true,
+        "started_at": null,
+        "finished_at": null
+      },
+      {
+        "request_id": "2ffbc71f-3138-4429-bb11-273d6fc90d4b",
+        "stage": "other",
+        "reason": "LibraryPlan",
+        "model": "deepseek-flash",
+        "status": "response_received",
+        "input_tokens": 11362,
+        "output_tokens": 3940,
+        "retry_index": 0,
+        "cache_hit": null,
+        "real_request_attempted": true,
+        "started_at": null,
+        "finished_at": null
+      },
+      {
+        "request_id": "5cc50c87-dcbd-4fda-bb3d-720ebf258275",
+        "stage": "repair",
+        "reason": "FormalProofs",
+        "model": "deepseek-flash",
+        "status": "response_received",
+        "input_tokens": 13278,
+        "output_tokens": 1849,
+        "retry_index": 0,
+        "cache_hit": null,
+        "real_request_attempted": true,
+        "started_at": null,
+        "finished_at": null
+      },
+      {
+        "request_id": "ae1adbd0-4515-4e95-bc70-ae3505d22e5d",
+        "stage": "other",
+        "reason": "LibraryPlan",
+        "model": "deepseek-flash",
+        "status": "response_received",
+        "input_tokens": 9832,
+        "output_tokens": 7721,
+        "retry_index": 0,
+        "cache_hit": null,
+        "real_request_attempted": true,
+        "started_at": null,
+        "finished_at": null
+      },
+      {
+        "request_id": "a61ce041-6400-4832-865d-e37cbdafd335",
+        "stage": "repair",
+        "reason": "FormalProofs",
+        "model": "deepseek-flash",
+        "status": "response_received",
+        "input_tokens": 25082,
+        "output_tokens": 1817,
+        "retry_index": 0,
+        "cache_hit": null,
+        "real_request_attempted": true,
+        "started_at": null,
+        "finished_at": null
+      },
+      {
+        "request_id": "4d8ce1b5-7d87-41a3-b0e1-307c4095e070",
+        "stage": "feedback",
+        "reason": "Narrative",
+        "model": "deepseek-flash",
+        "status": "response_received",
+        "input_tokens": 1897,
+        "output_tokens": 3534,
+        "retry_index": 0,
+        "cache_hit": null,
+        "real_request_attempted": true,
+        "started_at": null,
+        "finished_at": null
+      }
+    ]
+  },
+  "dbCounts": {
+    "artifacts": 14,
+    "jobs": 1,
+    "events": 25
+  },
+  "archiveSha256": "076ffb4b856a2cd07ee6de15c6b51372b903880fc0813a40d03f220409f613a7"
+}

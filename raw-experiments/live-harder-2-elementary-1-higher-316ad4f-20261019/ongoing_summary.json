@@ -1,0 +1,364 @@
+{
+  "cases": [
+    {
+      "id": "elem_symmetric_inequality_equality_case",
+      "topic": "初等数学①｜三元对称不等式与等号充要条件",
+      "source": "设 a、b、c 是任意实数。证明 (a+b+c)²≥3(ab+bc+ca)，并证明等号成立当且仅当 a=b=c。原证明：展开并整理可得 2[(a+b+c)²−3(ab+bc+ca)]=(a−b)²+(b−c)²+(c−a)²。由于任意实数的平方都非负，右边三个平方之和≥0，所以 (a+b+c)²−3(ab+bc+ca)≥0，即所证不等式成立。若等号成立，则三个平方之和为0，因每个平方非负，必有 (a−b)²=(b−c)²=(c−a)²=0，从而 a=b=c。反过来若 a=b=c，则右边三个平方均为0，所以上述不等式取等号。证毕。",
+      "reference": "正确。需核对三元平方恒等式、非负性与等号当且仅当条件；Kernel 形式证书与原稿推理证书单独记录。",
+      "appSourceCommit": "316ad4fee89789633594757a277b81d6f90ca741",
+      "providerFixture": false,
+      "kernelFixture": false,
+      "handWrittenLean": false,
+      "handWrittenMathIR": false,
+      "transport": "signed installed App packaged backend POST /api/v2/jobs",
+      "guiInteracted": false,
+      "startedUtc": "2026-10-18T16:28:00.690093+00:00",
+      "sourceSha256": "27238794a42004b6bc9de6043e10234bc5b938b8df62dd3977acb38c2ce5bfc3",
+      "capabilities": {
+        "ai": {
+          "configured": true,
+          "provider": "deepseek",
+          "model": "deepseek-flash",
+          "thinking": "provider_default",
+          "liveTested": false
+        },
+        "lean": {
+          "configured": true,
+          "executableFound": true,
+          "projectFound": true,
+          "runtimeBuilt": true,
+          "runtimeIntegrity": true,
+          "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+          "sandbox": "macos",
+          "isolated": true,
+          "ready": true,
+          "toolchain": "leanprover/lean4:v4.34.0",
+          "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+          "liveTestedInThisDistribution": false
+        },
+        "mockFallback": false,
+        "health": "running"
+      },
+      "jobId": "d65acc77-795e-4e3d-ac7f-dea67b3f4b48",
+      "submittedUtc": "2026-10-18T16:28:02.599685+00:00",
+      "stageTransitions": [
+        {
+          "status": "running",
+          "stage": "recognizing",
+          "seconds": 2.28,
+          "utc": "2026-10-18T16:28:02.968394+00:00"
+        },
+        {
+          "status": "running",
+          "stage": "lean_verification",
+          "seconds": 92.67,
+          "utc": "2026-10-18T16:29:33.356438+00:00"
+        },
+        {
+          "status": "running",
+          "stage": "proof_only_generation",
+          "seconds": 173.75,
+          "utc": "2026-10-18T16:30:54.437778+00:00"
+        }
+      ],
+      "runnerError": "timeout: timed out",
+      "finishedUtc": "2026-10-18T16:32:52.524247+00:00",
+      "wallSeconds": 291.83,
+      "provider": {
+        "realAttempts": 2,
+        "started": 2,
+        "finished": 2,
+        "requestCount": 2,
+        "usage": {
+          "input_tokens": 20379,
+          "output_tokens": 45124,
+          "incompleteUsageRecords": 0
+        },
+        "records": [
+          {
+            "request_id": "b88cf179-440e-45d1-b75d-9c435120151a",
+            "stage": "mathir",
+            "reason": "StructureOnlyMathIRV2",
+            "model": "deepseek-flash",
+            "status": "response_received",
+            "input_tokens": 10312,
+            "output_tokens": 23792,
+            "retry_index": 0,
+            "cache_hit": null,
+            "real_request_attempted": true,
+            "started_at": null,
+            "finished_at": null
+          },
+          {
+            "request_id": "979dac73-ba00-47e9-b7d5-208c30a65d52",
+            "stage": "formalization",
+            "reason": "FormalProofs",
+            "model": "deepseek-flash",
+            "status": "response_received",
+            "input_tokens": 10067,
+            "output_tokens": 21332,
+            "retry_index": 0,
+            "cache_hit": null,
+            "real_request_attempted": true,
+            "started_at": null,
+            "finished_at": null
+          }
+        ]
+      },
+      "dbCounts": {
+        "artifacts": 3,
+        "jobs": 1,
+        "events": 8
+      },
+      "archiveSha256": "a1c74fd5e1562de5b0df149396271ea3b7d7bb6a16e0ddef529e3cfcf3737e97"
+    },
+    {
+      "id": "elem_three_consecutive_divisible_six",
+      "topic": "初等数学②｜连续三整数乘积被 6 整除",
+      "source": "设 n 是任意整数，证明 6 整除 n(n+1)(n+2)。原证明：记 P=n(n+1)(n+2)。在三个连续整数 n、n+1、n+2 中必有一个是偶数，因此 2 整除 P。再考察整数 n 除以 3 的余数：若余数为0，则3整除n；若余数为1，则3整除n+2；若余数为2，则3整除n+1。这三种情况穷尽所有可能，所以3整除P。因为2与3互素，且2整除P、3也整除P，所以6整除P。证毕。",
+      "reference": "正确。需保留整数类型、三种模3分类、偶性、互素整除推理，不能补成与原稿不同的证明。",
+      "appSourceCommit": "316ad4fee89789633594757a277b81d6f90ca741",
+      "providerFixture": false,
+      "kernelFixture": false,
+      "handWrittenLean": false,
+      "handWrittenMathIR": false,
+      "transport": "signed installed App packaged backend POST /api/v2/jobs",
+      "guiInteracted": false,
+      "startedUtc": "2026-10-18T16:33:04.683789+00:00",
+      "sourceSha256": "6644f355ecf8c0992eb2461db4da4853fdf36e7092218d67449531411ae65b54",
+      "capabilities": {
+        "ai": {
+          "configured": true,
+          "provider": "deepseek",
+          "model": "deepseek-flash",
+          "thinking": "provider_default",
+          "liveTested": false
+        },
+        "lean": {
+          "configured": true,
+          "executableFound": true,
+          "projectFound": true,
+          "runtimeBuilt": true,
+          "runtimeIntegrity": true,
+          "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+          "sandbox": "macos",
+          "isolated": true,
+          "ready": true,
+          "toolchain": "leanprover/lean4:v4.34.0",
+          "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+          "liveTestedInThisDistribution": false
+        },
+        "mockFallback": false,
+        "health": "running"
+      },
+      "jobId": "b848668f-cd7f-42e6-a7d3-3b952aedac6d",
+      "submittedUtc": "2026-10-18T16:33:06.311195+00:00",
+      "stageTransitions": [
+        {
+          "status": "running",
+          "stage": "recognizing",
+          "seconds": 2.04,
+          "utc": "2026-10-18T16:33:06.725404+00:00"
+        },
+        {
+          "status": "failed",
+          "stage": "failed",
+          "seconds": 89.03,
+          "utc": "2026-10-18T16:34:33.711299+00:00"
+        }
+      ],
+      "terminalStatus": "failed",
+      "terminalStage": "failed",
+      "terminalError": {
+        "code": "MATHIR_V2_INVALID",
+        "message": "结构未通过确定性 MathIR 校验；尚未运行 Lean，这不表示原稿证明错误。",
+        "details": {
+          "validationCode": "V2_ELEMENTARY_TYPE",
+          "draftId": "1f537d77-d741-42aa-b26d-1cb2ae248c56",
+          "validationPath": "proofRoutes[r_main].nodes[n_coprime_2_3].expression",
+          "validationSourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 165,
+              "end": 170
+            }
+          ]
+        }
+      },
+      "result": {
+        "runStatus": null,
+        "termination": null,
+        "kernelVerified": null,
+        "fixedStatementKernelPassed": null,
+        "originalRouteKernelPassed": null,
+        "sourceProofVerified": null,
+        "originalProofVerified": null,
+        "originalMeaning": null,
+        "statement": null,
+        "failure": null,
+        "mathIRId": null,
+        "sourceStructureId": null,
+        "originalProofFidelity": null,
+        "reasoningFidelity": null,
+        "routeSummary": [],
+        "steps": []
+      },
+      "finishedUtc": "2026-10-18T16:34:33.712609+00:00",
+      "wallSeconds": 89.03,
+      "provider": {
+        "realAttempts": 1,
+        "started": 1,
+        "finished": 1,
+        "requestCount": 1,
+        "usage": {
+          "input_tokens": 10266,
+          "output_tokens": 19343,
+          "incompleteUsageRecords": 0
+        },
+        "records": [
+          {
+            "request_id": "a8884819-61b6-4cd4-a575-24396dbe269f",
+            "stage": "mathir",
+            "reason": "StructureOnlyMathIRV2",
+            "model": "deepseek-flash",
+            "status": "response_received",
+            "input_tokens": 10266,
+            "output_tokens": 19343,
+            "retry_index": 0,
+            "cache_hit": null,
+            "real_request_attempted": true,
+            "started_at": null,
+            "finished_at": null
+          }
+        ]
+      },
+      "dbCounts": {
+        "artifacts": 1,
+        "jobs": 1,
+        "events": 3
+      },
+      "archiveSha256": "d7c58d0540c6f50d099cac22efc6ae3e8d71915c50d7a426a752b9ae04a43ba5"
+    },
+    {
+      "id": "higher_real_analysis_limit_uniqueness",
+      "topic": "高等数学｜实分析：实数数列极限的唯一性",
+      "source": "设 (aₙ)ₙ∈ℕ 是实数数列，L、M 为实数，已知当 n→∞ 时 aₙ→L 且 aₙ→M。证明 L=M。原证明：任取实数 ε>0。由 aₙ→L 的定义，存在自然数 N₁，使 n≥N₁ 时 |aₙ−L|<ε/2；由 aₙ→M 的定义，存在自然数 N₂，使 n≥N₂ 时 |aₙ−M|<ε/2。取 n=max(N₁,N₂)，则两个不等式同时成立。由三角不等式，|L−M|≤|L−aₙ|+|aₙ−M|<ε。因此对每个 ε>0 都有 |L−M|<ε。若 |L−M|>0，取 ε=|L−M|/2 将得到矛盾，故 |L−M|=0，从而 L=M。证毕。",
+      "reference": "正确的实分析 ε–N 证明。需识别实数数列、极限定义、全称与存在量词、三角不等式及反证法。",
+      "appSourceCommit": "316ad4fee89789633594757a277b81d6f90ca741",
+      "providerFixture": false,
+      "kernelFixture": false,
+      "handWrittenLean": false,
+      "handWrittenMathIR": false,
+      "transport": "signed installed App packaged backend POST /api/v2/jobs",
+      "guiInteracted": false,
+      "startedUtc": "2026-10-18T16:34:33.849580+00:00",
+      "sourceSha256": "96f499dc9783695e5d2f34e8c5a7077d2b846c4d5dcf5b49fbd173525bcef966",
+      "capabilities": {
+        "ai": {
+          "configured": true,
+          "provider": "deepseek",
+          "model": "deepseek-flash",
+          "thinking": "provider_default",
+          "liveTested": false
+        },
+        "lean": {
+          "configured": true,
+          "executableFound": true,
+          "projectFound": true,
+          "runtimeBuilt": true,
+          "runtimeIntegrity": true,
+          "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+          "sandbox": "macos",
+          "isolated": true,
+          "ready": true,
+          "toolchain": "leanprover/lean4:v4.34.0",
+          "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+          "liveTestedInThisDistribution": false
+        },
+        "mockFallback": false,
+        "health": "running"
+      },
+      "jobId": "ad802830-2e78-46d8-a03b-fac0eca28f6b",
+      "submittedUtc": "2026-10-18T16:34:35.278856+00:00",
+      "stageTransitions": [
+        {
+          "status": "running",
+          "stage": "recognizing",
+          "seconds": 1.74,
+          "utc": "2026-10-18T16:34:35.593832+00:00"
+        },
+        {
+          "status": "failed",
+          "stage": "failed",
+          "seconds": 156.72,
+          "utc": "2026-10-18T16:37:10.570637+00:00"
+        }
+      ],
+      "terminalStatus": "failed",
+      "terminalStage": "failed",
+      "terminalError": {
+        "code": "PARSE_ERROR",
+        "message": "模型输出不符合数学数据结构",
+        "details": {
+          "fields": [
+            "declarations.12",
+            "declarations.13"
+          ]
+        }
+      },
+      "result": {
+        "runStatus": null,
+        "termination": null,
+        "kernelVerified": null,
+        "fixedStatementKernelPassed": null,
+        "originalRouteKernelPassed": null,
+        "sourceProofVerified": null,
+        "originalProofVerified": null,
+        "originalMeaning": null,
+        "statement": null,
+        "failure": null,
+        "mathIRId": null,
+        "sourceStructureId": null,
+        "originalProofFidelity": null,
+        "reasoningFidelity": null,
+        "routeSummary": [],
+        "steps": []
+      },
+      "finishedUtc": "2026-10-18T16:37:10.571569+00:00",
+      "wallSeconds": 156.72,
+      "provider": {
+        "realAttempts": 1,
+        "started": 1,
+        "finished": 1,
+        "requestCount": 1,
+        "usage": {
+          "input_tokens": 10335,
+          "output_tokens": 38680,
+          "incompleteUsageRecords": 0
+        },
+        "records": [
+          {
+            "request_id": "62f80c29-b74c-452c-a7b8-4ba2de621460",
+            "stage": "mathir",
+            "reason": "StructureOnlyMathIRV2",
+            "model": "deepseek-flash",
+            "status": "response_received",
+            "input_tokens": 10335,
+            "output_tokens": 38680,
+            "retry_index": 0,
+            "cache_hit": null,
+            "real_request_attempted": true,
+            "started_at": null,
+            "finished_at": null
+          }
+        ]
+      },
+      "dbCounts": {
+        "artifacts": 0,
+        "jobs": 1,
+        "events": 3
+      },
+      "archiveSha256": "bdc55fbe88377132b5e12ddcb51ef635c31a370c4c78e5c959eef61c179d803f"
+    }
+  ]
+}

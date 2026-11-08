@@ -1,0 +1,67 @@
+{
+  "case": {
+    "id": "bmo2-2025-q1",
+    "topic": "三角形数裂项",
+    "expected": "deliberately_invalid",
+    "source": "【2025 British Mathematical Olympiad Round 2，Problem 1，原题】证明：对每个正整数 n，1/n 可以写成有限个互不相同三角形数的倒数之和。三角形数 T_k=k(k+1)/2，k 为正整数。\n【提交的原证明】\n第一步：取正整数 n。对每个 k≥1，有 1/T_k=2/[k(k+1)]=2(1/k−1/(k+1))，这是分母拆项的恒等式。\n第二步：选择互不相同的三角形数 T_n,T_{n+1},…,T_{2n−2}。这些下标各不相同，且 k→T_k 严格递增，因此选出的三角形数互不相同。\n第三步：把第二步选出的倒数相加，裂项相消可得\n∑_{k=n}^{2n−2}1/T_k=2∑_{k=n}^{2n−2}(1/k−1/(k+1))=2(1/n−1/(2n−1))。\n第四步：由于 n 为正整数，2(1/n−1/(2n−1))=1/n。故选出的有限个互异三角形数倒数之和恰好等于 1/n，题目得证。"
+  },
+  "jobId": "66aa797f-e5d5-4b5a-a7dc-32dda2b04405",
+  "jobStatus": "completed",
+  "resultStatus": "whole_proof_translation_incomplete",
+  "kernelVerified": false,
+  "formalProofCertified": false,
+  "originalProofCertified": false,
+  "fidelityReview": null,
+  "fidelityIssues": 0,
+  "sourceSteps": 4,
+  "kernelCertificate": null,
+  "unsupportedOriginalSteps": [
+    "第四步等式 2(1/n - 1/(2n-1)) = 1/n 不成立。化简为 2(n-1)/(n(2n-1)) = 1/n 等价于 2(n-1)/(2n-1)=1，即 2n-2=2n-1，矛盾；例如 n=2 时左边为 1/3 而右边为 1/2。",
+    "第二步至第三步的上界 T_{2n-2} 与所用裂项公式不匹配。按原稿实际求和 sum_{k=n}^{2n-2} 1/T_k = 2(1/n - 1/(2n-1)) = 2(n-1)/(n(2n-1))，并不等于 1/n。若要得到 1/n，需要使用的是到 T_{2n-1} 的求和，而不是原稿写出的 T_{2n-2}。",
+    "由于原稿的末尾算术恒等式为假，无法从这些步骤推出锁定命题的存在性结论。"
+  ],
+  "error": null,
+  "usage": {
+    "attempts": 4,
+    "inputTokens": 5475,
+    "outputTokens": 29479,
+    "missingUsage": 0,
+    "requests": [
+      {
+        "reason": "WholeProofPlan",
+        "status": "response_received",
+        "input_tokens": 923,
+        "output_tokens": 18530,
+        "error_type": null,
+        "http_duration_ms": 79440.173
+      },
+      {
+        "reason": "WholeProofProgram",
+        "status": "response_received",
+        "input_tokens": 1234,
+        "output_tokens": 7004,
+        "error_type": null,
+        "http_duration_ms": 39950.721
+      },
+      {
+        "reason": "SourceClaimRefutation",
+        "status": "response_received",
+        "input_tokens": 1412,
+        "output_tokens": 2965,
+        "error_type": null,
+        "http_duration_ms": 14417.301
+      },
+      {
+        "reason": "Explanation",
+        "status": "response_received",
+        "input_tokens": 1906,
+        "output_tokens": 980,
+        "error_type": null,
+        "http_duration_ms": 5836.56
+      }
+    ]
+  },
+  "feedbackError": null,
+  "elapsedSeconds": 164.92,
+  "totalElapsedSeconds": 166.48
+}

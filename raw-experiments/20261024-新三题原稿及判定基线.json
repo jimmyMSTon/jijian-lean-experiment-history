@@ -1,0 +1,27 @@
+{
+  "appCommit": "2e01eaea71408cb6c74bb7bcb7c655c07e9b350b",
+  "purpose": "2 true, 1 false, original proof and feedback e2e",
+  "cases": [
+    {
+      "id": "correct_A_six_divides_n_cube_minus_n",
+      "topic": "正确证明 / 初等数论 / 六整除 n³-n",
+      "source": "命题：对于每个整数 n∈ℤ，都有 6∣(n³−n)。证明：先分解因式，n³−n=(n−1)n(n+1)。这三个数是相邻的整数，其中至少有一个能被 3 整除，所以 3∣(n³−n)。另一方面，如果 n 是偶数，则 2∣n；如果 n 是奇数，则 n−1 是偶数。因此在两种情况下都有 2∣(n³−n)。因为 2 与 3 互素，所以由 2∣(n³−n) 和 3∣(n³−n) 得 6∣(n³−n)。证毕。",
+      "reference": "标准答案正确。需要严格保留相邻三数、分类证明奇偶以及互素整除的推理；不得添加新未写前提。",
+      "sourceSha256": "445c660362dffeecb0bbf772bf59bb991e34961883c180d6d195a783cd3f64ee"
+    },
+    {
+      "id": "correct_B_symmetric_square_inequality",
+      "topic": "正确证明 / 实代数 / 平方非负",
+      "source": "命题：对于所有实数 a,b∈ℝ，都有 (a+b)²≥4ab。证明：由实数的平方非负，(a−b)²≥0。展开平方可得 a²−2ab+b²≥0。两边同时加上 4ab，得到 a²+2ab+b²≥4ab。由于 (a+b)²=a²+2ab+b²，故 (a+b)²≥4ab。证毕。",
+      "reference": "标准答案正确，证明过程有四步；Lean 形式正确不等于原稿来源独立认证。",
+      "sourceSha256": "dfba37d28b6948f582c4c61f84e6a1121c62d5213d67f1206d6138aad2acb146"
+    },
+    {
+      "id": "wrong_C_twelve_divides_n_cube_minus_n",
+      "topic": "错误证明 / 初等数论 / 将6整除误作12整除",
+      "source": "命题：对于每个整数 n∈ℤ，都有 12∣(n³−n)。错误证明：因为 n³−n=(n−1)n(n+1)，这三个相邻整数之中必有一个是 3 的倍数，并且至少有一个是偶数。于是乘积既能被 3 整除，也能被 2 整除，所以一定能被 12 整除，即 12∣(n³−n)。证毕。",
+      "reference": "命题是假命题：n=2 时 n³−n=6，12不整除6。存在从 2与3整除错误推出12整除的关键假步骤；必须拒绝原稿认证，不能偷换12为6。",
+      "sourceSha256": "d5aa9cec75a631e057f4a24f59931a638c01d03dd787a68d8d01e489a094a01e"
+    }
+  ]
+}

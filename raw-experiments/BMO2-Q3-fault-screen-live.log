@@ -1,0 +1,4 @@
+RUN deepseek-flash LEAN True STEP_COUNT 5
+SCREEN source_anchored_suspected_false_assertion_not_certified QUOTE 每次行交换改变恰好两个 r_i，列交换改变恰好两个 c_j COUNTER 取 n=4 的标准棋盘，初始时所有 r_i=0。按题意允许交换任意两整行；交换第 1 行与第 3 行（二者都是相同的交错行 0,1,0,1）。交换后棋盘逐格不变，故所有 r_i 仍为 0，改变的 r_i 个数为 0，而不是恰好 2。
+KERNEL_REFUTATION source_assertion_formal_negation_kernel_verified_source_unconfirmed True SOURCE 每次行交换改变恰好两个 r_i GOAL ∀ (n : ℕ) (σ : Equiv.Perm (Fin n)) (a b : Fin n), a ≠ b → (Finset.univ.filter (fun i : Fin n => (((σ i).val : ZMod 2) + (i.val : ZMod 2)) ≠ (((σ.trans (Equiv.swap a b)) i).val : ZMod 2) + (i.val : ZMod 2))).card = 2 DIAGNOSTICS []
+USAGE 2 3503 30857 207.04

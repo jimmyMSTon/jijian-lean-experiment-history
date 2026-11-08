@@ -1,0 +1,117 @@
+F..F..........F..F.F.F........F...................                       [100%]
+=================================== FAILURES ===================================
+____ test_real_provider_algebra_proof_has_five_independently_sourced_rules _____
+
+tmp_path = PosixPath('/private/tmp/pytest-of-mac/pytest-140/test_real_provider_algebra_pro0')
+
+    def test_real_provider_algebra_proof_has_five_independently_sourced_rules(tmp_path):
+        ir, verification = saved()
+        audit = audit_reasoning_fidelity(ir, verification)
+        assert audit["authority"] == "independent_source_inference_certificate"
+>       assert audit["originalProofVerified"] is True
+E       assert False is True
+
+tests/v2/test_source_inference_certificates.py:31: AssertionError
+_________ test_natural_language_congruence_is_independently_recognized _________
+
+    def test_natural_language_congruence_is_independently_recognized():
+        ir, verification = arithmetic_source_ir()
+        result = audit_reasoning_fidelity(ir, verification)
+>       assert result["originalProofVerified"] is True
+E       assert False is True
+
+tests/v2/test_source_inference_certificates.py:201: AssertionError
+_ test_irrelevant_because_formula_is_not_a_student_inference_even_if_kernel_passes _
+
+    def test_irrelevant_because_formula_is_not_a_student_inference_even_if_kernel_passes():
+        from backend.v2.compiler import compile_v2
+        ir, verification = arithmetic_source_ir()
+        raw = ir.source.raw
+        assert raw.count("原证明：因为 a=b") == 1
+        altered = raw.replace("原证明：因为 a=b", "原证明：因为 0=0")
+        assert len(raw) == len(altered)
+        data = ir.model_dump(mode="json")
+        data["source"]["raw"] = altered
+        data["source"]["normalized"] = altered
+        for block in data["source"]["blocks"]:
+            block["text"] = altered
+        wrongly_reconstructed = MathIRV2.model_validate(data)
+        # The fixed statement is still the same valid equality congruence;
+        # this artificial replay represents a *genuine formal theorem* with
+        # a deliberately irrelevant authored premise.
+        verification["sourceEvidenceHash"] = compile_v2(wrongly_reconstructed).source_evidence_hash
+        result = audit_reasoning_fidelity(wrongly_reconstructed, verification)
+        assert result["originalProofVerified"] is False
+>       assert result["routes"][0]["steps"][0]["ruleCheckReason"] == (
+            "authored_causal_premise_not_in_source_dependency_graph")
+E       AssertionError: assert 'kernel_state..._not_attested' == 'authored_cau...endency_graph'
+E         
+E         - authored_causal_premise_not_in_source_dependency_graph
+E         + kernel_statement_identity_not_attested
+
+tests/v2/test_source_inference_certificates.py:355: AssertionError
+______ test_real_source_certificate_recomputed_from_compact_saved_history ______
+
+tmp_path = PosixPath('/private/tmp/pytest-of-mac/pytest-140/test_real_source_certificate_r0')
+
+    def test_real_source_certificate_recomputed_from_compact_saved_history(tmp_path):
+        ir, verification = saved()
+        independent = audit_reasoning_fidelity(ir, verification)
+>       assert independent["originalProofVerified"]
+E       assert False
+
+tests/v2/test_source_inference_certificates.py:381: AssertionError
+___ test_omitted_false_source_formula_is_not_silently_ignored_by_model_route ___
+
+    def test_omitted_false_source_formula_is_not_silently_ignored_by_model_route():
+        from backend.v2.compiler import compile_v2
+        ir, verification = saved()
+        extra = "因为 0=0，所以 a²+b²=99。"
+        data = ir.model_dump(mode="json")
+        data["source"]["raw"] += extra
+        data["source"]["normalized"] += extra
+        data["source"]["blocks"][0]["text"] += extra
+        new_ir = MathIRV2.model_validate(data)
+        compiled = compile_v2(new_ir)
+        v = copy.deepcopy(verification)
+        v["sourceEvidenceHash"] = compiled.source_evidence_hash
+        # All original model-selected math steps would still be true, and their
+        # Kernel certificates still match the unchanged theorem. The extra
+        # unverified formula in the authored proof must not disappear.
+        actual = audit_reasoning_fidelity(new_ir, v)
+>       assert actual["sourceRuleVerifiedStepCount"] == 5
+E       assert 0 == 5
+
+tests/v2/test_source_inference_certificates.py:416: AssertionError
+__ test_live_model_congruence_source_stays_valid_but_wrong_operation_does_not __
+
+    def test_live_model_congruence_source_stays_valid_but_wrong_operation_does_not():
+        """Genuine provider MathIR + independent Kernel evidence, zero model reruns."""
+        from backend.v2.compiler import compile_v2
+        p = Path(__file__).parent / "fixtures/recorded_real_congruence_source_rule.json"
+        evidence = json.loads(p.read_text())
+        ir = MathIRV2.model_validate(evidence["mathIR"])
+        verification = evidence["verification"]
+        actual = audit_reasoning_fidelity(ir, verification)
+>       assert actual["originalProofVerified"] is True
+E       assert False is True
+
+tests/v2/test_source_inference_certificates.py:445: AssertionError
+__________ test_source_rule_audit_cannot_be_inferred_from_kernel_only __________
+
+    def test_source_rule_audit_cannot_be_inferred_from_kernel_only():
+        ir, real_evidence = saved()
+        legit = audit_reasoning_fidelity(ir, real_evidence)
+>       assert legit["originalProofVerified"] is True
+E       assert False is True
+
+tests/v2/test_source_first_proof_core.py:214: AssertionError
+=========================== short test summary info ============================
+FAILED tests/v2/test_source_inference_certificates.py::test_real_provider_algebra_proof_has_five_independently_sourced_rules
+FAILED tests/v2/test_source_inference_certificates.py::test_natural_language_congruence_is_independently_recognized
+FAILED tests/v2/test_source_inference_certificates.py::test_irrelevant_because_formula_is_not_a_student_inference_even_if_kernel_passes
+FAILED tests/v2/test_source_inference_certificates.py::test_real_source_certificate_recomputed_from_compact_saved_history
+FAILED tests/v2/test_source_inference_certificates.py::test_omitted_false_source_formula_is_not_silently_ignored_by_model_route
+FAILED tests/v2/test_source_inference_certificates.py::test_live_model_congruence_source_stays_valid_but_wrong_operation_does_not
+FAILED tests/v2/test_source_first_proof_core.py::test_source_rule_audit_cannot_be_inferred_from_kernel_only
+7 failed, 43 passed in 0.71s

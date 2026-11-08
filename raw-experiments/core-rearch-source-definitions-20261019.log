@@ -1,0 +1,35 @@
+............F...                                                         [100%]
+=================================== FAILURES ===================================
+_ test_source_named_definition_cannot_make_up_a_new_locked_goal[definition_wrong_value] _
+
+damage = 'definition_wrong_value'
+
+    @pytest.mark.parametrize("damage", ["definition_missing_in_source",
+        "definition_wrong_value", "definition_not_supported",
+        "goal_not_stated_universally", "proof_already_exists"])
+    def test_source_named_definition_cannot_make_up_a_new_locked_goal(damage):
+        path = HERE/"fixtures/recorded_hard_divisibility_named_product_ir.json"
+        data = json.loads(path.read_text())
+        d = next(x for x in data["declarations"] if x["id"] == "d_P")
+        route_goal = next(x for x in data["proofRoutes"][0]["nodes"]
+                          if x["id"] == data["proofRoutes"][0]["goalNodeId"])
+        if damage == "definition_missing_in_source":
+            for key in ("raw", "normalized"):
+                data["source"][key] = data["source"][key].replace("P=", "Q=")
+            for block in data["source"]["blocks"]:
+                block["text"] = block["text"].replace("P=", "Q=")
+        elif damage == "definition_wrong_value":
+            # Mutate only MathIR definition; do not modify the user source.
+            new_value = d["value"]
+            # The original expression is n * (n+1) * (n+2).
+            tail = new_value["args"][1]["args"][1]
+>           assert tail["op"] == "add"
+E           AssertionError: assert 'literal' == 'add'
+E             
+E             - add
+E             + literal
+
+tests/v2/test_source_first_proof_core.py:316: AssertionError
+=========================== short test summary info ============================
+FAILED tests/v2/test_source_first_proof_core.py::test_source_named_definition_cannot_make_up_a_new_locked_goal[definition_wrong_value]
+1 failed, 15 passed in 0.21s

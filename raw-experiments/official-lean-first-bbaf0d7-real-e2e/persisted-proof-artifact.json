@@ -1,0 +1,159 @@
+{
+  "id": "0e9c6fed-86a7-41c1-95f3-669bd3a90a38",
+  "kind": "experimental_lean_first",
+  "sourceSha256": "1c6b23432d04a7a96eb4f519f6cce568f26efac2e4add0a592bcecea8d2e2f44",
+  "model": "deepseek-flash",
+  "provenance": {
+    "jsonParsing": {
+      "method": "deterministic_json_schema",
+      "recovered": false,
+      "edits": []
+    },
+    "provider": "deepseek",
+    "requestedModel": "deepseek-flash",
+    "model": "deepseek-flash",
+    "responseId": "f4c112a8-4f03-471e-9a28-8fb1ab6c431b",
+    "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "usage": {
+      "prompt_tokens": 908,
+      "completion_tokens": 29622,
+      "total_tokens": 30530,
+      "prompt_tokens_details": {
+        "cached_tokens": 512
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 26739
+      },
+      "prompt_cache_hit_tokens": 512,
+      "prompt_cache_miss_tokens": 396
+    },
+    "thinking": "provider_default",
+    "promptSchemaEncoding": "compact_json_v1",
+    "structuredOutput": "json_mode_with_local_schema_validation",
+    "simulated": false
+  },
+  "statement": "import Mathlib\n\ntheorem exists_congruence_solution (a b : ℕ) (ha : 0 < a) (hb : 0 < b)\n    (hcop : IsCoprime (a : ℤ) (b : ℤ)) (r s : ℤ) :\n    ∃ x : ℤ,\n      (a : ℤ) ∣ x - r ∧\n      (b : ℤ) ∣ x - s ∧\n      ∀ y : ℤ,\n        (a : ℤ) ∣ y - r →\n        (b : ℤ) ∣ y - s →\n        ((a * b : ℕ) : ℤ) ∣ y - x :=",
+  "proofTerm": "by\n  unfold IsCoprime at hcop\n  rcases hcop with ⟨u, v, huv⟩\n  let x : ℤ := r * ((b : ℤ) * v) + s * ((a : ℤ) * u)\n  have hxr : (a : ℤ) ∣ x - r := by\n    refine ⟨u * (s - r), ?_⟩\n    dsimp [x]\n    calc\n      r * ((b : ℤ) * v) + s * ((a : ℤ) * u) - r\n          = r * ((b : ℤ) * v) + s * ((a : ℤ) * u) - r * 1 := by ring\n      _ = r * ((b : ℤ) * v) + s * ((a : ℤ) * u) - r * ((a : ℤ) * u + (b : ℤ) * v) := by rw [huv]\n      _ = (a : ℤ) * (u * (s - r)) := by ring\n  have hxs : (b : ℤ) ∣ x - s := by\n    refine ⟨v * (r - s), ?_⟩\n    dsimp [x]\n    calc\n      r * ((b : ℤ) * v) + s * ((a : ℤ) * u) - s\n          = r * ((b : ℤ) * v) + s * ((a : ℤ) * u) - s * 1 := by ring\n      _ = r * ((b : ℤ) * v) + s * ((a : ℤ) * u) - s * ((a : ℤ) * u + (b : ℤ) * v) := by rw [huv]\n      _ = (b : ℤ) * (v * (r - s)) := by ring\n  have huniq : ∀ y : ℤ,\n        (a : ℤ) ∣ y - r →\n        (b : ℤ) ∣ y - s →\n        ((a * b : ℕ) : ℤ) ∣ y - x := by\n    intro y hyr hys\n    have ha_yx : (a : ℤ) ∣ y - x := by\n      rcases hyr with ⟨p, hp⟩\n      rcases hxr with ⟨q, hq⟩\n      refine ⟨p - q, ?_⟩\n      calc\n        y - x = (y - r) - (x - r) := by ring\n        _ = (a : ℤ) * p - (a : ℤ) * q := by rw [hp, hq]\n        _ = (a : ℤ) * (p - q) := by ring\n    have hb_yx : (b : ℤ) ∣ y - x := by\n      rcases hys with ⟨p, hp⟩\n      rcases hxs with ⟨q, hq⟩\n      refine ⟨p - q, ?_⟩\n      calc\n        y - x = (y - s) - (x - s) := by ring\n        _ = (b : ℤ) * p - (b : ℤ) * q := by rw [hp, hq]\n        _ = (b : ℤ) * (p - q) := by ring\n    rcases ha_yx with ⟨k, hk⟩\n    have hb_ak : (b : ℤ) ∣ (a : ℤ) * k := by\n      rw [← hk]\n      exact hb_yx\n    have hkexpr : k = ((a : ℤ) * k) * u + (b : ℤ) * (k * v) := by\n      calc\n        k = ((a : ℤ) * u + (b : ℤ) * v) * k := by\n          rw [huv]\n          ring\n        _ = ((a : ℤ) * k) * u + (b : ℤ) * (k * v) := by ring\n    have hbk : (b : ℤ) ∣ k := by\n      rw [hkexpr]\n      apply dvd_add\n      · exact dvd_mul_of_dvd_left hb_ak u\n      · exact dvd_mul_right (b : ℤ) (k * v)\n    rcases hbk with ⟨t, ht⟩\n    refine ⟨t, ?_⟩\n    rw [hk, ht]\n    rw [Nat.cast_mul]\n    ring\n  exact ⟨x, hxr, hxs, huniq⟩",
+  "sourceSteps": [
+    {
+      "start": 0,
+      "end": 99,
+      "sourceExcerpt": "命题：设 a,b 为互素的正整数，r,s 为任意整数。证明存在整数 x，使 a∣(x−r) 且 b∣(x−s)，并且任何整数 y 若也满足 a∣(y−r) 与 b∣(y−s)，则 ab∣(y−x)。",
+      "leanWitness": "theorem exists_congruence_solution (a b : ℕ) (ha : 0 < a) (hb : 0 < b) (hcop : IsCoprime (a : ℤ) (b : ℤ)) (r s : ℤ) : ∃ x : ℤ, (a : ℤ) ∣ x - r ∧ (b : ℤ) ∣ x - s ∧ ∀ y : ℤ, (a : ℤ) ∣ y - r → (b : ℤ) ∣ y - s → ((a * b : ℕ) : ℤ) ∣ y - x"
+    },
+    {
+      "start": 99,
+      "end": 147,
+      "sourceExcerpt": "证明：由 gcd(a,b)=1，依 Bézout 恒等式，存在整数 u,v 使 au+bv=1。",
+      "leanWitness": "unfold IsCoprime at hcop\nrcases hcop with ⟨u, v, huv⟩"
+    },
+    {
+      "start": 147,
+      "end": 161,
+      "sourceExcerpt": "令 x=r·bv+s·au。",
+      "leanWitness": "let x : ℤ := r * ((b : ℤ) * v) + s * ((a : ℤ) * u)"
+    },
+    {
+      "start": 161,
+      "end": 186,
+      "sourceExcerpt": "因为 x−r=au(s−r)，故 a∣(x−r)；",
+      "leanWitness": "have hxr : (a : ℤ) ∣ x - r := by\n  refine ⟨u * (s - r), ?_⟩\n  dsimp [x]\n  calc\n    r * ((b : ℤ) * v) + s * ((a : ℤ) * u) - r\n        = r * ((b : ℤ) * v) + s * ((a : ℤ) * u) - r * 1 := by ring\n    _ = r * ((b : ℤ) * v) + s * ((a : ℤ) * u) - r * ((a : ℤ) * u + (b : ℤ) * v) := by rw [huv]\n    _ = (a : ℤ) * (u * (s - r)) := by ring"
+    },
+    {
+      "start": 186,
+      "end": 219,
+      "sourceExcerpt": "因为 x−s=bv(r−s)，故 b∣(x−s)，于是存在性成立。",
+      "leanWitness": "have hxs : (b : ℤ) ∣ x - s := by\n  refine ⟨v * (r - s), ?_⟩\n  dsimp [x]\n  calc\n    r * ((b : ℤ) * v) + s * ((a : ℤ) * u) - s\n        = r * ((b : ℤ) * v) + s * ((a : ℤ) * u) - s * 1 := by ring\n    _ = r * ((b : ℤ) * v) + s * ((a : ℤ) * u) - s * ((a : ℤ) * u + (b : ℤ) * v) := by rw [huv]\n    _ = (b : ℤ) * (v * (r - s)) := by ring"
+    },
+    {
+      "start": 219,
+      "end": 247,
+      "sourceExcerpt": "接着任取整数 y，假定 a∣(y−r)、b∣(y−s)。",
+      "leanWitness": "intro y hyr hys"
+    },
+    {
+      "start": 247,
+      "end": 288,
+      "sourceExcerpt": "由 a∣(y−r) 及 a∣(x−r)，得 a∣(y−x)；同理 b∣(y−x)。",
+      "leanWitness": "have ha_yx : (a : ℤ) ∣ y - x := by\n  rcases hyr with ⟨p, hp⟩\n  rcases hxr with ⟨q, hq⟩\n  refine ⟨p - q, ?_⟩\n  calc\n    y - x = (y - r) - (x - r) := by ring\n    _ = (a : ℤ) * p - (a : ℤ) * q := by rw [hp, hq]\n    _ = (a : ℤ) * (p - q) := by ring\nhave hb_yx : (b : ℤ) ∣ y - x := by\n  rcases hys with ⟨p, hp⟩\n  rcases hxs with ⟨q, hq⟩\n  refine ⟨p - q, ?_⟩\n  calc\n    y - x = (y - s) - (x - s) := by ring\n    _ = (b : ℤ) * p - (b : ℤ) * q := by rw [hp, hq]\n    _ = (b : ℤ) * (p - q) := by ring"
+    },
+    {
+      "start": 288,
+      "end": 314,
+      "sourceExcerpt": "从 a∣(y−x)，可取整数 k 使 y−x=ak。",
+      "leanWitness": "rcases ha_yx with ⟨k, hk⟩"
+    },
+    {
+      "start": 314,
+      "end": 333,
+      "sourceExcerpt": "又因 b∣(y−x)，所以 b∣ak。",
+      "leanWitness": "have hb_ak : (b : ℤ) ∣ (a : ℤ) * k := by\n  rw [← hk]\n  exact hb_yx"
+    },
+    {
+      "start": 333,
+      "end": 372,
+      "sourceExcerpt": "将 Bézout 等式乘 k，得到 k=k(au+bv)=(ak)u+bkv。",
+      "leanWitness": "have hkexpr : k = ((a : ℤ) * k) * u + (b : ℤ) * (k * v) := by\n  calc\n    k = ((a : ℤ) * u + (b : ℤ) * v) * k := by\n      rw [huv]\n      ring\n    _ = ((a : ℤ) * k) * u + (b : ℤ) * (k * v) := by ring"
+    },
+    {
+      "start": 372,
+      "end": 392,
+      "sourceExcerpt": "右边两项都能被 b 整除，因此 b∣k。",
+      "leanWitness": "have hbk : (b : ℤ) ∣ k := by\n  rw [hkexpr]\n  apply dvd_add\n  · exact dvd_mul_of_dvd_left hb_ak u\n  · exact dvd_mul_right (b : ℤ) (k * v)"
+    },
+    {
+      "start": 392,
+      "end": 430,
+      "sourceExcerpt": "故存在整数 t 使 k=bt，于是 y−x=ab t，即 ab∣(y−x)。",
+      "leanWitness": "rcases hbk with ⟨t, ht⟩\nrefine ⟨t, ?_⟩\nrw [hk, ht]\nrw [Nat.cast_mul]\nring"
+    },
+    {
+      "start": 430,
+      "end": 468,
+      "sourceExcerpt": "因此所有满足两同余式的整数解都与 x 模 ab 同余，存在性与唯一性均得证。",
+      "leanWitness": "exact ⟨x, hxr, hxs, huniq⟩"
+    }
+  ],
+  "sourcePositionsValid": true,
+  "sourceEquivalenceCertified": false,
+  "originalProofCertified": false,
+  "kernelVerified": false,
+  "unsupportedOriginalSteps": [],
+  "transcriptionComplete": true,
+  "status": "kernel_not_verified",
+  "lean": {
+    "localVerified": false,
+    "status": "statement_not_elaborated",
+    "diagnostics": [
+      {
+        "severity": "error",
+        "message": "Term parsing failed: <input>:1:0: expected term",
+        "stepId": "source_translated_complete_proof",
+        "sourceRefs": [],
+        "mappingPrecision": "step"
+      }
+    ],
+    "certificate": null
+  },
+  "version": "3.0",
+  "source": {
+    "kind": "text",
+    "raw": "命题：设 a,b 为互素的正整数，r,s 为任意整数。证明存在整数 x，使 a∣(x−r) 且 b∣(x−s)，并且任何整数 y 若也满足 a∣(y−r) 与 b∣(y−s)，则 ab∣(y−x)。证明：由 gcd(a,b)=1，依 Bézout 恒等式，存在整数 u,v 使 au+bv=1。令 x=r·bv+s·au。因为 x−r=au(s−r)，故 a∣(x−r)；因为 x−s=bv(r−s)，故 b∣(x−s)，于是存在性成立。接着任取整数 y，假定 a∣(y−r)、b∣(y−s)。由 a∣(y−r) 及 a∣(x−r)，得 a∣(y−x)；同理 b∣(y−x)。从 a∣(y−x)，可取整数 k 使 y−x=ak。又因 b∣(y−x)，所以 b∣ak。将 Bézout 等式乘 k，得到 k=k(au+bv)=(ak)u+bkv。右边两项都能被 b 整除，因此 b∣k。故存在整数 t 使 k=bt，于是 y−x=ab t，即 ab∣(y−x)。因此所有满足两同余式的整数解都与 x 模 ab 同余，存在性与唯一性均得证。",
+    "normalized": "命题：设 a,b 为互素的正整数，r,s 为任意整数。证明存在整数 x，使 a∣(x−r) 且 b∣(x−s)，并且任何整数 y 若也满足 a∣(y−r) 与 b∣(y−s)，则 ab∣(y−x)。证明：由 gcd(a,b)=1，依 Bézout 恒等式，存在整数 u,v 使 au+bv=1。令 x=r·bv+s·au。因为 x−r=au(s−r)，故 a∣(x−r)；因为 x−s=bv(r−s)，故 b∣(x−s)，于是存在性成立。接着任取整数 y，假定 a∣(y−r)、b∣(y−s)。由 a∣(y−r) 及 a∣(x−r)，得 a∣(y−x)；同理 b∣(y−x)。从 a∣(y−x)，可取整数 k 使 y−x=ak。又因 b∣(y−x)，所以 b∣ak。将 Bézout 等式乘 k，得到 k=k(au+bv)=(ak)u+bkv。右边两项都能被 b 整除，因此 b∣k。故存在整数 t 使 k=bt，于是 y−x=ab t，即 ab∣(y−x)。因此所有满足两同余式的整数解都与 x 模 ab 同余，存在性与唯一性均得证。",
+    "recognitionId": null,
+    "transcriptionEvidence": null,
+    "blocks": [
+      {
+        "id": "b0",
+        "text": "命题：设 a,b 为互素的正整数，r,s 为任意整数。证明存在整数 x，使 a∣(x−r) 且 b∣(x−s)，并且任何整数 y 若也满足 a∣(y−r) 与 b∣(y−s)，则 ab∣(y−x)。证明：由 gcd(a,b)=1，依 Bézout 恒等式，存在整数 u,v 使 au+bv=1。令 x=r·bv+s·au。因为 x−r=au(s−r)，故 a∣(x−r)；因为 x−s=bv(r−s)，故 b∣(x−s)，于是存在性成立。接着任取整数 y，假定 a∣(y−r)、b∣(y−s)。由 a∣(y−r) 及 a∣(x−r)，得 a∣(y−x)；同理 b∣(y−x)。从 a∣(y−x)，可取整数 k 使 y−x=ak。又因 b∣(y−x)，所以 b∣ak。将 Bézout 等式乘 k，得到 k=k(au+bv)=(ak)u+bkv。右边两项都能被 b 整除，因此 b∣k。故存在整数 t 使 k=bt，于是 y−x=ab t，即 ab∣(y−x)。因此所有满足两同余式的整数解都与 x 模 ab 同余，存在性与唯一性均得证。",
+        "page": null,
+        "bbox": null,
+        "confidence": null,
+        "assetId": null,
+        "providerData": {}
+      }
+    ]
+  },
+  "inputKind": "text",
+  "authority": "actual_lean_kernel_for_translated_statement_only"
+}

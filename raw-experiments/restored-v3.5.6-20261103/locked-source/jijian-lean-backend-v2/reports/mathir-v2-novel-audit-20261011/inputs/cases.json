@@ -1,0 +1,66 @@
+{
+  "study": "MathIR v2 novel proof audit, input corpus frozen before live execution",
+  "inputKind": "text",
+  "cases": [
+    {
+      "id": "N01-equality-transitivity",
+      "category": "valid equality inference",
+      "auditExpectation": "The one-step route follows from both stated equalities; preserve both premises and the conclusion.",
+      "sourceText": "设实数 a、b、c 满足 a=b 和 b=c。\n原证明：由 a=b 与 b=c，利用等式传递性得到 a=c。\n结论：a=c。"
+    },
+    {
+      "id": "N02-order-translation",
+      "category": "valid ordered-field inference",
+      "auditExpectation": "The route is valid for real x,y,z; the condition x≤y must remain unchanged.",
+      "sourceText": "设实数 x、y、z，已知 x≤y。\n原证明：不等式两边同时加 z，得到 x+z≤y+z。\n结论：x+z≤y+z。"
+    },
+    {
+      "id": "N03-rational-common-denominator",
+      "category": "valid rational arithmetic",
+      "auditExpectation": "The stated common-denominator calculation is correct in Rat.",
+      "sourceText": "设有理数 a、b，已知 a=1/2、b=1/3。\n原证明：通分相加，a+b=3/6+2/6=5/6。\n结论：a+b=5/6。"
+    },
+    {
+      "id": "N04-true-goal-invalid-intermediate",
+      "category": "true conclusion with a false original step",
+      "auditExpectation": "The locked goal x+1=3 is true under x=2, but the original route's first claim x+1=2 is false; the route must not pass by proving the goal independently.",
+      "sourceText": "設实数 x=2。\n原证明第1步声称：x+1=2。\n原证明第2步：由 x=2，得到 x+1=3。\n结论：x+1=3。"
+    },
+    {
+      "id": "N05-false-target-after-squaring",
+      "category": "false conclusion",
+      "auditExpectation": "With x=1, the claim x²=2 is false; neither a fixed-statement nor original-route Kernel pass is acceptable.",
+      "sourceText": "设实数 x=1。\n原证明声称两边平方后得到 x²=2。\n结论：x²=2。"
+    },
+    {
+      "id": "N06-odd-sum-induction-from-one",
+      "category": "induction with lower bound one and a finite sum",
+      "auditExpectation": "Preserve the induction index, base case n=1, local induction hypothesis, and original step. Do not turn the induction hypothesis into a global assumption.",
+      "sourceText": "对每个自然数 n≥1，证明从 1 到 n 的前 n 个奇数之和等于 n²。\n原证明采用从 1 开始的归纳法。\n基例 n=1：1=1²。\n归纳假设：对 k≥1，∑_{i=1}^{k}(2i−1)=k²。\n归纳步：在等式两边加上下一项 2k+1，得到 ∑_{i=1}^{k+1}(2i−1)=k²+2k+1=(k+1)²。\n结论：对所有 n≥1，∑_{i=1}^{n}(2i−1)=n²。"
+    },
+    {
+      "id": "N07-geometric-rational-sum",
+      "category": "finite rational sum with induction",
+      "auditExpectation": "The geometric-sum identity is correct for n≥1; preserve Rat arithmetic and the induction dependency.",
+      "sourceText": "对每个自然数 n≥1，证明 ∑_{k=1}^{n}(1/2)^k=1−(1/2)^n。\n原证明用归纳法：n=1 时两边都是 1/2。\n假设对 k≥1 成立，则把下一项 (1/2)^(k+1) 加到左边；利用 (1/2)^k=2(1/2)^(k+1)，得到 1−(1/2)^(k+1)。\n因此结论对所有 n≥1 成立。"
+    },
+    {
+      "id": "N08-polynomial-two-routes-one-wrong",
+      "category": "two independent polynomial routes, one invalid",
+      "auditExpectation": "P(1)=5 is true. Route A is correct. Route B's 2·1=4 calculation is false and must remain separate; success of route A must not mark route B passed.",
+      "sourceText": "设实系数多项式 P(X)=2X+3。目标是证明 P(1)=5。\n原稿给出两条独立路线。\n路线甲：代入 X=1，得到 P(1)=2·1+3=5。\n路线乙：把 2·1 计算成 4，得到 P(1)=4+3=7，但仍声称这条路线证明了目标 P(1)=5。\n请分别保留并核验两条路线。"
+    },
+    {
+      "id": "N09-existential-divisibility-witness",
+      "category": "existential witness and divisibility form",
+      "auditExpectation": "Given natural n,k with n=2k, the witness q=k proves ∃q, n=2q; preserve the existential binder and witness dependency.",
+      "sourceText": "设自然数 n、k 满足 n=2k。\n原证明：令 q=k，则 n=2q，所以存在自然数 q 使 n=2q。\n结论：∃q∈ℕ，n=2q。"
+    },
+    {
+      "id": "N10-ambiguous-function-notation",
+      "category": "ambiguous fraction notation and function application",
+      "auditExpectation": "In 1/2n, the scope of the fraction is unspecified; at n=2 the two readings differ. The source must not be silently normalized. General T(n) application also probes the closed AST boundary.",
+      "sourceText": "设数列 T 的通项写作 T(n)=1/2n，原稿没有说明分数线是否覆盖 n。\n原证明代入 n=2，写成 T(2)=1/4。\n请核验这个等式，并保留原稿中的歧义。"
+    }
+  ]
+}

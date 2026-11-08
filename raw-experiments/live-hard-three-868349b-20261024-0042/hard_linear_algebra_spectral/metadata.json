@@ -1,0 +1,858 @@
+{
+  "id": "hard_linear_algebra_spectral",
+  "topic": "实对称矩阵正交对角化",
+  "source": "设 n≥1，A 为 n×n 实对称矩阵，即 Aᵀ=A。证明存在实正交矩阵 Q 与实对角矩阵 D，使 QᵀAQ=D。原证明：对 n 作归纳。n=1 显然。设 n>1。在单位球面 S={x∈ℝⁿ∣∥x∥=1} 上，连续函数 R(x)=xᵀAx 取得最大值 λ，设最大值点为单位向量 v。对任意与 v 正交的 w，考虑 g(t)=R((v+tw)/∥v+tw∥)，在 t=0 取得极大值，故 g′(0)=2wᵀAv=0。因此 Av 与 v 的正交补正交，存在实数 μ 使 Av=μv，且 μ=vᵀAv=λ。由于 A 对称，若 w⊥v，则 ⟨Aw,v⟩=⟨w,Av⟩=λ⟨w,v⟩=0，所以 v⊥ 在 A 下不变。将 A 限制在维数 n−1 的空间 v⊥ 上仍为实对称算子。依归纳假设，v⊥ 有一组由 A 的特征向量组成的标准正交基；与 v 合并得到 ℝⁿ 的标准正交特征向量基。以这些向量为列构成 Q，则 QᵀQ=I，且 QᵀAQ 为实对角矩阵。证毕。",
+  "reference": "真证明，极值、Rayleigh 商、对称性、不变子空间、维数归纳",
+  "appSourceCommit": "868349bf1fbec7ffae5e45c01d671f3552ba56d2",
+  "providerFixture": false,
+  "kernelFixture": false,
+  "handWrittenLean": false,
+  "handWrittenMathIR": false,
+  "transport": "signed installed App packaged backend POST /api/v2/jobs",
+  "guiInteracted": false,
+  "startedUtc": "2026-10-23T16:42:24.567380+00:00",
+  "sourceSha256": "f1f3240a93c04b59a15f6d685d57aa00a9b0e6c27388f08bc857e819021c839c",
+  "capabilities": {
+    "ai": {
+      "configured": true,
+      "provider": "deepseek",
+      "model": "deepseek-flash",
+      "thinking": "provider_default",
+      "liveTested": false
+    },
+    "lean": {
+      "configured": true,
+      "executableFound": true,
+      "projectFound": true,
+      "runtimeBuilt": true,
+      "runtimeIntegrity": true,
+      "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+      "sandbox": "macos",
+      "isolated": true,
+      "ready": true,
+      "toolchain": "leanprover/lean4:v4.34.0",
+      "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+      "liveTestedInThisDistribution": false
+    },
+    "mockFallback": false,
+    "health": "running"
+  },
+  "jobId": "e29187a0-3cbb-4979-9254-178250aeb7a7",
+  "submittedUtc": "2026-10-23T16:42:25.203592+00:00",
+  "stageTransitions": [
+    {
+      "status": "running",
+      "stage": "recognizing",
+      "seconds": 0.64,
+      "utc": "2026-10-23T16:42:25.208935+00:00"
+    },
+    {
+      "status": "failed",
+      "stage": "failed",
+      "seconds": 279.67,
+      "utc": "2026-10-23T16:47:04.240953+00:00"
+    }
+  ],
+  "terminalStatus": "failed",
+  "terminalStage": "failed",
+  "terminalError": {
+    "code": "MATHIR_V2_INVALID",
+    "message": "结构未通过确定性 MathIR 校验；尚未运行 Lean，这不表示原稿证明错误。",
+    "details": {
+      "validationCode": "V2_TYPE_DOMAIN_UNRESOLVED",
+      "draftId": "4dcf3ab7-8243-4e58-8b8b-868a01c690c3",
+      "typeVariables": [
+        {
+          "declarationId": "d_v",
+          "typeVarId": "tv_vec_step",
+          "path": "declarations[d_v].type",
+          "candidateKinds": [],
+          "typeVarMode": "unresolved",
+          "structureConstraints": [
+            {
+              "structure": "Eq",
+              "operator": "eq",
+              "expressionPath": "proofRoutes[0].nodes[4].expression.args[0]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 141,
+                  "end": 250
+                }
+              ]
+            },
+            {
+              "structure": "Semiring",
+              "operator": "matrix_mul_vector",
+              "expressionPath": "proofRoutes[0].nodes[4].expression.args[0].args[0]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 141,
+                  "end": 250
+                }
+              ]
+            },
+            {
+              "structure": "SMul",
+              "operator": "vector_scale",
+              "expressionPath": "proofRoutes[0].nodes[4].expression.args[0].args[1]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 141,
+                  "end": 250
+                }
+              ]
+            },
+            {
+              "structure": "Eq",
+              "operator": "eq",
+              "expressionPath": "proofRoutes[0].nodes[4].expression.args[1]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 141,
+                  "end": 250
+                }
+              ]
+            },
+            {
+              "structure": "AddCommMonoid",
+              "operator": "vector_dot",
+              "expressionPath": "proofRoutes[0].nodes[4].expression.args[1].args[1]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 141,
+                  "end": 250
+                }
+              ]
+            },
+            {
+              "structure": "Mul",
+              "operator": "vector_dot",
+              "expressionPath": "proofRoutes[0].nodes[4].expression.args[1].args[1]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 141,
+                  "end": 250
+                }
+              ]
+            },
+            {
+              "structure": "Semiring",
+              "operator": "matrix_mul_vector",
+              "expressionPath": "proofRoutes[0].nodes[4].expression.args[1].args[1].args[1]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 141,
+                  "end": 250
+                }
+              ]
+            },
+            {
+              "structure": "Eq",
+              "operator": "eq",
+              "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[0]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 250,
+                  "end": 303
+                }
+              ]
+            },
+            {
+              "structure": "AddCommMonoid",
+              "operator": "vector_dot",
+              "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[0].args[0]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 250,
+                  "end": 303
+                }
+              ]
+            },
+            {
+              "structure": "Mul",
+              "operator": "vector_dot",
+              "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[0].args[0]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 250,
+                  "end": 303
+                }
+              ]
+            },
+            {
+              "structure": "Eq",
+              "operator": "eq",
+              "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[1]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 250,
+                  "end": 303
+                }
+              ]
+            },
+            {
+              "structure": "AddCommMonoid",
+              "operator": "vector_dot",
+              "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[1].args[0]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 250,
+                  "end": 303
+                }
+              ]
+            },
+            {
+              "structure": "Mul",
+              "operator": "vector_dot",
+              "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[1].args[0]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 250,
+                  "end": 303
+                }
+              ]
+            },
+            {
+              "structure": "Semiring",
+              "operator": "matrix_mul_vector",
+              "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[1].args[0].args[0]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 250,
+                  "end": 303
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "declarationId": "d_w",
+          "typeVarId": "tv_vec_step",
+          "path": "declarations[d_w].type",
+          "candidateKinds": [],
+          "typeVarMode": "unresolved",
+          "structureConstraints": [
+            {
+              "structure": "Eq",
+              "operator": "eq",
+              "expressionPath": "proofRoutes[0].nodes[4].expression.args[0]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 141,
+                  "end": 250
+                }
+              ]
+            },
+            {
+              "structure": "Semiring",
+              "operator": "matrix_mul_vector",
+              "expressionPath": "proofRoutes[0].nodes[4].expression.args[0].args[0]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 141,
+                  "end": 250
+                }
+              ]
+            },
+            {
+              "structure": "SMul",
+              "operator": "vector_scale",
+              "expressionPath": "proofRoutes[0].nodes[4].expression.args[0].args[1]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 141,
+                  "end": 250
+                }
+              ]
+            },
+            {
+              "structure": "Eq",
+              "operator": "eq",
+              "expressionPath": "proofRoutes[0].nodes[4].expression.args[1]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 141,
+                  "end": 250
+                }
+              ]
+            },
+            {
+              "structure": "AddCommMonoid",
+              "operator": "vector_dot",
+              "expressionPath": "proofRoutes[0].nodes[4].expression.args[1].args[1]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 141,
+                  "end": 250
+                }
+              ]
+            },
+            {
+              "structure": "Mul",
+              "operator": "vector_dot",
+              "expressionPath": "proofRoutes[0].nodes[4].expression.args[1].args[1]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 141,
+                  "end": 250
+                }
+              ]
+            },
+            {
+              "structure": "Semiring",
+              "operator": "matrix_mul_vector",
+              "expressionPath": "proofRoutes[0].nodes[4].expression.args[1].args[1].args[1]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 141,
+                  "end": 250
+                }
+              ]
+            },
+            {
+              "structure": "Eq",
+              "operator": "eq",
+              "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[0]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 250,
+                  "end": 303
+                }
+              ]
+            },
+            {
+              "structure": "AddCommMonoid",
+              "operator": "vector_dot",
+              "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[0].args[0]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 250,
+                  "end": 303
+                }
+              ]
+            },
+            {
+              "structure": "Mul",
+              "operator": "vector_dot",
+              "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[0].args[0]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 250,
+                  "end": 303
+                }
+              ]
+            },
+            {
+              "structure": "Eq",
+              "operator": "eq",
+              "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[1]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 250,
+                  "end": 303
+                }
+              ]
+            },
+            {
+              "structure": "AddCommMonoid",
+              "operator": "vector_dot",
+              "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[1].args[0]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 250,
+                  "end": 303
+                }
+              ]
+            },
+            {
+              "structure": "Mul",
+              "operator": "vector_dot",
+              "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[1].args[0]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 250,
+                  "end": 303
+                }
+              ]
+            },
+            {
+              "structure": "Semiring",
+              "operator": "matrix_mul_vector",
+              "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[1].args[0].args[0]",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 250,
+                  "end": 303
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "validationPath": "declarations[d_v].type",
+      "validationSourceRefs": [
+        {
+          "blockId": "b0",
+          "start": 82,
+          "end": 141
+        }
+      ],
+      "clarificationRequired": {
+        "kind": "mathematical_value_domain",
+        "message": "原稿没有唯一确定该数学对象的值域；请确认值域后再锁定 Lean 命题。",
+        "draftId": "4dcf3ab7-8243-4e58-8b8b-868a01c690c3",
+        "typeVariables": [
+          {
+            "declarationId": "d_v",
+            "typeVarId": "tv_vec_step",
+            "path": "declarations[d_v].type",
+            "candidateKinds": [],
+            "typeVarMode": "unresolved",
+            "structureConstraints": [
+              {
+                "structure": "Eq",
+                "operator": "eq",
+                "expressionPath": "proofRoutes[0].nodes[4].expression.args[0]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 141,
+                    "end": 250
+                  }
+                ]
+              },
+              {
+                "structure": "Semiring",
+                "operator": "matrix_mul_vector",
+                "expressionPath": "proofRoutes[0].nodes[4].expression.args[0].args[0]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 141,
+                    "end": 250
+                  }
+                ]
+              },
+              {
+                "structure": "SMul",
+                "operator": "vector_scale",
+                "expressionPath": "proofRoutes[0].nodes[4].expression.args[0].args[1]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 141,
+                    "end": 250
+                  }
+                ]
+              },
+              {
+                "structure": "Eq",
+                "operator": "eq",
+                "expressionPath": "proofRoutes[0].nodes[4].expression.args[1]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 141,
+                    "end": 250
+                  }
+                ]
+              },
+              {
+                "structure": "AddCommMonoid",
+                "operator": "vector_dot",
+                "expressionPath": "proofRoutes[0].nodes[4].expression.args[1].args[1]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 141,
+                    "end": 250
+                  }
+                ]
+              },
+              {
+                "structure": "Mul",
+                "operator": "vector_dot",
+                "expressionPath": "proofRoutes[0].nodes[4].expression.args[1].args[1]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 141,
+                    "end": 250
+                  }
+                ]
+              },
+              {
+                "structure": "Semiring",
+                "operator": "matrix_mul_vector",
+                "expressionPath": "proofRoutes[0].nodes[4].expression.args[1].args[1].args[1]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 141,
+                    "end": 250
+                  }
+                ]
+              },
+              {
+                "structure": "Eq",
+                "operator": "eq",
+                "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[0]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 250,
+                    "end": 303
+                  }
+                ]
+              },
+              {
+                "structure": "AddCommMonoid",
+                "operator": "vector_dot",
+                "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[0].args[0]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 250,
+                    "end": 303
+                  }
+                ]
+              },
+              {
+                "structure": "Mul",
+                "operator": "vector_dot",
+                "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[0].args[0]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 250,
+                    "end": 303
+                  }
+                ]
+              },
+              {
+                "structure": "Eq",
+                "operator": "eq",
+                "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[1]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 250,
+                    "end": 303
+                  }
+                ]
+              },
+              {
+                "structure": "AddCommMonoid",
+                "operator": "vector_dot",
+                "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[1].args[0]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 250,
+                    "end": 303
+                  }
+                ]
+              },
+              {
+                "structure": "Mul",
+                "operator": "vector_dot",
+                "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[1].args[0]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 250,
+                    "end": 303
+                  }
+                ]
+              },
+              {
+                "structure": "Semiring",
+                "operator": "matrix_mul_vector",
+                "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[1].args[0].args[0]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 250,
+                    "end": 303
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "declarationId": "d_w",
+            "typeVarId": "tv_vec_step",
+            "path": "declarations[d_w].type",
+            "candidateKinds": [],
+            "typeVarMode": "unresolved",
+            "structureConstraints": [
+              {
+                "structure": "Eq",
+                "operator": "eq",
+                "expressionPath": "proofRoutes[0].nodes[4].expression.args[0]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 141,
+                    "end": 250
+                  }
+                ]
+              },
+              {
+                "structure": "Semiring",
+                "operator": "matrix_mul_vector",
+                "expressionPath": "proofRoutes[0].nodes[4].expression.args[0].args[0]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 141,
+                    "end": 250
+                  }
+                ]
+              },
+              {
+                "structure": "SMul",
+                "operator": "vector_scale",
+                "expressionPath": "proofRoutes[0].nodes[4].expression.args[0].args[1]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 141,
+                    "end": 250
+                  }
+                ]
+              },
+              {
+                "structure": "Eq",
+                "operator": "eq",
+                "expressionPath": "proofRoutes[0].nodes[4].expression.args[1]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 141,
+                    "end": 250
+                  }
+                ]
+              },
+              {
+                "structure": "AddCommMonoid",
+                "operator": "vector_dot",
+                "expressionPath": "proofRoutes[0].nodes[4].expression.args[1].args[1]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 141,
+                    "end": 250
+                  }
+                ]
+              },
+              {
+                "structure": "Mul",
+                "operator": "vector_dot",
+                "expressionPath": "proofRoutes[0].nodes[4].expression.args[1].args[1]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 141,
+                    "end": 250
+                  }
+                ]
+              },
+              {
+                "structure": "Semiring",
+                "operator": "matrix_mul_vector",
+                "expressionPath": "proofRoutes[0].nodes[4].expression.args[1].args[1].args[1]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 141,
+                    "end": 250
+                  }
+                ]
+              },
+              {
+                "structure": "Eq",
+                "operator": "eq",
+                "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[0]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 250,
+                    "end": 303
+                  }
+                ]
+              },
+              {
+                "structure": "AddCommMonoid",
+                "operator": "vector_dot",
+                "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[0].args[0]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 250,
+                    "end": 303
+                  }
+                ]
+              },
+              {
+                "structure": "Mul",
+                "operator": "vector_dot",
+                "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[0].args[0]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 250,
+                    "end": 303
+                  }
+                ]
+              },
+              {
+                "structure": "Eq",
+                "operator": "eq",
+                "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[1]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 250,
+                    "end": 303
+                  }
+                ]
+              },
+              {
+                "structure": "AddCommMonoid",
+                "operator": "vector_dot",
+                "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[1].args[0]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 250,
+                    "end": 303
+                  }
+                ]
+              },
+              {
+                "structure": "Mul",
+                "operator": "vector_dot",
+                "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[1].args[0]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 250,
+                    "end": 303
+                  }
+                ]
+              },
+              {
+                "structure": "Semiring",
+                "operator": "matrix_mul_vector",
+                "expressionPath": "proofRoutes[0].nodes[5].expression.args[0].args[1].args[0].args[0]",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 250,
+                    "end": 303
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "result": {
+    "runStatus": null,
+    "termination": null,
+    "kernelVerified": null,
+    "fixedStatementKernelPassed": null,
+    "originalRouteKernelPassed": null,
+    "sourceProofVerified": null,
+    "originalProofVerified": null,
+    "originalMeaning": null,
+    "statement": null,
+    "failure": null,
+    "mathIRId": null,
+    "sourceStructureId": null,
+    "originalProofFidelity": null,
+    "reasoningFidelity": null,
+    "routeSummary": [],
+    "steps": []
+  },
+  "finishedUtc": "2026-10-23T16:47:04.242528+00:00",
+  "wallSeconds": 279.67,
+  "provider": {
+    "realAttempts": 2,
+    "started": 2,
+    "finished": 2,
+    "requestCount": 2,
+    "usage": {
+      "input_tokens": 32301,
+      "output_tokens": 54518,
+      "incompleteUsageRecords": 0
+    },
+    "records": [
+      {
+        "request_id": "0b7b17b8-293b-452d-b9e3-97d59b76e55d",
+        "stage": "mathir",
+        "reason": "StructureOnlyMathIRV2",
+        "model": "deepseek-flash",
+        "status": "response_received",
+        "input_tokens": 12678,
+        "output_tokens": 32935,
+        "retry_index": 0,
+        "cache_hit": null,
+        "real_request_attempted": true,
+        "started_at": null,
+        "finished_at": null
+      },
+      {
+        "request_id": "5921f670-952f-490e-9f7d-52d9df369ebf",
+        "stage": "mathir",
+        "reason": "StructureOnlyMathIRV2",
+        "model": "deepseek-flash",
+        "status": "response_received",
+        "input_tokens": 19623,
+        "output_tokens": 21583,
+        "retry_index": 0,
+        "cache_hit": null,
+        "real_request_attempted": true,
+        "started_at": null,
+        "finished_at": null
+      }
+    ]
+  },
+  "dbCounts": {
+    "artifacts": 2,
+    "jobs": 1,
+    "events": 3
+  },
+  "archiveSha256": "ddca5af620efef5097740746f7c6683880aa3500e7fa30322932689415c20389"
+}

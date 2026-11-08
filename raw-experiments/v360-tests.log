@@ -1,0 +1,22 @@
+F................................                                        [100%]
+=================================== FAILURES ===================================
+_____________ test_patch_exact_anchor_only_unchanged_surroundings ______________
+
+    def test_patch_exact_anchor_only_unchanged_surroundings():
+        changed,reason=apply_exact_patch(PROOF,'exact fake_api','norm_num')
+        assert reason is None
+        assert changed == PROOF.replace('exact fake_api','norm_num')
+        assert changed.split('  have source_step_1')[1] == PROOF.split('  have source_step_1')[1]
+        for old,new,error in [('', 'rfl','empty_anchor'),('by','by','unchanged_patch'),
+                              ('foo','bar','anchor_not_unique_or_not_in_current_proof'),
+                              ('source_step_', 'other','anchor_not_unique_or_not_in_current_proof')]:
+>           assert apply_exact_patch(PROOF,old,new)==(None,error)
+E           AssertionError: assert (None, 'ancho...urrent_proof') == (None, 'unchanged_patch')
+E             
+E             At index 1 diff: 'anchor_not_unique_or_not_in_current_proof' != 'unchanged_patch'
+E             Use -v to get more diff
+
+tests/test_lean_first_patch_repair.py:25: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_lean_first_patch_repair.py::test_patch_exact_anchor_only_unchanged_surroundings
+1 failed, 32 passed in 0.08s

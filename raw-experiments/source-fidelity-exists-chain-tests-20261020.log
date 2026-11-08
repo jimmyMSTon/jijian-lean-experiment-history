@@ -1,0 +1,194 @@
+....F.FFF........F.............F......F                                  [100%]
+=================================== FAILURES ===================================
+_ test_mutated_source_cannot_borrow_real_kernel_receipts[k\xb2 \u4e3a\u6574\u6570-k\xb3 \u4e3a\u6574\u6570] _
+
+old = 'k² 为整数', new = 'k³ 为整数'
+
+    @pytest.mark.parametrize(("old","new"),[
+      ("4 整除 m","5 整除 m"),
+      ("m=4k","m=5k"),
+      ("m²=(4k)²","m²=(5k)²"),
+      ("k² 为整数","k³ 为整数"),
+      ("16 整除 m²","15 整除 m²"),
+      ("取这样的 k","取任意的 k"),
+      ("m² 是16的整数倍","m² 是15的整数倍"),
+    ])
+    def test_mutated_source_cannot_borrow_real_kernel_receipts(old,new):
+        ir,verification=loaded()
+        mutated,forged=source_rebound(ir,verification,old,new)
+        a=audit_reasoning_fidelity(mutated,forged)
+>       assert a["originalProofVerified"] is False, (old,new)
+E       AssertionError: ('k² 为整数', 'k³ 为整数')
+E       assert True is False
+
+tests/v2/test_source_existential_witness.py:74: AssertionError
+_ test_mutated_source_cannot_borrow_real_kernel_receipts[\u53d6\u8fd9\u6837\u7684 k-\u53d6\u4efb\u610f\u7684 k] _
+
+old = '取这样的 k', new = '取任意的 k'
+
+    @pytest.mark.parametrize(("old","new"),[
+      ("4 整除 m","5 整除 m"),
+      ("m=4k","m=5k"),
+      ("m²=(4k)²","m²=(5k)²"),
+      ("k² 为整数","k³ 为整数"),
+      ("16 整除 m²","15 整除 m²"),
+      ("取这样的 k","取任意的 k"),
+      ("m² 是16的整数倍","m² 是15的整数倍"),
+    ])
+    def test_mutated_source_cannot_borrow_real_kernel_receipts(old,new):
+        ir,verification=loaded()
+        mutated,forged=source_rebound(ir,verification,old,new)
+        a=audit_reasoning_fidelity(mutated,forged)
+>       assert a["originalProofVerified"] is False, (old,new)
+E       AssertionError: ('取这样的 k', '取任意的 k')
+E       assert True is False
+
+tests/v2/test_source_existential_witness.py:74: AssertionError
+_ test_mutated_source_cannot_borrow_real_kernel_receipts[m\xb2 \u662f16\u7684\u6574\u6570\u500d-m\xb2 \u662f15\u7684\u6574\u6570\u500d] _
+
+old = 'm² 是16的整数倍', new = 'm² 是15的整数倍'
+
+    @pytest.mark.parametrize(("old","new"),[
+      ("4 整除 m","5 整除 m"),
+      ("m=4k","m=5k"),
+      ("m²=(4k)²","m²=(5k)²"),
+      ("k² 为整数","k³ 为整数"),
+      ("16 整除 m²","15 整除 m²"),
+      ("取这样的 k","取任意的 k"),
+      ("m² 是16的整数倍","m² 是15的整数倍"),
+    ])
+    def test_mutated_source_cannot_borrow_real_kernel_receipts(old,new):
+        ir,verification=loaded()
+        mutated,forged=source_rebound(ir,verification,old,new)
+        a=audit_reasoning_fidelity(mutated,forged)
+>       assert a["originalProofVerified"] is False, (old,new)
+E       AssertionError: ('m² 是16的整数倍', 'm² 是15的整数倍')
+E       assert True is False
+
+tests/v2/test_source_existential_witness.py:74: AssertionError
+____ test_forged_scope_or_existence_cannot_reuse_authored_proof_certificate ____
+
+    def test_forged_scope_or_existence_cannot_reuse_authored_proof_certificate():
+        ir,ver=loaded()
+        source=ir.model_dump(mode="json")
+        claim=next(n for n in source["proofRoutes"][0]["nodes"]
+                   if n["id"]=="node_final_witness")
+        assert "node_int_k2" in claim["dependsOn"]
+        claim["dependsOn"].remove("node_int_k2")
+        forged=MathIRV2.model_validate(source)
+        receipt=copy.deepcopy(ver)
+        receipt["mathIRHash"]=compile_v2(forged).mathir_hash
+        a=audit_reasoning_fidelity(forged,receipt)
+>       assert a["originalProofVerified"] is False
+E       assert True is False
+
+tests/v2/test_source_existential_witness.py:88: AssertionError
+____ test_real_provider_algebra_proof_has_five_independently_sourced_rules _____
+
+tmp_path = PosixPath('/private/tmp/pytest-of-mac/pytest-147/test_real_provider_algebra_pro0')
+
+    def test_real_provider_algebra_proof_has_five_independently_sourced_rules(tmp_path):
+        ir, verification = saved()
+        audit = audit_reasoning_fidelity(ir, verification)
+        assert audit["authority"] == "independent_source_inference_certificate"
+        assert audit["originalProofVerified"] is True
+        assert audit["status"] == "source_rule_certified"
+        assert audit["sourceRuleVerifiedStepCount"] == 5
+        assert audit["sourceRuleVerifiedRouteCount"] == 1
+        steps = audit["routes"][0]["steps"]
+>       assert [step["rule"] for step in steps] == [
+            "explicit_polynomial_identity",
+            "explicit_algebraic_rearrangement",
+            "explicit_equation_substitution",
+            "explicit_polynomial_identity",
+            "equality_transitivity",
+        ]
+E       AssertionError: assert ['explicit_po...uality_chain'] == ['explicit_po...transitivity']
+E         
+E         At index 4 diff: 'explicit_authored_equality_chain' != 'equality_transitivity'
+E         Use -v to get more diff
+
+tests/v2/test_source_inference_certificates.py:36: AssertionError
+_ test_irrelevant_because_formula_is_not_a_student_inference_even_if_kernel_passes _
+
+    def test_irrelevant_because_formula_is_not_a_student_inference_even_if_kernel_passes():
+        from backend.v2.compiler import compile_v2
+        ir, verification = arithmetic_source_ir()
+        raw = ir.source.raw
+        assert raw.count("原证明：因为 a=b") == 1
+        altered = raw.replace("原证明：因为 a=b", "原证明：因为 0=0")
+        assert len(raw) == len(altered)
+        data = ir.model_dump(mode="json")
+        data["source"]["raw"] = altered
+        data["source"]["normalized"] = altered
+        for block in data["source"]["blocks"]:
+            block["text"] = altered
+        wrongly_reconstructed = MathIRV2.model_validate(data)
+        # The fixed statement is still the same valid equality congruence;
+        # this artificial replay represents a *genuine formal theorem* with
+        # a deliberately irrelevant authored premise.
+        injected_compiled = compile_v2(wrongly_reconstructed)
+        verification["sourceEvidenceHash"] = injected_compiled.source_evidence_hash
+        verification["mathirHash"] = injected_compiled.mathir_hash
+        result = audit_reasoning_fidelity(wrongly_reconstructed, verification)
+        assert result["originalProofVerified"] is False
+>       assert result["routes"][0]["steps"][0]["ruleCheckReason"] == (
+            "authored_causal_premise_not_in_source_dependency_graph")
+E       AssertionError: assert 'no_source_ma...ier_inference' == 'authored_cau...endency_graph'
+E         
+E         - authored_causal_premise_not_in_source_dependency_graph
+E         + no_source_matched_quantifier_inference
+
+tests/v2/test_source_inference_certificates.py:362: AssertionError
+__ test_live_model_congruence_source_stays_valid_but_wrong_operation_does_not __
+
+    def test_live_model_congruence_source_stays_valid_but_wrong_operation_does_not():
+        """Genuine provider MathIR + independent Kernel evidence, zero model reruns."""
+        from backend.v2.compiler import compile_v2
+        p = Path(__file__).parent / "fixtures/recorded_real_congruence_source_rule.json"
+        evidence = json.loads(p.read_text())
+        ir = MathIRV2.model_validate(evidence["mathIR"])
+        verification = evidence["verification"]
+        actual = audit_reasoning_fidelity(ir, verification)
+        assert actual["originalProofVerified"] is True
+        assert actual["sourceRuleVerifiedStepCount"] == 1
+        assert actual["routes"][0]["steps"][0]["rule"] == "explicit_equality_congruence"
+        for source_before, source_after in (
+            ("等式两边同时加3", "等式两边同时乘3"),
+            ("等式两边同时加3", "等式两边同时加4"),
+        ):
+            assert len(source_before) == len(source_after)
+            data = ir.model_dump(mode="json")
+            assert source_before in data["source"]["raw"]
+            for key in ("raw", "normalized"):
+                data["source"][key] = data["source"][key].replace(source_before, source_after)
+            for block in data["source"]["blocks"]:
+                block["text"] = block["text"].replace(source_before, source_after)
+            modified = MathIRV2.model_validate(data)
+            comp = compile_v2(modified)
+            v = copy.deepcopy(verification)
+            assert v["statementLock"]["statementHash"] == comp.statement_hash
+            v["sourceEvidenceHash"] = comp.source_evidence_hash
+            v["mathirHash"] = comp.mathir_hash
+            rejected = audit_reasoning_fidelity(modified, v)
+            assert rejected["sourceEvidenceBoundToStatement"]
+            assert rejected["originalProofVerified"] is False
+>           assert rejected["routes"][0]["steps"][0]["ruleCheckReason"] == (
+                "no_source_matched_sound_inference_rule")
+E           AssertionError: assert 'no_source_ma...ier_inference' == 'no_source_ma...nference_rule'
+E             
+E             - no_source_matched_sound_inference_rule
+E             ?                   ^^  ^          -----
+E             + no_source_matched_quantifier_inference
+E             ?                   ^ + ^^^^^^
+
+tests/v2/test_source_inference_certificates.py:478: AssertionError
+=========================== short test summary info ============================
+FAILED tests/v2/test_source_existential_witness.py::test_mutated_source_cannot_borrow_real_kernel_receipts[k\xb2 \u4e3a\u6574\u6570-k\xb3 \u4e3a\u6574\u6570]
+FAILED tests/v2/test_source_existential_witness.py::test_mutated_source_cannot_borrow_real_kernel_receipts[\u53d6\u8fd9\u6837\u7684 k-\u53d6\u4efb\u610f\u7684 k]
+FAILED tests/v2/test_source_existential_witness.py::test_mutated_source_cannot_borrow_real_kernel_receipts[m\xb2 \u662f16\u7684\u6574\u6570\u500d-m\xb2 \u662f15\u7684\u6574\u6570\u500d]
+FAILED tests/v2/test_source_existential_witness.py::test_forged_scope_or_existence_cannot_reuse_authored_proof_certificate
+FAILED tests/v2/test_source_inference_certificates.py::test_real_provider_algebra_proof_has_five_independently_sourced_rules
+FAILED tests/v2/test_source_inference_certificates.py::test_irrelevant_because_formula_is_not_a_student_inference_even_if_kernel_passes
+FAILED tests/v2/test_source_inference_certificates.py::test_live_model_congruence_source_stays_valid_but_wrong_operation_does_not
+7 failed, 32 passed in 0.70s

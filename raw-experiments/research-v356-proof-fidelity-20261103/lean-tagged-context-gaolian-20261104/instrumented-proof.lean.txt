@@ -1,0 +1,387 @@
+by
+  classical
+  intro m n hmn hn
+  let K : ℕ := (m - 1) * n + 1
+  have hm_ge3 : 3 ≤ m := le_trans hn hmn
+  have hn_pos : 0 < n := by omega
+  have hm_pos : 0 < m := by omega
+  have hK_pos : 0 < K := by
+    dsimp [K]
+    exact Nat.succ_pos ((m - 1) * n)
+  have hm1_ge1 : 1 ≤ m - 1 := by omega
+  have hm1_ge2 : 2 ≤ m - 1 := by omega
+  have hK_ge_n : n ≤ K := by
+    dsimp [K]
+    calc
+      n = 1 * n := by rw [one_mul]
+      _ ≤ (m - 1) * n := Nat.mul_le_mul_right n hm1_ge1
+      _ ≤ (m - 1) * n + 1 := Nat.le_succ _
+  have hK_ge_m : m ≤ K := by
+    dsimp [K]
+    calc
+      m = (m - 1) + 1 := by omega
+      _ ≤ (m - 1) * 3 := by
+        have hge : 2 ≤ m - 1 := hm1_ge2
+        nlinarith
+      _ ≤ (m - 1) * n := Nat.mul_le_mul_left (m - 1) hn
+      _ ≤ (m - 1) * n + 1 := Nat.le_succ _
+  have hcard_first : ∀ N : ℕ, 0 < N →
+      (Finset.univ.filter (fun i : Fin N => i.val < N - 1)).card = N - 1 := by
+    intro N hN
+    let last : Fin N := ⟨N - 1, by omega⟩
+    have hfilter : (Finset.univ.filter (fun i : Fin N => i.val < N - 1)) = Finset.univ.erase last := by
+      ext i
+      simp only [Finset.mem_filter, Finset.mem_univ, true_and, Finset.mem_erase, ne_eq]
+      constructor
+      · intro hi
+        constructor
+        · intro hEq
+          have hval : i.val = N - 1 := by
+            have := congrArg Fin.val hEq
+            simpa [last] using this
+          omega
+        · trivial
+      · intro hne
+        have hne' : i ≠ last := hne.1
+        by_contra hnot
+        have hge : N - 1 ≤ i.val := le_of_not_gt hnot
+        have hlt : i.val < N := i.isLt
+        have hval : i.val = N - 1 := by omega
+        apply hne'
+        ext
+        simp [last, hval]
+    calc
+      (Finset.univ.filter (fun i : Fin N => i.val < N - 1)).card
+          = (Finset.univ.erase last).card := by rw [hfilter]
+      _ = (Finset.univ : Finset (Fin N)).card - 1 := by
+        rw [Finset.card_erase_of_mem (by simp : last ∈ (Finset.univ : Finset (Fin N)))]
+      _ = N - 1 := by simp
+  have hsum_const_first : ∀ (N C : ℕ), 0 < N →
+      (Finset.univ.filter (fun i : Fin N => i.val < N - 1)).sum (fun _ : Fin N => C) =
+        (N - 1) * C := by
+    intro N C hN
+    rw [Finset.sum_const, hcard_first N hN]
+    simp
+  let c0 : ℕ → Bool := fun z => if z < n then false else true
+  have source_step_0 :
+      ¬ ((∃ x : Fin m → ℕ,
+            (∀ i : Fin m, 1 ≤ x i ∧ x i ≤ (m - 1) * n ∧ c0 (x i) = true) ∧
+            (Finset.univ.filter (fun i : Fin m => i.val < m - 1)).sum (fun i => x i) <
+              x ⟨m - 1, by omega⟩)
+         ∨ (∃ y : Fin n → ℕ,
+            (∀ i : Fin n, 1 ≤ y i ∧ y i ≤ (m - 1) * n ∧ c0 (y i) = false) ∧
+            (Finset.univ.filter (fun i : Fin n => i.val < n - 1)).sum (fun i => y i) <
+              y ⟨n - 1, by omega⟩)) := by
+    run_tac do
+      let goal ← Lean.Elab.Tactic.getMainGoal
+      Lean.logInfo m!"JJ_SOURCE_CONTEXT_0\n{goal}"
+    rintro (⟨x, hx, hxlt⟩ | ⟨y, hy, hylt⟩)
+    · have hx_ge : ∀ i ∈ Finset.univ.filter (fun i : Fin m => i.val < m - 1), n ≤ x i := by
+        intro i hi
+        have htrue : c0 (x i) = true := (hx i).2.2
+        dsimp [c0] at htrue
+        by_cases hxi : x i < n
+        · simp [hxi] at htrue
+        · omega
+      have hsum_ge : (m - 1) * n ≤
+          (Finset.univ.filter (fun i : Fin m => i.val < m - 1)).sum (fun i => x i) := by
+        calc
+          (m - 1) * n =
+              (Finset.univ.filter (fun i : Fin m => i.val < m - 1)).sum (fun _ : Fin m => n) := by
+                rw [hsum_const_first m n (by omega)]
+          _ ≤ (Finset.univ.filter (fun i : Fin m => i.val < m - 1)).sum (fun i => x i) := by
+                apply Finset.sum_le_sum
+                intro i hi
+                exact hx_ge i hi
+      have hlast_le : x ⟨m - 1, by omega⟩ ≤ (m - 1) * n := (hx ⟨m - 1, by omega⟩).2.1
+      have : (m - 1) * n < x ⟨m - 1, by omega⟩ := lt_of_le_of_lt hsum_ge hxlt
+      omega
+    · have hy_lt : ∀ i : Fin n, c0 (y i) = false → y i < n := by
+        intro i hfalse
+        dsimp [c0] at hfalse
+        by_cases hi : y i < n
+        · exact hi
+        · simp [hi] at hfalse
+      have hy_ge_one : ∀ i ∈ Finset.univ.filter (fun i : Fin n => i.val < n - 1), 1 ≤ y i := by
+        intro i hi
+        exact (hy i).1
+      have hsum_ge : n - 1 ≤
+          (Finset.univ.filter (fun i : Fin n => i.val < n - 1)).sum (fun i => y i) := by
+        calc
+          n - 1 = (Finset.univ.filter (fun i : Fin n => i.val < n - 1)).sum (fun _ : Fin n => 1) := by
+            rw [hsum_const_first n 1 (by omega)]
+            simp
+          _ ≤ (Finset.univ.filter (fun i : Fin n => i.val < n - 1)).sum (fun i => y i) := by
+            apply Finset.sum_le_sum
+            intro i hi
+            exact hy_ge_one i hi
+      have hylast_lt : y ⟨n - 1, by omega⟩ < n := by
+        apply hy_lt ⟨n - 1, by omega⟩
+        exact (hy ⟨n - 1, by omega⟩).2.2
+      have hylast_le : y ⟨n - 1, by omega⟩ ≤ n - 1 := by omega
+      have : n - 1 < y ⟨n - 1, by omega⟩ := lt_of_le_of_lt hsum_ge hylt
+      omega
+  have source_step_1 : ∀ c : ℕ → Bool, c 1 = false ∨ c 1 = true := by
+    run_tac do
+      let goal ← Lean.Elab.Tactic.getMainGoal
+      Lean.logInfo m!"JJ_SOURCE_CONTEXT_1\n{goal}"
+    intro c
+    cases c 1 <;> simp
+  have source_step_2 :
+      ∀ c : ℕ → Bool, c 1 = false →
+        ((∃ x : Fin m → ℕ,
+            (∀ i : Fin m, 1 ≤ x i ∧ x i ≤ K ∧ c (x i) = true) ∧
+            (Finset.univ.filter (fun i : Fin m => i.val < m - 1)).sum (fun i => x i) <
+              x ⟨m - 1, by omega⟩)
+         ∨ (∃ y : Fin n → ℕ,
+            (∀ i : Fin n, 1 ≤ y i ∧ y i ≤ K ∧ c (y i) = false) ∧
+            (Finset.univ.filter (fun i : Fin n => i.val < n - 1)).sum (fun i => y i) <
+              y ⟨n - 1, by omega⟩)) := by
+    run_tac do
+      let goal ← Lean.Elab.Tactic.getMainGoal
+      Lean.logInfo m!"JJ_SOURCE_CONTEXT_2\n{goal}"
+    intro c hc1
+    by_cases hb : ∃ b : ℕ, n ≤ b ∧ b ≤ K ∧ c b = false
+    · rcases hb with ⟨b, hbn, hbK, hbc⟩
+      right
+      let y : Fin n → ℕ := fun i => if (i : ℕ) < n - 1 then 1 else b
+      refine ⟨y, ?_, ?_⟩
+      · intro i
+        by_cases hi : (i : ℕ) < n - 1
+        · refine ⟨by simp [y, hi], ?_, ?_⟩
+          · simp [y, hi]
+            omega
+          · simpa [y, hi] using hc1
+        · have hival : (i : ℕ) = n - 1 := by
+            have hlt : (i : ℕ) < n := i.isLt
+            have hge : n - 1 ≤ (i : ℕ) := le_of_not_gt hi
+            omega
+          have hb1 : 1 ≤ b := by omega
+          refine ⟨?_, ?_, ?_⟩
+          · simp [y, hi, hb1]
+          · simpa [y, hi] using hbK
+          · simpa [y, hi] using hbc
+      · have hsum : (Finset.univ.filter (fun i : Fin n => i.val < n - 1)).sum (fun i => y i) = n - 1 := by
+          calc
+            (Finset.univ.filter (fun i : Fin n => i.val < n - 1)).sum (fun i => y i)
+                = (Finset.univ.filter (fun i : Fin n => i.val < n - 1)).sum (fun _ : Fin n => 1) := by
+                  apply Finset.sum_congr rfl
+                  intro i hi
+                  have hi' : (i : ℕ) < n - 1 := by
+                    exact (Finset.mem_filter.mp hi).2
+                  simp [y, hi']
+            _ = n - 1 := by
+                  rw [hsum_const_first n 1 (by omega)]
+                  simp
+        have hlast : y ⟨n - 1, by omega⟩ = b := by
+          simp [y]
+        rw [hsum, hlast]
+        omega
+    · left
+      have hred_of_not_blue : ∀ a : ℕ, n ≤ a → a ≤ K → c a = true := by
+        intro a han haK
+        cases hca : c a
+        · exfalso
+          exact hb ⟨a, han, haK, hca⟩
+        · rfl
+      let x : Fin m → ℕ := fun i => if (i : ℕ) < m - 1 then n else K
+      refine ⟨x, ?_, ?_⟩
+      · intro i
+        by_cases hi : (i : ℕ) < m - 1
+        · have hcn : c n = true := hred_of_not_blue n le_rfl hK_ge_n
+          have hn1 : 1 ≤ n := by omega
+          refine ⟨?_, ?_, ?_⟩
+          · simp [x, hi, hn1]
+          · simpa [x, hi] using hK_ge_n
+          · simpa [x, hi] using hcn
+        · have hival : (i : ℕ) = m - 1 := by
+            have hlt : (i : ℕ) < m := i.isLt
+            have hge : m - 1 ≤ (i : ℕ) := le_of_not_gt hi
+            omega
+          have hcK : c K = true := hred_of_not_blue K hK_ge_n le_rfl
+          refine ⟨?_, ?_, ?_⟩
+          · simp [x, hi]
+            omega
+          · simp [x, hi]
+          · simpa [x, hi] using hcK
+      · have hsum : (Finset.univ.filter (fun i : Fin m => i.val < m - 1)).sum (fun i => x i) = (m - 1) * n := by
+          calc
+            (Finset.univ.filter (fun i : Fin m => i.val < m - 1)).sum (fun i => x i)
+                = (Finset.univ.filter (fun i : Fin m => i.val < m - 1)).sum (fun _ : Fin m => n) := by
+                  apply Finset.sum_congr rfl
+                  intro i hi
+                  have hi' : (i : ℕ) < m - 1 := by
+                    exact (Finset.mem_filter.mp hi).2
+                  simp [x, hi']
+            _ = (m - 1) * n := by
+                  exact hsum_const_first m n (by omega)
+        have hlast : x ⟨m - 1, by omega⟩ = K := by
+          simp [x]
+        rw [hsum, hlast]
+        dsimp [K]
+        exact Nat.lt_succ_self ((m - 1) * n)
+  have source_step_3 :
+      ∀ c : ℕ → Bool, c 1 = true →
+        ((∃ x : Fin m → ℕ,
+            (∀ i : Fin m, 1 ≤ x i ∧ x i ≤ K ∧ c (x i) = true) ∧
+            (Finset.univ.filter (fun i : Fin m => i.val < m - 1)).sum (fun i => x i) <
+              x ⟨m - 1, by omega⟩)
+         ∨ (∃ y : Fin n → ℕ,
+            (∀ i : Fin n, 1 ≤ y i ∧ y i ≤ K ∧ c (y i) = false) ∧
+            (Finset.univ.filter (fun i : Fin n => i.val < n - 1)).sum (fun i => y i) <
+              y ⟨n - 1, by omega⟩)) := by
+    run_tac do
+      let goal ← Lean.Elab.Tactic.getMainGoal
+      Lean.logInfo m!"JJ_SOURCE_CONTEXT_3\n{goal}"
+    intro c hc1
+    by_cases ha : ∃ a : ℕ, m ≤ a ∧ a ≤ K ∧ c a = true
+    · rcases ha with ⟨a, ham, haK, hac⟩
+      left
+      let x : Fin m → ℕ := fun i => if (i : ℕ) < m - 1 then 1 else a
+      refine ⟨x, ?_, ?_⟩
+      · intro i
+        by_cases hi : (i : ℕ) < m - 1
+        · refine ⟨by simp [x, hi], ?_, ?_⟩
+          · simp [x, hi]
+            omega
+          · simpa [x, hi] using hc1
+        · have hival : (i : ℕ) = m - 1 := by
+            have hlt : (i : ℕ) < m := i.isLt
+            have hge : m - 1 ≤ (i : ℕ) := le_of_not_gt hi
+            omega
+          have ha1 : 1 ≤ a := by omega
+          refine ⟨?_, ?_, ?_⟩
+          · simp [x, hi, ha1]
+          · simpa [x, hi] using haK
+          · simpa [x, hi] using hac
+      · have hsum : (Finset.univ.filter (fun i : Fin m => i.val < m - 1)).sum (fun i => x i) = m - 1 := by
+          calc
+            (Finset.univ.filter (fun i : Fin m => i.val < m - 1)).sum (fun i => x i)
+                = (Finset.univ.filter (fun i : Fin m => i.val < m - 1)).sum (fun _ : Fin m => 1) := by
+                  apply Finset.sum_congr rfl
+                  intro i hi
+                  have hi' : (i : ℕ) < m - 1 := by
+                    exact (Finset.mem_filter.mp hi).2
+                  simp [x, hi']
+            _ = m - 1 := by
+                  rw [hsum_const_first m 1 (by omega)]
+                  simp
+        have hlast : x ⟨m - 1, by omega⟩ = a := by
+          simp [x]
+        rw [hsum, hlast]
+        have : m - 1 < a := by omega
+        exact this
+    · right
+      let T : ℕ := (n - 1) * m + 1
+      have hT_gt_m : m < T := by
+        dsimp [T]
+        have hle : m ≤ (n - 1) * m := by
+          calc
+            m = 1 * m := by rw [one_mul]
+            _ ≤ (n - 1) * m := Nat.mul_le_mul_right m (by omega : 1 ≤ n - 1)
+        omega
+      have hT_le_K : T ≤ K := by
+        dsimp [T, K]
+        have hnm1 : n - 1 ≤ m - 1 := by omega
+        have hm_eq : m = (m - 1) + 1 := by omega
+        have hn_eq : n = (n - 1) + 1 := by omega
+        calc
+          (n - 1) * m + 1
+              = (n - 1) * ((m - 1) + 1) + 1 := by
+                  conv_lhs => rw [hm_eq]
+          _ = (n - 1) * (m - 1) + (n - 1) + 1 := by
+                  rw [Nat.mul_add, Nat.mul_one]
+          _ ≤ (n - 1) * (m - 1) + (m - 1) + 1 := by
+                  omega
+          _ = (m - 1) * (n - 1) + (m - 1) + 1 := by
+                  rw [Nat.mul_comm (n - 1) (m - 1)]
+          _ = (m - 1) * ((n - 1) + 1) + 1 := by
+                  rw [Nat.mul_add, Nat.mul_one]
+          _ = (m - 1) * n + 1 := by
+                  conv_lhs => rw [← hn_eq]
+      have hblue_of_not_red : ∀ b : ℕ, m ≤ b → b ≤ K → c b = false := by
+        intro b hmb hbK
+        cases hcb : c b
+        · rfl
+        · exfalso
+          exact ha ⟨b, hmb, hbK, hcb⟩
+      let y : Fin n → ℕ := fun i => if (i : ℕ) < n - 1 then m else T
+      refine ⟨y, ?_, ?_⟩
+      · intro i
+        by_cases hi : (i : ℕ) < n - 1
+        · have hcm : c m = false := hblue_of_not_red m le_rfl hK_ge_m
+          have hm1 : 1 ≤ m := by omega
+          refine ⟨?_, ?_, ?_⟩
+          · simp [y, hi, hm1]
+          · simpa [y, hi] using hK_ge_m
+          · simpa [y, hi] using hcm
+        · have hival : (i : ℕ) = n - 1 := by
+            have hlt : (i : ℕ) < n := i.isLt
+            have hge : n - 1 ≤ (i : ℕ) := le_of_not_gt hi
+            omega
+          have hcT : c T = false := hblue_of_not_red T (by omega) hT_le_K
+          have hT1 : 1 ≤ T := by omega
+          refine ⟨?_, ?_, ?_⟩
+          · simp [y, hi]
+            exact hT1
+          · simpa [y, hi] using hT_le_K
+          · simpa [y, hi] using hcT
+      · have hsum : (Finset.univ.filter (fun i : Fin n => i.val < n - 1)).sum (fun i => y i) = (n - 1) * m := by
+          calc
+            (Finset.univ.filter (fun i : Fin n => i.val < n - 1)).sum (fun i => y i)
+                = (Finset.univ.filter (fun i : Fin n => i.val < n - 1)).sum (fun _ : Fin n => m) := by
+                  apply Finset.sum_congr rfl
+                  intro i hi
+                  have hi' : (i : ℕ) < n - 1 := by
+                    exact (Finset.mem_filter.mp hi).2
+                  simp [y, hi']
+            _ = (n - 1) * m := by
+                  exact hsum_const_first n m (by omega)
+        have hlast : y ⟨n - 1, by omega⟩ = T := by
+          simp [y]
+        rw [hsum, hlast]
+        dsimp [T]
+        exact Nat.lt_succ_self ((n - 1) * m)
+  have source_step_4 :
+      IsLeast { k : ℕ | 0 < k ∧
+        ∀ c : ℕ → Bool,
+          (∃ x : Fin m → ℕ,
+            (∀ i : Fin m, 1 ≤ x i ∧ x i ≤ k ∧ c (x i) = true) ∧
+            (Finset.univ.filter (fun i : Fin m => i.val < m - 1)).sum (fun i => x i) <
+              x ⟨m - 1, by omega⟩)
+          ∨ (∃ y : Fin n → ℕ,
+            (∀ i : Fin n, 1 ≤ y i ∧ y i ≤ k ∧ c (y i) = false) ∧
+            (Finset.univ.filter (fun i : Fin n => i.val < n - 1)).sum (fun i => y i) <
+              y ⟨n - 1, by omega⟩) } K := by
+    run_tac do
+      let goal ← Lean.Elab.Tactic.getMainGoal
+      Lean.logInfo m!"JJ_SOURCE_CONTEXT_4\n{goal}"
+    constructor
+    · constructor
+      · exact hK_pos
+      · intro c
+        rcases source_step_1 c with hc1 | hc1
+        · exact source_step_2 c hc1
+        · exact source_step_3 c hc1
+    · intro k hk
+      by_contra hnot
+      have hklt : k < K := by omega
+      have hk_le : k ≤ (m - 1) * n := by
+        dsimp [K] at hklt
+        omega
+      have hbad := source_step_0
+      have hprop := hk.2 c0
+      rcases hprop with ⟨x, hx, hxlt⟩ | ⟨y, hy, hylt⟩
+      · apply hbad
+        left
+        refine ⟨x, ?_, hxlt⟩
+        intro i
+        have hxi := hx i
+        exact ⟨hxi.1, le_trans hxi.2.1 hk_le, hxi.2.2⟩
+      · apply hbad
+        right
+        refine ⟨y, ?_, hylt⟩
+        intro i
+        have hyi := hy i
+        exact ⟨hyi.1, le_trans hyi.2.1 hk_le, hyi.2.2⟩
+  simpa [K] using source_step_4

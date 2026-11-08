@@ -1,0 +1,31 @@
+CASE_START:BMO
+CASE BMO KERNEL True GOAL_MATCH True EXTRA_AXIOMS [] EXTRACTED 11 / 11
+STEP 0 GOAL p ∣ n - 1 ∨ p ∣ n + 1 ∨ p ∣ n ^ 2 + n + 1 ∨ p ∣ n ^ 2 - n + 1
+STEP 1 GOAL p ∣ n ^ 2 + n + 1 → p ∣ (n + 1) ^ 6 - 1
+STEP 2 GOAL p ∣ n + 1 → p ∣ (n + 2) ^ 6 - 1
+STEP 3 GOAL p ∣ n - 1 → p ∣ (n - 2) ^ 6 - 1
+STEP 4 GOAL p ∣ n - 1 → n < 4
+STEP 5 GOAL p ∣ n - 1 → n = 3
+STEP 6 GOAL p ∣ n - 1 → p ∣ (n + 2) ^ 6 - 1
+STEP 7 GOAL p ∣ n ^ 2 - n + 1 → p ∣ (n - 1) ^ 6 - 1
+STEP 8 GOAL p ∣ n ^ 2 - n + 1 → n = 2
+STEP 9 GOAL p ∣ n ^ 2 - n + 1 → p ∣ (n + 2) ^ 6 - 1
+STEP 10 GOAL p ∣ (n + 1) ^ 6 - 1 ∨ p ∣ (n + 2) ^ 6 - 1
+CASE_START:GAOLIAN
+CASE GAOLIAN KERNEL True GOAL_MATCH True EXTRA_AXIOMS [] EXTRACTED 5 / 5
+STEP 0 GOAL ¬((∃ x, (∀ (i : Fin m), 1 ≤ x i ∧ x i ≤ (m - 1) * n ∧ c0 (x i) = true) ∧ ∑ i with ↑i < m - 1, x i < x ⟨m - 1, ⋯⟩) ∨
+      ∃ y, (∀ (i : Fin n), 1 ≤ y i
+STEP 1 GOAL ∀ (c : ℕ → Bool), c 1 = false ∨ c 1 = true
+STEP 2 GOAL ∀ (c : ℕ → Bool),
+    c 1 = false →
+      (∃ x, (∀ (i : Fin m), 1 ≤ x i ∧ x i ≤ K ∧ c (x i) = true) ∧ ∑ i with ↑i < m - 1, x i < x ⟨m - 1, ⋯⟩) ∨
+     
+STEP 3 GOAL ∀ (c : ℕ → Bool),
+    c 1 = true →
+      (∃ x, (∀ (i : Fin m), 1 ≤ x i ∧ x i ≤ K ∧ c (x i) = true) ∧ ∑ i with ↑i < m - 1, x i < x ⟨m - 1, ⋯⟩) ∨
+      
+STEP 4 GOAL IsLeast
+    {k |
+      0 < k ∧
+        ∀ (c : ℕ → Bool),
+          (∃ x, (∀ (i : Fin m), 1 ≤ x i ∧ x i ≤ k ∧ c (x i) = true) ∧ ∑ i with ↑i < m - 1, x 

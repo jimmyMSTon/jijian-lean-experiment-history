@@ -1,0 +1,1745 @@
+{
+  "fixtureVersion": "mathlib-evidence-sample-v1",
+  "sample": "algebra",
+  "origin": {
+    "recordFile": "reports/statement-lock-three/algebra-proof-only.json",
+    "formalizationId": "f8521bce-d72e-4d6e-817f-1d5929fe57cc",
+    "verificationId": "e60f7a8b-21c3-4205-a43e-d6b31c65b896",
+    "retrievalProvenance": "saved original artifact; sourceMatches are not reconstructed here"
+  },
+  "mathIR": {
+    "version": "1.0",
+    "source": {
+      "kind": "text",
+      "raw": "【题目】\n设 x, y ∈ ℝ，证明：\n(x + y)² ≤ 2(x² + y²)\n【证明】\n因为\n2(x² + y²) - (x + y)²\n= x² - 2xy + y²\n= (x - y)²。\n又因为任意实数的平方都非负，所以\n(x - y)² ≥ 0。\n因此\n2(x² + y²) - (x + y)² ≥ 0，\n从而\n(x + y)² ≤ 2(x² + y²)。\n证毕。",
+      "normalized": "【题目】\n设 x, y ∈ ℝ，证明：\n(x + y)² ≤ 2(x² + y²)\n【证明】\n因为\n2(x² + y²) - (x + y)²\n= x² - 2xy + y²\n= (x - y)²。\n又因为任意实数的平方都非负，所以\n(x - y)² ≥ 0。\n因此\n2(x² + y²) - (x + y)² ≥ 0，\n从而\n(x + y)² ≤ 2(x² + y²)。\n证毕。",
+      "recognitionId": null,
+      "transcriptionEvidence": null,
+      "blocks": [
+        {
+          "id": "b0",
+          "text": "【题目】\n设 x, y ∈ ℝ，证明：\n(x + y)² ≤ 2(x² + y²)\n【证明】\n因为\n2(x² + y²) - (x + y)²\n= x² - 2xy + y²\n= (x - y)²。\n又因为任意实数的平方都非负，所以\n(x - y)² ≥ 0。\n因此\n2(x² + y²) - (x + y)² ≥ 0，\n从而\n(x + y)² ≤ 2(x² + y²)。\n证毕。",
+          "page": null,
+          "bbox": null,
+          "confidence": null,
+          "assetId": null,
+          "providerData": {}
+        }
+      ]
+    },
+    "scopes": [
+      {
+        "id": "scope_root",
+        "parentId": null,
+        "description": "根作用域：证明 (x + y)^2 ≤ 2(x^2 + y^2)",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 0,
+            "end": 190
+          }
+        ]
+      }
+    ],
+    "variables": [
+      {
+        "id": "var_x",
+        "name": "x",
+        "domain": "ℝ",
+        "description": "实数变量，由题目“设 x, y ∈ ℝ”给出",
+        "scopeId": "scope_root",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 5,
+            "end": 15
+          }
+        ]
+      },
+      {
+        "id": "var_y",
+        "name": "y",
+        "domain": "ℝ",
+        "description": "实数变量，由题目“设 x, y ∈ ℝ”给出",
+        "scopeId": "scope_root",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 5,
+            "end": 15
+          }
+        ]
+      }
+    ],
+    "definitions": [],
+    "assumptions": [],
+    "proofSteps": [
+      {
+        "id": "step_expand",
+        "text": "2(x² + y²) - (x + y)² = x² - 2xy + y²",
+        "latex": "2(x^2 + y^2) - (x + y)^2 = x^2 - 2xy + y^2",
+        "scopeId": "scope_root",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 50,
+            "end": 87
+          }
+        ],
+        "dependsOn": [],
+        "reason": "展开平方并合并同类项"
+      },
+      {
+        "id": "step_factor",
+        "text": "x² - 2xy + y² = (x - y)²",
+        "latex": "x^2 - 2xy + y^2 = (x - y)^2",
+        "scopeId": "scope_root",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 74,
+            "end": 99
+          }
+        ],
+        "dependsOn": [
+          "step_expand"
+        ],
+        "reason": "完全平方公式"
+      },
+      {
+        "id": "step_nonneg",
+        "text": "(x - y)² ≥ 0",
+        "latex": "(x - y)^2 \\ge 0",
+        "scopeId": "scope_root",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 117,
+            "end": 130
+          }
+        ],
+        "dependsOn": [],
+        "reason": "任意实数的平方都非负"
+      },
+      {
+        "id": "step_ge",
+        "text": "2(x² + y²) - (x + y)² ≥ 0",
+        "latex": "2(x^2 + y^2) - (x + y)^2 \\ge 0",
+        "scopeId": "scope_root",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 134,
+            "end": 161
+          }
+        ],
+        "dependsOn": [
+          "step_expand",
+          "step_factor",
+          "step_nonneg"
+        ],
+        "reason": "由 2(x² + y²) - (x + y)² = (x - y)² 且 (x - y)² ≥ 0"
+      },
+      {
+        "id": "step_conclusion",
+        "text": "(x + y)² ≤ 2(x² + y²)",
+        "latex": "(x + y)^2 \\le 2(x^2 + y^2)",
+        "scopeId": "scope_root",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 164,
+            "end": 186
+          }
+        ],
+        "dependsOn": [
+          "step_ge"
+        ],
+        "reason": "由 2(x² + y²) - (x + y)² ≥ 0 移项得"
+      }
+    ],
+    "goal": {
+      "id": "goal",
+      "text": "证明： (x + y)² ≤ 2(x² + y²)",
+      "latex": "(x + y)^2 \\le 2(x^2 + y^2)",
+      "scopeId": "scope_root",
+      "sourceRefs": [
+        {
+          "blockId": "b0",
+          "start": 20,
+          "end": 42
+        },
+        {
+          "blockId": "b0",
+          "start": 187,
+          "end": 190
+        }
+      ],
+      "dependsOn": [
+        "step_conclusion"
+      ],
+      "reason": "证毕"
+    },
+    "ambiguities": [],
+    "formal": {
+      "expressions": [
+        {
+          "sourceId": "step_expand",
+          "expression": {
+            "op": "eq",
+            "args": [
+              {
+                "op": "sub",
+                "args": [
+                  {
+                    "op": "mul",
+                    "args": [
+                      {
+                        "op": "number",
+                        "args": [],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": "2"
+                      },
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "pow",
+                            "args": [
+                              {
+                                "op": "symbol",
+                                "args": [],
+                                "symbolId": "var_x",
+                                "binderId": null,
+                                "value": null
+                              },
+                              {
+                                "op": "number",
+                                "args": [],
+                                "symbolId": null,
+                                "binderId": null,
+                                "value": "2"
+                              }
+                            ],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": null
+                          },
+                          {
+                            "op": "pow",
+                            "args": [
+                              {
+                                "op": "symbol",
+                                "args": [],
+                                "symbolId": "var_y",
+                                "binderId": null,
+                                "value": null
+                              },
+                              {
+                                "op": "number",
+                                "args": [],
+                                "symbolId": null,
+                                "binderId": null,
+                                "value": "2"
+                              }
+                            ],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": null
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": null
+                  },
+                  {
+                    "op": "pow",
+                    "args": [
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "var_x",
+                            "binderId": null,
+                            "value": null
+                          },
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "var_y",
+                            "binderId": null,
+                            "value": null
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "number",
+                        "args": [],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": "2"
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": null
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "value": null
+              },
+              {
+                "op": "add",
+                "args": [
+                  {
+                    "op": "sub",
+                    "args": [
+                      {
+                        "op": "pow",
+                        "args": [
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "var_x",
+                            "binderId": null,
+                            "value": null
+                          },
+                          {
+                            "op": "number",
+                            "args": [],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": "2"
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "mul",
+                        "args": [
+                          {
+                            "op": "mul",
+                            "args": [
+                              {
+                                "op": "number",
+                                "args": [],
+                                "symbolId": null,
+                                "binderId": null,
+                                "value": "2"
+                              },
+                              {
+                                "op": "symbol",
+                                "args": [],
+                                "symbolId": "var_x",
+                                "binderId": null,
+                                "value": null
+                              }
+                            ],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": null
+                          },
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "var_y",
+                            "binderId": null,
+                            "value": null
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": null
+                  },
+                  {
+                    "op": "pow",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "var_y",
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "number",
+                        "args": [],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": "2"
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": null
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "value": null
+              }
+            ],
+            "symbolId": null,
+            "binderId": null,
+            "value": null
+          }
+        },
+        {
+          "sourceId": "step_factor",
+          "expression": {
+            "op": "eq",
+            "args": [
+              {
+                "op": "add",
+                "args": [
+                  {
+                    "op": "sub",
+                    "args": [
+                      {
+                        "op": "pow",
+                        "args": [
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "var_x",
+                            "binderId": null,
+                            "value": null
+                          },
+                          {
+                            "op": "number",
+                            "args": [],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": "2"
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "mul",
+                        "args": [
+                          {
+                            "op": "mul",
+                            "args": [
+                              {
+                                "op": "number",
+                                "args": [],
+                                "symbolId": null,
+                                "binderId": null,
+                                "value": "2"
+                              },
+                              {
+                                "op": "symbol",
+                                "args": [],
+                                "symbolId": "var_x",
+                                "binderId": null,
+                                "value": null
+                              }
+                            ],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": null
+                          },
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "var_y",
+                            "binderId": null,
+                            "value": null
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": null
+                  },
+                  {
+                    "op": "pow",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "var_y",
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "number",
+                        "args": [],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": "2"
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": null
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "value": null
+              },
+              {
+                "op": "pow",
+                "args": [
+                  {
+                    "op": "sub",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "var_x",
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "var_y",
+                        "binderId": null,
+                        "value": null
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": null
+                  },
+                  {
+                    "op": "number",
+                    "args": [],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": "2"
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "value": null
+              }
+            ],
+            "symbolId": null,
+            "binderId": null,
+            "value": null
+          }
+        },
+        {
+          "sourceId": "step_nonneg",
+          "expression": {
+            "op": "ge",
+            "args": [
+              {
+                "op": "pow",
+                "args": [
+                  {
+                    "op": "sub",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "var_x",
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "var_y",
+                        "binderId": null,
+                        "value": null
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": null
+                  },
+                  {
+                    "op": "number",
+                    "args": [],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": "2"
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "value": null
+              },
+              {
+                "op": "number",
+                "args": [],
+                "symbolId": null,
+                "binderId": null,
+                "value": "0"
+              }
+            ],
+            "symbolId": null,
+            "binderId": null,
+            "value": null
+          }
+        },
+        {
+          "sourceId": "step_ge",
+          "expression": {
+            "op": "ge",
+            "args": [
+              {
+                "op": "sub",
+                "args": [
+                  {
+                    "op": "mul",
+                    "args": [
+                      {
+                        "op": "number",
+                        "args": [],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": "2"
+                      },
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "pow",
+                            "args": [
+                              {
+                                "op": "symbol",
+                                "args": [],
+                                "symbolId": "var_x",
+                                "binderId": null,
+                                "value": null
+                              },
+                              {
+                                "op": "number",
+                                "args": [],
+                                "symbolId": null,
+                                "binderId": null,
+                                "value": "2"
+                              }
+                            ],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": null
+                          },
+                          {
+                            "op": "pow",
+                            "args": [
+                              {
+                                "op": "symbol",
+                                "args": [],
+                                "symbolId": "var_y",
+                                "binderId": null,
+                                "value": null
+                              },
+                              {
+                                "op": "number",
+                                "args": [],
+                                "symbolId": null,
+                                "binderId": null,
+                                "value": "2"
+                              }
+                            ],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": null
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": null
+                  },
+                  {
+                    "op": "pow",
+                    "args": [
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "var_x",
+                            "binderId": null,
+                            "value": null
+                          },
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "var_y",
+                            "binderId": null,
+                            "value": null
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "number",
+                        "args": [],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": "2"
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": null
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "value": null
+              },
+              {
+                "op": "number",
+                "args": [],
+                "symbolId": null,
+                "binderId": null,
+                "value": "0"
+              }
+            ],
+            "symbolId": null,
+            "binderId": null,
+            "value": null
+          }
+        },
+        {
+          "sourceId": "step_conclusion",
+          "expression": {
+            "op": "le",
+            "args": [
+              {
+                "op": "pow",
+                "args": [
+                  {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "var_x",
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "var_y",
+                        "binderId": null,
+                        "value": null
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": null
+                  },
+                  {
+                    "op": "number",
+                    "args": [],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": "2"
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "value": null
+              },
+              {
+                "op": "mul",
+                "args": [
+                  {
+                    "op": "number",
+                    "args": [],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": "2"
+                  },
+                  {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "pow",
+                        "args": [
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "var_x",
+                            "binderId": null,
+                            "value": null
+                          },
+                          {
+                            "op": "number",
+                            "args": [],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": "2"
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "pow",
+                        "args": [
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "var_y",
+                            "binderId": null,
+                            "value": null
+                          },
+                          {
+                            "op": "number",
+                            "args": [],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": "2"
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": null
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "value": null
+              }
+            ],
+            "symbolId": null,
+            "binderId": null,
+            "value": null
+          }
+        },
+        {
+          "sourceId": "goal",
+          "expression": {
+            "op": "le",
+            "args": [
+              {
+                "op": "pow",
+                "args": [
+                  {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "var_x",
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "var_y",
+                        "binderId": null,
+                        "value": null
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": null
+                  },
+                  {
+                    "op": "number",
+                    "args": [],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": "2"
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "value": null
+              },
+              {
+                "op": "mul",
+                "args": [
+                  {
+                    "op": "number",
+                    "args": [],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": "2"
+                  },
+                  {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "pow",
+                        "args": [
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "var_x",
+                            "binderId": null,
+                            "value": null
+                          },
+                          {
+                            "op": "number",
+                            "args": [],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": "2"
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "pow",
+                        "args": [
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "var_y",
+                            "binderId": null,
+                            "value": null
+                          },
+                          {
+                            "op": "number",
+                            "args": [],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": "2"
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": null
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "value": null
+              }
+            ],
+            "symbolId": null,
+            "binderId": null,
+            "value": null
+          }
+        }
+      ]
+    }
+  },
+  "types": {
+    "bindings": [
+      {
+        "sourceId": "var_x",
+        "type": "ℝ",
+        "value": null
+      },
+      {
+        "sourceId": "var_y",
+        "type": "ℝ",
+        "value": null
+      }
+    ],
+    "statements": [
+      {
+        "sourceId": "step_expand",
+        "proposition": "(((2 * ((v0 ^ 2) + (v1 ^ 2))) - ((v0 + v1) ^ 2)) = (((v0 ^ 2) - ((2 * v0) * v1)) + (v1 ^ 2)))"
+      },
+      {
+        "sourceId": "step_factor",
+        "proposition": "((((v0 ^ 2) - ((2 * v0) * v1)) + (v1 ^ 2)) = ((v0 - v1) ^ 2))"
+      },
+      {
+        "sourceId": "step_nonneg",
+        "proposition": "(((v0 - v1) ^ 2) ≥ 0)"
+      },
+      {
+        "sourceId": "step_ge",
+        "proposition": "(((2 * ((v0 ^ 2) + (v1 ^ 2))) - ((v0 + v1) ^ 2)) ≥ 0)"
+      },
+      {
+        "sourceId": "step_conclusion",
+        "proposition": "(((v0 + v1) ^ 2) ≤ (2 * ((v0 ^ 2) + (v1 ^ 2))))"
+      },
+      {
+        "sourceId": "goal",
+        "proposition": "(((v0 + v1) ^ 2) ≤ (2 * ((v0 ^ 2) + (v1 ^ 2))))"
+      }
+    ],
+    "notes": [
+      "Generated by code from the locked typed MathIR; not supplied by proof generation."
+    ]
+  },
+  "proofs": {
+    "fragments": [
+      {
+        "sourceId": "step_expand",
+        "proof": "by\n  ring",
+        "translationNotes": "展开平方并合并同类项"
+      },
+      {
+        "sourceId": "step_factor",
+        "proof": "by\n  exact (sub_sq v0 v1).symm",
+        "translationNotes": "完全平方公式"
+      },
+      {
+        "sourceId": "step_nonneg",
+        "proof": "by\n  exact sq_nonneg (v0 - v1)",
+        "translationNotes": "任意实数的平方都非负"
+      },
+      {
+        "sourceId": "step_ge",
+        "proof": "by\n  rw [s0 v0 v1, s1 v0 v1]\n  exact s2 v0 v1",
+        "translationNotes": "由 2(x² + y²) - (x + y)² = (x - y)² 且 (x - y)² ≥ 0"
+      },
+      {
+        "sourceId": "step_conclusion",
+        "proof": "by\n  exact sub_nonneg.mp (s3 v0 v1)",
+        "translationNotes": "由 2(x² + y²) - (x + y)² ≥ 0 移项得"
+      },
+      {
+        "sourceId": "goal",
+        "proof": "by\n  exact s4 v0 v1",
+        "translationNotes": "证毕"
+      }
+    ]
+  },
+  "statement_hash": "e83039e82bfe545e2bad30e0f4f2dd44bcf66f6ceba462fdc0e92b1b379769f7",
+  "savedRetrieval": {
+    "declarations": [
+      {
+        "name": "sq_nonneg",
+        "found": true,
+        "signature": "@sq_nonneg.{u_1} : ∀ {R : Type u_1} [inst : Semiring.{u_1} R] [inst_1 : LinearOrder.{u_1} R] [ExistsAddOfLE.{u_1} R]\n  [PosMulMono.{u_1} R] [AddLeftMono.{u_1} R] (a : R), LE.le.{u_1} 0 (HPow.hPow.{u_1, 0, u_1} a 2)",
+        "status": "lean_checked",
+        "diagnostics": [
+          {
+            "severity": "information",
+            "message": "@sq_nonneg.{u_1} : ∀ {R : Type u_1} [inst : Semiring.{u_1} R] [inst_1 : LinearOrder.{u_1} R] [ExistsAddOfLE.{u_1} R]\n  [PosMulMono.{u_1} R] [AddLeftMono.{u_1} R] (a : R), LE.le.{u_1} 0 (HPow.hPow.{u_1, 0, u_1} a 2)",
+            "leanPosition": {
+              "column": 0,
+              "line": 6
+            },
+            "leanEndPosition": {
+              "column": 6,
+              "line": 6
+            },
+            "stepId": "__library_lookup__",
+            "sourceRefs": [],
+            "mappingPrecision": "step",
+            "raw": {
+              "caption": "",
+              "data": "@sq_nonneg.{u_1} : ∀ {R : Type u_1} [inst : Semiring.{u_1} R] [inst_1 : LinearOrder.{u_1} R] [ExistsAddOfLE.{u_1} R]\n  [PosMulMono.{u_1} R] [AddLeftMono.{u_1} R] (a : R), LE.le.{u_1} 0 (HPow.hPow.{u_1, 0, u_1} a 2)",
+              "endPos": {
+                "column": 6,
+                "line": 6
+              },
+              "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-statement-lock-three/work/lean-kq0f1_e9/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "[anonymous]",
+              "pos": {
+                "column": 0,
+                "line": 6
+              },
+              "severity": "information"
+            }
+          }
+        ],
+        "runtime": {
+          "configured": true,
+          "executableFound": true,
+          "projectFound": true,
+          "runtimeBuilt": true,
+          "sandbox": "macos",
+          "isolated": true,
+          "ready": true,
+          "toolchain": "leanprover/lean4:v4.34.0",
+          "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+          "liveTestedInThisDistribution": false
+        },
+        "requiredImport": "Mathlib",
+        "minimalImportDetermined": false
+      },
+      {
+        "name": "sub_nonneg",
+        "found": true,
+        "signature": "@sub_nonneg.{u_1} : ∀ {α : Type u_1} [inst : AddGroup.{u_1} α] [inst_1 : LE.{u_1} α] [AddRightMono.{u_1} α] {a b : α},\n  LE.le.{u_1} 0 (HSub.hSub.{u_1, u_1, u_1} a b) ↔ LE.le.{u_1} b a",
+        "status": "lean_checked",
+        "diagnostics": [
+          {
+            "severity": "information",
+            "message": "@sub_nonneg.{u_1} : ∀ {α : Type u_1} [inst : AddGroup.{u_1} α] [inst_1 : LE.{u_1} α] [AddRightMono.{u_1} α] {a b : α},\n  LE.le.{u_1} 0 (HSub.hSub.{u_1, u_1, u_1} a b) ↔ LE.le.{u_1} b a",
+            "leanPosition": {
+              "column": 0,
+              "line": 7
+            },
+            "leanEndPosition": {
+              "column": 6,
+              "line": 7
+            },
+            "stepId": "__library_lookup__",
+            "sourceRefs": [],
+            "mappingPrecision": "step",
+            "raw": {
+              "caption": "",
+              "data": "@sub_nonneg.{u_1} : ∀ {α : Type u_1} [inst : AddGroup.{u_1} α] [inst_1 : LE.{u_1} α] [AddRightMono.{u_1} α] {a b : α},\n  LE.le.{u_1} 0 (HSub.hSub.{u_1, u_1, u_1} a b) ↔ LE.le.{u_1} b a",
+              "endPos": {
+                "column": 6,
+                "line": 7
+              },
+              "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-statement-lock-three/work/lean-kq0f1_e9/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "[anonymous]",
+              "pos": {
+                "column": 0,
+                "line": 7
+              },
+              "severity": "information"
+            }
+          }
+        ],
+        "runtime": {
+          "configured": true,
+          "executableFound": true,
+          "projectFound": true,
+          "runtimeBuilt": true,
+          "sandbox": "macos",
+          "isolated": true,
+          "ready": true,
+          "toolchain": "leanprover/lean4:v4.34.0",
+          "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+          "liveTestedInThisDistribution": false
+        },
+        "requiredImport": "Mathlib",
+        "minimalImportDetermined": false
+      },
+      {
+        "name": "sub_nonneg.mp",
+        "found": false,
+        "signature": null,
+        "status": "not_resolved",
+        "diagnostics": [
+          {
+            "severity": "information",
+            "message": "sub_nonneg.{u_1}.mp : LE.le.{u_1} 0 (HSub.hSub.{u_1, u_1, u_1} ?m.5 ?m.6) → LE.le.{u_1} ?m.6 ?m.5",
+            "leanPosition": {
+              "column": 0,
+              "line": 8
+            },
+            "leanEndPosition": {
+              "column": 6,
+              "line": 8
+            },
+            "stepId": "__library_lookup__",
+            "sourceRefs": [],
+            "mappingPrecision": "step",
+            "raw": {
+              "caption": "",
+              "data": "sub_nonneg.{u_1}.mp : LE.le.{u_1} 0 (HSub.hSub.{u_1, u_1, u_1} ?m.5 ?m.6) → LE.le.{u_1} ?m.6 ?m.5",
+              "endPos": {
+                "column": 6,
+                "line": 8
+              },
+              "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-statement-lock-three/work/lean-kq0f1_e9/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "[anonymous]",
+              "pos": {
+                "column": 0,
+                "line": 8
+              },
+              "severity": "information"
+            }
+          }
+        ],
+        "runtime": {
+          "configured": true,
+          "executableFound": true,
+          "projectFound": true,
+          "runtimeBuilt": true,
+          "sandbox": "macos",
+          "isolated": true,
+          "ready": true,
+          "toolchain": "leanprover/lean4:v4.34.0",
+          "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+          "liveTestedInThisDistribution": false
+        },
+        "requiredImport": "Mathlib",
+        "minimalImportDetermined": false
+      },
+      {
+        "name": "sub_sq",
+        "found": true,
+        "signature": "@sub_sq.{u_1} : ∀ {R : Type u_1} [inst : CommRing.{u_1} R] (a b : R),\n  Eq.{u_1 + 1} (HPow.hPow.{u_1, 0, u_1} (HSub.hSub.{u_1, u_1, u_1} a b) 2)\n    (HAdd.hAdd.{u_1, u_1, u_1}\n      (HSub.hSub.{u_1, u_1, u_1} (HPow.hPow.{u_1, 0, u_1} a 2)\n        (HMul.hMul.{u_1, u_1, u_1} (HMul.hMul.{u_1, u_1, u_1} 2 a) b))\n      (HPow.hPow.{u_1, 0, u_1} b 2))",
+        "status": "lean_checked",
+        "diagnostics": [
+          {
+            "severity": "information",
+            "message": "@sub_sq.{u_1} : ∀ {R : Type u_1} [inst : CommRing.{u_1} R] (a b : R),\n  Eq.{u_1 + 1} (HPow.hPow.{u_1, 0, u_1} (HSub.hSub.{u_1, u_1, u_1} a b) 2)\n    (HAdd.hAdd.{u_1, u_1, u_1}\n      (HSub.hSub.{u_1, u_1, u_1} (HPow.hPow.{u_1, 0, u_1} a 2)\n        (HMul.hMul.{u_1, u_1, u_1} (HMul.hMul.{u_1, u_1, u_1} 2 a) b))\n      (HPow.hPow.{u_1, 0, u_1} b 2))",
+            "leanPosition": {
+              "column": 0,
+              "line": 9
+            },
+            "leanEndPosition": {
+              "column": 6,
+              "line": 9
+            },
+            "stepId": "__library_lookup__",
+            "sourceRefs": [],
+            "mappingPrecision": "step",
+            "raw": {
+              "caption": "",
+              "data": "@sub_sq.{u_1} : ∀ {R : Type u_1} [inst : CommRing.{u_1} R] (a b : R),\n  Eq.{u_1 + 1} (HPow.hPow.{u_1, 0, u_1} (HSub.hSub.{u_1, u_1, u_1} a b) 2)\n    (HAdd.hAdd.{u_1, u_1, u_1}\n      (HSub.hSub.{u_1, u_1, u_1} (HPow.hPow.{u_1, 0, u_1} a 2)\n        (HMul.hMul.{u_1, u_1, u_1} (HMul.hMul.{u_1, u_1, u_1} 2 a) b))\n      (HPow.hPow.{u_1, 0, u_1} b 2))",
+              "endPos": {
+                "column": 6,
+                "line": 9
+              },
+              "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-statement-lock-three/work/lean-kq0f1_e9/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "[anonymous]",
+              "pos": {
+                "column": 0,
+                "line": 9
+              },
+              "severity": "information"
+            }
+          }
+        ],
+        "runtime": {
+          "configured": true,
+          "executableFound": true,
+          "projectFound": true,
+          "runtimeBuilt": true,
+          "sandbox": "macos",
+          "isolated": true,
+          "ready": true,
+          "toolchain": "leanprover/lean4:v4.34.0",
+          "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+          "liveTestedInThisDistribution": false
+        },
+        "requiredImport": "Mathlib",
+        "minimalImportDetermined": false
+      }
+    ],
+    "runtime": {
+      "configured": true,
+      "executableFound": true,
+      "projectFound": true,
+      "runtimeBuilt": true,
+      "sandbox": "macos",
+      "isolated": true,
+      "ready": true,
+      "toolchain": "leanprover/lean4:v4.34.0",
+      "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+      "liveTestedInThisDistribution": false
+    },
+    "status": "local_checked",
+    "queries": [
+      "sq_nonneg",
+      "sub_nonneg",
+      "sub_nonneg.mp",
+      "sub_sq"
+    ]
+  },
+  "savedVerification": {
+    "id": "e60f7a8b-21c3-4205-a43e-d6b31c65b896",
+    "formalizationId": "f8521bce-d72e-4d6e-817f-1d5929fe57cc",
+    "mathIRHash": "d77924b29957c7f4bfa516014013a5ff2cc3b8460876c54df9ab60145798c5a6",
+    "statement_hash": "e83039e82bfe545e2bad30e0f4f2dd44bcf66f6ceba462fdc0e92b1b379769f7",
+    "statementDrift": false,
+    "binderDrift": false,
+    "typesHash": "eaa061c470c45efc761a5368fc6f454fc3d9a57511aa61d0df5bf5fb2c74e59f",
+    "kernelVerified": true,
+    "status": "formal_verified",
+    "originalMeaning": "model_interpretation",
+    "unresolvedAmbiguityIds": [],
+    "semanticAlignment": "natural_language_alignment_is_not_a_kernel_theorem",
+    "steps": [
+      {
+        "localVerified": true,
+        "status": "verified",
+        "diagnostics": [],
+        "certificate": {
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "checked": true,
+          "formalStatement": "∀ (v0 v1 : ℝ), 2 * (v0 ^ 2 + v1 ^ 2) - (v0 + v1) ^ 2 = v0 ^ 2 - 2 * v0 * v1 + v1 ^ 2",
+          "statementMatched": true,
+          "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+          "expectedExpressionSha256": "0af0c290130b526ceb7da9f64f5c2859f11a74c1d94c66fb8dd02b6fbb233d50",
+          "proofExpressionSha256": "e7a4c4d9bd7a896a93431913ef596b67c9e2a803af32adc45fbc39d12743edc2",
+          "statement_hash": "e83039e82bfe545e2bad30e0f4f2dd44bcf66f6ceba462fdc0e92b1b379769f7",
+          "nativeExpressionComparison": "structural_equal",
+          "sourceTypeSha256": "be2960aa36751360f20f31dbc05060ae110e875c96f5fc63c1b99bfa655bbd9a",
+          "sourceProofSha256": "90796ef2c29d087f20f1a029c92ecfa06694bd026f78cdd9f54480c1c4b84a23",
+          "runtime": {
+            "configured": true,
+            "executableFound": true,
+            "projectFound": true,
+            "runtimeBuilt": true,
+            "sandbox": "macos",
+            "isolated": true,
+            "ready": true,
+            "toolchain": "leanprover/lean4:v4.34.0",
+            "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+            "liveTestedInThisDistribution": false
+          },
+          "additionalAxioms": []
+        },
+        "evidenceId": "76bb20bd-3fa4-4246-8b80-a437493ceecf",
+        "stepId": "step_expand",
+        "established": true,
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 50,
+            "end": 87
+          }
+        ],
+        "dependsOn": [],
+        "unresolvedDependencies": [],
+        "affectedSteps": [],
+        "translationNotes": "展开平方并合并同类项"
+      },
+      {
+        "localVerified": true,
+        "status": "verified",
+        "diagnostics": [],
+        "certificate": {
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "checked": true,
+          "formalStatement": "∀ (v0 v1 : ℝ),\n  (∀ (v0 v1 : ℝ), 2 * (v0 ^ 2 + v1 ^ 2) - (v0 + v1) ^ 2 = v0 ^ 2 - 2 * v0 * v1 + v1 ^ 2) →\n    v0 ^ 2 - 2 * v0 * v1 + v1 ^ 2 = (v0 - v1) ^ 2",
+          "statementMatched": true,
+          "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+          "expectedExpressionSha256": "40349f5f00ccf97ede500bce65c97a59d5e3a3be3f77a62fec50b9673c48c43f",
+          "proofExpressionSha256": "3563342b13d31b09426dc3c08ae10cc8b6d273761bef786d37e1411053ae28da",
+          "statement_hash": "e83039e82bfe545e2bad30e0f4f2dd44bcf66f6ceba462fdc0e92b1b379769f7",
+          "nativeExpressionComparison": "structural_equal",
+          "sourceTypeSha256": "8eb089708199f35195b357b27ad54ffec645927ad89d7009d442ecd59a97bfac",
+          "sourceProofSha256": "224549f7c31a36417729c25659a3f16ccddb6e1b989933acf3281d57f34f1b26",
+          "runtime": {
+            "configured": true,
+            "executableFound": true,
+            "projectFound": true,
+            "runtimeBuilt": true,
+            "sandbox": "macos",
+            "isolated": true,
+            "ready": true,
+            "toolchain": "leanprover/lean4:v4.34.0",
+            "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+            "liveTestedInThisDistribution": false
+          },
+          "additionalAxioms": []
+        },
+        "evidenceId": "9bbbaed3-87af-47b1-9148-7dc769c70258",
+        "stepId": "step_factor",
+        "established": true,
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 74,
+            "end": 99
+          }
+        ],
+        "dependsOn": [
+          "step_expand"
+        ],
+        "unresolvedDependencies": [],
+        "affectedSteps": [],
+        "translationNotes": "完全平方公式"
+      },
+      {
+        "localVerified": true,
+        "status": "verified",
+        "diagnostics": [],
+        "certificate": {
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "checked": true,
+          "formalStatement": "∀ (v0 v1 : ℝ), (v0 - v1) ^ 2 ≥ 0",
+          "statementMatched": true,
+          "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+          "expectedExpressionSha256": "094a9d3798d045cd0a955f66979d5b1bf840f99018ee466cc4213572b8492d16",
+          "proofExpressionSha256": "dd9f8fcf06f47524851dac766c977df22737cc1891b1744b7c635dab37311fc3",
+          "statement_hash": "e83039e82bfe545e2bad30e0f4f2dd44bcf66f6ceba462fdc0e92b1b379769f7",
+          "nativeExpressionComparison": "structural_equal",
+          "sourceTypeSha256": "086e57368c78af951da4a5826fc5a6bfe6da404fb7417de55c8a2d666d4d9491",
+          "sourceProofSha256": "dbec6d44aa1297bdb3fc4c908f5e6212a1e43d942bb641a0f10585cd8ae7e613",
+          "runtime": {
+            "configured": true,
+            "executableFound": true,
+            "projectFound": true,
+            "runtimeBuilt": true,
+            "sandbox": "macos",
+            "isolated": true,
+            "ready": true,
+            "toolchain": "leanprover/lean4:v4.34.0",
+            "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+            "liveTestedInThisDistribution": false
+          },
+          "additionalAxioms": []
+        },
+        "evidenceId": "2d5f2b45-ace3-4b9a-b34e-3ebbe5c072db",
+        "stepId": "step_nonneg",
+        "established": true,
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 117,
+            "end": 130
+          }
+        ],
+        "dependsOn": [],
+        "unresolvedDependencies": [],
+        "affectedSteps": [],
+        "translationNotes": "任意实数的平方都非负"
+      },
+      {
+        "localVerified": true,
+        "status": "verified",
+        "diagnostics": [
+          {
+            "severity": "warning",
+            "message": "Variable name `s1` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _s1\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+            "leanPosition": {
+              "column": 88,
+              "line": 5
+            },
+            "leanEndPosition": {
+              "column": 90,
+              "line": 5
+            },
+            "stepId": "step_ge",
+            "sourceRefs": [
+              {
+                "blockId": "b0",
+                "start": 134,
+                "end": 161
+              }
+            ],
+            "mappingPrecision": "step",
+            "raw": {
+              "caption": "",
+              "data": "Variable name `s1` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _s1\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+              "endPos": {
+                "column": 90,
+                "line": 5
+              },
+              "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-statement-lock-three/work/lean-qt1mq6j8/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "linter.unusedVariables",
+              "pos": {
+                "column": 88,
+                "line": 5
+              },
+              "severity": "warning"
+            }
+          },
+          {
+            "severity": "warning",
+            "message": "Variable name `s2` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _s2\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+            "leanPosition": {
+              "column": 193,
+              "line": 5
+            },
+            "leanEndPosition": {
+              "column": 195,
+              "line": 5
+            },
+            "stepId": "step_ge",
+            "sourceRefs": [
+              {
+                "blockId": "b0",
+                "start": 134,
+                "end": 161
+              }
+            ],
+            "mappingPrecision": "step",
+            "raw": {
+              "caption": "",
+              "data": "Variable name `s2` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _s2\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+              "endPos": {
+                "column": 195,
+                "line": 5
+              },
+              "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-statement-lock-three/work/lean-qt1mq6j8/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "linter.unusedVariables",
+              "pos": {
+                "column": 193,
+                "line": 5
+              },
+              "severity": "warning"
+            }
+          }
+        ],
+        "certificate": {
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "checked": true,
+          "formalStatement": "∀ (v0 v1 : ℝ),\n  (∀ (v0 v1 : ℝ), 2 * (v0 ^ 2 + v1 ^ 2) - (v0 + v1) ^ 2 = v0 ^ 2 - 2 * v0 * v1 + v1 ^ 2) →\n    (∀ (v0 v1 : ℝ), v0 ^ 2 - 2 * v0 * v1 + v1 ^ 2 = (v0 - v1) ^ 2) →\n      (∀ (v0 v1 : ℝ), (v0 - v1) ^ 2 ≥ 0) → 2 * (v0 ^ 2 + v1 ^ 2) - (v0 + v1) ^ 2 ≥ 0",
+          "statementMatched": true,
+          "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+          "expectedExpressionSha256": "8cb34581ac5523f8e29cabd08b06006abe31f3e9f9f8a1fcd498845c9c776e26",
+          "proofExpressionSha256": "8ceebf1f2552018c9e536e443d84b9d8e0218d8e93be479bb219cd3d6763ac35",
+          "statement_hash": "e83039e82bfe545e2bad30e0f4f2dd44bcf66f6ceba462fdc0e92b1b379769f7",
+          "nativeExpressionComparison": "structural_equal",
+          "sourceTypeSha256": "fc41753fc324c7c7a89b85e4de260bb63c4021dc900fb00dfb31513fa5965808",
+          "sourceProofSha256": "af27d7cb895987b96fbdd4a97399324282dbfbb7f1ab3da716ebddb83478e233",
+          "runtime": {
+            "configured": true,
+            "executableFound": true,
+            "projectFound": true,
+            "runtimeBuilt": true,
+            "sandbox": "macos",
+            "isolated": true,
+            "ready": true,
+            "toolchain": "leanprover/lean4:v4.34.0",
+            "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+            "liveTestedInThisDistribution": false
+          },
+          "additionalAxioms": []
+        },
+        "evidenceId": "7486c8fa-2e4c-41c7-b237-77c30455fec2",
+        "stepId": "step_ge",
+        "established": true,
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 134,
+            "end": 161
+          }
+        ],
+        "dependsOn": [
+          "step_expand",
+          "step_factor",
+          "step_nonneg"
+        ],
+        "unresolvedDependencies": [],
+        "affectedSteps": [],
+        "translationNotes": "由 2(x² + y²) - (x + y)² = (x - y)² 且 (x - y)² ≥ 0"
+      },
+      {
+        "localVerified": true,
+        "status": "verified",
+        "diagnostics": [],
+        "certificate": {
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "checked": true,
+          "formalStatement": "∀ (v0 v1 : ℝ), (∀ (v0 v1 : ℝ), 2 * (v0 ^ 2 + v1 ^ 2) - (v0 + v1) ^ 2 ≥ 0) → (v0 + v1) ^ 2 ≤ 2 * (v0 ^ 2 + v1 ^ 2)",
+          "statementMatched": true,
+          "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+          "expectedExpressionSha256": "37354e52bdeebadadd5c971e8fe3978cce24dced015daa4d15514a8a5abf6162",
+          "proofExpressionSha256": "055d7fde5d3f2c14f9770e793c6106cdecbbfda9072dcc39feda16fe998cab9f",
+          "statement_hash": "e83039e82bfe545e2bad30e0f4f2dd44bcf66f6ceba462fdc0e92b1b379769f7",
+          "nativeExpressionComparison": "structural_equal",
+          "sourceTypeSha256": "a9886c031dcc462fc739e4e004718d777b4c5ec5144ed37785b7a7d808a23c02",
+          "sourceProofSha256": "6aa0ae241c1f37ffd575ff2d02940ec2b28f10ac673de85e47ff9f701e2f6c69",
+          "runtime": {
+            "configured": true,
+            "executableFound": true,
+            "projectFound": true,
+            "runtimeBuilt": true,
+            "sandbox": "macos",
+            "isolated": true,
+            "ready": true,
+            "toolchain": "leanprover/lean4:v4.34.0",
+            "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+            "liveTestedInThisDistribution": false
+          },
+          "additionalAxioms": []
+        },
+        "evidenceId": "6b1efb04-2f8c-487c-b452-fc594b7004de",
+        "stepId": "step_conclusion",
+        "established": true,
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 164,
+            "end": 186
+          }
+        ],
+        "dependsOn": [
+          "step_ge"
+        ],
+        "unresolvedDependencies": [],
+        "affectedSteps": [],
+        "translationNotes": "由 2(x² + y²) - (x + y)² ≥ 0 移项得"
+      },
+      {
+        "localVerified": true,
+        "status": "verified",
+        "diagnostics": [],
+        "certificate": {
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "checked": true,
+          "formalStatement": "∀ (v0 v1 : ℝ), (∀ (v0 v1 : ℝ), (v0 + v1) ^ 2 ≤ 2 * (v0 ^ 2 + v1 ^ 2)) → (v0 + v1) ^ 2 ≤ 2 * (v0 ^ 2 + v1 ^ 2)",
+          "statementMatched": true,
+          "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+          "expectedExpressionSha256": "49016f515f3c10fbcfada23f34b9b3b23a37c655ccd8e3b5822f07d6e2aa0b1d",
+          "proofExpressionSha256": "d90baf50aef44f3079df736311992a45786c3470751a7b44b76ca014092f5c03",
+          "statement_hash": "e83039e82bfe545e2bad30e0f4f2dd44bcf66f6ceba462fdc0e92b1b379769f7",
+          "nativeExpressionComparison": "structural_equal",
+          "sourceTypeSha256": "63674cb1ce9e6a1f008d1f253f59576559968d554052188ff23637c64479ccae",
+          "sourceProofSha256": "7dd9f91cbe6419e4523b10cb1dca80882008c0f3b386ca40630eb2365883016c",
+          "runtime": {
+            "configured": true,
+            "executableFound": true,
+            "projectFound": true,
+            "runtimeBuilt": true,
+            "sandbox": "macos",
+            "isolated": true,
+            "ready": true,
+            "toolchain": "leanprover/lean4:v4.34.0",
+            "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+            "liveTestedInThisDistribution": false
+          },
+          "additionalAxioms": []
+        },
+        "evidenceId": "7d27fbf4-9ca0-4689-99d8-216ba4e71d30",
+        "stepId": "goal",
+        "established": true,
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 20,
+            "end": 42
+          },
+          {
+            "blockId": "b0",
+            "start": 187,
+            "end": 190
+          }
+        ],
+        "dependsOn": [
+          "step_conclusion"
+        ],
+        "unresolvedDependencies": [],
+        "affectedSteps": [],
+        "translationNotes": "证毕"
+      }
+    ],
+    "aggregate": {
+      "localVerified": true,
+      "status": "verified",
+      "diagnostics": [],
+      "certificate": {
+        "auditMethod": "fresh_environment_data_only_kernel_replay",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "checked": true,
+        "formalStatement": "∀ (v0 v1 : ℝ), (v0 + v1) ^ 2 ≤ 2 * (v0 ^ 2 + v1 ^ 2)",
+        "statementMatched": true,
+        "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+        "expectedExpressionSha256": "30fcdcf108253450ce5674a49f0add43e230ba8152e949402f544a0c8b6edc7b",
+        "proofExpressionSha256": "ee9a33b029e5158867f9fc4d9da70e1425f0973117b241284d9a7ee69d0bf3ae",
+        "statement_hash": "e83039e82bfe545e2bad30e0f4f2dd44bcf66f6ceba462fdc0e92b1b379769f7",
+        "nativeExpressionComparison": "structural_equal",
+        "sourceTypeSha256": "ac6301353ff3acd648a6aa39562b3bda5099a4fb954e2a29650983e63c0dce01",
+        "sourceProofSha256": "57aedd477fc5476af644898e0abf72afdb265e4ce77798ef35ba9515d22c7dc0",
+        "runtime": {
+          "configured": true,
+          "executableFound": true,
+          "projectFound": true,
+          "runtimeBuilt": true,
+          "sandbox": "macos",
+          "isolated": true,
+          "ready": true,
+          "toolchain": "leanprover/lean4:v4.34.0",
+          "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+          "liveTestedInThisDistribution": false
+        },
+        "additionalAxioms": []
+      },
+      "evidenceId": "18383373-7064-48fb-92f2-a898c31dff74"
+    },
+    "simulated": false,
+    "authority": "lean_kernel",
+    "runtime": {
+      "configured": true,
+      "executableFound": true,
+      "projectFound": true,
+      "runtimeBuilt": true,
+      "sandbox": "macos",
+      "isolated": true,
+      "ready": true,
+      "toolchain": "leanprover/lean4:v4.34.0",
+      "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+      "liveTestedInThisDistribution": false
+    }
+  }
+}

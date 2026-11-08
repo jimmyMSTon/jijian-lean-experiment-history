@@ -1,0 +1,106 @@
+{
+  "format": "mathir-v2-current-workflow-real-lean-replay-v1",
+  "performedOn": "2026-10-12",
+  "replayKind": "saved_real_deepseek_mathir_and_proof_through_current_workflow",
+  "sourceLiveReport": {
+    "path": "reports/mathir-v2-full-chain-live-smoke-20261012.json",
+    "sha256": "cda5a3d13d9c3c222cf2913e5a8cfab890e6a931ef0196ea2d580c8bc1e07a8e",
+    "realRequestCount": 4,
+    "proofOnlyResponseReason": "FormalProofs",
+    "savedOriginalProofTerm": "rfl"
+  },
+  "currentWorkflowReplay": {
+    "providerRequests": 0,
+    "mathlibRetrievals": 0,
+    "retrieverCalls": 0,
+    "termination": "original_route_kernel_passed",
+    "fixedStatementKernelPassed": true,
+    "originalRouteKernelPassed": true,
+    "workflowEvents": [],
+    "verificationHistoryCount": 1,
+    "lockedStatement": "(∀ (v_d_n : ℕ), (v_d_n = v_d_n))",
+    "statementHash": "d8cd99a236dc70453406fcd1462549f0104c678bf14e4cdeeba2452c543ee776",
+    "mathIRHash": "e6b565a563b5728f7bc57db74c547dc72a42bdd650b685cc104d4d6e88b70d4f",
+    "route": {
+      "routeId": "r1",
+      "status": "passed",
+      "proofCompositionStatus": "composed",
+      "proofCompositionKernelChecked": true,
+      "completeOriginalRouteKernelPassed": true,
+      "routeConnectivity": "connected",
+      "allDeclaredDependenciesUsed": true,
+      "stepCount": 1,
+      "stepStatus": "passed",
+      "stepExpectedType": "(∀ (v_d_n : ℕ), (v_d_n = v_d_n))",
+      "stepSourceRefs": [
+        {
+          "blockId": "b0",
+          "start": 8,
+          "end": 17
+        }
+      ],
+      "stepKernelCertificate": {
+        "checked": true,
+        "statementMatched": true,
+        "auditMethod": "fresh_environment_data_only_kernel_replay",
+        "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+        "axioms": [],
+        "additionalAxioms": [],
+        "expectedExpressionSha256": "36362fdbbd29d086fa1841da99d349622f8f231472a18afaff27084927641b62",
+        "proofExpressionSha256": "f39d9afece32cd6e51b0872862fd3b74743aa602007f591e649e171aa16ae879"
+      },
+      "compiledRouteProofSha256": "28e4967947cd152804bea0fad13d2e3e161d6c58619ea5285f6b5cdd8d9369e4"
+    },
+    "leanMetrics": {
+      "processCount": 3,
+      "elapsedSeconds": 70.764,
+      "phases": [
+        {
+          "phase": "proposition_elaboration",
+          "wallSeconds": 44.09
+        },
+        {
+          "phase": "expected_wire_materialization",
+          "wallSeconds": 0.0003
+        },
+        {
+          "phase": "proof_export_batch",
+          "wallSeconds": 13.2
+        },
+        {
+          "phase": "proof_wire_materialization",
+          "wallSeconds": 0.0027
+        },
+        {
+          "phase": "independent_kernel_replay_batch",
+          "wallSeconds": 13.47
+        },
+        {
+          "phase": "kernel_certificate_materialization",
+          "wallSeconds": 0.0005
+        }
+      ]
+    },
+    "runtime": {
+      "sourceFingerprint": "a6596b31264b3c817a1e7a74f590d6e4442754ae5cc2e59565f1f2a1fe3b1800",
+      "protocol": "jj_export:nonce:name:type:proof",
+      "toolchain": "leanprover/lean4:v4.34.0",
+      "sandbox": "macos",
+      "isolated": true,
+      "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20"
+    },
+    "sourceAlignment": {
+      "status": "supported",
+      "sourceRefsValidated": true,
+      "semanticAlignmentKernelProven": false
+    }
+  },
+  "priorFreshLiveOutcome": {
+    "fixedStatementKernelPassed": false,
+    "originalRouteKernelPassed": false,
+    "termination": "no_repairable_proof_failure",
+    "rootCause": "the generic single-claim route compiler returned the local proof term directly without composing the free theorem binder into the locked theorem proof",
+    "diagnostic": "rfl has type ?m.3 = ?m.3 but was expected to have type ∀ (v_d_n : ℕ), v_d_n = v_d_n",
+    "correctiveReplay": "the same saved MathIR and DeepSeek proof were recompiled and passed the current complete workflow and independent Kernel"
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "case": {
+    "id": "gaolian-2024-r2-q1",
+    "category": "高联二试",
+    "sourceReference": "https://www.scribd.com/document/799906998/2024%E5%B9%B4%E9%AB%98%E8%81%94%E5%8A%A0%E8%AF%95A%E5%8D%B7%E8%AF%95%E9%A2%98",
+    "input": "2024年全国高中数学联赛二试A卷第1题（40分）。\n原题：给定正整数r，求最大的实数C，使存在一个公比为r的实数等比数列(a_n)（n≥1），满足对所有正整数n都有 ||a_n||≥C，其中||x||为x到最近整数的距离。\n我写出的完整证明：\n第1步。记dist(x,Z)=min_{k∈Z}|x-k|。对任意实数x均有0≤dist(x,Z)≤1/2，且dist(x+k,Z)=dist(x,Z)（整数k）。我们在固定正整数r后求使上述条件能成立的最大C。\n第2步。若r为奇数，所有数列均受C≤1/2限制。取a_1=1/2，a_n=r^(n-1)/2。因r^(n-1)为奇数，a_n是半整数，故所有n的dist(a_n,Z)=1/2，最佳C为1/2。\n第3步。以下设r=2m，其中m≥1为整数。令c=m/(2m+1)=r/(2(r+1))，则0<c<1/2。对任意实数x选最邻近整数k，写x=k+δ且|δ|≤1/2。若|δ|≤c，则dist(x,Z)≤c。\n第4步。若c<|δ|≤1/2，则r|δ|=2m|δ|落在(m-c,m]。由于r为整数，rx=rk+rδ的最近整数可以选rk±m，所以dist(rx,Z)≤m-r|δ|<c。因而对每个x必有min(dist(x,Z),dist(rx,Z))≤c。\n第5步。任何公比为r的数列满足a_2=ra_1。将第4步用在x=a_1，得dist(a_1,Z)与dist(a_2,Z)至少一个不大于c。所以任何适用的C≤c。\n第6步。取a_1=m/(2m+1)，并设a_n=r^(n-1)a_1。模整数计算：2m≡-1 (mod 2m+1)，故对任意n，a_n与(-1)^(n-1)m/(2m+1)相差整数。因0<m/(2m+1)<1/2，所以dist(a_n,Z)=m/(2m+1)=c。\n第7步。上界与构造均成立，故r奇数时最大C=1/2，r偶数时最大C=r/(2(r+1))。证毕。",
+    "sourceSha256": "18a5a55d2db3a7048a89554c2e9c4e2b931e8d2514b3f9e5ac611a8aa5878a98",
+    "modelProvidedLean": false
+  },
+  "jobId": "9e52d9a9-df8f-43e1-a7d2-6acf7d23b497",
+  "jobStatus": "completed",
+  "resultStatus": "whole_proof_translation_incomplete",
+  "kernelVerified": false,
+  "formalProofCertified": false,
+  "originalProofCertified": false,
+  "fidelityReview": null,
+  "fidelityIssues": 0,
+  "sourceSteps": 7,
+  "kernelCertificate": null,
+  "unsupportedOriginalSteps": [
+    "第1步：需要形式化实数到整数集的下确界 ⨅ k : ℤ, |x-k| 满足 0≤dist≤1/2 及整数平移不变性；这依赖最近整数存在性等 Mathlib API，未在本证明项中完成。",
+    "第2步：需要证明奇数 r 时 a_n=r^(n-1)/2 为半整数，从而其到整数集的距离恒为 1/2，并完成该构造属于可行集的下界证明。",
+    "第3步：需要在 r=2m 时形式化 c=m/(2m+1) 的性质，并证明若 |δ|≤c 则 dist(x,Z)≤c。",
+    "第4步：需要完成关键不等式 min(dist(x,Z),dist(2mx,Z))≤c 的 Lean 形式化，包括最近整数选择、δ 的正负分支及代数估计。",
+    "第5步：需要从第4步推出任何可行数列的 C≤c，这依赖前述 dist 和下确界的 API 形式化。",
+    "第6步：需要证明构造数列 a_1=m/(2m+1), a_n=(2m)^(n-1)a_1 对所有 n 满足 dist(a_n,Z)=m/(2m+1)，原稿中的模整数/奇偶符号论证尚未在 Lean 中完成。",
+    "第7步：最终合并奇数与偶数情形的最大性结论依赖以上所有步骤，因此未能形成完整 Lean 证明项。"
+  ],
+  "error": null,
+  "usage": {
+    "attempts": 12,
+    "inputTokens": 37822,
+    "outputTokens": 202350,
+    "missingUsage": 0,
+    "requests": [
+      {
+        "reason": "WholeProofPlan",
+        "status": "response_received",
+        "input_tokens": 1244,
+        "output_tokens": 21140,
+        "error_type": null,
+        "http_duration_ms": 95136.379
+      },
+      {
+        "reason": "WholeProofProgram",
+        "status": "response_received",
+        "input_tokens": 2128,
+        "output_tokens": 20157,
+        "error_type": null,
+        "http_duration_ms": 120717.014
+      },
+      {
+        "reason": "LeanProofScaffold",
+        "status": "response_received",
+        "input_tokens": 2157,
+        "output_tokens": 22484,
+        "error_type": null,
+        "http_duration_ms": 114068.09
+      },
+      {
+        "reason": "LeanSourceHoleFillBatch",
+        "status": "response_received",
+        "input_tokens": 3251,
+        "output_tokens": 15564,
+        "error_type": null,
+        "http_duration_ms": 87840.879
+      },
+      {
+        "reason": "LeanSourceHoleFill",
+        "status": "response_received",
+        "input_tokens": 2661,
+        "output_tokens": 8787,
+        "error_type": null,
+        "http_duration_ms": 47177.009
+      },
+      {
+        "reason": "LeanSourceHoleFill",
+        "status": "response_received",
+        "input_tokens": 3145,
+        "output_tokens": 20625,
+        "error_type": null,
+        "http_duration_ms": 105716.509
+      },
+      {
+        "reason": "LeanSourceHoleFill",
+        "status": "response_received",
+        "input_tokens": 3852,
+        "output_tokens": 10615,
+        "error_type": null,
+        "http_duration_ms": 52213.951
+      },
+      {
+        "reason": "LeanSourceHoleFill",
+        "status": "response_received",
+        "input_tokens": 4530,
+        "output_tokens": 20592,
+        "error_type": null,
+        "http_duration_ms": 95161.849
+      },
+      {
+        "reason": "LeanSourceHoleFill",
+        "status": "response_received",
+        "input_tokens": 6253,
+        "output_tokens": 30897,
+        "error_type": null,
+        "http_duration_ms": 153679.757
+      },
+      {
+        "reason": "SuspectedAuthoredFault",
+        "status": "response_received",
+        "input_tokens": 1706,
+        "output_tokens": 6724,
+        "error_type": null,
+        "http_duration_ms": 37021.802
+      },
+      {
+        "reason": "StepObligations",
+        "status": "response_received",
+        "input_tokens": 2890,
+        "output_tokens": 23853,
+        "error_type": null,
+        "http_duration_ms": 112796.638
+      },
+      {
+        "reason": "Explanation",
+        "status": "response_received",
+        "input_tokens": 4005,
+        "output_tokens": 912,
+        "error_type": null,
+        "http_duration_ms": 7171.221
+      }
+    ]
+  },
+  "feedbackError": null,
+  "elapsedSeconds": 1082.17,
+  "totalElapsedSeconds": 1082.75
+}

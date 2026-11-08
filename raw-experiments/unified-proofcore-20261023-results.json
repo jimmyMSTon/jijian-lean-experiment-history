@@ -1,0 +1,124 @@
+{
+  "kind": "unified_prod_e2e_deepseek_lean_20261023",
+  "at": "2026-10-23T14:38:00.344139+00:00",
+  "commits": [
+    "107ac973d7608eb1213c59729a9efb55d9721448",
+    "cdd37f32b8249a8b3a00b23598d45787f52fc5c3",
+    "4e2b57433664981c102edd7812f469fc30dc783f"
+  ],
+  "replaySamples": [
+    {
+      "case": "hard_analysis_ivt_sup",
+      "commit": "107ac973d7608eb1213c59729a9efb55d9721448",
+      "job": "completed",
+      "runStatus": "incomplete",
+      "termination": "diagnostic_repair_failed",
+      "fixedStatementKernelPassed": false,
+      "originalRouteKernelPassed": false,
+      "sourceProofVerified": false,
+      "realRequests": 12,
+      "inputTokens": 751444,
+      "outputTokens": 232642,
+      "incompleteUsageRecords": 0,
+      "durationSeconds": 1459.92,
+      "error": {
+        "code": "AI_PROOF_PATCH_INVALID",
+        "message": "模型 proof patch 超出本次授权节点",
+        "details": {
+          "duplicateNodeIds": [],
+          "unauthorizedNodeIds": [
+            "r12"
+          ]
+        }
+      }
+    },
+    {
+      "case": "hard_linear_algebra_spectral",
+      "commit": "107ac973d7608eb1213c59729a9efb55d9721448",
+      "job": "failed",
+      "runStatus": null,
+      "termination": null,
+      "fixedStatementKernelPassed": null,
+      "originalRouteKernelPassed": null,
+      "sourceProofVerified": null,
+      "realRequests": 9,
+      "inputTokens": 297098,
+      "outputTokens": 228524,
+      "incompleteUsageRecords": 0,
+      "durationSeconds": 1150.83,
+      "error": {
+        "code": "MATHIR_V2_INVALID",
+        "message": "结构未通过确定性 MathIR 校验；尚未运行 Lean，这不表示原稿证明错误。",
+        "details": {
+          "validationCode": "V2_INDUCTION_IH",
+          "draftId": "4bba6d03-47b8-4676-b3f0-fed1632a1e8d",
+          "validationPath": "proofRoutes[route_induction].inductions[ind_n]",
+          "validationSourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 57,
+              "end": 82
+            },
+            {
+              "blockId": "b0",
+              "start": 333,
+              "end": 363
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "hard_number_theory_4k3",
+      "commit": "107ac973d7608eb1213c59729a9efb55d9721448",
+      "job": "completed",
+      "runStatus": "incomplete",
+      "termination": "diagnostic_repair_failed",
+      "fixedStatementKernelPassed": false,
+      "originalRouteKernelPassed": false,
+      "sourceProofVerified": false,
+      "realRequests": 16,
+      "inputTokens": 396308,
+      "outputTokens": 256159,
+      "incompleteUsageRecords": 1,
+      "durationSeconds": 1871.07,
+      "error": {
+        "code": "AI_TRANSPORT_ERROR",
+        "message": "无法连接 AI 服务",
+        "details": {}
+      }
+    },
+    {
+      "case": "hard_linear_algebra_spectral",
+      "commit": "cdd37f32b8249a8b3a00b23598d45787f52fc5c3",
+      "job": "failed",
+      "runStatus": null,
+      "termination": null,
+      "fixedStatementKernelPassed": null,
+      "originalRouteKernelPassed": null,
+      "sourceProofVerified": null,
+      "realRequests": 4,
+      "inputTokens": 99826,
+      "outputTokens": 89314,
+      "incompleteUsageRecords": 1,
+      "durationSeconds": 594.58,
+      "error": {
+        "code": "AI_TRANSPORT_ERROR",
+        "message": "无法连接 AI 服务",
+        "details": {}
+      }
+    }
+  ],
+  "totals": {
+    "realProviderAttempts": 41,
+    "inputTokens": 1544676,
+    "outputTokens": 806639
+  },
+  "testLogs": [
+    "high-fidelity-unified-full-nonlive-20261023.log",
+    "derived-induction-inferred-type-full-nonlive-final-20261023.log",
+    "provider-patch-filter-full-regression-20261023.log",
+    "derived-induction-type-lean-20261023.log"
+  ],
+  "notes": "3 hard theorem workflows, all genuinely sent as original Chinese source to signed bundled backend, no hand-coded MathIR/Lean; no new hard Kernel cert; 4e2b574 fixes found generic issues, was NOT tested through a new fresh 3-hard DeepSeek run."
+}

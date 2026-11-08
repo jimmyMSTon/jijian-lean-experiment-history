@@ -1,0 +1,202 @@
+{
+  "id": "e8e3799b-5c2b-4f31-a955-02db1797dbc8",
+  "runId": "84d23d71-85fa-453e-854d-a14a50a3a9ad",
+  "kind": "lean_first_explanation_only",
+  "verifiedFormalProof": true,
+  "sourceEquivalenceCertified": false,
+  "originalProofCertified": false,
+  "modelExplanationAuthority": "interpretation_only_not_a_certificate",
+  "formalProofCertified": true,
+  "verificationMode": "single_whole_theorem_kernel",
+  "sourceFidelityReview": {
+    "assessment": "no_specific_mismatch_identified_by_model",
+    "sourceEquivalenceCertified": false,
+    "originalProofCertified": false,
+    "modelReviewOnly": true,
+    "reviewedStepCount": 3,
+    "sourceStepCount": 3,
+    "issues": [],
+    "auxiliaryAssertions": [
+      "have hx : -x ≤ |x| := neg_le_abs x",
+      "have hy : -y ≤ |y| := neg_le_abs y",
+      "have h : -x + -y ≤ |x| + |y| := add_le_add hx hy",
+      "have h1 : -(|x| + |y|) ≤ x + y := by"
+    ],
+    "modelProvenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "0418312d-c69c-483b-ab50-afe1b54e7681",
+      "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+      "usage": {
+        "prompt_tokens": 1413,
+        "completion_tokens": 3639,
+        "total_tokens": 5052,
+        "prompt_tokens_details": {
+          "cached_tokens": 640
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 3016
+        },
+        "prompt_cache_hit_tokens": 640,
+        "prompt_cache_miss_tokens": 773
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "steps": [
+      {
+        "index": 0,
+        "originalExcerpt": "由于 x≤|x| 且 y≤|y|，相加得到 x+y≤|x|+|y|。",
+        "leanEvidenceExcerpt": "exact add_le_add (le_abs_self x) (le_abs_self y)",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 使用 le_abs_self 分别得到 x≤|x|、y≤|y|，再用 add_le_add 相加，直接对应作者所述步骤。这里只用绝对值的基本性质与不等式相加，没有额外补入关键数学引理。"
+      },
+      {
+        "index": 1,
+        "originalExcerpt": "又由于 −x≤|x| 且 −y≤|y|，相加得到 −(x+y)≤|x|+|y|。",
+        "leanEvidenceExcerpt": "have hx : -x ≤ |x| := neg_le_abs x\n    have hy : -y ≤ |y| := neg_le_abs y\n    have h : -x + -y ≤ |x| + |y| := add_le_add hx hy\n    linarith",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 先由 neg_le_abs 得到 −x≤|x|、−y≤|y|，再用 add_le_add 相加，最后用 linarith 将 -x + -y 整理为 -(x+y)。这对应作者的“相加得到”步骤，额外部分只是基础线性算术整理。"
+      },
+      {
+        "index": 2,
+        "originalExcerpt": "因为一个实数的绝对值是它本身与它的相反数中较大的那个，所以 |x+y|≤|x|+|y|。",
+        "leanEvidenceExcerpt": "have h1 : -(|x| + |y|) ≤ x + y := by\n      linarith [source_step_1]\n    exact abs_le.mpr ⟨h1, source_step_0⟩",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 用 linarith 把前一步的 -(x+y)≤|x|+|y| 整理为 -(|x|+|y|)≤x+y，然后使用 abs_le.mpr 结合 x+y≤|x|+|y| 得到 |x+y|≤|x|+|y|。abs_le 对应作者明确写出的“绝对值是本身与相反数中较大者”这一基本性质，未发现作者未写的关键定理被补入。"
+      }
+    ],
+    "modelSummary": "三个源步骤与 Lean 证明中的 source_step_0、source_step_1、source_step_2 基本一一对应：分别使用绝对值的基本上下界、不等式相加和绝对值最大性质。未发现明显的语义错位、替代证明插入或关键数学理由缺失；但仍只是未找到具体疑点，不等同于对整篇证明作独立完全认证。"
+  },
+  "summary": "整篇翻译后的形式定理已通过 Lean Kernel；原稿数学语义和推理忠实性尚未独立认证。",
+  "sourceSteps": [
+    {
+      "id": "source-0",
+      "index": 0,
+      "role": "inference",
+      "start": 32,
+      "end": 66,
+      "sourceExcerpt": "由于 x≤|x| 且 y≤|y|，相加得到 x+y≤|x|+|y|。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_0",
+      "dependsOn": []
+    },
+    {
+      "id": "source-1",
+      "index": 1,
+      "role": "inference",
+      "start": 66,
+      "end": 106,
+      "sourceExcerpt": "又由于 −x≤|x| 且 −y≤|y|，相加得到 −(x+y)≤|x|+|y|。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_1",
+      "dependsOn": []
+    },
+    {
+      "id": "source-2",
+      "index": 2,
+      "role": "inference",
+      "start": 106,
+      "end": 150,
+      "sourceExcerpt": "因为一个实数的绝对值是它本身与它的相反数中较大的那个，所以 |x+y|≤|x|+|y|。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_2",
+      "dependsOn": []
+    }
+  ],
+  "localStepEvidence": [
+    {
+      "id": "source-0",
+      "status": "translation_mapped_only",
+      "start": 32,
+      "end": 66,
+      "kernelVerified": false,
+      "unverifiedDependencies": [],
+      "diagnostics": [],
+      "repairStatus": null,
+      "attemptCount": 0,
+      "originalDiagnostics": []
+    },
+    {
+      "id": "source-1",
+      "status": "translation_mapped_only",
+      "start": 66,
+      "end": 106,
+      "kernelVerified": false,
+      "unverifiedDependencies": [],
+      "diagnostics": [],
+      "repairStatus": null,
+      "attemptCount": 0,
+      "originalDiagnostics": []
+    },
+    {
+      "id": "source-2",
+      "status": "translation_mapped_only",
+      "start": 106,
+      "end": 150,
+      "kernelVerified": false,
+      "unverifiedDependencies": [],
+      "diagnostics": [],
+      "repairStatus": null,
+      "attemptCount": 0,
+      "originalDiagnostics": []
+    }
+  ],
+  "diagnostics": [],
+  "explanation": {
+    "summary": "Lean 已对翻译后的整篇命题 ∀ x y : ℝ, |x + y| ≤ |x| + |y| 的证明通过 Kernel；但这仅说明该形式 proofTerm 通过检查，源证明与形式证明的等价性未认证，原稿证明也未认证。三个源步骤仅标记为 translation_mapped_only，不能据此称为“原证明已认证”。",
+    "why": "数据中 wholeFormalProofVerified=true、kernelVerified=true，且 leanDiagnostics 为空、unsupportedOriginalSteps 为空，说明整篇形式证明未出现 Kernel 报错。sourceFidelityReview 的 assessment 为 no_specific_mismatch_identified_by_model，但 sourceEquivalenceCertified=false、originalProofCertified=false、modelReviewOnly=true；sourceSteps 中三步均为 translation_mapped_only 且 kernelVerified=false。Lean 片段分别使用 le_abs_self/add_le_add、neg_le_abs/add_le_add/linarith、abs_le.mpr 对应原稿三步，属于模型映射审查，不构成对原自然语言证明的独立认证。当前没有正式 Kernel 反证，因此不能说是题目或原命题被反证；只能说翻译后的形式命题局部/整篇通过 Kernel，而源证明忠实性仍未确认。",
+    "suggestedRevision": "对外应表述为：“翻译后的形式命题已用 Lean Kernel 验证通过；原稿证明与形式 proofTerm 的逐字语义等价性及原证明本身尚未认证。”若要宣称原证明可信，需要补充源步骤到 Lean 的逐条对应认证或人工形式化审查，不能把 translation_mapped_only 的步骤当作已由 Kernel 验证的前提。",
+    "problematicSourceExcerpt": ""
+  },
+  "explanationError": null,
+  "modelProvenance": {
+    "jsonParsing": {
+      "method": "deterministic_json_schema",
+      "recovered": false,
+      "edits": []
+    },
+    "provider": "deepseek",
+    "requestedModel": "deepseek-flash",
+    "model": "deepseek-flash",
+    "responseId": "2b777ef2-02f6-4a9c-8d15-5dd921aa5824",
+    "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "usage": {
+      "prompt_tokens": 1911,
+      "completion_tokens": 928,
+      "total_tokens": 2839,
+      "prompt_tokens_details": {
+        "cached_tokens": 128
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 560
+      },
+      "prompt_cache_hit_tokens": 128,
+      "prompt_cache_miss_tokens": 1783
+    },
+    "thinking": "provider_default",
+    "promptSchemaEncoding": "compact_json_v1",
+    "structuredOutput": "json_mode_with_local_schema_validation",
+    "simulated": false
+  }
+}

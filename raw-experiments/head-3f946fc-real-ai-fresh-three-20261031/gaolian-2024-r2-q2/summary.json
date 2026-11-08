@@ -1,0 +1,135 @@
+[
+  {
+    "case": {
+      "id": "gaolian-2024-r2-q2",
+      "input": "2024年全国高中数学联赛二试A卷第2题（40分）。\n原题：在凸四边形ABCD中，AC平分∠BAD，E、F分别在边BC、CD上，满足EF∥BD。分别延长FA、EA至点P、Q，使过A,B,P的圆以及过A,D,Q的圆均与AC相切。证明B,P,Q,D四点共圆。\n我的坐标证明（完整保留几何假设，不将结论写进假设）：\n第1步。以A为原点，AC为正x轴，长度尺度固定；由于AC平分角BAD，可取实数u,v满足u²+v²=1、u>0、v>0，并取b,d,c>0，使B=(bu,bv)，D=(du,-dv)，C=(c,0)。这里b=AB、d=AD、c=AC。\n第2步。因E∈BC、F∈CD且EF∥BD，依据以C为中心的相似比，存在共同参数0<t<1，使E=C+t(B-C)=(c(1-t)+tbu,tbv)，F=C+t(D-C)=(c(1-t)+tdu,-tdv)。这一步准确使用了原题的平行条件。\n第3步。任何过原点且在原点切x轴的圆均有方程x²+y²+λy=0。通过B的第一圆系数λ_1=-b/v，通过D的第二圆系数λ_2=d/v，这是分别代入B,D并用u²+v²=1得到的。\n第4步。由于P位于FA的延长线过A的另一侧，可写P=pF且p<0；因为P在第一圆上，代入得p²|F|²-(b/v)pF_y=0。由F_y=-tdv、p≠0，得p=-bdt/|F|²。完全类似，由Q=qE在第二圆上且E_y=tbv，得到q=-bdt/|E|²。记h=bdt，则P=-hF/|F|²、Q=-hE/|E|²。\n第5步。四个互异点U_i=(x_i,y_i)共圆，当且仅当行列式det[(x_i²+y_i²,x_i,y_i,1)]_{i=1}^4=0。取顺序B,D,P,Q，并代入上面的显式坐标。分母|E|²|F|²均严格为正。\n第6步。直接通分展开该4×4行列式，其分子必含因子u²+v²-1；事实上逐项整理得到行列式为 b²c d²t³ v(b-d)(t-1)(u²+v²-1)[b²(u²+v²)-2bd u²+2bd v²+d²(u²+v²)]/(|E|²|F|²)。由于u²+v²=1，该值严格等于0。代数整理仅使用第1至4步显式坐标和恒等式，无须新增原题几何假设。\n第7步。因此B,D,P,Q四点位于同一个圆上，即B,P,Q,D共圆。证毕。"
+    },
+    "jobId": "b6aa83dd-1f0d-4292-a09d-4ae69e0242a5",
+    "jobStatus": "completed",
+    "resultStatus": "whole_proof_translation_incomplete",
+    "kernelVerified": false,
+    "formalProofCertified": false,
+    "originalProofCertified": false,
+    "fidelityReview": null,
+    "fidelityIssues": 0,
+    "sourceSteps": 7,
+    "kernelCertificate": null,
+    "unsupportedOriginalSteps": [
+      "source_step_0：从 `angleBisector` 和 `convexQuad` 推出坐标归一化 u²+v²=1、u>0、v>0 以及 B=(bu,bv)、D=(du,-dv)、C=(c,0) 的过程未形式化；还需要处理定向、角度、长度和坐标轴选取等细节。",
+      "source_step_1：由 `onOpenSegment B C E`、`onOpenSegment C D F` 和 `parallel E F B D` 推出存在同一个参数 0<t<1，使 E=C+t(B-C)、F=C+t(D-C)，这一仿射比例推理未在 Lean 中证明。",
+      "source_step_2：从 `circleTangentAt` 推出“过 A 且在 A 切 AC 的圆”的方程，并计算 λ₁=-b/v、λ₂=d/v，这一步未形式化；还需说明圆方程和 `dist2 O A = dist2 O B` 等条件的等价转换。",
+      "source_step_3：从 `P=A+p(F-A)`、`Q=A+q(E-A)` 以及 P、Q 分别在相应切圆上推出 p=-bdt/|F|²、q=-bdt/|E|² 未形式化；其中 p≠0、q≠0、符号和分母非零都尚未证明。",
+      "source_step_4：四点共圆的行列式判据 `det[(x_i²+y_i²,x_i,y_i,1)]=0` 未在 Lean 中建立，并且行列式为零到存在实际圆心 O 的转换也未形式化；同时还需证明 B,D,P,Q 非共线或处理退化情形。",
+      "source_step_5：第 6 步给出的 4×4 行列式的显式通分展开恒等式未在 Lean 中证明；这是核心代数恒等式，不能省略。",
+      "source_step_6：由行列式为零推出存在 O 满足 `dist2 O B = dist2 O D = dist2 O P = dist2 O Q` 的最终构造未形式化，因此 `B,P,Q,D` 共圆尚未由 Lean 证明。"
+    ],
+    "error": null,
+    "usage": {
+      "attempts": 12,
+      "inputTokens": 75621,
+      "outputTokens": 187914,
+      "missingUsage": 0,
+      "requests": [
+        {
+          "reason": "WholeProofPlan",
+          "status": "response_received",
+          "input_tokens": 1344,
+          "output_tokens": 25604,
+          "error_type": null,
+          "http_duration_ms": 117934.923
+        },
+        {
+          "reason": "WholeProofProgram",
+          "status": "response_received",
+          "input_tokens": 2939,
+          "output_tokens": 2935,
+          "error_type": null,
+          "http_duration_ms": 20777.776
+        },
+        {
+          "reason": "LeanProofScaffold",
+          "status": "response_received",
+          "input_tokens": 3091,
+          "output_tokens": 21107,
+          "error_type": null,
+          "http_duration_ms": 102593.257
+        },
+        {
+          "reason": "LeanSourceHoleFillBatch",
+          "status": "response_received",
+          "input_tokens": 20236,
+          "output_tokens": 21055,
+          "error_type": null,
+          "http_duration_ms": 102746.801
+        },
+        {
+          "reason": "LeanSourceHoleFill",
+          "status": "response_received",
+          "input_tokens": 5386,
+          "output_tokens": 1553,
+          "error_type": null,
+          "http_duration_ms": 11046.818
+        },
+        {
+          "reason": "LeanSourceHoleFill",
+          "status": "response_received",
+          "input_tokens": 5541,
+          "output_tokens": 23162,
+          "error_type": null,
+          "http_duration_ms": 122733.926
+        },
+        {
+          "reason": "LeanSourceHoleFill",
+          "status": "response_received",
+          "input_tokens": 7094,
+          "output_tokens": 33215,
+          "error_type": null,
+          "http_duration_ms": 163426.138
+        },
+        {
+          "reason": "LeanSourceHoleFill",
+          "status": "response_received",
+          "input_tokens": 10496,
+          "output_tokens": 14511,
+          "error_type": null,
+          "http_duration_ms": 95231.538
+        },
+        {
+          "reason": "LeanSourceHoleFill",
+          "status": "response_received",
+          "input_tokens": 10916,
+          "output_tokens": 13240,
+          "error_type": null,
+          "http_duration_ms": 74387.082
+        },
+        {
+          "reason": "SuspectedAuthoredFault",
+          "status": "response_received",
+          "input_tokens": 1893,
+          "output_tokens": 12516,
+          "error_type": null,
+          "http_duration_ms": 78010.036
+        },
+        {
+          "reason": "SourceClaimRefutation",
+          "status": "response_received",
+          "input_tokens": 2238,
+          "output_tokens": 15820,
+          "error_type": null,
+          "http_duration_ms": 85154.267
+        },
+        {
+          "reason": "Explanation",
+          "status": "response_received",
+          "input_tokens": 4447,
+          "output_tokens": 3196,
+          "error_type": null,
+          "http_duration_ms": 19600.297
+        }
+      ]
+    },
+    "feedbackError": null,
+    "elapsedSeconds": 1113.09,
+    "totalElapsedSeconds": 1113.65
+  }
+]

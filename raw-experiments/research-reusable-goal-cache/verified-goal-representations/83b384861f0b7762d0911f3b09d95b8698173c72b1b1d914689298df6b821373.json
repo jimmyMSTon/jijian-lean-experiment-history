@@ -1,0 +1,49 @@
+{
+  "sourceSha256": "83b384861f0b7762d0911f3b09d95b8698173c72b1b1d914689298df6b821373",
+  "typechecked": true,
+  "plan": {
+    "formalStatement": "∀ (m n k : ℕ) (x : ℕ → ℝ), 2 ≤ m → 2 ≤ k → k ≤ n → (∀ i : ℕ, i < n → 0 ≤ x i) → (∀ i j : ℕ, i ≤ j → j < n → x j ≤ x i) → (1 : ℝ) ≤ Finset.sum (Finset.range n) (fun i : ℕ => (x i) ^ m) → Finset.sum (Finset.range n) (fun i : ℕ => x i) ≤ (k : ℝ) → (1 : ℝ) ≤ Finset.sum (Finset.range k) (fun i : ℕ => x i)",
+    "goalExcerpt": "证明：x₁+x₂+⋯+xₖ≥1。",
+    "givenExcerpts": [
+      "设 m,n,k 都是正整数，m≥2，n≥k≥2；实数 x₁≥x₂≥⋯≥xₙ≥0，满足：",
+      "（i）x₁^m+x₂^m+⋯+xₙ^m≥1；",
+      "（ii）x₁+x₂+⋯+xₙ≤k。"
+    ],
+    "steps": [
+      {
+        "start": 336,
+        "end": 535,
+        "sourceExcerpt": "第一步（设反证条件，并验证界限）：令 t=x₁+x₂+⋯+xₖ，u=xₖ。反设 t<1。因所有 xᵢ≥0，且 x₁≥⋯≥xₙ，所以 0≤u≤xᵢ≤t<1 对 1≤i≤k 成立；对 k<i≤n，则 0≤xᵢ≤u<1。特别地，0≤u<1，且 t≥0。另外对全部 i=1,…,n 有 0≤xᵢ<1：前 k 项不超过 t，后 n−k 项不超过 u。整个反证推导中分母没有出现，n=k 时后段求和约定为 0。"
+      },
+      {
+        "start": 537,
+        "end": 666,
+        "sourceExcerpt": "第二步（低于 1 的非负数降幂）：由于 m≥2 为整数，对任意 0≤s<1，均有 s^m≤s²。这是因为 m−2 为非负整数且 0≤s^(m−2)≤1，故 s^m=s²·s^(m−2)≤s²（若 m=2，则 s^(m−2)=1）。将此结论分别用于每个 xᵢ。"
+      },
+      {
+        "start": 668,
+        "end": 855,
+        "sourceExcerpt": "第三步（尾段估计）：对每个 k<i≤n，有 0≤xᵢ≤u，故 xᵢ^m≤xᵢ²≤u xᵢ。逐项求和得到\n∑_{i=k+1}^n xᵢ^m≤u∑_{i=k+1}^n xᵢ。\n又由条件（ii）以及前 k 项的和为 t，有 ∑_{i=k+1}^n xᵢ≤k−t。因为 u≥0，所以\n∑_{i=k+1}^n xᵢ^m≤u(k−t)。\nn=k 时两边的尾段求和均为 0，结论依然成立。"
+      },
+      {
+        "start": 857,
+        "end": 1033,
+        "sourceExcerpt": "第四步（前段估计）：对每个 1≤i≤k，由第一步有 u≤xᵢ<1，因此 (xᵢ−u)≥0、(xᵢ−1)≤0，从而 (xᵢ−u)(xᵢ−1)≤0。\n展开整理即得 xᵢ²≤(1+u)xᵢ−u=xᵢ−u+u xᵢ。\n结合第二步 xᵢ^m≤xᵢ²，得到\nxᵢ^m≤xᵢ−u+u xᵢ。\n对 i=1,…,k 求和得\n∑_{i=1}^k xᵢ^m≤t−ku+ut。"
+      },
+      {
+        "start": 1035,
+        "end": 1194,
+        "sourceExcerpt": "第五步（合并不等式并产生矛盾）：将幂和拆成前 k 项和后 n−k 项，利用第三、四步，\n∑_{i=1}^n xᵢ^m\n=∑_{i=1}^k xᵢ^m+∑_{i=k+1}^n xᵢ^m\n≤(t−ku+ut)+u(k−t)\n=t。\n但题设（i）给出 ∑_{i=1}^n xᵢ^m≥1，因此有 1≤t，与反设 t<1 矛盾。"
+      },
+      {
+        "start": 1195,
+        "end": 1225,
+        "sourceExcerpt": "反设不成立，故 t≥1，即 x₁+x₂+⋯+xₖ≥1。证毕。"
+      }
+    ]
+  },
+  "originalModelProvenance": {
+    "archiveName": "2025-Gaolian-R2-Q2-Old"
+  },
+  "meaning": "Lean typechecked goal encoding only; entire proof not certified"
+}

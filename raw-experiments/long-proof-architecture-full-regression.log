@@ -1,0 +1,756 @@
+................................................F....................... [  6%]
+......................................F..............F....F............. [ 12%]
+............................FF.........F.............................ss. [ 18%]
+.....................sssssss............................................ [ 25%]
+........................................................................ [ 31%]
+........................................................................ [ 37%]
+...................................................F.................... [ 43%]
+..s.s....s........................sss...s............................... [ 50%]
+.............................ssssss............s.....sssss...........sss [ 56%]
+ssssssss......s....................s.s..s........ss..s..sss....s........ [ 62%]
+........................................................................ [ 68%]
+.......sss..............s.......FFFs.................................... [ 75%]
+......s................................................................. [ 81%]
+........................................................................ [ 87%]
+................................s...................s................... [ 93%]
+F..............ssss..s........s......ssssssssss......................    [100%]
+=================================== FAILURES ===================================
+___________ test_full_http_orchestration_with_explicit_test_doubles ____________
+
+tmp_path = PosixPath('/private/var/folders/_d/x5xldyk10v7_r3p9_74rnk2c0000gn/T/pytest-of-mac/pytest-124/test_full_http_orchestration_w0')
+ir = MathIR(inductions=[], version='1.0', source=Source(kind='text', raw='设 a,b 为实数，已知 a=b。两边加 1，得到 a+1=b+1，所求得证。', normali...rceRefs=[SourceRef(blockId='b0', start=0, end=39)], dependsOn=['step1'], reason='由上一步即得'), ambiguities=[], formal=None)
+types = FormalTypes(bindings=[FormalBinding(sourceId='a', type='ℝ', value=None), FormalBinding(sourceId='b', type='ℝ', value=N...='step1', proposition='v0 + 1 = v1 + 1'), FormalStatement(sourceId='target', proposition='v0 + 1 = v1 + 1')], notes=[])
+proofs = FormalProofs(fragments=[ProofFragment(sourceId='step1', proof='by rw [h0]', translationNotes='翻译用户的等式两边加 1'), ProofFragment(sourceId='target', proof='by exact s0 v0 v1 h0', translationNotes='引用上一步')])
+canonical_ir = MathIR(inductions=[], version='1.0', source=Source(kind='text', raw='设 a,b 为实数，已知 a=b。两边加 1，得到 a+1=b+1，所求得证。', normali..., binderId=None, value='1')], symbolId=None, binderId=None, value=None)], symbolId=None, binderId=None, value=None))]))
+
+    def test_full_http_orchestration_with_explicit_test_doubles(tmp_path,ir,types,proofs,canonical_ir):
+        """只验证后端 HTTP/数据流；模型和 Kernel 都是本测试文件内明确替换的夹具。"""
+        semantic=canonical_ir.model_dump(); semantic.pop('version'); semantic.pop('source')
+        queue=[semantic,{'proof':[f.proof for f in proofs.fragments]}]
+        def handler(request):
+            result=queue.pop(0)
+            return httpx.Response(200,json={"model":"fixture","choices":[{"finish_reason":"stop","message":{"content":json.dumps(result,ensure_ascii=False)}}]})
+        async_client=httpx.AsyncClient(transport=httpx.MockTransport(handler))
+        settings=Settings(data_dir=tmp_path,lean_project=tmp_path/"missing-runtime",deepseek_api_key="test",deepseek_model="fixture")
+        services=Services(settings,async_client)
+        async def check(obligation):
+            return {"status":"verified","localVerified":True,"diagnostics":[],"certificate":{"testFixture":True}}
+        services.runner.check=check
+        with TestClient(create_app(settings,services)) as c:
+            r=c.post('/api/pipeline',json={"input":{"kind":"text","text":ir.source.raw}})
+>           assert r.status_code==200, r.text
+E           AssertionError: {"error":{"code":"LEGACY_MATHIR_ARCHIVED","message":"旧版数学验证流水线已存档；新的正式验证使用 Lean-first。","details":{}}}
+E           assert 410 == 200
+E            +  where 410 = <Response [410 Gone]>.status_code
+
+tests/test_api_and_workflow.py:74: AssertionError
+_ test_global_source_failure_keeps_complete_proof_unverified_even_with_atomic_certificate _
+
+    def test_global_source_failure_keeps_complete_proof_unverified_even_with_atomic_certificate():
+        ai=AI();runner=Runner()
+>       result=asyncio.run(verify_whole_original(SOURCE,ai,runner))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_lean_first_atomic_algebra.py:77: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+backend/lean_first_whole.py:306: in verify_whole_original
+    assembly = await assemble_source_locked_proof(
+backend/lean_first_modular.py:142: in assemble_source_locked_proof
+    scaffold, provenance = await provider.structured(LeanProofScaffold, SCAFFOLD_PROMPT, {
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_lean_first_atomic_algebra.AI object at 0x10714fe00>
+schema = <class 'backend.lean_first_modular.LeanProofScaffold'>
+prompt = '你是 Lean 4/Mathlib 原证明结构编译器，不是解题者。\n整篇证明翻译失败后，将用户现成的证明转化为一个可逐段实现的原稿顺序证明模板。\nlockedFormalStatement 必须完整不变。proofTemplate...y/admit/axiom/unsafe/native_decide。\n这里的模板尚不能证明任何命题，complete 仅指模板结构具备全部对应位置。\n如果无法表达原稿作用域或某一来源步骤，complete=false 并注明原因。'
+payload = {'installedLeanVerifiedDeclarations': [], 'lockedFormalStatement': '∀ n : ℕ, n = n', 'originalSource': '证明：由代数恒等式 b²F(d)=(bd)²+b(bd)+b²，可得到下一步的同余。', 'previousUnsupportedAuthorSteps': ['无法完成同余的整篇形式化'], ...}
+
+    async def structured(self,schema,prompt,payload):
+        self.calls.append(schema.__name__)
+        if schema.__name__=='SuspectedAuthoredFault':
+            return schema(suspected=False,sourceStepIndex=0,sourceQuote='',allegedMathematicalError='none',concreteCounterexample=''),{'model':'fixture'}
+        if schema.__name__=="AlgebraicIdentities":
+            return schema(identities=[{"sourceStepIndex":0,"sourceQuote":self.quote,
+                "formalStatement":STATEMENT,"reasonLabel":"代数恒等式"}]),{"model":"fixture"}
+        if schema.__name__=="WholeProofPlan":
+            return schema(formalStatement="∀ n : ℕ, n = n",
+                goalExcerpt="可得到下一步的同余",
+                givenExcerpts=[],steps=[{"sourceExcerpt":EXCERPT,
+                                         "start":SOURCE.index(EXCERPT),
+                                         "end":SOURCE.index(EXCERPT)+len(EXCERPT)}]),{"model":"fixture"}
+        if schema.__name__=="WholeProofProgram":
+            return schema(complete=False,proofTerm="by\n  skip",
+                          unsupportedOriginalSteps=["无法完成同余的整篇形式化"]),{"model":"fixture"}
+        if schema.__name__=="StepObligations":
+            return schema(steps=[{"index":0,"sourceExcerpt":EXCERPT,
+              "complete":False,"formalStatement":"","proofTerm":"",
+              "dependsOn":[],"limitations":["缺少同余的形式化"],"atoms":[]}]),{"model":"fixture"}
+>       raise AssertionError(schema.__name__)
+E       AssertionError: LeanProofScaffold
+
+tests/test_lean_first_atomic_algebra.py:37: AssertionError
+_ test_unsolved_whole_proof_can_find_and_refute_author_claim_without_certifying_whole _
+
+    def test_unsolved_whole_proof_can_find_and_refute_author_claim_without_certifying_whole():
+        from backend.lean_first_whole import verify_whole_original
+        raw="原题：交换棋盘上任意两行。第二步：每次行交换改变恰好两个 r_i。"
+        step="第二步："+QUOTE
+        assertion="∀ n : ℕ, 0 < n → n = 0"
+        class Provider:
+            def __init__(self):self.calls=[]
+            async def structured(self,schema,prompt,payload):
+                self.calls.append(schema.__name__)
+                if schema.__name__=="WholeProofPlan":
+                    return schema(formalStatement="∀ n : ℕ, n=n",
+                        goalExcerpt="交换棋盘上任意两行",givenExcerpts=[],
+                        steps=[{"start":raw.index(step),"end":raw.index(step)+len(step),
+                                "sourceExcerpt":step}]),{"model":"fixture"}
+                if schema.__name__=="WholeProofProgram":
+                    return schema(complete=False,proofTerm="by",unsupportedOriginalSteps=[
+                        "作者证明存在尚未核验的数学推理；无法完成形式化"]),{"model":"fixture"}
+                if schema.__name__=="SuspectedAuthoredFault":
+                    return schema(suspected=True,sourceStepIndex=0,
+                        sourceQuote=QUOTE,allegedMathematicalError="false universal claim",
+                        concreteCounterexample="n=4 swapping rows 1,3"),{"model":"fixture"}
+                if schema.__name__=="SourceClaimRefutation":
+                    return schema(sourceExcerpt=QUOTE,sourceStepIndex=0,
+                        closedSourceAssertion=assertion,
+                        negationProofTerm="by intro h; have q := h 1 (by decide); omega",
+                        counterexampleDescription="fixture",candidateValid=True),{"model":"fixture"}
+                raise AssertionError(schema.__name__)
+        class Kernel:
+            def __init__(self):self.calls=[]
+            async def check_many_with_probes(self,rows):
+                self.calls.extend(rows)
+                return [{"status":"verified","localVerified":True,
+                    "certificate":{"checked":True,"statementMatched":True,
+                                   "additionalAxioms":[]},"diagnostics":[]}]
+        model=Provider();lean=Kernel()
+>       output=asyncio.run(verify_whole_original(raw,model,lean))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_lean_first_fault_screen.py:98: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+backend/lean_first_whole.py:306: in verify_whole_original
+    assembly = await assemble_source_locked_proof(
+backend/lean_first_modular.py:142: in assemble_source_locked_proof
+    scaffold, provenance = await provider.structured(LeanProofScaffold, SCAFFOLD_PROMPT, {
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_lean_first_fault_screen.test_unsolved_whole_proof_can_find_and_refute_author_claim_without_certifying_whole.<locals>.Provider object at 0x106f33710>
+schema = <class 'backend.lean_first_modular.LeanProofScaffold'>
+prompt = '你是 Lean 4/Mathlib 原证明结构编译器，不是解题者。\n整篇证明翻译失败后，将用户现成的证明转化为一个可逐段实现的原稿顺序证明模板。\nlockedFormalStatement 必须完整不变。proofTemplate...y/admit/axiom/unsafe/native_decide。\n这里的模板尚不能证明任何命题，complete 仅指模板结构具备全部对应位置。\n如果无法表达原稿作用域或某一来源步骤，complete=false 并注明原因。'
+payload = {'installedLeanVerifiedDeclarations': [], 'lockedFormalStatement': '∀ n : ℕ, n=n', 'originalSource': '原题：交换棋盘上任意两行。第二步：每次行交换改变恰好两个 r_i。', 'previousUnsupportedAuthorSteps': ['作者证明存在尚未核验的数学推理；无法完成形式化'], ...}
+
+    async def structured(self,schema,prompt,payload):
+        self.calls.append(schema.__name__)
+        if schema.__name__=="WholeProofPlan":
+            return schema(formalStatement="∀ n : ℕ, n=n",
+                goalExcerpt="交换棋盘上任意两行",givenExcerpts=[],
+                steps=[{"start":raw.index(step),"end":raw.index(step)+len(step),
+                        "sourceExcerpt":step}]),{"model":"fixture"}
+        if schema.__name__=="WholeProofProgram":
+            return schema(complete=False,proofTerm="by",unsupportedOriginalSteps=[
+                "作者证明存在尚未核验的数学推理；无法完成形式化"]),{"model":"fixture"}
+        if schema.__name__=="SuspectedAuthoredFault":
+            return schema(suspected=True,sourceStepIndex=0,
+                sourceQuote=QUOTE,allegedMathematicalError="false universal claim",
+                concreteCounterexample="n=4 swapping rows 1,3"),{"model":"fixture"}
+        if schema.__name__=="SourceClaimRefutation":
+            return schema(sourceExcerpt=QUOTE,sourceStepIndex=0,
+                closedSourceAssertion=assertion,
+                negationProofTerm="by intro h; have q := h 1 (by decide); omega",
+                counterexampleDescription="fixture",candidateValid=True),{"model":"fixture"}
+>       raise AssertionError(schema.__name__)
+E       AssertionError: LeanProofScaffold
+
+tests/test_lean_first_fault_screen.py:89: AssertionError
+____ test_official_whole_pipeline_continues_after_valid_goal_syntax_repair _____
+
+    def test_official_whole_pipeline_continues_after_valid_goal_syntax_repair():
+        ai=AI();runner=Runner()
+>       result=asyncio.run(verify_whole_original(SRC,ai,runner))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_lean_first_goal_repair.py:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+backend/lean_first_whole.py:306: in verify_whole_original
+    assembly = await assemble_source_locked_proof(
+backend/lean_first_modular.py:142: in assemble_source_locked_proof
+    scaffold, provenance = await provider.structured(LeanProofScaffold, SCAFFOLD_PROMPT, {
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_lean_first_goal_repair.AI object at 0x1071d2c60>
+schema = <class 'backend.lean_first_modular.LeanProofScaffold'>
+prompt = '你是 Lean 4/Mathlib 原证明结构编译器，不是解题者。\n整篇证明翻译失败后，将用户现成的证明转化为一个可逐段实现的原稿顺序证明模板。\nlockedFormalStatement 必须完整不变。proofTemplate...y/admit/axiom/unsafe/native_decide。\n这里的模板尚不能证明任何命题，complete 仅指模板结构具备全部对应位置。\n如果无法表达原稿作用域或某一来源步骤，complete=false 并注明原因。'
+payload = {'installedLeanVerifiedDeclarations': [], 'lockedFormalStatement': '∀ n : ℕ, n = n', 'originalSource': '题目：任意自然数 n，证明 n=n。证明：取 n，等式左右相同，故成立。', 'previousUnsupportedAuthorSteps': ['fixture does not deliver mathematics'], ...}
+
+    async def structured(self,schema,prompt,payload):
+        self.calls.append(schema.__name__)
+        if schema.__name__=='SuspectedAuthoredFault':
+            return schema(suspected=False,sourceStepIndex=0,sourceQuote='',allegedMathematicalError='none',concreteCounterexample=''),{'model':'fixture'}
+        if schema.__name__ == 'LeanGoalExpressionRepair':
+            return schema(formalStatement=self.goal,encodingNotes="Convert declaration to Prop",
+                unresolvedMathematicalConcepts=list(self.unresolved),
+                sourceMeaningPreserved=self.claims),{"model":"fixture-goal-repair"}
+        if schema.__name__ == 'WholeProofPlan':
+            return schema(formalStatement=BAD_GOAL,goalExcerpt="证明 n=n",
+                givenExcerpts=[],steps=[{
+                   "start":SRC.index("等式左右相同"),
+                   "end":SRC.index("等式左右相同")+len("等式左右相同"),
+                   "sourceExcerpt":"等式左右相同"
+                }]),{"model":"fixture-initial"}
+        if schema.__name__ == 'StepObligations':
+            return schema(steps=[dict(index=i,sourceExcerpt=x['sourceExcerpt'],complete=False,formalStatement='',proofTerm='',dependsOn=[],limitations=['fixture']) for i,x in enumerate(payload['sourceSteps'])]),{'model':'fixture'}
+        if schema.__name__ == 'WholeProofProgram':
+            assert payload['lockedFormalStatement']==FIXED_GOAL
+            return schema(complete=False,proofTerm="by\n  sorry",
+                unsupportedOriginalSteps=["fixture does not deliver mathematics"]),{"model":"fixture"}
+>       raise AssertionError(schema.__name__)
+E       AssertionError: LeanProofScaffold
+
+tests/test_lean_first_goal_repair.py:38: AssertionError
+__ test_whole_source_pipeline_keeps_refutation_separate_from_goal_certificate __
+
+    def test_whole_source_pipeline_keeps_refutation_separate_from_goal_certificate():
+        from backend.lean_first_whole import verify_whole_original
+        class FullAI:
+            def __init__(self):self.names=[]
+            async def structured(self,schema,prompt,payload):
+                self.names.append(schema.__name__)
+                if schema.__name__=="WholeProofPlan":
+                    excerpt="第三步：有 "+QUOTE
+                    return schema(formalStatement="∀ n : ℕ, 0 < n → True",
+                          goalExcerpt="证毕",givenExcerpts=[],
+                          steps=[{"start":SOURCE.index(excerpt),"end":SOURCE.index(excerpt)+len(excerpt),
+                                  "sourceExcerpt":excerpt}]),{"model":"fixture"}
+                if schema.__name__=="WholeProofProgram":
+                    return schema(complete=False,proofTerm="by\n  skip",
+                                  unsupportedOriginalSteps=["原稿中出现错误等式，一般不成立"]),{"model":"fixture"}
+                if schema.__name__=="SourceClaimRefutation":
+                    return schema(sourceExcerpt=QUOTE,sourceStepIndex=0,
+                            closedSourceAssertion=ASSERTION,negationProofTerm=NEG,
+                            counterexampleDescription="n=2",candidateValid=True),{"model":"fixture"}
+                raise AssertionError(schema.__name__)
+        ai=FullAI();runner=Runner()
+>       run=asyncio.run(verify_whole_original(SOURCE,ai,runner))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_lean_first_refutation.py:114: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+backend/lean_first_whole.py:306: in verify_whole_original
+    assembly = await assemble_source_locked_proof(
+backend/lean_first_modular.py:142: in assemble_source_locked_proof
+    scaffold, provenance = await provider.structured(LeanProofScaffold, SCAFFOLD_PROMPT, {
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_lean_first_refutation.test_whole_source_pipeline_keeps_refutation_separate_from_goal_certificate.<locals>.FullAI object at 0x106cff860>
+schema = <class 'backend.lean_first_modular.LeanProofScaffold'>
+prompt = '你是 Lean 4/Mathlib 原证明结构编译器，不是解题者。\n整篇证明翻译失败后，将用户现成的证明转化为一个可逐段实现的原稿顺序证明模板。\nlockedFormalStatement 必须完整不变。proofTemplate...y/admit/axiom/unsafe/native_decide。\n这里的模板尚不能证明任何命题，complete 仅指模板结构具备全部对应位置。\n如果无法表达原稿作用域或某一来源步骤，complete=false 并注明原因。'
+payload = {'installedLeanVerifiedDeclarations': [], 'lockedFormalStatement': '∀ n : ℕ, 0 < n → True', 'originalSource': '原题证明：任意正整数 n，令 n≥1。第三步：有 2*(1/n - 1/(2*n-1)) = 1/n。证毕。', 'previousUnsupportedAuthorSteps': ['原稿中出现错误等式，一般不成立'], ...}
+
+    async def structured(self,schema,prompt,payload):
+        self.names.append(schema.__name__)
+        if schema.__name__=="WholeProofPlan":
+            excerpt="第三步：有 "+QUOTE
+            return schema(formalStatement="∀ n : ℕ, 0 < n → True",
+                  goalExcerpt="证毕",givenExcerpts=[],
+                  steps=[{"start":SOURCE.index(excerpt),"end":SOURCE.index(excerpt)+len(excerpt),
+                          "sourceExcerpt":excerpt}]),{"model":"fixture"}
+        if schema.__name__=="WholeProofProgram":
+            return schema(complete=False,proofTerm="by\n  skip",
+                          unsupportedOriginalSteps=["原稿中出现错误等式，一般不成立"]),{"model":"fixture"}
+        if schema.__name__=="SourceClaimRefutation":
+            return schema(sourceExcerpt=QUOTE,sourceStepIndex=0,
+                    closedSourceAssertion=ASSERTION,negationProofTerm=NEG,
+                    counterexampleDescription="n=2",candidateValid=True),{"model":"fixture"}
+>       raise AssertionError(schema.__name__)
+E       AssertionError: LeanProofScaffold
+
+tests/test_lean_first_refutation.py:112: AssertionError
+_ test_whole_source_translation_failure_without_false_claim_no_refutation_attempt _
+
+    def test_whole_source_translation_failure_without_false_claim_no_refutation_attempt():
+        from backend.lean_first_whole import verify_whole_original
+        class FullAI:
+            def __init__(self):self.names=[]
+            async def structured(self,schema,prompt,payload):
+                self.names.append(schema.__name__)
+                if schema.__name__=="WholeProofPlan":
+                    return schema(formalStatement="∀ n : ℕ, 0 < n → True",
+                       goalExcerpt="证毕",givenExcerpts=[],
+                       steps=[{"start":SOURCE.index(QUOTE),"end":SOURCE.index(QUOTE)+len(QUOTE),
+                               "sourceExcerpt":QUOTE}]),{"model":"fixture"}
+                if schema.__name__=="WholeProofProgram":
+                    return schema(complete=False,proofTerm="by\n  skip",
+                        unsupportedOriginalSteps=["无法在 Mathlib 中形式化所有求和证明"]),{"model":"fixture"}
+                if schema.__name__=='SuspectedAuthoredFault':
+                    return schema(suspected=False,sourceStepIndex=0,sourceQuote='',allegedMathematicalError='none',concreteCounterexample=''),{'model':'fixture'}
+                if schema.__name__=='StepObligations':
+                    return schema(steps=[dict(index=i,sourceExcerpt=x['sourceExcerpt'],complete=False,formalStatement='',proofTerm='',dependsOn=[],limitations=['fixture']) for i,x in enumerate(payload['sourceSteps'])]),{'model':'fixture'}
+                raise AssertionError(schema.__name__)
+        ai=FullAI();runner=Runner()
+>       row=asyncio.run(verify_whole_original(SOURCE,ai,runner))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_lean_first_refutation.py:144: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+backend/lean_first_whole.py:306: in verify_whole_original
+    assembly = await assemble_source_locked_proof(
+backend/lean_first_modular.py:142: in assemble_source_locked_proof
+    scaffold, provenance = await provider.structured(LeanProofScaffold, SCAFFOLD_PROMPT, {
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_lean_first_refutation.test_whole_source_translation_failure_without_false_claim_no_refutation_attempt.<locals>.FullAI object at 0x106cff260>
+schema = <class 'backend.lean_first_modular.LeanProofScaffold'>
+prompt = '你是 Lean 4/Mathlib 原证明结构编译器，不是解题者。\n整篇证明翻译失败后，将用户现成的证明转化为一个可逐段实现的原稿顺序证明模板。\nlockedFormalStatement 必须完整不变。proofTemplate...y/admit/axiom/unsafe/native_decide。\n这里的模板尚不能证明任何命题，complete 仅指模板结构具备全部对应位置。\n如果无法表达原稿作用域或某一来源步骤，complete=false 并注明原因。'
+payload = {'installedLeanVerifiedDeclarations': [], 'lockedFormalStatement': '∀ n : ℕ, 0 < n → True', 'originalSource': '原题证明：任意正整数 n，令 n≥1。第三步：有 2*(1/n - 1/(2*n-1)) = 1/n。证毕。', 'previousUnsupportedAuthorSteps': ['无法在 Mathlib 中形式化所有求和证明'], ...}
+
+    async def structured(self,schema,prompt,payload):
+        self.names.append(schema.__name__)
+        if schema.__name__=="WholeProofPlan":
+            return schema(formalStatement="∀ n : ℕ, 0 < n → True",
+               goalExcerpt="证毕",givenExcerpts=[],
+               steps=[{"start":SOURCE.index(QUOTE),"end":SOURCE.index(QUOTE)+len(QUOTE),
+                       "sourceExcerpt":QUOTE}]),{"model":"fixture"}
+        if schema.__name__=="WholeProofProgram":
+            return schema(complete=False,proofTerm="by\n  skip",
+                unsupportedOriginalSteps=["无法在 Mathlib 中形式化所有求和证明"]),{"model":"fixture"}
+        if schema.__name__=='SuspectedAuthoredFault':
+            return schema(suspected=False,sourceStepIndex=0,sourceQuote='',allegedMathematicalError='none',concreteCounterexample=''),{'model':'fixture'}
+        if schema.__name__=='StepObligations':
+            return schema(steps=[dict(index=i,sourceExcerpt=x['sourceExcerpt'],complete=False,formalStatement='',proofTerm='',dependsOn=[],limitations=['fixture']) for i,x in enumerate(payload['sourceSteps'])]),{'model':'fixture'}
+>       raise AssertionError(schema.__name__)
+E       AssertionError: LeanProofScaffold
+
+tests/test_lean_first_refutation.py:142: AssertionError
+_ test_real_whole_failure_routes_to_source_step_diagnostics_and_preserves_overall _
+
+    def test_real_whole_failure_routes_to_source_step_diagnostics_and_preserves_overall():
+        ai=AI();runner=Runner()
+>       result=asyncio.run(verify_whole_original(SOURCE,ai,runner))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_lean_first_step_diagnostics.py:94: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+backend/lean_first_whole.py:306: in verify_whole_original
+    assembly = await assemble_source_locked_proof(
+backend/lean_first_modular.py:142: in assemble_source_locked_proof
+    scaffold, provenance = await provider.structured(LeanProofScaffold, SCAFFOLD_PROMPT, {
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_lean_first_step_diagnostics.AI object at 0x106cfe090>
+schema = <class 'backend.lean_first_modular.LeanProofScaffold'>
+prompt = '你是 Lean 4/Mathlib 原证明结构编译器，不是解题者。\n整篇证明翻译失败后，将用户现成的证明转化为一个可逐段实现的原稿顺序证明模板。\nlockedFormalStatement 必须完整不变。proofTemplate...y/admit/axiom/unsafe/native_decide。\n这里的模板尚不能证明任何命题，complete 仅指模板结构具备全部对应位置。\n如果无法表达原稿作用域或某一来源步骤，complete=false 并注明原因。'
+payload = {'installedLeanVerifiedDeclarations': [], 'lockedFormalStatement': '∀ a b : ℤ, a=b → a+1=b+1', 'originalSource': '证明：设...；由等式两边同时加 1，有 a+1=b+1；最后得出结论。', 'previousUnsupportedAuthorSteps': ['step 1 cannot formalize as complete theorem'], ...}
+
+    async def structured(self,schema,prompt,payload):
+        self.schemas.append(schema.__name__)
+        if schema.__name__=='SuspectedAuthoredFault':
+            return schema(suspected=False,sourceStepIndex=0,sourceQuote='',allegedMathematicalError='none',concreteCounterexample=''),{'model':'fixture'}
+        if schema.__name__=="StepObligations":
+            rows=[]
+            for i,step in enumerate(STEPS):
+                rows.append({"index":i,"sourceExcerpt":step["sourceExcerpt"],
+                    "complete":i==1,"formalStatement":"∀ a b : ℤ, a=b → a+1=b+1" if i==1 else "",
+                    "proofTerm":"by\n  intros a b h\n  omega" if i==1 else "",
+                    "dependsOn":[0] if i==1 else [],
+                    "limitations":[] if i==1 else ["not enough mathematical argument"]})
+            if self.invalid: rows[1]["sourceExcerpt"]="model invented text"
+            if self.all_false: rows[1]["formalStatement"]="True"
+            if self.missing: rows.pop()
+            return schema(steps=[StepObligation(**r) for r in rows]),{"model":"fixture"}
+        if schema.__name__=="WholeProofPlan":
+            return schema(formalStatement="∀ a b : ℤ, a=b → a+1=b+1",
+                goalExcerpt="得出结论",givenExcerpts=[],
+                steps=[{"start":s["start"],"end":s["end"],
+                        "sourceExcerpt":s["sourceExcerpt"]} for s in STEPS]),{"model":"fixture"}
+        if schema.__name__=="WholeProofProgram":
+            return schema(complete=False,proofTerm="by\n  skip",
+                          unsupportedOriginalSteps=["step 1 cannot formalize as complete theorem"]),{"model":"fixture"}
+>       raise AssertionError(schema.__name__)
+E       AssertionError: LeanProofScaffold
+
+tests/test_lean_first_step_diagnostics.py:47: AssertionError
+_________ test_http_pipeline_repairs_with_diagnostics_keeps_statement __________
+
+tmp_path = PosixPath('/private/var/folders/_d/x5xldyk10v7_r3p9_74rnk2c0000gn/T/pytest-of-mac/pytest-124/test_http_pipeline_repairs_wit0')
+ir = MathIR(inductions=[], version='1.0', source=Source(kind='text', raw='设 a,b 为实数，已知 a=b。两边加 1，得到 a+1=b+1，所求得证。', normali...rceRefs=[SourceRef(blockId='b0', start=0, end=39)], dependsOn=['step1'], reason='由上一步即得'), ambiguities=[], formal=None)
+types = FormalTypes(bindings=[FormalBinding(sourceId='a', type='ℝ', value=None), FormalBinding(sourceId='b', type='ℝ', value=N...='step1', proposition='v0 + 1 = v1 + 1'), FormalStatement(sourceId='target', proposition='v0 + 1 = v1 + 1')], notes=[])
+proofs = FormalProofs(fragments=[ProofFragment(sourceId='step1', proof='by rw [h0]', translationNotes='翻译用户的等式两边加 1'), ProofFragment(sourceId='target', proof='by exact s0 v0 v1 h0', translationNotes='引用上一步')])
+canonical_ir = MathIR(inductions=[], version='1.0', source=Source(kind='text', raw='设 a,b 为实数，已知 a=b。两边加 1，得到 a+1=b+1，所求得证。', normali..., binderId=None, value='1')], symbolId=None, binderId=None, value=None)], symbolId=None, binderId=None, value=None))]))
+
+    def test_http_pipeline_repairs_with_diagnostics_keeps_statement(tmp_path,ir,types,proofs,canonical_ir):
+        semantic=canonical_ir.model_dump();semantic.pop('version');semantic.pop('source')
+        bad=proofs.model_copy(deep=True);bad.fragments[0].proof='by exact bad_name'
+        queue=[semantic,{'proof':[f.proof for f in bad.fragments]},{'proof':[proofs.fragments[0].proof]}]
+        bodies=[]
+        def handler(r):
+            body=json.loads(r.content);bodies.append(body)
+            return response(queue.pop(0))
+        client=httpx.AsyncClient(transport=httpx.MockTransport(handler))
+        settings=Settings(data_dir=tmp_path,deepseek_[REDACTED_SECRET]',lean_project=tmp_path/'runtime')
+        services=Services(settings,client)
+        async def check(ob):return lean_fixture(ob)
+        services.runner.check=check
+        with TestClient(create_app(settings,services)) as c:
+            out=c.post('/api/pipeline',json={'input':{'kind':'text','text':ir.source.raw}})
+>           assert out.status_code==200,out.text
+E           AssertionError: {"error":{"code":"LEGACY_MATHIR_ARCHIVED","message":"旧版数学验证流水线已存档；新的正式验证使用 Lean-first。","details":{}}}
+E           assert 410 == 200
+E            +  where 410 = <Response [410 Gone]>.status_code
+
+tests/test_workflow_patch.py:52: AssertionError
+________________ test_native_v2_submit_read_result_and_history _________________
+
+tmp_path = PosixPath('/private/var/folders/_d/x5xldyk10v7_r3p9_74rnk2c0000gn/T/pytest-of-mac/pytest-124/test_native_v2_submit_read_res0')
+
+    def test_native_v2_submit_read_result_and_history(tmp_path):
+>       asyncio.run(_run_contract(tmp_path))
+
+tests/v2/test_native_v2_api_contract.py:180: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+tmp_path = PosixPath('/private/var/folders/_d/x5xldyk10v7_r3p9_74rnk2c0000gn/T/pytest-of-mac/pytest-124/test_native_v2_submit_read_res0')
+fail = False, real_kernel = False, step_assessment = None
+
+    async def _run_contract(tmp_path, fail=False, real_kernel=False, step_assessment=None):
+        settings = Settings.from_env()
+        settings.data_dir = tmp_path / "db"
+        app = create_app(settings)
+        provider = _AI(fail, step_assessment)
+        app.state.services.mathir_v2.provider = provider
+        app.state.services.mathir_v2.recognition = _Source()
+        checked_runner = LeanRunner(settings) if real_kernel else _FixtureLean()
+        app.state.services.mathir_v2.runner = checked_runner
+        app.state.services.mathir_v2.retriever = None
+        async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app),
+                                     base_url="http://native-test") as client:
+            try:
+                response = await client.post("/api/v2/jobs", json={
+                    "input": {"kind": "text", "text": "1=1"}, "explain": False})
+                assert response.status_code == 202, response.text
+                job_id = response.json()["id"]
+                # HTTP poll must tolerate genuine Lean/Mathlib startup. This is
+                # a test harness deadline only; not an application runtime limit.
+                async with asyncio.timeout(180):
+                    while True:
+                        job = (await client.get(f"/api/jobs/{job_id}")).json()
+                        if job["status"] not in ("queued", "running"):
+                            break
+                        await asyncio.sleep(0.1)
+                if fail:
+                    assert job["status"] == "failed"
+                    assert job["error"]["code"] == "AI_PROVIDER_ERROR"
+                    assert provider.calls == ["StructureOnlyMathIRV2"]
+                    assert (await client.get(
+                        "/api/history?kind=mathir_v2_run")).json()["records"] == []
+                    return
+                assert job["status"] == "completed", job
+                packet = job["result"]
+>               assert packet["version"] == "2.0"
+E               AssertionError: assert '3.6.1' == '2.0'
+E                 
+E                 - 2.0
+E                 + 3.6.1
+
+tests/v2/test_native_v2_api_contract.py:117: AssertionError
+________ test_native_v2_provider_failure_is_not_reported_as_math_error _________
+
+tmp_path = PosixPath('/private/var/folders/_d/x5xldyk10v7_r3p9_74rnk2c0000gn/T/pytest-of-mac/pytest-124/test_native_v2_provider_failur0')
+
+    def test_native_v2_provider_failure_is_not_reported_as_math_error(tmp_path):
+>       asyncio.run(_run_contract(tmp_path, fail=True))
+
+tests/v2/test_native_v2_api_contract.py:184: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+tmp_path = PosixPath('/private/var/folders/_d/x5xldyk10v7_r3p9_74rnk2c0000gn/T/pytest-of-mac/pytest-124/test_native_v2_provider_failur0')
+fail = True, real_kernel = False, step_assessment = None
+
+    async def _run_contract(tmp_path, fail=False, real_kernel=False, step_assessment=None):
+        settings = Settings.from_env()
+        settings.data_dir = tmp_path / "db"
+        app = create_app(settings)
+        provider = _AI(fail, step_assessment)
+        app.state.services.mathir_v2.provider = provider
+        app.state.services.mathir_v2.recognition = _Source()
+        checked_runner = LeanRunner(settings) if real_kernel else _FixtureLean()
+        app.state.services.mathir_v2.runner = checked_runner
+        app.state.services.mathir_v2.retriever = None
+        async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app),
+                                     base_url="http://native-test") as client:
+            try:
+                response = await client.post("/api/v2/jobs", json={
+                    "input": {"kind": "text", "text": "1=1"}, "explain": False})
+                assert response.status_code == 202, response.text
+                job_id = response.json()["id"]
+                # HTTP poll must tolerate genuine Lean/Mathlib startup. This is
+                # a test harness deadline only; not an application runtime limit.
+                async with asyncio.timeout(180):
+                    while True:
+                        job = (await client.get(f"/api/jobs/{job_id}")).json()
+                        if job["status"] not in ("queued", "running"):
+                            break
+                        await asyncio.sleep(0.1)
+                if fail:
+>                   assert job["status"] == "failed"
+E                   AssertionError: assert 'completed' == 'failed'
+E                     
+E                     - failed
+E                     + completed
+
+tests/v2/test_native_v2_api_contract.py:109: AssertionError
+________ test_native_v2_result_and_history_keep_step_source_assessment _________
+
+tmp_path = PosixPath('/private/var/folders/_d/x5xldyk10v7_r3p9_74rnk2c0000gn/T/pytest-of-mac/pytest-124/test_native_v2_result_and_hist0')
+
+    def test_native_v2_result_and_history_keep_step_source_assessment(tmp_path):
+>       asyncio.run(_run_contract(tmp_path, step_assessment="contradicted"))
+
+tests/v2/test_native_v2_api_contract.py:188: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+tmp_path = PosixPath('/private/var/folders/_d/x5xldyk10v7_r3p9_74rnk2c0000gn/T/pytest-of-mac/pytest-124/test_native_v2_result_and_hist0')
+fail = False, real_kernel = False, step_assessment = 'contradicted'
+
+    async def _run_contract(tmp_path, fail=False, real_kernel=False, step_assessment=None):
+        settings = Settings.from_env()
+        settings.data_dir = tmp_path / "db"
+        app = create_app(settings)
+        provider = _AI(fail, step_assessment)
+        app.state.services.mathir_v2.provider = provider
+        app.state.services.mathir_v2.recognition = _Source()
+        checked_runner = LeanRunner(settings) if real_kernel else _FixtureLean()
+        app.state.services.mathir_v2.runner = checked_runner
+        app.state.services.mathir_v2.retriever = None
+        async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app),
+                                     base_url="http://native-test") as client:
+            try:
+                response = await client.post("/api/v2/jobs", json={
+                    "input": {"kind": "text", "text": "1=1"}, "explain": False})
+                assert response.status_code == 202, response.text
+                job_id = response.json()["id"]
+                # HTTP poll must tolerate genuine Lean/Mathlib startup. This is
+                # a test harness deadline only; not an application runtime limit.
+                async with asyncio.timeout(180):
+                    while True:
+                        job = (await client.get(f"/api/jobs/{job_id}")).json()
+                        if job["status"] not in ("queued", "running"):
+                            break
+                        await asyncio.sleep(0.1)
+                if fail:
+                    assert job["status"] == "failed"
+                    assert job["error"]["code"] == "AI_PROVIDER_ERROR"
+                    assert provider.calls == ["StructureOnlyMathIRV2"]
+                    assert (await client.get(
+                        "/api/history?kind=mathir_v2_run")).json()["records"] == []
+                    return
+                assert job["status"] == "completed", job
+                packet = job["result"]
+>               assert packet["version"] == "2.0"
+E               AssertionError: assert '3.6.1' == '2.0'
+E                 
+E                 - 2.0
+E                 + 3.6.1
+
+tests/v2/test_native_v2_api_contract.py:117: AssertionError
+_ test_route_scope_failure_returns_the_original_step_location_without_running_lean _
+
+tmp_path = PosixPath('/private/var/folders/_d/x5xldyk10v7_r3p9_74rnk2c0000gn/T/pytest-of-mac/pytest-124/test_route_scope_failure_retur0')
+
+    def test_route_scope_failure_returns_the_original_step_location_without_running_lean(tmp_path):
+        from fastapi.testclient import TestClient
+    
+        structure = copy.deepcopy(_structure())
+        structure["scopes"].append({"id": "hidden", "parentId": "root"})
+        structure["declarations"].append({
+            "id": "x", "name": "x", "kind": "variable", "scopeId": "hidden",
+            "type": {"kind": "Nat"},
+            "sourceRefs": [{"blockId": "b0", "start": 0, "end": 3}],
+        })
+        node = structure["proofRoutes"][0]["nodes"][0]
+        node["expression"] = {"op": "eq", "args": [
+            {"op": "symbol", "symbolId": "x"},
+            {"op": "symbol", "symbolId": "x"},
+        ]}
+        node["scopeId"] = "root"
+        node["sourceRefs"] = [{"blockId": "b0", "start": 0, "end": 3}]
+    
+        class ScopedProvider:
+            async def structured(self, model, _instructions, _payload, *, images=None):
+                assert model is StructureOnlyMathIRV2 and images is None
+                return model.model_validate(structure), {"recorded": True}
+    
+        class NeverLean:
+            def __getattr__(self, name):
+                raise AssertionError(f"Lean must not run before MathIR validation: {name}")
+    
+        app = create_app(Settings(data_dir=tmp_path / "store"))
+        app.state.services.mathir_v2.provider = ScopedProvider()
+        app.state.services.mathir_v2.recognition = _FakeRecognition()
+        app.state.services.mathir_v2.runner = NeverLean()
+        app.state.services.mathir_v2.retriever = None
+        with TestClient(app) as client:
+            response = client.post("/api/v2/pipeline", json={
+                "input": {"kind": "text", "text": "1=1"}})
+>           assert response.status_code == 422
+E           assert 410 == 422
+E            +  where 410 = <Response [410 Gone]>.status_code
+
+tests/v2/test_structure_pipeline.py:410: AssertionError
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/starlette/testclient.py:45
+  /[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.venv/lib/python3.12/site-packages/starlette/testclient.py:45: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_lean_process_scheduler.py:118: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/test_lean_process_scheduler.py:161: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/test_live.py:23: Lean/Mathlib/隔离器尚未准备完毕
+SKIPPED [1] tests/test_live.py:34: Lean 运行环境不可用
+SKIPPED [1] tests/test_live.py:43: 未配置真实 AI
+SKIPPED [1] tests/test_live.py:57: 未配置真实 OCR
+SKIPPED [1] tests/test_live.py:71: Lean / Mathlib 尚未准备完毕
+SKIPPED [1] tests/test_live.py:80: Lean / Mathlib 尚未准备完毕
+SKIPPED [1] tests/test_macos_live.py:15: Explicit real macOS runtime required
+SKIPPED [1] tests/v2/test_closed_lemma_dependencies.py:46: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_closed_lemma_dependencies.py:89: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_corrected_recognition_kernel.py:32: source-attested isolated Lean/Mathlib Runtime is unavailable: Source-matched isolated Lean Runtime is not prepared; no provider request was sent
+SKIPPED [1] tests/v2/test_dependent_function_types.py:350: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_dependent_function_types.py:363: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_dependent_function_types.py:377: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_dependent_type_applications.py:214: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [5] tests/v2/test_elementary_operators.py:202: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_elementary_operators.py:226: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_explicit_quantifier_binders.py:343: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [5] tests/v2/test_general_math_domain_bundles.py:99: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [11] tests/v2/test_general_math_functions.py:63: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_general_math_functions.py:126: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_interval_subtype_semantic_preflight.py:143: Lean runtime missing
+SKIPPED [1] tests/v2/test_interval_subtype_semantic_preflight.py:183: Lean source runtime missing
+SKIPPED [1] tests/v2/test_interval_subtype_semantic_preflight.py:245: Lean runtime missing
+SKIPPED [2] tests/v2/test_mathir_analysis_ops.py:73: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [4] tests/v2/test_mathir_complex_algebra.py:69: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/v2/test_mathir_linear_algebra_types.py:57: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/v2/test_mathlib_constant_expression.py:162: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_mathlib_constant_expression.py:200: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_mathlib_constant_expression.py:213: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_native_history_recognition_evidence.py:276: source-matched isolated Lean/Mathlib Runtime is unavailable
+SKIPPED [1] tests/v2/test_native_v2_api_contract.py:191: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_real_lean_unproductive_tactic_repair.py:80: Source-matched Lean runtime not ready
+SKIPPED [1] tests/v2/test_source_interval_membership_constructor.py:69: Source matched Lean/Mathlib unavailable
+SKIPPED [1] tests/v2/test_spectral_compiler_validation_path.py:84: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:110: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:159: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:196: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:227: source-matched isolated Lean/Mathlib runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:379: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:708: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:878: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:922: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:940: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:1045: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:1094: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:1162: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:1200: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:1230: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:1255: installed isolated Lean/Mathlib Kernel runtime is not ready
+SKIPPED [1] tests/v2/test_v2_kernel.py:1287: installed isolated Lean/Mathlib Kernel runtime is not ready
+FAILED tests/test_api_and_workflow.py::test_full_http_orchestration_with_explicit_test_doubles
+FAILED tests/test_lean_first_atomic_algebra.py::test_global_source_failure_keeps_complete_proof_unverified_even_with_atomic_certificate
+FAILED tests/test_lean_first_fault_screen.py::test_unsolved_whole_proof_can_find_and_refute_author_claim_without_certifying_whole
+FAILED tests/test_lean_first_goal_repair.py::test_official_whole_pipeline_continues_after_valid_goal_syntax_repair
+FAILED tests/test_lean_first_refutation.py::test_whole_source_pipeline_keeps_refutation_separate_from_goal_certificate
+FAILED tests/test_lean_first_refutation.py::test_whole_source_translation_failure_without_false_claim_no_refutation_attempt
+FAILED tests/test_lean_first_step_diagnostics.py::test_real_whole_failure_routes_to_source_step_diagnostics_and_preserves_overall
+FAILED tests/test_workflow_patch.py::test_http_pipeline_repairs_with_diagnostics_keeps_statement
+FAILED tests/v2/test_native_v2_api_contract.py::test_native_v2_submit_read_result_and_history
+FAILED tests/v2/test_native_v2_api_contract.py::test_native_v2_provider_failure_is_not_reported_as_math_error
+FAILED tests/v2/test_native_v2_api_contract.py::test_native_v2_result_and_history_keep_step_source_assessment
+FAILED tests/v2/test_structure_pipeline.py::test_route_scope_failure_returns_the_original_step_location_without_running_lean
+12 failed, 1063 passed, 74 skipped, 1 warning in 28.24s

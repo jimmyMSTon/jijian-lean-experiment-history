@@ -1,0 +1,279 @@
+.F                                                                       [100%]
+=================================== FAILURES ===================================
+_ test_legacy_success_still_skips_new_scaffold_and_retains_exact_first_request _
+
+    def test_legacy_success_still_skips_new_scaffold_and_retains_exact_first_request():
+        class Provider:
+            def __init__(self):self.calls=[]
+            async def structured(self,schema,prompt,payload):
+                name=schema.__name__
+                self.calls.append(name)
+                if name=='WholeProofPlan':
+                    assert prompt==PLAN_PROMPT
+                    return schema(formalStatement=STATEMENT,goalExcerpt='证明任意自然数 n 都有 n=n',givenExcerpts=[],
+                        steps=[dict(start=SOURCE.index(STEP),end=SOURCE.index(STEP)+len(STEP),sourceExcerpt=STEP)]),{'model':'fixture'}
+                if name=='WholeProofProgram':
+                    assert prompt==PROOF_PROMPT
+                    assert set(payload)=={
+                        'originalSource','sourceSha256','lockedFormalStatement',
+                        'originalGivenExcerpts','sourceSteps','mandatoryMarkerNames',
+                        'installedLeanVerifiedCountingDeclarations'}
+                    assert payload['installedLeanVerifiedCountingDeclarations']==[]
+                    assert payload['lockedFormalStatement']==STATEMENT
+                    return schema(complete=True,proofTerm=PROOF,unsupportedOriginalSteps=[]),{'model':'fixture'}
+                if name=='SourceReasonAudit':
+                    return schema(steps=[dict(index=0,originalExcerpt=STEP,leanEvidenceExcerpt='have source_step_0',
+                        assessment='matches_authored_reason',explanation='Fixture')],
+                        overallAssessment='no_specific_mismatch_identified',summary='Fixture'),{'model':'fixture'}
+                raise AssertionError('Older successful proof unexpectedly diverted to '+name)
+        class Runner:
+            async def check_many_with_probes(self,rows):
+                assert len(rows)==1 and rows[0]['expectedType']==STATEMENT and rows[0]['proofTerm']==PROOF
+                return [dict(status='verified',localVerified=True,
+                    certificate=dict(checked=True,statementMatched=True,additionalAxioms=[]),diagnostics=[])]
+        model=Provider()
+>       result=asyncio.run(verify_whole_original(SOURCE,model,Runner()))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_lean_first_legacy_compatibility.py:64: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+source = '题目：证明任意自然数 n 都有 n=n。证明：由相等的反身性得到 n=n。'
+provider = <test_lean_first_legacy_compatibility.test_legacy_success_still_skips_new_scaffold_and_retains_exact_first_request.<locals>.Provider object at 0x106e445c0>
+runner = <test_lean_first_legacy_compatibility.test_legacy_success_still_skips_new_scaffold_and_retains_exact_first_request.<locals>.Runner object at 0x106e44260>
+emit = None, checkpoint = None, run_trace_id = None
+
+    async def verify_whole_original(source: str, provider, runner, emit=None,
+                                    checkpoint=None, run_trace_id: str | None = None) -> dict:
+        if not source.strip():
+            raise ValueError("empty source")
+        digest = hashlib.sha256(source.encode("utf-8")).hexdigest()
+        run = {
+            "kind": "lean_first_local", "mode": "single_whole_theorem_kernel",
+            "sourceSha256": digest, "runTraceId": run_trace_id or str(uuid.uuid4()),
+            "status": "whole_source_formalization_incomplete", "kernelVerified": False,
+            "formalProofCertified": False, "originalProofCertified": False,
+            "sourceEquivalenceCertified": False, "originalInferenceVerified": False,
+            "sourcePositionsValid": False, "plannedStepCount": 0,
+            "localFormalVerifiedCount": 0, "sourceSteps": [], "statement": "",
+            "proofTerm": "", "lean": None, "unsupportedOriginalSteps": [],
+        }
+        async def persist():
+            if checkpoint is not None:
+                await checkpoint(run)
+    
+        if emit is not None:
+            await emit("whole_goal_locking", {})
+        try:
+            plan, provenance = await provider.structured(WholeProofPlan, PLAN_PROMPT,
+                                                         {"originalSource": source, "sourceSha256": digest})
+        except AppError as exc:
+            run["status"] = "whole_goal_service_unavailable"
+            run["unsupportedOriginalSteps"] = [exc.message]
+            await persist()
+            return run
+        run["planProvenance"] = provenance
+        run["model"] = provenance.get("model")
+        normalized_statement, fixes = normalize_unambiguous_lean_syntax(plan.formalStatement)
+        if fixes:
+            run["rawModelFormalStatement"] = plan.formalStatement
+            run["statementNotationRepairs"] = fixes
+            plan.formalStatement = normalized_statement
+        run["statement"] = plan.formalStatement
+        run["goalExcerpt"] = plan.goalExcerpt
+        run["originalGivenExcerpts"] = plan.givenExcerpts
+        run["plannedStepCount"] = len(plan.steps)
+        run['sourceOffsetRepairs'] = exact_reanchor_plan(source, plan)
+        problem = validate_plan(source, plan)
+        if problem == "invalid_goal_expression":
+            # Do not accept a top-level Lean program as a Prop and do not handwave
+            # it into a certificate. Keep the rejected statement immutable in audit;
+            # one constrained representation-only attempt must itself elaborate
+            # into a real Prop before proof formalization proceeds.
+            from .lean_first_goal_repair import repair_invalid_goal_expression
+            attempted = await repair_invalid_goal_expression(
+                source=source, original_statement=plan.formalStatement,
+                original_goal_excerpt=plan.goalExcerpt,
+                original_given_excerpts=plan.givenExcerpts,
+                provider=provider, runner=runner, emit=emit)
+            run["goalExpressionRepair"] = attempted
+            if attempted["status"] == "goal_expression_elaborated_source_unconfirmed":
+                plan.formalStatement = attempted["formalStatement"]
+                run["statement"] = plan.formalStatement
+                problem = validate_plan(source, plan)
+                run["goalRepresentationRepaired"] = True
+        if problem:
+            run["status"] = "whole_invalid_source_plan"
+            run["rejectedPlanStepQuotes"] = [item.model_dump(mode='json') for item in plan.steps]
+            run["unsupportedOriginalSteps"] = [problem]
+            await persist()
+            return run
+        run["sourcePositionsValid"] = True
+        run["sourceSteps"] = [
+            {"id": f"source-{i}", "index": i, "role": "inference",
+             "start": row.start, "end": row.end, "sourceExcerpt": row.sourceExcerpt,
+             "status": "translation_mapped_only", "kernelVerified": False,
+             "sourcePositionsValid": True,
+             "originalInferenceVerified": False, "sourceEquivalenceCertified": False,
+             "leanWitnessMarker": f"source_step_{i}", "dependsOn": []}
+            for i, row in enumerate(plan.steps)
+        ]
+        await persist()
+    
+        if emit is not None:
+            await emit("whole_proof_translating", {"total":len(plan.steps)})
+        from .lean_first_counting_support import checked_counting_api, is_finite_counting_goal
+        verified_counting = (await checked_counting_api(runner)
+                             if is_finite_counting_goal(source, plan.formalStatement) else [])
+        if verified_counting:
+            run['installedMathlibFiniteCountingEvidence'] = verified_counting
+        try:
+            program, proof_provenance = await provider.structured(
+                WholeProofProgram, PROOF_PROMPT,
+                {"originalSource": source, "sourceSha256": digest,
+                 "lockedFormalStatement": plan.formalStatement,
+                 "originalGivenExcerpts": plan.givenExcerpts,
+                 "sourceSteps": [s.model_dump(mode="json") for s in plan.steps],
+                 "mandatoryMarkerNames": [f"source_step_{i}" for i in range(len(plan.steps))],
+                 "installedLeanVerifiedCountingDeclarations": verified_counting})
+        except AppError as exc:
+            run["status"] = ("whole_proof_translation_invalid_structure"
+                             if exc.code in ("AI_SCHEMA_INVALID", "PARSE_ERROR", "AI_RESPONSE_INCOMPLETE")
+                             else "whole_proof_translation_service_unavailable")
+            run["unsupportedOriginalSteps"] = [exc.message]
+            run["translationError"] = {"code": exc.code,
+                                       "details": exc.details}
+            await persist()
+            return run
+        run["proofProvenance"] = proof_provenance
+        normalized_proof, fixes = normalize_unambiguous_lean_syntax(program.proofTerm)
+        if fixes:
+            run["rawModelProofTerm"] = program.proofTerm
+            run["proofNotationRepairs"] = fixes
+            program.proofTerm = normalized_proof
+        run["proofTerm"] = program.proofTerm
+        run["unsupportedOriginalSteps"] = program.unsupportedOriginalSteps
+        if not program.complete or program.unsupportedOriginalSteps:
+            from .lean_first_counting_support import recover_with_verified_counting_library
+            recovered = await recover_with_verified_counting_library(
+                source=source, digest=digest, statement=plan.formalStatement,
+                given=plan.givenExcerpts,
+                steps=[s.model_dump(mode="json") for s in plan.steps],
+                prior_program=program, provider=provider, runner=runner)
+            run["finiteCountingFormalization"] = {k:v for k,v in recovered.items() if k != 'program'}
+            if recovered.get('status') == 'complete_candidate_unverified':
+                program = recovered['program']
+                run['proofProvenance'] = recovered['proofProvenance']
+                translated, syntax_fixes = normalize_unambiguous_lean_syntax(program.proofTerm)
+                if syntax_fixes:
+                    run['countingProofNotationRepairs'] = syntax_fixes
+                    program.proofTerm = translated
+                run['proofTerm'] = program.proofTerm
+                run['unsupportedOriginalSteps'] = program.unsupportedOriginalSteps
+        if not program.complete or program.unsupportedOriginalSteps:
+            # A second whole-program rewrite is not the only choice. Compile a
+            # source-indexed proof scaffold and independently authored fragments;
+            # the host inserts each tactic at ONE immutable source marker.  Only a
+            # subsequently complete proof goes to the real Kernel, never an open
+            # scaffold or a local model self-assessment.
+            from .lean_first_math_api import checked_index_sum_api, needs_finite_sum_api
+            verified_sums = (await checked_index_sum_api(runner)
+                             if needs_finite_sum_api(plan.formalStatement) else [])
+            if verified_sums:
+                run['installedMathlibIndexSumEvidence'] = verified_sums
+            from .lean_first_modular import assemble_source_locked_proof
+            assembly = await assemble_source_locked_proof(
+                source=source, source_sha=digest, statement=plan.formalStatement,
+                steps=[s.model_dump(mode="json") for s in plan.steps],
+                prior_errors=list(program.unsupportedOriginalSteps), provider=provider,
+                validate_markers=validate_author_markers, emit=emit, runner=runner,
+                verified_declarations=[*verified_counting,*verified_sums])
+            run['modularProofAssembly'] = {k:v for k,v in assembly.items() if k!='proofTerm'}
+            if assembly['status']=='complete_candidate_unverified':
+                program = WholeProofProgram(complete=True,
+                    proofTerm=assembly['proofTerm'],unsupportedOriginalSteps=[],
+                    proofTermNote='Composed from unchanged source-indexed Lean tactic fragments')
+                run['proofTerm'] = program.proofTerm
+                run['unsupportedOriginalSteps'] = []
+                run['modularProofAssembly']['candidateProofSha256'] = hashlib.sha256(
+                    program.proofTerm.encode()).hexdigest()
+        if not program.complete or program.unsupportedOriginalSteps:
+            run["status"] = "whole_proof_translation_incomplete"
+            # Only when a model diagnostic alleges a SPECIFIC false assertion,
+            # attempt a separately certified Lean proof of that assertion's
+            # negation. This never certifies/invalidates the overall source proof
+            # and never upgrades the original theorem to a Kernel success.
+            from .lean_first_refutation import has_explicit_false_assertion, refute_authored_claim
+            refutation_errors = list(program.unsupportedOriginalSteps)
+            if not has_explicit_false_assertion(refutation_errors):
+                # An untranslatable proof might nevertheless contain a demonstrably
+                # false mathematical assertion. Keep this ALLEGATION apart from Lean.
+                from .lean_first_fault_screen import screen_authored_falsity
+                screen = await screen_authored_falsity(
+                    source=source, source_steps=run["sourceSteps"],
+                    provider=provider, emit=emit)
+                run["sourceFalsityScreen"] = screen
+                if screen["suspected"]:
+                    suspect = screen["candidate"]
+                    refutation_errors = [
+                        "具体错误断言（尚未认证）："+suspect["sourceQuote"]
+                        +"；反例（待 Kernel 验证）："+suspect["concreteCounterexample"]
+                        +"；筛查说明："+suspect["allegedMathematicalError"]]
+            if has_explicit_false_assertion(refutation_errors):
+                run["authoredClaimRefutation"] = await refute_authored_claim(
+                    source=source, steps=run["sourceSteps"],
+                    errors=refutation_errors, provider=provider,
+                    runner=runner, emit=emit)
+            if not (run.get("authoredClaimRefutation") or {}).get("kernelRefutationVerified"):
+                # A failed global proof is not a mathematical verdict. Recover
+                # independent, source-anchored FORMAL local evidence in a single
+                # structured batch; never promote it to a complete proof certificate.
+                from .lean_first_step_diagnostics import diagnose_untranslated_steps
+                run["sourceStepDiagnostics"] = await diagnose_untranslated_steps(
+                    source=source,source_sha=digest,locked_goal=plan.formalStatement,
+                    source_steps=run["sourceSteps"],
+                    failure_reasons=program.unsupportedOriginalSteps,
+                    provider=provider,runner=runner,emit=emit)
+                run["localFormalVerifiedCount"] = run["sourceStepDiagnostics"]["localFormalVerifiedCount"]
+                from .lean_first_atomic_algebra import inspect_source_algebra, should_extract
+                local = run["sourceStepDiagnostics"]
+                if not (local["localFormalVerifiedCount"] or local["atomicFormalVerifiedCount"]) and should_extract(source):
+                    algebra = await inspect_source_algebra(source=source,source_steps=run["sourceSteps"],source_sha=digest,provider=provider,runner=runner,emit=emit)
+                    run["atomicAlgebraDiagnostics"] = algebra
+                    run["atomicFormalVerifiedCount"] = algebra["atomicFormalVerifiedCount"]
+            await persist()
+            return run
+        problem = validate_author_markers(program.proofTerm, len(plan.steps))
+        if problem:
+            run["status"] = "whole_proof_source_witness_incomplete"
+            run["unsupportedOriginalSteps"] = [problem]
+            await persist()
+            return run
+    
+        # The source-locked proof candidate is independently recoverable before Lean starts.
+        await persist()
+        if emit is not None:
+            await emit("whole_kernel_verifying", {"stepCount":len(plan.steps)})
+        obligation = {"stepId": "whole-authored-proof", "expectedType": plan.formalStatement,
+                      "proofTerm": program.proofTerm,
+                      "sourceRefs": [{"blockId":"b0","start":0,"end":len(source)}],
+                      "statement_hash": digest}
+        try:
+>           check = getattr(runner, "check_many_with_probes", runner.check_many)
+                                                              ^^^^^^^^^^^^^^^^^
+E           AttributeError: 'Runner' object has no attribute 'check_many'
+
+backend/lean_first_whole.py:390: AttributeError
+=========================== short test summary info ============================
+FAILED tests/test_lean_first_legacy_compatibility.py::test_legacy_success_still_skips_new_scaffold_and_retains_exact_first_request
+1 failed, 1 passed in 0.08s

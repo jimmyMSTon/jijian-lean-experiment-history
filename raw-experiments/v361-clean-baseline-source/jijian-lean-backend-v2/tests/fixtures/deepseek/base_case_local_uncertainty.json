@@ -1,0 +1,109 @@
+{
+  "fixtureKind": "recorded_real_response",
+  "sourceReport": "base-case-local-check-live.json",
+  "newAIRequestsWhenReplaying": 0,
+  "originalBlockIndex": 5,
+  "selectionKind": "explicit_human_inspected_development_case_not_production_alignment",
+  "raw": {
+    "text": "sinθ sinnθ = 1 - cos²θ",
+    "line_data": [
+      {
+        "text": "sinθ sinnθ = 1 - cos²θ",
+        "unclearReadings": [],
+        "formulaRegion": null
+      }
+    ]
+  },
+  "check": {
+    "reviewTargets": [
+      {
+        "blockIndex": 0,
+        "cropRegionIds": [
+          "layout-row-5-window-0"
+        ],
+        "reason": "该行第二个 sine 因子的笔画究竟是 θ 还是 n 需肉眼复核：原图与裁切中该符号含明显的贯穿斜线与中部横笔，更像 θ；首读把其写作 n。该处歧义不影响其余因子与等号的判读。"
+      }
+    ],
+    "differences": [
+      {
+        "cropRegionIds": [
+          "layout-row-5-window-0"
+        ],
+        "blockIndex": 0,
+        "before": "sinθ sinnθ = 1 - cos²θ",
+        "after": "sinθ sinθ = 1 - cos²θ",
+        "category": "函数参数/符号误读",
+        "imageEvidence": "原图该行第二个 sine 因子写作 sinθ（θ 形，带贯穿斜线与中部横笔），而非 sin nθ；两因子右下方还标有蓝色三角标记，但两 sine 之间只有相邻并列，没有可见的 n 字符。等号“=”与右侧“1 - cos²θ”（cos 带右上标 2 与 θ）均清楚。",
+        "unambiguous": false,
+        "alternatives": [
+          "sinθ sinnθ = 1 - cos²θ",
+          "sinθ sin nθ = 1 - cos²θ"
+        ],
+        "edits": [
+          {
+            "beforeText": "sinθ sinnθ = 1 - cos²θ",
+            "afterText": "sinθ sinθ = 1 - cos²θ",
+            "imageEvidence": "裁切 layout-row-5-window-0 与整页原图中该行第二个 sine 因子笔画为 sinθ（θ 符号），其前、后均无单独 n 笔画；整行左侧 sine 因子亦为 sinθ。",
+            "unambiguous": false,
+            "alternatives": [
+              "sinθ sinnθ = 1 - cos²θ",
+              "sinθ sin nθ = 1 - cos²θ"
+            ]
+          }
+        ]
+      }
+    ],
+    "ambiguities": [
+      "blockIndex 0 的第二个 sine 因子：原图笔画可读作 sinθ，首读为 sinnθ；因 θ 与 n 在手写中可能混同，保留两种候选读法，不按恒等式选读。"
+    ],
+    "notes": [
+      "仅核对 context.allowedBlockIndices 指定的 blockIndex 0；裁切中出现的“n=1时. cosθ=cosθ”“假设 n=k 时命题成立.”等相邻行未并入该块转录。",
+      "该行右下角两处蓝色三角标记与两条蓝色下划线仅作标注笔画记录，未据此新增分母或改变公式结构。",
+      "本检查不判断该等式在数学上是否成立，仅记录可见笔画与首读的差异。"
+    ],
+    "blockChecks": [
+      {
+        "blockIndex": 0,
+        "before": "sinθ sinnθ = 1 - cos²θ",
+        "observedText": "sinθ sinθ = 1 - cos²θ",
+        "cropRegionIds": [
+          "layout-row-5-window-0"
+        ],
+        "uncertainties": [
+          "第二个 sine 因子的参数符号在 θ 与 n 之间不完全排除歧义（原图笔画更接近 θ），故该项标为不确定而非确定修订。",
+          "裁切 layout-row-5-window-0 同时覆盖了该行上下的“cosθ=cosθ”与“假设 n=k 时命题成立.”，本块只取中间该行；上下两行未纳入本块读数。"
+        ]
+      }
+    ],
+    "provenance": {
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "6deaed17-49bb-4527-8baf-8ad518826a84",
+      "systemFingerprint": "aeb56401ca74e127821c4f9126dcb669",
+      "usage": {
+        "prompt_tokens": 3918,
+        "completion_tokens": 1483,
+        "total_tokens": 5401,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 661
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 3534
+      },
+      "thinking": "provider_default",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    }
+  },
+  "assessment": {
+    "correctCandidateObserved": true,
+    "unambiguousCorrectionConfirmed": false,
+    "stableRecognitionProven": false,
+    "wholePageFaithful": false,
+    "visualAnnotationClaimNotSupportedByInspectedCrop": true
+  }
+}

@@ -1,0 +1,4650 @@
+{
+  "sample": {
+    "input": "设 x、y 为实数，已知 x+y=13，xy=30。证明 x²+y²=109。原证明：因为 4+5=9，所以 x²+y²=109。证毕。",
+    "sha256": "59b9153c8cddcda0301339cde3bcd954bca4bc76825a163a86dbd99d51b54f86",
+    "kind": "fresh_text",
+    "imageSent": false
+  },
+  "workflowId": "5efc7d39-1c4b-4265-bc8d-5e221c59a81a",
+  "provider": {
+    "name": "DeepSeek",
+    "configuredModel": "deepseek-flash",
+    "baseUrl": "https://api.deepseek.com"
+  },
+  "leanRuntime": {
+    "ready": true,
+    "toolchain": "leanprover/lean4:v4.34.0",
+    "sandbox": "macos",
+    "isolated": true,
+    "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20"
+  },
+  "events": [
+    {
+      "name": "recognizing",
+      "data": {
+        "inputKind": "text"
+      }
+    },
+    {
+      "name": "mathir_v2_structured",
+      "data": {
+        "mathIRId": "119167f8-fcfe-47b5-9e0a-fbcf78eb0a32",
+        "statementHash": "7c426a201facb63cfbe46756a2fde398b5c64985d2949196356274098a21f123",
+        "routeCount": 1,
+        "sourceAlignment": "kernel_does_not_prove_source_semantic_equivalence",
+        "sourceAssets": []
+      }
+    },
+    {
+      "name": "proof_workflow_started",
+      "data": {
+        "mathIRId": "119167f8-fcfe-47b5-9e0a-fbcf78eb0a32",
+        "statementHash": "7c426a201facb63cfbe46756a2fde398b5c64985d2949196356274098a21f123"
+      }
+    },
+    {
+      "name": "mathir_v2_checkpoint_saved",
+      "data": {
+        "checkpointId": "e1be9697-f2fd-4854-ac2b-65c5ea2a06aa",
+        "stage": "lean_verification",
+        "termination": "in_progress",
+        "fixedStatementKernelPassed": false,
+        "originalRouteKernelPassed": false
+      }
+    },
+    {
+      "name": "lean_verification",
+      "data": {
+        "verificationIndex": 1,
+        "fixedStatementKernelPassed": false,
+        "originalRouteKernelPassed": false,
+        "originalMeaning": "unresolved_ambiguities",
+        "unresolvedAmbiguityIds": [
+          "amb_arith_literal_domain"
+        ],
+        "routes": [
+          {
+            "routeId": "r_original",
+            "status": "incomplete",
+            "proofComposition": {
+              "status": "incomplete",
+              "error": "A claim in the route has no original proof term",
+              "kernelChecked": false
+            },
+            "dependencyEvidence": {
+              "status": "no_unused_binders_reported",
+              "basis": "observed binder references; not a condition for a mathematically valid implication",
+              "unusedBindings": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "mathir_v2_checkpoint_saved",
+      "data": {
+        "checkpointId": "3cc9e22b-7efb-47b2-b892-aa0d89cd53f1",
+        "stage": "proof_only_generation",
+        "termination": "in_progress",
+        "fixedStatementKernelPassed": false,
+        "originalRouteKernelPassed": false
+      }
+    },
+    {
+      "name": "proof_only_generation",
+      "data": {
+        "providerCalled": true,
+        "requestId": null,
+        "responseId": null,
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 2368,
+          "completion_tokens": 1774,
+          "total_tokens": 4142,
+          "prompt_tokens_details": {
+            "cached_tokens": 1024
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 1597
+          },
+          "prompt_cache_hit_tokens": 1024,
+          "prompt_cache_miss_tokens": 1344
+        },
+        "inputHash": "2a0b803408d22bbba959712fe98828f05347ba50096407b6d804eef58d53b9c7",
+        "nodeIds": [
+          "n_arith",
+          "n_goal"
+        ],
+        "result": {
+          "inputHash": "2a0b803408d22bbba959712fe98828f05347ba50096407b6d804eef58d53b9c7"
+        }
+      }
+    },
+    {
+      "name": "mathir_v2_checkpoint_saved",
+      "data": {
+        "checkpointId": "415160ed-93eb-4ab3-8846-e6e25f5ffb28",
+        "stage": "lean_verification",
+        "termination": "in_progress",
+        "fixedStatementKernelPassed": true,
+        "originalRouteKernelPassed": true
+      }
+    },
+    {
+      "name": "lean_verification",
+      "data": {
+        "verificationIndex": 2,
+        "fixedStatementKernelPassed": true,
+        "originalRouteKernelPassed": true,
+        "originalMeaning": "unresolved_ambiguities",
+        "unresolvedAmbiguityIds": [
+          "amb_arith_literal_domain"
+        ],
+        "routes": [
+          {
+            "routeId": "r_original",
+            "status": "passed",
+            "proofComposition": {
+              "status": "composed",
+              "error": null,
+              "kernelChecked": true
+            },
+            "dependencyEvidence": {
+              "status": "needs_source_review",
+              "basis": "observed binder references; not a condition for a mathematically valid implication",
+              "unusedBindings": [
+                {
+                  "nodeId": "n_goal",
+                  "unreferencedDependencies": [
+                    "n_arith"
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "mathir_v2_checkpoint_saved",
+      "data": {
+        "checkpointId": "62954780-94fc-4ada-b58e-98590b787de5",
+        "stage": "workflow_finished",
+        "termination": "original_route_kernel_passed",
+        "fixedStatementKernelPassed": true,
+        "originalRouteKernelPassed": true
+      }
+    },
+    {
+      "name": "mathir_v2_completed",
+      "data": {
+        "runId": "d1d1e825-7c94-41de-99bc-dbf72ffef418",
+        "mathIRId": "d6e32acc-0282-4795-8b2e-305f75c32914",
+        "fixedStatementKernelPassed": true,
+        "originalRouteKernelPassed": true,
+        "formalRouteKernelPassed": true,
+        "originalProofVerified": false,
+        "reasoningFidelityStatus": "formal_reconstruction_only",
+        "sourceProofVerified": false,
+        "originalProofFidelity": {
+          "sourceProofVerified": false,
+          "status": "not_independently_established",
+          "basis": "Formal Kernel proof alone cannot certify an author's natural-language reasoning. Unrecognized source rule remains unconfirmed.",
+          "routes": [
+            {
+              "routeId": "r_original",
+              "formalRouteKernelPassed": true,
+              "sourceReasoningVerified": false,
+              "sourceReasoningStatus": "not_independently_established",
+              "steps": [
+                {
+                  "nodeId": "n_arith",
+                  "formalStepKernelPassed": true,
+                  "proofTermOrigin": "proof_only_generation",
+                  "sourceReasoningVerified": false,
+                  "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+                  "sourceInferenceRule": null,
+                  "sourceInferenceEvidence": null
+                },
+                {
+                  "nodeId": "n_goal",
+                  "formalStepKernelPassed": true,
+                  "proofTermOrigin": "proof_only_generation",
+                  "sourceReasoningVerified": false,
+                  "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+                  "sourceInferenceRule": null,
+                  "sourceInferenceEvidence": null
+                }
+              ]
+            }
+          ]
+        },
+        "originalMeaning": "unresolved_ambiguities",
+        "unresolvedAmbiguityIds": [
+          "amb_arith_literal_domain"
+        ],
+        "termination": "original_route_kernel_passed"
+      }
+    }
+  ],
+  "run": {
+    "id": "d1d1e825-7c94-41de-99bc-dbf72ffef418",
+    "version": "2.0",
+    "sourceStructureId": "119167f8-fcfe-47b5-9e0a-fbcf78eb0a32",
+    "sourceAssets": [],
+    "mathIRId": "d6e32acc-0282-4795-8b2e-305f75c32914",
+    "statementHash": "7c426a201facb63cfbe46756a2fde398b5c64985d2949196356274098a21f123",
+    "fixedStatementKernelPassed": true,
+    "originalRouteKernelPassed": true,
+    "formalRouteKernelPassed": true,
+    "originalProofVerified": false,
+    "reasoningFidelity": {
+      "version": 2,
+      "authority": "independent_source_inference_certificate",
+      "status": "formal_reconstruction_only",
+      "formalRouteKernelPassed": true,
+      "sourceEvidenceBoundToStatement": true,
+      "expectedStatementHash": "7c426a201facb63cfbe46756a2fde398b5c64985d2949196356274098a21f123",
+      "originalProofVerified": false,
+      "sourceInferenceCertificationAvailable": true,
+      "sourceRuleVerifiedStepCount": 0,
+      "sourceRuleVerifiedRouteCount": 0,
+      "unconfirmedSourceStepCount": 2,
+      "unconfirmedSourceSteps": [
+        {
+          "routeId": "r_original",
+          "nodeId": "n_arith",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "authored_causal_premise_not_in_source_dependency_graph"
+        },
+        {
+          "routeId": "r_original",
+          "nodeId": "n_goal",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "no_source_matched_sound_inference_rule"
+        }
+      ],
+      "routes": [
+        {
+          "routeId": "r_original",
+          "formalRouteKernelPassed": true,
+          "originalReasoningVerified": false,
+          "originalReasoningStatus": "not_independently_certified",
+          "goalSourceMatch": {
+            "blockId": "b0",
+            "start": 29,
+            "end": 38,
+            "quote": "x²+y²=109",
+            "formulaStart": 29,
+            "formulaEnd": 38
+          },
+          "theoremPremisesSourceMatched": true,
+          "declarationTypesSourceMatched": true,
+          "unresolvedAmbiguitiesAbsent": false,
+          "authoredFormulaCoverageMatched": false,
+          "statementIdentityMatched": true,
+          "steps": [
+            {
+              "nodeId": "n_arith",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": false,
+              "originalInferenceStatus": "not_independently_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [],
+              "rule": null,
+              "ruleEvidence": null,
+              "ruleCheckReason": "authored_causal_premise_not_in_source_dependency_graph",
+              "statementIdentityMatched": true,
+              "reason": "ai_generated_formal_reconstruction"
+            },
+            {
+              "nodeId": "n_goal",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": false,
+              "originalInferenceStatus": "not_independently_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [
+                "n_arith"
+              ],
+              "rule": null,
+              "ruleEvidence": null,
+              "ruleCheckReason": "no_source_matched_sound_inference_rule",
+              "statementIdentityMatched": true,
+              "reason": "ai_generated_formal_reconstruction"
+            }
+          ]
+        }
+      ],
+      "explanation": "Only exact source-anchored equations with an independently checked arithmetic inference rule and a genuine Kernel certificate are certified. Model proof reconstruction alone never qualifies. Unrecognized natural language is unconfirmed, not disproved."
+    },
+    "sourceProofContract": {
+      "version": "source-proof-contract/1",
+      "sourceEvidenceHash": "29e6d731b8ee35d4382559cd97e9ba06d99e0b00e8aa4a72104477f64fbd69f8",
+      "authoredOutline": {
+        "version": "authored-outline/1",
+        "basis": "immutable Unicode source blocks before AI MathIR conversion",
+        "semanticClaimsKernelProven": false,
+        "clauses": [
+          {
+            "blockId": "b0",
+            "start": 0,
+            "end": 26,
+            "quote": "设 x、y 为实数，已知 x+y=13，xy=30。",
+            "quoteSha256": "a5b66606fd99b664ec05b74065292250385355931fafbf9db29041cace6ca456",
+            "discourseMarkers": []
+          },
+          {
+            "blockId": "b0",
+            "start": 26,
+            "end": 39,
+            "quote": "证明 x²+y²=109。",
+            "quoteSha256": "f3748c2f817094a8bb0cf393bc38586d2ba63866a019ccf45b1e2428fda77f58",
+            "discourseMarkers": [
+              "证明"
+            ]
+          },
+          {
+            "blockId": "b0",
+            "start": 39,
+            "end": 65,
+            "quote": "原证明：因为 4+5=9，所以 x²+y²=109。",
+            "quoteSha256": "7044274f62e748f383c41877ce387dc0d06621f97a7856864e8cb29a8685fa30",
+            "discourseMarkers": [
+              "证明",
+              "因为",
+              "所以"
+            ]
+          },
+          {
+            "blockId": "b0",
+            "start": 65,
+            "end": 68,
+            "quote": "证毕。",
+            "quoteSha256": "11cf0e7539ab633d2e66a0dc77e9128c6f8baea1b384624d3847c41dc86ba617",
+            "discourseMarkers": []
+          }
+        ]
+      },
+      "sourceIsImmutable": true,
+      "modelSourceClaimsAreNotKernelEvidence": true,
+      "meaningOfStatus": "formal_entailment_and_authored_causal_fidelity_are_independent",
+      "routes": [
+        {
+          "routeId": "r_original",
+          "sourceSpans": [
+            {
+              "blockId": "b0",
+              "start": 39,
+              "end": 65,
+              "quote": "原证明：因为 4+5=9，所以 x²+y²=109。",
+              "quoteSha256": "7044274f62e748f383c41877ce387dc0d06621f97a7856864e8cb29a8685fa30"
+            }
+          ],
+          "sourceEvidenceState": "identified",
+          "goalNodeId": "n_goal",
+          "authoredOrder": [
+            {
+              "nodeId": "n_arith",
+              "sourceOrder": 0,
+              "modelRouteOrder": 0
+            },
+            {
+              "nodeId": "n_goal",
+              "sourceOrder": 1,
+              "modelRouteOrder": 1
+            }
+          ],
+          "nodes": [
+            {
+              "nodeId": "n_arith",
+              "kind": "claim",
+              "sourceOrder": 0,
+              "mathematicalExpressionSha256": "0fe61528ff64f7622d8f9f8394f0ddecc35b3bcd5dc53dc9ac81cdb9df3c51f0",
+              "formalExpectedType": "(∀ (v_var_x : ℝ), (∀ (v_var_y : ℝ), (((v_var_x + v_var_y) = (13 : ℝ)) → (((v_var_x * v_var_y) = (30 : ℝ)) → ((9 : ℕ) = (9 : ℕ))))))",
+              "sourceSpans": [
+                {
+                  "blockId": "b0",
+                  "start": 46,
+                  "end": 51,
+                  "quote": "4+5=9",
+                  "quoteSha256": "e218d638eda96b61b3f5478055290e794e1e6385c88e3a87496d59dc111940bc"
+                }
+              ],
+              "authoredCausalClauses": [],
+              "declaredDependencies": [],
+              "dependencySourceEvidence": [],
+              "sourceAssessment": "supported",
+              "sourceEvidenceState": "identified",
+              "unresolvedEvidence": [],
+              "originalInferenceVerified": false,
+              "formalStepKernelPassed": true,
+              "formalDependencyUsage": "not_required",
+              "sourceRule": null,
+              "sourceRuleEvidence": null,
+              "sourceRuleUncertainty": "authored_causal_premise_not_in_source_dependency_graph"
+            },
+            {
+              "nodeId": "n_goal",
+              "kind": "claim",
+              "sourceOrder": 1,
+              "mathematicalExpressionSha256": "bcb3de902582608c593de95247d08759c2a2e3d24c72b4dfe2dd9cf52a51f883",
+              "formalExpectedType": "(∀ (v_var_x : ℝ), (∀ (v_var_y : ℝ), (((v_var_x + v_var_y) = (13 : ℝ)) → (((v_var_x * v_var_y) = (30 : ℝ)) → (∀ (jjdep_n_arith : ((9 : ℕ) = (9 : ℕ))), (((v_var_x ^ (2 : ℕ)) + (v_var_y ^ (2 : ℕ))) = (109 : ℝ)))))))",
+              "sourceSpans": [
+                {
+                  "blockId": "b0",
+                  "start": 55,
+                  "end": 64,
+                  "quote": "x²+y²=109",
+                  "quoteSha256": "2eef9f187c9caf80c9344feea37ecdd8bd5dd86a072d6f844336a57c91f37bd4"
+                }
+              ],
+              "authoredCausalClauses": [],
+              "declaredDependencies": [
+                "n_arith"
+              ],
+              "dependencySourceEvidence": [
+                {
+                  "nodeId": "n_arith",
+                  "kind": "claim",
+                  "sourceSpans": [
+                    {
+                      "blockId": "b0",
+                      "start": 46,
+                      "end": 51,
+                      "quote": "4+5=9",
+                      "quoteSha256": "e218d638eda96b61b3f5478055290e794e1e6385c88e3a87496d59dc111940bc"
+                    }
+                  ],
+                  "mathematicalExpressionSha256": "0fe61528ff64f7622d8f9f8394f0ddecc35b3bcd5dc53dc9ac81cdb9df3c51f0",
+                  "sourceEvidenceState": "identified",
+                  "sourceOrder": 0
+                }
+              ],
+              "sourceAssessment": "supported",
+              "sourceEvidenceState": "identified",
+              "unresolvedEvidence": [],
+              "originalInferenceVerified": false,
+              "formalStepKernelPassed": true,
+              "formalDependencyUsage": "declared_dependency_unused",
+              "sourceRule": null,
+              "sourceRuleEvidence": null,
+              "sourceRuleUncertainty": "no_source_matched_sound_inference_rule"
+            }
+          ],
+          "authoredOutlineCoverage": {
+            "routeId": "r_original",
+            "clauses": [
+              {
+                "blockId": "b0",
+                "start": 0,
+                "end": 26,
+                "quoteSha256": "a5b66606fd99b664ec05b74065292250385355931fafbf9db29041cace6ca456",
+                "modelSourceOverlap": false,
+                "modelSourceOverlapCodePoints": 0
+              },
+              {
+                "blockId": "b0",
+                "start": 26,
+                "end": 39,
+                "quoteSha256": "f3748c2f817094a8bb0cf393bc38586d2ba63866a019ccf45b1e2428fda77f58",
+                "modelSourceOverlap": false,
+                "modelSourceOverlapCodePoints": 0
+              },
+              {
+                "blockId": "b0",
+                "start": 39,
+                "end": 65,
+                "quoteSha256": "7044274f62e748f383c41877ce387dc0d06621f97a7856864e8cb29a8685fa30",
+                "modelSourceOverlap": true,
+                "modelSourceOverlapCodePoints": 40
+              },
+              {
+                "blockId": "b0",
+                "start": 65,
+                "end": 68,
+                "quoteSha256": "11cf0e7539ab633d2e66a0dc77e9128c6f8baea1b384624d3847c41dc86ba617",
+                "modelSourceOverlap": false,
+                "modelSourceOverlapCodePoints": 0
+              }
+            ],
+            "modelUnreferencedClauseCount": 3,
+            "authorSourceSemanticsIndependentlyVerified": false
+          },
+          "mathematicalRouteKernelPassed": true,
+          "originalReasoningVerified": false
+        }
+      ]
+    },
+    "originalProofFidelity": {
+      "sourceProofVerified": false,
+      "status": "not_independently_established",
+      "basis": "Formal Kernel proof alone cannot certify an author's natural-language reasoning. Unrecognized source rule remains unconfirmed.",
+      "routes": [
+        {
+          "routeId": "r_original",
+          "formalRouteKernelPassed": true,
+          "sourceReasoningVerified": false,
+          "sourceReasoningStatus": "not_independently_established",
+          "steps": [
+            {
+              "nodeId": "n_arith",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": false,
+              "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+              "sourceInferenceRule": null,
+              "sourceInferenceEvidence": null
+            },
+            {
+              "nodeId": "n_goal",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": false,
+              "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+              "sourceInferenceRule": null,
+              "sourceInferenceEvidence": null
+            }
+          ]
+        }
+      ]
+    },
+    "sourceProofVerified": false,
+    "proofTermOrigins": {
+      "r_original": {
+        "n_arith": "proof_only_generation",
+        "n_goal": "proof_only_generation"
+      }
+    },
+    "originalMeaning": "unresolved_ambiguities",
+    "unresolvedAmbiguityIds": [
+      "amb_arith_literal_domain"
+    ],
+    "kernelVerified": true,
+    "status": "formal_verified_source_unconfirmed",
+    "termination": "original_route_kernel_passed",
+    "failure": null,
+    "verification": {
+      "version": "2.0",
+      "statement": "(∀ (v_var_x : ℝ), (∀ (v_var_y : ℝ), (((v_var_x + v_var_y) = (13 : ℝ)) → (((v_var_x * v_var_y) = (30 : ℝ)) → (((v_var_x ^ (2 : ℕ)) + (v_var_y ^ (2 : ℕ))) = (109 : ℝ))))))",
+      "statementLock": {
+        "status": "locked",
+        "statementHash": "7c426a201facb63cfbe46756a2fde398b5c64985d2949196356274098a21f123"
+      },
+      "mathIRHash": "bce441b883babc0eeb05374264b184e705e6f1ac28abf6bd51de8347196f5ed5",
+      "sourceEvidenceHash": "a87ca9023c7a3502b1d6d983c2dbae7ea856b835e2f2a7b2987b2665f4b8d6a0",
+      "sourceAlignment": {
+        "status": "ambiguous",
+        "modelAssessment": "supported",
+        "transcriptionStatus": "confirmed",
+        "unresolvedAmbiguityIds": [
+          "amb_arith_literal_domain"
+        ],
+        "sourceRefsValidated": true,
+        "semanticAlignmentKernelProven": false
+      },
+      "reasoningFidelity": {
+        "version": 2,
+        "authority": "independent_source_inference_certificate",
+        "status": "formal_reconstruction_only",
+        "formalRouteKernelPassed": true,
+        "sourceEvidenceBoundToStatement": true,
+        "expectedStatementHash": "7c426a201facb63cfbe46756a2fde398b5c64985d2949196356274098a21f123",
+        "originalProofVerified": false,
+        "sourceInferenceCertificationAvailable": true,
+        "sourceRuleVerifiedStepCount": 0,
+        "sourceRuleVerifiedRouteCount": 0,
+        "unconfirmedSourceStepCount": 2,
+        "unconfirmedSourceSteps": [
+          {
+            "routeId": "r_original",
+            "nodeId": "n_arith",
+            "reason": "ai_generated_formal_reconstruction",
+            "ruleCheckReason": "authored_causal_premise_not_in_source_dependency_graph"
+          },
+          {
+            "routeId": "r_original",
+            "nodeId": "n_goal",
+            "reason": "ai_generated_formal_reconstruction",
+            "ruleCheckReason": "no_source_matched_sound_inference_rule"
+          }
+        ],
+        "routes": [
+          {
+            "routeId": "r_original",
+            "formalRouteKernelPassed": true,
+            "originalReasoningVerified": false,
+            "originalReasoningStatus": "not_independently_certified",
+            "goalSourceMatch": {
+              "blockId": "b0",
+              "start": 29,
+              "end": 38,
+              "quote": "x²+y²=109",
+              "formulaStart": 29,
+              "formulaEnd": 38
+            },
+            "theoremPremisesSourceMatched": true,
+            "declarationTypesSourceMatched": true,
+            "unresolvedAmbiguitiesAbsent": false,
+            "authoredFormulaCoverageMatched": false,
+            "statementIdentityMatched": true,
+            "steps": [
+              {
+                "nodeId": "n_arith",
+                "formalStepKernelPassed": true,
+                "originalInferenceVerified": false,
+                "originalInferenceStatus": "not_independently_certified",
+                "proofTermOrigin": "proof_only_generation",
+                "sourceClaimAssessment": "supported",
+                "sourceReferenceCount": 1,
+                "declaredDependencies": [],
+                "rule": null,
+                "ruleEvidence": null,
+                "ruleCheckReason": "authored_causal_premise_not_in_source_dependency_graph",
+                "statementIdentityMatched": true,
+                "reason": "ai_generated_formal_reconstruction"
+              },
+              {
+                "nodeId": "n_goal",
+                "formalStepKernelPassed": true,
+                "originalInferenceVerified": false,
+                "originalInferenceStatus": "not_independently_certified",
+                "proofTermOrigin": "proof_only_generation",
+                "sourceClaimAssessment": "supported",
+                "sourceReferenceCount": 1,
+                "declaredDependencies": [
+                  "n_arith"
+                ],
+                "rule": null,
+                "ruleEvidence": null,
+                "ruleCheckReason": "no_source_matched_sound_inference_rule",
+                "statementIdentityMatched": true,
+                "reason": "ai_generated_formal_reconstruction"
+              }
+            ]
+          }
+        ],
+        "explanation": "Only exact source-anchored equations with an independently checked arithmetic inference rule and a genuine Kernel certificate are certified. Model proof reconstruction alone never qualifies. Unrecognized natural language is unconfirmed, not disproved."
+      },
+      "sourceProofContract": {
+        "version": "source-proof-contract/1",
+        "sourceEvidenceHash": "29e6d731b8ee35d4382559cd97e9ba06d99e0b00e8aa4a72104477f64fbd69f8",
+        "authoredOutline": {
+          "version": "authored-outline/1",
+          "basis": "immutable Unicode source blocks before AI MathIR conversion",
+          "semanticClaimsKernelProven": false,
+          "clauses": [
+            {
+              "blockId": "b0",
+              "start": 0,
+              "end": 26,
+              "quote": "设 x、y 为实数，已知 x+y=13，xy=30。",
+              "quoteSha256": "a5b66606fd99b664ec05b74065292250385355931fafbf9db29041cace6ca456",
+              "discourseMarkers": []
+            },
+            {
+              "blockId": "b0",
+              "start": 26,
+              "end": 39,
+              "quote": "证明 x²+y²=109。",
+              "quoteSha256": "f3748c2f817094a8bb0cf393bc38586d2ba63866a019ccf45b1e2428fda77f58",
+              "discourseMarkers": [
+                "证明"
+              ]
+            },
+            {
+              "blockId": "b0",
+              "start": 39,
+              "end": 65,
+              "quote": "原证明：因为 4+5=9，所以 x²+y²=109。",
+              "quoteSha256": "7044274f62e748f383c41877ce387dc0d06621f97a7856864e8cb29a8685fa30",
+              "discourseMarkers": [
+                "证明",
+                "因为",
+                "所以"
+              ]
+            },
+            {
+              "blockId": "b0",
+              "start": 65,
+              "end": 68,
+              "quote": "证毕。",
+              "quoteSha256": "11cf0e7539ab633d2e66a0dc77e9128c6f8baea1b384624d3847c41dc86ba617",
+              "discourseMarkers": []
+            }
+          ]
+        },
+        "sourceIsImmutable": true,
+        "modelSourceClaimsAreNotKernelEvidence": true,
+        "meaningOfStatus": "formal_entailment_and_authored_causal_fidelity_are_independent",
+        "routes": [
+          {
+            "routeId": "r_original",
+            "sourceSpans": [
+              {
+                "blockId": "b0",
+                "start": 39,
+                "end": 65,
+                "quote": "原证明：因为 4+5=9，所以 x²+y²=109。",
+                "quoteSha256": "7044274f62e748f383c41877ce387dc0d06621f97a7856864e8cb29a8685fa30"
+              }
+            ],
+            "sourceEvidenceState": "identified",
+            "goalNodeId": "n_goal",
+            "authoredOrder": [
+              {
+                "nodeId": "n_arith",
+                "sourceOrder": 0,
+                "modelRouteOrder": 0
+              },
+              {
+                "nodeId": "n_goal",
+                "sourceOrder": 1,
+                "modelRouteOrder": 1
+              }
+            ],
+            "nodes": [
+              {
+                "nodeId": "n_arith",
+                "kind": "claim",
+                "sourceOrder": 0,
+                "mathematicalExpressionSha256": "0fe61528ff64f7622d8f9f8394f0ddecc35b3bcd5dc53dc9ac81cdb9df3c51f0",
+                "formalExpectedType": "(∀ (v_var_x : ℝ), (∀ (v_var_y : ℝ), (((v_var_x + v_var_y) = (13 : ℝ)) → (((v_var_x * v_var_y) = (30 : ℝ)) → ((9 : ℕ) = (9 : ℕ))))))",
+                "sourceSpans": [
+                  {
+                    "blockId": "b0",
+                    "start": 46,
+                    "end": 51,
+                    "quote": "4+5=9",
+                    "quoteSha256": "e218d638eda96b61b3f5478055290e794e1e6385c88e3a87496d59dc111940bc"
+                  }
+                ],
+                "authoredCausalClauses": [],
+                "declaredDependencies": [],
+                "dependencySourceEvidence": [],
+                "sourceAssessment": "supported",
+                "sourceEvidenceState": "identified",
+                "unresolvedEvidence": [],
+                "originalInferenceVerified": false,
+                "formalStepKernelPassed": true,
+                "formalDependencyUsage": "not_required",
+                "sourceRule": null,
+                "sourceRuleEvidence": null,
+                "sourceRuleUncertainty": "authored_causal_premise_not_in_source_dependency_graph"
+              },
+              {
+                "nodeId": "n_goal",
+                "kind": "claim",
+                "sourceOrder": 1,
+                "mathematicalExpressionSha256": "bcb3de902582608c593de95247d08759c2a2e3d24c72b4dfe2dd9cf52a51f883",
+                "formalExpectedType": "(∀ (v_var_x : ℝ), (∀ (v_var_y : ℝ), (((v_var_x + v_var_y) = (13 : ℝ)) → (((v_var_x * v_var_y) = (30 : ℝ)) → (∀ (jjdep_n_arith : ((9 : ℕ) = (9 : ℕ))), (((v_var_x ^ (2 : ℕ)) + (v_var_y ^ (2 : ℕ))) = (109 : ℝ)))))))",
+                "sourceSpans": [
+                  {
+                    "blockId": "b0",
+                    "start": 55,
+                    "end": 64,
+                    "quote": "x²+y²=109",
+                    "quoteSha256": "2eef9f187c9caf80c9344feea37ecdd8bd5dd86a072d6f844336a57c91f37bd4"
+                  }
+                ],
+                "authoredCausalClauses": [],
+                "declaredDependencies": [
+                  "n_arith"
+                ],
+                "dependencySourceEvidence": [
+                  {
+                    "nodeId": "n_arith",
+                    "kind": "claim",
+                    "sourceSpans": [
+                      {
+                        "blockId": "b0",
+                        "start": 46,
+                        "end": 51,
+                        "quote": "4+5=9",
+                        "quoteSha256": "e218d638eda96b61b3f5478055290e794e1e6385c88e3a87496d59dc111940bc"
+                      }
+                    ],
+                    "mathematicalExpressionSha256": "0fe61528ff64f7622d8f9f8394f0ddecc35b3bcd5dc53dc9ac81cdb9df3c51f0",
+                    "sourceEvidenceState": "identified",
+                    "sourceOrder": 0
+                  }
+                ],
+                "sourceAssessment": "supported",
+                "sourceEvidenceState": "identified",
+                "unresolvedEvidence": [],
+                "originalInferenceVerified": false,
+                "formalStepKernelPassed": true,
+                "formalDependencyUsage": "declared_dependency_unused",
+                "sourceRule": null,
+                "sourceRuleEvidence": null,
+                "sourceRuleUncertainty": "no_source_matched_sound_inference_rule"
+              }
+            ],
+            "authoredOutlineCoverage": {
+              "routeId": "r_original",
+              "clauses": [
+                {
+                  "blockId": "b0",
+                  "start": 0,
+                  "end": 26,
+                  "quoteSha256": "a5b66606fd99b664ec05b74065292250385355931fafbf9db29041cace6ca456",
+                  "modelSourceOverlap": false,
+                  "modelSourceOverlapCodePoints": 0
+                },
+                {
+                  "blockId": "b0",
+                  "start": 26,
+                  "end": 39,
+                  "quoteSha256": "f3748c2f817094a8bb0cf393bc38586d2ba63866a019ccf45b1e2428fda77f58",
+                  "modelSourceOverlap": false,
+                  "modelSourceOverlapCodePoints": 0
+                },
+                {
+                  "blockId": "b0",
+                  "start": 39,
+                  "end": 65,
+                  "quoteSha256": "7044274f62e748f383c41877ce387dc0d06621f97a7856864e8cb29a8685fa30",
+                  "modelSourceOverlap": true,
+                  "modelSourceOverlapCodePoints": 40
+                },
+                {
+                  "blockId": "b0",
+                  "start": 65,
+                  "end": 68,
+                  "quoteSha256": "11cf0e7539ab633d2e66a0dc77e9128c6f8baea1b384624d3847c41dc86ba617",
+                  "modelSourceOverlap": false,
+                  "modelSourceOverlapCodePoints": 0
+                }
+              ],
+              "modelUnreferencedClauseCount": 3,
+              "authorSourceSemanticsIndependentlyVerified": false
+            },
+            "mathematicalRouteKernelPassed": true,
+            "originalReasoningVerified": false
+          }
+        ]
+      },
+      "originalProofVerified": false,
+      "sourceProofVerified": false,
+      "formalRouteKernelPassed": true,
+      "originalMeaning": "unresolved_ambiguities",
+      "unresolvedAmbiguityIds": [
+        "amb_arith_literal_domain"
+      ],
+      "sourceCoverage": {
+        "version": "source-ref-span-coverage/1",
+        "basis": "union of validated Unicode-code-point SourceRefs; non-whitespace spans only",
+        "semanticEquivalenceProven": false,
+        "allSourceRefsValidated": true,
+        "structureBlocks": [
+          {
+            "blockId": "b0",
+            "codePointLength": 68,
+            "sourceRefCount": 9,
+            "referencedNonWhitespaceCodePoints": 56,
+            "totalNonWhitespaceCodePoints": 62,
+            "hasUnreferencedNonWhitespace": true,
+            "unreferencedNonWhitespaceSpans": [
+              {
+                "start": 26,
+                "end": 28
+              },
+              {
+                "start": 38,
+                "end": 39
+              },
+              {
+                "start": 65,
+                "end": 68
+              }
+            ]
+          }
+        ],
+        "routes": [
+          {
+            "routeId": "r_original",
+            "blocks": [
+              {
+                "blockId": "b0",
+                "codePointLength": 68,
+                "sourceRefCount": 3,
+                "referencedNonWhitespaceCodePoints": 24,
+                "totalNonWhitespaceCodePoints": 62,
+                "hasUnreferencedNonWhitespace": true,
+                "unreferencedNonWhitespaceSpans": [
+                  {
+                    "start": 0,
+                    "end": 1
+                  },
+                  {
+                    "start": 2,
+                    "end": 5
+                  },
+                  {
+                    "start": 6,
+                    "end": 12
+                  },
+                  {
+                    "start": 13,
+                    "end": 28
+                  },
+                  {
+                    "start": 29,
+                    "end": 39
+                  },
+                  {
+                    "start": 65,
+                    "end": 68
+                  }
+                ]
+              }
+            ],
+            "steps": [
+              {
+                "nodeId": "n_arith",
+                "sourceAssessment": "supported",
+                "assessmentBasis": "原稿明确写‘4+5=9’作为理由",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 46,
+                    "end": 51
+                  }
+                ],
+                "referencedNonWhitespaceCodePoints": 5,
+                "blocks": [
+                  {
+                    "blockId": "b0",
+                    "sourceRefCount": 1,
+                    "referencedNonWhitespaceCodePoints": 5
+                  }
+                ]
+              },
+              {
+                "nodeId": "n_goal",
+                "sourceAssessment": "supported",
+                "assessmentBasis": "原稿明确写‘所以 x²+y²=109’；原稿未给出从 4+5=9 到该结论的中间推理，本结构未补写该推理。",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 55,
+                    "end": 64
+                  }
+                ],
+                "referencedNonWhitespaceCodePoints": 9,
+                "blocks": [
+                  {
+                    "blockId": "b0",
+                    "sourceRefCount": 1,
+                    "referencedNonWhitespaceCodePoints": 9
+                  }
+                ]
+              }
+            ],
+            "inductionCases": []
+          }
+        ]
+      },
+      "fixedStatementKernelPassed": true,
+      "originalRouteKernelPassed": true,
+      "kernelVerified": true,
+      "leanMetrics": {
+        "reusedSourceLockedKernelCertificates": 0,
+        "processCount": 2,
+        "elapsedSeconds": 32.4,
+        "processes": [
+          {
+            "phase": "statement_proof_export_batch",
+            "wallSeconds": 15.25,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 69415,
+            "kernelInputJsonBytes": 0,
+            "status": "completed",
+            "userCpuSeconds": 2.53,
+            "systemCpuSeconds": 12.41,
+            "maxRssBytes": 6109003776,
+            "peakMemoryFootprintBytes": 986132864,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 10361216,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 99401728,
+            "leanReturnCode": 0
+          },
+          {
+            "phase": "statement_proof_wire_materialization",
+            "wallSeconds": 0.7324,
+            "leanStdoutBytes": 10361216,
+            "candidateCount": 3,
+            "expectedStatementCount": 3,
+            "pythonPeakRssBytes": 240713728
+          },
+          {
+            "phase": "independent_kernel_replay_batch",
+            "wallSeconds": 16.27,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 69429,
+            "kernelInputJsonBytes": 9478009,
+            "status": "completed",
+            "userCpuSeconds": 2.65,
+            "systemCpuSeconds": 13.35,
+            "maxRssBytes": 6106955776,
+            "peakMemoryFootprintBytes": 993538560,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 2426,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 250576896,
+            "leanReturnCode": 0
+          },
+          {
+            "phase": "kernel_certificate_materialization",
+            "wallSeconds": 0.1479,
+            "leanStdoutBytes": 2426,
+            "certificateCount": 3,
+            "pythonPeakRssBytes": 255590400
+          }
+        ],
+        "measurement": "Lean subprocess groups; each invocation includes the sandbox launcher and Lean process. Kernel batch resets the imported environment between evidence replays."
+      },
+      "routes": [
+        {
+          "routeId": "r_original",
+          "goalNodeId": "n_goal",
+          "status": "passed",
+          "completeOriginalRouteKernelPassed": true,
+          "fixedStatementKernelPassed": true,
+          "proofComposition": {
+            "status": "composed",
+            "error": null,
+            "kernelChecked": true
+          },
+          "routeConnectivity": {
+            "status": "connected",
+            "goalNodeIdPresent": true,
+            "unconnectedNodeIds": [],
+            "unconnectedClaimNodeIds": [],
+            "unconnectedNonclaimNodeIds": [],
+            "basis": "every authored claim is connected to the goal or induction; unconnected source-local assumptions are reviewed independently"
+          },
+          "dependencyEvidence": {
+            "status": "needs_source_review",
+            "basis": "observed binder references; not a condition for a mathematically valid implication",
+            "unusedBindings": [
+              {
+                "nodeId": "n_goal",
+                "unreferencedDependencies": [
+                  "n_arith"
+                ]
+              }
+            ]
+          },
+          "sourceAlignment": {
+            "status": "ambiguous",
+            "modelAssessment": "supported",
+            "transcriptionStatus": "confirmed",
+            "unresolvedAmbiguityIds": [
+              "amb_arith_literal_domain"
+            ],
+            "sourceRefsValidated": true,
+            "semanticAlignmentKernelProven": false
+          },
+          "originalReasoningVerified": false,
+          "sourceCoverage": {
+            "routeId": "r_original",
+            "blocks": [
+              {
+                "blockId": "b0",
+                "codePointLength": 68,
+                "sourceRefCount": 3,
+                "referencedNonWhitespaceCodePoints": 24,
+                "totalNonWhitespaceCodePoints": 62,
+                "hasUnreferencedNonWhitespace": true,
+                "unreferencedNonWhitespaceSpans": [
+                  {
+                    "start": 0,
+                    "end": 1
+                  },
+                  {
+                    "start": 2,
+                    "end": 5
+                  },
+                  {
+                    "start": 6,
+                    "end": 12
+                  },
+                  {
+                    "start": 13,
+                    "end": 28
+                  },
+                  {
+                    "start": 29,
+                    "end": 39
+                  },
+                  {
+                    "start": 65,
+                    "end": 68
+                  }
+                ]
+              }
+            ],
+            "steps": [
+              {
+                "nodeId": "n_arith",
+                "sourceAssessment": "supported",
+                "assessmentBasis": "原稿明确写‘4+5=9’作为理由",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 46,
+                    "end": 51
+                  }
+                ],
+                "referencedNonWhitespaceCodePoints": 5,
+                "blocks": [
+                  {
+                    "blockId": "b0",
+                    "sourceRefCount": 1,
+                    "referencedNonWhitespaceCodePoints": 5
+                  }
+                ]
+              },
+              {
+                "nodeId": "n_goal",
+                "sourceAssessment": "supported",
+                "assessmentBasis": "原稿明确写‘所以 x²+y²=109’；原稿未给出从 4+5=9 到该结论的中间推理，本结构未补写该推理。",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 55,
+                    "end": 64
+                  }
+                ],
+                "referencedNonWhitespaceCodePoints": 9,
+                "blocks": [
+                  {
+                    "blockId": "b0",
+                    "sourceRefCount": 1,
+                    "referencedNonWhitespaceCodePoints": 9
+                  }
+                ]
+              }
+            ],
+            "inductionCases": []
+          },
+          "steps": [
+            {
+              "nodeId": "n_arith",
+              "kind": "claim",
+              "expectedType": "(∀ (v_var_x : ℝ), (∀ (v_var_y : ℝ), (((v_var_x + v_var_y) = (13 : ℝ)) → (((v_var_x * v_var_y) = (30 : ℝ)) → ((9 : ℕ) = (9 : ℕ))))))",
+              "status": "passed",
+              "proofAttemptStatus": "verified",
+              "originalInferenceVerified": false,
+              "originalInferenceStatus": "not_independently_certified",
+              "failureClass": null,
+              "mathematicalStatus": "established",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceAssessment": "supported",
+              "assessmentBasis": "原稿明确写‘4+5=9’作为理由",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 46,
+                  "end": 51
+                }
+              ],
+              "dependsOn": [],
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "diagnostics": [],
+              "certificate": {
+                "checked": true,
+                "statementMatched": true,
+                "auditMethod": "fresh_environment_data_only_kernel_replay",
+                "axioms": [
+                  "propext",
+                  "Classical.choice",
+                  "Quot.sound"
+                ],
+                "additionalAxioms": [],
+                "statement_hash": "7c426a201facb63cfbe46756a2fde398b5c64985d2949196356274098a21f123",
+                "expectedExpressionSha256": "4e526b80dc9d94bbeb2c0972fdacf5f01f49166c874c9e964eb953b06e82e537",
+                "proofExpressionSha256": "0280b27b43c0be2e1736cca977e6c7bb92635400f3b70ed479df8000ea70c3e5",
+                "nativeExpressionComparison": "structural_equal",
+                "auditIsolation": "fresh_import_environment_reset_between_candidates"
+              },
+              "evidenceRef": null,
+              "proofTermRef": {
+                "sha256": "91bf4f969ccfe01aa8cd26d1701789142ac29b18e015c1972206a237443091ac",
+                "path": "mathir-v2-evidence/proof-terms/91bf4f969ccfe01aa8cd26d1701789142ac29b18e015c1972206a237443091ac.txt.gz",
+                "bytes": 39,
+                "encoding": "gzip"
+              },
+              "proofTermSha256": "a2ae423d46871dc8148bba5a9b6585ddaba2c35e4cb72f54ac08f312fcae4444",
+              "sourceInferenceRule": null,
+              "sourceInferenceEvidence": null
+            },
+            {
+              "nodeId": "n_goal",
+              "kind": "claim",
+              "expectedType": "(∀ (v_var_x : ℝ), (∀ (v_var_y : ℝ), (((v_var_x + v_var_y) = (13 : ℝ)) → (((v_var_x * v_var_y) = (30 : ℝ)) → (∀ (jjdep_n_arith : ((9 : ℕ) = (9 : ℕ))), (((v_var_x ^ (2 : ℕ)) + (v_var_y ^ (2 : ℕ))) = (109 : ℝ)))))))",
+              "status": "passed",
+              "proofAttemptStatus": "verified",
+              "originalInferenceVerified": false,
+              "originalInferenceStatus": "not_independently_certified",
+              "failureClass": null,
+              "mathematicalStatus": "conditionally_established",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceAssessment": "supported",
+              "assessmentBasis": "原稿明确写‘所以 x²+y²=109’；原稿未给出从 4+5=9 到该结论的中间推理，本结构未补写该推理。",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 55,
+                  "end": 64
+                }
+              ],
+              "dependsOn": [
+                "n_arith"
+              ],
+              "dependencyEvidence": "declared_dependency_unused",
+              "dependencyUsage": [
+                {
+                  "dependencyId": "n_arith",
+                  "used": false
+                }
+              ],
+              "diagnostics": [],
+              "certificate": {
+                "checked": true,
+                "statementMatched": true,
+                "auditMethod": "fresh_environment_data_only_kernel_replay",
+                "axioms": [
+                  "propext",
+                  "Classical.choice",
+                  "Quot.sound"
+                ],
+                "additionalAxioms": [],
+                "statement_hash": "7c426a201facb63cfbe46756a2fde398b5c64985d2949196356274098a21f123",
+                "expectedExpressionSha256": "71ecdb98e9892ab9edae27efb82aec2a38bee5a58d0121982435cae745cf4bdd",
+                "proofExpressionSha256": "94f3dc50ed2ab8ab6cff0980ba565a29e9401ad39ee5ed4367800b8e0b4b9ef0",
+                "nativeExpressionComparison": "structural_equal",
+                "auditIsolation": "fresh_import_environment_reset_between_candidates"
+              },
+              "evidenceRef": null,
+              "proofTermRef": {
+                "sha256": "5ce2a004efbc98ad46abcca83adb2a83d1a5a284ca9f9e325053abaa42e576e1",
+                "path": "mathir-v2-evidence/proof-terms/5ce2a004efbc98ad46abcca83adb2a83d1a5a284ca9f9e325053abaa42e576e1.txt.gz",
+                "bytes": 284,
+                "encoding": "gzip"
+              },
+              "proofTermSha256": "74ff0f63aa5d5cd69778808cf58307a986fce1a451221d63517860861579c1aa",
+              "sourceInferenceRule": null,
+              "sourceInferenceEvidence": null
+            }
+          ],
+          "kernel": {
+            "status": "verified",
+            "diagnostics": [],
+            "certificate": {
+              "checked": true,
+              "statementMatched": true,
+              "auditMethod": "fresh_environment_data_only_kernel_replay",
+              "axioms": [
+                "propext",
+                "Classical.choice",
+                "Quot.sound"
+              ],
+              "additionalAxioms": [],
+              "statement_hash": "7c426a201facb63cfbe46756a2fde398b5c64985d2949196356274098a21f123",
+              "expectedExpressionSha256": "382e7111838924e288d9098c38978dcd84645d9dc3e720159d170282dee49ec4",
+              "proofExpressionSha256": "e35a4756eae0eeb7e17a3ce6a7db3ed622055da6f093e3627916668108237a64",
+              "nativeExpressionComparison": "structural_equal",
+              "auditIsolation": "fresh_import_environment_reset_between_candidates"
+            },
+            "evidenceRef": null
+          }
+        }
+      ],
+      "originalProofFidelity": {
+        "sourceProofVerified": false,
+        "status": "not_independently_established",
+        "basis": "Formal Kernel proof alone cannot certify an author's natural-language reasoning. Unrecognized source rule remains unconfirmed.",
+        "routes": [
+          {
+            "routeId": "r_original",
+            "formalRouteKernelPassed": true,
+            "sourceReasoningVerified": false,
+            "sourceReasoningStatus": "not_independently_established",
+            "steps": [
+              {
+                "nodeId": "n_arith",
+                "formalStepKernelPassed": true,
+                "proofTermOrigin": "proof_only_generation",
+                "sourceReasoningVerified": false,
+                "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+                "sourceInferenceRule": null,
+                "sourceInferenceEvidence": null
+              },
+              {
+                "nodeId": "n_goal",
+                "formalStepKernelPassed": true,
+                "proofTermOrigin": "proof_only_generation",
+                "sourceReasoningVerified": false,
+                "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+                "sourceInferenceRule": null,
+                "sourceInferenceEvidence": null
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "verificationHistory": [
+      {
+        "version": "2.0",
+        "statement": "(∀ (v_var_x : ℝ), (∀ (v_var_y : ℝ), (((v_var_x + v_var_y) = (13 : ℝ)) → (((v_var_x * v_var_y) = (30 : ℝ)) → (((v_var_x ^ (2 : ℕ)) + (v_var_y ^ (2 : ℕ))) = (109 : ℝ))))))",
+        "statementLock": {
+          "status": "locked",
+          "statementHash": "7c426a201facb63cfbe46756a2fde398b5c64985d2949196356274098a21f123"
+        },
+        "mathIRHash": "389332529e708eaf0416f6fa888decab4fc87d657953b4f0376df76ad6a3bf7e",
+        "sourceEvidenceHash": "a87ca9023c7a3502b1d6d983c2dbae7ea856b835e2f2a7b2987b2665f4b8d6a0",
+        "sourceAlignment": {
+          "status": "ambiguous",
+          "modelAssessment": "supported",
+          "transcriptionStatus": "confirmed",
+          "unresolvedAmbiguityIds": [
+            "amb_arith_literal_domain"
+          ],
+          "sourceRefsValidated": true,
+          "semanticAlignmentKernelProven": false
+        },
+        "reasoningFidelity": {
+          "version": 2,
+          "authority": "independent_source_inference_certificate",
+          "status": "formally_incomplete",
+          "formalRouteKernelPassed": false,
+          "sourceEvidenceBoundToStatement": false,
+          "expectedStatementHash": "7c426a201facb63cfbe46756a2fde398b5c64985d2949196356274098a21f123",
+          "originalProofVerified": false,
+          "sourceInferenceCertificationAvailable": true,
+          "sourceRuleVerifiedStepCount": 0,
+          "sourceRuleVerifiedRouteCount": 0,
+          "unconfirmedSourceStepCount": 2,
+          "unconfirmedSourceSteps": [
+            {
+              "routeId": "r_original",
+              "nodeId": "n_arith",
+              "reason": "proof_term_not_authenticated_to_original_source",
+              "ruleCheckReason": "ambiguous_source_step_identity"
+            },
+            {
+              "routeId": "r_original",
+              "nodeId": "n_goal",
+              "reason": "proof_term_not_authenticated_to_original_source",
+              "ruleCheckReason": "ambiguous_source_step_identity"
+            }
+          ],
+          "routes": [
+            {
+              "routeId": "r_original",
+              "formalRouteKernelPassed": false,
+              "originalReasoningVerified": false,
+              "originalReasoningStatus": "not_independently_certified",
+              "goalSourceMatch": {
+                "blockId": "b0",
+                "start": 29,
+                "end": 38,
+                "quote": "x²+y²=109",
+                "formulaStart": 29,
+                "formulaEnd": 38
+              },
+              "theoremPremisesSourceMatched": true,
+              "declarationTypesSourceMatched": true,
+              "unresolvedAmbiguitiesAbsent": false,
+              "authoredFormulaCoverageMatched": false,
+              "statementIdentityMatched": false,
+              "steps": [
+                {
+                  "nodeId": "n_arith",
+                  "formalStepKernelPassed": false,
+                  "originalInferenceVerified": false,
+                  "originalInferenceStatus": "not_independently_certified",
+                  "proofTermOrigin": "missing",
+                  "sourceClaimAssessment": "supported",
+                  "sourceReferenceCount": 1,
+                  "declaredDependencies": [],
+                  "rule": null,
+                  "ruleEvidence": null,
+                  "ruleCheckReason": "kernel_statement_identity_not_attested",
+                  "statementIdentityMatched": false,
+                  "reason": "proof_term_not_authenticated_to_original_source"
+                },
+                {
+                  "nodeId": "n_goal",
+                  "formalStepKernelPassed": false,
+                  "originalInferenceVerified": false,
+                  "originalInferenceStatus": "not_independently_certified",
+                  "proofTermOrigin": "missing",
+                  "sourceClaimAssessment": "supported",
+                  "sourceReferenceCount": 1,
+                  "declaredDependencies": [
+                    "n_arith"
+                  ],
+                  "rule": null,
+                  "ruleEvidence": null,
+                  "ruleCheckReason": "kernel_statement_identity_not_attested",
+                  "statementIdentityMatched": false,
+                  "reason": "proof_term_not_authenticated_to_original_source"
+                }
+              ]
+            }
+          ],
+          "explanation": "Only exact source-anchored equations with an independently checked arithmetic inference rule and a genuine Kernel certificate are certified. Model proof reconstruction alone never qualifies. Unrecognized natural language is unconfirmed, not disproved."
+        },
+        "sourceProofContract": {
+          "version": "source-proof-contract/1",
+          "sourceEvidenceHash": "29e6d731b8ee35d4382559cd97e9ba06d99e0b00e8aa4a72104477f64fbd69f8",
+          "authoredOutline": {
+            "version": "authored-outline/1",
+            "basis": "immutable Unicode source blocks before AI MathIR conversion",
+            "semanticClaimsKernelProven": false,
+            "clauses": [
+              {
+                "blockId": "b0",
+                "start": 0,
+                "end": 26,
+                "quote": "设 x、y 为实数，已知 x+y=13，xy=30。",
+                "quoteSha256": "a5b66606fd99b664ec05b74065292250385355931fafbf9db29041cace6ca456",
+                "discourseMarkers": []
+              },
+              {
+                "blockId": "b0",
+                "start": 26,
+                "end": 39,
+                "quote": "证明 x²+y²=109。",
+                "quoteSha256": "f3748c2f817094a8bb0cf393bc38586d2ba63866a019ccf45b1e2428fda77f58",
+                "discourseMarkers": [
+                  "证明"
+                ]
+              },
+              {
+                "blockId": "b0",
+                "start": 39,
+                "end": 65,
+                "quote": "原证明：因为 4+5=9，所以 x²+y²=109。",
+                "quoteSha256": "7044274f62e748f383c41877ce387dc0d06621f97a7856864e8cb29a8685fa30",
+                "discourseMarkers": [
+                  "证明",
+                  "因为",
+                  "所以"
+                ]
+              },
+              {
+                "blockId": "b0",
+                "start": 65,
+                "end": 68,
+                "quote": "证毕。",
+                "quoteSha256": "11cf0e7539ab633d2e66a0dc77e9128c6f8baea1b384624d3847c41dc86ba617",
+                "discourseMarkers": []
+              }
+            ]
+          },
+          "sourceIsImmutable": true,
+          "modelSourceClaimsAreNotKernelEvidence": true,
+          "meaningOfStatus": "formal_entailment_and_authored_causal_fidelity_are_independent",
+          "routes": [
+            {
+              "routeId": "r_original",
+              "sourceSpans": [
+                {
+                  "blockId": "b0",
+                  "start": 39,
+                  "end": 65,
+                  "quote": "原证明：因为 4+5=9，所以 x²+y²=109。",
+                  "quoteSha256": "7044274f62e748f383c41877ce387dc0d06621f97a7856864e8cb29a8685fa30"
+                }
+              ],
+              "sourceEvidenceState": "identified",
+              "goalNodeId": "n_goal",
+              "authoredOrder": [
+                {
+                  "nodeId": "n_arith",
+                  "sourceOrder": 0,
+                  "modelRouteOrder": 0
+                },
+                {
+                  "nodeId": "n_goal",
+                  "sourceOrder": 1,
+                  "modelRouteOrder": 1
+                }
+              ],
+              "nodes": [
+                {
+                  "nodeId": "n_arith",
+                  "kind": "claim",
+                  "sourceOrder": 0,
+                  "mathematicalExpressionSha256": "0fe61528ff64f7622d8f9f8394f0ddecc35b3bcd5dc53dc9ac81cdb9df3c51f0",
+                  "formalExpectedType": "(∀ (v_var_x : ℝ), (∀ (v_var_y : ℝ), (((v_var_x + v_var_y) = (13 : ℝ)) → (((v_var_x * v_var_y) = (30 : ℝ)) → ((9 : ℕ) = (9 : ℕ))))))",
+                  "sourceSpans": [
+                    {
+                      "blockId": "b0",
+                      "start": 46,
+                      "end": 51,
+                      "quote": "4+5=9",
+                      "quoteSha256": "e218d638eda96b61b3f5478055290e794e1e6385c88e3a87496d59dc111940bc"
+                    }
+                  ],
+                  "authoredCausalClauses": [],
+                  "declaredDependencies": [],
+                  "dependencySourceEvidence": [],
+                  "sourceAssessment": "supported",
+                  "sourceEvidenceState": "identified",
+                  "unresolvedEvidence": [],
+                  "originalInferenceVerified": false,
+                  "formalStepKernelPassed": false,
+                  "formalDependencyUsage": "not_required",
+                  "sourceRule": null,
+                  "sourceRuleEvidence": null,
+                  "sourceRuleUncertainty": "kernel_statement_identity_not_attested"
+                },
+                {
+                  "nodeId": "n_goal",
+                  "kind": "claim",
+                  "sourceOrder": 1,
+                  "mathematicalExpressionSha256": "bcb3de902582608c593de95247d08759c2a2e3d24c72b4dfe2dd9cf52a51f883",
+                  "formalExpectedType": "(∀ (v_var_x : ℝ), (∀ (v_var_y : ℝ), (((v_var_x + v_var_y) = (13 : ℝ)) → (((v_var_x * v_var_y) = (30 : ℝ)) → (∀ (jjdep_n_arith : ((9 : ℕ) = (9 : ℕ))), (((v_var_x ^ (2 : ℕ)) + (v_var_y ^ (2 : ℕ))) = (109 : ℝ)))))))",
+                  "sourceSpans": [
+                    {
+                      "blockId": "b0",
+                      "start": 55,
+                      "end": 64,
+                      "quote": "x²+y²=109",
+                      "quoteSha256": "2eef9f187c9caf80c9344feea37ecdd8bd5dd86a072d6f844336a57c91f37bd4"
+                    }
+                  ],
+                  "authoredCausalClauses": [],
+                  "declaredDependencies": [
+                    "n_arith"
+                  ],
+                  "dependencySourceEvidence": [
+                    {
+                      "nodeId": "n_arith",
+                      "kind": "claim",
+                      "sourceSpans": [
+                        {
+                          "blockId": "b0",
+                          "start": 46,
+                          "end": 51,
+                          "quote": "4+5=9",
+                          "quoteSha256": "e218d638eda96b61b3f5478055290e794e1e6385c88e3a87496d59dc111940bc"
+                        }
+                      ],
+                      "mathematicalExpressionSha256": "0fe61528ff64f7622d8f9f8394f0ddecc35b3bcd5dc53dc9ac81cdb9df3c51f0",
+                      "sourceEvidenceState": "identified",
+                      "sourceOrder": 0
+                    }
+                  ],
+                  "sourceAssessment": "supported",
+                  "sourceEvidenceState": "identified",
+                  "unresolvedEvidence": [],
+                  "originalInferenceVerified": false,
+                  "formalStepKernelPassed": false,
+                  "formalDependencyUsage": "dependency_usage_not_audited",
+                  "sourceRule": null,
+                  "sourceRuleEvidence": null,
+                  "sourceRuleUncertainty": "kernel_statement_identity_not_attested"
+                }
+              ],
+              "authoredOutlineCoverage": {
+                "routeId": "r_original",
+                "clauses": [
+                  {
+                    "blockId": "b0",
+                    "start": 0,
+                    "end": 26,
+                    "quoteSha256": "a5b66606fd99b664ec05b74065292250385355931fafbf9db29041cace6ca456",
+                    "modelSourceOverlap": false,
+                    "modelSourceOverlapCodePoints": 0
+                  },
+                  {
+                    "blockId": "b0",
+                    "start": 26,
+                    "end": 39,
+                    "quoteSha256": "f3748c2f817094a8bb0cf393bc38586d2ba63866a019ccf45b1e2428fda77f58",
+                    "modelSourceOverlap": false,
+                    "modelSourceOverlapCodePoints": 0
+                  },
+                  {
+                    "blockId": "b0",
+                    "start": 39,
+                    "end": 65,
+                    "quoteSha256": "7044274f62e748f383c41877ce387dc0d06621f97a7856864e8cb29a8685fa30",
+                    "modelSourceOverlap": true,
+                    "modelSourceOverlapCodePoints": 40
+                  },
+                  {
+                    "blockId": "b0",
+                    "start": 65,
+                    "end": 68,
+                    "quoteSha256": "11cf0e7539ab633d2e66a0dc77e9128c6f8baea1b384624d3847c41dc86ba617",
+                    "modelSourceOverlap": false,
+                    "modelSourceOverlapCodePoints": 0
+                  }
+                ],
+                "modelUnreferencedClauseCount": 3,
+                "authorSourceSemanticsIndependentlyVerified": false
+              },
+              "mathematicalRouteKernelPassed": false,
+              "originalReasoningVerified": false
+            }
+          ]
+        },
+        "originalProofVerified": false,
+        "sourceProofVerified": false,
+        "formalRouteKernelPassed": false,
+        "originalMeaning": "unresolved_ambiguities",
+        "unresolvedAmbiguityIds": [
+          "amb_arith_literal_domain"
+        ],
+        "sourceCoverage": {
+          "version": "source-ref-span-coverage/1",
+          "basis": "union of validated Unicode-code-point SourceRefs; non-whitespace spans only",
+          "semanticEquivalenceProven": false,
+          "allSourceRefsValidated": true,
+          "structureBlocks": [
+            {
+              "blockId": "b0",
+              "codePointLength": 68,
+              "sourceRefCount": 9,
+              "referencedNonWhitespaceCodePoints": 56,
+              "totalNonWhitespaceCodePoints": 62,
+              "hasUnreferencedNonWhitespace": true,
+              "unreferencedNonWhitespaceSpans": [
+                {
+                  "start": 26,
+                  "end": 28
+                },
+                {
+                  "start": 38,
+                  "end": 39
+                },
+                {
+                  "start": 65,
+                  "end": 68
+                }
+              ]
+            }
+          ],
+          "routes": [
+            {
+              "routeId": "r_original",
+              "blocks": [
+                {
+                  "blockId": "b0",
+                  "codePointLength": 68,
+                  "sourceRefCount": 3,
+                  "referencedNonWhitespaceCodePoints": 24,
+                  "totalNonWhitespaceCodePoints": 62,
+                  "hasUnreferencedNonWhitespace": true,
+                  "unreferencedNonWhitespaceSpans": [
+                    {
+                      "start": 0,
+                      "end": 1
+                    },
+                    {
+                      "start": 2,
+                      "end": 5
+                    },
+                    {
+                      "start": 6,
+                      "end": 12
+                    },
+                    {
+                      "start": 13,
+                      "end": 28
+                    },
+                    {
+                      "start": 29,
+                      "end": 39
+                    },
+                    {
+                      "start": 65,
+                      "end": 68
+                    }
+                  ]
+                }
+              ],
+              "steps": [
+                {
+                  "nodeId": "n_arith",
+                  "sourceAssessment": "supported",
+                  "assessmentBasis": "原稿明确写‘4+5=9’作为理由",
+                  "sourceRefs": [
+                    {
+                      "blockId": "b0",
+                      "start": 46,
+                      "end": 51
+                    }
+                  ],
+                  "referencedNonWhitespaceCodePoints": 5,
+                  "blocks": [
+                    {
+                      "blockId": "b0",
+                      "sourceRefCount": 1,
+                      "referencedNonWhitespaceCodePoints": 5
+                    }
+                  ]
+                },
+                {
+                  "nodeId": "n_goal",
+                  "sourceAssessment": "supported",
+                  "assessmentBasis": "原稿明确写‘所以 x²+y²=109’；原稿未给出从 4+5=9 到该结论的中间推理，本结构未补写该推理。",
+                  "sourceRefs": [
+                    {
+                      "blockId": "b0",
+                      "start": 55,
+                      "end": 64
+                    }
+                  ],
+                  "referencedNonWhitespaceCodePoints": 9,
+                  "blocks": [
+                    {
+                      "blockId": "b0",
+                      "sourceRefCount": 1,
+                      "referencedNonWhitespaceCodePoints": 9
+                    }
+                  ]
+                }
+              ],
+              "inductionCases": []
+            }
+          ]
+        },
+        "fixedStatementKernelPassed": false,
+        "originalRouteKernelPassed": false,
+        "kernelVerified": false,
+        "leanMetrics": {
+          "reusedSourceLockedKernelCertificates": 0,
+          "processCount": 0,
+          "elapsedSeconds": 0,
+          "processes": [],
+          "measurement": "Lean subprocess groups; each invocation includes the sandbox launcher and Lean process. Kernel batch resets the imported environment between evidence replays."
+        },
+        "routes": [
+          {
+            "routeId": "r_original",
+            "goalNodeId": "n_goal",
+            "status": "incomplete",
+            "completeOriginalRouteKernelPassed": false,
+            "fixedStatementKernelPassed": false,
+            "proofComposition": {
+              "status": "incomplete",
+              "error": "A claim in the route has no original proof term",
+              "kernelChecked": false
+            },
+            "routeConnectivity": {
+              "status": "connected",
+              "goalNodeIdPresent": true,
+              "unconnectedNodeIds": [],
+              "unconnectedClaimNodeIds": [],
+              "unconnectedNonclaimNodeIds": [],
+              "basis": "every authored claim is connected to the goal or induction; unconnected source-local assumptions are reviewed independently"
+            },
+            "dependencyEvidence": {
+              "status": "no_unused_binders_reported",
+              "basis": "observed binder references; not a condition for a mathematically valid implication",
+              "unusedBindings": []
+            },
+            "sourceAlignment": {
+              "status": "ambiguous",
+              "modelAssessment": "supported",
+              "transcriptionStatus": "confirmed",
+              "unresolvedAmbiguityIds": [
+                "amb_arith_literal_domain"
+              ],
+              "sourceRefsValidated": true,
+              "semanticAlignmentKernelProven": false
+            },
+            "originalReasoningVerified": false,
+            "sourceCoverage": {
+              "routeId": "r_original",
+              "blocks": [
+                {
+                  "blockId": "b0",
+                  "codePointLength": 68,
+                  "sourceRefCount": 3,
+                  "referencedNonWhitespaceCodePoints": 24,
+                  "totalNonWhitespaceCodePoints": 62,
+                  "hasUnreferencedNonWhitespace": true,
+                  "unreferencedNonWhitespaceSpans": [
+                    {
+                      "start": 0,
+                      "end": 1
+                    },
+                    {
+                      "start": 2,
+                      "end": 5
+                    },
+                    {
+                      "start": 6,
+                      "end": 12
+                    },
+                    {
+                      "start": 13,
+                      "end": 28
+                    },
+                    {
+                      "start": 29,
+                      "end": 39
+                    },
+                    {
+                      "start": 65,
+                      "end": 68
+                    }
+                  ]
+                }
+              ],
+              "steps": [
+                {
+                  "nodeId": "n_arith",
+                  "sourceAssessment": "supported",
+                  "assessmentBasis": "原稿明确写‘4+5=9’作为理由",
+                  "sourceRefs": [
+                    {
+                      "blockId": "b0",
+                      "start": 46,
+                      "end": 51
+                    }
+                  ],
+                  "referencedNonWhitespaceCodePoints": 5,
+                  "blocks": [
+                    {
+                      "blockId": "b0",
+                      "sourceRefCount": 1,
+                      "referencedNonWhitespaceCodePoints": 5
+                    }
+                  ]
+                },
+                {
+                  "nodeId": "n_goal",
+                  "sourceAssessment": "supported",
+                  "assessmentBasis": "原稿明确写‘所以 x²+y²=109’；原稿未给出从 4+5=9 到该结论的中间推理，本结构未补写该推理。",
+                  "sourceRefs": [
+                    {
+                      "blockId": "b0",
+                      "start": 55,
+                      "end": 64
+                    }
+                  ],
+                  "referencedNonWhitespaceCodePoints": 9,
+                  "blocks": [
+                    {
+                      "blockId": "b0",
+                      "sourceRefCount": 1,
+                      "referencedNonWhitespaceCodePoints": 9
+                    }
+                  ]
+                }
+              ],
+              "inductionCases": []
+            },
+            "steps": [
+              {
+                "nodeId": "n_arith",
+                "kind": "claim",
+                "expectedType": "(∀ (v_var_x : ℝ), (∀ (v_var_y : ℝ), (((v_var_x + v_var_y) = (13 : ℝ)) → (((v_var_x * v_var_y) = (30 : ℝ)) → ((9 : ℕ) = (9 : ℕ))))))",
+                "status": "incomplete",
+                "proofAttemptStatus": "missing_proof",
+                "originalInferenceVerified": false,
+                "originalInferenceStatus": "not_independently_certified",
+                "failureClass": "missing_proof",
+                "mathematicalStatus": "not_established",
+                "proofTermOrigin": "missing",
+                "sourceAssessment": "supported",
+                "assessmentBasis": "原稿明确写‘4+5=9’作为理由",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 46,
+                    "end": 51
+                  }
+                ],
+                "dependsOn": [],
+                "dependencyEvidence": "not_required",
+                "dependencyUsage": [],
+                "diagnostics": [],
+                "certificate": null,
+                "evidenceRef": null,
+                "proofTermRef": null,
+                "proofTermSha256": null,
+                "sourceInferenceRule": null,
+                "sourceInferenceEvidence": null
+              },
+              {
+                "nodeId": "n_goal",
+                "kind": "claim",
+                "expectedType": "(∀ (v_var_x : ℝ), (∀ (v_var_y : ℝ), (((v_var_x + v_var_y) = (13 : ℝ)) → (((v_var_x * v_var_y) = (30 : ℝ)) → (∀ (jjdep_n_arith : ((9 : ℕ) = (9 : ℕ))), (((v_var_x ^ (2 : ℕ)) + (v_var_y ^ (2 : ℕ))) = (109 : ℝ)))))))",
+                "status": "incomplete",
+                "proofAttemptStatus": "missing_proof",
+                "originalInferenceVerified": false,
+                "originalInferenceStatus": "not_independently_certified",
+                "failureClass": "missing_proof",
+                "mathematicalStatus": "not_established",
+                "proofTermOrigin": "missing",
+                "sourceAssessment": "supported",
+                "assessmentBasis": "原稿明确写‘所以 x²+y²=109’；原稿未给出从 4+5=9 到该结论的中间推理，本结构未补写该推理。",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 55,
+                    "end": 64
+                  }
+                ],
+                "dependsOn": [
+                  "n_arith"
+                ],
+                "dependencyEvidence": "dependency_usage_not_audited",
+                "dependencyUsage": [],
+                "diagnostics": [],
+                "certificate": null,
+                "evidenceRef": null,
+                "proofTermRef": null,
+                "proofTermSha256": null,
+                "sourceInferenceRule": null,
+                "sourceInferenceEvidence": null
+              }
+            ],
+            "kernel": {
+              "status": null,
+              "diagnostics": [],
+              "certificate": null,
+              "evidenceRef": null
+            }
+          }
+        ],
+        "originalProofFidelity": {
+          "sourceProofVerified": false,
+          "status": "not_independently_established",
+          "basis": "Formal Kernel proof alone cannot certify an author's natural-language reasoning. Unrecognized source rule remains unconfirmed.",
+          "routes": [
+            {
+              "routeId": "r_original",
+              "formalRouteKernelPassed": false,
+              "sourceReasoningVerified": false,
+              "sourceReasoningStatus": "not_independently_established",
+              "steps": [
+                {
+                  "nodeId": "n_arith",
+                  "formalStepKernelPassed": false,
+                  "proofTermOrigin": "missing",
+                  "sourceReasoningVerified": false,
+                  "sourceReasoningStatus": "source_reasoning_not_independently_established",
+                  "sourceInferenceRule": null,
+                  "sourceInferenceEvidence": null
+                },
+                {
+                  "nodeId": "n_goal",
+                  "formalStepKernelPassed": false,
+                  "proofTermOrigin": "missing",
+                  "sourceReasoningVerified": false,
+                  "sourceReasoningStatus": "source_reasoning_not_independently_established",
+                  "sourceInferenceRule": null,
+                  "sourceInferenceEvidence": null
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "version": "2.0",
+        "statement": "(∀ (v_var_x : ℝ), (∀ (v_var_y : ℝ), (((v_var_x + v_var_y) = (13 : ℝ)) → (((v_var_x * v_var_y) = (30 : ℝ)) → (((v_var_x ^ (2 : ℕ)) + (v_var_y ^ (2 : ℕ))) = (109 : ℝ))))))",
+        "statementLock": {
+          "status": "locked",
+          "statementHash": "7c426a201facb63cfbe46756a2fde398b5c64985d2949196356274098a21f123"
+        },
+        "mathIRHash": "bce441b883babc0eeb05374264b184e705e6f1ac28abf6bd51de8347196f5ed5",
+        "sourceEvidenceHash": "a87ca9023c7a3502b1d6d983c2dbae7ea856b835e2f2a7b2987b2665f4b8d6a0",
+        "sourceAlignment": {
+          "status": "ambiguous",
+          "modelAssessment": "supported",
+          "transcriptionStatus": "confirmed",
+          "unresolvedAmbiguityIds": [
+            "amb_arith_literal_domain"
+          ],
+          "sourceRefsValidated": true,
+          "semanticAlignmentKernelProven": false
+        },
+        "reasoningFidelity": {
+          "version": 2,
+          "authority": "independent_source_inference_certificate",
+          "status": "formal_reconstruction_only",
+          "formalRouteKernelPassed": true,
+          "sourceEvidenceBoundToStatement": true,
+          "expectedStatementHash": "7c426a201facb63cfbe46756a2fde398b5c64985d2949196356274098a21f123",
+          "originalProofVerified": false,
+          "sourceInferenceCertificationAvailable": true,
+          "sourceRuleVerifiedStepCount": 0,
+          "sourceRuleVerifiedRouteCount": 0,
+          "unconfirmedSourceStepCount": 2,
+          "unconfirmedSourceSteps": [
+            {
+              "routeId": "r_original",
+              "nodeId": "n_arith",
+              "reason": "ai_generated_formal_reconstruction",
+              "ruleCheckReason": "authored_causal_premise_not_in_source_dependency_graph"
+            },
+            {
+              "routeId": "r_original",
+              "nodeId": "n_goal",
+              "reason": "ai_generated_formal_reconstruction",
+              "ruleCheckReason": "no_source_matched_sound_inference_rule"
+            }
+          ],
+          "routes": [
+            {
+              "routeId": "r_original",
+              "formalRouteKernelPassed": true,
+              "originalReasoningVerified": false,
+              "originalReasoningStatus": "not_independently_certified",
+              "goalSourceMatch": {
+                "blockId": "b0",
+                "start": 29,
+                "end": 38,
+                "quote": "x²+y²=109",
+                "formulaStart": 29,
+                "formulaEnd": 38
+              },
+              "theoremPremisesSourceMatched": true,
+              "declarationTypesSourceMatched": true,
+              "unresolvedAmbiguitiesAbsent": false,
+              "authoredFormulaCoverageMatched": false,
+              "statementIdentityMatched": true,
+              "steps": [
+                {
+                  "nodeId": "n_arith",
+                  "formalStepKernelPassed": true,
+                  "originalInferenceVerified": false,
+                  "originalInferenceStatus": "not_independently_certified",
+                  "proofTermOrigin": "proof_only_generation",
+                  "sourceClaimAssessment": "supported",
+                  "sourceReferenceCount": 1,
+                  "declaredDependencies": [],
+                  "rule": null,
+                  "ruleEvidence": null,
+                  "ruleCheckReason": "authored_causal_premise_not_in_source_dependency_graph",
+                  "statementIdentityMatched": true,
+                  "reason": "ai_generated_formal_reconstruction"
+                },
+                {
+                  "nodeId": "n_goal",
+                  "formalStepKernelPassed": true,
+                  "originalInferenceVerified": false,
+                  "originalInferenceStatus": "not_independently_certified",
+                  "proofTermOrigin": "proof_only_generation",
+                  "sourceClaimAssessment": "supported",
+                  "sourceReferenceCount": 1,
+                  "declaredDependencies": [
+                    "n_arith"
+                  ],
+                  "rule": null,
+                  "ruleEvidence": null,
+                  "ruleCheckReason": "no_source_matched_sound_inference_rule",
+                  "statementIdentityMatched": true,
+                  "reason": "ai_generated_formal_reconstruction"
+                }
+              ]
+            }
+          ],
+          "explanation": "Only exact source-anchored equations with an independently checked arithmetic inference rule and a genuine Kernel certificate are certified. Model proof reconstruction alone never qualifies. Unrecognized natural language is unconfirmed, not disproved."
+        },
+        "sourceProofContract": {
+          "version": "source-proof-contract/1",
+          "sourceEvidenceHash": "29e6d731b8ee35d4382559cd97e9ba06d99e0b00e8aa4a72104477f64fbd69f8",
+          "authoredOutline": {
+            "version": "authored-outline/1",
+            "basis": "immutable Unicode source blocks before AI MathIR conversion",
+            "semanticClaimsKernelProven": false,
+            "clauses": [
+              {
+                "blockId": "b0",
+                "start": 0,
+                "end": 26,
+                "quote": "设 x、y 为实数，已知 x+y=13，xy=30。",
+                "quoteSha256": "a5b66606fd99b664ec05b74065292250385355931fafbf9db29041cace6ca456",
+                "discourseMarkers": []
+              },
+              {
+                "blockId": "b0",
+                "start": 26,
+                "end": 39,
+                "quote": "证明 x²+y²=109。",
+                "quoteSha256": "f3748c2f817094a8bb0cf393bc38586d2ba63866a019ccf45b1e2428fda77f58",
+                "discourseMarkers": [
+                  "证明"
+                ]
+              },
+              {
+                "blockId": "b0",
+                "start": 39,
+                "end": 65,
+                "quote": "原证明：因为 4+5=9，所以 x²+y²=109。",
+                "quoteSha256": "7044274f62e748f383c41877ce387dc0d06621f97a7856864e8cb29a8685fa30",
+                "discourseMarkers": [
+                  "证明",
+                  "因为",
+                  "所以"
+                ]
+              },
+              {
+                "blockId": "b0",
+                "start": 65,
+                "end": 68,
+                "quote": "证毕。",
+                "quoteSha256": "11cf0e7539ab633d2e66a0dc77e9128c6f8baea1b384624d3847c41dc86ba617",
+                "discourseMarkers": []
+              }
+            ]
+          },
+          "sourceIsImmutable": true,
+          "modelSourceClaimsAreNotKernelEvidence": true,
+          "meaningOfStatus": "formal_entailment_and_authored_causal_fidelity_are_independent",
+          "routes": [
+            {
+              "routeId": "r_original",
+              "sourceSpans": [
+                {
+                  "blockId": "b0",
+                  "start": 39,
+                  "end": 65,
+                  "quote": "原证明：因为 4+5=9，所以 x²+y²=109。",
+                  "quoteSha256": "7044274f62e748f383c41877ce387dc0d06621f97a7856864e8cb29a8685fa30"
+                }
+              ],
+              "sourceEvidenceState": "identified",
+              "goalNodeId": "n_goal",
+              "authoredOrder": [
+                {
+                  "nodeId": "n_arith",
+                  "sourceOrder": 0,
+                  "modelRouteOrder": 0
+                },
+                {
+                  "nodeId": "n_goal",
+                  "sourceOrder": 1,
+                  "modelRouteOrder": 1
+                }
+              ],
+              "nodes": [
+                {
+                  "nodeId": "n_arith",
+                  "kind": "claim",
+                  "sourceOrder": 0,
+                  "mathematicalExpressionSha256": "0fe61528ff64f7622d8f9f8394f0ddecc35b3bcd5dc53dc9ac81cdb9df3c51f0",
+                  "formalExpectedType": "(∀ (v_var_x : ℝ), (∀ (v_var_y : ℝ), (((v_var_x + v_var_y) = (13 : ℝ)) → (((v_var_x * v_var_y) = (30 : ℝ)) → ((9 : ℕ) = (9 : ℕ))))))",
+                  "sourceSpans": [
+                    {
+                      "blockId": "b0",
+                      "start": 46,
+                      "end": 51,
+                      "quote": "4+5=9",
+                      "quoteSha256": "e218d638eda96b61b3f5478055290e794e1e6385c88e3a87496d59dc111940bc"
+                    }
+                  ],
+                  "authoredCausalClauses": [],
+                  "declaredDependencies": [],
+                  "dependencySourceEvidence": [],
+                  "sourceAssessment": "supported",
+                  "sourceEvidenceState": "identified",
+                  "unresolvedEvidence": [],
+                  "originalInferenceVerified": false,
+                  "formalStepKernelPassed": true,
+                  "formalDependencyUsage": "not_required",
+                  "sourceRule": null,
+                  "sourceRuleEvidence": null,
+                  "sourceRuleUncertainty": "authored_causal_premise_not_in_source_dependency_graph"
+                },
+                {
+                  "nodeId": "n_goal",
+                  "kind": "claim",
+                  "sourceOrder": 1,
+                  "mathematicalExpressionSha256": "bcb3de902582608c593de95247d08759c2a2e3d24c72b4dfe2dd9cf52a51f883",
+                  "formalExpectedType": "(∀ (v_var_x : ℝ), (∀ (v_var_y : ℝ), (((v_var_x + v_var_y) = (13 : ℝ)) → (((v_var_x * v_var_y) = (30 : ℝ)) → (∀ (jjdep_n_arith : ((9 : ℕ) = (9 : ℕ))), (((v_var_x ^ (2 : ℕ)) + (v_var_y ^ (2 : ℕ))) = (109 : ℝ)))))))",
+                  "sourceSpans": [
+                    {
+                      "blockId": "b0",
+                      "start": 55,
+                      "end": 64,
+                      "quote": "x²+y²=109",
+                      "quoteSha256": "2eef9f187c9caf80c9344feea37ecdd8bd5dd86a072d6f844336a57c91f37bd4"
+                    }
+                  ],
+                  "authoredCausalClauses": [],
+                  "declaredDependencies": [
+                    "n_arith"
+                  ],
+                  "dependencySourceEvidence": [
+                    {
+                      "nodeId": "n_arith",
+                      "kind": "claim",
+                      "sourceSpans": [
+                        {
+                          "blockId": "b0",
+                          "start": 46,
+                          "end": 51,
+                          "quote": "4+5=9",
+                          "quoteSha256": "e218d638eda96b61b3f5478055290e794e1e6385c88e3a87496d59dc111940bc"
+                        }
+                      ],
+                      "mathematicalExpressionSha256": "0fe61528ff64f7622d8f9f8394f0ddecc35b3bcd5dc53dc9ac81cdb9df3c51f0",
+                      "sourceEvidenceState": "identified",
+                      "sourceOrder": 0
+                    }
+                  ],
+                  "sourceAssessment": "supported",
+                  "sourceEvidenceState": "identified",
+                  "unresolvedEvidence": [],
+                  "originalInferenceVerified": false,
+                  "formalStepKernelPassed": true,
+                  "formalDependencyUsage": "declared_dependency_unused",
+                  "sourceRule": null,
+                  "sourceRuleEvidence": null,
+                  "sourceRuleUncertainty": "no_source_matched_sound_inference_rule"
+                }
+              ],
+              "authoredOutlineCoverage": {
+                "routeId": "r_original",
+                "clauses": [
+                  {
+                    "blockId": "b0",
+                    "start": 0,
+                    "end": 26,
+                    "quoteSha256": "a5b66606fd99b664ec05b74065292250385355931fafbf9db29041cace6ca456",
+                    "modelSourceOverlap": false,
+                    "modelSourceOverlapCodePoints": 0
+                  },
+                  {
+                    "blockId": "b0",
+                    "start": 26,
+                    "end": 39,
+                    "quoteSha256": "f3748c2f817094a8bb0cf393bc38586d2ba63866a019ccf45b1e2428fda77f58",
+                    "modelSourceOverlap": false,
+                    "modelSourceOverlapCodePoints": 0
+                  },
+                  {
+                    "blockId": "b0",
+                    "start": 39,
+                    "end": 65,
+                    "quoteSha256": "7044274f62e748f383c41877ce387dc0d06621f97a7856864e8cb29a8685fa30",
+                    "modelSourceOverlap": true,
+                    "modelSourceOverlapCodePoints": 40
+                  },
+                  {
+                    "blockId": "b0",
+                    "start": 65,
+                    "end": 68,
+                    "quoteSha256": "11cf0e7539ab633d2e66a0dc77e9128c6f8baea1b384624d3847c41dc86ba617",
+                    "modelSourceOverlap": false,
+                    "modelSourceOverlapCodePoints": 0
+                  }
+                ],
+                "modelUnreferencedClauseCount": 3,
+                "authorSourceSemanticsIndependentlyVerified": false
+              },
+              "mathematicalRouteKernelPassed": true,
+              "originalReasoningVerified": false
+            }
+          ]
+        },
+        "originalProofVerified": false,
+        "sourceProofVerified": false,
+        "formalRouteKernelPassed": true,
+        "originalMeaning": "unresolved_ambiguities",
+        "unresolvedAmbiguityIds": [
+          "amb_arith_literal_domain"
+        ],
+        "sourceCoverage": {
+          "version": "source-ref-span-coverage/1",
+          "basis": "union of validated Unicode-code-point SourceRefs; non-whitespace spans only",
+          "semanticEquivalenceProven": false,
+          "allSourceRefsValidated": true,
+          "structureBlocks": [
+            {
+              "blockId": "b0",
+              "codePointLength": 68,
+              "sourceRefCount": 9,
+              "referencedNonWhitespaceCodePoints": 56,
+              "totalNonWhitespaceCodePoints": 62,
+              "hasUnreferencedNonWhitespace": true,
+              "unreferencedNonWhitespaceSpans": [
+                {
+                  "start": 26,
+                  "end": 28
+                },
+                {
+                  "start": 38,
+                  "end": 39
+                },
+                {
+                  "start": 65,
+                  "end": 68
+                }
+              ]
+            }
+          ],
+          "routes": [
+            {
+              "routeId": "r_original",
+              "blocks": [
+                {
+                  "blockId": "b0",
+                  "codePointLength": 68,
+                  "sourceRefCount": 3,
+                  "referencedNonWhitespaceCodePoints": 24,
+                  "totalNonWhitespaceCodePoints": 62,
+                  "hasUnreferencedNonWhitespace": true,
+                  "unreferencedNonWhitespaceSpans": [
+                    {
+                      "start": 0,
+                      "end": 1
+                    },
+                    {
+                      "start": 2,
+                      "end": 5
+                    },
+                    {
+                      "start": 6,
+                      "end": 12
+                    },
+                    {
+                      "start": 13,
+                      "end": 28
+                    },
+                    {
+                      "start": 29,
+                      "end": 39
+                    },
+                    {
+                      "start": 65,
+                      "end": 68
+                    }
+                  ]
+                }
+              ],
+              "steps": [
+                {
+                  "nodeId": "n_arith",
+                  "sourceAssessment": "supported",
+                  "assessmentBasis": "原稿明确写‘4+5=9’作为理由",
+                  "sourceRefs": [
+                    {
+                      "blockId": "b0",
+                      "start": 46,
+                      "end": 51
+                    }
+                  ],
+                  "referencedNonWhitespaceCodePoints": 5,
+                  "blocks": [
+                    {
+                      "blockId": "b0",
+                      "sourceRefCount": 1,
+                      "referencedNonWhitespaceCodePoints": 5
+                    }
+                  ]
+                },
+                {
+                  "nodeId": "n_goal",
+                  "sourceAssessment": "supported",
+                  "assessmentBasis": "原稿明确写‘所以 x²+y²=109’；原稿未给出从 4+5=9 到该结论的中间推理，本结构未补写该推理。",
+                  "sourceRefs": [
+                    {
+                      "blockId": "b0",
+                      "start": 55,
+                      "end": 64
+                    }
+                  ],
+                  "referencedNonWhitespaceCodePoints": 9,
+                  "blocks": [
+                    {
+                      "blockId": "b0",
+                      "sourceRefCount": 1,
+                      "referencedNonWhitespaceCodePoints": 9
+                    }
+                  ]
+                }
+              ],
+              "inductionCases": []
+            }
+          ]
+        },
+        "fixedStatementKernelPassed": true,
+        "originalRouteKernelPassed": true,
+        "kernelVerified": true,
+        "leanMetrics": {
+          "reusedSourceLockedKernelCertificates": 0,
+          "processCount": 2,
+          "elapsedSeconds": 32.4,
+          "processes": [
+            {
+              "phase": "statement_proof_export_batch",
+              "wallSeconds": 15.25,
+              "queueWaitSeconds": 0.0001,
+              "slot": 0,
+              "parallelism": 1,
+              "activeProcessGroupsAtStart": 1,
+              "processGroupPid": 69415,
+              "kernelInputJsonBytes": 0,
+              "status": "completed",
+              "userCpuSeconds": 2.53,
+              "systemCpuSeconds": 12.41,
+              "maxRssBytes": 6109003776,
+              "peakMemoryFootprintBytes": 986132864,
+              "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+              "leanStdoutBytes": 10361216,
+              "leanStderrBytes": 755,
+              "pythonPeakRssBytes": 99401728,
+              "leanReturnCode": 0
+            },
+            {
+              "phase": "statement_proof_wire_materialization",
+              "wallSeconds": 0.7324,
+              "leanStdoutBytes": 10361216,
+              "candidateCount": 3,
+              "expectedStatementCount": 3,
+              "pythonPeakRssBytes": 240713728
+            },
+            {
+              "phase": "independent_kernel_replay_batch",
+              "wallSeconds": 16.27,
+              "queueWaitSeconds": 0.0001,
+              "slot": 0,
+              "parallelism": 1,
+              "activeProcessGroupsAtStart": 1,
+              "processGroupPid": 69429,
+              "kernelInputJsonBytes": 9478009,
+              "status": "completed",
+              "userCpuSeconds": 2.65,
+              "systemCpuSeconds": 13.35,
+              "maxRssBytes": 6106955776,
+              "peakMemoryFootprintBytes": 993538560,
+              "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+              "leanStdoutBytes": 2426,
+              "leanStderrBytes": 755,
+              "pythonPeakRssBytes": 250576896,
+              "leanReturnCode": 0
+            },
+            {
+              "phase": "kernel_certificate_materialization",
+              "wallSeconds": 0.1479,
+              "leanStdoutBytes": 2426,
+              "certificateCount": 3,
+              "pythonPeakRssBytes": 255590400
+            }
+          ],
+          "measurement": "Lean subprocess groups; each invocation includes the sandbox launcher and Lean process. Kernel batch resets the imported environment between evidence replays."
+        },
+        "routes": [
+          {
+            "routeId": "r_original",
+            "goalNodeId": "n_goal",
+            "status": "passed",
+            "completeOriginalRouteKernelPassed": true,
+            "fixedStatementKernelPassed": true,
+            "proofComposition": {
+              "status": "composed",
+              "error": null,
+              "kernelChecked": true
+            },
+            "routeConnectivity": {
+              "status": "connected",
+              "goalNodeIdPresent": true,
+              "unconnectedNodeIds": [],
+              "unconnectedClaimNodeIds": [],
+              "unconnectedNonclaimNodeIds": [],
+              "basis": "every authored claim is connected to the goal or induction; unconnected source-local assumptions are reviewed independently"
+            },
+            "dependencyEvidence": {
+              "status": "needs_source_review",
+              "basis": "observed binder references; not a condition for a mathematically valid implication",
+              "unusedBindings": [
+                {
+                  "nodeId": "n_goal",
+                  "unreferencedDependencies": [
+                    "n_arith"
+                  ]
+                }
+              ]
+            },
+            "sourceAlignment": {
+              "status": "ambiguous",
+              "modelAssessment": "supported",
+              "transcriptionStatus": "confirmed",
+              "unresolvedAmbiguityIds": [
+                "amb_arith_literal_domain"
+              ],
+              "sourceRefsValidated": true,
+              "semanticAlignmentKernelProven": false
+            },
+            "originalReasoningVerified": false,
+            "sourceCoverage": {
+              "routeId": "r_original",
+              "blocks": [
+                {
+                  "blockId": "b0",
+                  "codePointLength": 68,
+                  "sourceRefCount": 3,
+                  "referencedNonWhitespaceCodePoints": 24,
+                  "totalNonWhitespaceCodePoints": 62,
+                  "hasUnreferencedNonWhitespace": true,
+                  "unreferencedNonWhitespaceSpans": [
+                    {
+                      "start": 0,
+                      "end": 1
+                    },
+                    {
+                      "start": 2,
+                      "end": 5
+                    },
+                    {
+                      "start": 6,
+                      "end": 12
+                    },
+                    {
+                      "start": 13,
+                      "end": 28
+                    },
+                    {
+                      "start": 29,
+                      "end": 39
+                    },
+                    {
+                      "start": 65,
+                      "end": 68
+                    }
+                  ]
+                }
+              ],
+              "steps": [
+                {
+                  "nodeId": "n_arith",
+                  "sourceAssessment": "supported",
+                  "assessmentBasis": "原稿明确写‘4+5=9’作为理由",
+                  "sourceRefs": [
+                    {
+                      "blockId": "b0",
+                      "start": 46,
+                      "end": 51
+                    }
+                  ],
+                  "referencedNonWhitespaceCodePoints": 5,
+                  "blocks": [
+                    {
+                      "blockId": "b0",
+                      "sourceRefCount": 1,
+                      "referencedNonWhitespaceCodePoints": 5
+                    }
+                  ]
+                },
+                {
+                  "nodeId": "n_goal",
+                  "sourceAssessment": "supported",
+                  "assessmentBasis": "原稿明确写‘所以 x²+y²=109’；原稿未给出从 4+5=9 到该结论的中间推理，本结构未补写该推理。",
+                  "sourceRefs": [
+                    {
+                      "blockId": "b0",
+                      "start": 55,
+                      "end": 64
+                    }
+                  ],
+                  "referencedNonWhitespaceCodePoints": 9,
+                  "blocks": [
+                    {
+                      "blockId": "b0",
+                      "sourceRefCount": 1,
+                      "referencedNonWhitespaceCodePoints": 9
+                    }
+                  ]
+                }
+              ],
+              "inductionCases": []
+            },
+            "steps": [
+              {
+                "nodeId": "n_arith",
+                "kind": "claim",
+                "expectedType": "(∀ (v_var_x : ℝ), (∀ (v_var_y : ℝ), (((v_var_x + v_var_y) = (13 : ℝ)) → (((v_var_x * v_var_y) = (30 : ℝ)) → ((9 : ℕ) = (9 : ℕ))))))",
+                "status": "passed",
+                "proofAttemptStatus": "verified",
+                "originalInferenceVerified": false,
+                "originalInferenceStatus": "not_independently_certified",
+                "failureClass": null,
+                "mathematicalStatus": "established",
+                "proofTermOrigin": "proof_only_generation",
+                "sourceAssessment": "supported",
+                "assessmentBasis": "原稿明确写‘4+5=9’作为理由",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 46,
+                    "end": 51
+                  }
+                ],
+                "dependsOn": [],
+                "dependencyEvidence": "not_required",
+                "dependencyUsage": [],
+                "diagnostics": [],
+                "certificate": {
+                  "checked": true,
+                  "statementMatched": true,
+                  "auditMethod": "fresh_environment_data_only_kernel_replay",
+                  "axioms": [
+                    "propext",
+                    "Classical.choice",
+                    "Quot.sound"
+                  ],
+                  "additionalAxioms": [],
+                  "statement_hash": "7c426a201facb63cfbe46756a2fde398b5c64985d2949196356274098a21f123",
+                  "expectedExpressionSha256": "4e526b80dc9d94bbeb2c0972fdacf5f01f49166c874c9e964eb953b06e82e537",
+                  "proofExpressionSha256": "0280b27b43c0be2e1736cca977e6c7bb92635400f3b70ed479df8000ea70c3e5",
+                  "nativeExpressionComparison": "structural_equal",
+                  "auditIsolation": "fresh_import_environment_reset_between_candidates"
+                },
+                "evidenceRef": null,
+                "proofTermRef": {
+                  "sha256": "91bf4f969ccfe01aa8cd26d1701789142ac29b18e015c1972206a237443091ac",
+                  "path": "mathir-v2-evidence/proof-terms/91bf4f969ccfe01aa8cd26d1701789142ac29b18e015c1972206a237443091ac.txt.gz",
+                  "bytes": 39,
+                  "encoding": "gzip"
+                },
+                "proofTermSha256": "a2ae423d46871dc8148bba5a9b6585ddaba2c35e4cb72f54ac08f312fcae4444",
+                "sourceInferenceRule": null,
+                "sourceInferenceEvidence": null
+              },
+              {
+                "nodeId": "n_goal",
+                "kind": "claim",
+                "expectedType": "(∀ (v_var_x : ℝ), (∀ (v_var_y : ℝ), (((v_var_x + v_var_y) = (13 : ℝ)) → (((v_var_x * v_var_y) = (30 : ℝ)) → (∀ (jjdep_n_arith : ((9 : ℕ) = (9 : ℕ))), (((v_var_x ^ (2 : ℕ)) + (v_var_y ^ (2 : ℕ))) = (109 : ℝ)))))))",
+                "status": "passed",
+                "proofAttemptStatus": "verified",
+                "originalInferenceVerified": false,
+                "originalInferenceStatus": "not_independently_certified",
+                "failureClass": null,
+                "mathematicalStatus": "conditionally_established",
+                "proofTermOrigin": "proof_only_generation",
+                "sourceAssessment": "supported",
+                "assessmentBasis": "原稿明确写‘所以 x²+y²=109’；原稿未给出从 4+5=9 到该结论的中间推理，本结构未补写该推理。",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 55,
+                    "end": 64
+                  }
+                ],
+                "dependsOn": [
+                  "n_arith"
+                ],
+                "dependencyEvidence": "declared_dependency_unused",
+                "dependencyUsage": [
+                  {
+                    "dependencyId": "n_arith",
+                    "used": false
+                  }
+                ],
+                "diagnostics": [],
+                "certificate": {
+                  "checked": true,
+                  "statementMatched": true,
+                  "auditMethod": "fresh_environment_data_only_kernel_replay",
+                  "axioms": [
+                    "propext",
+                    "Classical.choice",
+                    "Quot.sound"
+                  ],
+                  "additionalAxioms": [],
+                  "statement_hash": "7c426a201facb63cfbe46756a2fde398b5c64985d2949196356274098a21f123",
+                  "expectedExpressionSha256": "71ecdb98e9892ab9edae27efb82aec2a38bee5a58d0121982435cae745cf4bdd",
+                  "proofExpressionSha256": "94f3dc50ed2ab8ab6cff0980ba565a29e9401ad39ee5ed4367800b8e0b4b9ef0",
+                  "nativeExpressionComparison": "structural_equal",
+                  "auditIsolation": "fresh_import_environment_reset_between_candidates"
+                },
+                "evidenceRef": null,
+                "proofTermRef": {
+                  "sha256": "5ce2a004efbc98ad46abcca83adb2a83d1a5a284ca9f9e325053abaa42e576e1",
+                  "path": "mathir-v2-evidence/proof-terms/5ce2a004efbc98ad46abcca83adb2a83d1a5a284ca9f9e325053abaa42e576e1.txt.gz",
+                  "bytes": 284,
+                  "encoding": "gzip"
+                },
+                "proofTermSha256": "74ff0f63aa5d5cd69778808cf58307a986fce1a451221d63517860861579c1aa",
+                "sourceInferenceRule": null,
+                "sourceInferenceEvidence": null
+              }
+            ],
+            "kernel": {
+              "status": "verified",
+              "diagnostics": [],
+              "certificate": {
+                "checked": true,
+                "statementMatched": true,
+                "auditMethod": "fresh_environment_data_only_kernel_replay",
+                "axioms": [
+                  "propext",
+                  "Classical.choice",
+                  "Quot.sound"
+                ],
+                "additionalAxioms": [],
+                "statement_hash": "7c426a201facb63cfbe46756a2fde398b5c64985d2949196356274098a21f123",
+                "expectedExpressionSha256": "382e7111838924e288d9098c38978dcd84645d9dc3e720159d170282dee49ec4",
+                "proofExpressionSha256": "e35a4756eae0eeb7e17a3ce6a7db3ed622055da6f093e3627916668108237a64",
+                "nativeExpressionComparison": "structural_equal",
+                "auditIsolation": "fresh_import_environment_reset_between_candidates"
+              },
+              "evidenceRef": null
+            }
+          }
+        ],
+        "originalProofFidelity": {
+          "sourceProofVerified": false,
+          "status": "not_independently_established",
+          "basis": "Formal Kernel proof alone cannot certify an author's natural-language reasoning. Unrecognized source rule remains unconfirmed.",
+          "routes": [
+            {
+              "routeId": "r_original",
+              "formalRouteKernelPassed": true,
+              "sourceReasoningVerified": false,
+              "sourceReasoningStatus": "not_independently_established",
+              "steps": [
+                {
+                  "nodeId": "n_arith",
+                  "formalStepKernelPassed": true,
+                  "proofTermOrigin": "proof_only_generation",
+                  "sourceReasoningVerified": false,
+                  "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+                  "sourceInferenceRule": null,
+                  "sourceInferenceEvidence": null
+                },
+                {
+                  "nodeId": "n_goal",
+                  "formalStepKernelPassed": true,
+                  "proofTermOrigin": "proof_only_generation",
+                  "sourceReasoningVerified": false,
+                  "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+                  "sourceInferenceRule": null,
+                  "sourceInferenceEvidence": null
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "events": [
+      {
+        "stage": "proof_only_generation",
+        "providerCalled": true,
+        "provider": {
+          "model": "deepseek-flash",
+          "usage": {
+            "prompt_tokens": 2368,
+            "completion_tokens": 1774,
+            "total_tokens": 4142,
+            "prompt_tokens_details": {
+              "cached_tokens": 1024
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 1597
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 1344
+          }
+        },
+        "repairInputHash": "2a0b803408d22bbba959712fe98828f05347ba50096407b6d804eef58d53b9c7",
+        "patches": [
+          {
+            "nodeId": "n_arith",
+            "origin": "proof_only_generation",
+            "proofTerm": {
+              "sha256": "91bf4f969ccfe01aa8cd26d1701789142ac29b18e015c1972206a237443091ac",
+              "path": "mathir-v2-evidence/proof-terms/91bf4f969ccfe01aa8cd26d1701789142ac29b18e015c1972206a237443091ac.txt.gz",
+              "bytes": 39,
+              "encoding": "gzip"
+            },
+            "replacesProofTermSha256": null,
+            "statementHash": "7c426a201facb63cfbe46756a2fde398b5c64985d2949196356274098a21f123",
+            "diagnosticHash": null
+          },
+          {
+            "nodeId": "n_goal",
+            "origin": "proof_only_generation",
+            "proofTerm": {
+              "sha256": "5ce2a004efbc98ad46abcca83adb2a83d1a5a284ca9f9e325053abaa42e576e1",
+              "path": "mathir-v2-evidence/proof-terms/5ce2a004efbc98ad46abcca83adb2a83d1a5a284ca9f9e325053abaa42e576e1.txt.gz",
+              "bytes": 284,
+              "encoding": "gzip"
+            },
+            "replacesProofTermSha256": null,
+            "statementHash": "7c426a201facb63cfbe46756a2fde398b5c64985d2949196356274098a21f123",
+            "diagnosticHash": null
+          }
+        ],
+        "result": {
+          "inputHash": "2a0b803408d22bbba959712fe98828f05347ba50096407b6d804eef58d53b9c7"
+        }
+      }
+    ],
+    "mathlibRetrieval": [],
+    "mathlibRetrievalScopes": [],
+    "proofWireRoot": "mathir-v2-evidence"
+  },
+  "sourceStructure": {
+    "id": "119167f8-fcfe-47b5-9e0a-fbcf78eb0a32",
+    "mathIR": {
+      "version": "2.0",
+      "source": {
+        "id": "e6350ec82c0242b93da2e56e",
+        "kind": "text",
+        "raw": "设 x、y 为实数，已知 x+y=13，xy=30。证明 x²+y²=109。原证明：因为 4+5=9，所以 x²+y²=109。证毕。",
+        "normalized": "设 x、y 为实数，已知 x+y=13，xy=30。证明 x²+y²=109。原证明：因为 4+5=9，所以 x²+y²=109。证毕。",
+        "blocks": [
+          {
+            "id": "b0",
+            "text": "设 x、y 为实数，已知 x+y=13，xy=30。证明 x²+y²=109。原证明：因为 4+5=9，所以 x²+y²=109。证毕。",
+            "page": null,
+            "bbox": null,
+            "assetId": null
+          }
+        ],
+        "transcriptStatus": "confirmed"
+      },
+      "scopes": [
+        {
+          "id": "sc_main",
+          "parentId": null,
+          "description": "原证明的全局实数变量与给定条件作用域",
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 0,
+              "end": 26
+            }
+          ]
+        }
+      ],
+      "declarations": [
+        {
+          "id": "var_x",
+          "name": "x",
+          "kind": "variable",
+          "type": {
+            "kind": "Real",
+            "coefficient": null,
+            "domain": null,
+            "codomain": null,
+            "element": null,
+            "dimension": null,
+            "rows": null,
+            "cols": null,
+            "typeVarId": null,
+            "typeVarMode": "unresolved",
+            "typeConstructor": null,
+            "typeArguments": [],
+            "termArguments": [],
+            "argumentOrder": [],
+            "binderId": null,
+            "candidateKinds": [],
+            "structureConstraints": [],
+            "declaredStructures": []
+          },
+          "typeAssessment": "explicit",
+          "typeAssessmentBasis": "原稿明示 x 为实数",
+          "scopeId": "sc_main",
+          "constraints": [],
+          "value": null,
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 0,
+              "end": 9
+            }
+          ],
+          "sourceAssessment": "supported",
+          "assessmentBasis": "原文明示‘设 x、y 为实数’"
+        },
+        {
+          "id": "var_y",
+          "name": "y",
+          "kind": "variable",
+          "type": {
+            "kind": "Real",
+            "coefficient": null,
+            "domain": null,
+            "codomain": null,
+            "element": null,
+            "dimension": null,
+            "rows": null,
+            "cols": null,
+            "typeVarId": null,
+            "typeVarMode": "unresolved",
+            "typeConstructor": null,
+            "typeArguments": [],
+            "termArguments": [],
+            "argumentOrder": [],
+            "binderId": null,
+            "candidateKinds": [],
+            "structureConstraints": [],
+            "declaredStructures": []
+          },
+          "typeAssessment": "explicit",
+          "typeAssessmentBasis": "原稿明示 y 为实数",
+          "scopeId": "sc_main",
+          "constraints": [],
+          "value": null,
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 0,
+              "end": 9
+            }
+          ],
+          "sourceAssessment": "supported",
+          "assessmentBasis": "原文明示‘设 x、y 为实数’"
+        }
+      ],
+      "assumptions": [
+        {
+          "id": "ass_sum",
+          "expression": {
+            "op": "eq",
+            "args": [
+              {
+                "op": "add",
+                "args": [
+                  {
+                    "op": "symbol",
+                    "args": [],
+                    "symbolId": "var_x",
+                    "binderId": null,
+                    "literal": null,
+                    "mathlibConstant": null,
+                    "lower": null,
+                    "upper": null,
+                    "upperInclusive": null,
+                    "targetType": null
+                  },
+                  {
+                    "op": "symbol",
+                    "args": [],
+                    "symbolId": "var_y",
+                    "binderId": null,
+                    "literal": null,
+                    "mathlibConstant": null,
+                    "lower": null,
+                    "upper": null,
+                    "upperInclusive": null,
+                    "targetType": null
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "literal": null,
+                "mathlibConstant": null,
+                "lower": null,
+                "upper": null,
+                "upperInclusive": null,
+                "targetType": null
+              },
+              {
+                "op": "literal",
+                "args": [],
+                "symbolId": null,
+                "binderId": null,
+                "literal": {
+                  "type": "Real",
+                  "interpretation": "fixed",
+                  "value": "13"
+                },
+                "mathlibConstant": null,
+                "lower": null,
+                "upper": null,
+                "upperInclusive": null,
+                "targetType": null
+              }
+            ],
+            "symbolId": null,
+            "binderId": null,
+            "literal": null,
+            "mathlibConstant": null,
+            "lower": null,
+            "upper": null,
+            "upperInclusive": null,
+            "targetType": null
+          },
+          "scopeId": "sc_main",
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 13,
+              "end": 19
+            }
+          ],
+          "sourceAssessment": "supported",
+          "assessmentBasis": "原稿明确给出前提‘已知 x+y=13’"
+        },
+        {
+          "id": "ass_prod",
+          "expression": {
+            "op": "eq",
+            "args": [
+              {
+                "op": "mul",
+                "args": [
+                  {
+                    "op": "symbol",
+                    "args": [],
+                    "symbolId": "var_x",
+                    "binderId": null,
+                    "literal": null,
+                    "mathlibConstant": null,
+                    "lower": null,
+                    "upper": null,
+                    "upperInclusive": null,
+                    "targetType": null
+                  },
+                  {
+                    "op": "symbol",
+                    "args": [],
+                    "symbolId": "var_y",
+                    "binderId": null,
+                    "literal": null,
+                    "mathlibConstant": null,
+                    "lower": null,
+                    "upper": null,
+                    "upperInclusive": null,
+                    "targetType": null
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "literal": null,
+                "mathlibConstant": null,
+                "lower": null,
+                "upper": null,
+                "upperInclusive": null,
+                "targetType": null
+              },
+              {
+                "op": "literal",
+                "args": [],
+                "symbolId": null,
+                "binderId": null,
+                "literal": {
+                  "type": "Real",
+                  "interpretation": "fixed",
+                  "value": "30"
+                },
+                "mathlibConstant": null,
+                "lower": null,
+                "upper": null,
+                "upperInclusive": null,
+                "targetType": null
+              }
+            ],
+            "symbolId": null,
+            "binderId": null,
+            "literal": null,
+            "mathlibConstant": null,
+            "lower": null,
+            "upper": null,
+            "upperInclusive": null,
+            "targetType": null
+          },
+          "scopeId": "sc_main",
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 20,
+              "end": 25
+            }
+          ],
+          "sourceAssessment": "supported",
+          "assessmentBasis": "原稿明确给出前提‘xy=30’"
+        }
+      ],
+      "goal": {
+        "id": "g_main",
+        "expression": {
+          "op": "eq",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "pow",
+                  "args": [
+                    {
+                      "op": "symbol",
+                      "args": [],
+                      "symbolId": "var_x",
+                      "binderId": null,
+                      "literal": null,
+                      "mathlibConstant": null,
+                      "lower": null,
+                      "upper": null,
+                      "upperInclusive": null,
+                      "targetType": null
+                    },
+                    {
+                      "op": "literal",
+                      "args": [],
+                      "symbolId": null,
+                      "binderId": null,
+                      "literal": {
+                        "type": "Nat",
+                        "interpretation": "fixed",
+                        "value": "2"
+                      },
+                      "mathlibConstant": null,
+                      "lower": null,
+                      "upper": null,
+                      "upperInclusive": null,
+                      "targetType": null
+                    }
+                  ],
+                  "symbolId": null,
+                  "binderId": null,
+                  "literal": null,
+                  "mathlibConstant": null,
+                  "lower": null,
+                  "upper": null,
+                  "upperInclusive": null,
+                  "targetType": null
+                },
+                {
+                  "op": "pow",
+                  "args": [
+                    {
+                      "op": "symbol",
+                      "args": [],
+                      "symbolId": "var_y",
+                      "binderId": null,
+                      "literal": null,
+                      "mathlibConstant": null,
+                      "lower": null,
+                      "upper": null,
+                      "upperInclusive": null,
+                      "targetType": null
+                    },
+                    {
+                      "op": "literal",
+                      "args": [],
+                      "symbolId": null,
+                      "binderId": null,
+                      "literal": {
+                        "type": "Nat",
+                        "interpretation": "fixed",
+                        "value": "2"
+                      },
+                      "mathlibConstant": null,
+                      "lower": null,
+                      "upper": null,
+                      "upperInclusive": null,
+                      "targetType": null
+                    }
+                  ],
+                  "symbolId": null,
+                  "binderId": null,
+                  "literal": null,
+                  "mathlibConstant": null,
+                  "lower": null,
+                  "upper": null,
+                  "upperInclusive": null,
+                  "targetType": null
+                }
+              ],
+              "symbolId": null,
+              "binderId": null,
+              "literal": null,
+              "mathlibConstant": null,
+              "lower": null,
+              "upper": null,
+              "upperInclusive": null,
+              "targetType": null
+            },
+            {
+              "op": "literal",
+              "args": [],
+              "symbolId": null,
+              "binderId": null,
+              "literal": {
+                "type": "Real",
+                "interpretation": "fixed",
+                "value": "109"
+              },
+              "mathlibConstant": null,
+              "lower": null,
+              "upper": null,
+              "upperInclusive": null,
+              "targetType": null
+            }
+          ],
+          "symbolId": null,
+          "binderId": null,
+          "literal": null,
+          "mathlibConstant": null,
+          "lower": null,
+          "upper": null,
+          "upperInclusive": null,
+          "targetType": null
+        },
+        "scopeId": "sc_main",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 29,
+            "end": 38
+          }
+        ],
+        "sourceAssessment": "supported",
+        "assessmentBasis": "原稿明确证明的目标为‘x²+y²=109’"
+      },
+      "proofRoutes": [
+        {
+          "id": "r_original",
+          "label": "原证明",
+          "nodes": [
+            {
+              "id": "n_arith",
+              "kind": "claim",
+              "expression": {
+                "op": "eq",
+                "args": [
+                  {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "literal",
+                        "args": [],
+                        "symbolId": null,
+                        "binderId": null,
+                        "literal": {
+                          "type": "Nat",
+                          "interpretation": "fixed",
+                          "value": "4"
+                        },
+                        "mathlibConstant": null,
+                        "lower": null,
+                        "upper": null,
+                        "upperInclusive": null,
+                        "targetType": null
+                      },
+                      {
+                        "op": "literal",
+                        "args": [],
+                        "symbolId": null,
+                        "binderId": null,
+                        "literal": {
+                          "type": "Nat",
+                          "interpretation": "fixed",
+                          "value": "5"
+                        },
+                        "mathlibConstant": null,
+                        "lower": null,
+                        "upper": null,
+                        "upperInclusive": null,
+                        "targetType": null
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "literal": null,
+                    "mathlibConstant": null,
+                    "lower": null,
+                    "upper": null,
+                    "upperInclusive": null,
+                    "targetType": null
+                  },
+                  {
+                    "op": "literal",
+                    "args": [],
+                    "symbolId": null,
+                    "binderId": null,
+                    "literal": {
+                      "type": "Nat",
+                      "interpretation": "fixed",
+                      "value": "9"
+                    },
+                    "mathlibConstant": null,
+                    "lower": null,
+                    "upper": null,
+                    "upperInclusive": null,
+                    "targetType": null
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "literal": null,
+                "mathlibConstant": null,
+                "lower": null,
+                "upper": null,
+                "upperInclusive": null,
+                "targetType": null
+              },
+              "scopeId": "sc_main",
+              "dependsOn": [],
+              "closedDependencies": [],
+              "proofTerm": null,
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 46,
+                  "end": 51
+                }
+              ],
+              "sourceAssessment": "supported",
+              "assessmentBasis": "原稿明确写‘4+5=9’作为理由"
+            },
+            {
+              "id": "n_goal",
+              "kind": "claim",
+              "expression": {
+                "op": "eq",
+                "args": [
+                  {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "pow",
+                        "args": [
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "var_x",
+                            "binderId": null,
+                            "literal": null,
+                            "mathlibConstant": null,
+                            "lower": null,
+                            "upper": null,
+                            "upperInclusive": null,
+                            "targetType": null
+                          },
+                          {
+                            "op": "literal",
+                            "args": [],
+                            "symbolId": null,
+                            "binderId": null,
+                            "literal": {
+                              "type": "Nat",
+                              "interpretation": "fixed",
+                              "value": "2"
+                            },
+                            "mathlibConstant": null,
+                            "lower": null,
+                            "upper": null,
+                            "upperInclusive": null,
+                            "targetType": null
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "literal": null,
+                        "mathlibConstant": null,
+                        "lower": null,
+                        "upper": null,
+                        "upperInclusive": null,
+                        "targetType": null
+                      },
+                      {
+                        "op": "pow",
+                        "args": [
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "var_y",
+                            "binderId": null,
+                            "literal": null,
+                            "mathlibConstant": null,
+                            "lower": null,
+                            "upper": null,
+                            "upperInclusive": null,
+                            "targetType": null
+                          },
+                          {
+                            "op": "literal",
+                            "args": [],
+                            "symbolId": null,
+                            "binderId": null,
+                            "literal": {
+                              "type": "Nat",
+                              "interpretation": "fixed",
+                              "value": "2"
+                            },
+                            "mathlibConstant": null,
+                            "lower": null,
+                            "upper": null,
+                            "upperInclusive": null,
+                            "targetType": null
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "literal": null,
+                        "mathlibConstant": null,
+                        "lower": null,
+                        "upper": null,
+                        "upperInclusive": null,
+                        "targetType": null
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "literal": null,
+                    "mathlibConstant": null,
+                    "lower": null,
+                    "upper": null,
+                    "upperInclusive": null,
+                    "targetType": null
+                  },
+                  {
+                    "op": "literal",
+                    "args": [],
+                    "symbolId": null,
+                    "binderId": null,
+                    "literal": {
+                      "type": "Real",
+                      "interpretation": "fixed",
+                      "value": "109"
+                    },
+                    "mathlibConstant": null,
+                    "lower": null,
+                    "upper": null,
+                    "upperInclusive": null,
+                    "targetType": null
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "literal": null,
+                "mathlibConstant": null,
+                "lower": null,
+                "upper": null,
+                "upperInclusive": null,
+                "targetType": null
+              },
+              "scopeId": "sc_main",
+              "dependsOn": [
+                "n_arith"
+              ],
+              "closedDependencies": [],
+              "proofTerm": null,
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 55,
+                  "end": 64
+                }
+              ],
+              "sourceAssessment": "supported",
+              "assessmentBasis": "原稿明确写‘所以 x²+y²=109’；原稿未给出从 4+5=9 到该结论的中间推理，本结构未补写该推理。"
+            }
+          ],
+          "goalNodeId": "n_goal",
+          "inductions": [],
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 39,
+              "end": 65
+            }
+          ],
+          "sourceAssessment": "supported",
+          "assessmentBasis": "原稿确实给出‘因为 4+5=9，所以 x²+y²=109’的证明路线；该标记仅表示原文写出此路线，不表示推理充分。"
+        }
+      ],
+      "ambiguities": [
+        {
+          "id": "amb_arith_literal_domain",
+          "kind": "type_domain",
+          "description": "原稿中的独立算术断言‘4+5=9’未明示数域；此处按自然数算术事实编码。该歧义不影响 x、y 为实数及目标式。",
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 46,
+              "end": 51
+            }
+          ]
+        }
+      ]
+    },
+    "statement": "(∀ (v_var_x : ℝ), (∀ (v_var_y : ℝ), (((v_var_x + v_var_y) = (13 : ℝ)) → (((v_var_x * v_var_y) = (30 : ℝ)) → (((v_var_x ^ (2 : ℕ)) + (v_var_y ^ (2 : ℕ))) = (109 : ℝ))))))",
+    "statementHash": "7c426a201facb63cfbe46756a2fde398b5c64985d2949196356274098a21f123",
+    "mathIRHash": "389332529e708eaf0416f6fa888decab4fc87d657953b4f0376df76ad6a3bf7e",
+    "sourceEvidenceHash": "a87ca9023c7a3502b1d6d983c2dbae7ea856b835e2f2a7b2987b2665f4b8d6a0",
+    "structureProvenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "9bfbd5d5-47a3-4960-8fd4-be7a090b6c2a",
+      "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+      "usage": {
+        "prompt_tokens": 10572,
+        "completion_tokens": 9099,
+        "total_tokens": 19671,
+        "prompt_tokens_details": {
+          "cached_tokens": 9728
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 7941
+        },
+        "prompt_cache_hit_tokens": 9728,
+        "prompt_cache_miss_tokens": 844
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "recognitionEvidence": {
+      "ambiguities": [],
+      "corrections": [],
+      "userCorrections": [],
+      "recognitionId": null,
+      "locationPrecision": "text_block",
+      "sourceAssets": []
+    },
+    "typeConstraintEvidence": [],
+    "sourceRefAudit": {
+      "version": "source-ref-range-audit/1",
+      "basis": "Unicode code-point ranges into SourceBlock.text",
+      "semanticAlignmentProven": false,
+      "sourceBlocksUnique": true,
+      "allRangesValid": true,
+      "referenceCount": 9,
+      "invalidReferenceCount": 0,
+      "blocks": [
+        {
+          "blockId": "b0",
+          "duplicateBlockId": false,
+          "offsetUnit": "unicode_code_points",
+          "codePointLength": 68,
+          "sourceRefCount": 9,
+          "referencedNonWhitespaceCodePoints": 56,
+          "totalNonWhitespaceCodePoints": 62,
+          "hasUnreferencedNonWhitespace": true,
+          "unreferencedNonWhitespaceSpans": [
+            {
+              "start": 26,
+              "end": 28
+            },
+            {
+              "start": 38,
+              "end": 39
+            },
+            {
+              "start": 65,
+              "end": 68
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "ownerKind": "scope",
+          "ownerId": "sc_main",
+          "index": 0,
+          "blockId": "b0",
+          "start": 0,
+          "end": 26,
+          "status": "valid"
+        },
+        {
+          "ownerKind": "declaration",
+          "ownerId": "var_x",
+          "index": 0,
+          "blockId": "b0",
+          "start": 0,
+          "end": 9,
+          "status": "valid"
+        },
+        {
+          "ownerKind": "declaration",
+          "ownerId": "var_y",
+          "index": 0,
+          "blockId": "b0",
+          "start": 0,
+          "end": 9,
+          "status": "valid"
+        },
+        {
+          "ownerKind": "assumption",
+          "ownerId": "ass_sum",
+          "index": 0,
+          "blockId": "b0",
+          "start": 13,
+          "end": 19,
+          "status": "valid"
+        },
+        {
+          "ownerKind": "assumption",
+          "ownerId": "ass_prod",
+          "index": 0,
+          "blockId": "b0",
+          "start": 20,
+          "end": 25,
+          "status": "valid"
+        },
+        {
+          "ownerKind": "goal",
+          "ownerId": "g_main",
+          "index": 0,
+          "blockId": "b0",
+          "start": 29,
+          "end": 38,
+          "status": "valid"
+        },
+        {
+          "ownerKind": "route",
+          "ownerId": "r_original",
+          "index": 0,
+          "blockId": "b0",
+          "start": 39,
+          "end": 65,
+          "status": "valid"
+        },
+        {
+          "ownerKind": "route_node",
+          "ownerId": "r_original/n_arith",
+          "index": 0,
+          "blockId": "b0",
+          "start": 46,
+          "end": 51,
+          "status": "valid"
+        },
+        {
+          "ownerKind": "route_node",
+          "ownerId": "r_original/n_goal",
+          "index": 0,
+          "blockId": "b0",
+          "start": 55,
+          "end": 64,
+          "status": "valid"
+        }
+      ]
+    },
+    "authoredProofOutline": {
+      "version": "authored-outline/1",
+      "basis": "immutable Unicode source blocks before AI MathIR conversion",
+      "semanticClaimsKernelProven": false,
+      "clauses": [
+        {
+          "blockId": "b0",
+          "start": 0,
+          "end": 26,
+          "quote": "设 x、y 为实数，已知 x+y=13，xy=30。",
+          "quoteSha256": "a5b66606fd99b664ec05b74065292250385355931fafbf9db29041cace6ca456",
+          "discourseMarkers": []
+        },
+        {
+          "blockId": "b0",
+          "start": 26,
+          "end": 39,
+          "quote": "证明 x²+y²=109。",
+          "quoteSha256": "f3748c2f817094a8bb0cf393bc38586d2ba63866a019ccf45b1e2428fda77f58",
+          "discourseMarkers": [
+            "证明"
+          ]
+        },
+        {
+          "blockId": "b0",
+          "start": 39,
+          "end": 65,
+          "quote": "原证明：因为 4+5=9，所以 x²+y²=109。",
+          "quoteSha256": "7044274f62e748f383c41877ce387dc0d06621f97a7856864e8cb29a8685fa30",
+          "discourseMarkers": [
+            "证明",
+            "因为",
+            "所以"
+          ]
+        },
+        {
+          "blockId": "b0",
+          "start": 65,
+          "end": 68,
+          "quote": "证毕。",
+          "quoteSha256": "11cf0e7539ab633d2e66a0dc77e9128c6f8baea1b384624d3847c41dc86ba617",
+          "discourseMarkers": []
+        }
+      ]
+    },
+    "normalization": [],
+    "symbolResolutions": [],
+    "deterministicNormalizations": [
+      {
+        "kind": "closed_nat_evaluation",
+        "path": "proofRoutes[0].nodes[0].expression.args[0]",
+        "operator": "add",
+        "operands": [
+          "4",
+          "5"
+        ],
+        "result": "9"
+      }
+    ],
+    "validated": true
+  },
+  "finalMathIR": {
+    "id": "d6e32acc-0282-4795-8b2e-305f75c32914",
+    "mathIR": {
+      "version": "2.0",
+      "source": {
+        "id": "e6350ec82c0242b93da2e56e",
+        "kind": "text",
+        "raw": "设 x、y 为实数，已知 x+y=13，xy=30。证明 x²+y²=109。原证明：因为 4+5=9，所以 x²+y²=109。证毕。",
+        "normalized": "设 x、y 为实数，已知 x+y=13，xy=30。证明 x²+y²=109。原证明：因为 4+5=9，所以 x²+y²=109。证毕。",
+        "blocks": [
+          {
+            "id": "b0",
+            "text": "设 x、y 为实数，已知 x+y=13，xy=30。证明 x²+y²=109。原证明：因为 4+5=9，所以 x²+y²=109。证毕。",
+            "page": null,
+            "bbox": null,
+            "assetId": null
+          }
+        ],
+        "transcriptStatus": "confirmed"
+      },
+      "scopes": [
+        {
+          "id": "sc_main",
+          "parentId": null,
+          "description": "原证明的全局实数变量与给定条件作用域",
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 0,
+              "end": 26
+            }
+          ]
+        }
+      ],
+      "declarations": [
+        {
+          "id": "var_x",
+          "name": "x",
+          "kind": "variable",
+          "type": {
+            "kind": "Real",
+            "coefficient": null,
+            "domain": null,
+            "codomain": null,
+            "element": null,
+            "dimension": null,
+            "rows": null,
+            "cols": null,
+            "typeVarId": null,
+            "typeVarMode": "unresolved",
+            "typeConstructor": null,
+            "typeArguments": [],
+            "termArguments": [],
+            "argumentOrder": [],
+            "binderId": null,
+            "candidateKinds": [],
+            "structureConstraints": [],
+            "declaredStructures": []
+          },
+          "typeAssessment": "explicit",
+          "typeAssessmentBasis": "原稿明示 x 为实数",
+          "scopeId": "sc_main",
+          "constraints": [],
+          "value": null,
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 0,
+              "end": 9
+            }
+          ],
+          "sourceAssessment": "supported",
+          "assessmentBasis": "原文明示‘设 x、y 为实数’"
+        },
+        {
+          "id": "var_y",
+          "name": "y",
+          "kind": "variable",
+          "type": {
+            "kind": "Real",
+            "coefficient": null,
+            "domain": null,
+            "codomain": null,
+            "element": null,
+            "dimension": null,
+            "rows": null,
+            "cols": null,
+            "typeVarId": null,
+            "typeVarMode": "unresolved",
+            "typeConstructor": null,
+            "typeArguments": [],
+            "termArguments": [],
+            "argumentOrder": [],
+            "binderId": null,
+            "candidateKinds": [],
+            "structureConstraints": [],
+            "declaredStructures": []
+          },
+          "typeAssessment": "explicit",
+          "typeAssessmentBasis": "原稿明示 y 为实数",
+          "scopeId": "sc_main",
+          "constraints": [],
+          "value": null,
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 0,
+              "end": 9
+            }
+          ],
+          "sourceAssessment": "supported",
+          "assessmentBasis": "原文明示‘设 x、y 为实数’"
+        }
+      ],
+      "assumptions": [
+        {
+          "id": "ass_sum",
+          "expression": {
+            "op": "eq",
+            "args": [
+              {
+                "op": "add",
+                "args": [
+                  {
+                    "op": "symbol",
+                    "args": [],
+                    "symbolId": "var_x",
+                    "binderId": null,
+                    "literal": null,
+                    "mathlibConstant": null,
+                    "lower": null,
+                    "upper": null,
+                    "upperInclusive": null,
+                    "targetType": null
+                  },
+                  {
+                    "op": "symbol",
+                    "args": [],
+                    "symbolId": "var_y",
+                    "binderId": null,
+                    "literal": null,
+                    "mathlibConstant": null,
+                    "lower": null,
+                    "upper": null,
+                    "upperInclusive": null,
+                    "targetType": null
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "literal": null,
+                "mathlibConstant": null,
+                "lower": null,
+                "upper": null,
+                "upperInclusive": null,
+                "targetType": null
+              },
+              {
+                "op": "literal",
+                "args": [],
+                "symbolId": null,
+                "binderId": null,
+                "literal": {
+                  "type": "Real",
+                  "interpretation": "fixed",
+                  "value": "13"
+                },
+                "mathlibConstant": null,
+                "lower": null,
+                "upper": null,
+                "upperInclusive": null,
+                "targetType": null
+              }
+            ],
+            "symbolId": null,
+            "binderId": null,
+            "literal": null,
+            "mathlibConstant": null,
+            "lower": null,
+            "upper": null,
+            "upperInclusive": null,
+            "targetType": null
+          },
+          "scopeId": "sc_main",
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 13,
+              "end": 19
+            }
+          ],
+          "sourceAssessment": "supported",
+          "assessmentBasis": "原稿明确给出前提‘已知 x+y=13’"
+        },
+        {
+          "id": "ass_prod",
+          "expression": {
+            "op": "eq",
+            "args": [
+              {
+                "op": "mul",
+                "args": [
+                  {
+                    "op": "symbol",
+                    "args": [],
+                    "symbolId": "var_x",
+                    "binderId": null,
+                    "literal": null,
+                    "mathlibConstant": null,
+                    "lower": null,
+                    "upper": null,
+                    "upperInclusive": null,
+                    "targetType": null
+                  },
+                  {
+                    "op": "symbol",
+                    "args": [],
+                    "symbolId": "var_y",
+                    "binderId": null,
+                    "literal": null,
+                    "mathlibConstant": null,
+                    "lower": null,
+                    "upper": null,
+                    "upperInclusive": null,
+                    "targetType": null
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "literal": null,
+                "mathlibConstant": null,
+                "lower": null,
+                "upper": null,
+                "upperInclusive": null,
+                "targetType": null
+              },
+              {
+                "op": "literal",
+                "args": [],
+                "symbolId": null,
+                "binderId": null,
+                "literal": {
+                  "type": "Real",
+                  "interpretation": "fixed",
+                  "value": "30"
+                },
+                "mathlibConstant": null,
+                "lower": null,
+                "upper": null,
+                "upperInclusive": null,
+                "targetType": null
+              }
+            ],
+            "symbolId": null,
+            "binderId": null,
+            "literal": null,
+            "mathlibConstant": null,
+            "lower": null,
+            "upper": null,
+            "upperInclusive": null,
+            "targetType": null
+          },
+          "scopeId": "sc_main",
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 20,
+              "end": 25
+            }
+          ],
+          "sourceAssessment": "supported",
+          "assessmentBasis": "原稿明确给出前提‘xy=30’"
+        }
+      ],
+      "goal": {
+        "id": "g_main",
+        "expression": {
+          "op": "eq",
+          "args": [
+            {
+              "op": "add",
+              "args": [
+                {
+                  "op": "pow",
+                  "args": [
+                    {
+                      "op": "symbol",
+                      "args": [],
+                      "symbolId": "var_x",
+                      "binderId": null,
+                      "literal": null,
+                      "mathlibConstant": null,
+                      "lower": null,
+                      "upper": null,
+                      "upperInclusive": null,
+                      "targetType": null
+                    },
+                    {
+                      "op": "literal",
+                      "args": [],
+                      "symbolId": null,
+                      "binderId": null,
+                      "literal": {
+                        "type": "Nat",
+                        "interpretation": "fixed",
+                        "value": "2"
+                      },
+                      "mathlibConstant": null,
+                      "lower": null,
+                      "upper": null,
+                      "upperInclusive": null,
+                      "targetType": null
+                    }
+                  ],
+                  "symbolId": null,
+                  "binderId": null,
+                  "literal": null,
+                  "mathlibConstant": null,
+                  "lower": null,
+                  "upper": null,
+                  "upperInclusive": null,
+                  "targetType": null
+                },
+                {
+                  "op": "pow",
+                  "args": [
+                    {
+                      "op": "symbol",
+                      "args": [],
+                      "symbolId": "var_y",
+                      "binderId": null,
+                      "literal": null,
+                      "mathlibConstant": null,
+                      "lower": null,
+                      "upper": null,
+                      "upperInclusive": null,
+                      "targetType": null
+                    },
+                    {
+                      "op": "literal",
+                      "args": [],
+                      "symbolId": null,
+                      "binderId": null,
+                      "literal": {
+                        "type": "Nat",
+                        "interpretation": "fixed",
+                        "value": "2"
+                      },
+                      "mathlibConstant": null,
+                      "lower": null,
+                      "upper": null,
+                      "upperInclusive": null,
+                      "targetType": null
+                    }
+                  ],
+                  "symbolId": null,
+                  "binderId": null,
+                  "literal": null,
+                  "mathlibConstant": null,
+                  "lower": null,
+                  "upper": null,
+                  "upperInclusive": null,
+                  "targetType": null
+                }
+              ],
+              "symbolId": null,
+              "binderId": null,
+              "literal": null,
+              "mathlibConstant": null,
+              "lower": null,
+              "upper": null,
+              "upperInclusive": null,
+              "targetType": null
+            },
+            {
+              "op": "literal",
+              "args": [],
+              "symbolId": null,
+              "binderId": null,
+              "literal": {
+                "type": "Real",
+                "interpretation": "fixed",
+                "value": "109"
+              },
+              "mathlibConstant": null,
+              "lower": null,
+              "upper": null,
+              "upperInclusive": null,
+              "targetType": null
+            }
+          ],
+          "symbolId": null,
+          "binderId": null,
+          "literal": null,
+          "mathlibConstant": null,
+          "lower": null,
+          "upper": null,
+          "upperInclusive": null,
+          "targetType": null
+        },
+        "scopeId": "sc_main",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 29,
+            "end": 38
+          }
+        ],
+        "sourceAssessment": "supported",
+        "assessmentBasis": "原稿明确证明的目标为‘x²+y²=109’"
+      },
+      "proofRoutes": [
+        {
+          "id": "r_original",
+          "label": "原证明",
+          "nodes": [
+            {
+              "id": "n_arith",
+              "kind": "claim",
+              "expression": {
+                "op": "eq",
+                "args": [
+                  {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "literal",
+                        "args": [],
+                        "symbolId": null,
+                        "binderId": null,
+                        "literal": {
+                          "type": "Nat",
+                          "interpretation": "fixed",
+                          "value": "4"
+                        },
+                        "mathlibConstant": null,
+                        "lower": null,
+                        "upper": null,
+                        "upperInclusive": null,
+                        "targetType": null
+                      },
+                      {
+                        "op": "literal",
+                        "args": [],
+                        "symbolId": null,
+                        "binderId": null,
+                        "literal": {
+                          "type": "Nat",
+                          "interpretation": "fixed",
+                          "value": "5"
+                        },
+                        "mathlibConstant": null,
+                        "lower": null,
+                        "upper": null,
+                        "upperInclusive": null,
+                        "targetType": null
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "literal": null,
+                    "mathlibConstant": null,
+                    "lower": null,
+                    "upper": null,
+                    "upperInclusive": null,
+                    "targetType": null
+                  },
+                  {
+                    "op": "literal",
+                    "args": [],
+                    "symbolId": null,
+                    "binderId": null,
+                    "literal": {
+                      "type": "Nat",
+                      "interpretation": "fixed",
+                      "value": "9"
+                    },
+                    "mathlibConstant": null,
+                    "lower": null,
+                    "upper": null,
+                    "upperInclusive": null,
+                    "targetType": null
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "literal": null,
+                "mathlibConstant": null,
+                "lower": null,
+                "upper": null,
+                "upperInclusive": null,
+                "targetType": null
+              },
+              "scopeId": "sc_main",
+              "dependsOn": [],
+              "closedDependencies": [],
+              "proofTerm": "fun v_var_x v_var_y h_sum h_prod => rfl",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 46,
+                  "end": 51
+                }
+              ],
+              "sourceAssessment": "supported",
+              "assessmentBasis": "原稿明确写‘4+5=9’作为理由"
+            },
+            {
+              "id": "n_goal",
+              "kind": "claim",
+              "expression": {
+                "op": "eq",
+                "args": [
+                  {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "pow",
+                        "args": [
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "var_x",
+                            "binderId": null,
+                            "literal": null,
+                            "mathlibConstant": null,
+                            "lower": null,
+                            "upper": null,
+                            "upperInclusive": null,
+                            "targetType": null
+                          },
+                          {
+                            "op": "literal",
+                            "args": [],
+                            "symbolId": null,
+                            "binderId": null,
+                            "literal": {
+                              "type": "Nat",
+                              "interpretation": "fixed",
+                              "value": "2"
+                            },
+                            "mathlibConstant": null,
+                            "lower": null,
+                            "upper": null,
+                            "upperInclusive": null,
+                            "targetType": null
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "literal": null,
+                        "mathlibConstant": null,
+                        "lower": null,
+                        "upper": null,
+                        "upperInclusive": null,
+                        "targetType": null
+                      },
+                      {
+                        "op": "pow",
+                        "args": [
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "var_y",
+                            "binderId": null,
+                            "literal": null,
+                            "mathlibConstant": null,
+                            "lower": null,
+                            "upper": null,
+                            "upperInclusive": null,
+                            "targetType": null
+                          },
+                          {
+                            "op": "literal",
+                            "args": [],
+                            "symbolId": null,
+                            "binderId": null,
+                            "literal": {
+                              "type": "Nat",
+                              "interpretation": "fixed",
+                              "value": "2"
+                            },
+                            "mathlibConstant": null,
+                            "lower": null,
+                            "upper": null,
+                            "upperInclusive": null,
+                            "targetType": null
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "literal": null,
+                        "mathlibConstant": null,
+                        "lower": null,
+                        "upper": null,
+                        "upperInclusive": null,
+                        "targetType": null
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "literal": null,
+                    "mathlibConstant": null,
+                    "lower": null,
+                    "upper": null,
+                    "upperInclusive": null,
+                    "targetType": null
+                  },
+                  {
+                    "op": "literal",
+                    "args": [],
+                    "symbolId": null,
+                    "binderId": null,
+                    "literal": {
+                      "type": "Real",
+                      "interpretation": "fixed",
+                      "value": "109"
+                    },
+                    "mathlibConstant": null,
+                    "lower": null,
+                    "upper": null,
+                    "upperInclusive": null,
+                    "targetType": null
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "literal": null,
+                "mathlibConstant": null,
+                "lower": null,
+                "upper": null,
+                "upperInclusive": null,
+                "targetType": null
+              },
+              "scopeId": "sc_main",
+              "dependsOn": [
+                "n_arith"
+              ],
+              "closedDependencies": [],
+              "proofTerm": "fun v_var_x v_var_y h_sum h_prod jjdep_n_arith => by\n  calc\n    v_var_x ^ (2 : ℕ) + v_var_y ^ (2 : ℕ) = (v_var_x + v_var_y) ^ (2 : ℕ) - 2 * (v_var_x * v_var_y) := by ring\n    _ = (13 : ℝ) ^ (2 : ℕ) - 2 * (30 : ℝ) := by rw [h_sum, h_prod]\n    _ = (109 : ℝ) := by norm_num",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 55,
+                  "end": 64
+                }
+              ],
+              "sourceAssessment": "supported",
+              "assessmentBasis": "原稿明确写‘所以 x²+y²=109’；原稿未给出从 4+5=9 到该结论的中间推理，本结构未补写该推理。"
+            }
+          ],
+          "goalNodeId": "n_goal",
+          "inductions": [],
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 39,
+              "end": 65
+            }
+          ],
+          "sourceAssessment": "supported",
+          "assessmentBasis": "原稿确实给出‘因为 4+5=9，所以 x²+y²=109’的证明路线；该标记仅表示原文写出此路线，不表示推理充分。"
+        }
+      ],
+      "ambiguities": [
+        {
+          "id": "amb_arith_literal_domain",
+          "kind": "type_domain",
+          "description": "原稿中的独立算术断言‘4+5=9’未明示数域；此处按自然数算术事实编码。该歧义不影响 x、y 为实数及目标式。",
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 46,
+              "end": 51
+            }
+          ]
+        }
+      ]
+    },
+    "proofTermOrigins": {
+      "r_original": {
+        "n_arith": "proof_only_generation",
+        "n_goal": "proof_only_generation"
+      }
+    },
+    "statement": "(∀ (v_var_x : ℝ), (∀ (v_var_y : ℝ), (((v_var_x + v_var_y) = (13 : ℝ)) → (((v_var_x * v_var_y) = (30 : ℝ)) → (((v_var_x ^ (2 : ℕ)) + (v_var_y ^ (2 : ℕ))) = (109 : ℝ))))))",
+    "statementHash": "7c426a201facb63cfbe46756a2fde398b5c64985d2949196356274098a21f123",
+    "mathIRHash": "bce441b883babc0eeb05374264b184e705e6f1ac28abf6bd51de8347196f5ed5",
+    "sourceEvidenceHash": "a87ca9023c7a3502b1d6d983c2dbae7ea856b835e2f2a7b2987b2665f4b8d6a0",
+    "structureArtifactId": "119167f8-fcfe-47b5-9e0a-fbcf78eb0a32",
+    "structureProvenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "9bfbd5d5-47a3-4960-8fd4-be7a090b6c2a",
+      "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+      "usage": {
+        "prompt_tokens": 10572,
+        "completion_tokens": 9099,
+        "total_tokens": 19671,
+        "prompt_tokens_details": {
+          "cached_tokens": 9728
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 7941
+        },
+        "prompt_cache_hit_tokens": 9728,
+        "prompt_cache_miss_tokens": 844
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "sourceAssets": [],
+    "sourceRefAudit": {
+      "version": "source-ref-range-audit/1",
+      "basis": "Unicode code-point ranges into SourceBlock.text",
+      "semanticAlignmentProven": false,
+      "sourceBlocksUnique": true,
+      "allRangesValid": true,
+      "referenceCount": 9,
+      "invalidReferenceCount": 0,
+      "blocks": [
+        {
+          "blockId": "b0",
+          "duplicateBlockId": false,
+          "offsetUnit": "unicode_code_points",
+          "codePointLength": 68,
+          "sourceRefCount": 9,
+          "referencedNonWhitespaceCodePoints": 56,
+          "totalNonWhitespaceCodePoints": 62,
+          "hasUnreferencedNonWhitespace": true,
+          "unreferencedNonWhitespaceSpans": [
+            {
+              "start": 26,
+              "end": 28
+            },
+            {
+              "start": 38,
+              "end": 39
+            },
+            {
+              "start": 65,
+              "end": 68
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "ownerKind": "scope",
+          "ownerId": "sc_main",
+          "index": 0,
+          "blockId": "b0",
+          "start": 0,
+          "end": 26,
+          "status": "valid"
+        },
+        {
+          "ownerKind": "declaration",
+          "ownerId": "var_x",
+          "index": 0,
+          "blockId": "b0",
+          "start": 0,
+          "end": 9,
+          "status": "valid"
+        },
+        {
+          "ownerKind": "declaration",
+          "ownerId": "var_y",
+          "index": 0,
+          "blockId": "b0",
+          "start": 0,
+          "end": 9,
+          "status": "valid"
+        },
+        {
+          "ownerKind": "assumption",
+          "ownerId": "ass_sum",
+          "index": 0,
+          "blockId": "b0",
+          "start": 13,
+          "end": 19,
+          "status": "valid"
+        },
+        {
+          "ownerKind": "assumption",
+          "ownerId": "ass_prod",
+          "index": 0,
+          "blockId": "b0",
+          "start": 20,
+          "end": 25,
+          "status": "valid"
+        },
+        {
+          "ownerKind": "goal",
+          "ownerId": "g_main",
+          "index": 0,
+          "blockId": "b0",
+          "start": 29,
+          "end": 38,
+          "status": "valid"
+        },
+        {
+          "ownerKind": "route",
+          "ownerId": "r_original",
+          "index": 0,
+          "blockId": "b0",
+          "start": 39,
+          "end": 65,
+          "status": "valid"
+        },
+        {
+          "ownerKind": "route_node",
+          "ownerId": "r_original/n_arith",
+          "index": 0,
+          "blockId": "b0",
+          "start": 46,
+          "end": 51,
+          "status": "valid"
+        },
+        {
+          "ownerKind": "route_node",
+          "ownerId": "r_original/n_goal",
+          "index": 0,
+          "blockId": "b0",
+          "start": 55,
+          "end": 64,
+          "status": "valid"
+        }
+      ]
+    },
+    "normalization": [],
+    "validated": true
+  },
+  "sourceTextPreserved": true,
+  "error": null,
+  "elapsedSeconds": 85.356,
+  "requestAudit": [
+    {
+      "workflow_id": "5efc7d39-1c4b-4265-bc8d-5e221c59a81a",
+      "request_id": "7c960261-a608-45c1-b0c4-6692556e193d",
+      "stage": "mathir",
+      "reason": "StructureOnlyMathIRV2",
+      "input_hash": "576cec58873811623b334e0809fa2438547465bd8e1d371dc484d0745ff011cb",
+      "image_hashes": [],
+      "prompt_version": "sha256:be5b10653d3eec70f050d3b4c2d26fe023cc1ce84dca678d70945578b0f87d5c:compact-json-v1",
+      "model": "deepseek-flash",
+      "retry_index": 0,
+      "cache": "miss",
+      "input_tokens": 10572,
+      "output_tokens": 9099,
+      "timestamp": 1792475240.635704,
+      "phase": "finished",
+      "real_request_attempted": true,
+      "reasoning_tokens": 7941,
+      "provider_response_id": "9bfbd5d5-47a3-4960-8fd4-be7a090b6c2a",
+      "status": "response_received",
+      "http_duration_ms": 43204.88
+    },
+    {
+      "workflow_id": "5efc7d39-1c4b-4265-bc8d-5e221c59a81a",
+      "request_id": "c35819e8-affe-4c2c-b75e-522dfff98d1c",
+      "stage": "formalization",
+      "reason": "FormalProofs",
+      "input_hash": "7d5cc32e3fe701135f80db3bedab3a3a760ca27cf4e955d4c606745a989e45c6",
+      "image_hashes": [],
+      "prompt_version": "sha256:a95ebee8d05f78d0939617c119cc5342b3dfc3bb4738d8ee922c91598570934e:compact-json-v1",
+      "model": "deepseek-flash",
+      "retry_index": 0,
+      "cache": "miss",
+      "input_tokens": 2368,
+      "output_tokens": 1774,
+      "timestamp": 1792475283.890717,
+      "phase": "finished",
+      "real_request_attempted": true,
+      "reasoning_tokens": 1597,
+      "provider_response_id": "fa08c6bf-cf39-44e9-b093-6587b7700721",
+      "status": "response_received",
+      "http_duration_ms": 8113.065
+    }
+  ],
+  "providerSummary": {
+    "requestCount": 2,
+    "stageCounts": {
+      "mathir": 1,
+      "formalization": 1
+    },
+    "inputTokens": 12940,
+    "outputTokens": 10873,
+    "httpMilliseconds": 51317.945,
+    "retryCount": 0,
+    "cacheMissCount": 2,
+    "realRequestCount": 2,
+    "allRequestsUseConfiguredModel": true
+  },
+  "checkpointCount": 4
+}

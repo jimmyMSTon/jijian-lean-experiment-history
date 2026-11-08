@@ -1,0 +1,17 @@
+..............F........                                                  [100%]
+=================================== FAILURES ===================================
+_____________ test_repair_deleting_step_is_rejected_before_kernel ______________
+
+    def test_repair_deleting_step_is_rejected_before_kernel():
+        first=TERM.replace('omega','unknown_lemma')
+        ai=AI(proof=first,repair="by\n  intro a b h\n  omega")
+        result,_,kernel=call(ai,Kernel(first=ERR))
+        assert result['repair']['repairStatus']=='repair_broke_authored_step_witnesses'
+>       assert ai.calls[-1][1]['mandatorySourceMarkers']==['source_step_0','source_step_1']
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'mandatorySourceMarkers'
+
+tests/test_lean_first_whole.py:257: KeyError
+=========================== short test summary info ============================
+FAILED tests/test_lean_first_whole.py::test_repair_deleting_step_is_rejected_before_kernel
+1 failed, 22 passed in 0.07s

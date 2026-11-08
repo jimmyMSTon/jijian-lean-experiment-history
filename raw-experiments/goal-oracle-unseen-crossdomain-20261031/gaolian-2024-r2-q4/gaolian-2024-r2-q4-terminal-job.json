@@ -1,0 +1,235 @@
+{
+  "id": "adb721bf-d864-44b7-bd70-79d05ba3fcf2",
+  "status": "completed",
+  "stage": "completed",
+  "created": "2026-10-31T12:27:39.604447+00:00",
+  "updated": "2026-10-31T12:32:47.973798+00:00",
+  "request": {
+    "input": {
+      "kind": "text",
+      "text": "2024年全国高中数学联赛二试A卷第4题（50分）。\n原题：A、B为正整数，S是正整数的集合，满足：(1)A^k∈S对一切非负整数k；(2)若n∈S，其所有正约数均属于S；(3)若m,n∈S且gcd(m,n)=1，则mn∈S；(4)若n∈S，则An+B∈S。证明每个与B互素的正整数都属于S。\n我的完整证明：\n第1步。由(1)取k=0得到1∈S。我们先证明任意n∈S及任意k≥0，A^k n∈S。将n唯一拆成n=n_0 n_A，其中gcd(n_0,A)=1且n_A的每个素因子整除A；于是gcd(n_0,n_A)=1，且n_0|n，故由(2)知n_0∈S。\n第2步。对给定k≥0，因n_A所有素因子都整除A，可选足够大的正整数M使A^k n_A整除A^M。由(1)(2)得A^k n_A∈S。gcd(n_0,A^k n_A)=1，由(3)得n_0(A^k n_A)=A^k n∈S。这个结论对A=1也成立（n_A=1）。\n第3步。由第2步及(4)，对任意n∈S与任意k≥1，A^k n+B=A(A^(k-1)n)+B∈S。\n第4步。关键引理：对任意n∈S，n+B∈S。令t=n+B，将t=t_A t_0，其中t_A由t中所有整除A的素数幂组成，gcd(t_0,A)=1，且gcd(t_A,t_0)=1。因为t_A整除某个A^M，由(1)(2)知t_A∈S。\n第5步。若t_0=1则t_0=1∈S；若t_0>1，因为gcd(A,t_0)=1，欧拉定理给出某个正整数k使A^k≡1 (mod t_0)。于是A^k n+B≡n+B=t≡0 (mod t_0)。由第3步A^k n+B∈S、由(2)得t_0∈S。再由(3)与gcd(t_A,t_0)=1得n+B=t_A t_0∈S。关键引理得证。\n第6步。因为1∈S，反复应用第4、5步得到1+jB∈S，对每个非负整数j成立（对j归纳）。\n第7步。任取正整数n满足gcd(n,B)=1。Bezout恒等式保证存在整数x,j使nx=1+jB；通过把x,j同时按通解调整，可取x≥1且j≥0。因而nx=1+jB∈S；再由(2)及n|nx，得到n∈S。任意与B互素的正整数都属于S。证毕。",
+      "assetId": null,
+      "dataUrl": null,
+      "strokes": null,
+      "recognitionId": null,
+      "parts": null
+    },
+    "explain": false
+  },
+  "result": {
+    "id": "ae16aa68-1597-4cff-8a17-893d490deedb",
+    "kind": "lean_first_local",
+    "mode": "single_whole_theorem_kernel",
+    "sourceSha256": "830ec00792e702c361e42efca376e4197592753cd5d101756a244a63d8723a8c",
+    "runTraceId": "d904c2b5-d6dc-4fca-9f78-7ddf2433a8b1",
+    "status": "whole_proof_source_witness_incomplete",
+    "kernelVerified": false,
+    "formalProofCertified": false,
+    "originalProofCertified": false,
+    "sourceEquivalenceCertified": false,
+    "originalInferenceVerified": false,
+    "sourcePositionsValid": true,
+    "plannedStepCount": 7,
+    "localFormalVerifiedCount": 0,
+    "sourceSteps": [
+      {
+        "id": "source-0",
+        "index": 0,
+        "role": "inference",
+        "start": 155,
+        "end": 278,
+        "sourceExcerpt": "第1步。由(1)取k=0得到1∈S。我们先证明任意n∈S及任意k≥0，A^k n∈S。将n唯一拆成n=n_0 n_A，其中gcd(n_0,A)=1且n_A的每个素因子整除A；于是gcd(n_0,n_A)=1，且n_0|n，故由(2)知n_0∈S。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_0",
+        "dependsOn": []
+      },
+      {
+        "id": "source-1",
+        "index": 1,
+        "role": "inference",
+        "start": 279,
+        "end": 410,
+        "sourceExcerpt": "第2步。对给定k≥0，因n_A所有素因子都整除A，可选足够大的正整数M使A^k n_A整除A^M。由(1)(2)得A^k n_A∈S。gcd(n_0,A^k n_A)=1，由(3)得n_0(A^k n_A)=A^k n∈S。这个结论对A=1也成立（n_A=1）。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_1",
+        "dependsOn": []
+      },
+      {
+        "id": "source-2",
+        "index": 2,
+        "role": "inference",
+        "start": 411,
+        "end": 461,
+        "sourceExcerpt": "第3步。由第2步及(4)，对任意n∈S与任意k≥1，A^k n+B=A(A^(k-1)n)+B∈S。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_2",
+        "dependsOn": []
+      },
+      {
+        "id": "source-3",
+        "index": 3,
+        "role": "inference",
+        "start": 462,
+        "end": 578,
+        "sourceExcerpt": "第4步。关键引理：对任意n∈S，n+B∈S。令t=n+B，将t=t_A t_0，其中t_A由t中所有整除A的素数幂组成，gcd(t_0,A)=1，且gcd(t_A,t_0)=1。因为t_A整除某个A^M，由(1)(2)知t_A∈S。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_3",
+        "dependsOn": []
+      },
+      {
+        "id": "source-4",
+        "index": 4,
+        "role": "inference",
+        "start": 579,
+        "end": 744,
+        "sourceExcerpt": "第5步。若t_0=1则t_0=1∈S；若t_0>1，因为gcd(A,t_0)=1，欧拉定理给出某个正整数k使A^k≡1 (mod t_0)。于是A^k n+B≡n+B=t≡0 (mod t_0)。由第3步A^k n+B∈S、由(2)得t_0∈S。再由(3)与gcd(t_A,t_0)=1得n+B=t_A t_0∈S。关键引理得证。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_4",
+        "dependsOn": []
+      },
+      {
+        "id": "source-5",
+        "index": 5,
+        "role": "inference",
+        "start": 745,
+        "end": 790,
+        "sourceExcerpt": "第6步。因为1∈S，反复应用第4、5步得到1+jB∈S，对每个非负整数j成立（对j归纳）。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_5",
+        "dependsOn": []
+      },
+      {
+        "id": "source-6",
+        "index": 6,
+        "role": "inference",
+        "start": 791,
+        "end": 912,
+        "sourceExcerpt": "第7步。任取正整数n满足gcd(n,B)=1。Bezout恒等式保证存在整数x,j使nx=1+jB；通过把x,j同时按通解调整，可取x≥1且j≥0。因而nx=1+jB∈S；再由(2)及n|nx，得到n∈S。任意与B互素的正整数都属于S。证毕。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_6",
+        "dependsOn": []
+      }
+    ],
+    "statement": "∀ (A B : ℕ) (S : Set ℕ), 0 < A → 0 < B → (∀ n, n ∈ S → 0 < n) → (∀ k : ℕ, A ^ k ∈ S) → (∀ n, n ∈ S → ∀ d : ℕ, d ∣ n → 0 < d → d ∈ S) → (∀ m n : ℕ, m ∈ S → n ∈ S → Nat.Coprime m n → m * n ∈ S) → (∀ n : ℕ, n ∈ S → A * n + B ∈ S) → ∀ n : ℕ, 0 < n → Nat.Coprime n B → n ∈ S",
+    "proofTerm": "by\n  intro A B S hA hB hpos hpow hdiv hmul hstep n hn hcop\n  have h1S : 1 ∈ S := by\n    simpa using hpow 0\n  have hpow_mul_mem : ∀ n : ℕ, n ∈ S → ∀ k : ℕ, A ^ k * n ∈ S := by\n    intro n hn k\n    have hnpos : 0 < n := hpos n hn\n    obtain ⟨n0, nA, hn_eq, hn0A, hnA_dvd⟩ := Nat.exists_coprime_mul_eq n A\n    have hnA_pos : 0 < nA := by\n      by_contra hnonpos\n      have hnA0 : nA = 0 := Nat.eq_zero_of_not_pos hnonpos\n      have hn0 : n = 0 := by\n        simpa [hnA0] using hn_eq\n      omega\n    have hn0_pos : 0 < n0 := by\n      by_contra hnonpos\n      have hn00 : n0 = 0 := Nat.eq_zero_of_not_pos hnonpos\n      have hn0 : n = 0 := by\n        simpa [hn00] using hn_eq\n      omega\n    have hn0_dvd : n0 ∣ n := by\n      rw [hn_eq]\n      exact dvd_mul_right n0 nA\n    have hn0S : n0 ∈ S := hdiv n hn n0 hn0_dvd hn0_pos\n    have hAk_nA_dvd : A ^ k * nA ∣ A ^ (n + k) := by\n      obtain ⟨c, hc⟩ := hnA_dvd\n      use c\n      rw [pow_add, hc]\n      ring\n    have hAk_nA_pos : 0 < A ^ k * nA := by\n      positivity\n    have hAk_nA_S : A ^ k * nA ∈ S :=\n      hdiv (A ^ (n + k)) (hpow (n + k)) (A ^ k * nA) hAk_nA_dvd hAk_nA_pos\n    have hn0_Ak : Nat.Coprime n0 (A ^ k) := hn0A.pow_right k\n    have hn0_An : Nat.Coprime n0 (A ^ n) := hn0A.pow_right n\n    have hn0_nA : Nat.Coprime n0 nA := hn0_An.coprime_dvd_right hnA_dvd\n    have hn0_Ak_nA : Nat.Coprime n0 (A ^ k * nA) := hn0_Ak.mul_right hn0_nA\n    have hprodS : n0 * (A ^ k * nA) ∈ S :=\n      hmul n0 (A ^ k * nA) hn0S hAk_nA_S hn0_Ak_nA\n    have heq : n0 * (A ^ k * nA) = A ^ k * n := by\n      rw [hn_eq]\n      ring\n    simpa [heq] using hprodS\n  have hkey : ∀ n : ℕ, n ∈ S → n + B ∈ S := by\n    intro n hn\n    let t := n + B\n    have hnpos : 0 < n := hpos n hn\n    have ht_pos : 0 < t := by\n      dsimp [t]\n      omega\n    obtain ⟨t0, tA, ht_eq, ht0A, htA_dvd⟩ := Nat.exists_coprime_mul_eq t A\n    have ht0_pos : 0 < t0 := by\n      by_contra hnonpos\n      have ht00 : t0 = 0 := Nat.eq_zero_of_not_pos hnonpos\n      have ht0 : t = 0 := by\n        simpa [ht00] using ht_eq\n      omega\n    have htA_pos : 0 < tA := by\n      by_contra hnonpos\n      have htA0 : tA = 0 := Nat.eq_zero_of_not_pos hnonpos\n      have ht0 : t = 0 := by\n        simpa [htA0] using ht_eq\n      omega\n    have htA_mem : tA ∈ S := hdiv t (hpow t) tA htA_dvd htA_pos\n    have ht0_mem : t0 ∈ S := by\n      by_cases h1 : t0 = 1\n      · simpa [h1] using h1S\n      · have hcop_A_t0 : Nat.Coprime A t0 := ht0A.symm\n        obtain ⟨k, hkpos, hkmod⟩ := Nat.exists_pow_eq_one_of_coprime hcop_A_t0\n        have hAk_n_B_mem : A ^ k * n + B ∈ S := by\n          have hj : A ^ (k - 1) * n ∈ S := hpow_mul_mem n hn (k - 1)\n          have hstepmem : A * (A ^ (k - 1) * n) + B ∈ S := hstep (A ^ (k - 1) * n) hj\n          have hEqStep : A * (A ^ (k - 1) * n) + B = A ^ k * n + B := by\n            have hk : k = (k - 1) + 1 := by omega\n            rw [hk, pow_succ]\n            ring\n          simpa [hEqStep] using hstepmem\n        have ht0_dvd_t : t0 ∣ t := by\n          rw [ht_eq]\n          exact dvd_mul_right t0 tA\n        have ht0_dvd_nB : t0 ∣ n + B := by\n          dsimp [t] at ht0_dvd_t\n          exact ht0_dvd_t\n        have hmod_mul : A ^ k * n ≡ 1 * n [MOD t0] := hkmod.mul_right n\n        have hmod_add : A ^ k * n + B ≡ 1 * n + B [MOD t0] := hmod_mul.add_right B\n        have hzero : 1 * n + B ≡ 0 [MOD t0] := by\n          rw [Nat.modEq_zero_iff_dvd]\n          simpa using ht0_dvd_nB\n        have hfinal_mod : A ^ k * n + B ≡ 0 [MOD t0] := hmod_add.trans hzero\n        have ht0_dvd_final : t0 ∣ A ^ k * n + B := Nat.modEq_zero_iff_dvd.mp hfinal_mod\n        exact hdiv (A ^ k * n + B) hAk_n_B_mem t0 ht0_dvd_final ht0_pos\n    have ht0_At : Nat.Coprime t0 (A ^ t) := ht0A.pow_right t\n    have hcop_t0_tA : Nat.Coprime t0 tA := ht0_At.coprime_dvd_right htA_dvd\n    have hprod : t0 * tA ∈ S := hmul t0 tA ht0_mem htA_mem hcop_t0_tA\n    have hEq : t0 * tA = n + B := by\n      rw [← ht_eq]\n      rfl\n    simpa [hEq] using hprod\n  have hseq : ∀ j : ℕ, 1 + j * B ∈ S := by\n    intro j\n    induction j with\n    | zero =>\n        simpa using h1S\n    | succ j ih =>\n        have h := hkey (1 + j * B) ih\n        have heq : 1 + j * B + B = 1 + (j + 1) * B := by\n          ring\n        simpa [heq] using h\n  by_cases hB1 : B = 1\n  · subst B\n    have hn_eq : n = 1 + (n - 1) * 1 := by omega\n    have hmem : 1 + (n - 1) * 1 ∈ S := hseq (n - 1)\n    simpa [hn_eq] using hmem\n  · have hBgt1 : 1 < B := by omega\n    obtain ⟨k, hkpos, hkmod⟩ := Nat.exists_pow_eq_one_of_coprime hcop\n    let x := n ^ (k - 1)\n    let j := (n ^ k) / B\n    have hnx : n * x = n ^ k := by\n      dsimp [x]\n      have hk : k = (k - 1) + 1 := by omega\n      rw [hk, pow_succ]\n      ring\n    have hmod_eq : n ^ k % B = 1 % B := by\n      simpa [Nat.ModEq] using hkmod\n    have hBmod : n ^ k % B = 1 := by\n      simpa [Nat.mod_eq_of_lt hBgt1] using hmod_eq\n    have hdecomp0 : n ^ k = B * (n ^ k / B) + n ^ k % B := by\n      simpa [mul_comm, mul_left_comm, mul_assoc] using (Nat.div_add_mod (n ^ k) B).symm\n    have hdecomp : n ^ k = B * j + 1 := by\n      dsimp [j]\n      rw [hdecomp0, hBmod]\n    have heq : n * x = 1 + j * B := by\n      rw [hnx, hdecomp]\n      ring\n    have hmem1 : 1 + j * B ∈ S := hseq j\n    have hmulmem : n * x ∈ S := by\n      rw [heq]\n      exact hmem1\n    exact hdiv (n * x) hmulmem n (dvd_mul_right n x) hn",
+    "lean": null,
+    "unsupportedOriginalSteps": [
+      "source_step_markers_missing_reordered_or_duplicated"
+    ],
+    "planProvenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "2ef279fd-92df-4ac0-9367-fb75662c4582",
+      "systemFingerprint": "bc19ba97cbe016479903222bb1578db6",
+      "usage": {
+        "prompt_tokens": 1328,
+        "completion_tokens": 15011,
+        "total_tokens": 16339,
+        "prompt_tokens_details": {
+          "cached_tokens": 1152
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 14103
+        },
+        "prompt_cache_hit_tokens": 1152,
+        "prompt_cache_miss_tokens": 176
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "model": "deepseek-flash",
+    "goalExcerpt": "证明每个与B互素的正整数都属于S。",
+    "originalGivenExcerpts": [
+      "A、B为正整数，S是正整数的集合，满足：(1)A^k∈S对一切非负整数k；(2)若n∈S，其所有正约数均属于S；(3)若m,n∈S且gcd(m,n)=1，则mn∈S；(4)若n∈S，则An+B∈S。"
+    ],
+    "sourceOffsetRepairs": [],
+    "goalPlanCachedAfterLeanElaboration": true,
+    "proofProvenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "1538a538-652a-43d7-b0f0-65d25dae8a8f",
+      "systemFingerprint": "bc19ba97cbe016479903222bb1578db6",
+      "usage": {
+        "prompt_tokens": 2336,
+        "completion_tokens": 39842,
+        "total_tokens": 42178,
+        "prompt_tokens_details": {
+          "cached_tokens": 1280
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 37574
+        },
+        "prompt_cache_hit_tokens": 1280,
+        "prompt_cache_miss_tokens": 1056
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "version": "3.6.1",
+    "source": {
+      "kind": "text",
+      "raw": "2024年全国高中数学联赛二试A卷第4题（50分）。\n原题：A、B为正整数，S是正整数的集合，满足：(1)A^k∈S对一切非负整数k；(2)若n∈S，其所有正约数均属于S；(3)若m,n∈S且gcd(m,n)=1，则mn∈S；(4)若n∈S，则An+B∈S。证明每个与B互素的正整数都属于S。\n我的完整证明：\n第1步。由(1)取k=0得到1∈S。我们先证明任意n∈S及任意k≥0，A^k n∈S。将n唯一拆成n=n_0 n_A，其中gcd(n_0,A)=1且n_A的每个素因子整除A；于是gcd(n_0,n_A)=1，且n_0|n，故由(2)知n_0∈S。\n第2步。对给定k≥0，因n_A所有素因子都整除A，可选足够大的正整数M使A^k n_A整除A^M。由(1)(2)得A^k n_A∈S。gcd(n_0,A^k n_A)=1，由(3)得n_0(A^k n_A)=A^k n∈S。这个结论对A=1也成立（n_A=1）。\n第3步。由第2步及(4)，对任意n∈S与任意k≥1，A^k n+B=A(A^(k-1)n)+B∈S。\n第4步。关键引理：对任意n∈S，n+B∈S。令t=n+B，将t=t_A t_0，其中t_A由t中所有整除A的素数幂组成，gcd(t_0,A)=1，且gcd(t_A,t_0)=1。因为t_A整除某个A^M，由(1)(2)知t_A∈S。\n第5步。若t_0=1则t_0=1∈S；若t_0>1，因为gcd(A,t_0)=1，欧拉定理给出某个正整数k使A^k≡1 (mod t_0)。于是A^k n+B≡n+B=t≡0 (mod t_0)。由第3步A^k n+B∈S、由(2)得t_0∈S。再由(3)与gcd(t_A,t_0)=1得n+B=t_A t_0∈S。关键引理得证。\n第6步。因为1∈S，反复应用第4、5步得到1+jB∈S，对每个非负整数j成立（对j归纳）。\n第7步。任取正整数n满足gcd(n,B)=1。Bezout恒等式保证存在整数x,j使nx=1+jB；通过把x,j同时按通解调整，可取x≥1且j≥0。因而nx=1+jB∈S；再由(2)及n|nx，得到n∈S。任意与B互素的正整数都属于S。证毕。",
+      "normalized": "2024年全国高中数学联赛二试A卷第4题（50分）。\n原题：A、B为正整数，S是正整数的集合，满足：(1)A^k∈S对一切非负整数k；(2)若n∈S，其所有正约数均属于S；(3)若m,n∈S且gcd(m,n)=1，则mn∈S；(4)若n∈S，则An+B∈S。证明每个与B互素的正整数都属于S。\n我的完整证明：\n第1步。由(1)取k=0得到1∈S。我们先证明任意n∈S及任意k≥0，A^k n∈S。将n唯一拆成n=n_0 n_A，其中gcd(n_0,A)=1且n_A的每个素因子整除A；于是gcd(n_0,n_A)=1，且n_0|n，故由(2)知n_0∈S。\n第2步。对给定k≥0，因n_A所有素因子都整除A，可选足够大的正整数M使A^k n_A整除A^M。由(1)(2)得A^k n_A∈S。gcd(n_0,A^k n_A)=1，由(3)得n_0(A^k n_A)=A^k n∈S。这个结论对A=1也成立（n_A=1）。\n第3步。由第2步及(4)，对任意n∈S与任意k≥1，A^k n+B=A(A^(k-1)n)+B∈S。\n第4步。关键引理：对任意n∈S，n+B∈S。令t=n+B，将t=t_A t_0，其中t_A由t中所有整除A的素数幂组成，gcd(t_0,A)=1，且gcd(t_A,t_0)=1。因为t_A整除某个A^M，由(1)(2)知t_A∈S。\n第5步。若t_0=1则t_0=1∈S；若t_0>1，因为gcd(A,t_0)=1，欧拉定理给出某个正整数k使A^k≡1 (mod t_0)。于是A^k n+B≡n+B=t≡0 (mod t_0)。由第3步A^k n+B∈S、由(2)得t_0∈S。再由(3)与gcd(t_A,t_0)=1得n+B=t_A t_0∈S。关键引理得证。\n第6步。因为1∈S，反复应用第4、5步得到1+jB∈S，对每个非负整数j成立（对j归纳）。\n第7步。任取正整数n满足gcd(n,B)=1。Bezout恒等式保证存在整数x,j使nx=1+jB；通过把x,j同时按通解调整，可取x≥1且j≥0。因而nx=1+jB∈S；再由(2)及n|nx，得到n∈S。任意与B互素的正整数都属于S。证毕。",
+      "recognitionId": null,
+      "transcriptionEvidence": null,
+      "blocks": [
+        {
+          "id": "b0",
+          "text": "2024年全国高中数学联赛二试A卷第4题（50分）。\n原题：A、B为正整数，S是正整数的集合，满足：(1)A^k∈S对一切非负整数k；(2)若n∈S，其所有正约数均属于S；(3)若m,n∈S且gcd(m,n)=1，则mn∈S；(4)若n∈S，则An+B∈S。证明每个与B互素的正整数都属于S。\n我的完整证明：\n第1步。由(1)取k=0得到1∈S。我们先证明任意n∈S及任意k≥0，A^k n∈S。将n唯一拆成n=n_0 n_A，其中gcd(n_0,A)=1且n_A的每个素因子整除A；于是gcd(n_0,n_A)=1，且n_0|n，故由(2)知n_0∈S。\n第2步。对给定k≥0，因n_A所有素因子都整除A，可选足够大的正整数M使A^k n_A整除A^M。由(1)(2)得A^k n_A∈S。gcd(n_0,A^k n_A)=1，由(3)得n_0(A^k n_A)=A^k n∈S。这个结论对A=1也成立（n_A=1）。\n第3步。由第2步及(4)，对任意n∈S与任意k≥1，A^k n+B=A(A^(k-1)n)+B∈S。\n第4步。关键引理：对任意n∈S，n+B∈S。令t=n+B，将t=t_A t_0，其中t_A由t中所有整除A的素数幂组成，gcd(t_0,A)=1，且gcd(t_A,t_0)=1。因为t_A整除某个A^M，由(1)(2)知t_A∈S。\n第5步。若t_0=1则t_0=1∈S；若t_0>1，因为gcd(A,t_0)=1，欧拉定理给出某个正整数k使A^k≡1 (mod t_0)。于是A^k n+B≡n+B=t≡0 (mod t_0)。由第3步A^k n+B∈S、由(2)得t_0∈S。再由(3)与gcd(t_A,t_0)=1得n+B=t_A t_0∈S。关键引理得证。\n第6步。因为1∈S，反复应用第4、5步得到1+jB∈S，对每个非负整数j成立（对j归纳）。\n第7步。任取正整数n满足gcd(n,B)=1。Bezout恒等式保证存在整数x,j使nx=1+jB；通过把x,j同时按通解调整，可取x≥1且j≥0。因而nx=1+jB∈S；再由(2)及n|nx，得到n∈S。任意与B互素的正整数都属于S。证毕。",
+          "page": null,
+          "bbox": null,
+          "confidence": null,
+          "assetId": null,
+          "providerData": {}
+        }
+      ]
+    },
+    "inputKind": "text",
+    "authority": "single_locked_complete_formal_theorem_kernel_not_natural_language_fidelity"
+  },
+  "error": null
+}

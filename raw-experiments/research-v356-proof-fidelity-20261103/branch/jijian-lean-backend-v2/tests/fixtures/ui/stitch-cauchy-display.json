@@ -1,0 +1,280 @@
+{
+  "fixtureKind": "stitch_display_only",
+  "sourceScreenId": "aade4d47c3a94439a72dbffdffd4a91d",
+  "sourceSha256": "8703870dbc87132447b549a899e29b84350642fc8894068a6645aba4685bc662",
+  "notice": "Stitch 数学内容视觉样例 · 未执行 AI 或 Lean；没有内核核验证书。",
+  "packet": {
+    "mathIR": {
+      "version": "display-only",
+      "source": {
+        "kind": "text",
+        "raw": "P(t) = ∫ₐᵇ (t · f(x) + g(x))² dx ≥ 0 (∀ t ∈ ℝ)\nP(t) = t² ∫ₐᵇ f(x)² dx + 2t ∫ₐᵇ f(x)g(x) dx + ∫ₐᵇ g(x)² dx = A t² + 2B t + C\nΔ' = B² - AC ≤ 0 &implies (∫ₐᵇ f(x)g(x) dx)² ≤ (∫ₐᵇ f(x)² dx) · (∫ₐᵇ g(x)² dx)\n等号成立 ⇔ ∃ λ ∈ ℝ, f(x) = λ g(x) (μ-almost everywhere)",
+        "normalized": "P(t) = ∫ₐᵇ (t · f(x) + g(x))² dx ≥ 0 (∀ t ∈ ℝ)\nP(t) = t² ∫ₐᵇ f(x)² dx + 2t ∫ₐᵇ f(x)g(x) dx + ∫ₐᵇ g(x)² dx = A t² + 2B t + C\nΔ' = B² - AC ≤ 0 &implies (∫ₐᵇ f(x)g(x) dx)² ≤ (∫ₐᵇ f(x)² dx) · (∫ₐᵇ g(x)² dx)\n等号成立 ⇔ ∃ λ ∈ ℝ, f(x) = λ g(x) (μ-almost everywhere)",
+        "blocks": [
+          {
+            "id": "stitch-b1",
+            "kind": "text",
+            "text": "P(t) = ∫ₐᵇ (t · f(x) + g(x))² dx ≥ 0 (∀ t ∈ ℝ)"
+          },
+          {
+            "id": "stitch-b2",
+            "kind": "text",
+            "text": "P(t) = t² ∫ₐᵇ f(x)² dx + 2t ∫ₐᵇ f(x)g(x) dx + ∫ₐᵇ g(x)² dx = A t² + 2B t + C"
+          },
+          {
+            "id": "stitch-b3",
+            "kind": "text",
+            "text": "Δ' = B² - AC ≤ 0 &implies (∫ₐᵇ f(x)g(x) dx)² ≤ (∫ₐᵇ f(x)² dx) · (∫ₐᵇ g(x)² dx)"
+          },
+          {
+            "id": "stitch-b4",
+            "kind": "text",
+            "text": "等号成立 ⇔ ∃ λ ∈ ℝ, f(x) = λ g(x) (μ-almost everywhere)"
+          }
+        ]
+      },
+      "variables": [
+        {
+          "id": "stitch-vf",
+          "name": "f",
+          "domain": "L²([a,b])",
+          "description": "Stitch visual sample only",
+          "scopeId": "stitch-s0",
+          "sourceRefs": []
+        },
+        {
+          "id": "stitch-vg",
+          "name": "g",
+          "domain": "L²([a,b])",
+          "description": "Stitch visual sample only",
+          "scopeId": "stitch-s0",
+          "sourceRefs": []
+        }
+      ],
+      "assumptions": [
+        {
+          "id": "stitch-h1",
+          "text": "f, g ∈ L²([a,b])",
+          "scopeId": "stitch-s0",
+          "sourceRefs": []
+        },
+        {
+          "id": "stitch-h2",
+          "text": "∀ t ∈ ℝ, P(t) ≥ 0",
+          "scopeId": "stitch-s0",
+          "sourceRefs": []
+        },
+        {
+          "id": "stitch-h3",
+          "text": "A = ∫ₐᵇ f²,  B = ∫ₐᵇ fg,  C = ∫ₐᵇ g²",
+          "scopeId": "stitch-s0",
+          "sourceRefs": []
+        }
+      ],
+      "definitions": [],
+      "scopes": [
+        {
+          "id": "stitch-s0",
+          "parentId": null,
+          "description": "Stitch visual sample scope",
+          "sourceRefs": []
+        }
+      ],
+      "ambiguities": [],
+      "proofSteps": [
+        {
+          "id": "stitch-p1",
+          "text": "P(t) = ∫ₐᵇ (t · f(x) + g(x))² dx ≥ 0 (∀ t ∈ ℝ)",
+          "reason": "由非负实值连续函数积分保序性导出：对任意实参数 t，被积核 (tf+g)² ≥ 0 处处成立，从而总积分为非负实数。",
+          "sourceRefs": [
+            {
+              "blockId": "stitch-b1",
+              "start": 0,
+              "end": 46
+            }
+          ],
+          "dependsOn": []
+        },
+        {
+          "id": "stitch-p2",
+          "text": "P(t) = t² ∫ₐᵇ f(x)² dx + 2t ∫ₐᵇ f(x)g(x) dx + ∫ₐᵇ g(x)² dx = A t² + 2B t + C",
+          "reason": "将平方项逐项展开为三项多项式核，通过勒贝格控制收敛与线性积分定理将积分符号与标量参数交换，构造多项式系数 A = ⟨f,f⟩, B = ⟨f,g⟩, C = ⟨g,g⟩。",
+          "sourceRefs": [
+            {
+              "blockId": "stitch-b2",
+              "start": 0,
+              "end": 76
+            }
+          ],
+          "dependsOn": [
+            "stitch-p1"
+          ]
+        },
+        {
+          "id": "stitch-p3",
+          "text": "Δ' = B² - AC ≤ 0 &implies (∫ₐᵇ f(x)g(x) dx)² ≤ (∫ₐᵇ f(x)² dx) · (∫ₐᵇ g(x)² dx)",
+          "reason": "一元二次实函数在全实数域满足 P(t) ≥ 0 的充要条件为其判别式 Δ = (2B)² - 4AC ≤ 0。目标状态直接简化为实不等式移项。",
+          "sourceRefs": [
+            {
+              "blockId": "stitch-b3",
+              "start": 0,
+              "end": 78
+            }
+          ],
+          "dependsOn": [
+            "stitch-p2"
+          ]
+        },
+        {
+          "id": "stitch-p4",
+          "text": "等号成立 ⇔ ∃ λ ∈ ℝ, f(x) = λ g(x) (μ-almost everywhere)",
+          "reason": "零测集例外项完成严格测度论同构消解。当 Δ = 0 时二次方程有且仅有单实重根 t₀ = -λ，使得 ∫ (t₀ f + g)² = 0，依据 L² 范数可分性直接导出几乎处处线性相关。",
+          "sourceRefs": [
+            {
+              "blockId": "stitch-b4",
+              "start": 0,
+              "end": 51
+            }
+          ],
+          "dependsOn": [
+            "stitch-p3"
+          ]
+        }
+      ],
+      "goal": {
+        "text": "(∫ₐᵇ f(x)g(x) dx)² ≤ (∫ₐᵇ f(x)² dx) · (∫ₐᵇ g(x)² dx)",
+        "scopeId": "stitch-s0"
+      },
+      "formal": {}
+    },
+    "feedback": {
+      "items": [
+        {
+          "stepId": "stitch-p1",
+          "title": "构造辅助非负实二次型 (Auxiliary Quadratic Non-negativity)",
+          "math": "P(t) = ∫ₐᵇ (t · f(x) + g(x))² dx ≥ 0 (∀ t ∈ ℝ)",
+          "message": "由非负实值连续函数积分保序性导出：对任意实参数 t，被积核 (tf+g)² ≥ 0 处处成立，从而总积分为非负实数。",
+          "sourceRefs": [
+            {
+              "blockId": "stitch-b1",
+              "start": 0,
+              "end": 46
+            }
+          ]
+        },
+        {
+          "stepId": "stitch-p2",
+          "title": "积分线性展开与系数参数化 (Linear Integral Expansion)",
+          "math": "P(t) = t² ∫ₐᵇ f(x)² dx + 2t ∫ₐᵇ f(x)g(x) dx + ∫ₐᵇ g(x)² dx = A t² + 2B t + C",
+          "message": "将平方项逐项展开为三项多项式核，通过勒贝格控制收敛与线性积分定理将积分符号与标量参数交换，构造多项式系数 A = ⟨f,f⟩, B = ⟨f,g⟩, C = ⟨g,g⟩。",
+          "sourceRefs": [
+            {
+              "blockId": "stitch-b2",
+              "start": 0,
+              "end": 76
+            }
+          ]
+        },
+        {
+          "stepId": "stitch-p3",
+          "title": "判别式定理消解与主不等式导出 (Discriminant Criterion & Bounds)",
+          "math": "Δ' = B² - AC ≤ 0 &implies (∫ₐᵇ f(x)g(x) dx)² ≤ (∫ₐᵇ f(x)² dx) · (∫ₐᵇ g(x)² dx)",
+          "message": "一元二次实函数在全实数域满足 P(t) ≥ 0 的充要条件为其判别式 Δ = (2B)² - 4AC ≤ 0。目标状态直接简化为实不等式移项。",
+          "sourceRefs": [
+            {
+              "blockId": "stitch-b3",
+              "start": 0,
+              "end": 78
+            }
+          ]
+        },
+        {
+          "stepId": "stitch-p4",
+          "title": "等号成立充要条件与测度零集消解 (Equality & Almost Everywhere Collinearity)",
+          "math": "等号成立 ⇔ ∃ λ ∈ ℝ, f(x) = λ g(x) (μ-almost everywhere)",
+          "message": "零测集例外项完成严格测度论同构消解。当 Δ = 0 时二次方程有且仅有单实重根 t₀ = -λ，使得 ∫ (t₀ f + g)² = 0，依据 L² 范数可分性直接导出几乎处处线性相关。",
+          "sourceRefs": [
+            {
+              "blockId": "stitch-b4",
+              "start": 0,
+              "end": 51
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "formal": {},
+  "verification": {
+    "id": "stitch-display-only",
+    "kernelVerified": false,
+    "simulated": true,
+    "authority": "visual_fixture_only",
+    "status": "partial",
+    "steps": [
+      {
+        "stepId": "stitch-p1",
+        "status": "unproved",
+        "established": false,
+        "dependsOn": [],
+        "sourceRefs": [
+          {
+            "blockId": "stitch-b1",
+            "start": 0,
+            "end": 46
+          }
+        ],
+        "diagnostics": []
+      },
+      {
+        "stepId": "stitch-p2",
+        "status": "unproved",
+        "established": false,
+        "dependsOn": [
+          "stitch-p1"
+        ],
+        "sourceRefs": [
+          {
+            "blockId": "stitch-b2",
+            "start": 0,
+            "end": 76
+          }
+        ],
+        "diagnostics": []
+      },
+      {
+        "stepId": "stitch-p3",
+        "status": "unproved",
+        "established": false,
+        "dependsOn": [
+          "stitch-p2"
+        ],
+        "sourceRefs": [
+          {
+            "blockId": "stitch-b3",
+            "start": 0,
+            "end": 78
+          }
+        ],
+        "diagnostics": []
+      },
+      {
+        "stepId": "stitch-p4",
+        "status": "unproved",
+        "established": false,
+        "dependsOn": [
+          "stitch-p3"
+        ],
+        "sourceRefs": [
+          {
+            "blockId": "stitch-b4",
+            "start": 0,
+            "end": 51
+          }
+        ],
+        "diagnostics": []
+      }
+    ],
+    "unresolvedAmbiguityIds": []
+  }
+}

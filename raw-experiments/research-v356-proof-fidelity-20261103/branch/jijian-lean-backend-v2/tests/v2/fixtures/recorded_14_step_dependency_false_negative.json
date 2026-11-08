@@ -1,0 +1,205 @@
+{
+  "compositionStatus": "composed",
+  "connected": true,
+  "fixedStatementKernelPassed": true,
+  "kernel": {
+    "certificate": {
+      "additionalAxioms": [],
+      "checked": true,
+      "statementMatched": true,
+      "statement_hash": "710ab48911da4850900c43345b79d6b52b7e72746806b7c816e92cd4fdbef888"
+    },
+    "localVerified": null,
+    "status": "verified"
+  },
+  "originalRouteKernelPassed": false,
+  "originalSavedArtifactSha256": "2d41d29befea16ff8fe2853ba5367416e438a50e0192f719ad8f91da45c0c95f",
+  "recordedFrom": "2026-10-19 real DeepSeek and independent Lean Kernel run, 14 passed steps, full goal checked, route failed on syntactic binder-use only",
+  "sourceProofVerified": false,
+  "sourceStatement": "(∀ (v_d_a : ℝ), (∀ (v_d_b : ℝ), (∀ (v_d_c : ℝ), (((((v_d_a + v_d_b) + v_d_c) ^ (2 : ℕ)) ≥ ((3 : ℝ) * (((v_d_a * v_d_b) + (v_d_b * v_d_c)) + (v_d_c * v_d_a)))) ∧ (((((v_d_a + v_d_b) + v_d_c) ^ (2 : ℕ)) = ((3 : ℝ) * (((v_d_a * v_d_b) + (v_d_b * v_d_c)) + (v_d_c * v_d_a)))) ↔ ((v_d_a = v_d_b) ∧ ((v_d_b = v_d_c) ∧ (v_d_c = v_d_a))))))))",
+  "stepResults": [
+    {
+      "dependencyEvidence": "not_required",
+      "dependencyUsage": [],
+      "failureClass": null,
+      "nodeId": "n_ident",
+      "status": "passed"
+    },
+    {
+      "dependencyEvidence": "not_required",
+      "dependencyUsage": [],
+      "failureClass": null,
+      "nodeId": "n_sq_nonneg_each",
+      "status": "passed"
+    },
+    {
+      "dependencyEvidence": "all_declared_dependencies_used",
+      "dependencyUsage": [
+        {
+          "dependencyId": "n_sq_nonneg_each",
+          "used": true
+        }
+      ],
+      "failureClass": null,
+      "nodeId": "n_sum_nonneg",
+      "status": "passed"
+    },
+    {
+      "dependencyEvidence": "declared_dependency_unused",
+      "dependencyUsage": [
+        {
+          "dependencyId": "n_ident",
+          "used": false
+        },
+        {
+          "dependencyId": "n_sum_nonneg",
+          "used": false
+        }
+      ],
+      "failureClass": "dependency_usage_failed",
+      "nodeId": "n_ineq_diff",
+      "status": "passed"
+    },
+    {
+      "dependencyEvidence": "all_declared_dependencies_used",
+      "dependencyUsage": [
+        {
+          "dependencyId": "n_ineq_diff",
+          "used": true
+        }
+      ],
+      "failureClass": null,
+      "nodeId": "n_ineq_claim",
+      "status": "passed"
+    },
+    {
+      "dependencyEvidence": "all_declared_dependencies_used",
+      "dependencyUsage": [
+        {
+          "dependencyId": "n_eq_hyp",
+          "used": true
+        },
+        {
+          "dependencyId": "n_ident",
+          "used": true
+        }
+      ],
+      "failureClass": null,
+      "nodeId": "n_sqsum_zero",
+      "status": "passed"
+    },
+    {
+      "dependencyEvidence": "all_declared_dependencies_used",
+      "dependencyUsage": [
+        {
+          "dependencyId": "n_sqsum_zero",
+          "used": true
+        },
+        {
+          "dependencyId": "n_sq_nonneg_each",
+          "used": true
+        }
+      ],
+      "failureClass": null,
+      "nodeId": "n_each_zero",
+      "status": "passed"
+    },
+    {
+      "dependencyEvidence": "all_declared_dependencies_used",
+      "dependencyUsage": [
+        {
+          "dependencyId": "n_each_zero",
+          "used": true
+        }
+      ],
+      "failureClass": null,
+      "nodeId": "n_equal_abc_f",
+      "status": "passed"
+    },
+    {
+      "dependencyEvidence": "all_declared_dependencies_used",
+      "dependencyUsage": [
+        {
+          "dependencyId": "n_equal_abc_f",
+          "used": true
+        }
+      ],
+      "failureClass": null,
+      "nodeId": "n_forward_imp",
+      "status": "passed"
+    },
+    {
+      "dependencyEvidence": "all_declared_dependencies_used",
+      "dependencyUsage": [
+        {
+          "dependencyId": "n_eq_abc_hyp",
+          "used": true
+        }
+      ],
+      "failureClass": null,
+      "nodeId": "n_sq_zero_back",
+      "status": "passed"
+    },
+    {
+      "dependencyEvidence": "declared_dependency_unused",
+      "dependencyUsage": [
+        {
+          "dependencyId": "n_sq_zero_back",
+          "used": true
+        },
+        {
+          "dependencyId": "n_ident",
+          "used": false
+        }
+      ],
+      "failureClass": "dependency_usage_failed",
+      "nodeId": "n_eq_holds_back",
+      "status": "passed"
+    },
+    {
+      "dependencyEvidence": "all_declared_dependencies_used",
+      "dependencyUsage": [
+        {
+          "dependencyId": "n_eq_holds_back",
+          "used": true
+        }
+      ],
+      "failureClass": null,
+      "nodeId": "n_converse_imp",
+      "status": "passed"
+    },
+    {
+      "dependencyEvidence": "all_declared_dependencies_used",
+      "dependencyUsage": [
+        {
+          "dependencyId": "n_forward_imp",
+          "used": true
+        },
+        {
+          "dependencyId": "n_converse_imp",
+          "used": true
+        }
+      ],
+      "failureClass": null,
+      "nodeId": "n_iff",
+      "status": "passed"
+    },
+    {
+      "dependencyEvidence": "all_declared_dependencies_used",
+      "dependencyUsage": [
+        {
+          "dependencyId": "n_ineq_claim",
+          "used": true
+        },
+        {
+          "dependencyId": "n_iff",
+          "used": true
+        }
+      ],
+      "failureClass": null,
+      "nodeId": "n_goal_conj",
+      "status": "passed"
+    }
+  ],
+  "termination": "repair_stalled_without_new_verification_evidence"
+}

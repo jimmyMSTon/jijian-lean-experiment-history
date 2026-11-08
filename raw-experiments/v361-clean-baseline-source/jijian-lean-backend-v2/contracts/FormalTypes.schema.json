@@ -1,0 +1,87 @@
+{
+  "$defs": {
+    "FormalBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "sourceId": {
+          "description": "MathIR 中原变量或定义的 id（aliasMap 的键），不是 Lean 内部名称 v0/d0 等；内部名称只用于 type/value 表达式。",
+          "title": "Sourceid",
+          "type": "string"
+        },
+        "type": {
+          "title": "Type",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "sourceId",
+        "type",
+        "value"
+      ],
+      "title": "FormalBinding",
+      "type": "object"
+    },
+    "FormalStatement": {
+      "additionalProperties": false,
+      "properties": {
+        "sourceId": {
+          "description": "MathIR 中原 assumption/proofStep/goal 的 id（aliasMap 的键），不是 h0/s0/goal 等 Lean 内部别名。",
+          "title": "Sourceid",
+          "type": "string"
+        },
+        "proposition": {
+          "title": "Proposition",
+          "type": "string"
+        }
+      },
+      "required": [
+        "sourceId",
+        "proposition"
+      ],
+      "title": "FormalStatement",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "bindings": {
+      "items": {
+        "$ref": "#/$defs/FormalBinding"
+      },
+      "title": "Bindings",
+      "type": "array"
+    },
+    "statements": {
+      "items": {
+        "$ref": "#/$defs/FormalStatement"
+      },
+      "title": "Statements",
+      "type": "array"
+    },
+    "notes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+    }
+  },
+  "required": [
+    "bindings",
+    "statements",
+    "notes"
+  ],
+  "title": "FormalTypes",
+  "type": "object"
+}

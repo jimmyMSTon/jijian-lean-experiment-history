@@ -1,0 +1,12 @@
+{
+  "authoredReasonGapRows" : 1,
+  "case" : "gaolian_gap",
+  "formalRefutedClaimRows" : 0,
+  "formalRouteKernelVerified" : true,
+  "formalTypeForFirst" : "¬ ((∃ x : Fin m → ℕ,\n            (∀ i : Fin m, 1 ≤ x i ∧ x i ≤ (m - 1) * n ∧ c0 (x i) = true) ∧\n            (Finset.univ.filter (fun i : Fin m => i.val < m - 1)).sum (fun i => x i) <\n              x ⟨m - 1, by omega⟩)\n         ∨ (∃ y : Fin n → ℕ,\n            (∀ i : Fin n, 1 ≤ y i ∧ y i ≤ (m - 1) * n ∧ c0 (y i) = false) ∧\n            (Finset.univ.filter (fun i : Fin n => i.val < n - 1)).sum (fun i => y i) <\n              y ⟨n - 1, by omega⟩))",
+  "formalWholeWitnessRows" : 5,
+  "frontendVerified" : false,
+  "lastRowExplanation" : "对应的 Lean 中间断言已在整篇通过 Kernel 的形式证明中建立；但这不是用户原稿推理理由的独立认证。 来源审计指出可能的原稿理由缺口（AI 判断，非 Kernel 判错）：原文只说结合第一步 K−1 的反例即得最小正整数为 K；但要排除所有 k<K，需额外说明该性质关于 k 的单调性，或把任意 k<K 的见证提升到 K−1 的上界范围。Lean 在 source_step_4 的最小性证明中显式引入任意 k、假设 k<K，得到 k≤(m−1)n，并用 source_step_0 反证，补上了这一未明写的步骤。未发现以大定理替换，但此处是源证明的表述缺口。",
+  "originalProofVerified" : false,
+  "sourceRows" : 5
+}

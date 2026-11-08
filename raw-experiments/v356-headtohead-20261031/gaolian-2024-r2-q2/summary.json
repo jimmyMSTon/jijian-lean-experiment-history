@@ -1,0 +1,79 @@
+[
+  {
+    "case": {
+      "id": "gaolian-2024-r2-q2",
+      "input": "2024年全国高中数学联赛二试A卷第2题（40分）。\n原题：在凸四边形ABCD中，AC平分∠BAD，E、F分别在边BC、CD上，满足EF∥BD。分别延长FA、EA至点P、Q，使过A,B,P的圆以及过A,D,Q的圆均与AC相切。证明B,P,Q,D四点共圆。\n我的坐标证明（完整保留几何假设，不将结论写进假设）：\n第1步。以A为原点，AC为正x轴，长度尺度固定；由于AC平分角BAD，可取实数u,v满足u²+v²=1、u>0、v>0，并取b,d,c>0，使B=(bu,bv)，D=(du,-dv)，C=(c,0)。这里b=AB、d=AD、c=AC。\n第2步。因E∈BC、F∈CD且EF∥BD，依据以C为中心的相似比，存在共同参数0<t<1，使E=C+t(B-C)=(c(1-t)+tbu,tbv)，F=C+t(D-C)=(c(1-t)+tdu,-tdv)。这一步准确使用了原题的平行条件。\n第3步。任何过原点且在原点切x轴的圆均有方程x²+y²+λy=0。通过B的第一圆系数λ_1=-b/v，通过D的第二圆系数λ_2=d/v，这是分别代入B,D并用u²+v²=1得到的。\n第4步。由于P位于FA的延长线过A的另一侧，可写P=pF且p<0；因为P在第一圆上，代入得p²|F|²-(b/v)pF_y=0。由F_y=-tdv、p≠0，得p=-bdt/|F|²。完全类似，由Q=qE在第二圆上且E_y=tbv，得到q=-bdt/|E|²。记h=bdt，则P=-hF/|F|²、Q=-hE/|E|²。\n第5步。四个互异点U_i=(x_i,y_i)共圆，当且仅当行列式det[(x_i²+y_i²,x_i,y_i,1)]_{i=1}^4=0。取顺序B,D,P,Q，并代入上面的显式坐标。分母|E|²|F|²均严格为正。\n第6步。直接通分展开该4×4行列式，其分子必含因子u²+v²-1；事实上逐项整理得到行列式为 b²c d²t³ v(b-d)(t-1)(u²+v²-1)[b²(u²+v²)-2bd u²+2bd v²+d²(u²+v²)]/(|E|²|F|²)。由于u²+v²=1，该值严格等于0。代数整理仅使用第1至4步显式坐标和恒等式，无须新增原题几何假设。\n第7步。因此B,D,P,Q四点位于同一个圆上，即B,P,Q,D共圆。证毕。"
+    },
+    "jobId": "34fa2158-ba81-4bf8-8890-676d078b43be",
+    "jobStatus": "completed",
+    "resultStatus": "whole_proof_translation_incomplete",
+    "kernelVerified": false,
+    "formalProofCertified": false,
+    "originalProofCertified": false,
+    "fidelityReview": null,
+    "fidelityIssues": 0,
+    "sourceSteps": 7,
+    "kernelCertificate": null,
+    "unsupportedOriginalSteps": [
+      "第1步未形式化：尚未在 Lean 中完成从一般 EuclideanSpace 条件到坐标形式 A=(0,0), C=(c,0), B=(bu,bv), D=(du,-dv) 的坐标正规化，包括由角平分线、凸性和 C≠A 导出 u>0、v>0、u²+v²=1 及符号选择。",
+      "第2步未形式化：尚未在 Lean 中构造共同参数 0<t<1，并从 E∈segment BC、F∈segment CD 和 EF∥BD 推出 E=C+t(B−C)、F=C+t(D−C) 的显式坐标。",
+      "第3步未形式化：尚未在 Lean 中证明过 A 且与 AC 相切的圆方程可写成 x²+y²+λy=0，并分别由 B,D 的坐标计算 λ₁=-b/v、λ₂=d/v。",
+      "第4步未形式化：尚未在 Lean 中由 P=pF、p<0 与圆方程推出 p=-bdt/|F|²，并由 Q=qE、q<0 推出 q=-bdt/|E|²。",
+      "第5步未形式化：尚未在 Lean 中证明四点共圆当且仅当 4×4 行列式 det[(x_i²+y_i²,x_i,y_i,1)] 为零，并代入 B,D,P,Q 的显式坐标。",
+      "第6步未形式化：尚未在 Lean 中完成该 4×4 行列式的通分与因式分解，尤其是原稿给出的长代数恒等式及其由 u²+v²=1 推出行列式为零的计算。",
+      "第7步未形式化：尚未在 Lean 中从行列式为零正式推出 ∃ O,r，使 B,P,Q,D 均在以 O 为圆心、r 为半径的圆上。"
+    ],
+    "error": null,
+    "usage": {
+      "attempts": 5,
+      "inputTokens": 12154,
+      "outputTokens": 40447,
+      "missingUsage": 0,
+      "requests": [
+        {
+          "reason": "WholeProofPlan",
+          "status": "response_received",
+          "input_tokens": 1344,
+          "output_tokens": 18724,
+          "error_type": null,
+          "http_duration_ms": 85267.171
+        },
+        {
+          "reason": "WholeProofProgram",
+          "status": "response_received",
+          "input_tokens": 2537,
+          "output_tokens": 5998,
+          "error_type": null,
+          "http_duration_ms": 39624.456
+        },
+        {
+          "reason": "SuspectedAuthoredFault",
+          "status": "response_received",
+          "input_tokens": 1893,
+          "output_tokens": 2510,
+          "error_type": null,
+          "http_duration_ms": 15160.354
+        },
+        {
+          "reason": "SourceClaimRefutation",
+          "status": "response_received",
+          "input_tokens": 2294,
+          "output_tokens": 11412,
+          "error_type": null,
+          "http_duration_ms": 58548.407
+        },
+        {
+          "reason": "Explanation",
+          "status": "response_received",
+          "input_tokens": 4086,
+          "output_tokens": 1803,
+          "error_type": null,
+          "http_duration_ms": 12291.335
+        }
+      ]
+    },
+    "feedbackError": null,
+    "elapsedSeconds": 276.76,
+    "totalElapsedSeconds": 277.58
+  }
+]

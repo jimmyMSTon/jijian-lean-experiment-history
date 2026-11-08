@@ -1,0 +1,91 @@
+{
+  "case": {
+    "id": "cmo-2023-p1",
+    "category": "CMO",
+    "sourceReference": "https://dengxia.ai/read/cmo-archive/cmo-2023-p1/",
+    "input": "2023年中国数学奥林匹克CMO第1题。\n原题：正实数数列a_n、b_n满足，对每个正整数n，a_(n+1)=a_n−1/(1+∑_{i=1}^n1/a_i)，b_(n+1)=b_n+1/(1+∑_{i=1}^n1/b_i)。(1)若a_100 b_100=a_101 b_101，求a_1−b_1；(2)若a_100=b_99，比较a_100+b_100与a_101+b_101。\n我的完整证明：\n第1步。对减法数列定义T_n=1+∑_{i=1}^n1/a_i，T_0=1。递推式给出a_(n+1)T_n=a_n T_n−1=a_n T_(n-1)。归纳可知对每个n≥1，有a_(n+1)T_n=a_1。\n第2步。因T_n=T_(n-1)+1/a_n，且a_n T_(n-1)=a_1，得T_n=(a_1+1)/a_n。于是a_(n+1)=a_1 a_n/(a_1+1)，即a_n=a_1 (a_1/(a_1+1))^(n-1)。特别a_101/a_100=a_1/(a_1+1)，且a_n严格递减。\n第3步。对加法数列定义U_n=1+∑_{i=1}^n1/b_i、U_0=1。由递推式b_(n+1)U_n=b_n U_n+1=b_n U_(n-1)+2。归纳得到b_(n+1)U_n=b_1+2n，且b_n U_(n-1)=b_1+2n−2。\n第4步。由U_n=U_(n-1)+1/b_n得到U_n=(b_1+2n−1)/b_n。因此b_(n+1)=b_n(b_1+2n)/(b_1+2n−1)，数列b_n严格递增，且b_(n+1)−b_n=b_n/(b_1+2n−1)。\n第5步。解决第(1)问。a_100 b_100=a_101 b_101，两边除以正数a_100 b_100，利用第2、4步得1=[a_1/(a_1+1)]·[(b_1+200)/(b_1+199)]。通分得a_1(b_1+200)=(a_1+1)(b_1+199)，即a_1−b_1=199。第一问答案为199。\n第6步。解决第(2)问。设a_100=b_99=t>0。因为a数列每次减少量1/T_j均严格小于1，共经历99次；第一次减少量a_1/(a_1+1)=1−1/(a_1+1)，后面98次严格小于1，故a_1−a_100<99−1/(a_1+1)。同理，b_99−b_1是98个每次严格小于1的增加量之和，所以b_99−b_1<98。相加并利用a_100=b_99得a_1−b_1<197−1/(a_1+1)<197。因此a_1+1<b_1+198，进一步1/(a_1+1)>1/(b_1+198)，故a_1+1<b_1+198−1/(b_1+198)=[(b_1+197)(b_1+199)]/(b_1+198)。\n第7步。按第2步，a_100−a_101=a_100/(a_1+1)=t/(a_1+1)。按第4步，b_100=b_99(b_1+198)/(b_1+197)=t(b_1+198)/(b_1+197)，而b_101−b_100=b_100/(b_1+199)=t(b_1+198)/[(b_1+197)(b_1+199)]。第6步的严格不等式给出a_100−a_101>b_101−b_100，即a_100+b_100>a_101+b_101。第二问答案为前者严格较大。证毕。",
+    "sourceSha256": "eea58a7cd78b164c65d6a7b996d6b18ec91b136694a7a6bc9373b6992e415d82",
+    "modelProvidedLean": false
+  },
+  "jobId": "17bbe36e-9da8-441d-abbc-cbd47e37d3d4",
+  "jobStatus": "completed",
+  "resultStatus": "whole_formal_kernel_not_verified",
+  "kernelVerified": false,
+  "formalProofCertified": false,
+  "originalProofCertified": false,
+  "fidelityReview": null,
+  "fidelityIssues": 0,
+  "sourceSteps": 7,
+  "kernelCertificate": null,
+  "unsupportedOriginalSteps": [
+    "完整 Lean 证明未获得 Kernel 证书；保留失败诊断"
+  ],
+  "error": null,
+  "usage": {
+    "attempts": 7,
+    "inputTokens": 84323,
+    "outputTokens": 116900,
+    "missingUsage": 0,
+    "requests": [
+      {
+        "reason": "WholeProofPlan",
+        "status": "response_received",
+        "input_tokens": 1649,
+        "output_tokens": 23144,
+        "error_type": null,
+        "http_duration_ms": 85715.982
+      },
+      {
+        "reason": "WholeProofProgram",
+        "status": "response_received",
+        "input_tokens": 3030,
+        "output_tokens": 6437,
+        "error_type": null,
+        "http_duration_ms": 35822.311
+      },
+      {
+        "reason": "WholeProofProgram",
+        "status": "response_received",
+        "input_tokens": 5639,
+        "output_tokens": 1954,
+        "error_type": null,
+        "http_duration_ms": 11476.797
+      },
+      {
+        "reason": "LeanProofScaffold",
+        "status": "response_received",
+        "input_tokens": 6570,
+        "output_tokens": 22487,
+        "error_type": null,
+        "http_duration_ms": 96532.897
+      },
+      {
+        "reason": "LeanSourceHoleFillBatch",
+        "status": "response_received",
+        "input_tokens": 7494,
+        "output_tokens": 57327,
+        "error_type": null,
+        "http_duration_ms": 243321.435
+      },
+      {
+        "reason": "LeanProofPatchBatch",
+        "status": "response_received",
+        "input_tokens": 39413,
+        "output_tokens": 3658,
+        "error_type": null,
+        "http_duration_ms": 16241.485
+      },
+      {
+        "reason": "Explanation",
+        "status": "response_received",
+        "input_tokens": 20528,
+        "output_tokens": 1893,
+        "error_type": null,
+        "http_duration_ms": 11928.982
+      }
+    ]
+  },
+  "feedbackError": null,
+  "elapsedSeconds": 600.41,
+  "totalElapsedSeconds": 1708.13
+}

@@ -1,0 +1,2465 @@
+{
+  "fixtureVersion": "mathlib-evidence-sample-v1",
+  "sample": "induction_repair",
+  "origin": {
+    "recordFile": "reports/statement-lock-three/induction.json",
+    "formalizationId": "9f474530-9798-4a0b-b8c1-df7b9ab93002",
+    "verificationId": "2dacbf1d-ec54-4443-93da-396620e6fc04",
+    "verificationMatchesFormalization": true,
+    "retrievalProvenance": "saved original artifact; sourceMatches are not reconstructed here"
+  },
+  "mathIR": {
+    "version": "1.0",
+    "source": {
+      "kind": "text",
+      "raw": "【题目】\n对任意自然数 n，证明：\n1 + 3 + 5 + ··· + (2n - 1) = n²。\n等价地：\n∑_{k=0}^{n-1} (2k + 1) = n²。\n【证明】\n对 n 使用数学归纳法。\n当 n = 0 时，左边为空和，所以等于 0；\n右边为 0² = 0。\n因此结论成立。\n假设当 n 时结论成立，即\n∑_{k=0}^{n-1} (2k + 1) = n²。\n考虑 n + 1。\n有\n∑_{k=0}^{n} (2k + 1)\n=\n∑_{k=0}^{n-1} (2k + 1) + (2n + 1)。\n由归纳假设，\n= n² + 2n + 1\n= (n + 1)²。\n因此结论对 n + 1 也成立。\n由数学归纳法，对任意自然数 n，\n∑_{k=0}^{n-1} (2k + 1) = n²。\n证毕。",
+      "normalized": "【题目】\n对任意自然数 n，证明：\n1 + 3 + 5 + ··· + (2n - 1) = n²。\n等价地：\n∑_{k=0}^{n-1} (2k + 1) = n²。\n【证明】\n对 n 使用数学归纳法。\n当 n = 0 时，左边为空和，所以等于 0；\n右边为 0² = 0。\n因此结论成立。\n假设当 n 时结论成立，即\n∑_{k=0}^{n-1} (2k + 1) = n²。\n考虑 n + 1。\n有\n∑_{k=0}^{n} (2k + 1)\n=\n∑_{k=0}^{n-1} (2k + 1) + (2n + 1)。\n由归纳假设，\n= n² + 2n + 1\n= (n + 1)²。\n因此结论对 n + 1 也成立。\n由数学归纳法，对任意自然数 n，\n∑_{k=0}^{n-1} (2k + 1) = n²。\n证毕。",
+      "recognitionId": null,
+      "transcriptionEvidence": null,
+      "blocks": [
+        {
+          "id": "b0",
+          "text": "【题目】\n对任意自然数 n，证明：\n1 + 3 + 5 + ··· + (2n - 1) = n²。\n等价地：\n∑_{k=0}^{n-1} (2k + 1) = n²。\n【证明】\n对 n 使用数学归纳法。\n当 n = 0 时，左边为空和，所以等于 0；\n右边为 0² = 0。\n因此结论成立。\n假设当 n 时结论成立，即\n∑_{k=0}^{n-1} (2k + 1) = n²。\n考虑 n + 1。\n有\n∑_{k=0}^{n} (2k + 1)\n=\n∑_{k=0}^{n-1} (2k + 1) + (2n + 1)。\n由归纳假设，\n= n² + 2n + 1\n= (n + 1)²。\n因此结论对 n + 1 也成立。\n由数学归纳法，对任意自然数 n，\n∑_{k=0}^{n-1} (2k + 1) = n²。\n证毕。",
+          "page": null,
+          "bbox": null,
+          "confidence": null,
+          "assetId": null,
+          "providerData": {}
+        }
+      ]
+    },
+    "scopes": [
+      {
+        "id": "scope_root",
+        "parentId": null,
+        "description": "题目与整个证明的根作用域",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 0,
+            "end": 359
+          }
+        ]
+      },
+      {
+        "id": "scope_base",
+        "parentId": "scope_root",
+        "description": "基础情形 n = 0 的分支作用域",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 103,
+            "end": 146
+          }
+        ]
+      },
+      {
+        "id": "scope_ind",
+        "parentId": "scope_root",
+        "description": "归纳步骤：假设 n 时成立，证明 n + 1 时成立；归纳假设及其直接使用均在此作用域内",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 147,
+            "end": 309
+          }
+        ]
+      }
+    ],
+    "variables": [
+      {
+        "id": "var_n",
+        "name": "n",
+        "domain": "ℕ",
+        "description": "自然数变量；题目中的任意自然数 n，也是归纳变量",
+        "scopeId": "scope_root",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 5,
+            "end": 13
+          }
+        ]
+      },
+      {
+        "id": "var_k",
+        "name": "k",
+        "domain": "ℕ",
+        "description": "求和指标；在 ∑_{k=0}^{n-1} 中从 0 到 n-1",
+        "scopeId": "scope_root",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 59,
+            "end": 60
+          }
+        ]
+      }
+    ],
+    "definitions": [],
+    "assumptions": [],
+    "proofSteps": [
+      {
+        "id": "step_method",
+        "text": "对 n 使用数学归纳法。",
+        "latex": "\\text{对 } n \\text{ 使用数学归纳法}",
+        "scopeId": "scope_root",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 90,
+            "end": 102
+          }
+        ],
+        "dependsOn": [],
+        "reason": "用户声明采用数学归纳法；这是方法声明，不是已证明的数学结论。"
+      },
+      {
+        "id": "step_base_left",
+        "text": "当 n = 0 时，左边为空和，所以等于 0；",
+        "latex": "n=0,\\ \\sum_{k=0}^{n-1}(2k+1)=0",
+        "scopeId": "scope_base",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 103,
+            "end": 126
+          }
+        ],
+        "dependsOn": [],
+        "reason": "基础情形下左边为空和，取值为 0。"
+      },
+      {
+        "id": "step_base_right",
+        "text": "右边为 0² = 0。",
+        "latex": "0^2=0",
+        "scopeId": "scope_base",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 127,
+            "end": 138
+          }
+        ],
+        "dependsOn": [],
+        "reason": "基础情形下右边为 0 的平方，等于 0。"
+      },
+      {
+        "id": "step_base_conclusion",
+        "text": "因此结论成立。",
+        "latex": "\\text{基础情形 } n=0 \\text{ 成立}",
+        "scopeId": "scope_base",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 139,
+            "end": 146
+          }
+        ],
+        "dependsOn": [
+          "step_base_left",
+          "step_base_right"
+        ],
+        "reason": "由左边为 0 且右边为 0，得到基础情形成立。"
+      },
+      {
+        "id": "step_ih",
+        "text": "假设当 n 时结论成立，即 ∑_{k=0}^{n-1} (2k + 1) = n²。",
+        "latex": "\\sum_{k=0}^{n-1}(2k+1)=n^2",
+        "scopeId": "scope_ind",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 147,
+            "end": 189
+          }
+        ],
+        "dependsOn": [],
+        "reason": "归纳步骤中的局部归纳假设。"
+      },
+      {
+        "id": "step_consider_n1",
+        "text": "考虑 n + 1。",
+        "latex": "\\text{考虑 } n+1",
+        "scopeId": "scope_ind",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 190,
+            "end": 199
+          }
+        ],
+        "dependsOn": [],
+        "reason": "转向要证明的后继情形 n+1。"
+      },
+      {
+        "id": "step_decompose",
+        "text": "有 ∑_{k=0}^{n} (2k + 1) = ∑_{k=0}^{n-1} (2k + 1) + (2n + 1)。",
+        "latex": "\\sum_{k=0}^{n}(2k+1)=\\sum_{k=0}^{n-1}(2k+1)+(2n+1)",
+        "scopeId": "scope_ind",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 200,
+            "end": 259
+          }
+        ],
+        "dependsOn": [],
+        "reason": "把到 n 的和拆成到 n-1 的和再加上最后一项 2n+1。"
+      },
+      {
+        "id": "step_ih_simplify",
+        "text": "由归纳假设，= n² + 2n + 1 = (n + 1)²。",
+        "latex": "\\text{由归纳假设，}=n^2+2n+1=(n+1)^2",
+        "scopeId": "scope_ind",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 260,
+            "end": 292
+          }
+        ],
+        "dependsOn": [
+          "step_ih",
+          "step_decompose"
+        ],
+        "reason": "用归纳假设替换前 n 项和，然后代数化简为 (n+1)^2。"
+      },
+      {
+        "id": "step_ind_conclusion",
+        "text": "因此结论对 n + 1 也成立。",
+        "latex": "\\sum_{k=0}^{n}(2k+1)=(n+1)^2",
+        "scopeId": "scope_ind",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 293,
+            "end": 309
+          }
+        ],
+        "dependsOn": [
+          "step_decompose",
+          "step_ih_simplify"
+        ],
+        "reason": "得到后继情形 n+1 的结论成立。"
+      },
+      {
+        "id": "step_induction_final",
+        "text": "由数学归纳法，对任意自然数 n，∑_{k=0}^{n-1} (2k + 1) = n²。证毕。",
+        "latex": "\\forall n\\in\\mathbb{N},\\ \\sum_{k=0}^{n-1}(2k+1)=n^2",
+        "scopeId": "scope_root",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 310,
+            "end": 359
+          }
+        ],
+        "dependsOn": [
+          "step_base_conclusion",
+          "step_ind_conclusion"
+        ],
+        "reason": "由基础情形和归纳步骤，用数学归纳法总结得到对任意自然数 n 的结论。"
+      }
+    ],
+    "goal": {
+      "id": "goal_main",
+      "text": "对任意自然数 n，证明：1 + 3 + 5 + ··· + (2n - 1) = n²。等价地：∑_{k=0}^{n-1} (2k + 1) = n²。",
+      "latex": "\\forall n\\in\\mathbb{N},\\ \\sum_{k=0}^{n-1}(2k+1)=n^2",
+      "scopeId": "scope_root",
+      "sourceRefs": [
+        {
+          "blockId": "b0",
+          "start": 5,
+          "end": 84
+        }
+      ],
+      "dependsOn": [
+        "step_induction_final"
+      ],
+      "reason": "用户最后用数学归纳法总结，目标为对任意自然数 n 的求和等式。"
+    },
+    "ambiguities": [],
+    "formal": {
+      "expressions": [
+        {
+          "sourceId": "step_method",
+          "expression": {
+            "op": "true",
+            "args": [],
+            "symbolId": null,
+            "binderId": null,
+            "value": null
+          }
+        },
+        {
+          "sourceId": "step_base_left",
+          "expression": {
+            "op": "implies",
+            "args": [
+              {
+                "op": "eq",
+                "args": [
+                  {
+                    "op": "symbol",
+                    "args": [],
+                    "symbolId": "var_n",
+                    "binderId": null,
+                    "value": null
+                  },
+                  {
+                    "op": "number",
+                    "args": [],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": "0"
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "value": null
+              },
+              {
+                "op": "eq",
+                "args": [
+                  {
+                    "op": "sum_range",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "var_n",
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "mul",
+                            "args": [
+                              {
+                                "op": "number",
+                                "args": [],
+                                "symbolId": null,
+                                "binderId": null,
+                                "value": "2"
+                              },
+                              {
+                                "op": "symbol",
+                                "args": [],
+                                "symbolId": "var_k",
+                                "binderId": null,
+                                "value": null
+                              }
+                            ],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": null
+                          },
+                          {
+                            "op": "number",
+                            "args": [],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": "1"
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": "var_k",
+                    "value": null
+                  },
+                  {
+                    "op": "number",
+                    "args": [],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": "0"
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "value": null
+              }
+            ],
+            "symbolId": null,
+            "binderId": null,
+            "value": null
+          }
+        },
+        {
+          "sourceId": "step_base_right",
+          "expression": {
+            "op": "eq",
+            "args": [
+              {
+                "op": "pow",
+                "args": [
+                  {
+                    "op": "number",
+                    "args": [],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": "0"
+                  },
+                  {
+                    "op": "number",
+                    "args": [],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": "2"
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "value": null
+              },
+              {
+                "op": "number",
+                "args": [],
+                "symbolId": null,
+                "binderId": null,
+                "value": "0"
+              }
+            ],
+            "symbolId": null,
+            "binderId": null,
+            "value": null
+          }
+        },
+        {
+          "sourceId": "step_base_conclusion",
+          "expression": {
+            "op": "eq",
+            "args": [
+              {
+                "op": "sum_range",
+                "args": [
+                  {
+                    "op": "number",
+                    "args": [],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": "0"
+                  },
+                  {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "mul",
+                        "args": [
+                          {
+                            "op": "number",
+                            "args": [],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": "2"
+                          },
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "var_k",
+                            "binderId": null,
+                            "value": null
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "number",
+                        "args": [],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": "1"
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": null
+                  }
+                ],
+                "symbolId": null,
+                "binderId": "var_k",
+                "value": null
+              },
+              {
+                "op": "pow",
+                "args": [
+                  {
+                    "op": "number",
+                    "args": [],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": "0"
+                  },
+                  {
+                    "op": "number",
+                    "args": [],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": "2"
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "value": null
+              }
+            ],
+            "symbolId": null,
+            "binderId": null,
+            "value": null
+          }
+        },
+        {
+          "sourceId": "step_ih",
+          "expression": {
+            "op": "eq",
+            "args": [
+              {
+                "op": "sum_range",
+                "args": [
+                  {
+                    "op": "symbol",
+                    "args": [],
+                    "symbolId": "var_n",
+                    "binderId": null,
+                    "value": null
+                  },
+                  {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "mul",
+                        "args": [
+                          {
+                            "op": "number",
+                            "args": [],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": "2"
+                          },
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "var_k",
+                            "binderId": null,
+                            "value": null
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "number",
+                        "args": [],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": "1"
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": null
+                  }
+                ],
+                "symbolId": null,
+                "binderId": "var_k",
+                "value": null
+              },
+              {
+                "op": "pow",
+                "args": [
+                  {
+                    "op": "symbol",
+                    "args": [],
+                    "symbolId": "var_n",
+                    "binderId": null,
+                    "value": null
+                  },
+                  {
+                    "op": "number",
+                    "args": [],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": "2"
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "value": null
+              }
+            ],
+            "symbolId": null,
+            "binderId": null,
+            "value": null
+          }
+        },
+        {
+          "sourceId": "step_consider_n1",
+          "expression": {
+            "op": "true",
+            "args": [],
+            "symbolId": null,
+            "binderId": null,
+            "value": null
+          }
+        },
+        {
+          "sourceId": "step_decompose",
+          "expression": {
+            "op": "eq",
+            "args": [
+              {
+                "op": "sum_range",
+                "args": [
+                  {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "var_n",
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "number",
+                        "args": [],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": "1"
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": null
+                  },
+                  {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "mul",
+                        "args": [
+                          {
+                            "op": "number",
+                            "args": [],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": "2"
+                          },
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "var_k",
+                            "binderId": null,
+                            "value": null
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "number",
+                        "args": [],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": "1"
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": null
+                  }
+                ],
+                "symbolId": null,
+                "binderId": "var_k",
+                "value": null
+              },
+              {
+                "op": "add",
+                "args": [
+                  {
+                    "op": "sum_range",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "var_n",
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "mul",
+                            "args": [
+                              {
+                                "op": "number",
+                                "args": [],
+                                "symbolId": null,
+                                "binderId": null,
+                                "value": "2"
+                              },
+                              {
+                                "op": "symbol",
+                                "args": [],
+                                "symbolId": "var_k",
+                                "binderId": null,
+                                "value": null
+                              }
+                            ],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": null
+                          },
+                          {
+                            "op": "number",
+                            "args": [],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": "1"
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": "var_k",
+                    "value": null
+                  },
+                  {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "mul",
+                        "args": [
+                          {
+                            "op": "number",
+                            "args": [],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": "2"
+                          },
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "var_n",
+                            "binderId": null,
+                            "value": null
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "number",
+                        "args": [],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": "1"
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": null
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "value": null
+              }
+            ],
+            "symbolId": null,
+            "binderId": null,
+            "value": null
+          }
+        },
+        {
+          "sourceId": "step_ih_simplify",
+          "expression": {
+            "op": "and",
+            "args": [
+              {
+                "op": "eq",
+                "args": [
+                  {
+                    "op": "sum_range",
+                    "args": [
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "var_n",
+                            "binderId": null,
+                            "value": null
+                          },
+                          {
+                            "op": "number",
+                            "args": [],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": "1"
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "mul",
+                            "args": [
+                              {
+                                "op": "number",
+                                "args": [],
+                                "symbolId": null,
+                                "binderId": null,
+                                "value": "2"
+                              },
+                              {
+                                "op": "symbol",
+                                "args": [],
+                                "symbolId": "var_k",
+                                "binderId": null,
+                                "value": null
+                              }
+                            ],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": null
+                          },
+                          {
+                            "op": "number",
+                            "args": [],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": "1"
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": "var_k",
+                    "value": null
+                  },
+                  {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "pow",
+                        "args": [
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "var_n",
+                            "binderId": null,
+                            "value": null
+                          },
+                          {
+                            "op": "number",
+                            "args": [],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": "2"
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "mul",
+                            "args": [
+                              {
+                                "op": "number",
+                                "args": [],
+                                "symbolId": null,
+                                "binderId": null,
+                                "value": "2"
+                              },
+                              {
+                                "op": "symbol",
+                                "args": [],
+                                "symbolId": "var_n",
+                                "binderId": null,
+                                "value": null
+                              }
+                            ],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": null
+                          },
+                          {
+                            "op": "number",
+                            "args": [],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": "1"
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": null
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "value": null
+              },
+              {
+                "op": "eq",
+                "args": [
+                  {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "pow",
+                        "args": [
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "var_n",
+                            "binderId": null,
+                            "value": null
+                          },
+                          {
+                            "op": "number",
+                            "args": [],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": "2"
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "mul",
+                            "args": [
+                              {
+                                "op": "number",
+                                "args": [],
+                                "symbolId": null,
+                                "binderId": null,
+                                "value": "2"
+                              },
+                              {
+                                "op": "symbol",
+                                "args": [],
+                                "symbolId": "var_n",
+                                "binderId": null,
+                                "value": null
+                              }
+                            ],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": null
+                          },
+                          {
+                            "op": "number",
+                            "args": [],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": "1"
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": null
+                  },
+                  {
+                    "op": "pow",
+                    "args": [
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "var_n",
+                            "binderId": null,
+                            "value": null
+                          },
+                          {
+                            "op": "number",
+                            "args": [],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": "1"
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "number",
+                        "args": [],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": "2"
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": null
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "value": null
+              }
+            ],
+            "symbolId": null,
+            "binderId": null,
+            "value": null
+          }
+        },
+        {
+          "sourceId": "step_ind_conclusion",
+          "expression": {
+            "op": "eq",
+            "args": [
+              {
+                "op": "sum_range",
+                "args": [
+                  {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "var_n",
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "number",
+                        "args": [],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": "1"
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": null
+                  },
+                  {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "mul",
+                        "args": [
+                          {
+                            "op": "number",
+                            "args": [],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": "2"
+                          },
+                          {
+                            "op": "symbol",
+                            "args": [],
+                            "symbolId": "var_k",
+                            "binderId": null,
+                            "value": null
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "number",
+                        "args": [],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": "1"
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": null
+                  }
+                ],
+                "symbolId": null,
+                "binderId": "var_k",
+                "value": null
+              },
+              {
+                "op": "pow",
+                "args": [
+                  {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "var_n",
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "number",
+                        "args": [],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": "1"
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": null
+                  },
+                  {
+                    "op": "number",
+                    "args": [],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": "2"
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "value": null
+              }
+            ],
+            "symbolId": null,
+            "binderId": null,
+            "value": null
+          }
+        },
+        {
+          "sourceId": "step_induction_final",
+          "expression": {
+            "op": "forall",
+            "args": [
+              {
+                "op": "eq",
+                "args": [
+                  {
+                    "op": "sum_range",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "var_n",
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "mul",
+                            "args": [
+                              {
+                                "op": "number",
+                                "args": [],
+                                "symbolId": null,
+                                "binderId": null,
+                                "value": "2"
+                              },
+                              {
+                                "op": "symbol",
+                                "args": [],
+                                "symbolId": "var_k",
+                                "binderId": null,
+                                "value": null
+                              }
+                            ],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": null
+                          },
+                          {
+                            "op": "number",
+                            "args": [],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": "1"
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": "var_k",
+                    "value": null
+                  },
+                  {
+                    "op": "pow",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "var_n",
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "number",
+                        "args": [],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": "2"
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": null
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "value": null
+              }
+            ],
+            "symbolId": null,
+            "binderId": "var_n",
+            "value": null
+          }
+        },
+        {
+          "sourceId": "goal_main",
+          "expression": {
+            "op": "forall",
+            "args": [
+              {
+                "op": "eq",
+                "args": [
+                  {
+                    "op": "sum_range",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "var_n",
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "mul",
+                            "args": [
+                              {
+                                "op": "number",
+                                "args": [],
+                                "symbolId": null,
+                                "binderId": null,
+                                "value": "2"
+                              },
+                              {
+                                "op": "symbol",
+                                "args": [],
+                                "symbolId": "var_k",
+                                "binderId": null,
+                                "value": null
+                              }
+                            ],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": null
+                          },
+                          {
+                            "op": "number",
+                            "args": [],
+                            "symbolId": null,
+                            "binderId": null,
+                            "value": "1"
+                          }
+                        ],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": null
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": "var_k",
+                    "value": null
+                  },
+                  {
+                    "op": "pow",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "var_n",
+                        "binderId": null,
+                        "value": null
+                      },
+                      {
+                        "op": "number",
+                        "args": [],
+                        "symbolId": null,
+                        "binderId": null,
+                        "value": "2"
+                      }
+                    ],
+                    "symbolId": null,
+                    "binderId": null,
+                    "value": null
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "value": null
+              }
+            ],
+            "symbolId": null,
+            "binderId": "var_n",
+            "value": null
+          }
+        }
+      ]
+    }
+  },
+  "types": {
+    "bindings": [
+      {
+        "sourceId": "var_n",
+        "type": "ℕ",
+        "value": null
+      },
+      {
+        "sourceId": "var_k",
+        "type": "ℕ",
+        "value": null
+      }
+    ],
+    "statements": [
+      {
+        "sourceId": "step_method",
+        "proposition": "True"
+      },
+      {
+        "sourceId": "step_base_left",
+        "proposition": "((v0 = 0) → ((∑ v1 ∈ Finset.range v0, ((2 * v1) + 1)) = 0))"
+      },
+      {
+        "sourceId": "step_base_right",
+        "proposition": "((0 ^ 2) = 0)"
+      },
+      {
+        "sourceId": "step_base_conclusion",
+        "proposition": "((∑ v1 ∈ Finset.range 0, ((2 * v1) + 1)) = (0 ^ 2))"
+      },
+      {
+        "sourceId": "step_ih",
+        "proposition": "((∑ v1 ∈ Finset.range v0, ((2 * v1) + 1)) = (v0 ^ 2))"
+      },
+      {
+        "sourceId": "step_consider_n1",
+        "proposition": "True"
+      },
+      {
+        "sourceId": "step_decompose",
+        "proposition": "((∑ v1 ∈ Finset.range (v0 + 1), ((2 * v1) + 1)) = ((∑ v1 ∈ Finset.range v0, ((2 * v1) + 1)) + ((2 * v0) + 1)))"
+      },
+      {
+        "sourceId": "step_ih_simplify",
+        "proposition": "(((∑ v1 ∈ Finset.range (v0 + 1), ((2 * v1) + 1)) = ((v0 ^ 2) + ((2 * v0) + 1))) ∧ (((v0 ^ 2) + ((2 * v0) + 1)) = ((v0 + 1) ^ 2)))"
+      },
+      {
+        "sourceId": "step_ind_conclusion",
+        "proposition": "((∑ v1 ∈ Finset.range (v0 + 1), ((2 * v1) + 1)) = ((v0 + 1) ^ 2))"
+      },
+      {
+        "sourceId": "step_induction_final",
+        "proposition": "(∀ (v0 : ℕ), ((∑ v1 ∈ Finset.range v0, ((2 * v1) + 1)) = (v0 ^ 2)))"
+      },
+      {
+        "sourceId": "goal_main",
+        "proposition": "(∀ (v0 : ℕ), ((∑ v1 ∈ Finset.range v0, ((2 * v1) + 1)) = (v0 ^ 2)))"
+      }
+    ],
+    "notes": [
+      "Generated by code from the locked typed MathIR; not supplied by proof generation."
+    ]
+  },
+  "proofs": {
+    "fragments": [
+      {
+        "sourceId": "step_method",
+        "proof": "by\n  trivial",
+        "translationNotes": "用户声明采用数学归纳法；这是方法声明，不是已证明的数学结论。"
+      },
+      {
+        "sourceId": "step_base_left",
+        "proof": "by\n  intro h\n  rw [h]\n  simpa using (Finset.sum_range_zero (fun k : ℕ => (2 * k + 1)))",
+        "translationNotes": "基础情形下左边为空和，取值为 0。"
+      },
+      {
+        "sourceId": "step_base_right",
+        "proof": "by\n  norm_num",
+        "translationNotes": "基础情形下右边为 0 的平方，等于 0。"
+      },
+      {
+        "sourceId": "step_base_conclusion",
+        "proof": "by\n  rw [s1 0 rfl]\n  exact s2.symm",
+        "translationNotes": "由左边为 0 且右边为 0，得到基础情形成立。"
+      },
+      {
+        "sourceId": "step_ih",
+        "proof": null,
+        "translationNotes": "归纳步骤中的局部归纳假设。"
+      },
+      {
+        "sourceId": "step_consider_n1",
+        "proof": "by\n  trivial",
+        "translationNotes": "转向要证明的后继情形 n+1。"
+      },
+      {
+        "sourceId": "step_decompose",
+        "proof": "by\n  simpa using (Finset.sum_range_succ (fun x : ℕ => (2 * x + 1)) v0)",
+        "translationNotes": "把到 n 的和拆成到 n-1 的和再加上最后一项 2n+1。"
+      },
+      {
+        "sourceId": "step_ih_simplify",
+        "proof": "by\n  constructor\n  · rw [s6 v0, s4 v0]\n  · ring",
+        "translationNotes": "用归纳假设替换前 n 项和，然后代数化简为 (n+1)^2。"
+      },
+      {
+        "sourceId": "step_ind_conclusion",
+        "proof": "by\n  exact ((s7 v0).1).trans ((s7 v0).2)",
+        "translationNotes": "得到后继情形 n+1 的结论成立。"
+      },
+      {
+        "sourceId": "step_induction_final",
+        "proof": "by\n  intro n\n  induction n with\n  | zero => exact s3\n  | succ n ih => simpa using s8 n",
+        "translationNotes": "由基础情形和归纳步骤，用数学归纳法总结得到对任意自然数 n 的结论。"
+      },
+      {
+        "sourceId": "goal_main",
+        "proof": "by\n  exact s9",
+        "translationNotes": "用户最后用数学归纳法总结，目标为对任意自然数 n 的求和等式。"
+      }
+    ]
+  },
+  "statement_hash": "506a954b1cb69f66df38188c21a51653ca80d67a79c66b39c4a740f30f5dc679",
+  "savedRetrieval": {
+    "runtime": {
+      "configured": true,
+      "executableFound": true,
+      "projectFound": true,
+      "runtimeBuilt": true,
+      "sandbox": "macos",
+      "isolated": true,
+      "ready": true,
+      "toolchain": "leanprover/lean4:v4.34.0",
+      "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+      "liveTestedInThisDistribution": false
+    },
+    "declarations": [
+      {
+        "name": "Finset.sum_range_succ",
+        "found": true,
+        "signature": "@Finset.sum_range_succ.{u_1} : ∀ {M : Type u_1} [inst : AddCommMonoid.{u_1} M] (f : ℕ → M) (n : ℕ),\n  Eq.{u_1 + 1} (∑ x ∈ Finset.range (HAdd.hAdd.{0, 0, 0} n 1), f x)\n    (HAdd.hAdd.{u_1, u_1, u_1} (∑ x ∈ Finset.range n, f x) (f n))",
+        "status": "lean_checked",
+        "diagnostics": [
+          {
+            "severity": "information",
+            "message": "@Finset.sum_range_succ.{u_1} : ∀ {M : Type u_1} [inst : AddCommMonoid.{u_1} M] (f : ℕ → M) (n : ℕ),\n  Eq.{u_1 + 1} (∑ x ∈ Finset.range (HAdd.hAdd.{0, 0, 0} n 1), f x)\n    (HAdd.hAdd.{u_1, u_1, u_1} (∑ x ∈ Finset.range n, f x) (f n))",
+            "leanPosition": {
+              "column": 0,
+              "line": 6
+            },
+            "leanEndPosition": {
+              "column": 6,
+              "line": 6
+            },
+            "stepId": "__library_lookup__",
+            "sourceRefs": [],
+            "mappingPrecision": "step",
+            "raw": {
+              "caption": "",
+              "data": "@Finset.sum_range_succ.{u_1} : ∀ {M : Type u_1} [inst : AddCommMonoid.{u_1} M] (f : ℕ → M) (n : ℕ),\n  Eq.{u_1 + 1} (∑ x ∈ Finset.range (HAdd.hAdd.{0, 0, 0} n 1), f x)\n    (HAdd.hAdd.{u_1, u_1, u_1} (∑ x ∈ Finset.range n, f x) (f n))",
+              "endPos": {
+                "column": 6,
+                "line": 6
+              },
+              "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-statement-lock-three/work/lean-_up51800/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "[anonymous]",
+              "pos": {
+                "column": 0,
+                "line": 6
+              },
+              "severity": "information"
+            }
+          }
+        ],
+        "runtime": {
+          "configured": true,
+          "executableFound": true,
+          "projectFound": true,
+          "runtimeBuilt": true,
+          "sandbox": "macos",
+          "isolated": true,
+          "ready": true,
+          "toolchain": "leanprover/lean4:v4.34.0",
+          "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+          "liveTestedInThisDistribution": false
+        },
+        "requiredImport": "Mathlib",
+        "minimalImportDetermined": false
+      },
+      {
+        "name": "Finset.sum_range_zero",
+        "found": true,
+        "signature": "@Finset.sum_range_zero.{u_1} : ∀ {M : Type u_1} [inst : AddCommMonoid.{u_1} M] (f : ℕ → M),\n  Eq.{u_1 + 1} (∑ k ∈ Finset.range 0, f k) 0",
+        "status": "lean_checked",
+        "diagnostics": [
+          {
+            "severity": "information",
+            "message": "@Finset.sum_range_zero.{u_1} : ∀ {M : Type u_1} [inst : AddCommMonoid.{u_1} M] (f : ℕ → M),\n  Eq.{u_1 + 1} (∑ k ∈ Finset.range 0, f k) 0",
+            "leanPosition": {
+              "column": 0,
+              "line": 7
+            },
+            "leanEndPosition": {
+              "column": 6,
+              "line": 7
+            },
+            "stepId": "__library_lookup__",
+            "sourceRefs": [],
+            "mappingPrecision": "step",
+            "raw": {
+              "caption": "",
+              "data": "@Finset.sum_range_zero.{u_1} : ∀ {M : Type u_1} [inst : AddCommMonoid.{u_1} M] (f : ℕ → M),\n  Eq.{u_1 + 1} (∑ k ∈ Finset.range 0, f k) 0",
+              "endPos": {
+                "column": 6,
+                "line": 7
+              },
+              "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-statement-lock-three/work/lean-_up51800/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "[anonymous]",
+              "pos": {
+                "column": 0,
+                "line": 7
+              },
+              "severity": "information"
+            }
+          }
+        ],
+        "runtime": {
+          "configured": true,
+          "executableFound": true,
+          "projectFound": true,
+          "runtimeBuilt": true,
+          "sandbox": "macos",
+          "isolated": true,
+          "ready": true,
+          "toolchain": "leanprover/lean4:v4.34.0",
+          "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+          "liveTestedInThisDistribution": false
+        },
+        "requiredImport": "Mathlib",
+        "minimalImportDetermined": false
+      },
+      {
+        "name": "Nat.rec",
+        "found": true,
+        "signature": "@Nat.rec.{u_1} : {motive : ℕ → Sort u_1} → motive Nat.zero → ((n : ℕ) → motive n → motive n.succ) → (t : ℕ) → motive t",
+        "status": "lean_checked",
+        "diagnostics": [
+          {
+            "severity": "information",
+            "message": "@Nat.rec.{u_1} : {motive : ℕ → Sort u_1} → motive Nat.zero → ((n : ℕ) → motive n → motive n.succ) → (t : ℕ) → motive t",
+            "leanPosition": {
+              "column": 0,
+              "line": 8
+            },
+            "leanEndPosition": {
+              "column": 6,
+              "line": 8
+            },
+            "stepId": "__library_lookup__",
+            "sourceRefs": [],
+            "mappingPrecision": "step",
+            "raw": {
+              "caption": "",
+              "data": "@Nat.rec.{u_1} : {motive : ℕ → Sort u_1} → motive Nat.zero → ((n : ℕ) → motive n → motive n.succ) → (t : ℕ) → motive t",
+              "endPos": {
+                "column": 6,
+                "line": 8
+              },
+              "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-statement-lock-three/work/lean-_up51800/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "[anonymous]",
+              "pos": {
+                "column": 0,
+                "line": 8
+              },
+              "severity": "information"
+            }
+          }
+        ],
+        "runtime": {
+          "configured": true,
+          "executableFound": true,
+          "projectFound": true,
+          "runtimeBuilt": true,
+          "sandbox": "macos",
+          "isolated": true,
+          "ready": true,
+          "toolchain": "leanprover/lean4:v4.34.0",
+          "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+          "liveTestedInThisDistribution": false
+        },
+        "requiredImport": "Mathlib",
+        "minimalImportDetermined": false
+      },
+      {
+        "name": "add_sq",
+        "found": true,
+        "signature": "@add_sq.{u_1} : ∀ {α : Type u_1} [inst : CommSemiring.{u_1} α] (a b : α),\n  Eq.{u_1 + 1} (HPow.hPow.{u_1, 0, u_1} (HAdd.hAdd.{u_1, u_1, u_1} a b) 2)\n    (HAdd.hAdd.{u_1, u_1, u_1}\n      (HAdd.hAdd.{u_1, u_1, u_1} (HPow.hPow.{u_1, 0, u_1} a 2)\n        (HMul.hMul.{u_1, u_1, u_1} (HMul.hMul.{u_1, u_1, u_1} 2 a) b))\n      (HPow.hPow.{u_1, 0, u_1} b 2))",
+        "status": "lean_checked",
+        "diagnostics": [
+          {
+            "severity": "information",
+            "message": "@add_sq.{u_1} : ∀ {α : Type u_1} [inst : CommSemiring.{u_1} α] (a b : α),\n  Eq.{u_1 + 1} (HPow.hPow.{u_1, 0, u_1} (HAdd.hAdd.{u_1, u_1, u_1} a b) 2)\n    (HAdd.hAdd.{u_1, u_1, u_1}\n      (HAdd.hAdd.{u_1, u_1, u_1} (HPow.hPow.{u_1, 0, u_1} a 2)\n        (HMul.hMul.{u_1, u_1, u_1} (HMul.hMul.{u_1, u_1, u_1} 2 a) b))\n      (HPow.hPow.{u_1, 0, u_1} b 2))",
+            "leanPosition": {
+              "column": 0,
+              "line": 9
+            },
+            "leanEndPosition": {
+              "column": 6,
+              "line": 9
+            },
+            "stepId": "__library_lookup__",
+            "sourceRefs": [],
+            "mappingPrecision": "step",
+            "raw": {
+              "caption": "",
+              "data": "@add_sq.{u_1} : ∀ {α : Type u_1} [inst : CommSemiring.{u_1} α] (a b : α),\n  Eq.{u_1 + 1} (HPow.hPow.{u_1, 0, u_1} (HAdd.hAdd.{u_1, u_1, u_1} a b) 2)\n    (HAdd.hAdd.{u_1, u_1, u_1}\n      (HAdd.hAdd.{u_1, u_1, u_1} (HPow.hPow.{u_1, 0, u_1} a 2)\n        (HMul.hMul.{u_1, u_1, u_1} (HMul.hMul.{u_1, u_1, u_1} 2 a) b))\n      (HPow.hPow.{u_1, 0, u_1} b 2))",
+              "endPos": {
+                "column": 6,
+                "line": 9
+              },
+              "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-statement-lock-three/work/lean-_up51800/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "[anonymous]",
+              "pos": {
+                "column": 0,
+                "line": 9
+              },
+              "severity": "information"
+            }
+          }
+        ],
+        "runtime": {
+          "configured": true,
+          "executableFound": true,
+          "projectFound": true,
+          "runtimeBuilt": true,
+          "sandbox": "macos",
+          "isolated": true,
+          "ready": true,
+          "toolchain": "leanprover/lean4:v4.34.0",
+          "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+          "liveTestedInThisDistribution": false
+        },
+        "requiredImport": "Mathlib",
+        "minimalImportDetermined": false
+      }
+    ],
+    "sourceMatches": [],
+    "queries": [
+      "Finset.sum_range_succ",
+      "Finset.sum_range_zero",
+      "Nat.rec",
+      "add_sq"
+    ],
+    "status": "local_checked",
+    "errors": [],
+    "completeEnvironmentIndex": false
+  },
+  "savedVerification": {
+    "id": "2dacbf1d-ec54-4443-93da-396620e6fc04",
+    "formalizationId": "9f474530-9798-4a0b-b8c1-df7b9ab93002",
+    "mathIRHash": "7e794e990218061210b33ee0b9e978c6a8c9e68a07a35a5c23a33eaf67d3a96d",
+    "statement_hash": "506a954b1cb69f66df38188c21a51653ca80d67a79c66b39c4a740f30f5dc679",
+    "statementDrift": false,
+    "binderDrift": false,
+    "typesHash": "97f195543a7c096bc833f5c7bb89ce913c48f8c29f93beb1965bbe0a9cd33a53",
+    "kernelVerified": false,
+    "status": "not_verified",
+    "originalMeaning": "model_interpretation",
+    "unresolvedAmbiguityIds": [],
+    "semanticAlignment": "natural_language_alignment_is_not_a_kernel_theorem",
+    "steps": [
+      {
+        "localVerified": true,
+        "status": "verified",
+        "diagnostics": [],
+        "certificate": {
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [],
+          "checked": true,
+          "formalStatement": "True",
+          "expectedExpressionSha256": "e4fa2b802ee8b70b0df1447bd7c200df9f02919bcc8c1bb57480bb7133a53034",
+          "proofExpressionSha256": "3a78b3906a0e70ddfa3daa127d2f6b81dbc07cca0b9f5685b13584670b24de30",
+          "statement_hash": "506a954b1cb69f66df38188c21a51653ca80d67a79c66b39c4a740f30f5dc679",
+          "sourceTypeSha256": "3cbc87c7681f34db4617feaa2c8801931bc5e42d8d0f560e756dd4cd92885f18",
+          "sourceProofSha256": "ff05b78fe0254dec940a3d56b7b5f7f05c7c9eab59547fd531e634c2fd8c2fee",
+          "runtime": {
+            "configured": true,
+            "executableFound": true,
+            "projectFound": true,
+            "runtimeBuilt": true,
+            "sandbox": "macos",
+            "isolated": true,
+            "ready": true,
+            "toolchain": "leanprover/lean4:v4.34.0",
+            "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+            "liveTestedInThisDistribution": false
+          },
+          "additionalAxioms": []
+        },
+        "evidenceId": "ed184274-59e3-48c7-a512-f697f0ce3901",
+        "stepId": "step_method",
+        "established": true,
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 90,
+            "end": 102
+          }
+        ],
+        "dependsOn": [],
+        "unresolvedDependencies": [],
+        "affectedSteps": [],
+        "translationNotes": "用户声明采用数学归纳法；这是方法声明，不是已证明的数学结论。"
+      },
+      {
+        "localVerified": true,
+        "status": "verified",
+        "diagnostics": [
+          {
+            "severity": "warning",
+            "message": "try 'simp' instead of 'simpa'\n\nNote: This linter can be disabled with `set_option linter.unnecessarySimpa false`",
+            "leanPosition": {
+              "column": 9,
+              "line": 3
+            },
+            "leanEndPosition": {
+              "column": 15,
+              "line": 5
+            },
+            "stepId": "step_base_left",
+            "sourceRefs": [
+              {
+                "blockId": "b0",
+                "start": 103,
+                "end": 126
+              }
+            ],
+            "mappingPrecision": "step",
+            "raw": {
+              "caption": "",
+              "data": "try 'simp' instead of 'simpa'\n\nNote: This linter can be disabled with `set_option linter.unnecessarySimpa false`",
+              "endPos": {
+                "column": 15,
+                "line": 5
+              },
+              "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-statement-lock-three/work/lean-swpuvha_/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "linter.unnecessarySimpa",
+              "pos": {
+                "column": 9,
+                "line": 3
+              },
+              "severity": "warning"
+            }
+          }
+        ],
+        "certificate": {
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "checked": true,
+          "formalStatement": "∀ (v0 : ℕ), v0 = 0 → ∑ v1 ∈ Finset.range v0, (2 * v1 + 1) = 0",
+          "expectedExpressionSha256": "69f09487cfc9fdf4076c6714f8574c22f2b217b34c75ec6bd4bf2c785e6e04cc",
+          "proofExpressionSha256": "3b2b92ce005fa2a44036d4517775e902b03f704d4474677e74680f99ddeae851",
+          "statement_hash": "506a954b1cb69f66df38188c21a51653ca80d67a79c66b39c4a740f30f5dc679",
+          "sourceTypeSha256": "86a64510b47eddec639938612815ed65db63fb4fe146c70b15b0034bcfb58f3a",
+          "sourceProofSha256": "fce1c9bf922c0b72aba68e31390825391e169f984dcda305eb2305c0c278298a",
+          "runtime": {
+            "configured": true,
+            "executableFound": true,
+            "projectFound": true,
+            "runtimeBuilt": true,
+            "sandbox": "macos",
+            "isolated": true,
+            "ready": true,
+            "toolchain": "leanprover/lean4:v4.34.0",
+            "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+            "liveTestedInThisDistribution": false
+          },
+          "additionalAxioms": []
+        },
+        "evidenceId": "607b280b-4256-4f8b-b0b4-bf2076c9d2b6",
+        "stepId": "step_base_left",
+        "established": true,
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 103,
+            "end": 126
+          }
+        ],
+        "dependsOn": [],
+        "unresolvedDependencies": [],
+        "affectedSteps": [],
+        "translationNotes": "基础情形下左边为空和，取值为 0。"
+      },
+      {
+        "localVerified": true,
+        "status": "verified",
+        "diagnostics": [],
+        "certificate": {
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext"
+          ],
+          "checked": true,
+          "formalStatement": "0 ^ 2 = 0",
+          "expectedExpressionSha256": "d464adb8d3fc1cc41a561d57c1efc9722a2b5adc3c112162ccd71e2ca73a97d5",
+          "proofExpressionSha256": "a971e0c560d5dad5032ad61eaa3268f62dc05c937bf396785fa138df9e766cd4",
+          "statement_hash": "506a954b1cb69f66df38188c21a51653ca80d67a79c66b39c4a740f30f5dc679",
+          "sourceTypeSha256": "0a9751448971c483f6247f7b68feb89663392436d31edf7c954adaa579734719",
+          "sourceProofSha256": "6ff52f18c10fae3a467dc3eea92bec0713f3ad9d380082e35af3d0b96f01fdf1",
+          "runtime": {
+            "configured": true,
+            "executableFound": true,
+            "projectFound": true,
+            "runtimeBuilt": true,
+            "sandbox": "macos",
+            "isolated": true,
+            "ready": true,
+            "toolchain": "leanprover/lean4:v4.34.0",
+            "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+            "liveTestedInThisDistribution": false
+          },
+          "additionalAxioms": []
+        },
+        "evidenceId": "480994d2-d672-4617-ae7e-4a3bf2a689cb",
+        "stepId": "step_base_right",
+        "established": true,
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 127,
+            "end": 138
+          }
+        ],
+        "dependsOn": [],
+        "unresolvedDependencies": [],
+        "affectedSteps": [],
+        "translationNotes": "基础情形下右边为 0 的平方，等于 0。"
+      },
+      {
+        "localVerified": true,
+        "status": "verified",
+        "diagnostics": [
+          {
+            "severity": "warning",
+            "message": "Variable name `s2` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _s2\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+            "leanPosition": {
+              "column": 11,
+              "line": 5
+            },
+            "leanEndPosition": {
+              "column": 13,
+              "line": 5
+            },
+            "stepId": "step_base_conclusion",
+            "sourceRefs": [
+              {
+                "blockId": "b0",
+                "start": 139,
+                "end": 146
+              }
+            ],
+            "mappingPrecision": "step",
+            "raw": {
+              "caption": "",
+              "data": "Variable name `s2` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _s2\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+              "endPos": {
+                "column": 13,
+                "line": 5
+              },
+              "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-statement-lock-three/work/lean-2_ajudtg/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "linter.unusedVariables",
+              "pos": {
+                "column": 11,
+                "line": 5
+              },
+              "severity": "warning"
+            }
+          }
+        ],
+        "certificate": {
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "checked": true,
+          "formalStatement": "(∀ (v0 : ℕ), v0 = 0 → ∑ v1 ∈ Finset.range v0, (2 * v1 + 1) = 0) →\n  0 ^ 2 = 0 → ∑ v1 ∈ Finset.range 0, (2 * v1 + 1) = 0 ^ 2",
+          "expectedExpressionSha256": "74e41b26bdceb9a0aa65ad31ffc38d3ed68abb8ece165a6f247c22368af46df4",
+          "proofExpressionSha256": "9d0b952ff296e4d4e513f078ffdf6f2103e1cb367b2c66a729c363777a2006df",
+          "statement_hash": "506a954b1cb69f66df38188c21a51653ca80d67a79c66b39c4a740f30f5dc679",
+          "sourceTypeSha256": "a4035e67a0e4a9504837653cee82bf9dcb01a950a02a476989c39db138dea6fa",
+          "sourceProofSha256": "043de1db789c4ef9e0c03171141ae6761e874a53e3ab20ad0adec993c150892d",
+          "runtime": {
+            "configured": true,
+            "executableFound": true,
+            "projectFound": true,
+            "runtimeBuilt": true,
+            "sandbox": "macos",
+            "isolated": true,
+            "ready": true,
+            "toolchain": "leanprover/lean4:v4.34.0",
+            "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+            "liveTestedInThisDistribution": false
+          },
+          "additionalAxioms": []
+        },
+        "evidenceId": "229d8924-ee4a-4bc6-b41c-b2a1ddd8fc16",
+        "stepId": "step_base_conclusion",
+        "established": true,
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 139,
+            "end": 146
+          }
+        ],
+        "dependsOn": [
+          "step_base_left",
+          "step_base_right"
+        ],
+        "unresolvedDependencies": [],
+        "affectedSteps": [],
+        "translationNotes": "由左边为 0 且右边为 0，得到基础情形成立。"
+      },
+      {
+        "localVerified": false,
+        "status": "not_proved",
+        "diagnostics": [
+          {
+            "severity": "error",
+            "message": "unsolved goals\nv0 : ℕ\n⊢ ∑ v1 ∈ Finset.range v0, (2 * v1 + 1) = v0 ^ 2",
+            "leanPosition": {
+              "column": 6,
+              "line": 2
+            },
+            "leanEndPosition": {
+              "column": 8,
+              "line": 2
+            },
+            "stepId": "step_ih",
+            "sourceRefs": [
+              {
+                "blockId": "b0",
+                "start": 147,
+                "end": 189
+              }
+            ],
+            "mappingPrecision": "step",
+            "raw": {
+              "caption": "",
+              "data": "unsolved goals\nv0 : ℕ\n⊢ ∑ v1 ∈ Finset.range v0, (2 * v1 + 1) = v0 ^ 2",
+              "endPos": {
+                "column": 8,
+                "line": 2
+              },
+              "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-statement-lock-three/work/lean-89nbiyk4/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "Tactic.unsolvedGoals",
+              "pos": {
+                "column": 6,
+                "line": 2
+              },
+              "severity": "error"
+            }
+          }
+        ],
+        "certificate": null,
+        "stepId": "step_ih",
+        "established": false,
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 147,
+            "end": 189
+          }
+        ],
+        "dependsOn": [],
+        "unresolvedDependencies": [],
+        "affectedSteps": [
+          "step_ih_simplify",
+          "step_ind_conclusion",
+          "step_induction_final",
+          "goal_main"
+        ],
+        "translationNotes": "归纳步骤中的局部归纳假设。"
+      },
+      {
+        "localVerified": true,
+        "status": "verified",
+        "diagnostics": [],
+        "certificate": {
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [],
+          "checked": true,
+          "formalStatement": "True",
+          "expectedExpressionSha256": "e4fa2b802ee8b70b0df1447bd7c200df9f02919bcc8c1bb57480bb7133a53034",
+          "proofExpressionSha256": "3a78b3906a0e70ddfa3daa127d2f6b81dbc07cca0b9f5685b13584670b24de30",
+          "statement_hash": "506a954b1cb69f66df38188c21a51653ca80d67a79c66b39c4a740f30f5dc679",
+          "sourceTypeSha256": "3cbc87c7681f34db4617feaa2c8801931bc5e42d8d0f560e756dd4cd92885f18",
+          "sourceProofSha256": "ff05b78fe0254dec940a3d56b7b5f7f05c7c9eab59547fd531e634c2fd8c2fee",
+          "runtime": {
+            "configured": true,
+            "executableFound": true,
+            "projectFound": true,
+            "runtimeBuilt": true,
+            "sandbox": "macos",
+            "isolated": true,
+            "ready": true,
+            "toolchain": "leanprover/lean4:v4.34.0",
+            "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+            "liveTestedInThisDistribution": false
+          },
+          "additionalAxioms": []
+        },
+        "evidenceId": "474aadf3-0081-41ea-b0a4-cb63a14934a6",
+        "stepId": "step_consider_n1",
+        "established": true,
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 190,
+            "end": 199
+          }
+        ],
+        "dependsOn": [],
+        "unresolvedDependencies": [],
+        "affectedSteps": [],
+        "translationNotes": "转向要证明的后继情形 n+1。"
+      },
+      {
+        "localVerified": true,
+        "status": "verified",
+        "diagnostics": [],
+        "certificate": {
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "checked": true,
+          "formalStatement": "∀ (v0 : ℕ), ∑ v1 ∈ Finset.range (v0 + 1), (2 * v1 + 1) = ∑ v1 ∈ Finset.range v0, (2 * v1 + 1) + (2 * v0 + 1)",
+          "expectedExpressionSha256": "fdbaf63c4d47bed8cbf53d95fa334c5978bdc1eac6dbc181229aa256ca18c0c6",
+          "proofExpressionSha256": "af8db060672a50ca1fa8144d12ae02ef3f670b4b380c17390c82e5bf6796de30",
+          "statement_hash": "506a954b1cb69f66df38188c21a51653ca80d67a79c66b39c4a740f30f5dc679",
+          "sourceTypeSha256": "6f424020905fac88745152794ec7adb8b29540386a09d0a23540d8873491f94e",
+          "sourceProofSha256": "3e1994378700ef5698eda49bb64b74a3ae9a45bc8afc44cf139c31dc5cf7e939",
+          "runtime": {
+            "configured": true,
+            "executableFound": true,
+            "projectFound": true,
+            "runtimeBuilt": true,
+            "sandbox": "macos",
+            "isolated": true,
+            "ready": true,
+            "toolchain": "leanprover/lean4:v4.34.0",
+            "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+            "liveTestedInThisDistribution": false
+          },
+          "additionalAxioms": []
+        },
+        "evidenceId": "0f8705f6-5df1-4f97-ba2a-4407f252afbf",
+        "stepId": "step_decompose",
+        "established": true,
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 200,
+            "end": 259
+          }
+        ],
+        "dependsOn": [],
+        "unresolvedDependencies": [],
+        "affectedSteps": [],
+        "translationNotes": "把到 n 的和拆成到 n-1 的和再加上最后一项 2n+1。"
+      },
+      {
+        "localVerified": true,
+        "status": "conditional_dependencies",
+        "diagnostics": [
+          {
+            "severity": "warning",
+            "message": "Variable name `s6` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _s6\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+            "leanPosition": {
+              "column": 22,
+              "line": 5
+            },
+            "leanEndPosition": {
+              "column": 24,
+              "line": 5
+            },
+            "stepId": "step_ih_simplify",
+            "sourceRefs": [
+              {
+                "blockId": "b0",
+                "start": 260,
+                "end": 292
+              }
+            ],
+            "mappingPrecision": "step",
+            "raw": {
+              "caption": "",
+              "data": "Variable name `s6` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _s6\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+              "endPos": {
+                "column": 24,
+                "line": 5
+              },
+              "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-statement-lock-three/work/lean-75s_25uc/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "linter.unusedVariables",
+              "pos": {
+                "column": 22,
+                "line": 5
+              },
+              "severity": "warning"
+            }
+          }
+        ],
+        "certificate": {
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "checked": true,
+          "formalStatement": "∀ (v0 : ℕ),\n  (∀ (v0 : ℕ), ∑ v1 ∈ Finset.range v0, (2 * v1 + 1) = v0 ^ 2) →\n    (∀ (v0 : ℕ), ∑ v1 ∈ Finset.range (v0 + 1), (2 * v1 + 1) = ∑ v1 ∈ Finset.range v0, (2 * v1 + 1) + (2 * v0 + 1)) →\n      ∑ v1 ∈ Finset.range (v0 + 1), (2 * v1 + 1) = v0 ^ 2 + (2 * v0 + 1) ∧ v0 ^ 2 + (2 * v0 + 1) = (v0 + 1) ^ 2",
+          "expectedExpressionSha256": "c3e65d255f99f0d293885449710e7747118107e6140f172a66407cd9e4a1888c",
+          "proofExpressionSha256": "d76705b982579cf8b496b7cc9a6977a1ab5b4810880d27637b55c8ed5410360a",
+          "statement_hash": "506a954b1cb69f66df38188c21a51653ca80d67a79c66b39c4a740f30f5dc679",
+          "sourceTypeSha256": "fbf20eb9e244c2fd76237b4bf45381267d74bf6de629bc6244646456c7dcabf0",
+          "sourceProofSha256": "91ee17291c61753854a41f0db96486d782ca2d94de611d1451be654a7413714e",
+          "runtime": {
+            "configured": true,
+            "executableFound": true,
+            "projectFound": true,
+            "runtimeBuilt": true,
+            "sandbox": "macos",
+            "isolated": true,
+            "ready": true,
+            "toolchain": "leanprover/lean4:v4.34.0",
+            "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+            "liveTestedInThisDistribution": false
+          },
+          "additionalAxioms": []
+        },
+        "evidenceId": "62f36af0-18fe-4cf6-af49-b0df96674565",
+        "stepId": "step_ih_simplify",
+        "established": false,
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 260,
+            "end": 292
+          }
+        ],
+        "dependsOn": [
+          "step_ih",
+          "step_decompose"
+        ],
+        "unresolvedDependencies": [
+          "step_ih"
+        ],
+        "affectedSteps": [
+          "step_ind_conclusion",
+          "step_induction_final",
+          "goal_main"
+        ],
+        "translationNotes": "用归纳假设替换前 n 项和，然后代数化简为 (n+1)^2。"
+      },
+      {
+        "localVerified": true,
+        "status": "conditional_dependencies",
+        "diagnostics": [
+          {
+            "severity": "warning",
+            "message": "Variable name `s7` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _s7\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+            "leanPosition": {
+              "column": 819,
+              "line": 5
+            },
+            "leanEndPosition": {
+              "column": 79,
+              "line": 5
+            },
+            "stepId": "step_ind_conclusion",
+            "sourceRefs": [
+              {
+                "blockId": "b0",
+                "start": 293,
+                "end": 309
+              }
+            ],
+            "mappingPrecision": "step",
+            "raw": {
+              "caption": "",
+              "data": "Variable name `s7` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _s7\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+              "endPos": {
+                "column": 79,
+                "line": 5
+              },
+              "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-statement-lock-three/work/lean-kqewek7s/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "linter.unusedVariables",
+              "pos": {
+                "column": 819,
+                "line": 5
+              },
+              "severity": "warning"
+            }
+          }
+        ],
+        "certificate": {
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "checked": true,
+          "formalStatement": "∀ (v0 : ℕ),\n  (∀ (v0 : ℕ), ∑ v1 ∈ Finset.range (v0 + 1), (2 * v1 + 1) = ∑ v1 ∈ Finset.range v0, (2 * v1 + 1) + (2 * v0 + 1)) →\n    (∀ (v0 : ℕ),\n        ∑ v1 ∈ Finset.range (v0 + 1), (2 * v1 + 1) = v0 ^ 2 + (2 * v0 + 1) ∧ v0 ^ 2 + (2 * v0 + 1) = (v0 + 1) ^ 2) →\n      ∑ v1 ∈ Finset.range (v0 + 1), (2 * v1 + 1) = (v0 + 1) ^ 2",
+          "expectedExpressionSha256": "5a4a197d6e9c804d3e27fc53792d8981cd2f7e61dd6c32129dc432785f0fa7e7",
+          "proofExpressionSha256": "d693b23b045c4938dbd9771387a2826c2ab365917a33f7061bd87e88acfbbf6c",
+          "statement_hash": "506a954b1cb69f66df38188c21a51653ca80d67a79c66b39c4a740f30f5dc679",
+          "sourceTypeSha256": "2126512888f87541390c34a902ec5963ab1b562c5ceb5fd99dafc989819d7033",
+          "sourceProofSha256": "c6b187269f12c38b0f4b8704d0448b3cb4a0e1a2f09e13f78468d4c16f947d3f",
+          "runtime": {
+            "configured": true,
+            "executableFound": true,
+            "projectFound": true,
+            "runtimeBuilt": true,
+            "sandbox": "macos",
+            "isolated": true,
+            "ready": true,
+            "toolchain": "leanprover/lean4:v4.34.0",
+            "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+            "liveTestedInThisDistribution": false
+          },
+          "additionalAxioms": []
+        },
+        "evidenceId": "e9e56fab-49c6-47db-8efe-da48c8e1e9fe",
+        "stepId": "step_ind_conclusion",
+        "established": false,
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 293,
+            "end": 309
+          }
+        ],
+        "dependsOn": [
+          "step_decompose",
+          "step_ih_simplify"
+        ],
+        "unresolvedDependencies": [
+          "step_ih_simplify"
+        ],
+        "affectedSteps": [
+          "step_induction_final",
+          "goal_main"
+        ],
+        "translationNotes": "得到后继情形 n+1 的结论成立。"
+      },
+      {
+        "localVerified": true,
+        "status": "conditional_dependencies",
+        "diagnostics": [],
+        "certificate": {
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "checked": true,
+          "formalStatement": "∑ v1 ∈ Finset.range 0, (2 * v1 + 1) = 0 ^ 2 →\n  (∀ (v0 : ℕ), ∑ v1 ∈ Finset.range (v0 + 1), (2 * v1 + 1) = (v0 + 1) ^ 2) →\n    ∀ (v0 : ℕ), ∑ v1 ∈ Finset.range v0, (2 * v1 + 1) = v0 ^ 2",
+          "expectedExpressionSha256": "d16df6c345d00fb85aab1efa21f6dd6c12318c66a2776b43cd6a317680058c4d",
+          "proofExpressionSha256": "22050f5460b40307e69bd9abb190342017db89585bbe992d16e96807013ac220",
+          "statement_hash": "506a954b1cb69f66df38188c21a51653ca80d67a79c66b39c4a740f30f5dc679",
+          "sourceTypeSha256": "12ee6d7c12701e4c3d6a4954634d5ba7fee4fb49c1e21e2f1421e428a3ae69e4",
+          "sourceProofSha256": "550bb26e2f8da3815bc4e0ef6ed3163be975a84bf9f804322b7cead9fc486239",
+          "runtime": {
+            "configured": true,
+            "executableFound": true,
+            "projectFound": true,
+            "runtimeBuilt": true,
+            "sandbox": "macos",
+            "isolated": true,
+            "ready": true,
+            "toolchain": "leanprover/lean4:v4.34.0",
+            "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+            "liveTestedInThisDistribution": false
+          },
+          "additionalAxioms": []
+        },
+        "evidenceId": "89815a5b-39dc-43fa-8eb6-4154dc4205ca",
+        "stepId": "step_induction_final",
+        "established": false,
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 310,
+            "end": 359
+          }
+        ],
+        "dependsOn": [
+          "step_base_conclusion",
+          "step_ind_conclusion"
+        ],
+        "unresolvedDependencies": [
+          "step_ind_conclusion"
+        ],
+        "affectedSteps": [
+          "goal_main"
+        ],
+        "translationNotes": "由基础情形和归纳步骤，用数学归纳法总结得到对任意自然数 n 的结论。"
+      },
+      {
+        "localVerified": true,
+        "status": "conditional_dependencies",
+        "diagnostics": [],
+        "certificate": {
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "checked": true,
+          "formalStatement": "(∀ (v0 : ℕ), ∑ v1 ∈ Finset.range v0, (2 * v1 + 1) = v0 ^ 2) → ∀ (v0 : ℕ), ∑ v1 ∈ Finset.range v0, (2 * v1 + 1) = v0 ^ 2",
+          "expectedExpressionSha256": "a901c2df445e561738ae0a8d37fba7bcac654ded711cfb32eba8268c149fd072",
+          "proofExpressionSha256": "9422b01a8a9acfb05960efbab3f5c9c50b8885bd0348cac809cbb7e0835b1efa",
+          "statement_hash": "506a954b1cb69f66df38188c21a51653ca80d67a79c66b39c4a740f30f5dc679",
+          "sourceTypeSha256": "71b68df081bbf02b7370be5c4a0cab9a08210840ad4de4b5e7f26d89d0949c83",
+          "sourceProofSha256": "ed8614509af2a1f3429d11718ea522e9c69855ff0e55434df9eaf99d3092d63b",
+          "runtime": {
+            "configured": true,
+            "executableFound": true,
+            "projectFound": true,
+            "runtimeBuilt": true,
+            "sandbox": "macos",
+            "isolated": true,
+            "ready": true,
+            "toolchain": "leanprover/lean4:v4.34.0",
+            "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+            "liveTestedInThisDistribution": false
+          },
+          "additionalAxioms": []
+        },
+        "evidenceId": "985f27ba-c009-434f-a4bf-dd97fae4b7c8",
+        "stepId": "goal_main",
+        "established": false,
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 5,
+            "end": 84
+          }
+        ],
+        "dependsOn": [
+          "step_induction_final"
+        ],
+        "unresolvedDependencies": [
+          "step_induction_final"
+        ],
+        "affectedSteps": [],
+        "translationNotes": "用户最后用数学归纳法总结，目标为对任意自然数 n 的求和等式。"
+      }
+    ],
+    "aggregate": null,
+    "simulated": false,
+    "authority": "lean_kernel",
+    "runtime": {
+      "configured": true,
+      "executableFound": true,
+      "projectFound": true,
+      "runtimeBuilt": true,
+      "sandbox": "macos",
+      "isolated": true,
+      "ready": true,
+      "toolchain": "leanprover/lean4:v4.34.0",
+      "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+      "liveTestedInThisDistribution": false
+    }
+  }
+}

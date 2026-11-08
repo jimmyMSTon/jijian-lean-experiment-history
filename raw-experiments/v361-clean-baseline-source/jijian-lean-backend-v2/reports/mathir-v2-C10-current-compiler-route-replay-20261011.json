@@ -1,0 +1,1756 @@
+{
+  "baseline": "3804bae",
+  "providerCalls": 0,
+  "statementLockPreserved": true,
+  "cases": {
+    "C10": {
+      "input": "reports/mathir-v2-stage8-live/C10.json",
+      "sourceTextMatches": true,
+      "expectedStatementHash": "e59d9afb006a43af8c97dbdd2aa9170466e59581754ca7ab355a70b184be6e2d",
+      "actualStatementHash": "e59d9afb006a43af8c97dbdd2aa9170466e59581754ca7ab355a70b184be6e2d",
+      "statementLockPreserved": true,
+      "fixedStatementKernelPassed": false,
+      "originalRouteKernelPassed": false,
+      "routes": [
+        {
+          "routeId": "route_A",
+          "routeHash": "0851cfcb2aeab774c56f02d8f93d51649151491e57dd5f49ca6527759a114665",
+          "sourceEvidenceHash": "b4e3a0f82a074366fac8929f6d53fcaf30a6bbb8600580b40f9b4c45a22a0ad9",
+          "goalNodeId": "nA4",
+          "goalProofTerm": "by\n  have jjproof_nA1 : ((let v_d_P : Polynomial ℝ := (((Polynomial.X ^ (2 : ℕ)) + ((Polynomial.C (2 : ℝ)) * Polynomial.X)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P * (Polynomial.X - (Polynomial.C (1 : ℝ)))); ((Polynomial.eval (2 : ℝ) v_d_P) = ((((2 : ℝ) ^ (2 : ℕ)) + ((2 : ℝ) * (2 : ℝ))) + (1 : ℝ)))))) := (by\n  intro v_d_P v_d_Q\n  exact (by\n  dsimp\n  norm_num [Polynomial.eval_add, Polynomial.eval_mul, Polynomial.eval_pow, Polynomial.eval_X, Polynomial.eval_C]))\n  have jjproof_nA2 : ((let v_d_P : Polynomial ℝ := (((Polynomial.X ^ (2 : ℕ)) + ((Polynomial.C (2 : ℝ)) * Polynomial.X)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P * (Polynomial.X - (Polynomial.C (1 : ℝ)))); (∀ (jjdep_nA1 : ((Polynomial.eval (2 : ℝ) v_d_P) = ((((2 : ℝ) ^ (2 : ℕ)) + ((2 : ℝ) * (2 : ℝ))) + (1 : ℝ)))), ((Polynomial.eval (2 : ℝ) v_d_P) = (9 : ℝ)))))) := (by\n  intro v_d_P v_d_Q jjdep_nA1\n  exact (by\n  dsimp\n  intro jjdep_nA1\n  rw [jjdep_nA1]\n  norm_num))\n  have jjproof_nA3 : ((let v_d_P : Polynomial ℝ := (((Polynomial.X ^ (2 : ℕ)) + ((Polynomial.C (2 : ℝ)) * Polynomial.X)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P * (Polynomial.X - (Polynomial.C (1 : ℝ)))); ((Polynomial.eval (2 : ℝ) v_d_Q) = ((Polynomial.eval (2 : ℝ) v_d_P) * ((2 : ℝ) - (1 : ℝ))))))) := (by\n  intro v_d_P v_d_Q\n  exact (by\n  dsimp\n  simp [Polynomial.eval_mul, Polynomial.eval_sub, Polynomial.eval_X, Polynomial.eval_C]))\n  have jjproof_nA4 : ((let v_d_P : Polynomial ℝ := (((Polynomial.X ^ (2 : ℕ)) + ((Polynomial.C (2 : ℝ)) * Polynomial.X)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P * (Polynomial.X - (Polynomial.C (1 : ℝ)))); (∀ (jjdep_nA2 : ((Polynomial.eval (2 : ℝ) v_d_P) = (9 : ℝ))), (∀ (jjdep_nA3 : ((Polynomial.eval (2 : ℝ) v_d_Q) = ((Polynomial.eval (2 : ℝ) v_d_P) * ((2 : ℝ) - (1 : ℝ))))), ((Polynomial.eval (2 : ℝ) v_d_Q) = (9 : ℝ))))))) := (by\n  intro v_d_P v_d_Q jjdep_nA2 jjdep_nA3\n  exact (by\n  dsimp\n  intro jjdep_nA2 jjdep_nA3\n  rw [jjdep_nA3, jjdep_nA2]\n  norm_num))\n  exact (jjproof_nA4 (jjproof_nA2 (jjproof_nA1)) (jjproof_nA3))",
+          "proofComposition": {
+            "status": "composed",
+            "error": null,
+            "kernelChecked": false
+          },
+          "status": "incomplete",
+          "completeOriginalRouteKernelPassed": false,
+          "fixedStatementKernelPassed": false,
+          "routeConnectivity": {
+            "status": "connected",
+            "goalNodeIdPresent": true,
+            "unconnectedNodeIds": [],
+            "unconnectedClaimNodeIds": [],
+            "basis": "goal dependency closure plus explicit induction-case edges"
+          },
+          "dependencyEvidence": {
+            "status": "incomplete",
+            "basis": "Kernel proof expression binder-use audit for declared claim dependencies"
+          },
+          "stepResults": [
+            {
+              "sourceId": "mathir-v2/route_A/nA1",
+              "routeId": "route_A",
+              "nodeId": "nA1",
+              "kind": "claim",
+              "expectedType": "(let v_d_P : Polynomial ℝ := (((Polynomial.X ^ (2 : ℕ)) + ((Polynomial.C (2 : ℝ)) * Polynomial.X)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P * (Polynomial.X - (Polynomial.C (1 : ℝ)))); ((Polynomial.eval (2 : ℝ) v_d_P) = ((((2 : ℝ) ^ (2 : ℕ)) + ((2 : ℝ) * (2 : ℝ))) + (1 : ℝ)))))",
+              "proofTerm": "by\n  intro v_d_P v_d_Q\n  exact (by\n  dsimp\n  norm_num [Polynomial.eval_add, Polynomial.eval_mul, Polynomial.eval_pow, Polynomial.eval_X, Polynomial.eval_C])",
+              "originalProofTerm": "by\n  dsimp\n  norm_num [Polynomial.eval_add, Polynomial.eval_mul, Polynomial.eval_pow, Polynomial.eval_X, Polynomial.eval_C]",
+              "context": [
+                {
+                  "source_id": "d_P",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_P",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "pow",
+                            "args": [
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              },
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Nat",
+                                  "interpretation": "fixed",
+                                  "value": "2"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "op": "mul",
+                            "args": [
+                              {
+                                "op": "poly_const",
+                                "args": [
+                                  {
+                                    "op": "literal",
+                                    "args": [],
+                                    "literal": {
+                                      "type": "Real",
+                                      "interpretation": "fixed",
+                                      "value": "2"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "op": "poly_const",
+                        "args": [
+                          {
+                            "op": "literal",
+                            "args": [],
+                            "literal": {
+                              "type": "Real",
+                              "interpretation": "fixed",
+                              "value": "1"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "d_Q",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_Q",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "mul",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "d_P"
+                      },
+                      {
+                        "op": "sub",
+                        "args": [
+                          {
+                            "op": "poly_x",
+                            "args": []
+                          },
+                          {
+                            "op": "poly_const",
+                            "args": [
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Real",
+                                  "interpretation": "fixed",
+                                  "value": "1"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                }
+              ],
+              "dependsOn": [],
+              "proofAttemptStatus": "not_proved",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "failureClass": "lean_proof_compile_failed",
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 72,
+                  "end": 99
+                }
+              ],
+              "status": "incomplete",
+              "lean": {
+                "localVerified": false,
+                "status": "not_proved",
+                "diagnostics": [
+                  {
+                    "severity": "error",
+                    "message": "`dsimp` made no progress",
+                    "leanPosition": {
+                      "column": 1,
+                      "line": 3
+                    },
+                    "leanEndPosition": {
+                      "column": 6,
+                      "line": 3
+                    },
+                    "stepId": "mathir-v2/route_A/nA1",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b_text",
+                        "start": 72,
+                        "end": 99
+                      }
+                    ],
+                    "mappingPrecision": "step",
+                    "raw": {
+                      "caption": "",
+                      "data": "`dsimp` made no progress",
+                      "endPos": {
+                        "column": 6,
+                        "line": 3
+                      },
+                      "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-cev4y7jt/Task.lean",
+                      "isSilent": false,
+                      "keepFullRange": false,
+                      "kind": "[anonymous]",
+                      "pos": {
+                        "column": 1,
+                        "line": 3
+                      },
+                      "severity": "error"
+                    }
+                  }
+                ],
+                "certificate": null
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_A/nA2",
+              "routeId": "route_A",
+              "nodeId": "nA2",
+              "kind": "claim",
+              "expectedType": "(let v_d_P : Polynomial ℝ := (((Polynomial.X ^ (2 : ℕ)) + ((Polynomial.C (2 : ℝ)) * Polynomial.X)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P * (Polynomial.X - (Polynomial.C (1 : ℝ)))); (∀ (jjdep_nA1 : ((Polynomial.eval (2 : ℝ) v_d_P) = ((((2 : ℝ) ^ (2 : ℕ)) + ((2 : ℝ) * (2 : ℝ))) + (1 : ℝ)))), ((Polynomial.eval (2 : ℝ) v_d_P) = (9 : ℝ)))))",
+              "proofTerm": "by\n  intro v_d_P v_d_Q jjdep_nA1\n  exact (by\n  dsimp\n  intro jjdep_nA1\n  rw [jjdep_nA1]\n  norm_num)",
+              "originalProofTerm": "by\n  dsimp\n  intro jjdep_nA1\n  rw [jjdep_nA1]\n  norm_num",
+              "context": [
+                {
+                  "source_id": "d_P",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_P",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "pow",
+                            "args": [
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              },
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Nat",
+                                  "interpretation": "fixed",
+                                  "value": "2"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "op": "mul",
+                            "args": [
+                              {
+                                "op": "poly_const",
+                                "args": [
+                                  {
+                                    "op": "literal",
+                                    "args": [],
+                                    "literal": {
+                                      "type": "Real",
+                                      "interpretation": "fixed",
+                                      "value": "2"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "op": "poly_const",
+                        "args": [
+                          {
+                            "op": "literal",
+                            "args": [],
+                            "literal": {
+                              "type": "Real",
+                              "interpretation": "fixed",
+                              "value": "1"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "d_Q",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_Q",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "mul",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "d_P"
+                      },
+                      {
+                        "op": "sub",
+                        "args": [
+                          {
+                            "op": "poly_x",
+                            "args": []
+                          },
+                          {
+                            "op": "poly_const",
+                            "args": [
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Real",
+                                  "interpretation": "fixed",
+                                  "value": "1"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "nA1",
+                  "kind": "claim",
+                  "name": "h_route_A_nA1",
+                  "type": "((Polynomial.eval (2 : ℝ) v_d_P) = ((((2 : ℝ) ^ (2 : ℕ)) + ((2 : ℝ) * (2 : ℝ))) + (1 : ℝ)))"
+                }
+              ],
+              "dependsOn": [
+                "nA1"
+              ],
+              "proofAttemptStatus": "not_proved",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "dependency_usage_not_audited",
+              "dependencyUsage": [],
+              "failureClass": "lean_proof_compile_failed",
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 100,
+                  "end": 122
+                }
+              ],
+              "status": "incomplete",
+              "lean": {
+                "localVerified": false,
+                "status": "not_proved",
+                "diagnostics": [
+                  {
+                    "severity": "error",
+                    "message": "`dsimp` made no progress",
+                    "leanPosition": {
+                      "column": 11,
+                      "line": 3
+                    },
+                    "leanEndPosition": {
+                      "column": 16,
+                      "line": 3
+                    },
+                    "stepId": "mathir-v2/route_A/nA2",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b_text",
+                        "start": 100,
+                        "end": 122
+                      }
+                    ],
+                    "mappingPrecision": "step",
+                    "raw": {
+                      "caption": "",
+                      "data": "`dsimp` made no progress",
+                      "endPos": {
+                        "column": 16,
+                        "line": 3
+                      },
+                      "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-cev4y7jt/Task.lean",
+                      "isSilent": false,
+                      "keepFullRange": false,
+                      "kind": "[anonymous]",
+                      "pos": {
+                        "column": 11,
+                        "line": 3
+                      },
+                      "severity": "error"
+                    }
+                  }
+                ],
+                "certificate": null
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_A/nA3",
+              "routeId": "route_A",
+              "nodeId": "nA3",
+              "kind": "claim",
+              "expectedType": "(let v_d_P : Polynomial ℝ := (((Polynomial.X ^ (2 : ℕ)) + ((Polynomial.C (2 : ℝ)) * Polynomial.X)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P * (Polynomial.X - (Polynomial.C (1 : ℝ)))); ((Polynomial.eval (2 : ℝ) v_d_Q) = ((Polynomial.eval (2 : ℝ) v_d_P) * ((2 : ℝ) - (1 : ℝ))))))",
+              "proofTerm": "by\n  intro v_d_P v_d_Q\n  exact (by\n  dsimp\n  simp [Polynomial.eval_mul, Polynomial.eval_sub, Polynomial.eval_X, Polynomial.eval_C])",
+              "originalProofTerm": "by\n  dsimp\n  simp [Polynomial.eval_mul, Polynomial.eval_sub, Polynomial.eval_X, Polynomial.eval_C]",
+              "context": [
+                {
+                  "source_id": "d_P",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_P",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "pow",
+                            "args": [
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              },
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Nat",
+                                  "interpretation": "fixed",
+                                  "value": "2"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "op": "mul",
+                            "args": [
+                              {
+                                "op": "poly_const",
+                                "args": [
+                                  {
+                                    "op": "literal",
+                                    "args": [],
+                                    "literal": {
+                                      "type": "Real",
+                                      "interpretation": "fixed",
+                                      "value": "2"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "op": "poly_const",
+                        "args": [
+                          {
+                            "op": "literal",
+                            "args": [],
+                            "literal": {
+                              "type": "Real",
+                              "interpretation": "fixed",
+                              "value": "1"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "d_Q",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_Q",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "mul",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "d_P"
+                      },
+                      {
+                        "op": "sub",
+                        "args": [
+                          {
+                            "op": "poly_x",
+                            "args": []
+                          },
+                          {
+                            "op": "poly_const",
+                            "args": [
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Real",
+                                  "interpretation": "fixed",
+                                  "value": "1"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                }
+              ],
+              "dependsOn": [],
+              "proofAttemptStatus": "not_proved",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "failureClass": "lean_proof_compile_failed",
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 123,
+                  "end": 150
+                }
+              ],
+              "status": "incomplete",
+              "lean": {
+                "localVerified": false,
+                "status": "not_proved",
+                "diagnostics": [
+                  {
+                    "severity": "error",
+                    "message": "`dsimp` made no progress",
+                    "leanPosition": {
+                      "column": 1,
+                      "line": 3
+                    },
+                    "leanEndPosition": {
+                      "column": 6,
+                      "line": 3
+                    },
+                    "stepId": "mathir-v2/route_A/nA3",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b_text",
+                        "start": 123,
+                        "end": 150
+                      }
+                    ],
+                    "mappingPrecision": "step",
+                    "raw": {
+                      "caption": "",
+                      "data": "`dsimp` made no progress",
+                      "endPos": {
+                        "column": 6,
+                        "line": 3
+                      },
+                      "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-cev4y7jt/Task.lean",
+                      "isSilent": false,
+                      "keepFullRange": false,
+                      "kind": "[anonymous]",
+                      "pos": {
+                        "column": 1,
+                        "line": 3
+                      },
+                      "severity": "error"
+                    }
+                  }
+                ],
+                "certificate": null
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_A/nA4",
+              "routeId": "route_A",
+              "nodeId": "nA4",
+              "kind": "claim",
+              "expectedType": "(let v_d_P : Polynomial ℝ := (((Polynomial.X ^ (2 : ℕ)) + ((Polynomial.C (2 : ℝ)) * Polynomial.X)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P * (Polynomial.X - (Polynomial.C (1 : ℝ)))); (∀ (jjdep_nA2 : ((Polynomial.eval (2 : ℝ) v_d_P) = (9 : ℝ))), (∀ (jjdep_nA3 : ((Polynomial.eval (2 : ℝ) v_d_Q) = ((Polynomial.eval (2 : ℝ) v_d_P) * ((2 : ℝ) - (1 : ℝ))))), ((Polynomial.eval (2 : ℝ) v_d_Q) = (9 : ℝ))))))",
+              "proofTerm": "by\n  intro v_d_P v_d_Q jjdep_nA2 jjdep_nA3\n  exact (by\n  dsimp\n  intro jjdep_nA2 jjdep_nA3\n  rw [jjdep_nA3, jjdep_nA2]\n  norm_num)",
+              "originalProofTerm": "by\n  dsimp\n  intro jjdep_nA2 jjdep_nA3\n  rw [jjdep_nA3, jjdep_nA2]\n  norm_num",
+              "context": [
+                {
+                  "source_id": "d_P",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_P",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "pow",
+                            "args": [
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              },
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Nat",
+                                  "interpretation": "fixed",
+                                  "value": "2"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "op": "mul",
+                            "args": [
+                              {
+                                "op": "poly_const",
+                                "args": [
+                                  {
+                                    "op": "literal",
+                                    "args": [],
+                                    "literal": {
+                                      "type": "Real",
+                                      "interpretation": "fixed",
+                                      "value": "2"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "op": "poly_const",
+                        "args": [
+                          {
+                            "op": "literal",
+                            "args": [],
+                            "literal": {
+                              "type": "Real",
+                              "interpretation": "fixed",
+                              "value": "1"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "d_Q",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_Q",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "mul",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "d_P"
+                      },
+                      {
+                        "op": "sub",
+                        "args": [
+                          {
+                            "op": "poly_x",
+                            "args": []
+                          },
+                          {
+                            "op": "poly_const",
+                            "args": [
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Real",
+                                  "interpretation": "fixed",
+                                  "value": "1"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "nA2",
+                  "kind": "claim",
+                  "name": "h_route_A_nA2",
+                  "type": "((Polynomial.eval (2 : ℝ) v_d_P) = (9 : ℝ))"
+                },
+                {
+                  "source_id": "nA3",
+                  "kind": "claim",
+                  "name": "h_route_A_nA3",
+                  "type": "((Polynomial.eval (2 : ℝ) v_d_Q) = ((Polynomial.eval (2 : ℝ) v_d_P) * ((2 : ℝ) - (1 : ℝ))))"
+                }
+              ],
+              "dependsOn": [
+                "nA2",
+                "nA3"
+              ],
+              "proofAttemptStatus": "not_proved",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "dependency_usage_not_audited",
+              "dependencyUsage": [],
+              "failureClass": "lean_proof_compile_failed",
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 151,
+                  "end": 182
+                }
+              ],
+              "status": "incomplete",
+              "lean": {
+                "localVerified": false,
+                "status": "not_proved",
+                "diagnostics": [
+                  {
+                    "severity": "error",
+                    "message": "`dsimp` made no progress",
+                    "leanPosition": {
+                      "column": 21,
+                      "line": 3
+                    },
+                    "leanEndPosition": {
+                      "column": 26,
+                      "line": 3
+                    },
+                    "stepId": "mathir-v2/route_A/nA4",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b_text",
+                        "start": 151,
+                        "end": 182
+                      }
+                    ],
+                    "mappingPrecision": "step",
+                    "raw": {
+                      "caption": "",
+                      "data": "`dsimp` made no progress",
+                      "endPos": {
+                        "column": 26,
+                        "line": 3
+                      },
+                      "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-cev4y7jt/Task.lean",
+                      "isSilent": false,
+                      "keepFullRange": false,
+                      "kind": "[anonymous]",
+                      "pos": {
+                        "column": 21,
+                        "line": 3
+                      },
+                      "severity": "error"
+                    }
+                  }
+                ],
+                "certificate": null
+              }
+            }
+          ],
+          "kernel": {
+            "localVerified": false,
+            "status": "not_proved",
+            "diagnostics": [
+              {
+                "severity": "error",
+                "message": "`dsimp` made no progress",
+                "leanPosition": {
+                  "column": 285,
+                  "line": 5
+                },
+                "leanEndPosition": {
+                  "column": 290,
+                  "line": 5
+                },
+                "stepId": "mathir-v2/route_A/locked-goal",
+                "sourceRefs": [],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "`dsimp` made no progress",
+                  "endPos": {
+                    "column": 290,
+                    "line": 5
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-cev4y7jt/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "[anonymous]",
+                  "pos": {
+                    "column": 285,
+                    "line": 5
+                  },
+                  "severity": "error"
+                }
+              },
+              {
+                "severity": "error",
+                "message": "`dsimp` made no progress",
+                "leanPosition": {
+                  "column": 300,
+                  "line": 6
+                },
+                "leanEndPosition": {
+                  "column": 305,
+                  "line": 6
+                },
+                "stepId": "mathir-v2/route_A/locked-goal",
+                "sourceRefs": [],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "`dsimp` made no progress",
+                  "endPos": {
+                    "column": 305,
+                    "line": 6
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-cev4y7jt/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "[anonymous]",
+                  "pos": {
+                    "column": 300,
+                    "line": 6
+                  },
+                  "severity": "error"
+                }
+              },
+              {
+                "severity": "error",
+                "message": "`dsimp` made no progress",
+                "leanPosition": {
+                  "column": 3622,
+                  "line": 7
+                },
+                "leanEndPosition": {
+                  "column": 166,
+                  "line": 7
+                },
+                "stepId": "mathir-v2/route_A/locked-goal",
+                "sourceRefs": [],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "`dsimp` made no progress",
+                  "endPos": {
+                    "column": 166,
+                    "line": 7
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-cev4y7jt/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "[anonymous]",
+                  "pos": {
+                    "column": 3622,
+                    "line": 7
+                  },
+                  "severity": "error"
+                }
+              },
+              {
+                "severity": "error",
+                "message": "`dsimp` made no progress",
+                "leanPosition": {
+                  "column": 253,
+                  "line": 8
+                },
+                "leanEndPosition": {
+                  "column": 258,
+                  "line": 8
+                },
+                "stepId": "mathir-v2/route_A/locked-goal",
+                "sourceRefs": [],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "`dsimp` made no progress",
+                  "endPos": {
+                    "column": 258,
+                    "line": 8
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-cev4y7jt/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "[anonymous]",
+                  "pos": {
+                    "column": 253,
+                    "line": 8
+                  },
+                  "severity": "error"
+                }
+              }
+            ],
+            "certificate": null
+          },
+          "sourceAlignment": {
+            "status": "supported",
+            "sourceRefsValidated": true,
+            "semanticAlignmentKernelProven": false
+          }
+        },
+        {
+          "routeId": "route_B",
+          "routeHash": "79ccd64d0eb135a863a21204e33a6f556a47a399e7dcaab4c37f740668d88f63",
+          "sourceEvidenceHash": "3d72e1b05aadab15c3c04ee57f2674dc496fb69e33e1425def7d1d30646d9fe4",
+          "goalNodeId": "nB3",
+          "goalProofTerm": "by\n  dsimp\n  intro jjdep_nB2\n  rw [jjdep_nB2]\n  simp only [Polynomial.eval_add, Polynomial.eval_mul, Polynomial.eval_pow, Polynomial.eval_sub, Polynomial.eval_X, Polynomial.eval_C]\n  norm_num",
+          "proofComposition": {
+            "status": "incomplete",
+            "error": "A claim in the route has no original proof term",
+            "kernelChecked": false
+          },
+          "status": "incomplete",
+          "completeOriginalRouteKernelPassed": false,
+          "fixedStatementKernelPassed": false,
+          "routeConnectivity": {
+            "status": "connected",
+            "goalNodeIdPresent": true,
+            "unconnectedNodeIds": [],
+            "unconnectedClaimNodeIds": [],
+            "basis": "goal dependency closure plus explicit induction-case edges"
+          },
+          "dependencyEvidence": {
+            "status": "incomplete",
+            "basis": "Kernel proof expression binder-use audit for declared claim dependencies"
+          },
+          "stepResults": [
+            {
+              "sourceId": "mathir-v2/route_B/nB1",
+              "routeId": "route_B",
+              "nodeId": "nB1",
+              "kind": "claim",
+              "expectedType": "(let v_d_P : Polynomial ℝ := (((Polynomial.X ^ (2 : ℕ)) + ((Polynomial.C (2 : ℝ)) * Polynomial.X)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P * (Polynomial.X - (Polynomial.C (1 : ℝ)))); (v_d_P = ((Polynomial.X + (Polynomial.C (1 : ℝ))) ^ (2 : ℕ)))))",
+              "proofTerm": "by\n  intro v_d_P v_d_Q\n  exact (by\n  dsimp\n  simp\n  ring)",
+              "originalProofTerm": "by\n  dsimp\n  simp\n  ring",
+              "context": [
+                {
+                  "source_id": "d_P",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_P",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "pow",
+                            "args": [
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              },
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Nat",
+                                  "interpretation": "fixed",
+                                  "value": "2"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "op": "mul",
+                            "args": [
+                              {
+                                "op": "poly_const",
+                                "args": [
+                                  {
+                                    "op": "literal",
+                                    "args": [],
+                                    "literal": {
+                                      "type": "Real",
+                                      "interpretation": "fixed",
+                                      "value": "2"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "op": "poly_const",
+                        "args": [
+                          {
+                            "op": "literal",
+                            "args": [],
+                            "literal": {
+                              "type": "Real",
+                              "interpretation": "fixed",
+                              "value": "1"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "d_Q",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_Q",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "mul",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "d_P"
+                      },
+                      {
+                        "op": "sub",
+                        "args": [
+                          {
+                            "op": "poly_x",
+                            "args": []
+                          },
+                          {
+                            "op": "poly_const",
+                            "args": [
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Real",
+                                  "interpretation": "fixed",
+                                  "value": "1"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                }
+              ],
+              "dependsOn": [],
+              "proofAttemptStatus": "not_proved",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "failureClass": "lean_proof_compile_failed",
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 193,
+                  "end": 230
+                }
+              ],
+              "status": "incomplete",
+              "lean": {
+                "localVerified": false,
+                "status": "not_proved",
+                "diagnostics": [
+                  {
+                    "severity": "error",
+                    "message": "`dsimp` made no progress",
+                    "leanPosition": {
+                      "column": 1,
+                      "line": 3
+                    },
+                    "leanEndPosition": {
+                      "column": 6,
+                      "line": 3
+                    },
+                    "stepId": "mathir-v2/route_B/nB1",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b_text",
+                        "start": 193,
+                        "end": 230
+                      }
+                    ],
+                    "mappingPrecision": "step",
+                    "raw": {
+                      "caption": "",
+                      "data": "`dsimp` made no progress",
+                      "endPos": {
+                        "column": 6,
+                        "line": 3
+                      },
+                      "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-oofwndaq/Task.lean",
+                      "isSilent": false,
+                      "keepFullRange": false,
+                      "kind": "[anonymous]",
+                      "pos": {
+                        "column": 1,
+                        "line": 3
+                      },
+                      "severity": "error"
+                    }
+                  }
+                ],
+                "certificate": null
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_B/nB2",
+              "routeId": "route_B",
+              "nodeId": "nB2",
+              "kind": "claim",
+              "expectedType": "(let v_d_P : Polynomial ℝ := (((Polynomial.X ^ (2 : ℕ)) + ((Polynomial.C (2 : ℝ)) * Polynomial.X)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P * (Polynomial.X - (Polynomial.C (1 : ℝ)))); (∀ (jjdep_nB1 : (v_d_P = ((Polynomial.X + (Polynomial.C (1 : ℝ))) ^ (2 : ℕ)))), (v_d_Q = ((((Polynomial.X + (Polynomial.C (1 : ℝ))) ^ (2 : ℕ)) * (Polynomial.X - (Polynomial.C (1 : ℝ)))) + (Polynomial.X - (Polynomial.C (2 : ℝ))))))))",
+              "proofTerm": null,
+              "originalProofTerm": null,
+              "context": [
+                {
+                  "source_id": "d_P",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_P",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "pow",
+                            "args": [
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              },
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Nat",
+                                  "interpretation": "fixed",
+                                  "value": "2"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "op": "mul",
+                            "args": [
+                              {
+                                "op": "poly_const",
+                                "args": [
+                                  {
+                                    "op": "literal",
+                                    "args": [],
+                                    "literal": {
+                                      "type": "Real",
+                                      "interpretation": "fixed",
+                                      "value": "2"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "op": "poly_const",
+                        "args": [
+                          {
+                            "op": "literal",
+                            "args": [],
+                            "literal": {
+                              "type": "Real",
+                              "interpretation": "fixed",
+                              "value": "1"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "d_Q",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_Q",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "mul",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "d_P"
+                      },
+                      {
+                        "op": "sub",
+                        "args": [
+                          {
+                            "op": "poly_x",
+                            "args": []
+                          },
+                          {
+                            "op": "poly_const",
+                            "args": [
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Real",
+                                  "interpretation": "fixed",
+                                  "value": "1"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "nB1",
+                  "kind": "claim",
+                  "name": "h_route_B_nB1",
+                  "type": "(v_d_P = ((Polynomial.X + (Polynomial.C (1 : ℝ))) ^ (2 : ℕ)))"
+                }
+              ],
+              "dependsOn": [
+                "nB1"
+              ],
+              "proofAttemptStatus": "missing_proof",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "dependency_usage_not_audited",
+              "dependencyUsage": [],
+              "failureClass": "missing_proof",
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 231,
+                  "end": 264
+                }
+              ],
+              "status": "incomplete",
+              "lean": {
+                "status": "missing_proof",
+                "localVerified": false,
+                "diagnostics": [],
+                "certificate": null
+              }
+            },
+            {
+              "sourceId": "mathir-v2/route_B/nB3",
+              "routeId": "route_B",
+              "nodeId": "nB3",
+              "kind": "claim",
+              "expectedType": "(let v_d_P : Polynomial ℝ := (((Polynomial.X ^ (2 : ℕ)) + ((Polynomial.C (2 : ℝ)) * Polynomial.X)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P * (Polynomial.X - (Polynomial.C (1 : ℝ)))); (∀ (jjdep_nB2 : (v_d_Q = ((((Polynomial.X + (Polynomial.C (1 : ℝ))) ^ (2 : ℕ)) * (Polynomial.X - (Polynomial.C (1 : ℝ)))) + (Polynomial.X - (Polynomial.C (2 : ℝ)))))), ((Polynomial.eval (2 : ℝ) v_d_Q) = (9 : ℝ)))))",
+              "proofTerm": "by\n  intro v_d_P v_d_Q jjdep_nB2\n  exact (by\n  dsimp\n  intro jjdep_nB2\n  rw [jjdep_nB2]\n  simp only [Polynomial.eval_add, Polynomial.eval_mul, Polynomial.eval_pow, Polynomial.eval_sub, Polynomial.eval_X, Polynomial.eval_C]\n  norm_num)",
+              "originalProofTerm": "by\n  dsimp\n  intro jjdep_nB2\n  rw [jjdep_nB2]\n  simp only [Polynomial.eval_add, Polynomial.eval_mul, Polynomial.eval_pow, Polynomial.eval_sub, Polynomial.eval_X, Polynomial.eval_C]\n  norm_num",
+              "context": [
+                {
+                  "source_id": "d_P",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_P",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "add",
+                    "args": [
+                      {
+                        "op": "add",
+                        "args": [
+                          {
+                            "op": "pow",
+                            "args": [
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              },
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Nat",
+                                  "interpretation": "fixed",
+                                  "value": "2"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "op": "mul",
+                            "args": [
+                              {
+                                "op": "poly_const",
+                                "args": [
+                                  {
+                                    "op": "literal",
+                                    "args": [],
+                                    "literal": {
+                                      "type": "Real",
+                                      "interpretation": "fixed",
+                                      "value": "2"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "op": "poly_x",
+                                "args": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "op": "poly_const",
+                        "args": [
+                          {
+                            "op": "literal",
+                            "args": [],
+                            "literal": {
+                              "type": "Real",
+                              "interpretation": "fixed",
+                              "value": "1"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "d_Q",
+                  "scope_id": "scope_root",
+                  "kind": "definition",
+                  "name": "v_d_Q",
+                  "type": "Polynomial ℝ",
+                  "value": {
+                    "op": "mul",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "d_P"
+                      },
+                      {
+                        "op": "sub",
+                        "args": [
+                          {
+                            "op": "poly_x",
+                            "args": []
+                          },
+                          {
+                            "op": "poly_const",
+                            "args": [
+                              {
+                                "op": "literal",
+                                "args": [],
+                                "literal": {
+                                  "type": "Real",
+                                  "interpretation": "fixed",
+                                  "value": "1"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "constraints": [],
+                  "bindingClass": "theorem"
+                },
+                {
+                  "source_id": "nB2",
+                  "kind": "claim",
+                  "name": "h_route_B_nB2",
+                  "type": "(v_d_Q = ((((Polynomial.X + (Polynomial.C (1 : ℝ))) ^ (2 : ℕ)) * (Polynomial.X - (Polynomial.C (1 : ℝ)))) + (Polynomial.X - (Polynomial.C (2 : ℝ)))))"
+                }
+              ],
+              "dependsOn": [
+                "nB2"
+              ],
+              "proofAttemptStatus": "not_proved",
+              "mathematicalStatus": "not_established",
+              "dependencyEvidence": "dependency_usage_not_audited",
+              "dependencyUsage": [],
+              "failureClass": "lean_proof_compile_failed",
+              "sourceRefs": [
+                {
+                  "blockId": "b_text",
+                  "start": 265,
+                  "end": 306
+                }
+              ],
+              "status": "incomplete",
+              "lean": {
+                "localVerified": false,
+                "status": "not_proved",
+                "diagnostics": [
+                  {
+                    "severity": "error",
+                    "message": "`dsimp` made no progress",
+                    "leanPosition": {
+                      "column": 11,
+                      "line": 3
+                    },
+                    "leanEndPosition": {
+                      "column": 16,
+                      "line": 3
+                    },
+                    "stepId": "mathir-v2/route_B/nB3",
+                    "sourceRefs": [
+                      {
+                        "blockId": "b_text",
+                        "start": 265,
+                        "end": 306
+                      }
+                    ],
+                    "mappingPrecision": "step",
+                    "raw": {
+                      "caption": "",
+                      "data": "`dsimp` made no progress",
+                      "endPos": {
+                        "column": 16,
+                        "line": 3
+                      },
+                      "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-oofwndaq/Task.lean",
+                      "isSilent": false,
+                      "keepFullRange": false,
+                      "kind": "[anonymous]",
+                      "pos": {
+                        "column": 11,
+                        "line": 3
+                      },
+                      "severity": "error"
+                    }
+                  }
+                ],
+                "certificate": null
+              }
+            }
+          ],
+          "kernel": {
+            "localVerified": false,
+            "status": "not_proved",
+            "diagnostics": [
+              {
+                "severity": "error",
+                "message": "Tactic `introN` failed: There are no additional binders or `let` bindings in the goal to introduce\n\n⊢ Polynomial.eval 2\n      ((Polynomial.X ^ 2 + Polynomial.C 2 * Polynomial.X + Polynomial.C 1) * (Polynomial.X - Polynomial.C 1)) =\n    9",
+                "leanPosition": {
+                  "column": 4,
+                  "line": 2
+                },
+                "leanEndPosition": {
+                  "column": 13,
+                  "line": 2
+                },
+                "stepId": "mathir-v2/route_B/locked-goal",
+                "sourceRefs": [],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "Tactic `introN` failed: There are no additional binders or `let` bindings in the goal to introduce\n\n⊢ Polynomial.eval 2\n      ((Polynomial.X ^ 2 + Polynomial.C 2 * Polynomial.X + Polynomial.C 1) * (Polynomial.X - Polynomial.C 1)) =\n    9",
+                  "endPos": {
+                    "column": 13,
+                    "line": 2
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.data-mathir-v2-stage9-context-replay/work/lean-oofwndaq/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "[anonymous]",
+                  "pos": {
+                    "column": 4,
+                    "line": 2
+                  },
+                  "severity": "error"
+                }
+              }
+            ],
+            "certificate": null
+          },
+          "sourceAlignment": {
+            "status": "not_assessed",
+            "sourceRefsValidated": true,
+            "semanticAlignmentKernelProven": false
+          }
+        }
+      ],
+      "leanMetrics": {
+        "processCount": 4,
+        "elapsedSeconds": 51.263,
+        "processes": [
+          {
+            "phase": "proposition_elaboration",
+            "wallSeconds": 12.27,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 6024,
+            "kernelInputJsonBytes": 0,
+            "status": "completed",
+            "userCpuSeconds": 2.18,
+            "systemCpuSeconds": 10.07,
+            "maxRssBytes": 6049005568,
+            "peakMemoryFootprintBytes": 933622016,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 285959,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 43270144,
+            "leanReturnCode": 0
+          },
+          {
+            "phase": "expected_wire_materialization",
+            "wallSeconds": 0.0083,
+            "leanStdoutBytes": 285959,
+            "recordCount": 5,
+            "pythonPeakRssBytes": 46268416
+          },
+          {
+            "phase": "proof_export_batch",
+            "wallSeconds": 12.74,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 6046,
+            "kernelInputJsonBytes": 0,
+            "status": "completed",
+            "userCpuSeconds": 2.23,
+            "systemCpuSeconds": 10.49,
+            "maxRssBytes": 6058835968,
+            "peakMemoryFootprintBytes": 943976512,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 1069508,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 48545792,
+            "leanReturnCode": 1
+          },
+          {
+            "phase": "proof_wire_materialization",
+            "wallSeconds": 0.0331,
+            "leanStdoutBytes": 1069508,
+            "candidateCount": 0,
+            "pythonPeakRssBytes": 60899328
+          },
+          {
+            "phase": "proposition_elaboration",
+            "wallSeconds": 13.05,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 6057,
+            "kernelInputJsonBytes": 0,
+            "status": "completed",
+            "userCpuSeconds": 2.13,
+            "systemCpuSeconds": 10.89,
+            "maxRssBytes": 6051348480,
+            "peakMemoryFootprintBytes": 935702784,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 205589,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 60899328,
+            "leanReturnCode": 0
+          },
+          {
+            "phase": "expected_wire_materialization",
+            "wallSeconds": 0.0049,
+            "leanStdoutBytes": 205589,
+            "recordCount": 3,
+            "pythonPeakRssBytes": 60899328
+          },
+          {
+            "phase": "proof_export_batch",
+            "wallSeconds": 13.14,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 6068,
+            "kernelInputJsonBytes": 0,
+            "status": "completed",
+            "userCpuSeconds": 2.11,
+            "systemCpuSeconds": 10.99,
+            "maxRssBytes": 6053822464,
+            "peakMemoryFootprintBytes": 935113024,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 462483,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 60899328,
+            "leanReturnCode": 1
+          },
+          {
+            "phase": "proof_wire_materialization",
+            "wallSeconds": 0.0171,
+            "leanStdoutBytes": 462483,
+            "candidateCount": 0,
+            "pythonPeakRssBytes": 60899328
+          }
+        ],
+        "measurement": "Lean subprocess groups; each invocation includes the sandbox launcher and Lean process. Kernel batch resets the imported environment between evidence replays."
+      }
+    }
+  },
+  "proofWireReplay": "batch Lean check, then content-addressed evidence",
+  "proofWireBatches": [
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 12.783,
+      "stepId": "mathir-v2/route_A/nA1",
+      "proofTermBytes": 156,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 12.783,
+      "stepId": "mathir-v2/route_A/nA2",
+      "proofTermBytes": 99,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 12.783,
+      "stepId": "mathir-v2/route_A/nA3",
+      "proofTermBytes": 131,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 12.783,
+      "stepId": "mathir-v2/route_A/nA4",
+      "proofTermBytes": 130,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 1,
+      "batchCandidateCount": 5,
+      "batchElapsedSeconds": 12.783,
+      "stepId": "mathir-v2/route_A/locked-goal",
+      "proofTermBytes": 2193,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 2,
+      "batchCandidateCount": 3,
+      "batchElapsedSeconds": 13.167,
+      "stepId": "mathir-v2/route_B/nB1",
+      "proofTermBytes": 57,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 2,
+      "batchCandidateCount": 3,
+      "batchElapsedSeconds": 13.167,
+      "stepId": "mathir-v2/route_B/nB3",
+      "proofTermBytes": 234,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    },
+    {
+      "batchIndex": 2,
+      "batchCandidateCount": 3,
+      "batchElapsedSeconds": 13.167,
+      "stepId": "mathir-v2/route_B/locked-goal",
+      "proofTermBytes": 191,
+      "externalizedWireBytes": 0,
+      "evidence": null
+    }
+  ],
+  "checkManyInvocationMode": "single batch per route",
+  "sourceReport": "saved Stage 8 proof terms",
+  "compilerRevision": "current workspace under baseline 3804bae",
+  "leanBatchCalls": {
+    "C10": 2
+  }
+}

@@ -1,0 +1,363 @@
+{
+  "version": "2.0",
+  "source": {
+    "id": "general",
+    "kind": "text",
+    "raw": "Let x be real. If 0 ≤ x, abs x = x by abs_of_nonneg. If x < 0, abs x = -x by abs_of_neg. Split these exhaustive cases; substituting the corresponding equality and squaring gives (abs x)^2=x^2.",
+    "normalized": "Let x be real. If 0 ≤ x, abs x = x by abs_of_nonneg. If x < 0, abs x = -x by abs_of_neg. Split these exhaustive cases; substituting the corresponding equality and squaring gives (abs x)^2=x^2.",
+    "blocks": [
+      {
+        "id": "b",
+        "text": "Let x be real. If 0 ≤ x, abs x = x by abs_of_nonneg. If x < 0, abs x = -x by abs_of_neg. Split these exhaustive cases; substituting the corresponding equality and squaring gives (abs x)^2=x^2."
+      }
+    ],
+    "transcriptStatus": "not_assessed"
+  },
+  "scopes": [
+    {
+      "id": "root",
+      "description": "",
+      "sourceRefs": []
+    },
+    {
+      "id": "positive",
+      "parentId": "root",
+      "description": "",
+      "sourceRefs": []
+    },
+    {
+      "id": "negative",
+      "parentId": "root",
+      "description": "",
+      "sourceRefs": []
+    }
+  ],
+  "declarations": [
+    {
+      "id": "x",
+      "name": "x",
+      "kind": "variable",
+      "type": {
+        "kind": "Real",
+        "typeVarMode": "unresolved",
+        "typeArguments": [],
+        "termArguments": [],
+        "argumentOrder": [],
+        "candidateKinds": [],
+        "structureConstraints": [],
+        "declaredStructures": []
+      },
+      "typeAssessment": "explicit",
+      "scopeId": "root",
+      "constraints": [],
+      "sourceRefs": [
+        {
+          "blockId": "b",
+          "start": 0,
+          "end": 192
+        }
+      ],
+      "sourceAssessment": "supported",
+      "assessmentBasis": "Explicit source carrier."
+    }
+  ],
+  "assumptions": [],
+  "goal": {
+    "id": "g",
+    "expression": {
+      "op": "eq",
+      "args": [
+        {
+          "op": "pow",
+          "args": [
+            {
+              "op": "abs",
+              "args": [
+                {
+                  "op": "symbol",
+                  "args": [],
+                  "symbolId": "x"
+                }
+              ]
+            },
+            {
+              "op": "literal",
+              "args": [],
+              "literal": {
+                "type": "Nat",
+                "interpretation": "fixed",
+                "value": "2"
+              }
+            }
+          ]
+        },
+        {
+          "op": "pow",
+          "args": [
+            {
+              "op": "symbol",
+              "args": [],
+              "symbolId": "x"
+            },
+            {
+              "op": "literal",
+              "args": [],
+              "literal": {
+                "type": "Nat",
+                "interpretation": "fixed",
+                "value": "2"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "scopeId": "root",
+    "sourceRefs": [
+      {
+        "blockId": "b",
+        "start": 0,
+        "end": 192
+      }
+    ],
+    "sourceAssessment": "not_assessed"
+  },
+  "proofRoutes": [
+    {
+      "id": "r",
+      "label": "source route",
+      "nodes": [
+        {
+          "id": "hpos",
+          "kind": "local_assumption",
+          "expression": {
+            "op": "le",
+            "args": [
+              {
+                "op": "literal",
+                "args": [],
+                "literal": {
+                  "type": "Real",
+                  "interpretation": "fixed",
+                  "value": "0"
+                }
+              },
+              {
+                "op": "symbol",
+                "args": [],
+                "symbolId": "x"
+              }
+            ]
+          },
+          "scopeId": "positive",
+          "dependsOn": [],
+          "closedDependencies": [],
+          "sourceRefs": [
+            {
+              "blockId": "b",
+              "start": 0,
+              "end": 192
+            }
+          ],
+          "sourceAssessment": "not_assessed"
+        },
+        {
+          "id": "hneg",
+          "kind": "local_assumption",
+          "expression": {
+            "op": "lt",
+            "args": [
+              {
+                "op": "symbol",
+                "args": [],
+                "symbolId": "x"
+              },
+              {
+                "op": "literal",
+                "args": [],
+                "literal": {
+                  "type": "Real",
+                  "interpretation": "fixed",
+                  "value": "0"
+                }
+              }
+            ]
+          },
+          "scopeId": "negative",
+          "dependsOn": [],
+          "closedDependencies": [],
+          "sourceRefs": [
+            {
+              "blockId": "b",
+              "start": 0,
+              "end": 192
+            }
+          ],
+          "sourceAssessment": "not_assessed"
+        },
+        {
+          "id": "pos",
+          "kind": "claim",
+          "expression": {
+            "op": "eq",
+            "args": [
+              {
+                "op": "abs",
+                "args": [
+                  {
+                    "op": "symbol",
+                    "args": [],
+                    "symbolId": "x"
+                  }
+                ]
+              },
+              {
+                "op": "symbol",
+                "args": [],
+                "symbolId": "x"
+              }
+            ]
+          },
+          "scopeId": "positive",
+          "dependsOn": [
+            "hpos"
+          ],
+          "closedDependencies": [],
+          "proofTerm": "by exact abs_of_nonneg jjdep_hpos",
+          "sourceRefs": [
+            {
+              "blockId": "b",
+              "start": 0,
+              "end": 192
+            }
+          ],
+          "sourceAssessment": "not_assessed"
+        },
+        {
+          "id": "neg",
+          "kind": "claim",
+          "expression": {
+            "op": "eq",
+            "args": [
+              {
+                "op": "abs",
+                "args": [
+                  {
+                    "op": "symbol",
+                    "args": [],
+                    "symbolId": "x"
+                  }
+                ]
+              },
+              {
+                "op": "neg",
+                "args": [
+                  {
+                    "op": "symbol",
+                    "args": [],
+                    "symbolId": "x"
+                  }
+                ]
+              }
+            ]
+          },
+          "scopeId": "negative",
+          "dependsOn": [
+            "hneg"
+          ],
+          "closedDependencies": [],
+          "proofTerm": "by exact abs_of_neg jjdep_hneg",
+          "sourceRefs": [
+            {
+              "blockId": "b",
+              "start": 0,
+              "end": 192
+            }
+          ],
+          "sourceAssessment": "not_assessed"
+        },
+        {
+          "id": "step",
+          "kind": "claim",
+          "expression": {
+            "op": "eq",
+            "args": [
+              {
+                "op": "pow",
+                "args": [
+                  {
+                    "op": "abs",
+                    "args": [
+                      {
+                        "op": "symbol",
+                        "args": [],
+                        "symbolId": "x"
+                      }
+                    ]
+                  },
+                  {
+                    "op": "literal",
+                    "args": [],
+                    "literal": {
+                      "type": "Nat",
+                      "interpretation": "fixed",
+                      "value": "2"
+                    }
+                  }
+                ]
+              },
+              {
+                "op": "pow",
+                "args": [
+                  {
+                    "op": "symbol",
+                    "args": [],
+                    "symbolId": "x"
+                  },
+                  {
+                    "op": "literal",
+                    "args": [],
+                    "literal": {
+                      "type": "Nat",
+                      "interpretation": "fixed",
+                      "value": "2"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "scopeId": "root",
+          "dependsOn": [
+            "pos",
+            "neg"
+          ],
+          "closedDependencies": [
+            "pos",
+            "neg"
+          ],
+          "proofTerm": "by\n  by_cases hx : 0 ≤ x\n  · rw [jjdep_pos x hx]\n  · rw [jjdep_neg x (lt_of_not_ge hx)]\n    ring",
+          "sourceRefs": [
+            {
+              "blockId": "b",
+              "start": 0,
+              "end": 192
+            }
+          ],
+          "sourceAssessment": "not_assessed"
+        }
+      ],
+      "goalNodeId": "step",
+      "inductions": [],
+      "sourceRefs": [
+        {
+          "blockId": "b",
+          "start": 0,
+          "end": 192
+        }
+      ],
+      "sourceAssessment": "not_assessed"
+    }
+  ],
+  "ambiguities": []
+}

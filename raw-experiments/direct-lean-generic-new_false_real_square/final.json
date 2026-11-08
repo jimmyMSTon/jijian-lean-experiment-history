@@ -1,0 +1,86 @@
+{
+  "experiment": "single-call direct original-human-proof -> Lean without homemade MathIR",
+  "frozenSourceSha256": "91257db1ec311dc770e896e76c8857abc67b2b6ba58b328d75703c2d95ecdb52",
+  "requestsAllowed": 1,
+  "requiresFullKernelCertificate": true,
+  "isOfficialApp": false,
+  "modelSimulated": false,
+  "deepSeek": {
+    "provenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "b61be22f-dba2-442e-8092-c576c9b89ff0",
+      "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+      "usage": {
+        "prompt_tokens": 881,
+        "completion_tokens": 4745,
+        "total_tokens": 5626,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 4275
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 881
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "complete": false,
+    "statement": "∀ x : ℝ, x ^ 2 ≥ x",
+    "proofTerm": "by\n  intro x\n  have h : x ^ 2 - x = x * (x - 1) := by ring\n  have hnonneg : 0 ≤ x * (x - 1) := by positivity\n  have hx : 0 ≤ x ^ 2 - x := by\n    rw [h]\n    exact hnonneg\n  linarith",
+    "sourceSteps": [
+      {
+        "start": 5,
+        "end": 22,
+        "sourceExcerpt": "对于任意实数 x，都有 x²≥x。",
+        "leanWitness": "mathematicalStatement 中的 `∀ x : ℝ, x ^ 2 ≥ x`"
+      },
+      {
+        "start": 27,
+        "end": 34,
+        "sourceExcerpt": "任取实数 x，",
+        "leanWitness": "`intro x`"
+      },
+      {
+        "start": 34,
+        "end": 49,
+        "sourceExcerpt": "因为 x²−x=x(x−1)，",
+        "leanWitness": "`have h : x ^ 2 - x = x * (x - 1) := by ring`"
+      },
+      {
+        "start": 49,
+        "end": 65,
+        "sourceExcerpt": "而乘积 x(x−1) 总是非负，",
+        "leanWitness": "`have hnonneg : 0 ≤ x * (x - 1) := by positivity`（原文此步为错误断言，该 tactic 不能证明任意实数情形）"
+      },
+      {
+        "start": 65,
+        "end": 75,
+        "sourceExcerpt": "所以 x²−x≥0，",
+        "leanWitness": "`have hx : 0 ≤ x ^ 2 - x := by rw [h]; exact hnonneg`"
+      },
+      {
+        "start": 75,
+        "end": 83,
+        "sourceExcerpt": "推出 x²≥x。",
+        "leanWitness": "`linarith`"
+      }
+    ],
+    "unsupportedOriginalSteps": [
+      "原文断言“乘积 x(x−1) 总是非负”是错误命题；对任意实数 x 不成立。Lean proofTerm 中对应步骤 `have hnonneg : 0 ≤ x * (x - 1) := by positivity` 无法完成证明，因此整体原证明不能被形式化验证。"
+    ]
+  },
+  "sourcePositionRangesMatchOriginal": true,
+  "sourceEquivalenceCertified": false,
+  "elapsedSeconds": 24.63
+}

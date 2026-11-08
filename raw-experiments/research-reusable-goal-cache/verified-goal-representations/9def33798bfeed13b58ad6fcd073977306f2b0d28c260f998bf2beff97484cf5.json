@@ -1,0 +1,42 @@
+{
+  "sourceSha256": "9def33798bfeed13b58ad6fcd073977306f2b0d28c260f998bf2beff97484cf5",
+  "typechecked": true,
+  "plan": {
+    "formalStatement": "∀ (m n k : ℕ) (x : Fin n → ℝ) (_hm : 2 ≤ m) (_hk : 2 ≤ k) (hkn : k ≤ n) (_hx_nonneg : ∀ i : Fin n, 0 ≤ x i) (_hx_antitone : ∀ i j : Fin n, i ≤ j → x j ≤ x i) (_h_sum_pow : 1 ≤ (∑ i : Fin n, (x i) ^ m)) (_h_sum : (∑ i : Fin n, x i) ≤ (k : ℝ)), 1 ≤ (∑ i : Fin k, x (Fin.castLE hkn i))",
+    "goalExcerpt": "证明前 k 项之和 ∑_{i=1}^k x_i≥1。",
+    "givenExcerpts": [
+      "设 m,n,k 均为正整数，m≥2，n≥k≥2；实数 x₁≥x₂≥⋯≥x_n≥0，满足 ∑_{i=1}^n x_i^m≥1 及 ∑_{i=1}^n x_i≤k。"
+    ],
+    "steps": [
+      {
+        "start": 158,
+        "end": 288,
+        "sourceExcerpt": "第一步，令 t=∑_{i=1}^k x_i，u=x_k。反设 t<1。由于 x_i≥0 且这前 k 项之和小于 1，对每个 1≤i≤k 都有 0≤x_i≤t<1；同时 0≤u≤t/k<1，并且前 k 项均满足 x_i≥u，后 n−k 项均满足 0≤x_i≤u。"
+      },
+      {
+        "start": 289,
+        "end": 452,
+        "sourceExcerpt": "第二步，对于每个 i>k，由 m≥2 和 0≤x_i≤u<1，有 x_i^{m}=x_i·x_i^{m−1}≤x_i·u≤u x_i。故尾部幂和满足 ∑_{i=k+1}^n x_i^m≤u∑_{i=k+1}^n x_i≤u(k−t)，最后一个不等式使用 ∑_{i=1}^n x_i≤k。若 n=k，尾部为空和 0，此式仍成立。"
+      },
+      {
+        "start": 453,
+        "end": 593,
+        "sourceExcerpt": "第三步，对于每个 1≤i≤k，由 m≥2 和 0≤x_i<1，有 x_i^m≤x_i²。另一方面 u≤x_i<1，所以 (x_i−u)(x_i−1)≤0，即 x_i²−u x_i≤x_i−u。二式结合得到 x_i^m−u x_i≤x_i−u，即 x_i^m≤(1+u)x_i−u。"
+      },
+      {
+        "start": 594,
+        "end": 685,
+        "sourceExcerpt": "第四步，对前 k 项求和，得 ∑_{i=1}^k x_i^m≤(1+u)t−ku。与第二步的尾部估计合并，\n∑_{i=1}^n x_i^m≤(1+u)t−ku+u(k−t)=t<1。"
+      },
+      {
+        "start": 686,
+        "end": 760,
+        "sourceExcerpt": "第五步，这与题设 ∑_{i=1}^n x_i^m≥1 矛盾。故假设 t<1 不成立，于是 t≥1，也就是 ∑_{i=1}^k x_i≥1。证明完毕。"
+      }
+    ]
+  },
+  "originalModelProvenance": {
+    "archiveName": "2025-Gaolian-R2-Q2"
+  },
+  "meaning": "Lean typechecked goal encoding only; entire proof not certified"
+}

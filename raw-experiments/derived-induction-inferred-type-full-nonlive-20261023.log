@@ -1,0 +1,54 @@
+........................................................................ [  8%]
+........................................................................ [ 16%]
+........................................................................ [ 24%]
+........................................................................ [ 32%]
+........................................................................ [ 40%]
+........................................................................ [ 48%]
+........................................................................ [ 56%]
+........................................................................ [ 64%]
+.......................................................................F [ 72%]
+........................................................................ [ 80%]
+........................................................................ [ 88%]
+........................................................................ [ 96%]
+....................................                                     [100%]
+=================================== FAILURES ===================================
+_ test_real_complex_raw_model_json_schema_anchored_delimiters[hard_linear_algebra_spectral-4] _
+
+case = 'hard_linear_algebra_spectral', expected_brace_edits = 4
+
+    @pytest.mark.parametrize(("case","expected_brace_edits"), [
+        ("hard_number_theory_4k3",2),
+        ("hard_analysis_ivt_sup",6),
+        ("hard_linear_algebra_spectral",4),
+    ])
+    def test_real_complex_raw_model_json_schema_anchored_delimiters(case,expected_brace_edits):
+        source=original(case)
+        data,audit=parse_structured_json(source,StructureOnlyMathIRV2.model_json_schema())
+        assert audit["method"]=="deterministic_json_schema"
+        assert audit["recovered"] is True
+        assert len(audit["edits"])==expected_brace_edits
+        assert all(e["kind"]=="missing_node_expression_closers" for e in audit["edits"])
+        assert all(e["inserted"] in ("]}","]}]}","]}]}}" )
+                   for e in audit["edits"])
+        # Punctuation recovery neither trusts nor modifies the author source,
+        # and all source semantics must pass the *separate* strict model schema.
+        if case=="hard_number_theory_4k3":
+            ir=StructureOnlyMathIRV2.model_validate(data)
+            assert ir.proofRoutes
+            assert len(ir.proofRoutes[0].nodes)>=6
+        else:
+            from pydantic import ValidationError
+>           with pytest.raises(ValidationError):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE <class 'pydantic_core._pydantic_core.ValidationError'>
+
+tests/v2/test_real_complex_mathir_json_delimiters.py:53: Failed
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/starlette/testclient.py:45
+  /[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.venv/lib/python3.12/site-packages/starlette/testclient.py:45: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/v2/test_real_complex_mathir_json_delimiters.py::test_real_complex_raw_model_json_schema_anchored_delimiters[hard_linear_algebra_spectral-4]
+1 failed, 899 passed, 70 deselected, 1 warning in 10.70s

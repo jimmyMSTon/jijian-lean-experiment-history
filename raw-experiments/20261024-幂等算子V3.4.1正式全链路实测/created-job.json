@@ -1,0 +1,21 @@
+{
+  "id": "bcf47015-bd22-4017-a532-8fffedf0220d",
+  "status": "queued",
+  "stage": "queued",
+  "created": "2026-10-24T14:16:48.339818+00:00",
+  "updated": "2026-10-24T14:16:48.339818+00:00",
+  "request": {
+    "input": {
+      "kind": "text",
+      "text": "【独立泛化测试｜大学线性代数·幂等算子，不是高考或竞赛原题】\n\n题目：设 V 是任意实向量空间，P:V→V 是线性映射，且 P∘P=P，也就是对所有 v∈V 有 P(P(v))=P(v)。证明 V=ker(P)⊕Im(P)。具体而言，任意 v∈V 存在唯一的一对向量 (u,w)，满足 P(u)=0、w 属于 P 的像空间，并且 v=u+w。\n\n【原证明，不提供 Lean 代码】\n\n第一步：证明核空间与像空间的交集仅含零向量。任取 z∈ker(P)∩Im(P)。由于 z∈Im(P)，存在 y∈V 使 z=P(y)。因此 P(z)=P(P(y))=P(y)=z，其中使用了题设 P∘P=P。但 z∈ker(P)，所以 P(z)=0，从而 z=0。又由于零向量显然同时属于核空间和像空间，所以 ker(P)∩Im(P)={0}。\n\n第二步：证明每个向量都能分解为核空间元素与像空间元素之和。任取 v∈V。令 u=v−P(v)，w=P(v)。由 P 的线性性及 P²=P，得到 P(u)=P(v)−P(P(v))=P(v)−P(v)=0，因此 u∈ker(P)。而 w=P(v)，故 w∈Im(P)。并且 u+w=(v−P(v))+P(v)=v。因此 V=ker(P)+Im(P)。\n\n第三步：证明这样的分解唯一。假定 v=u₁+w₁=u₂+w₂，其中 u₁,u₂∈ker(P)，w₁,w₂∈Im(P)。移项得 u₁−u₂=w₂−w₁。因为核空间与像空间都是线性子空间，所以共同的这个向量同时属于 ker(P) 与 Im(P)。由第一步可知它等于零向量，于是 u₁=u₂；再由 v=u₁+w₁=u₂+w₂，得到 w₁=w₂。故分解唯一。\n\n综上，存在性及唯一性均得到证明，所以 V=ker(P)⊕Im(P)。证毕。",
+      "assetId": null,
+      "dataUrl": null,
+      "strokes": null,
+      "recognitionId": null,
+      "parts": null
+    },
+    "explain": false
+  },
+  "result": null,
+  "error": null
+}

@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jijian-lean-backend"
+version = "2.0.0"
+description = "极简 Lean 数学证明编译后端：识别、结构化、形式化、内核核验与来源映射"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi==0.128.2", "pydantic==2.13.4", "httpx==0.28.1",
+  "uvicorn==0.48.0", "Pillow==12.3.0", "python-multipart==0.0.29",
+  "jsonschema==4.26.0", "pypdfium2==5.8.0"
+]
+[project.optional-dependencies]
+dev = ["pytest==9.0.2", "jsonschema==4.26.0"]
+[project.scripts]
+jijian-backend = "backend.__main__:main"
+[tool.setuptools.packages.find]
+include = ["backend*"]
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+markers = ["live_ai: 明确选择时会访问真实 AI Provider 的测试", "recorded: 保存的真实响应回放；零真实 API", "live: 实际第三方服务或 Lean 运行环境验证；未配置时明确跳过", "lean_local: 本机 Lean elaboration，不访问 AI 服务"]

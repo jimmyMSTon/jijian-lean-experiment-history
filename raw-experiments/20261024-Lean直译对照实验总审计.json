@@ -1,0 +1,238 @@
+{
+  "date": "2026-10-24",
+  "baselineCommit": "ea90f7c6785a6eb8e7a82f62250248f1e0c09978",
+  "experiment": "single model call generic source-to-Lean proof term with original source offset mapping; direct kernel checked, bypasses homemade MathIR",
+  "officialMacAppReplaced": false,
+  "productionFeatureComplete": false,
+  "results": [
+    {
+      "id": "hard_crt",
+      "frozenSourceSha256": "1c6b23432d04a7a96eb4f519f6cce568f26efac2e4add0a592bcecea8d2e2f44",
+      "verifiedSourcePositionMappings": 14,
+      "sourceEquivalentKernelCertified": false,
+      "llmDeclaredComplete": true,
+      "statement": "∀ (a b : ℕ), 0 < a → 0 < b → Nat.gcd a b = 1 → ∀ (r s : ℤ), ∃ x : ℤ, (a : ℤ) ∣ (x - r) ∧ (b : ℤ) ∣ (x - s) ∧ (∀ y : ℤ, (a : ℤ) ∣ (y - r) → (b : ℤ) ∣ (y - s) → ((a : ℤ) * (b : ℤ)) ∣ (y - x))",
+      "llmUnsupportedSourceStep": [],
+      "realDeepseekRequests": 1,
+      "usage": {
+        "prompt_tokens": 1148,
+        "completion_tokens": 25736,
+        "total_tokens": 26884,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 23659
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 1148
+      },
+      "leanKernelVerified": true,
+      "certificate": {
+        "auditMethod": "fresh_environment_data_only_kernel_replay",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "checked": true,
+        "dependencyUsage": [],
+        "formalStatement": "∀ (a b : ℕ),\n  0 < a →\n    0 < b →\n      a.gcd b = 1 → ∀ (r s : ℤ), ∃ x, ↑a ∣ x - r ∧ ↑b ∣ x - s ∧ ∀ (y : ℤ), ↑a ∣ y - r → ↑b ∣ y - s → ↑a * ↑b ∣ y - x",
+        "statementMatched": true,
+        "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+        "expectedExpressionSha256": "2dfa28e3423b53815c779c2f8e5cdbefc3373ac53f00852c69fa35c220f147cf",
+        "proofExpressionSha256": "8d6350d13f0bcdb5cd8ea05b40005793618d1b954b52ca4df9afa8c9739af2d8",
+        "statement_hash": "untrusted-experimental-direct-source-translation",
+        "nativeExpressionComparison": "structural_equal",
+        "sourceTypeSha256": "bab44e7482a144152602950969b8afc1d86f48b884ded6c7918c23e1ccd5e482",
+        "sourceProofSha256": "bd2373eec8cc54d59d08810e81ae526b17b2aaa3909eeb69ec174bc7592bbbef",
+        "runtime": {
+          "configured": true,
+          "executableFound": true,
+          "projectFound": true,
+          "runtimeBuilt": true,
+          "runtimeIntegrity": true,
+          "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+          "sandbox": "macos",
+          "isolated": true,
+          "ready": true,
+          "toolchain": "leanprover/lean4:v4.34.0",
+          "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+          "liveTestedInThisDistribution": false
+        },
+        "additionalAxioms": [],
+        "auditIsolation": "fresh_import_environment_reset_between_candidates"
+      },
+      "durationSeconds": 191.11,
+      "originalArtifacts": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/direct-lean-first-crt-single-try-20261024/final.json"
+    },
+    {
+      "id": "new_set_distributivity",
+      "frozenSourceSha256": "98e1a9c5b76f7d0e60857f95d4dddae2f1843f7281eb6808878327b85c6a88df",
+      "verifiedSourcePositionMappings": 6,
+      "sourceEquivalentKernelCertified": false,
+      "llmDeclaredComplete": true,
+      "statement": "∀ (A B C : Set ℤ), A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)",
+      "llmUnsupportedSourceStep": [],
+      "realDeepseekRequests": 1,
+      "usage": {
+        "prompt_tokens": 997,
+        "completion_tokens": 5250,
+        "total_tokens": 6247,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 4594
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 997
+      },
+      "leanKernelVerified": true,
+      "certificate": {
+        "auditMethod": "fresh_environment_data_only_kernel_replay",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ],
+        "checked": true,
+        "dependencyUsage": [],
+        "formalStatement": "∀ (A B C : Set ℤ), A ∩ (B ∪ C) = A ∩ B ∪ A ∩ C",
+        "statementMatched": true,
+        "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+        "expectedExpressionSha256": "84875265b86a2248f488ecbb9986274c2a5d9ded5b9cea99399c0893873224b2",
+        "proofExpressionSha256": "7e0d8145ae3781a513048755924848c6e6b656b36c019d4ce4d0363275747525",
+        "statement_hash": "untrusted-experimental-direct-source-translation",
+        "nativeExpressionComparison": "structural_equal",
+        "sourceTypeSha256": "3b68bb850f75713ae048c2ace8d2dcfd3391ae3e8e85ac7a1f9503922af55dc7",
+        "sourceProofSha256": "51b18c4783c1ebf0aeb2bf0d96bac7808f746b4ee692cc5b668fc339c43d3559",
+        "runtime": {
+          "configured": true,
+          "executableFound": true,
+          "projectFound": true,
+          "runtimeBuilt": true,
+          "runtimeIntegrity": true,
+          "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+          "sandbox": "macos",
+          "isolated": true,
+          "ready": true,
+          "toolchain": "leanprover/lean4:v4.34.0",
+          "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+          "liveTestedInThisDistribution": false
+        },
+        "additionalAxioms": [],
+        "auditIsolation": "fresh_import_environment_reset_between_candidates"
+      },
+      "durationSeconds": 62.15,
+      "originalArtifacts": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/direct-lean-generic-new_set_distributivity/final.json"
+    },
+    {
+      "id": "new_bezout_euclid",
+      "frozenSourceSha256": "db009143b33eaf080cc74ee9af1450afac463a76f8361daf17c0361d91317b9a",
+      "verifiedSourcePositionMappings": 4,
+      "sourceEquivalentKernelCertified": false,
+      "llmDeclaredComplete": true,
+      "statement": "∀ a b c : ℤ, (∃ u v : ℤ, u * a + v * b = 1) → a ∣ b * c → a ∣ c",
+      "llmUnsupportedSourceStep": [],
+      "realDeepseekRequests": 1,
+      "usage": {
+        "prompt_tokens": 941,
+        "completion_tokens": 6863,
+        "total_tokens": 7804,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 6313
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 941
+      },
+      "leanKernelVerified": true,
+      "certificate": {
+        "auditMethod": "fresh_environment_data_only_kernel_replay",
+        "axioms": [
+          "propext"
+        ],
+        "checked": true,
+        "dependencyUsage": [],
+        "formalStatement": "∀ (a b c : ℤ), (∃ u v, u * a + v * b = 1) → a ∣ b * c → a ∣ c",
+        "statementMatched": true,
+        "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+        "expectedExpressionSha256": "edcee8db1cff248ea10385541d28f001a15d06c5e357e807164d36d2c78b040f",
+        "proofExpressionSha256": "186159cde3deb1a241aa72c062158c19e0f07319c323b68e24615707e05acd1e",
+        "statement_hash": "untrusted-experimental-direct-source-translation",
+        "nativeExpressionComparison": "structural_equal",
+        "sourceTypeSha256": "c7ee56ea56ca0f0353a06d3bd76ba4a81964202dba81df24a115c3ab6097276e",
+        "sourceProofSha256": "fba3c4ee373d8abefcaecb48b96d41dd279466725b65df2d70be26e0f110cc74",
+        "runtime": {
+          "configured": true,
+          "executableFound": true,
+          "projectFound": true,
+          "runtimeBuilt": true,
+          "runtimeIntegrity": true,
+          "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+          "sandbox": "macos",
+          "isolated": true,
+          "ready": true,
+          "toolchain": "leanprover/lean4:v4.34.0",
+          "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+          "liveTestedInThisDistribution": false
+        },
+        "additionalAxioms": [],
+        "auditIsolation": "fresh_import_environment_reset_between_candidates"
+      },
+      "durationSeconds": 74.3,
+      "originalArtifacts": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/direct-lean-generic-new_bezout_euclid/final.json"
+    },
+    {
+      "id": "new_false_real_square",
+      "frozenSourceSha256": "91257db1ec311dc770e896e76c8857abc67b2b6ba58b328d75703c2d95ecdb52",
+      "verifiedSourcePositionMappings": 6,
+      "sourceEquivalentKernelCertified": false,
+      "llmDeclaredComplete": false,
+      "statement": "∀ x : ℝ, x ^ 2 ≥ x",
+      "llmUnsupportedSourceStep": [
+        "原文断言“乘积 x(x−1) 总是非负”是错误命题；对任意实数 x 不成立。Lean proofTerm 中对应步骤 `have hnonneg : 0 ≤ x * (x - 1) := by positivity` 无法完成证明，因此整体原证明不能被形式化验证。"
+      ],
+      "realDeepseekRequests": 1,
+      "usage": {
+        "prompt_tokens": 881,
+        "completion_tokens": 4745,
+        "total_tokens": 5626,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 4275
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 881
+      },
+      "leanKernelVerified": false,
+      "certificate": null,
+      "durationSeconds": 24.63,
+      "originalArtifacts": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/direct-lean-generic-new_false_real_square/final.json"
+    }
+  ],
+  "totals": {
+    "realCalls": 4,
+    "inputTokens": 3967,
+    "outputTokens": 42594,
+    "allTokens": 46561,
+    "correctTheoremKernelCertificates": 3,
+    "incorrectProofRefusedWithoutAlternative": 1,
+    "originalManuscriptSemanticEquivalenceCertifications": 0,
+    "statementSourceOffsetsExact": 30
+  },
+  "incorrectTheoremSeparateLeanNegationCertified": true,
+  "negativeAudit": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-通用Lean直译错误样本独立反证.json",
+  "legacyMathIRNewHoldout": {
+    "calls": 7,
+    "tokens": 172699,
+    "twoTestsBothEarlyPremiseMisclassified": true,
+    "notIdenticalTestSetToDirectExperiment": true
+  },
+  "caveat": "Proof terms are generated by a model but kernel verified. Source step excerpt positions validated; these are not proof of full semantic equivalence. Human inspection of route is still useful. Four cases are not enough to certify generalized reliability.",
+  "newStrategyRecommendation": "freeze source-premise keyword guards, build smaller Lean-first candidate only after larger independent blinded benchmarks; do not replace signed installed production before comparisons and UI verification."
+}

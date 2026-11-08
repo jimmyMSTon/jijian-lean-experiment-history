@@ -1,0 +1,488 @@
+{
+  "id": "wrong_A_true_inequality_invalid_assumption",
+  "topic": "真命题错误证明：实数不等式偷加 a≥b 前提",
+  "source": "命题：对任意实数 a,b∈ℝ，都有 a²+b²≥2ab。错误证明：任取实数 a,b。因为 a≥b，所以 a−b≥0。两边平方得 (a−b)²≥0。展开即 a²−2ab+b²≥0，从而 a²+b²≥2ab。证毕。",
+  "reference": "定理为真；错误步骤是从 a,b∈ℝ 擅自声称 a≥b。反例 a=0,b=1 否定该步骤。应只通过形式命题，不应认证原稿推理。",
+  "appSourceCommit": "37e54d526826b2d5d79dc161dd8873d1946a0c41",
+  "providerFixture": false,
+  "kernelFixture": false,
+  "handWrittenLean": false,
+  "handWrittenMathIR": false,
+  "transport": "signed installed App packaged backend POST /api/v2/jobs",
+  "guiInteracted": false,
+  "startedUtc": "2026-10-24T05:12:59.435197+00:00",
+  "sourceSha256": "d374e67dddc7559ad859c7b207df15b1502f9389fc8b2de5122963d40c6aa1db",
+  "capabilities": {
+    "ai": {
+      "configured": true,
+      "provider": "deepseek",
+      "model": "deepseek-flash",
+      "thinking": "provider_default",
+      "liveTested": false
+    },
+    "lean": {
+      "configured": true,
+      "executableFound": true,
+      "projectFound": true,
+      "runtimeBuilt": true,
+      "runtimeIntegrity": true,
+      "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+      "sandbox": "macos",
+      "isolated": true,
+      "ready": true,
+      "toolchain": "leanprover/lean4:v4.34.0",
+      "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+      "liveTestedInThisDistribution": false
+    },
+    "mockFallback": false,
+    "health": "running"
+  },
+  "jobId": "38720a89-646e-48ec-b26f-bbd3a46850f5",
+  "submittedUtc": "2026-10-24T05:13:00.718378+00:00",
+  "stageTransitions": [
+    {
+      "status": "running",
+      "stage": "recognizing",
+      "seconds": 1.29,
+      "utc": "2026-10-24T05:13:00.728515+00:00"
+    },
+    {
+      "status": "completed",
+      "stage": "completed",
+      "seconds": 104.08,
+      "utc": "2026-10-24T05:14:43.511988+00:00"
+    }
+  ],
+  "terminalStatus": "completed",
+  "terminalStage": "completed",
+  "terminalError": null,
+  "result": {
+    "runStatus": "incomplete",
+    "termination": "author_unproved_premise",
+    "kernelVerified": false,
+    "fixedStatementKernelPassed": false,
+    "originalRouteKernelPassed": false,
+    "sourceProofVerified": false,
+    "originalProofVerified": false,
+    "originalMeaning": "model_interpretation",
+    "statement": null,
+    "failure": {
+      "code": "AUTHOR_UNPROVEN_ASSUMPTION",
+      "message": "原稿把未经证明的断言当作已知前提。已定位来源，禁止模型替作者补写或更换证明。",
+      "details": {
+        "issues": [
+          {
+            "kind": "unlicensed_source_assumption_requires_proof",
+            "routeId": "route_erroneous_proof",
+            "nodeId": "n_premise_ge",
+            "originalKind": "claim",
+            "effectiveKind": "claim",
+            "sourceRefs": [
+              {
+                "blockId": "b0",
+                "start": 42,
+                "end": 48
+              }
+            ],
+            "quotedOriginalSource": [
+              {
+                "blockId": "b0",
+                "start": 42,
+                "end": 48,
+                "text": "因为 a≥b"
+              }
+            ],
+            "reason": "Author stated a causal premise with no prior dependency or theorem premise; cannot automatically invent a new proof for that premise.",
+            "noNewMathematicalPremise": true,
+            "mathematicalExpressionUnchanged": true,
+            "mustNotBeReprovedWithDifferentRoute": true
+          }
+        ],
+        "suggestedUserAction": "核对已知前提，或在原稿中给出该断言的合法证明。",
+        "resultType": "source_inference_not_justified_not_a_mathematical_counterexample"
+      }
+    },
+    "mathIRId": "8f171c0d-3975-4486-b29f-1be95b7d3b97",
+    "sourceStructureId": "8493f4a3-5abf-4a2e-8c4f-15fbfa7de52e",
+    "originalProofFidelity": {
+      "sourceProofVerified": false,
+      "status": "not_independently_established",
+      "basis": "Formal Kernel proof alone cannot certify an author's natural-language reasoning. Unrecognized source rule remains unconfirmed.",
+      "routes": [
+        {
+          "routeId": "route_erroneous_proof",
+          "formalRouteKernelPassed": false,
+          "sourceReasoningVerified": false,
+          "sourceReasoningStatus": "not_independently_established",
+          "steps": [
+            {
+              "nodeId": "n_premise_ge",
+              "formalStepKernelPassed": false,
+              "proofTermOrigin": "missing",
+              "sourceReasoningVerified": false,
+              "sourceReasoningStatus": "source_reasoning_not_independently_established",
+              "sourceInferenceRule": null,
+              "sourceInferenceEvidence": null
+            },
+            {
+              "nodeId": "n_diff_nonneg",
+              "formalStepKernelPassed": false,
+              "proofTermOrigin": "missing",
+              "sourceReasoningVerified": false,
+              "sourceReasoningStatus": "source_reasoning_not_independently_established",
+              "sourceInferenceRule": null,
+              "sourceInferenceEvidence": null
+            },
+            {
+              "nodeId": "n_square_nonneg",
+              "formalStepKernelPassed": false,
+              "proofTermOrigin": "missing",
+              "sourceReasoningVerified": false,
+              "sourceReasoningStatus": "source_reasoning_not_independently_established",
+              "sourceInferenceRule": null,
+              "sourceInferenceEvidence": null
+            },
+            {
+              "nodeId": "n_expanded_nonneg",
+              "formalStepKernelPassed": false,
+              "proofTermOrigin": "missing",
+              "sourceReasoningVerified": false,
+              "sourceReasoningStatus": "source_reasoning_not_independently_established",
+              "sourceInferenceRule": null,
+              "sourceInferenceEvidence": null
+            },
+            {
+              "nodeId": "n_conclusion",
+              "formalStepKernelPassed": false,
+              "proofTermOrigin": "missing",
+              "sourceReasoningVerified": false,
+              "sourceReasoningStatus": "source_reasoning_not_independently_established",
+              "sourceInferenceRule": null,
+              "sourceInferenceEvidence": null
+            },
+            {
+              "nodeId": "n_goal_universal",
+              "formalStepKernelPassed": false,
+              "proofTermOrigin": "missing",
+              "sourceReasoningVerified": false,
+              "sourceReasoningStatus": "source_reasoning_not_independently_established",
+              "sourceInferenceRule": null,
+              "sourceInferenceEvidence": null
+            }
+          ]
+        }
+      ]
+    },
+    "reasoningFidelity": {
+      "version": 2,
+      "authority": "independent_source_inference_certificate",
+      "status": "formally_incomplete",
+      "formalRouteKernelPassed": false,
+      "sourceEvidenceBoundToStatement": true,
+      "sourceDomainConflicts": [],
+      "expectedStatementHash": "b996156c73994dc471b88ff2c7f46310da70e476b108e876ff002a36dba30340",
+      "originalProofVerified": false,
+      "sourceInferenceCertificationAvailable": true,
+      "sourceRuleVerifiedStepCount": 0,
+      "sourceRuleVerifiedRouteCount": 0,
+      "unconfirmedSourceStepCount": 6,
+      "unconfirmedSourceSteps": [
+        {
+          "routeId": "route_erroneous_proof",
+          "nodeId": "n_premise_ge",
+          "reason": "original_step_proof_missing",
+          "ruleCheckReason": "ambiguous_source_step_identity"
+        },
+        {
+          "routeId": "route_erroneous_proof",
+          "nodeId": "n_diff_nonneg",
+          "reason": "original_step_proof_missing",
+          "ruleCheckReason": "ambiguous_source_step_identity"
+        },
+        {
+          "routeId": "route_erroneous_proof",
+          "nodeId": "n_square_nonneg",
+          "reason": "original_step_proof_missing",
+          "ruleCheckReason": "ambiguous_source_step_identity"
+        },
+        {
+          "routeId": "route_erroneous_proof",
+          "nodeId": "n_expanded_nonneg",
+          "reason": "original_step_proof_missing",
+          "ruleCheckReason": "ambiguous_source_step_identity"
+        },
+        {
+          "routeId": "route_erroneous_proof",
+          "nodeId": "n_conclusion",
+          "reason": "original_step_proof_missing",
+          "ruleCheckReason": "ambiguous_source_step_identity"
+        },
+        {
+          "routeId": "route_erroneous_proof",
+          "nodeId": "n_goal_universal",
+          "reason": "original_step_proof_missing",
+          "ruleCheckReason": "ambiguous_source_step_identity"
+        }
+      ],
+      "routes": [
+        {
+          "routeId": "route_erroneous_proof",
+          "formalRouteKernelPassed": false,
+          "originalReasoningVerified": false,
+          "originalReasoningStatus": "not_independently_certified",
+          "goalSourceMatch": null,
+          "theoremPremisesSourceMatched": true,
+          "declarationTypesSourceMatched": true,
+          "sourceDomainConflicts": [],
+          "noExplicitSourceDomainDrift": true,
+          "unresolvedAmbiguitiesAbsent": true,
+          "authoredFormulaCoverageMatched": false,
+          "statementIdentityMatched": false,
+          "steps": [
+            {
+              "nodeId": "n_premise_ge",
+              "formalStepKernelPassed": false,
+              "originalInferenceVerified": false,
+              "originalInferenceStatus": "not_independently_certified",
+              "proofTermOrigin": "missing",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [],
+              "rule": null,
+              "ruleEvidence": null,
+              "ruleCheckReason": "kernel_statement_identity_not_attested",
+              "statementIdentityMatched": false,
+              "reason": "original_step_proof_missing"
+            },
+            {
+              "nodeId": "n_diff_nonneg",
+              "formalStepKernelPassed": false,
+              "originalInferenceVerified": false,
+              "originalInferenceStatus": "not_independently_certified",
+              "proofTermOrigin": "missing",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [
+                "n_premise_ge"
+              ],
+              "rule": null,
+              "ruleEvidence": null,
+              "ruleCheckReason": "kernel_statement_identity_not_attested",
+              "statementIdentityMatched": false,
+              "reason": "original_step_proof_missing"
+            },
+            {
+              "nodeId": "n_square_nonneg",
+              "formalStepKernelPassed": false,
+              "originalInferenceVerified": false,
+              "originalInferenceStatus": "not_independently_certified",
+              "proofTermOrigin": "missing",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [
+                "n_diff_nonneg"
+              ],
+              "rule": null,
+              "ruleEvidence": null,
+              "ruleCheckReason": "kernel_statement_identity_not_attested",
+              "statementIdentityMatched": false,
+              "reason": "original_step_proof_missing"
+            },
+            {
+              "nodeId": "n_expanded_nonneg",
+              "formalStepKernelPassed": false,
+              "originalInferenceVerified": false,
+              "originalInferenceStatus": "not_independently_certified",
+              "proofTermOrigin": "missing",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [
+                "n_square_nonneg"
+              ],
+              "rule": null,
+              "ruleEvidence": null,
+              "ruleCheckReason": "kernel_statement_identity_not_attested",
+              "statementIdentityMatched": false,
+              "reason": "original_step_proof_missing"
+            },
+            {
+              "nodeId": "n_conclusion",
+              "formalStepKernelPassed": false,
+              "originalInferenceVerified": false,
+              "originalInferenceStatus": "not_independently_certified",
+              "proofTermOrigin": "missing",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [
+                "n_expanded_nonneg"
+              ],
+              "rule": null,
+              "ruleEvidence": null,
+              "ruleCheckReason": "kernel_statement_identity_not_attested",
+              "statementIdentityMatched": false,
+              "reason": "original_step_proof_missing"
+            },
+            {
+              "nodeId": "n_goal_universal",
+              "formalStepKernelPassed": false,
+              "originalInferenceVerified": false,
+              "originalInferenceStatus": "not_independently_certified",
+              "proofTermOrigin": "missing",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 2,
+              "declaredDependencies": [
+                "n_conclusion"
+              ],
+              "rule": null,
+              "ruleEvidence": null,
+              "ruleCheckReason": "kernel_statement_identity_not_attested",
+              "statementIdentityMatched": false,
+              "reason": "original_step_proof_missing"
+            }
+          ]
+        }
+      ],
+      "explanation": "Only exact source-anchored equations with an independently checked arithmetic inference rule and a genuine Kernel certificate are certified. Model proof reconstruction alone never qualifies. Unrecognized natural language is unconfirmed, not disproved."
+    },
+    "routeSummary": [
+      {
+        "routeId": "route_erroneous_proof",
+        "status": "incomplete",
+        "formalRouteKernelPassed": null,
+        "completeOriginalRouteKernelPassed": false,
+        "originalReasoningVerified": false,
+        "certificate": {},
+        "steps": 6
+      }
+    ],
+    "steps": [
+      {
+        "route": "route_erroneous_proof",
+        "node": "n_premise_ge",
+        "status": "incomplete",
+        "mathematicalStatus": "not_established",
+        "failureClass": "missing_proof",
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "missing",
+        "originalInferenceVerified": false,
+        "sourceInferenceRule": null,
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "route_erroneous_proof",
+        "node": "n_diff_nonneg",
+        "status": "incomplete",
+        "mathematicalStatus": "not_established",
+        "failureClass": "missing_proof",
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "missing",
+        "originalInferenceVerified": false,
+        "sourceInferenceRule": null,
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "route_erroneous_proof",
+        "node": "n_square_nonneg",
+        "status": "incomplete",
+        "mathematicalStatus": "not_established",
+        "failureClass": "missing_proof",
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "missing",
+        "originalInferenceVerified": false,
+        "sourceInferenceRule": null,
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "route_erroneous_proof",
+        "node": "n_expanded_nonneg",
+        "status": "incomplete",
+        "mathematicalStatus": "not_established",
+        "failureClass": "missing_proof",
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "missing",
+        "originalInferenceVerified": false,
+        "sourceInferenceRule": null,
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "route_erroneous_proof",
+        "node": "n_conclusion",
+        "status": "incomplete",
+        "mathematicalStatus": "not_established",
+        "failureClass": "missing_proof",
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "missing",
+        "originalInferenceVerified": false,
+        "sourceInferenceRule": null,
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "route_erroneous_proof",
+        "node": "n_goal_universal",
+        "status": "incomplete",
+        "mathematicalStatus": "not_established",
+        "failureClass": "missing_proof",
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "missing",
+        "originalInferenceVerified": false,
+        "sourceInferenceRule": null,
+        "diagnostics": [],
+        "declaredDependencies": null
+      }
+    ]
+  },
+  "finishedUtc": "2026-10-24T05:14:43.517705+00:00",
+  "wallSeconds": 104.08,
+  "provider": {
+    "realAttempts": 2,
+    "started": 2,
+    "finished": 2,
+    "requestCount": 2,
+    "usage": {
+      "input_tokens": 28151,
+      "output_tokens": 21112,
+      "incompleteUsageRecords": 0
+    },
+    "records": [
+      {
+        "request_id": "01460a16-e65a-4656-81c6-51d65a236a37",
+        "stage": "mathir",
+        "reason": "StructureOnlyMathIRV2",
+        "model": "deepseek-flash",
+        "status": "response_received",
+        "input_tokens": 11886,
+        "output_tokens": 10977,
+        "retry_index": 0,
+        "cache_hit": null,
+        "real_request_attempted": true,
+        "started_at": null,
+        "finished_at": null
+      },
+      {
+        "request_id": "98590d3f-2966-43b5-a882-f08566345212",
+        "stage": "mathir",
+        "reason": "StructureOnlyMathIRV2",
+        "model": "deepseek-flash",
+        "status": "response_received",
+        "input_tokens": 16265,
+        "output_tokens": 10135,
+        "retry_index": 0,
+        "cache_hit": null,
+        "real_request_attempted": true,
+        "started_at": null,
+        "finished_at": null
+      }
+    ]
+  },
+  "dbCounts": {
+    "artifacts": 7,
+    "jobs": 1,
+    "events": 11
+  },
+  "archiveSha256": "937a038ebc068a5800d1891f15f4ba8a421c2c22eada7494f091383bdea35f6e"
+}

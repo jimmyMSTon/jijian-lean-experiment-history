@@ -1,0 +1,93 @@
+{
+  "id": "f8b4c910-26d1-4261-af70-dbb4af880f29",
+  "status": "completed",
+  "stage": "completed",
+  "created": "2026-10-24T08:52:23.687273+00:00",
+  "updated": "2026-10-24T08:53:15.068735+00:00",
+  "request": {
+    "input": {
+      "kind": "text",
+      "text": "已知函数f(x)的定义域为R，且当x<0时，f(x)=2^x。对任意x0∈R，定义集合D(x0)={d∈R | f(x0+d)>f(x0)}。\n（1）若当x≥0时，f(x)=1−x，求D(−1)；\n（2）若f(x)是奇函数，f(x1)≤f(x2)，且x1·x2≠0，证明D(x2)⊆D(x1)；\n（3）设f(x)满足：①若f(x1)≤f(x2)，则D(x2)⊆D(x1)；②当0<x<1时，f(x)<f(0)。\n(i)证明f(0)≥1；(ii)证明f(x)在(0,+∞)单调递增。\n\n【网络教师版参考证明】\n（1）根据题意，有D(−1)={d∈R | f(d−1)>1/2}={d | −1<d−1<1/2}={d | 0<d<3/2}。\n（2）根据f为奇函数，有f(x)=2^x (x<0)，f(0)=0，f(x)=−2^(−x) (x>0)。于是当x0<0时，D(x0)=(0,−x0)；当x0=0时，D(x0)=(−∞,0)；当x0>0时，D(x0)=(−∞,−x0]∪(0,+∞)。\n由f(x1)≤f(x2)且x1·x2≠0，有如下情形：情形一x1,x2在原点同侧，即x1≤x2<0或0<x1≤x2。此时−x1≥−x2，所以D(x2)⊆D(x1)；情形二x2<0<x1。此时D(x2)⊆(0,+∞)⊆D(x1)。综上所述，命题得证。\n（3）根据x<0时f(x)=2^x，可得当x0<0时，(0,−x0)⊆D(x0)⊆(0,+∞)。根据条件②，有(0,1)∩D(0)=∅。\n(i)反证。假设f(0)<1，则存在−1<x0<0使得f(0)<f(x0)，于是由条件①得(0,−x0)⊆D(x0)⊆D(0)，由于−x0<1，这与(0,1)∩D(0)=∅矛盾，故f(0)≥1。\n(ii)先证明引理：当x>0时f(x)≤0。反证：假设存在x1>0且f(x1)>0，则存在x0<0，使f(x0)<f(x1)。由①有D(x1)⊆D(x0)⊆(0,+∞)。因为−x1<0，所以−x1∉D(x1)，从而f(x1)≥f(x1+(−x1))=f(0)。因此x1≥1，否则与条件②矛盾。由此当0<x<1时f(x)≤0，且由(i)结论f(x1)≥f(0)≥1。\n于是对任意s,t<0且s<t，有f(s)<f(t)<f(x1)，因而D(x1)⊆D(t)⊆D(s)。由f(t)<f(x1)得x1−t∈D(t)，于是x1−t∈D(s)，进而f(s+(x1−t))>f(s)>0，因此可得当x<x1时有f(x)>0。这与0<x<1时f(x)≤0矛盾。所以引理得证。\n利用引理完成证明：根据引理可得当x0<0时D(x0)=(0,+∞)，而当x1>0时f(x1)<0<f(x0)，所以D(x0)⊆D(x1)，即(0,+∞)⊆D(x1)。若0<x1<x2，则x2−x1∈D(x1)，从而f(x2)>f(x1)，所以f在(0,+∞)单调递增。",
+      "assetId": null,
+      "dataUrl": null,
+      "strokes": null,
+      "recognitionId": null,
+      "parts": null
+    },
+    "explain": false
+  },
+  "result": {
+    "id": "5c2578a6-55aa-4942-8685-80bd2e55df73",
+    "kind": "experimental_lean_first",
+    "sourceSha256": "8e28601633e34d257a8e3a39cb60a126829c00968cca7c1f67635f6f59457695",
+    "model": "deepseek-flash",
+    "provenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "43cedb25-1651-42ff-9cc9-5bd79007e900",
+      "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+      "usage": {
+        "prompt_tokens": 1778,
+        "completion_tokens": 9526,
+        "total_tokens": 11304,
+        "prompt_tokens_details": {
+          "cached_tokens": 512
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 8577
+        },
+        "prompt_cache_hit_tokens": 512,
+        "prompt_cache_miss_tokens": 1266
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "statement": "(∀ (f : ℝ → ℝ), (∀ x, x < 0 → f x = Real.rpow 2 x) → (∀ x, 0 ≤ x → f x = 1 - x) → (let D : ℝ → Set ℝ := fun x0 => {d | f (x0 + d) > f x0}; D (-1) = Set.Ioo (0 : ℝ) (3 / 2 : ℝ))) ∧ (∀ (f : ℝ → ℝ), (∀ x, x < 0 → f x = Real.rpow 2 x) → (∀ x, f (-x) = - f x) → ∀ x1 x2, f x1 ≤ f x2 → x1 * x2 ≠ 0 → (let D : ℝ → Set ℝ := fun x0 => {d | f (x0 + d) > f x0}; D x2 ⊆ D x1)) ∧ (∀ (f : ℝ → ℝ), (∀ x, x < 0 → f x = Real.rpow 2 x) → (∀ x1 x2, f x1 ≤ f x2 → (let D : ℝ → Set ℝ := fun x0 => {d | f (x0 + d) > f x0}; D x2 ⊆ D x1)) → (∀ x, 0 < x → x < 1 → f x < f 0) → f 0 ≥ 1 ∧ (∀ x y, 0 < x → x < y → f x < f y))",
+    "proofTerm": "by\n  classical\n  constructor\n  · intro f hneg hpos\n    ext d\n    -- （1）需按 d-1<0 与 d-1≥0 分类；原稿中间不等式有误\n    simp only [Set.mem_setOf_eq, Set.mem_Ioo]\n    constructor\n    · intro h\n      constructor <;> linarith\n    · intro h\n      linarith\n  · constructor\n    · intro f hneg hodd x1 x2 hle hne d hd\n      -- （2）需先导出 x>0 时 f(x)=-2^{-x}，再分三情形\n      exact hd\n    · intro f hneg hcond hsmall\n      constructor\n      · -- （3）(i) 反证\n        linarith\n      · intro x y hx hxy\n        -- （3）(ii) 引理与单调性\n        linarith",
+    "sourceSteps": [],
+    "sourcePositionsValid": false,
+    "sourceEquivalenceCertified": false,
+    "originalProofCertified": false,
+    "kernelVerified": false,
+    "unsupportedOriginalSteps": [
+      "（1）原稿中 D(-1)={d | f(d-1)>1/2}={d | -1<d-1<1/2} 的中间不等式与分段定义 x≥0 时 f(x)=1-x 不一致；形式化时需按 d-1<0 与 d-1≥0 分类证明 D(-1)=(0,3/2)，未完成该分类证明。",
+      "（2）由奇性导出 x>0 时 f(x)=-2^{-x}、f(0)=0，并完整验证 D(x0) 在 x0<0、x0=0、x0>0 三情形的区间表达式及包含关系，未完成。",
+      "（3）(i) 反证 f(0)<1，取 -1<x0<0 使 f(0)<f(x0)，再用条件①推出 (0,-x0)⊆D(0) 与 (0,1)∩D(0)=∅ 矛盾，未完成。",
+      "（3）(ii) 先证明引理“x>0 时 f(x)≤0”的复杂反证，包括取 x1>0、x0<0、D(x1)⊆D(x0)⊆(0,+∞)、-x1∉D(x1)、推出 f(x1)≥f(0)、再取 s<t<0 构造矛盾，未完成。",
+      "利用引理得到 x0<0 时 D(x0)=(0,+∞)，再由 D(x0)⊆D(x1) 推出 (0,+∞)⊆D(x1)，最后用 x2-x1∈D(x1) 得 f(x2)>f(x1)，未完成。"
+    ],
+    "transcriptionComplete": false,
+    "status": "invalid_source_mapping",
+    "lean": null,
+    "version": "3.0",
+    "source": {
+      "kind": "text",
+      "raw": "已知函数f(x)的定义域为R，且当x<0时，f(x)=2^x。对任意x0∈R，定义集合D(x0)={d∈R | f(x0+d)>f(x0)}。\n（1）若当x≥0时，f(x)=1−x，求D(−1)；\n（2）若f(x)是奇函数，f(x1)≤f(x2)，且x1·x2≠0，证明D(x2)⊆D(x1)；\n（3）设f(x)满足：①若f(x1)≤f(x2)，则D(x2)⊆D(x1)；②当0<x<1时，f(x)<f(0)。\n(i)证明f(0)≥1；(ii)证明f(x)在(0,+∞)单调递增。\n\n【网络教师版参考证明】\n（1）根据题意，有D(−1)={d∈R | f(d−1)>1/2}={d | −1<d−1<1/2}={d | 0<d<3/2}。\n（2）根据f为奇函数，有f(x)=2^x (x<0)，f(0)=0，f(x)=−2^(−x) (x>0)。于是当x0<0时，D(x0)=(0,−x0)；当x0=0时，D(x0)=(−∞,0)；当x0>0时，D(x0)=(−∞,−x0]∪(0,+∞)。\n由f(x1)≤f(x2)且x1·x2≠0，有如下情形：情形一x1,x2在原点同侧，即x1≤x2<0或0<x1≤x2。此时−x1≥−x2，所以D(x2)⊆D(x1)；情形二x2<0<x1。此时D(x2)⊆(0,+∞)⊆D(x1)。综上所述，命题得证。\n（3）根据x<0时f(x)=2^x，可得当x0<0时，(0,−x0)⊆D(x0)⊆(0,+∞)。根据条件②，有(0,1)∩D(0)=∅。\n(i)反证。假设f(0)<1，则存在−1<x0<0使得f(0)<f(x0)，于是由条件①得(0,−x0)⊆D(x0)⊆D(0)，由于−x0<1，这与(0,1)∩D(0)=∅矛盾，故f(0)≥1。\n(ii)先证明引理：当x>0时f(x)≤0。反证：假设存在x1>0且f(x1)>0，则存在x0<0，使f(x0)<f(x1)。由①有D(x1)⊆D(x0)⊆(0,+∞)。因为−x1<0，所以−x1∉D(x1)，从而f(x1)≥f(x1+(−x1))=f(0)。因此x1≥1，否则与条件②矛盾。由此当0<x<1时f(x)≤0，且由(i)结论f(x1)≥f(0)≥1。\n于是对任意s,t<0且s<t，有f(s)<f(t)<f(x1)，因而D(x1)⊆D(t)⊆D(s)。由f(t)<f(x1)得x1−t∈D(t)，于是x1−t∈D(s)，进而f(s+(x1−t))>f(s)>0，因此可得当x<x1时有f(x)>0。这与0<x<1时f(x)≤0矛盾。所以引理得证。\n利用引理完成证明：根据引理可得当x0<0时D(x0)=(0,+∞)，而当x1>0时f(x1)<0<f(x0)，所以D(x0)⊆D(x1)，即(0,+∞)⊆D(x1)。若0<x1<x2，则x2−x1∈D(x1)，从而f(x2)>f(x1)，所以f在(0,+∞)单调递增。",
+      "normalized": "已知函数f(x)的定义域为R，且当x<0时，f(x)=2^x。对任意x0∈R，定义集合D(x0)={d∈R | f(x0+d)>f(x0)}。\n（1）若当x≥0时，f(x)=1−x，求D(−1)；\n（2）若f(x)是奇函数，f(x1)≤f(x2)，且x1·x2≠0，证明D(x2)⊆D(x1)；\n（3）设f(x)满足：①若f(x1)≤f(x2)，则D(x2)⊆D(x1)；②当0<x<1时，f(x)<f(0)。\n(i)证明f(0)≥1；(ii)证明f(x)在(0,+∞)单调递增。\n\n【网络教师版参考证明】\n（1）根据题意，有D(−1)={d∈R | f(d−1)>1/2}={d | −1<d−1<1/2}={d | 0<d<3/2}。\n（2）根据f为奇函数，有f(x)=2^x (x<0)，f(0)=0，f(x)=−2^(−x) (x>0)。于是当x0<0时，D(x0)=(0,−x0)；当x0=0时，D(x0)=(−∞,0)；当x0>0时，D(x0)=(−∞,−x0]∪(0,+∞)。\n由f(x1)≤f(x2)且x1·x2≠0，有如下情形：情形一x1,x2在原点同侧，即x1≤x2<0或0<x1≤x2。此时−x1≥−x2，所以D(x2)⊆D(x1)；情形二x2<0<x1。此时D(x2)⊆(0,+∞)⊆D(x1)。综上所述，命题得证。\n（3）根据x<0时f(x)=2^x，可得当x0<0时，(0,−x0)⊆D(x0)⊆(0,+∞)。根据条件②，有(0,1)∩D(0)=∅。\n(i)反证。假设f(0)<1，则存在−1<x0<0使得f(0)<f(x0)，于是由条件①得(0,−x0)⊆D(x0)⊆D(0)，由于−x0<1，这与(0,1)∩D(0)=∅矛盾，故f(0)≥1。\n(ii)先证明引理：当x>0时f(x)≤0。反证：假设存在x1>0且f(x1)>0，则存在x0<0，使f(x0)<f(x1)。由①有D(x1)⊆D(x0)⊆(0,+∞)。因为−x1<0，所以−x1∉D(x1)，从而f(x1)≥f(x1+(−x1))=f(0)。因此x1≥1，否则与条件②矛盾。由此当0<x<1时f(x)≤0，且由(i)结论f(x1)≥f(0)≥1。\n于是对任意s,t<0且s<t，有f(s)<f(t)<f(x1)，因而D(x1)⊆D(t)⊆D(s)。由f(t)<f(x1)得x1−t∈D(t)，于是x1−t∈D(s)，进而f(s+(x1−t))>f(s)>0，因此可得当x<x1时有f(x)>0。这与0<x<1时f(x)≤0矛盾。所以引理得证。\n利用引理完成证明：根据引理可得当x0<0时D(x0)=(0,+∞)，而当x1>0时f(x1)<0<f(x0)，所以D(x0)⊆D(x1)，即(0,+∞)⊆D(x1)。若0<x1<x2，则x2−x1∈D(x1)，从而f(x2)>f(x1)，所以f在(0,+∞)单调递增。",
+      "recognitionId": null,
+      "transcriptionEvidence": null,
+      "blocks": [
+        {
+          "id": "b0",
+          "text": "已知函数f(x)的定义域为R，且当x<0时，f(x)=2^x。对任意x0∈R，定义集合D(x0)={d∈R | f(x0+d)>f(x0)}。\n（1）若当x≥0时，f(x)=1−x，求D(−1)；\n（2）若f(x)是奇函数，f(x1)≤f(x2)，且x1·x2≠0，证明D(x2)⊆D(x1)；\n（3）设f(x)满足：①若f(x1)≤f(x2)，则D(x2)⊆D(x1)；②当0<x<1时，f(x)<f(0)。\n(i)证明f(0)≥1；(ii)证明f(x)在(0,+∞)单调递增。\n\n【网络教师版参考证明】\n（1）根据题意，有D(−1)={d∈R | f(d−1)>1/2}={d | −1<d−1<1/2}={d | 0<d<3/2}。\n（2）根据f为奇函数，有f(x)=2^x (x<0)，f(0)=0，f(x)=−2^(−x) (x>0)。于是当x0<0时，D(x0)=(0,−x0)；当x0=0时，D(x0)=(−∞,0)；当x0>0时，D(x0)=(−∞,−x0]∪(0,+∞)。\n由f(x1)≤f(x2)且x1·x2≠0，有如下情形：情形一x1,x2在原点同侧，即x1≤x2<0或0<x1≤x2。此时−x1≥−x2，所以D(x2)⊆D(x1)；情形二x2<0<x1。此时D(x2)⊆(0,+∞)⊆D(x1)。综上所述，命题得证。\n（3）根据x<0时f(x)=2^x，可得当x0<0时，(0,−x0)⊆D(x0)⊆(0,+∞)。根据条件②，有(0,1)∩D(0)=∅。\n(i)反证。假设f(0)<1，则存在−1<x0<0使得f(0)<f(x0)，于是由条件①得(0,−x0)⊆D(x0)⊆D(0)，由于−x0<1，这与(0,1)∩D(0)=∅矛盾，故f(0)≥1。\n(ii)先证明引理：当x>0时f(x)≤0。反证：假设存在x1>0且f(x1)>0，则存在x0<0，使f(x0)<f(x1)。由①有D(x1)⊆D(x0)⊆(0,+∞)。因为−x1<0，所以−x1∉D(x1)，从而f(x1)≥f(x1+(−x1))=f(0)。因此x1≥1，否则与条件②矛盾。由此当0<x<1时f(x)≤0，且由(i)结论f(x1)≥f(0)≥1。\n于是对任意s,t<0且s<t，有f(s)<f(t)<f(x1)，因而D(x1)⊆D(t)⊆D(s)。由f(t)<f(x1)得x1−t∈D(t)，于是x1−t∈D(s)，进而f(s+(x1−t))>f(s)>0，因此可得当x<x1时有f(x)>0。这与0<x<1时f(x)≤0矛盾。所以引理得证。\n利用引理完成证明：根据引理可得当x0<0时D(x0)=(0,+∞)，而当x1>0时f(x1)<0<f(x0)，所以D(x0)⊆D(x1)，即(0,+∞)⊆D(x1)。若0<x1<x2，则x2−x1∈D(x1)，从而f(x2)>f(x1)，所以f在(0,+∞)单调递增。",
+          "page": null,
+          "bbox": null,
+          "confidence": null,
+          "assetId": null,
+          "providerData": {}
+        }
+      ]
+    },
+    "inputKind": "text",
+    "authority": "actual_lean_kernel_for_translated_statement_only"
+  },
+  "error": null
+}

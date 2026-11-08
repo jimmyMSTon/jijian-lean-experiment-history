@@ -1,0 +1,208 @@
+{
+  "kind": "lean_first_local",
+  "mode": "single_whole_theorem_kernel",
+  "sourceSha256": "c1f3e5a6b54a29888b4ab0f1f95dc9a9898222df934490c7e6facd95c87a730b",
+  "runTraceId": "76435d9d-ddd7-4a03-ad43-1480cd197542",
+  "status": "whole_formal_kernel_verified_source_unconfirmed",
+  "kernelVerified": true,
+  "formalProofCertified": true,
+  "originalProofCertified": false,
+  "sourceEquivalenceCertified": false,
+  "originalInferenceVerified": false,
+  "sourcePositionsValid": true,
+  "plannedStepCount": 3,
+  "localFormalVerifiedCount": 0,
+  "sourceSteps": [
+    {
+      "id": "source-0",
+      "index": 0,
+      "role": "inference",
+      "start": 38,
+      "end": 57,
+      "sourceExcerpt": "实数的平方非负，故 (a-b)²≥0。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_0",
+      "dependsOn": []
+    },
+    {
+      "id": "source-1",
+      "index": 1,
+      "role": "inference",
+      "start": 57,
+      "end": 75,
+      "sourceExcerpt": "将平方展开得 a²-2ab+b²≥0",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_1",
+      "dependsOn": []
+    },
+    {
+      "id": "source-2",
+      "index": 2,
+      "role": "inference",
+      "start": 76,
+      "end": 99,
+      "sourceExcerpt": "两边同时加上 2ab，得 a²+b²≥2ab。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_2",
+      "dependsOn": []
+    }
+  ],
+  "statement": "∀ a b : ℝ, a ^ 2 + b ^ 2 ≥ 2 * a * b",
+  "proofTerm": "by\n  intro a b\n  have source_step_0 : (a - b) ^ 2 ≥ 0 := by\n    exact sq_nonneg (a - b)\n  have source_step_1 : a ^ 2 - 2 * a * b + b ^ 2 ≥ 0 := by\n    have h_expand : a ^ 2 - 2 * a * b + b ^ 2 = (a - b) ^ 2 := by ring\n    rw [h_expand]\n    exact source_step_0\n  have source_step_2 : a ^ 2 + b ^ 2 ≥ 2 * a * b := by\n    linarith [source_step_1]\n  exact source_step_2",
+  "lean": {
+    "status": "verified",
+    "localVerified": true,
+    "kernelVerified": true,
+    "certificate": {
+      "checked": true,
+      "statementMatched": true,
+      "additionalAxioms": [],
+      "verificationMethod": "Lean_declared_target_kernel_checked_with_axiom_audit",
+      "sourceSha256": "b07fe2c9430dda6c74ac315903273ec1e9e3e0a0a67179ccb20ec4d49b34133f"
+    },
+    "moduleProof": {
+      "supportingDeclarationsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "proofTermSha256": "13007eeaa0b248881efae2a023f6026daf3080d4d2ca066604ead91fb3cd7566",
+      "sourceSha256": "b07fe2c9430dda6c74ac315903273ec1e9e3e0a0a67179ccb20ec4d49b34133f",
+      "auditTarget": "JijianWholeModuleProof_3f3369b78321f244f00a189d",
+      "editableSourceLineRanges": {
+        "supportingDeclarations": {
+          "startLine": 7,
+          "lineCount": 0
+        },
+        "proofTerm": {
+          "startLine": 10,
+          "lineCount": 11
+        }
+      },
+      "requiredAxioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "additionalAxioms": [],
+      "auditReportPresent": true,
+      "runtimeReturnCode": 0,
+      "originalSourceProofCertified": false
+    },
+    "diagnostics": []
+  },
+  "unsupportedOriginalSteps": [],
+  "planProvenance": {
+    "jsonParsing": {
+      "method": "deterministic_json_schema",
+      "recovered": false,
+      "edits": []
+    },
+    "provider": "deepseek",
+    "requestedModel": "deepseek-flash",
+    "model": "deepseek-flash",
+    "responseId": "c1efc48b-e3e5-4f08-ab2a-ab6a38dd9e59",
+    "systemFingerprint": "bc19ba97cbe016479903222bb1578db6",
+    "usage": {
+      "prompt_tokens": 731,
+      "completion_tokens": 4188,
+      "total_tokens": 4919,
+      "prompt_tokens_details": {
+        "cached_tokens": 384
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 4037
+      },
+      "prompt_cache_hit_tokens": 384,
+      "prompt_cache_miss_tokens": 347
+    },
+    "thinking": "provider_default",
+    "promptSchemaEncoding": "compact_json_v1",
+    "structuredOutput": "json_mode_with_local_schema_validation",
+    "simulated": false
+  },
+  "model": "deepseek-flash",
+  "goalExcerpt": "任取两个实数 a,b，证明 a²+b²≥2ab。",
+  "originalGivenExcerpts": [
+    "任取两个实数 a,b"
+  ],
+  "sourceOffsetRepairs": [],
+  "goalPlanCachedAfterLeanElaboration": true,
+  "proofProvenance": {
+    "jsonParsing": {
+      "method": "deterministic_json_schema",
+      "recovered": false,
+      "edits": []
+    },
+    "provider": "deepseek",
+    "requestedModel": "deepseek-flash",
+    "model": "deepseek-flash",
+    "responseId": "e9ce3fb2-fcc2-4dee-923e-1b9920607dd6",
+    "systemFingerprint": "bc19ba97cbe016479903222bb1578db6",
+    "usage": {
+      "prompt_tokens": 957,
+      "completion_tokens": 2241,
+      "total_tokens": 3198,
+      "prompt_tokens_details": {
+        "cached_tokens": 512
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 2062
+      },
+      "prompt_cache_hit_tokens": 512,
+      "prompt_cache_miss_tokens": 445
+    },
+    "thinking": "provider_default",
+    "promptSchemaEncoding": "compact_json_v1",
+    "structuredOutput": "json_mode_with_local_schema_validation",
+    "simulated": false
+  },
+  "monolithicModuleAttempt": {
+    "status": "verified",
+    "localVerified": true,
+    "kernelVerified": true,
+    "certificate": {
+      "checked": true,
+      "statementMatched": true,
+      "additionalAxioms": [],
+      "verificationMethod": "Lean_declared_target_kernel_checked_with_axiom_audit",
+      "sourceSha256": "b07fe2c9430dda6c74ac315903273ec1e9e3e0a0a67179ccb20ec4d49b34133f"
+    },
+    "moduleProof": {
+      "supportingDeclarationsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "proofTermSha256": "13007eeaa0b248881efae2a023f6026daf3080d4d2ca066604ead91fb3cd7566",
+      "sourceSha256": "b07fe2c9430dda6c74ac315903273ec1e9e3e0a0a67179ccb20ec4d49b34133f",
+      "auditTarget": "JijianWholeModuleProof_3f3369b78321f244f00a189d",
+      "editableSourceLineRanges": {
+        "supportingDeclarations": {
+          "startLine": 7,
+          "lineCount": 0
+        },
+        "proofTerm": {
+          "startLine": 10,
+          "lineCount": 11
+        }
+      },
+      "requiredAxioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "additionalAxioms": [],
+      "auditReportPresent": true,
+      "runtimeReturnCode": 0,
+      "originalSourceProofCertified": false
+    },
+    "diagnostics": []
+  },
+  "proofModuleDeclarations": "",
+  "moduleProofSha256": "b07fe2c9430dda6c74ac315903273ec1e9e3e0a0a67179ccb20ec4d49b34133f"
+}

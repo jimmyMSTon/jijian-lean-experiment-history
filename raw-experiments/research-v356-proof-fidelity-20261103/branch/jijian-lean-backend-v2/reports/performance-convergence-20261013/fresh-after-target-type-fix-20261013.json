@@ -1,0 +1,1148 @@
+{
+  "sample": {
+    "input": "任取自然数 n。证明 n = n。理由：等号自反。",
+    "sha256": "34ba0041d45420b2feaa6077f22f7b1fe5b33a898eb9643a8e5918c03ba168d4",
+    "kind": "fresh_text",
+    "imageSent": false
+  },
+  "workflowId": "e3f922ef-095a-412e-b82e-e6d5d203cfa7",
+  "provider": {
+    "name": "DeepSeek",
+    "configuredModel": "deepseek-flash",
+    "baseUrl": "https://api.deepseek.com"
+  },
+  "leanRuntime": {
+    "ready": true,
+    "toolchain": "leanprover/lean4:v4.34.0",
+    "sandbox": "macos",
+    "isolated": true,
+    "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20"
+  },
+  "events": [
+    {
+      "name": "recognizing",
+      "data": {
+        "inputKind": "text"
+      }
+    },
+    {
+      "name": "mathir_v2_structured",
+      "data": {
+        "mathIRId": "70352d08-79d2-4155-a61c-e520e17619cf",
+        "statementHash": "d8cd99a236dc70453406fcd1462549f0104c678bf14e4cdeeba2452c543ee776",
+        "routeCount": 1,
+        "sourceAlignment": "kernel_does_not_prove_source_semantic_equivalence"
+      }
+    },
+    {
+      "name": "proof_workflow_started",
+      "data": {
+        "mathIRId": "70352d08-79d2-4155-a61c-e520e17619cf",
+        "statementHash": "d8cd99a236dc70453406fcd1462549f0104c678bf14e4cdeeba2452c543ee776"
+      }
+    },
+    {
+      "name": "mathir_v2_checkpoint_saved",
+      "data": {
+        "checkpointId": "07b0f038-8508-4259-8a9f-394120f33ec1",
+        "stage": "lean_verification",
+        "termination": "in_progress",
+        "fixedStatementKernelPassed": false,
+        "originalRouteKernelPassed": false
+      }
+    },
+    {
+      "name": "lean_verification",
+      "data": {
+        "verificationIndex": 1,
+        "fixedStatementKernelPassed": false,
+        "originalRouteKernelPassed": false,
+        "routes": [
+          {
+            "routeId": "r0",
+            "status": "incomplete",
+            "proofComposition": {
+              "status": "incomplete",
+              "error": "A claim in the route has no original proof term",
+              "kernelChecked": false
+            },
+            "dependencyEvidence": {
+              "status": "checked",
+              "basis": "Kernel proof expression binder-use audit for declared claim dependencies"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "mathir_v2_checkpoint_saved",
+      "data": {
+        "checkpointId": "b1098d87-8463-48e0-afe3-336fc5477f72",
+        "stage": "proof_only_generation",
+        "termination": "in_progress",
+        "fixedStatementKernelPassed": false,
+        "originalRouteKernelPassed": false
+      }
+    },
+    {
+      "name": "proof_only_generation",
+      "data": {
+        "providerCalled": true,
+        "requestId": null,
+        "responseId": null,
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 1314,
+          "completion_tokens": 528,
+          "total_tokens": 1842,
+          "prompt_tokens_details": {
+            "cached_tokens": 640
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 496
+          },
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 674
+        },
+        "inputHash": "5cce0ee423c8bb5e53d7cfd0450bf283a30ebe09d76ea23a9d5500cb6b12c056",
+        "nodeIds": [
+          "r0_c1"
+        ],
+        "result": {
+          "inputHash": "5cce0ee423c8bb5e53d7cfd0450bf283a30ebe09d76ea23a9d5500cb6b12c056"
+        }
+      }
+    },
+    {
+      "name": "mathir_v2_checkpoint_saved",
+      "data": {
+        "checkpointId": "06cb71e0-8270-403c-b0d5-26f6030078d0",
+        "stage": "lean_verification",
+        "termination": "in_progress",
+        "fixedStatementKernelPassed": true,
+        "originalRouteKernelPassed": true
+      }
+    },
+    {
+      "name": "lean_verification",
+      "data": {
+        "verificationIndex": 2,
+        "fixedStatementKernelPassed": true,
+        "originalRouteKernelPassed": true,
+        "routes": [
+          {
+            "routeId": "r0",
+            "status": "passed",
+            "proofComposition": {
+              "status": "composed",
+              "error": null,
+              "kernelChecked": true
+            },
+            "dependencyEvidence": {
+              "status": "checked",
+              "basis": "Kernel proof expression binder-use audit for declared claim dependencies"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "mathir_v2_checkpoint_saved",
+      "data": {
+        "checkpointId": "cf41a361-c365-4687-a806-311e49bba8c4",
+        "stage": "workflow_finished",
+        "termination": "original_route_kernel_passed",
+        "fixedStatementKernelPassed": true,
+        "originalRouteKernelPassed": true
+      }
+    },
+    {
+      "name": "mathir_v2_completed",
+      "data": {
+        "runId": "a9db47cb-961f-4784-a9d8-25ecddfaa1a0",
+        "mathIRId": "b95314aa-58b1-4417-8d49-191651116ee2",
+        "fixedStatementKernelPassed": true,
+        "originalRouteKernelPassed": true,
+        "termination": "original_route_kernel_passed"
+      }
+    }
+  ],
+  "run": {
+    "id": "a9db47cb-961f-4784-a9d8-25ecddfaa1a0",
+    "version": "2.0",
+    "sourceStructureId": "70352d08-79d2-4155-a61c-e520e17619cf",
+    "mathIRId": "b95314aa-58b1-4417-8d49-191651116ee2",
+    "statementHash": "d8cd99a236dc70453406fcd1462549f0104c678bf14e4cdeeba2452c543ee776",
+    "fixedStatementKernelPassed": true,
+    "originalRouteKernelPassed": true,
+    "kernelVerified": true,
+    "status": "verified",
+    "termination": "original_route_kernel_passed",
+    "failure": null,
+    "verification": {
+      "version": "2.0",
+      "statement": "(∀ (v_d_n : ℕ), (v_d_n = v_d_n))",
+      "statementLock": {
+        "status": "locked",
+        "statementHash": "d8cd99a236dc70453406fcd1462549f0104c678bf14e4cdeeba2452c543ee776"
+      },
+      "mathIRHash": "c1bf316cb56b21e74ad40ad3a4b4b73316d85c5abeb1bbd898cd484a067e0821",
+      "sourceEvidenceHash": "2c8f0af5b1f23e5093401c5f872cb029b656c4fe75be0d26bb3e82e90ebba0ba",
+      "sourceAlignment": {
+        "status": "not_assessed",
+        "transcriptionStatus": "confirmed",
+        "sourceRefsValidated": true,
+        "semanticAlignmentKernelProven": false
+      },
+      "fixedStatementKernelPassed": true,
+      "originalRouteKernelPassed": true,
+      "kernelVerified": true,
+      "leanMetrics": {
+        "processCount": 2,
+        "elapsedSeconds": 24.581,
+        "processes": [
+          {
+            "phase": "statement_proof_export_batch",
+            "wallSeconds": 11.91,
+            "queueWaitSeconds": 0.0002,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 29808,
+            "kernelInputJsonBytes": 0,
+            "status": "completed",
+            "userCpuSeconds": 1.9,
+            "systemCpuSeconds": 9.91,
+            "maxRssBytes": 6058852352,
+            "peakMemoryFootprintBytes": 945975168,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 5391,
+            "leanStderrBytes": 754,
+            "pythonPeakRssBytes": 55689216,
+            "leanReturnCode": 0
+          },
+          {
+            "phase": "statement_proof_wire_materialization",
+            "wallSeconds": 0.0009,
+            "leanStdoutBytes": 5391,
+            "candidateCount": 2,
+            "expectedStatementCount": 2,
+            "pythonPeakRssBytes": 55689216
+          },
+          {
+            "phase": "independent_kernel_replay_batch",
+            "wallSeconds": 12.67,
+            "queueWaitSeconds": 0.0001,
+            "slot": 0,
+            "parallelism": 1,
+            "activeProcessGroupsAtStart": 1,
+            "processGroupPid": 29818,
+            "kernelInputJsonBytes": 4107,
+            "status": "completed",
+            "userCpuSeconds": 1.92,
+            "systemCpuSeconds": 10.32,
+            "maxRssBytes": 6048301056,
+            "peakMemoryFootprintBytes": 937160960,
+            "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+            "leanStdoutBytes": 1340,
+            "leanStderrBytes": 755,
+            "pythonPeakRssBytes": 55754752,
+            "leanReturnCode": 0
+          },
+          {
+            "phase": "kernel_certificate_materialization",
+            "wallSeconds": 0.0005,
+            "leanStdoutBytes": 1340,
+            "certificateCount": 2,
+            "pythonPeakRssBytes": 55754752
+          }
+        ],
+        "measurement": "Lean subprocess groups; each invocation includes the sandbox launcher and Lean process. Kernel batch resets the imported environment between evidence replays."
+      },
+      "routes": [
+        {
+          "routeId": "r0",
+          "status": "passed",
+          "completeOriginalRouteKernelPassed": true,
+          "fixedStatementKernelPassed": true,
+          "proofComposition": {
+            "status": "composed",
+            "error": null,
+            "kernelChecked": true
+          },
+          "routeConnectivity": {
+            "status": "connected",
+            "goalNodeIdPresent": true,
+            "unconnectedNodeIds": [],
+            "unconnectedClaimNodeIds": [],
+            "basis": "goal dependency closure plus explicit induction-case edges"
+          },
+          "dependencyEvidence": {
+            "status": "checked",
+            "basis": "Kernel proof expression binder-use audit for declared claim dependencies"
+          },
+          "sourceAlignment": {
+            "status": "supported",
+            "sourceRefsValidated": true,
+            "semanticAlignmentKernelProven": false
+          },
+          "steps": [
+            {
+              "nodeId": "r0_c1",
+              "kind": "claim",
+              "expectedType": "(∀ (v_d_n : ℕ), (v_d_n = v_d_n))",
+              "status": "passed",
+              "proofAttemptStatus": "verified",
+              "failureClass": null,
+              "mathematicalStatus": "not_established",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 11,
+                  "end": 16
+                }
+              ],
+              "dependsOn": [],
+              "dependencyEvidence": "not_required",
+              "dependencyUsage": [],
+              "diagnostics": [],
+              "certificate": {
+                "checked": true,
+                "statementMatched": true,
+                "auditMethod": "fresh_environment_data_only_kernel_replay",
+                "axioms": [],
+                "additionalAxioms": [],
+                "statement_hash": "d8cd99a236dc70453406fcd1462549f0104c678bf14e4cdeeba2452c543ee776",
+                "expectedExpressionSha256": "36362fdbbd29d086fa1841da99d349622f8f231472a18afaff27084927641b62",
+                "proofExpressionSha256": "f39d9afece32cd6e51b0872862fd3b74743aa602007f591e649e171aa16ae879",
+                "nativeExpressionComparison": "structural_equal",
+                "auditIsolation": "fresh_import_environment_reset_between_candidates"
+              },
+              "evidenceRef": null,
+              "proofTermRef": {
+                "sha256": "3d95b7ce0f9d8bdfbe1206d01f9cc7d9f3d739df46012fd50b4f8f755f06bd07",
+                "path": "mathir-v2-evidence/proof-terms/3d95b7ce0f9d8bdfbe1206d01f9cc7d9f3d739df46012fd50b4f8f755f06bd07.txt.gz",
+                "bytes": 24,
+                "encoding": "gzip"
+              },
+              "proofTermSha256": "498572fe96d4eca4b3e9d4a123dc4324f673e921fce812a76b8db5f3aff76de8"
+            }
+          ],
+          "kernel": {
+            "status": "verified",
+            "diagnostics": [],
+            "certificate": {
+              "checked": true,
+              "statementMatched": true,
+              "auditMethod": "fresh_environment_data_only_kernel_replay",
+              "axioms": [],
+              "additionalAxioms": [],
+              "statement_hash": "d8cd99a236dc70453406fcd1462549f0104c678bf14e4cdeeba2452c543ee776",
+              "expectedExpressionSha256": "36362fdbbd29d086fa1841da99d349622f8f231472a18afaff27084927641b62",
+              "proofExpressionSha256": "61053b08fb64221553fd92338cb1c81152b053538b91bd8d2afee1cad9515051",
+              "nativeExpressionComparison": "structural_equal",
+              "auditIsolation": "fresh_import_environment_reset_between_candidates"
+            },
+            "evidenceRef": null
+          }
+        }
+      ]
+    },
+    "verificationHistory": [
+      {
+        "version": "2.0",
+        "statement": "(∀ (v_d_n : ℕ), (v_d_n = v_d_n))",
+        "statementLock": {
+          "status": "locked",
+          "statementHash": "d8cd99a236dc70453406fcd1462549f0104c678bf14e4cdeeba2452c543ee776"
+        },
+        "mathIRHash": "90360147b90f806da5b8d9da5b3396c968ff2153927f178161fe9ea81c0e6c2a",
+        "sourceEvidenceHash": "2c8f0af5b1f23e5093401c5f872cb029b656c4fe75be0d26bb3e82e90ebba0ba",
+        "sourceAlignment": {
+          "status": "not_assessed",
+          "transcriptionStatus": "confirmed",
+          "sourceRefsValidated": true,
+          "semanticAlignmentKernelProven": false
+        },
+        "fixedStatementKernelPassed": false,
+        "originalRouteKernelPassed": false,
+        "kernelVerified": false,
+        "leanMetrics": {
+          "processCount": 0,
+          "elapsedSeconds": 0,
+          "processes": [],
+          "measurement": "Lean subprocess groups; each invocation includes the sandbox launcher and Lean process. Kernel batch resets the imported environment between evidence replays."
+        },
+        "routes": [
+          {
+            "routeId": "r0",
+            "status": "incomplete",
+            "completeOriginalRouteKernelPassed": false,
+            "fixedStatementKernelPassed": false,
+            "proofComposition": {
+              "status": "incomplete",
+              "error": "A claim in the route has no original proof term",
+              "kernelChecked": false
+            },
+            "routeConnectivity": {
+              "status": "connected",
+              "goalNodeIdPresent": true,
+              "unconnectedNodeIds": [],
+              "unconnectedClaimNodeIds": [],
+              "basis": "goal dependency closure plus explicit induction-case edges"
+            },
+            "dependencyEvidence": {
+              "status": "checked",
+              "basis": "Kernel proof expression binder-use audit for declared claim dependencies"
+            },
+            "sourceAlignment": {
+              "status": "supported",
+              "sourceRefsValidated": true,
+              "semanticAlignmentKernelProven": false
+            },
+            "steps": [
+              {
+                "nodeId": "r0_c1",
+                "kind": "claim",
+                "expectedType": "(∀ (v_d_n : ℕ), (v_d_n = v_d_n))",
+                "status": "incomplete",
+                "proofAttemptStatus": "missing_proof",
+                "failureClass": "missing_proof",
+                "mathematicalStatus": "not_established",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 11,
+                    "end": 16
+                  }
+                ],
+                "dependsOn": [],
+                "dependencyEvidence": "not_required",
+                "dependencyUsage": [],
+                "diagnostics": [],
+                "certificate": null,
+                "evidenceRef": null,
+                "proofTermRef": null,
+                "proofTermSha256": null
+              }
+            ],
+            "kernel": {
+              "status": null,
+              "diagnostics": [],
+              "certificate": null,
+              "evidenceRef": null
+            }
+          }
+        ]
+      },
+      {
+        "version": "2.0",
+        "statement": "(∀ (v_d_n : ℕ), (v_d_n = v_d_n))",
+        "statementLock": {
+          "status": "locked",
+          "statementHash": "d8cd99a236dc70453406fcd1462549f0104c678bf14e4cdeeba2452c543ee776"
+        },
+        "mathIRHash": "c1bf316cb56b21e74ad40ad3a4b4b73316d85c5abeb1bbd898cd484a067e0821",
+        "sourceEvidenceHash": "2c8f0af5b1f23e5093401c5f872cb029b656c4fe75be0d26bb3e82e90ebba0ba",
+        "sourceAlignment": {
+          "status": "not_assessed",
+          "transcriptionStatus": "confirmed",
+          "sourceRefsValidated": true,
+          "semanticAlignmentKernelProven": false
+        },
+        "fixedStatementKernelPassed": true,
+        "originalRouteKernelPassed": true,
+        "kernelVerified": true,
+        "leanMetrics": {
+          "processCount": 2,
+          "elapsedSeconds": 24.581,
+          "processes": [
+            {
+              "phase": "statement_proof_export_batch",
+              "wallSeconds": 11.91,
+              "queueWaitSeconds": 0.0002,
+              "slot": 0,
+              "parallelism": 1,
+              "activeProcessGroupsAtStart": 1,
+              "processGroupPid": 29808,
+              "kernelInputJsonBytes": 0,
+              "status": "completed",
+              "userCpuSeconds": 1.9,
+              "systemCpuSeconds": 9.91,
+              "maxRssBytes": 6058852352,
+              "peakMemoryFootprintBytes": 945975168,
+              "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+              "leanStdoutBytes": 5391,
+              "leanStderrBytes": 754,
+              "pythonPeakRssBytes": 55689216,
+              "leanReturnCode": 0
+            },
+            {
+              "phase": "statement_proof_wire_materialization",
+              "wallSeconds": 0.0009,
+              "leanStdoutBytes": 5391,
+              "candidateCount": 2,
+              "expectedStatementCount": 2,
+              "pythonPeakRssBytes": 55689216
+            },
+            {
+              "phase": "independent_kernel_replay_batch",
+              "wallSeconds": 12.67,
+              "queueWaitSeconds": 0.0001,
+              "slot": 0,
+              "parallelism": 1,
+              "activeProcessGroupsAtStart": 1,
+              "processGroupPid": 29818,
+              "kernelInputJsonBytes": 4107,
+              "status": "completed",
+              "userCpuSeconds": 1.92,
+              "systemCpuSeconds": 10.32,
+              "maxRssBytes": 6048301056,
+              "peakMemoryFootprintBytes": 937160960,
+              "measurement": "macOS /usr/bin/time -lp; child process group resource usage",
+              "leanStdoutBytes": 1340,
+              "leanStderrBytes": 755,
+              "pythonPeakRssBytes": 55754752,
+              "leanReturnCode": 0
+            },
+            {
+              "phase": "kernel_certificate_materialization",
+              "wallSeconds": 0.0005,
+              "leanStdoutBytes": 1340,
+              "certificateCount": 2,
+              "pythonPeakRssBytes": 55754752
+            }
+          ],
+          "measurement": "Lean subprocess groups; each invocation includes the sandbox launcher and Lean process. Kernel batch resets the imported environment between evidence replays."
+        },
+        "routes": [
+          {
+            "routeId": "r0",
+            "status": "passed",
+            "completeOriginalRouteKernelPassed": true,
+            "fixedStatementKernelPassed": true,
+            "proofComposition": {
+              "status": "composed",
+              "error": null,
+              "kernelChecked": true
+            },
+            "routeConnectivity": {
+              "status": "connected",
+              "goalNodeIdPresent": true,
+              "unconnectedNodeIds": [],
+              "unconnectedClaimNodeIds": [],
+              "basis": "goal dependency closure plus explicit induction-case edges"
+            },
+            "dependencyEvidence": {
+              "status": "checked",
+              "basis": "Kernel proof expression binder-use audit for declared claim dependencies"
+            },
+            "sourceAlignment": {
+              "status": "supported",
+              "sourceRefsValidated": true,
+              "semanticAlignmentKernelProven": false
+            },
+            "steps": [
+              {
+                "nodeId": "r0_c1",
+                "kind": "claim",
+                "expectedType": "(∀ (v_d_n : ℕ), (v_d_n = v_d_n))",
+                "status": "passed",
+                "proofAttemptStatus": "verified",
+                "failureClass": null,
+                "mathematicalStatus": "not_established",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 11,
+                    "end": 16
+                  }
+                ],
+                "dependsOn": [],
+                "dependencyEvidence": "not_required",
+                "dependencyUsage": [],
+                "diagnostics": [],
+                "certificate": {
+                  "checked": true,
+                  "statementMatched": true,
+                  "auditMethod": "fresh_environment_data_only_kernel_replay",
+                  "axioms": [],
+                  "additionalAxioms": [],
+                  "statement_hash": "d8cd99a236dc70453406fcd1462549f0104c678bf14e4cdeeba2452c543ee776",
+                  "expectedExpressionSha256": "36362fdbbd29d086fa1841da99d349622f8f231472a18afaff27084927641b62",
+                  "proofExpressionSha256": "f39d9afece32cd6e51b0872862fd3b74743aa602007f591e649e171aa16ae879",
+                  "nativeExpressionComparison": "structural_equal",
+                  "auditIsolation": "fresh_import_environment_reset_between_candidates"
+                },
+                "evidenceRef": null,
+                "proofTermRef": {
+                  "sha256": "3d95b7ce0f9d8bdfbe1206d01f9cc7d9f3d739df46012fd50b4f8f755f06bd07",
+                  "path": "mathir-v2-evidence/proof-terms/3d95b7ce0f9d8bdfbe1206d01f9cc7d9f3d739df46012fd50b4f8f755f06bd07.txt.gz",
+                  "bytes": 24,
+                  "encoding": "gzip"
+                },
+                "proofTermSha256": "498572fe96d4eca4b3e9d4a123dc4324f673e921fce812a76b8db5f3aff76de8"
+              }
+            ],
+            "kernel": {
+              "status": "verified",
+              "diagnostics": [],
+              "certificate": {
+                "checked": true,
+                "statementMatched": true,
+                "auditMethod": "fresh_environment_data_only_kernel_replay",
+                "axioms": [],
+                "additionalAxioms": [],
+                "statement_hash": "d8cd99a236dc70453406fcd1462549f0104c678bf14e4cdeeba2452c543ee776",
+                "expectedExpressionSha256": "36362fdbbd29d086fa1841da99d349622f8f231472a18afaff27084927641b62",
+                "proofExpressionSha256": "61053b08fb64221553fd92338cb1c81152b053538b91bd8d2afee1cad9515051",
+                "nativeExpressionComparison": "structural_equal",
+                "auditIsolation": "fresh_import_environment_reset_between_candidates"
+              },
+              "evidenceRef": null
+            }
+          }
+        ]
+      }
+    ],
+    "events": [
+      {
+        "stage": "proof_only_generation",
+        "providerCalled": true,
+        "provider": {
+          "model": "deepseek-flash",
+          "usage": {
+            "prompt_tokens": 1314,
+            "completion_tokens": 528,
+            "total_tokens": 1842,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 496
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 674
+          }
+        },
+        "repairInputHash": "5cce0ee423c8bb5e53d7cfd0450bf283a30ebe09d76ea23a9d5500cb6b12c056",
+        "patches": [
+          {
+            "nodeId": "r0_c1",
+            "origin": "proof_only_generation",
+            "proofTerm": {
+              "sha256": "3d95b7ce0f9d8bdfbe1206d01f9cc7d9f3d739df46012fd50b4f8f755f06bd07",
+              "path": "mathir-v2-evidence/proof-terms/3d95b7ce0f9d8bdfbe1206d01f9cc7d9f3d739df46012fd50b4f8f755f06bd07.txt.gz",
+              "bytes": 24,
+              "encoding": "gzip"
+            },
+            "replacesProofTermSha256": null,
+            "statementHash": "d8cd99a236dc70453406fcd1462549f0104c678bf14e4cdeeba2452c543ee776",
+            "diagnosticHash": null
+          }
+        ],
+        "result": {
+          "inputHash": "5cce0ee423c8bb5e53d7cfd0450bf283a30ebe09d76ea23a9d5500cb6b12c056"
+        }
+      }
+    ],
+    "mathlibRetrieval": [],
+    "mathlibRetrievalScopes": [],
+    "proofWireRoot": "mathir-v2-evidence"
+  },
+  "sourceStructure": {
+    "id": "70352d08-79d2-4155-a61c-e520e17619cf",
+    "mathIR": {
+      "version": "2.0",
+      "source": {
+        "id": "fb3d0e53dd7a56dc473d02c1",
+        "kind": "text",
+        "raw": "任取自然数 n。证明 n = n。理由：等号自反。",
+        "normalized": "任取自然数 n。证明 n = n。理由：等号自反。",
+        "blocks": [
+          {
+            "id": "b0",
+            "text": "任取自然数 n。证明 n = n。理由：等号自反。",
+            "page": null,
+            "bbox": null,
+            "assetId": null
+          }
+        ],
+        "transcriptStatus": "confirmed"
+      },
+      "scopes": [
+        {
+          "id": "s0",
+          "parentId": null,
+          "description": "定理范围：任取自然数 n，结论为 n = n。",
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 0,
+              "end": 25
+            }
+          ]
+        }
+      ],
+      "declarations": [
+        {
+          "id": "d_n",
+          "name": "n",
+          "kind": "variable",
+          "type": {
+            "kind": "Nat",
+            "coefficient": null
+          },
+          "scopeId": "s0",
+          "constraints": [],
+          "value": null,
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 0,
+              "end": 7
+            }
+          ],
+          "sourceAssessment": "supported",
+          "assessmentBasis": "原稿以‘任取自然数 n’引入 n，并说明其为自然数。"
+        }
+      ],
+      "assumptions": [],
+      "goal": {
+        "id": "g0",
+        "expression": {
+          "op": "eq",
+          "args": [
+            {
+              "op": "symbol",
+              "args": [],
+              "symbolId": "d_n",
+              "binderId": null,
+              "literal": null,
+              "lower": null,
+              "upper": null,
+              "upperInclusive": null,
+              "targetType": null
+            },
+            {
+              "op": "symbol",
+              "args": [],
+              "symbolId": "d_n",
+              "binderId": null,
+              "literal": null,
+              "lower": null,
+              "upper": null,
+              "upperInclusive": null,
+              "targetType": null
+            }
+          ],
+          "symbolId": null,
+          "binderId": null,
+          "literal": null,
+          "lower": null,
+          "upper": null,
+          "upperInclusive": null,
+          "targetType": null
+        },
+        "scopeId": "s0",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 11,
+            "end": 16
+          }
+        ],
+        "sourceAssessment": "supported",
+        "assessmentBasis": "原稿直接给出的结论片段为‘n = n’。"
+      },
+      "proofRoutes": [
+        {
+          "id": "r0",
+          "label": "等号自反路线",
+          "nodes": [
+            {
+              "id": "r0_c1",
+              "kind": "claim",
+              "expression": {
+                "op": "eq",
+                "args": [
+                  {
+                    "op": "symbol",
+                    "args": [],
+                    "symbolId": "d_n",
+                    "binderId": null,
+                    "literal": null,
+                    "lower": null,
+                    "upper": null,
+                    "upperInclusive": null,
+                    "targetType": null
+                  },
+                  {
+                    "op": "symbol",
+                    "args": [],
+                    "symbolId": "d_n",
+                    "binderId": null,
+                    "literal": null,
+                    "lower": null,
+                    "upper": null,
+                    "upperInclusive": null,
+                    "targetType": null
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "literal": null,
+                "lower": null,
+                "upper": null,
+                "upperInclusive": null,
+                "targetType": null
+              },
+              "scopeId": "s0",
+              "dependsOn": [],
+              "proofTerm": null,
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 11,
+                  "end": 16
+                }
+              ],
+              "sourceAssessment": "supported",
+              "assessmentBasis": "原稿结论为 n = n，对应声明片段‘n = n’。"
+            }
+          ],
+          "goalNodeId": "r0_c1",
+          "inductions": [],
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 8,
+              "end": 25
+            }
+          ],
+          "sourceAssessment": "supported",
+          "assessmentBasis": "原稿明确说明证明 n = n，理由为等号自反。"
+        }
+      ],
+      "ambiguities": []
+    },
+    "statement": "(∀ (v_d_n : ℕ), (v_d_n = v_d_n))",
+    "statementHash": "d8cd99a236dc70453406fcd1462549f0104c678bf14e4cdeeba2452c543ee776",
+    "mathIRHash": "90360147b90f806da5b8d9da5b3396c968ff2153927f178161fe9ea81c0e6c2a",
+    "sourceEvidenceHash": "2c8f0af5b1f23e5093401c5f872cb029b656c4fe75be0d26bb3e82e90ebba0ba",
+    "structureProvenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "f685be51-10b0-4519-9dd6-cffb3741a044",
+      "systemFingerprint": "aeb56401ca74e127821c4f9126dcb669",
+      "usage": {
+        "prompt_tokens": 3095,
+        "completion_tokens": 5259,
+        "total_tokens": 8354,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 4818
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 2839
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "recognitionEvidence": {
+      "ambiguities": [],
+      "corrections": [],
+      "recognitionId": null,
+      "locationPrecision": "text_block"
+    },
+    "normalization": [],
+    "symbolResolutions": [],
+    "deterministicNormalizations": [],
+    "validated": true
+  },
+  "finalMathIR": {
+    "id": "b95314aa-58b1-4417-8d49-191651116ee2",
+    "mathIR": {
+      "version": "2.0",
+      "source": {
+        "id": "fb3d0e53dd7a56dc473d02c1",
+        "kind": "text",
+        "raw": "任取自然数 n。证明 n = n。理由：等号自反。",
+        "normalized": "任取自然数 n。证明 n = n。理由：等号自反。",
+        "blocks": [
+          {
+            "id": "b0",
+            "text": "任取自然数 n。证明 n = n。理由：等号自反。",
+            "page": null,
+            "bbox": null,
+            "assetId": null
+          }
+        ],
+        "transcriptStatus": "confirmed"
+      },
+      "scopes": [
+        {
+          "id": "s0",
+          "parentId": null,
+          "description": "定理范围：任取自然数 n，结论为 n = n。",
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 0,
+              "end": 25
+            }
+          ]
+        }
+      ],
+      "declarations": [
+        {
+          "id": "d_n",
+          "name": "n",
+          "kind": "variable",
+          "type": {
+            "kind": "Nat",
+            "coefficient": null
+          },
+          "scopeId": "s0",
+          "constraints": [],
+          "value": null,
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 0,
+              "end": 7
+            }
+          ],
+          "sourceAssessment": "supported",
+          "assessmentBasis": "原稿以‘任取自然数 n’引入 n，并说明其为自然数。"
+        }
+      ],
+      "assumptions": [],
+      "goal": {
+        "id": "g0",
+        "expression": {
+          "op": "eq",
+          "args": [
+            {
+              "op": "symbol",
+              "args": [],
+              "symbolId": "d_n",
+              "binderId": null,
+              "literal": null,
+              "lower": null,
+              "upper": null,
+              "upperInclusive": null,
+              "targetType": null
+            },
+            {
+              "op": "symbol",
+              "args": [],
+              "symbolId": "d_n",
+              "binderId": null,
+              "literal": null,
+              "lower": null,
+              "upper": null,
+              "upperInclusive": null,
+              "targetType": null
+            }
+          ],
+          "symbolId": null,
+          "binderId": null,
+          "literal": null,
+          "lower": null,
+          "upper": null,
+          "upperInclusive": null,
+          "targetType": null
+        },
+        "scopeId": "s0",
+        "sourceRefs": [
+          {
+            "blockId": "b0",
+            "start": 11,
+            "end": 16
+          }
+        ],
+        "sourceAssessment": "supported",
+        "assessmentBasis": "原稿直接给出的结论片段为‘n = n’。"
+      },
+      "proofRoutes": [
+        {
+          "id": "r0",
+          "label": "等号自反路线",
+          "nodes": [
+            {
+              "id": "r0_c1",
+              "kind": "claim",
+              "expression": {
+                "op": "eq",
+                "args": [
+                  {
+                    "op": "symbol",
+                    "args": [],
+                    "symbolId": "d_n",
+                    "binderId": null,
+                    "literal": null,
+                    "lower": null,
+                    "upper": null,
+                    "upperInclusive": null,
+                    "targetType": null
+                  },
+                  {
+                    "op": "symbol",
+                    "args": [],
+                    "symbolId": "d_n",
+                    "binderId": null,
+                    "literal": null,
+                    "lower": null,
+                    "upper": null,
+                    "upperInclusive": null,
+                    "targetType": null
+                  }
+                ],
+                "symbolId": null,
+                "binderId": null,
+                "literal": null,
+                "lower": null,
+                "upper": null,
+                "upperInclusive": null,
+                "targetType": null
+              },
+              "scopeId": "s0",
+              "dependsOn": [],
+              "proofTerm": "fun (v_d_n : ℕ) => rfl",
+              "sourceRefs": [
+                {
+                  "blockId": "b0",
+                  "start": 11,
+                  "end": 16
+                }
+              ],
+              "sourceAssessment": "supported",
+              "assessmentBasis": "原稿结论为 n = n，对应声明片段‘n = n’。"
+            }
+          ],
+          "goalNodeId": "r0_c1",
+          "inductions": [],
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 8,
+              "end": 25
+            }
+          ],
+          "sourceAssessment": "supported",
+          "assessmentBasis": "原稿明确说明证明 n = n，理由为等号自反。"
+        }
+      ],
+      "ambiguities": []
+    },
+    "statement": "(∀ (v_d_n : ℕ), (v_d_n = v_d_n))",
+    "statementHash": "d8cd99a236dc70453406fcd1462549f0104c678bf14e4cdeeba2452c543ee776",
+    "mathIRHash": "c1bf316cb56b21e74ad40ad3a4b4b73316d85c5abeb1bbd898cd484a067e0821",
+    "sourceEvidenceHash": "2c8f0af5b1f23e5093401c5f872cb029b656c4fe75be0d26bb3e82e90ebba0ba",
+    "structureArtifactId": "70352d08-79d2-4155-a61c-e520e17619cf",
+    "structureProvenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "f685be51-10b0-4519-9dd6-cffb3741a044",
+      "systemFingerprint": "aeb56401ca74e127821c4f9126dcb669",
+      "usage": {
+        "prompt_tokens": 3095,
+        "completion_tokens": 5259,
+        "total_tokens": 8354,
+        "prompt_tokens_details": {
+          "cached_tokens": 256
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 4818
+        },
+        "prompt_cache_hit_tokens": 256,
+        "prompt_cache_miss_tokens": 2839
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "normalization": [],
+    "validated": true
+  },
+  "sourceTextPreserved": true,
+  "error": null,
+  "elapsedSeconds": 56.734,
+  "requestAudit": [
+    {
+      "workflow_id": "e3f922ef-095a-412e-b82e-e6d5d203cfa7",
+      "request_id": "3c8bb6c8-4907-4411-adae-5309b2977a01",
+      "stage": "mathir",
+      "reason": "StructureOnlyMathIRV2",
+      "input_hash": "eb9b8a0efc55989a8ed39db201bb5312705e44c2475a5dbd9d31574297e4f4f4",
+      "image_hashes": [],
+      "prompt_version": "sha256:6ba32ab0d3122ca7e68ffa2747d7f126180d75802e7c98b9487067fd612a2ada:compact-json-v1",
+      "model": "deepseek-flash",
+      "retry_index": 0,
+      "cache": "miss",
+      "input_tokens": 3095,
+      "output_tokens": 5259,
+      "timestamp": 1791829033.038678,
+      "phase": "finished",
+      "real_request_attempted": true,
+      "reasoning_tokens": 4818,
+      "provider_response_id": "f685be51-10b0-4519-9dd6-cffb3741a044",
+      "status": "response_received",
+      "http_duration_ms": 28949.544
+    },
+    {
+      "workflow_id": "e3f922ef-095a-412e-b82e-e6d5d203cfa7",
+      "request_id": "6aff9317-9e40-4739-b0bd-377898edfec2",
+      "stage": "formalization",
+      "reason": "FormalProofs",
+      "input_hash": "c9281b0b1eeda335634a59cff30eb737cb83dd60ede80252fe61491cca8a816b",
+      "image_hashes": [],
+      "prompt_version": "sha256:bf486bb4eaadcdb0a1a8f3fa36c700d9f5d9c84fd1a687d9b8009540fae1166f:compact-json-v1",
+      "model": "deepseek-flash",
+      "retry_index": 0,
+      "cache": "miss",
+      "input_tokens": 1314,
+      "output_tokens": 528,
+      "timestamp": 1791829062.0097148,
+      "phase": "finished",
+      "real_request_attempted": true,
+      "reasoning_tokens": 496,
+      "provider_response_id": "36a63fa8-b2b2-4771-8a41-e6cb73455b30",
+      "status": "response_received",
+      "http_duration_ms": 3051.317
+    }
+  ],
+  "providerSummary": {
+    "requestCount": 2,
+    "stageCounts": {
+      "mathir": 1,
+      "formalization": 1
+    },
+    "inputTokens": 4409,
+    "outputTokens": 5787,
+    "httpMilliseconds": 32000.861,
+    "retryCount": 0,
+    "cacheMissCount": 2,
+    "realRequestCount": 2,
+    "allRequestsUseConfiguredModel": true
+  },
+  "checkpointCount": 4
+}

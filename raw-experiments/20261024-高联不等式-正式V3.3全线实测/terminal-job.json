@@ -1,0 +1,705 @@
+{
+  "id": "3c48446e-e75e-4483-8467-18e6865d24a8",
+  "status": "completed",
+  "stage": "completed",
+  "created": "2026-10-24T12:44:03.467261+00:00",
+  "updated": "2026-10-24T12:48:53.357483+00:00",
+  "request": {
+    "input": {
+      "kind": "text",
+      "text": "【待验证题目｜本聊天上一条助理给出的证明，未改写推理，不将其身份当作官方参考答案】\n设 m,n,k 均为正整数，满足 m≥2，n≥k≥2。已知非负实数 x₁≥x₂≥⋯≥xₙ≥0 满足 ∑_{i=1}^n xᵢ^m≥1 及 ∑_{i=1}^n xᵢ≤k。求证 ∑_{i=1}^k xᵢ≥1。\n\n【原证明】\n第一步：假设结论不成立。\n假设 ∑_{i=1}^k xᵢ<1。记 t=∑_{i=1}^k xᵢ，u=xₖ。\n由条件可知 0≤u≤xᵢ≤t<1 (1≤i≤k)。\n另一方面，由数列的单调性，0≤xᵢ≤u<1 (k<i≤n)。\n\n第二步：估计前 k 项的 m 次幂。\n对任意 1≤i≤k，由于 0≤xᵢ<1，且 m≥2，有 xᵢ^m≤xᵢ²。\n又因为 u≤xᵢ<1，所以 (xᵢ−u)(1−xᵢ)≥0。\n展开并整理，得 xᵢ²≤xᵢ−u+uxᵢ。\n因此 xᵢ^m≤xᵢ−u+uxᵢ。\n对 i=1,2,…,k 求和，得到\n∑_{i=1}^k xᵢ^m ≤ ∑_{i=1}^k (xᵢ−u+uxᵢ) = t−ku+ut。\n\n第三步：估计后 n−k 项的 m 次幂。\n对任意 k<i≤n，由于 0≤xᵢ≤u<1，m≥2，有 xᵢ^(m−1)≤xᵢ≤u。\n两边乘以非负数 xᵢ，得 xᵢ^m≤uxᵢ。\n故 ∑_{i=k+1}^n xᵢ^m ≤ u∑_{i=k+1}^n xᵢ。\n当 n=k 时，上述两边均视为零，结论仍成立。\n\n第四步：合并两个估计。\n将前后两部分相加：\n∑_{i=1}^n xᵢ^m\n= ∑_{i=1}^k xᵢ^m + ∑_{i=k+1}^n xᵢ^m\n≤ t−ku+ut + u∑_{i=k+1}^n xᵢ\n= t−ku+u(t+∑_{i=k+1}^n xᵢ)\n= t−ku+u∑_{i=1}^n xᵢ。\n\n第五步：利用已知条件推出矛盾。\n由题设 ∑_{i=1}^n xᵢ≤k，又 u≥0，所以 u∑_{i=1}^n xᵢ≤uk。\n代入上式：\n∑_{i=1}^n xᵢ^m≤t−ku+u∑_{i=1}^n xᵢ≤t−ku+uk=t<1。\n这与已知条件 ∑_{i=1}^n xᵢ^m≥1 矛盾。\n因此原假设不成立，必有 ∑_{i=1}^k xᵢ≥1。证毕。",
+      "assetId": null,
+      "dataUrl": null,
+      "strokes": null,
+      "recognitionId": null,
+      "parts": null
+    },
+    "explain": false
+  },
+  "result": {
+    "id": "f60c28ed-eee6-4b5e-843d-ba10f3852d94",
+    "kind": "lean_first_local",
+    "mode": "single_whole_theorem_kernel",
+    "sourceSha256": "12a6e6fcb6927d5c9b950f091a3a13402ff80aeccb5ba52d2b8cd9d8ac6c8107",
+    "runTraceId": "3aa6c144-c47e-4a44-bc99-07a11650e2a1",
+    "status": "whole_formal_kernel_not_verified",
+    "kernelVerified": false,
+    "formalProofCertified": false,
+    "originalProofCertified": false,
+    "sourceEquivalenceCertified": false,
+    "originalInferenceVerified": false,
+    "sourcePositionsValid": true,
+    "plannedStepCount": 18,
+    "localFormalVerifiedCount": 0,
+    "sourceSteps": [
+      {
+        "id": "source-0",
+        "index": 0,
+        "role": "inference",
+        "start": 152,
+        "end": 164,
+        "sourceExcerpt": "第一步：假设结论不成立。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_0",
+        "dependsOn": []
+      },
+      {
+        "id": "source-1",
+        "index": 1,
+        "role": "inference",
+        "start": 165,
+        "end": 205,
+        "sourceExcerpt": "假设 ∑_{i=1}^k xᵢ<1。记 t=∑_{i=1}^k xᵢ，u=xₖ。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_1",
+        "dependsOn": []
+      },
+      {
+        "id": "source-2",
+        "index": 2,
+        "role": "inference",
+        "start": 206,
+        "end": 231,
+        "sourceExcerpt": "由条件可知 0≤u≤xᵢ≤t<1 (1≤i≤k)。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_2",
+        "dependsOn": []
+      },
+      {
+        "id": "source-3",
+        "index": 3,
+        "role": "inference",
+        "start": 232,
+        "end": 262,
+        "sourceExcerpt": "另一方面，由数列的单调性，0≤xᵢ≤u<1 (k<i≤n)。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_3",
+        "dependsOn": []
+      },
+      {
+        "id": "source-4",
+        "index": 4,
+        "role": "inference",
+        "start": 283,
+        "end": 320,
+        "sourceExcerpt": "对任意 1≤i≤k，由于 0≤xᵢ<1，且 m≥2，有 xᵢ^m≤xᵢ²。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_4",
+        "dependsOn": []
+      },
+      {
+        "id": "source-5",
+        "index": 5,
+        "role": "inference",
+        "start": 321,
+        "end": 350,
+        "sourceExcerpt": "又因为 u≤xᵢ<1，所以 (xᵢ−u)(1−xᵢ)≥0。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_5",
+        "dependsOn": []
+      },
+      {
+        "id": "source-6",
+        "index": 6,
+        "role": "inference",
+        "start": 351,
+        "end": 372,
+        "sourceExcerpt": "展开并整理，得 xᵢ²≤xᵢ−u+uxᵢ。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_6",
+        "dependsOn": []
+      },
+      {
+        "id": "source-7",
+        "index": 7,
+        "role": "inference",
+        "start": 373,
+        "end": 390,
+        "sourceExcerpt": "因此 xᵢ^m≤xᵢ−u+uxᵢ。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_7",
+        "dependsOn": []
+      },
+      {
+        "id": "source-8",
+        "index": 8,
+        "role": "inference",
+        "start": 409,
+        "end": 457,
+        "sourceExcerpt": "∑_{i=1}^k xᵢ^m ≤ ∑_{i=1}^k (xᵢ−u+uxᵢ) = t−ku+ut。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_8",
+        "dependsOn": []
+      },
+      {
+        "id": "source-9",
+        "index": 9,
+        "role": "inference",
+        "start": 480,
+        "end": 522,
+        "sourceExcerpt": "对任意 k<i≤n，由于 0≤xᵢ≤u<1，m≥2，有 xᵢ^(m−1)≤xᵢ≤u。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_9",
+        "dependsOn": []
+      },
+      {
+        "id": "source-10",
+        "index": 10,
+        "role": "inference",
+        "start": 523,
+        "end": 545,
+        "sourceExcerpt": "两边乘以非负数 xᵢ，得 xᵢ^m≤uxᵢ。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_10",
+        "dependsOn": []
+      },
+      {
+        "id": "source-11",
+        "index": 11,
+        "role": "inference",
+        "start": 546,
+        "end": 583,
+        "sourceExcerpt": "故 ∑_{i=k+1}^n xᵢ^m ≤ u∑_{i=k+1}^n xᵢ。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_11",
+        "dependsOn": []
+      },
+      {
+        "id": "source-12",
+        "index": 12,
+        "role": "inference",
+        "start": 584,
+        "end": 607,
+        "sourceExcerpt": "当 n=k 时，上述两边均视为零，结论仍成立。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_12",
+        "dependsOn": []
+      },
+      {
+        "id": "source-13",
+        "index": 13,
+        "role": "inference",
+        "start": 631,
+        "end": 758,
+        "sourceExcerpt": "∑_{i=1}^n xᵢ^m\n= ∑_{i=1}^k xᵢ^m + ∑_{i=k+1}^n xᵢ^m\n≤ t−ku+ut + u∑_{i=k+1}^n xᵢ\n= t−ku+u(t+∑_{i=k+1}^n xᵢ)\n= t−ku+u∑_{i=1}^n xᵢ。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_13",
+        "dependsOn": []
+      },
+      {
+        "id": "source-14",
+        "index": 14,
+        "role": "inference",
+        "start": 776,
+        "end": 821,
+        "sourceExcerpt": "由题设 ∑_{i=1}^n xᵢ≤k，又 u≥0，所以 u∑_{i=1}^n xᵢ≤uk。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_14",
+        "dependsOn": []
+      },
+      {
+        "id": "source-15",
+        "index": 15,
+        "role": "inference",
+        "start": 828,
+        "end": 874,
+        "sourceExcerpt": "∑_{i=1}^n xᵢ^m≤t−ku+u∑_{i=1}^n xᵢ≤t−ku+uk=t<1。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_15",
+        "dependsOn": []
+      },
+      {
+        "id": "source-16",
+        "index": 16,
+        "role": "inference",
+        "start": 875,
+        "end": 902,
+        "sourceExcerpt": "这与已知条件 ∑_{i=1}^n xᵢ^m≥1 矛盾。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_16",
+        "dependsOn": []
+      },
+      {
+        "id": "source-17",
+        "index": 17,
+        "role": "inference",
+        "start": 903,
+        "end": 933,
+        "sourceExcerpt": "因此原假设不成立，必有 ∑_{i=1}^k xᵢ≥1。证毕。",
+        "status": "translation_mapped_only",
+        "kernelVerified": false,
+        "sourcePositionsValid": true,
+        "originalInferenceVerified": false,
+        "sourceEquivalenceCertified": false,
+        "leanWitnessMarker": "source_step_17",
+        "dependsOn": []
+      }
+    ],
+    "statement": "∀ (m n k : ℕ), 2 ≤ m → k ≤ n → 2 ≤ k → ∀ (x : Fin n → ℝ), (∀ i : Fin n, 0 ≤ x i) → (∀ i j : Fin n, i ≤ j → x j ≤ x i) → ((Finset.univ : Finset (Fin n)).sum (fun i => (x i) ^ m)) ≥ 1 → ((Finset.univ : Finset (Fin n)).sum (fun i => x i)) ≤ (k : ℝ) → (((Finset.univ : Finset (Fin n)).filter (fun i => (i : ℕ) < k)).sum (fun i => x i)) ≥ 1",
+    "proofTerm": "by\n  intro m n k hm hkn hk x hx_nonneg hx_anti hpow hsum\n  have hkpos : 0 < k := by omega\n  have hkm1lt : k - 1 < n := by omega\n  let umem : Fin n := ⟨k - 1, hkm1lt⟩\n  let A : Finset (Fin n) := Finset.univ.filter (fun i : Fin n => (i : ℕ) < k)\n  let B : Finset (Fin n) := Finset.univ.filter (fun i : Fin n => ¬ (i : ℕ) < k)\n  by_contra hneg\n  let t : ℝ := A.sum (fun i : Fin n => x i)\n  let u : ℝ := x umem\n  have hnegA : ¬ (A.sum (fun i : Fin n => x i) ≥ 1) := by\n    simpa [A] using hneg\n  have source_step_0 : ¬ (A.sum (fun i : Fin n => x i) ≥ 1) := hnegA\n  have source_step_1 : t = A.sum (fun i : Fin n => x i) ∧ u = x umem := by\n    exact ⟨rfl, rfl⟩\n  have htlt : t < 1 := by\n    dsimp [t]\n    exact not_le.mp hnegA\n  have ht_nonneg : 0 ≤ t := by\n    dsimp [t]\n    exact Finset.sum_nonneg (fun i hi => hx_nonneg i)\n  have hu_nonneg : 0 ≤ u := by\n    dsimp [u]\n    exact hx_nonneg umem\n  have hkmem_lt : k - 1 < k := by omega\n  have hu_mem : umem ∈ A := by\n    dsimp [A, umem]\n    simp [hkmem_lt]\n  have hu_le_t : u ≤ t := by\n    dsimp [u, t]\n    exact Finset.single_le_sum (fun i hi => hx_nonneg i) hu_mem\n  have hxi_le_t_of_mem : ∀ i ∈ A, x i ≤ t := by\n    intro i hi\n    dsimp [t]\n    exact Finset.single_le_sum (fun j hj => hx_nonneg j) hi\n  have hxi_ge_u_of_mem : ∀ i ∈ A, u ≤ x i := by\n    intro i hi\n    have hi_lt : (i : ℕ) < k := by\n      simpa [A] using hi\n    have hi_le_umem : i ≤ umem := by\n      change (i : ℕ) ≤ k - 1\n      omega\n    dsimp [u]\n    exact hx_anti i umem hi_le_umem\n  have hxi_lt_one_of_mem : ∀ i ∈ A, x i < 1 := by\n    intro i hi\n    exact lt_of_le_of_lt (hxi_le_t_of_mem i hi) htlt\n  have hu_lt_one : u < 1 := lt_of_le_of_lt hu_le_t htlt\n  have source_step_2 : 0 ≤ u ∧ u ≤ t ∧ t < 1 ∧ (∀ i, i ∈ A → 0 ≤ u ∧ u ≤ x i ∧ x i ≤ t ∧ t < 1) := by\n    refine ⟨hu_nonneg, hu_le_t, htlt, ?_⟩\n    intro i hi\n    exact ⟨hu_nonneg, hxi_ge_u_of_mem i hi, hxi_le_t_of_mem i hi, htlt⟩\n  have hxi_le_u_of_mem : ∀ i ∈ B, x i ≤ u := by\n    intro i hi\n    have hik : k ≤ (i : ℕ) := by\n      have hnot : ¬ (i : ℕ) < k := by\n        simpa [B] using hi\n      omega\n    have hu_le_i : umem ≤ i := by\n      change k - 1 ≤ (i : ℕ)\n      omega\n    dsimp [u]\n    exact hx_anti umem i hu_le_i\n  have source_step_3 : ∀ i, i ∈ B → 0 ≤ x i ∧ x i ≤ u ∧ u < 1 := by\n    intro i hi\n    exact ⟨hx_nonneg i, hxi_le_u_of_mem i hi, hu_lt_one⟩\n  have hxi_le_one_of_mem : ∀ i ∈ A, x i ≤ 1 := by\n    intro i hi\n    exact le_of_lt (hxi_lt_one_of_mem i hi)\n  have source_step_4 : ∀ i, i ∈ A → x i ^ m ≤ x i ^ 2 := by\n    intro i hi\n    exact pow_le_pow_of_le_one (hx_nonneg i) (hxi_le_one_of_mem i hi) hm\n  have source_step_5 : ∀ i, i ∈ A → 0 ≤ (x i - u) * (1 - x i) := by\n    intro i hi\n    exact mul_nonneg (sub_nonneg.mpr (hxi_ge_u_of_mem i hi))\n      (sub_nonneg.mpr (le_of_lt (hxi_lt_one_of_mem i hi)))\n  have source_step_6 : ∀ i, i ∈ A → x i ^ 2 ≤ x i - u + u * x i := by\n    intro i hi\n    have hprod := source_step_5 i hi\n    have h : (x i - u) * (1 - x i) = x i - u + u * x i - (x i)^2 := by ring\n    nlinarith [hprod, h]\n  have source_step_7 : ∀ i, i ∈ A → x i ^ m ≤ x i - u + u * x i := by\n    intro i hi\n    exact le_trans (source_step_4 i hi) (source_step_6 i hi)\n  have hsumA_le : A.sum (fun i => x i ^ m) ≤ A.sum (fun i => x i - u + u * x i) := by\n    exact Finset.sum_le_sum (fun i hi => source_step_7 i hi)\n  have hA_card : A.card = k := by\n    dsimp [A]\n    rw [Finset.card_eq_sum_ones]\n    rw [Finset.sum_filter]\n    calc\n      (∑ x_1 : Fin n, if (x_1 : ℕ) < k then (1 : ℕ) else 0)\n          = ∑ i ∈ Finset.range n, (if i < k then (1 : ℕ) else 0) := by\n              simpa using (Fin.sum_univ_eq_sum_range (fun i : ℕ => if i < k then (1 : ℕ) else 0) n)\n      _ = k := by\n          have hf : (Finset.range n).filter (fun i => i < k) = Finset.range k := by\n            ext i\n            simp [Finset.mem_range]\n            omega\n          rw [← Finset.sum_filter, hf]\n          simp\n  have source_step_8 : A.sum (fun i => x i ^ m) ≤ t - (k : ℝ) * u + u * t := by\n    calc\n      A.sum (fun i => x i ^ m)\n          ≤ A.sum (fun i => x i - u + u * x i) := hsumA_le\n      _ = t - (A.card : ℝ) * u + u * t := by\n          have hsum_expr : A.sum (fun i => x i - u + u * x i) =\n              A.sum (fun i => x i) - A.sum (fun _ : Fin n => u) + A.sum (fun i => u * x i) := by\n            rw [Finset.sum_add_distrib, Finset.sum_sub_distrib]\n          rw [hsum_expr]\n          have hconst : A.sum (fun _ : Fin n => u) = (A.card : ℝ) * u := by\n            simp [Finset.sum_const, nsmul_eq_mul]\n          have hmul : A.sum (fun i => u * x i) = u * A.sum (fun i => x i) := by\n            rw [Finset.mul_sum]\n          rw [hconst, hmul]\n          dsimp [t]\n          ring\n      _ = t - (k : ℝ) * u + u * t := by rw [hA_card]\n  have source_step_9 : ∀ i, i ∈ B → x i ^ (m - 1) ≤ x i ∧ x i ≤ u := by\n    intro i hi\n    have hxi_le_u : x i ≤ u := hxi_le_u_of_mem i hi\n    have hxi_nonneg : 0 ≤ x i := hx_nonneg i\n    have hxi_lt_one : x i < 1 := lt_of_le_of_lt hxi_le_u hu_lt_one\n    have hxi_le_one : x i ≤ 1 := le_of_lt hxi_lt_one\n    have hm1 : 1 ≤ m - 1 := by omega\n    have hpow' : x i ^ (m - 1) ≤ x i ^ 1 :=\n      pow_le_pow_of_le_one hxi_nonneg hxi_le_one hm1\n    constructor\n    · simpa using hpow'\n    · exact hxi_le_u\n  have source_step_10 : ∀ i, i ∈ B → x i ^ m ≤ u * x i := by\n    intro i hi\n    have hpow' := (source_step_9 i hi).1\n    have hx_nonneg' : 0 ≤ x i := hx_nonneg i\n    have hm_eq : m = (m - 1) + 1 := by omega\n    calc\n      x i ^ m = x i ^ ((m - 1) + 1) := by rw [hm_eq]\n      _ = x i ^ (m - 1) * x i := by rw [pow_succ]\n      _ ≤ u * x i := by\n          exact mul_le_mul_of_nonneg_right hpow' hx_nonneg'\n  have hsumB_le : B.sum (fun i => x i ^ m) ≤ u * B.sum (fun i => x i) := by\n    calc\n      B.sum (fun i => x i ^ m)\n          ≤ B.sum (fun i => u * x i) := by\n              exact Finset.sum_le_sum (fun i hi => source_step_10 i hi)\n      _ = u * B.sum (fun i => x i) := by\n              rw [Finset.mul_sum]\n  have source_step_11 : B.sum (fun i => x i ^ m) ≤ u * B.sum (fun i => x i) := hsumB_le\n  have source_step_12 : n = k → B.sum (fun i => x i ^ m) = 0 ∧ B.sum (fun i => x i) = 0 := by\n    intro hnk\n    have hBempty : B = ∅ := by\n      apply Finset.eq_empty_iff_forall_not_mem.mpr\n      intro i hi\n      have hnot : ¬ (i : ℕ) < k := by\n        simpa [B] using hi\n      have hi_lt_n : (i : ℕ) < n := i.isLt\n      omega\n    simp [hBempty]\n  have hsum_split_pow :\n      (Finset.univ.sum (fun i : Fin n => x i ^ m)) =\n        A.sum (fun i => x i ^ m) + B.sum (fun i => x i ^ m) := by\n    dsimp [A, B]\n    rw [← Finset.sum_filter_add_sum_filter_not\n        (s := (Finset.univ : Finset (Fin n)))\n        (p := fun i : Fin n => (i : ℕ) < k)\n        (f := fun i : Fin n => x i ^ m)]\n  have hsum_split_x :\n      (Finset.univ.sum (fun i : Fin n => x i)) =\n        A.sum (fun i => x i) + B.sum (fun i => x i) := by\n    dsimp [A, B]\n    rw [← Finset.sum_filter_add_sum_filter_not\n        (s := (Finset.univ : Finset (Fin n)))\n        (p := fun i : Fin n => (i : ℕ) < k)\n        (f := fun i : Fin n => x i)]\n  have source_step_13 :\n      (Finset.univ.sum (fun i : Fin n => x i ^ m)) ≤\n        t - (k : ℝ) * u + u * (Finset.univ.sum (fun i : Fin n => x i)) := by\n    calc\n      (Finset.univ.sum (fun i : Fin n => x i ^ m))\n          = A.sum (fun i => x i ^ m) + B.sum (fun i => x i ^ m) := hsum_split_pow\n      _ ≤ (t - (k : ℝ) * u + u * t) + (u * B.sum (fun i => x i)) := by\n          exact add_le_add source_step_8 hsumB_le\n      _ = t - (k : ℝ) * u + u * (Finset.univ.sum (fun i : Fin n => x i)) := by\n          rw [hsum_split_x]\n          dsimp [t]\n          ring\n  have source_step_14 :\n      u * (Finset.univ.sum (fun i : Fin n => x i)) ≤ u * (k : ℝ) := by\n    exact mul_le_mul_of_nonneg_left hsum hu_nonneg\n  have source_step_15 :\n      (Finset.univ.sum (fun i : Fin n => x i ^ m)) < 1 := by\n    calc\n      (Finset.univ.sum (fun i : Fin n => x i ^ m))\n          ≤ t - (k : ℝ) * u + u * (Finset.univ.sum (fun i : Fin n => x i)) := source_step_13\n      _ ≤ t - (k : ℝ) * u + u * (k : ℝ) := by\n          linarith [source_step_14]\n      _ = t := by ring\n      _ < 1 := htlt\n  have source_step_16 : False := by\n    linarith [source_step_15, hpow]\n  have source_step_17 : A.sum (fun i : Fin n => x i) ≥ 1 := by\n    exfalso\n    exact source_step_16\n  exact source_step_16",
+    "lean": {
+      "localVerified": false,
+      "status": "statement_not_elaborated",
+      "diagnostics": [
+        {
+          "severity": "error",
+          "message": "Application type mismatch: The argument\n  Finset.univ\nhas type\n  Finset (Fin n)\nbut is expected to have type\n  Finset ℕ\nin the application\n  {i | i < k}",
+          "leanPosition": {
+            "column": 176,
+            "line": 5
+          },
+          "leanEndPosition": {
+            "column": 228,
+            "line": 5
+          },
+          "stepId": "whole-authored-proof",
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 0,
+              "end": 933
+            }
+          ],
+          "mappingPrecision": "step",
+          "raw": {
+            "caption": "",
+            "data": "Application type mismatch: The argument\n  Finset.univ\nhas type\n  Finset (Fin n)\nbut is expected to have type\n  Finset ℕ\nin the application\n  {i | i < k}",
+            "endPos": {
+              "column": 228,
+              "line": 5
+            },
+            "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线实测/data/work/lean-1_b5ij8f/Task.lean",
+            "isSilent": false,
+            "keepFullRange": false,
+            "kind": "[anonymous]",
+            "pos": {
+              "column": 176,
+              "line": 5
+            },
+            "severity": "error"
+          }
+        },
+        {
+          "severity": "error",
+          "message": "Application type mismatch: The argument\n  i\nhas type\n  ℕ\nbut is expected to have type\n  Fin n\nin the application\n  x i",
+          "leanPosition": {
+            "column": 246,
+            "line": 5
+          },
+          "leanEndPosition": {
+            "column": 247,
+            "line": 5
+          },
+          "stepId": "whole-authored-proof",
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 0,
+              "end": 933
+            }
+          ],
+          "mappingPrecision": "step",
+          "raw": {
+            "caption": "",
+            "data": "Application type mismatch: The argument\n  i\nhas type\n  ℕ\nbut is expected to have type\n  Fin n\nin the application\n  x i",
+            "endPos": {
+              "column": 247,
+              "line": 5
+            },
+            "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线实测/data/work/lean-1_b5ij8f/Task.lean",
+            "isSilent": false,
+            "keepFullRange": false,
+            "kind": "[anonymous]",
+            "pos": {
+              "column": 246,
+              "line": 5
+            },
+            "severity": "error"
+          }
+        },
+        {
+          "severity": "error",
+          "message": "Expected proposition contains Lean sorryAx recovery",
+          "stepId": "whole-authored-proof",
+          "sourceRefs": [
+            {
+              "blockId": "b0",
+              "start": 0,
+              "end": 933
+            }
+          ],
+          "mappingPrecision": "step"
+        }
+      ],
+      "certificate": null
+    },
+    "unsupportedOriginalSteps": [
+      "完整 Lean 证明未获得 Kernel 证书；保留失败诊断"
+    ],
+    "planProvenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "7800f012-b852-4e89-a480-da4fdd45de41",
+      "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+      "usage": {
+        "prompt_tokens": 1468,
+        "completion_tokens": 22419,
+        "total_tokens": 23887,
+        "prompt_tokens_details": {
+          "cached_tokens": 1280
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 21269
+        },
+        "prompt_cache_hit_tokens": 1280,
+        "prompt_cache_miss_tokens": 188
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "model": "deepseek-flash",
+    "goalExcerpt": "设 m,n,k 均为正整数，满足 m≥2，n≥k≥2。已知非负实数 x₁≥x₂≥⋯≥xₙ≥0 满足 ∑_{i=1}^n xᵢ^m≥1 及 ∑_{i=1}^n xᵢ≤k。求证 ∑_{i=1}^k xᵢ≥1。",
+    "originalGivenExcerpts": [
+      "m,n,k 均为正整数，满足 m≥2，n≥k≥2。",
+      "非负实数 x₁≥x₂≥⋯≥xₙ≥0",
+      "∑_{i=1}^n xᵢ^m≥1",
+      "∑_{i=1}^n xᵢ≤k"
+    ],
+    "sourceOffsetRepairs": [],
+    "proofProvenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "a92eb24d-35f6-483e-8e63-450f300a2d80",
+      "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+      "usage": {
+        "prompt_tokens": 2549,
+        "completion_tokens": 38584,
+        "total_tokens": 41133,
+        "prompt_tokens_details": {
+          "cached_tokens": 1152
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 35151
+        },
+        "prompt_cache_hit_tokens": 1152,
+        "prompt_cache_miss_tokens": 1397
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "rawModelProofTerm": "by\n  intro m n k hm hkn hk x hx_nonneg hx_anti hpow hsum\n  have hkpos : 0 < k := by omega\n  have hkm1lt : k - 1 < n := by omega\n  let umem : Fin n := ⟨k - 1, hkm1lt⟩\n  let A : Finset (Fin n) := Finset.univ.filter (fun i : Fin n => (i : ℕ) < k)\n  let B : Finset (Fin n) := Finset.univ.filter (fun i : Fin n => ¬ (i : ℕ) < k)\n  by_contra hneg\n  let t : ℝ := A.sum (fun i : Fin n => x i)\n  let u : ℝ := x umem\n  have hnegA : ¬ (A.sum (fun i : Fin n => x i) ≥ 1) := by\n    simpa [A] using hneg\n  have source_step_0 : ¬ (A.sum (fun i : Fin n => x i) ≥ 1) := hnegA\n  have source_step_1 : t = A.sum (fun i : Fin n => x i) ∧ u = x umem := by\n    exact ⟨rfl, rfl⟩\n  have htlt : t < 1 := by\n    dsimp [t]\n    exact not_le.mp hnegA\n  have ht_nonneg : 0 ≤ t := by\n    dsimp [t]\n    exact Finset.sum_nonneg (fun i hi => hx_nonneg i)\n  have hu_nonneg : 0 ≤ u := by\n    dsimp [u]\n    exact hx_nonneg umem\n  have hkmem_lt : k - 1 < k := by omega\n  have hu_mem : umem ∈ A := by\n    dsimp [A, umem]\n    simp [hkmem_lt]\n  have hu_le_t : u ≤ t := by\n    dsimp [u, t]\n    exact Finset.single_le_sum (fun i hi => hx_nonneg i) hu_mem\n  have hxi_le_t_of_mem : ∀ i ∈ A, x i ≤ t := by\n    intro i hi\n    dsimp [t]\n    exact Finset.single_le_sum (fun j hj => hx_nonneg j) hi\n  have hxi_ge_u_of_mem : ∀ i ∈ A, u ≤ x i := by\n    intro i hi\n    have hi_lt : (i : ℕ) < k := by\n      simpa [A] using hi\n    have hi_le_umem : i ≤ umem := by\n      change (i : ℕ) ≤ k - 1\n      omega\n    dsimp [u]\n    exact hx_anti i umem hi_le_umem\n  have hxi_lt_one_of_mem : ∀ i ∈ A, x i < 1 := by\n    intro i hi\n    exact lt_of_le_of_lt (hxi_le_t_of_mem i hi) htlt\n  have hu_lt_one : u < 1 := lt_of_le_of_lt hu_le_t htlt\n  have source_step_2 : 0 ≤ u ∧ u ≤ t ∧ t < 1 ∧ (∀ i, i ∈ A → 0 ≤ u ∧ u ≤ x i ∧ x i ≤ t ∧ t < 1) := by\n    refine ⟨hu_nonneg, hu_le_t, htlt, ?_⟩\n    intro i hi\n    exact ⟨hu_nonneg, hxi_ge_u_of_mem i hi, hxi_le_t_of_mem i hi, htlt⟩\n  have hxi_le_u_of_mem : ∀ i ∈ B, x i ≤ u := by\n    intro i hi\n    have hik : k ≤ (i : ℕ) := by\n      have hnot : ¬ (i : ℕ) < k := by\n        simpa [B] using hi\n      omega\n    have hu_le_i : umem ≤ i := by\n      change k - 1 ≤ (i : ℕ)\n      omega\n    dsimp [u]\n    exact hx_anti umem i hu_le_i\n  have source_step_3 : ∀ i, i ∈ B → 0 ≤ x i ∧ x i ≤ u ∧ u < 1 := by\n    intro i hi\n    exact ⟨hx_nonneg i, hxi_le_u_of_mem i hi, hu_lt_one⟩\n  have hxi_le_one_of_mem : ∀ i ∈ A, x i ≤ 1 := by\n    intro i hi\n    exact le_of_lt (hxi_lt_one_of_mem i hi)\n  have source_step_4 : ∀ i, i ∈ A → x i ^ m ≤ x i ^ 2 := by\n    intro i hi\n    exact pow_le_pow_of_le_one (hx_nonneg i) (hxi_le_one_of_mem i hi) hm\n  have source_step_5 : ∀ i, i ∈ A → 0 ≤ (x i - u) * (1 - x i) := by\n    intro i hi\n    exact mul_nonneg (sub_nonneg.mpr (hxi_ge_u_of_mem i hi))\n      (sub_nonneg.mpr (le_of_lt (hxi_lt_one_of_mem i hi)))\n  have source_step_6 : ∀ i, i ∈ A → x i ^ 2 ≤ x i - u + u * x i := by\n    intro i hi\n    have hprod := source_step_5 i hi\n    have h : (x i - u) * (1 - x i) = x i - u + u * x i - (x i)^2 := by ring\n    nlinarith [hprod, h]\n  have source_step_7 : ∀ i, i ∈ A → x i ^ m ≤ x i - u + u * x i := by\n    intro i hi\n    exact le_trans (source_step_4 i hi) (source_step_6 i hi)\n  have hsumA_le : A.sum (fun i => x i ^ m) ≤ A.sum (fun i => x i - u + u * x i) := by\n    exact Finset.sum_le_sum (fun i hi => source_step_7 i hi)\n  have hA_card : A.card = k := by\n    dsimp [A]\n    rw [Finset.card_eq_sum_ones]\n    rw [Finset.sum_filter]\n    calc\n      (∑ x_1 : Fin n, if (x_1 : ℕ) < k then (1 : ℕ) else 0)\n          = ∑ i in Finset.range n, (if i < k then (1 : ℕ) else 0) := by\n              simpa using (Fin.sum_univ_eq_sum_range (fun i : ℕ => if i < k then (1 : ℕ) else 0) n)\n      _ = k := by\n          have hf : (Finset.range n).filter (fun i => i < k) = Finset.range k := by\n            ext i\n            simp [Finset.mem_range]\n            omega\n          rw [← Finset.sum_filter, hf]\n          simp\n  have source_step_8 : A.sum (fun i => x i ^ m) ≤ t - (k : ℝ) * u + u * t := by\n    calc\n      A.sum (fun i => x i ^ m)\n          ≤ A.sum (fun i => x i - u + u * x i) := hsumA_le\n      _ = t - (A.card : ℝ) * u + u * t := by\n          have hsum_expr : A.sum (fun i => x i - u + u * x i) =\n              A.sum (fun i => x i) - A.sum (fun _ : Fin n => u) + A.sum (fun i => u * x i) := by\n            rw [Finset.sum_add_distrib, Finset.sum_sub_distrib]\n          rw [hsum_expr]\n          have hconst : A.sum (fun _ : Fin n => u) = (A.card : ℝ) * u := by\n            simp [Finset.sum_const, nsmul_eq_mul]\n          have hmul : A.sum (fun i => u * x i) = u * A.sum (fun i => x i) := by\n            rw [Finset.mul_sum]\n          rw [hconst, hmul]\n          dsimp [t]\n          ring\n      _ = t - (k : ℝ) * u + u * t := by rw [hA_card]\n  have source_step_9 : ∀ i, i ∈ B → x i ^ (m - 1) ≤ x i ∧ x i ≤ u := by\n    intro i hi\n    have hxi_le_u : x i ≤ u := hxi_le_u_of_mem i hi\n    have hxi_nonneg : 0 ≤ x i := hx_nonneg i\n    have hxi_lt_one : x i < 1 := lt_of_le_of_lt hxi_le_u hu_lt_one\n    have hxi_le_one : x i ≤ 1 := le_of_lt hxi_lt_one\n    have hm1 : 1 ≤ m - 1 := by omega\n    have hpow' : x i ^ (m - 1) ≤ x i ^ 1 :=\n      pow_le_pow_of_le_one hxi_nonneg hxi_le_one hm1\n    constructor\n    · simpa using hpow'\n    · exact hxi_le_u\n  have source_step_10 : ∀ i, i ∈ B → x i ^ m ≤ u * x i := by\n    intro i hi\n    have hpow' := (source_step_9 i hi).1\n    have hx_nonneg' : 0 ≤ x i := hx_nonneg i\n    have hm_eq : m = (m - 1) + 1 := by omega\n    calc\n      x i ^ m = x i ^ ((m - 1) + 1) := by rw [hm_eq]\n      _ = x i ^ (m - 1) * x i := by rw [pow_succ]\n      _ ≤ u * x i := by\n          exact mul_le_mul_of_nonneg_right hpow' hx_nonneg'\n  have hsumB_le : B.sum (fun i => x i ^ m) ≤ u * B.sum (fun i => x i) := by\n    calc\n      B.sum (fun i => x i ^ m)\n          ≤ B.sum (fun i => u * x i) := by\n              exact Finset.sum_le_sum (fun i hi => source_step_10 i hi)\n      _ = u * B.sum (fun i => x i) := by\n              rw [Finset.mul_sum]\n  have source_step_11 : B.sum (fun i => x i ^ m) ≤ u * B.sum (fun i => x i) := hsumB_le\n  have source_step_12 : n = k → B.sum (fun i => x i ^ m) = 0 ∧ B.sum (fun i => x i) = 0 := by\n    intro hnk\n    have hBempty : B = ∅ := by\n      apply Finset.eq_empty_iff_forall_not_mem.mpr\n      intro i hi\n      have hnot : ¬ (i : ℕ) < k := by\n        simpa [B] using hi\n      have hi_lt_n : (i : ℕ) < n := i.isLt\n      omega\n    simp [hBempty]\n  have hsum_split_pow :\n      (Finset.univ.sum (fun i : Fin n => x i ^ m)) =\n        A.sum (fun i => x i ^ m) + B.sum (fun i => x i ^ m) := by\n    dsimp [A, B]\n    rw [← Finset.sum_filter_add_sum_filter_not\n        (s := (Finset.univ : Finset (Fin n)))\n        (p := fun i : Fin n => (i : ℕ) < k)\n        (f := fun i : Fin n => x i ^ m)]\n  have hsum_split_x :\n      (Finset.univ.sum (fun i : Fin n => x i)) =\n        A.sum (fun i => x i) + B.sum (fun i => x i) := by\n    dsimp [A, B]\n    rw [← Finset.sum_filter_add_sum_filter_not\n        (s := (Finset.univ : Finset (Fin n)))\n        (p := fun i : Fin n => (i : ℕ) < k)\n        (f := fun i : Fin n => x i)]\n  have source_step_13 :\n      (Finset.univ.sum (fun i : Fin n => x i ^ m)) ≤\n        t - (k : ℝ) * u + u * (Finset.univ.sum (fun i : Fin n => x i)) := by\n    calc\n      (Finset.univ.sum (fun i : Fin n => x i ^ m))\n          = A.sum (fun i => x i ^ m) + B.sum (fun i => x i ^ m) := hsum_split_pow\n      _ ≤ (t - (k : ℝ) * u + u * t) + (u * B.sum (fun i => x i)) := by\n          exact add_le_add source_step_8 hsumB_le\n      _ = t - (k : ℝ) * u + u * (Finset.univ.sum (fun i : Fin n => x i)) := by\n          rw [hsum_split_x]\n          dsimp [t]\n          ring\n  have source_step_14 :\n      u * (Finset.univ.sum (fun i : Fin n => x i)) ≤ u * (k : ℝ) := by\n    exact mul_le_mul_of_nonneg_left hsum hu_nonneg\n  have source_step_15 :\n      (Finset.univ.sum (fun i : Fin n => x i ^ m)) < 1 := by\n    calc\n      (Finset.univ.sum (fun i : Fin n => x i ^ m))\n          ≤ t - (k : ℝ) * u + u * (Finset.univ.sum (fun i : Fin n => x i)) := source_step_13\n      _ ≤ t - (k : ℝ) * u + u * (k : ℝ) := by\n          linarith [source_step_14]\n      _ = t := by ring\n      _ < 1 := htlt\n  have source_step_16 : False := by\n    linarith [source_step_15, hpow]\n  have source_step_17 : A.sum (fun i : Fin n => x i) ≥ 1 := by\n    exfalso\n    exact source_step_16\n  exact source_step_16",
+    "proofNotationRepairs": [
+      "mathlib_sum_product_binder_in_to_membership:1"
+    ],
+    "repair": {
+      "attempts": [
+        {
+          "origin": "original_translation",
+          "proofTerm": "by\n  intro m n k hm hkn hk x hx_nonneg hx_anti hpow hsum\n  have hkpos : 0 < k := by omega\n  have hkm1lt : k - 1 < n := by omega\n  let umem : Fin n := ⟨k - 1, hkm1lt⟩\n  let A : Finset (Fin n) := Finset.univ.filter (fun i : Fin n => (i : ℕ) < k)\n  let B : Finset (Fin n) := Finset.univ.filter (fun i : Fin n => ¬ (i : ℕ) < k)\n  by_contra hneg\n  let t : ℝ := A.sum (fun i : Fin n => x i)\n  let u : ℝ := x umem\n  have hnegA : ¬ (A.sum (fun i : Fin n => x i) ≥ 1) := by\n    simpa [A] using hneg\n  have source_step_0 : ¬ (A.sum (fun i : Fin n => x i) ≥ 1) := hnegA\n  have source_step_1 : t = A.sum (fun i : Fin n => x i) ∧ u = x umem := by\n    exact ⟨rfl, rfl⟩\n  have htlt : t < 1 := by\n    dsimp [t]\n    exact not_le.mp hnegA\n  have ht_nonneg : 0 ≤ t := by\n    dsimp [t]\n    exact Finset.sum_nonneg (fun i hi => hx_nonneg i)\n  have hu_nonneg : 0 ≤ u := by\n    dsimp [u]\n    exact hx_nonneg umem\n  have hkmem_lt : k - 1 < k := by omega\n  have hu_mem : umem ∈ A := by\n    dsimp [A, umem]\n    simp [hkmem_lt]\n  have hu_le_t : u ≤ t := by\n    dsimp [u, t]\n    exact Finset.single_le_sum (fun i hi => hx_nonneg i) hu_mem\n  have hxi_le_t_of_mem : ∀ i ∈ A, x i ≤ t := by\n    intro i hi\n    dsimp [t]\n    exact Finset.single_le_sum (fun j hj => hx_nonneg j) hi\n  have hxi_ge_u_of_mem : ∀ i ∈ A, u ≤ x i := by\n    intro i hi\n    have hi_lt : (i : ℕ) < k := by\n      simpa [A] using hi\n    have hi_le_umem : i ≤ umem := by\n      change (i : ℕ) ≤ k - 1\n      omega\n    dsimp [u]\n    exact hx_anti i umem hi_le_umem\n  have hxi_lt_one_of_mem : ∀ i ∈ A, x i < 1 := by\n    intro i hi\n    exact lt_of_le_of_lt (hxi_le_t_of_mem i hi) htlt\n  have hu_lt_one : u < 1 := lt_of_le_of_lt hu_le_t htlt\n  have source_step_2 : 0 ≤ u ∧ u ≤ t ∧ t < 1 ∧ (∀ i, i ∈ A → 0 ≤ u ∧ u ≤ x i ∧ x i ≤ t ∧ t < 1) := by\n    refine ⟨hu_nonneg, hu_le_t, htlt, ?_⟩\n    intro i hi\n    exact ⟨hu_nonneg, hxi_ge_u_of_mem i hi, hxi_le_t_of_mem i hi, htlt⟩\n  have hxi_le_u_of_mem : ∀ i ∈ B, x i ≤ u := by\n    intro i hi\n    have hik : k ≤ (i : ℕ) := by\n      have hnot : ¬ (i : ℕ) < k := by\n        simpa [B] using hi\n      omega\n    have hu_le_i : umem ≤ i := by\n      change k - 1 ≤ (i : ℕ)\n      omega\n    dsimp [u]\n    exact hx_anti umem i hu_le_i\n  have source_step_3 : ∀ i, i ∈ B → 0 ≤ x i ∧ x i ≤ u ∧ u < 1 := by\n    intro i hi\n    exact ⟨hx_nonneg i, hxi_le_u_of_mem i hi, hu_lt_one⟩\n  have hxi_le_one_of_mem : ∀ i ∈ A, x i ≤ 1 := by\n    intro i hi\n    exact le_of_lt (hxi_lt_one_of_mem i hi)\n  have source_step_4 : ∀ i, i ∈ A → x i ^ m ≤ x i ^ 2 := by\n    intro i hi\n    exact pow_le_pow_of_le_one (hx_nonneg i) (hxi_le_one_of_mem i hi) hm\n  have source_step_5 : ∀ i, i ∈ A → 0 ≤ (x i - u) * (1 - x i) := by\n    intro i hi\n    exact mul_nonneg (sub_nonneg.mpr (hxi_ge_u_of_mem i hi))\n      (sub_nonneg.mpr (le_of_lt (hxi_lt_one_of_mem i hi)))\n  have source_step_6 : ∀ i, i ∈ A → x i ^ 2 ≤ x i - u + u * x i := by\n    intro i hi\n    have hprod := source_step_5 i hi\n    have h : (x i - u) * (1 - x i) = x i - u + u * x i - (x i)^2 := by ring\n    nlinarith [hprod, h]\n  have source_step_7 : ∀ i, i ∈ A → x i ^ m ≤ x i - u + u * x i := by\n    intro i hi\n    exact le_trans (source_step_4 i hi) (source_step_6 i hi)\n  have hsumA_le : A.sum (fun i => x i ^ m) ≤ A.sum (fun i => x i - u + u * x i) := by\n    exact Finset.sum_le_sum (fun i hi => source_step_7 i hi)\n  have hA_card : A.card = k := by\n    dsimp [A]\n    rw [Finset.card_eq_sum_ones]\n    rw [Finset.sum_filter]\n    calc\n      (∑ x_1 : Fin n, if (x_1 : ℕ) < k then (1 : ℕ) else 0)\n          = ∑ i ∈ Finset.range n, (if i < k then (1 : ℕ) else 0) := by\n              simpa using (Fin.sum_univ_eq_sum_range (fun i : ℕ => if i < k then (1 : ℕ) else 0) n)\n      _ = k := by\n          have hf : (Finset.range n).filter (fun i => i < k) = Finset.range k := by\n            ext i\n            simp [Finset.mem_range]\n            omega\n          rw [← Finset.sum_filter, hf]\n          simp\n  have source_step_8 : A.sum (fun i => x i ^ m) ≤ t - (k : ℝ) * u + u * t := by\n    calc\n      A.sum (fun i => x i ^ m)\n          ≤ A.sum (fun i => x i - u + u * x i) := hsumA_le\n      _ = t - (A.card : ℝ) * u + u * t := by\n          have hsum_expr : A.sum (fun i => x i - u + u * x i) =\n              A.sum (fun i => x i) - A.sum (fun _ : Fin n => u) + A.sum (fun i => u * x i) := by\n            rw [Finset.sum_add_distrib, Finset.sum_sub_distrib]\n          rw [hsum_expr]\n          have hconst : A.sum (fun _ : Fin n => u) = (A.card : ℝ) * u := by\n            simp [Finset.sum_const, nsmul_eq_mul]\n          have hmul : A.sum (fun i => u * x i) = u * A.sum (fun i => x i) := by\n            rw [Finset.mul_sum]\n          rw [hconst, hmul]\n          dsimp [t]\n          ring\n      _ = t - (k : ℝ) * u + u * t := by rw [hA_card]\n  have source_step_9 : ∀ i, i ∈ B → x i ^ (m - 1) ≤ x i ∧ x i ≤ u := by\n    intro i hi\n    have hxi_le_u : x i ≤ u := hxi_le_u_of_mem i hi\n    have hxi_nonneg : 0 ≤ x i := hx_nonneg i\n    have hxi_lt_one : x i < 1 := lt_of_le_of_lt hxi_le_u hu_lt_one\n    have hxi_le_one : x i ≤ 1 := le_of_lt hxi_lt_one\n    have hm1 : 1 ≤ m - 1 := by omega\n    have hpow' : x i ^ (m - 1) ≤ x i ^ 1 :=\n      pow_le_pow_of_le_one hxi_nonneg hxi_le_one hm1\n    constructor\n    · simpa using hpow'\n    · exact hxi_le_u\n  have source_step_10 : ∀ i, i ∈ B → x i ^ m ≤ u * x i := by\n    intro i hi\n    have hpow' := (source_step_9 i hi).1\n    have hx_nonneg' : 0 ≤ x i := hx_nonneg i\n    have hm_eq : m = (m - 1) + 1 := by omega\n    calc\n      x i ^ m = x i ^ ((m - 1) + 1) := by rw [hm_eq]\n      _ = x i ^ (m - 1) * x i := by rw [pow_succ]\n      _ ≤ u * x i := by\n          exact mul_le_mul_of_nonneg_right hpow' hx_nonneg'\n  have hsumB_le : B.sum (fun i => x i ^ m) ≤ u * B.sum (fun i => x i) := by\n    calc\n      B.sum (fun i => x i ^ m)\n          ≤ B.sum (fun i => u * x i) := by\n              exact Finset.sum_le_sum (fun i hi => source_step_10 i hi)\n      _ = u * B.sum (fun i => x i) := by\n              rw [Finset.mul_sum]\n  have source_step_11 : B.sum (fun i => x i ^ m) ≤ u * B.sum (fun i => x i) := hsumB_le\n  have source_step_12 : n = k → B.sum (fun i => x i ^ m) = 0 ∧ B.sum (fun i => x i) = 0 := by\n    intro hnk\n    have hBempty : B = ∅ := by\n      apply Finset.eq_empty_iff_forall_not_mem.mpr\n      intro i hi\n      have hnot : ¬ (i : ℕ) < k := by\n        simpa [B] using hi\n      have hi_lt_n : (i : ℕ) < n := i.isLt\n      omega\n    simp [hBempty]\n  have hsum_split_pow :\n      (Finset.univ.sum (fun i : Fin n => x i ^ m)) =\n        A.sum (fun i => x i ^ m) + B.sum (fun i => x i ^ m) := by\n    dsimp [A, B]\n    rw [← Finset.sum_filter_add_sum_filter_not\n        (s := (Finset.univ : Finset (Fin n)))\n        (p := fun i : Fin n => (i : ℕ) < k)\n        (f := fun i : Fin n => x i ^ m)]\n  have hsum_split_x :\n      (Finset.univ.sum (fun i : Fin n => x i)) =\n        A.sum (fun i => x i) + B.sum (fun i => x i) := by\n    dsimp [A, B]\n    rw [← Finset.sum_filter_add_sum_filter_not\n        (s := (Finset.univ : Finset (Fin n)))\n        (p := fun i : Fin n => (i : ℕ) < k)\n        (f := fun i : Fin n => x i)]\n  have source_step_13 :\n      (Finset.univ.sum (fun i : Fin n => x i ^ m)) ≤\n        t - (k : ℝ) * u + u * (Finset.univ.sum (fun i : Fin n => x i)) := by\n    calc\n      (Finset.univ.sum (fun i : Fin n => x i ^ m))\n          = A.sum (fun i => x i ^ m) + B.sum (fun i => x i ^ m) := hsum_split_pow\n      _ ≤ (t - (k : ℝ) * u + u * t) + (u * B.sum (fun i => x i)) := by\n          exact add_le_add source_step_8 hsumB_le\n      _ = t - (k : ℝ) * u + u * (Finset.univ.sum (fun i : Fin n => x i)) := by\n          rw [hsum_split_x]\n          dsimp [t]\n          ring\n  have source_step_14 :\n      u * (Finset.univ.sum (fun i : Fin n => x i)) ≤ u * (k : ℝ) := by\n    exact mul_le_mul_of_nonneg_left hsum hu_nonneg\n  have source_step_15 :\n      (Finset.univ.sum (fun i : Fin n => x i ^ m)) < 1 := by\n    calc\n      (Finset.univ.sum (fun i : Fin n => x i ^ m))\n          ≤ t - (k : ℝ) * u + u * (Finset.univ.sum (fun i : Fin n => x i)) := source_step_13\n      _ ≤ t - (k : ℝ) * u + u * (k : ℝ) := by\n          linarith [source_step_14]\n      _ = t := by ring\n      _ < 1 := htlt\n  have source_step_16 : False := by\n    linarith [source_step_15, hpow]\n  have source_step_17 : A.sum (fun i : Fin n => x i) ≥ 1 := by\n    exfalso\n    exact source_step_16\n  exact source_step_16",
+          "lean": {
+            "localVerified": false,
+            "status": "statement_not_elaborated",
+            "diagnostics": [
+              {
+                "severity": "error",
+                "message": "Application type mismatch: The argument\n  Finset.univ\nhas type\n  Finset (Fin n)\nbut is expected to have type\n  Finset ℕ\nin the application\n  {i | i < k}",
+                "leanPosition": {
+                  "column": 176,
+                  "line": 5
+                },
+                "leanEndPosition": {
+                  "column": 228,
+                  "line": 5
+                },
+                "stepId": "whole-authored-proof",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 0,
+                    "end": 933
+                  }
+                ],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "Application type mismatch: The argument\n  Finset.univ\nhas type\n  Finset (Fin n)\nbut is expected to have type\n  Finset ℕ\nin the application\n  {i | i < k}",
+                  "endPos": {
+                    "column": 228,
+                    "line": 5
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线实测/data/work/lean-1_b5ij8f/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "[anonymous]",
+                  "pos": {
+                    "column": 176,
+                    "line": 5
+                  },
+                  "severity": "error"
+                }
+              },
+              {
+                "severity": "error",
+                "message": "Application type mismatch: The argument\n  i\nhas type\n  ℕ\nbut is expected to have type\n  Fin n\nin the application\n  x i",
+                "leanPosition": {
+                  "column": 246,
+                  "line": 5
+                },
+                "leanEndPosition": {
+                  "column": 247,
+                  "line": 5
+                },
+                "stepId": "whole-authored-proof",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 0,
+                    "end": 933
+                  }
+                ],
+                "mappingPrecision": "step",
+                "raw": {
+                  "caption": "",
+                  "data": "Application type mismatch: The argument\n  i\nhas type\n  ℕ\nbut is expected to have type\n  Fin n\nin the application\n  x i",
+                  "endPos": {
+                    "column": 247,
+                    "line": 5
+                  },
+                  "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线实测/data/work/lean-1_b5ij8f/Task.lean",
+                  "isSilent": false,
+                  "keepFullRange": false,
+                  "kind": "[anonymous]",
+                  "pos": {
+                    "column": 246,
+                    "line": 5
+                  },
+                  "severity": "error"
+                }
+              },
+              {
+                "severity": "error",
+                "message": "Expected proposition contains Lean sorryAx recovery",
+                "stepId": "whole-authored-proof",
+                "sourceRefs": [
+                  {
+                    "blockId": "b0",
+                    "start": 0,
+                    "end": 933
+                  }
+                ],
+                "mappingPrecision": "step"
+              }
+            ],
+            "certificate": null
+          },
+          "kernelVerified": false
+        }
+      ],
+      "candidateProofTerm": "by\n  intro m n k hm hkn hk x hx_nonneg hx_anti hpow hsum\n  have hkpos : 0 < k := by omega\n  have hkm1lt : k - 1 < n := by omega\n  let umem : Fin n := ⟨k - 1, hkm1lt⟩\n  let A : Finset (Fin n) := Finset.univ.filter (fun i : Fin n => (i : ℕ) < k)\n  let B : Finset (Fin n) := Finset.univ.filter (fun i : Fin n => ¬ (i : ℕ) < k)\n  by_contra hneg\n  let t : ℝ := A.sum (fun i : Fin n => x i)\n  let u : ℝ := x umem\n  have hnegA : ¬ (A.sum (fun i : Fin n => x i) ≥ 1) := by\n    simpa [A] using hneg\n  have source_step_0 : ¬ (A.sum (fun i : Fin n => x i) ≥ 1) := hnegA\n  have source_step_1 : t = A.sum (fun i : Fin n => x i) ∧ u = x umem := by\n    exact ⟨rfl, rfl⟩\n  have htlt : t < 1 := by\n    dsimp [t]\n    exact not_le.mp hnegA\n  have ht_nonneg : 0 ≤ t := by\n    dsimp [t]\n    exact Finset.sum_nonneg (fun i hi => hx_nonneg i)\n  have hu_nonneg : 0 ≤ u := by\n    dsimp [u]\n    exact hx_nonneg umem\n  have hkmem_lt : k - 1 < k := by omega\n  have hu_mem : umem ∈ A := by\n    dsimp [A, umem]\n    simp [hkmem_lt]\n  have hu_le_t : u ≤ t := by\n    dsimp [u, t]\n    exact Finset.single_le_sum (fun i hi => hx_nonneg i) hu_mem\n  have hxi_le_t_of_mem : ∀ i ∈ A, x i ≤ t := by\n    intro i hi\n    dsimp [t]\n    exact Finset.single_le_sum (fun j hj => hx_nonneg j) hi\n  have hxi_ge_u_of_mem : ∀ i ∈ A, u ≤ x i := by\n    intro i hi\n    have hi_lt : (i : ℕ) < k := by\n      simpa [A] using hi\n    have hi_le_umem : i ≤ umem := by\n      change (i : ℕ) ≤ k - 1\n      omega\n    dsimp [u]\n    exact hx_anti i umem hi_le_umem\n  have hxi_lt_one_of_mem : ∀ i ∈ A, x i < 1 := by\n    intro i hi\n    exact lt_of_le_of_lt (hxi_le_t_of_mem i hi) htlt\n  have hu_lt_one : u < 1 := lt_of_le_of_lt hu_le_t htlt\n  have source_step_2 : 0 ≤ u ∧ u ≤ t ∧ t < 1 ∧ (∀ i, i ∈ A → 0 ≤ u ∧ u ≤ x i ∧ x i ≤ t ∧ t < 1) := by\n    refine ⟨hu_nonneg, hu_le_t, htlt, ?_⟩\n    intro i hi\n    exact ⟨hu_nonneg, hxi_ge_u_of_mem i hi, hxi_le_t_of_mem i hi, htlt⟩\n  have hxi_le_u_of_mem : ∀ i ∈ B, x i ≤ u := by\n    intro i hi\n    have hik : k ≤ (i : ℕ) := by\n      have hnot : ¬ (i : ℕ) < k := by\n        simpa [B] using hi\n      omega\n    have hu_le_i : umem ≤ i := by\n      change k - 1 ≤ (i : ℕ)\n      omega\n    dsimp [u]\n    exact hx_anti umem i hu_le_i\n  have source_step_3 : ∀ i, i ∈ B → 0 ≤ x i ∧ x i ≤ u ∧ u < 1 := by\n    intro i hi\n    exact ⟨hx_nonneg i, hxi_le_u_of_mem i hi, hu_lt_one⟩\n  have hxi_le_one_of_mem : ∀ i ∈ A, x i ≤ 1 := by\n    intro i hi\n    exact le_of_lt (hxi_lt_one_of_mem i hi)\n  have source_step_4 : ∀ i, i ∈ A → x i ^ m ≤ x i ^ 2 := by\n    intro i hi\n    exact pow_le_pow_of_le_one (hx_nonneg i) (hxi_le_one_of_mem i hi) hm\n  have source_step_5 : ∀ i, i ∈ A → 0 ≤ (x i - u) * (1 - x i) := by\n    intro i hi\n    exact mul_nonneg (sub_nonneg.mpr (hxi_ge_u_of_mem i hi))\n      (sub_nonneg.mpr (le_of_lt (hxi_lt_one_of_mem i hi)))\n  have source_step_6 : ∀ i, i ∈ A → x i ^ 2 ≤ x i - u + u * x i := by\n    intro i hi\n    have hprod := source_step_5 i hi\n    have h : (x i - u) * (1 - x i) = x i - u + u * x i - (x i)^2 := by ring\n    nlinarith [hprod, h]\n  have source_step_7 : ∀ i, i ∈ A → x i ^ m ≤ x i - u + u * x i := by\n    intro i hi\n    exact le_trans (source_step_4 i hi) (source_step_6 i hi)\n  have hsumA_le : A.sum (fun i => x i ^ m) ≤ A.sum (fun i => x i - u + u * x i) := by\n    exact Finset.sum_le_sum (fun i hi => source_step_7 i hi)\n  have hA_card : A.card = k := by\n    dsimp [A]\n    rw [Finset.card_eq_sum_ones]\n    rw [Finset.sum_filter]\n    calc\n      (∑ x_1 : Fin n, if (x_1 : ℕ) < k then (1 : ℕ) else 0)\n          = ∑ i ∈ Finset.range n, (if i < k then (1 : ℕ) else 0) := by\n              simpa using (Fin.sum_univ_eq_sum_range (fun i : ℕ => if i < k then (1 : ℕ) else 0) n)\n      _ = k := by\n          have hf : (Finset.range n).filter (fun i => i < k) = Finset.range k := by\n            ext i\n            simp [Finset.mem_range]\n            omega\n          rw [← Finset.sum_filter, hf]\n          simp\n  have source_step_8 : A.sum (fun i => x i ^ m) ≤ t - (k : ℝ) * u + u * t := by\n    calc\n      A.sum (fun i => x i ^ m)\n          ≤ A.sum (fun i => x i - u + u * x i) := hsumA_le\n      _ = t - (A.card : ℝ) * u + u * t := by\n          have hsum_expr : A.sum (fun i => x i - u + u * x i) =\n              A.sum (fun i => x i) - A.sum (fun _ : Fin n => u) + A.sum (fun i => u * x i) := by\n            rw [Finset.sum_add_distrib, Finset.sum_sub_distrib]\n          rw [hsum_expr]\n          have hconst : A.sum (fun _ : Fin n => u) = (A.card : ℝ) * u := by\n            simp [Finset.sum_const, nsmul_eq_mul]\n          have hmul : A.sum (fun i => u * x i) = u * A.sum (fun i => x i) := by\n            rw [Finset.mul_sum]\n          rw [hconst, hmul]\n          dsimp [t]\n          ring\n      _ = t - (k : ℝ) * u + u * t := by rw [hA_card]\n  have source_step_9 : ∀ i, i ∈ B → x i ^ (m - 1) ≤ x i ∧ x i ≤ u := by\n    intro i hi\n    have hxi_le_u : x i ≤ u := hxi_le_u_of_mem i hi\n    have hxi_nonneg : 0 ≤ x i := hx_nonneg i\n    have hxi_lt_one : x i < 1 := lt_of_le_of_lt hxi_le_u hu_lt_one\n    have hxi_le_one : x i ≤ 1 := le_of_lt hxi_lt_one\n    have hm1 : 1 ≤ m - 1 := by omega\n    have hpow' : x i ^ (m - 1) ≤ x i ^ 1 :=\n      pow_le_pow_of_le_one hxi_nonneg hxi_le_one hm1\n    constructor\n    · simpa using hpow'\n    · exact hxi_le_u\n  have source_step_10 : ∀ i, i ∈ B → x i ^ m ≤ u * x i := by\n    intro i hi\n    have hpow' := (source_step_9 i hi).1\n    have hx_nonneg' : 0 ≤ x i := hx_nonneg i\n    have hm_eq : m = (m - 1) + 1 := by omega\n    calc\n      x i ^ m = x i ^ ((m - 1) + 1) := by rw [hm_eq]\n      _ = x i ^ (m - 1) * x i := by rw [pow_succ]\n      _ ≤ u * x i := by\n          exact mul_le_mul_of_nonneg_right hpow' hx_nonneg'\n  have hsumB_le : B.sum (fun i => x i ^ m) ≤ u * B.sum (fun i => x i) := by\n    calc\n      B.sum (fun i => x i ^ m)\n          ≤ B.sum (fun i => u * x i) := by\n              exact Finset.sum_le_sum (fun i hi => source_step_10 i hi)\n      _ = u * B.sum (fun i => x i) := by\n              rw [Finset.mul_sum]\n  have source_step_11 : B.sum (fun i => x i ^ m) ≤ u * B.sum (fun i => x i) := hsumB_le\n  have source_step_12 : n = k → B.sum (fun i => x i ^ m) = 0 ∧ B.sum (fun i => x i) = 0 := by\n    intro hnk\n    have hBempty : B = ∅ := by\n      apply Finset.eq_empty_iff_forall_not_mem.mpr\n      intro i hi\n      have hnot : ¬ (i : ℕ) < k := by\n        simpa [B] using hi\n      have hi_lt_n : (i : ℕ) < n := i.isLt\n      omega\n    simp [hBempty]\n  have hsum_split_pow :\n      (Finset.univ.sum (fun i : Fin n => x i ^ m)) =\n        A.sum (fun i => x i ^ m) + B.sum (fun i => x i ^ m) := by\n    dsimp [A, B]\n    rw [← Finset.sum_filter_add_sum_filter_not\n        (s := (Finset.univ : Finset (Fin n)))\n        (p := fun i : Fin n => (i : ℕ) < k)\n        (f := fun i : Fin n => x i ^ m)]\n  have hsum_split_x :\n      (Finset.univ.sum (fun i : Fin n => x i)) =\n        A.sum (fun i => x i) + B.sum (fun i => x i) := by\n    dsimp [A, B]\n    rw [← Finset.sum_filter_add_sum_filter_not\n        (s := (Finset.univ : Finset (Fin n)))\n        (p := fun i : Fin n => (i : ℕ) < k)\n        (f := fun i : Fin n => x i)]\n  have source_step_13 :\n      (Finset.univ.sum (fun i : Fin n => x i ^ m)) ≤\n        t - (k : ℝ) * u + u * (Finset.univ.sum (fun i : Fin n => x i)) := by\n    calc\n      (Finset.univ.sum (fun i : Fin n => x i ^ m))\n          = A.sum (fun i => x i ^ m) + B.sum (fun i => x i ^ m) := hsum_split_pow\n      _ ≤ (t - (k : ℝ) * u + u * t) + (u * B.sum (fun i => x i)) := by\n          exact add_le_add source_step_8 hsumB_le\n      _ = t - (k : ℝ) * u + u * (Finset.univ.sum (fun i : Fin n => x i)) := by\n          rw [hsum_split_x]\n          dsimp [t]\n          ring\n  have source_step_14 :\n      u * (Finset.univ.sum (fun i : Fin n => x i)) ≤ u * (k : ℝ) := by\n    exact mul_le_mul_of_nonneg_left hsum hu_nonneg\n  have source_step_15 :\n      (Finset.univ.sum (fun i : Fin n => x i ^ m)) < 1 := by\n    calc\n      (Finset.univ.sum (fun i : Fin n => x i ^ m))\n          ≤ t - (k : ℝ) * u + u * (Finset.univ.sum (fun i : Fin n => x i)) := source_step_13\n      _ ≤ t - (k : ℝ) * u + u * (k : ℝ) := by\n          linarith [source_step_14]\n      _ = t := by ring\n      _ < 1 := htlt\n  have source_step_16 : False := by\n    linarith [source_step_15, hpow]\n  have source_step_17 : A.sum (fun i : Fin n => x i) ≥ 1 := by\n    exfalso\n    exact source_step_16\n  exact source_step_16",
+      "lean": {
+        "localVerified": false,
+        "status": "statement_not_elaborated",
+        "diagnostics": [
+          {
+            "severity": "error",
+            "message": "Application type mismatch: The argument\n  Finset.univ\nhas type\n  Finset (Fin n)\nbut is expected to have type\n  Finset ℕ\nin the application\n  {i | i < k}",
+            "leanPosition": {
+              "column": 176,
+              "line": 5
+            },
+            "leanEndPosition": {
+              "column": 228,
+              "line": 5
+            },
+            "stepId": "whole-authored-proof",
+            "sourceRefs": [
+              {
+                "blockId": "b0",
+                "start": 0,
+                "end": 933
+              }
+            ],
+            "mappingPrecision": "step",
+            "raw": {
+              "caption": "",
+              "data": "Application type mismatch: The argument\n  Finset.univ\nhas type\n  Finset (Fin n)\nbut is expected to have type\n  Finset ℕ\nin the application\n  {i | i < k}",
+              "endPos": {
+                "column": 228,
+                "line": 5
+              },
+              "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线实测/data/work/lean-1_b5ij8f/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "[anonymous]",
+              "pos": {
+                "column": 176,
+                "line": 5
+              },
+              "severity": "error"
+            }
+          },
+          {
+            "severity": "error",
+            "message": "Application type mismatch: The argument\n  i\nhas type\n  ℕ\nbut is expected to have type\n  Fin n\nin the application\n  x i",
+            "leanPosition": {
+              "column": 246,
+              "line": 5
+            },
+            "leanEndPosition": {
+              "column": 247,
+              "line": 5
+            },
+            "stepId": "whole-authored-proof",
+            "sourceRefs": [
+              {
+                "blockId": "b0",
+                "start": 0,
+                "end": 933
+              }
+            ],
+            "mappingPrecision": "step",
+            "raw": {
+              "caption": "",
+              "data": "Application type mismatch: The argument\n  i\nhas type\n  ℕ\nbut is expected to have type\n  Fin n\nin the application\n  x i",
+              "endPos": {
+                "column": 247,
+                "line": 5
+              },
+              "fileName": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/20261024-高联不等式-正式V3.3全线实测/data/work/lean-1_b5ij8f/Task.lean",
+              "isSilent": false,
+              "keepFullRange": false,
+              "kind": "[anonymous]",
+              "pos": {
+                "column": 246,
+                "line": 5
+              },
+              "severity": "error"
+            }
+          },
+          {
+            "severity": "error",
+            "message": "Expected proposition contains Lean sorryAx recovery",
+            "stepId": "whole-authored-proof",
+            "sourceRefs": [
+              {
+                "blockId": "b0",
+                "start": 0,
+                "end": 933
+              }
+            ],
+            "mappingPrecision": "step"
+          }
+        ],
+        "certificate": null
+      },
+      "kernelVerified": false,
+      "repairStatus": "fixed_statement_not_elaborated_or_missing_proof"
+    },
+    "version": "3.3",
+    "source": {
+      "kind": "text",
+      "raw": "【待验证题目｜本聊天上一条助理给出的证明，未改写推理，不将其身份当作官方参考答案】\n设 m,n,k 均为正整数，满足 m≥2，n≥k≥2。已知非负实数 x₁≥x₂≥⋯≥xₙ≥0 满足 ∑_{i=1}^n xᵢ^m≥1 及 ∑_{i=1}^n xᵢ≤k。求证 ∑_{i=1}^k xᵢ≥1。\n\n【原证明】\n第一步：假设结论不成立。\n假设 ∑_{i=1}^k xᵢ<1。记 t=∑_{i=1}^k xᵢ，u=xₖ。\n由条件可知 0≤u≤xᵢ≤t<1 (1≤i≤k)。\n另一方面，由数列的单调性，0≤xᵢ≤u<1 (k<i≤n)。\n\n第二步：估计前 k 项的 m 次幂。\n对任意 1≤i≤k，由于 0≤xᵢ<1，且 m≥2，有 xᵢ^m≤xᵢ²。\n又因为 u≤xᵢ<1，所以 (xᵢ−u)(1−xᵢ)≥0。\n展开并整理，得 xᵢ²≤xᵢ−u+uxᵢ。\n因此 xᵢ^m≤xᵢ−u+uxᵢ。\n对 i=1,2,…,k 求和，得到\n∑_{i=1}^k xᵢ^m ≤ ∑_{i=1}^k (xᵢ−u+uxᵢ) = t−ku+ut。\n\n第三步：估计后 n−k 项的 m 次幂。\n对任意 k<i≤n，由于 0≤xᵢ≤u<1，m≥2，有 xᵢ^(m−1)≤xᵢ≤u。\n两边乘以非负数 xᵢ，得 xᵢ^m≤uxᵢ。\n故 ∑_{i=k+1}^n xᵢ^m ≤ u∑_{i=k+1}^n xᵢ。\n当 n=k 时，上述两边均视为零，结论仍成立。\n\n第四步：合并两个估计。\n将前后两部分相加：\n∑_{i=1}^n xᵢ^m\n= ∑_{i=1}^k xᵢ^m + ∑_{i=k+1}^n xᵢ^m\n≤ t−ku+ut + u∑_{i=k+1}^n xᵢ\n= t−ku+u(t+∑_{i=k+1}^n xᵢ)\n= t−ku+u∑_{i=1}^n xᵢ。\n\n第五步：利用已知条件推出矛盾。\n由题设 ∑_{i=1}^n xᵢ≤k，又 u≥0，所以 u∑_{i=1}^n xᵢ≤uk。\n代入上式：\n∑_{i=1}^n xᵢ^m≤t−ku+u∑_{i=1}^n xᵢ≤t−ku+uk=t<1。\n这与已知条件 ∑_{i=1}^n xᵢ^m≥1 矛盾。\n因此原假设不成立，必有 ∑_{i=1}^k xᵢ≥1。证毕。",
+      "normalized": "【待验证题目｜本聊天上一条助理给出的证明，未改写推理，不将其身份当作官方参考答案】\n设 m,n,k 均为正整数，满足 m≥2，n≥k≥2。已知非负实数 x₁≥x₂≥⋯≥xₙ≥0 满足 ∑_{i=1}^n xᵢ^m≥1 及 ∑_{i=1}^n xᵢ≤k。求证 ∑_{i=1}^k xᵢ≥1。\n\n【原证明】\n第一步：假设结论不成立。\n假设 ∑_{i=1}^k xᵢ<1。记 t=∑_{i=1}^k xᵢ，u=xₖ。\n由条件可知 0≤u≤xᵢ≤t<1 (1≤i≤k)。\n另一方面，由数列的单调性，0≤xᵢ≤u<1 (k<i≤n)。\n\n第二步：估计前 k 项的 m 次幂。\n对任意 1≤i≤k，由于 0≤xᵢ<1，且 m≥2，有 xᵢ^m≤xᵢ²。\n又因为 u≤xᵢ<1，所以 (xᵢ−u)(1−xᵢ)≥0。\n展开并整理，得 xᵢ²≤xᵢ−u+uxᵢ。\n因此 xᵢ^m≤xᵢ−u+uxᵢ。\n对 i=1,2,…,k 求和，得到\n∑_{i=1}^k xᵢ^m ≤ ∑_{i=1}^k (xᵢ−u+uxᵢ) = t−ku+ut。\n\n第三步：估计后 n−k 项的 m 次幂。\n对任意 k<i≤n，由于 0≤xᵢ≤u<1，m≥2，有 xᵢ^(m−1)≤xᵢ≤u。\n两边乘以非负数 xᵢ，得 xᵢ^m≤uxᵢ。\n故 ∑_{i=k+1}^n xᵢ^m ≤ u∑_{i=k+1}^n xᵢ。\n当 n=k 时，上述两边均视为零，结论仍成立。\n\n第四步：合并两个估计。\n将前后两部分相加：\n∑_{i=1}^n xᵢ^m\n= ∑_{i=1}^k xᵢ^m + ∑_{i=k+1}^n xᵢ^m\n≤ t−ku+ut + u∑_{i=k+1}^n xᵢ\n= t−ku+u(t+∑_{i=k+1}^n xᵢ)\n= t−ku+u∑_{i=1}^n xᵢ。\n\n第五步：利用已知条件推出矛盾。\n由题设 ∑_{i=1}^n xᵢ≤k，又 u≥0，所以 u∑_{i=1}^n xᵢ≤uk。\n代入上式：\n∑_{i=1}^n xᵢ^m≤t−ku+u∑_{i=1}^n xᵢ≤t−ku+uk=t<1。\n这与已知条件 ∑_{i=1}^n xᵢ^m≥1 矛盾。\n因此原假设不成立，必有 ∑_{i=1}^k xᵢ≥1。证毕。",
+      "recognitionId": null,
+      "transcriptionEvidence": null,
+      "blocks": [
+        {
+          "id": "b0",
+          "text": "【待验证题目｜本聊天上一条助理给出的证明，未改写推理，不将其身份当作官方参考答案】\n设 m,n,k 均为正整数，满足 m≥2，n≥k≥2。已知非负实数 x₁≥x₂≥⋯≥xₙ≥0 满足 ∑_{i=1}^n xᵢ^m≥1 及 ∑_{i=1}^n xᵢ≤k。求证 ∑_{i=1}^k xᵢ≥1。\n\n【原证明】\n第一步：假设结论不成立。\n假设 ∑_{i=1}^k xᵢ<1。记 t=∑_{i=1}^k xᵢ，u=xₖ。\n由条件可知 0≤u≤xᵢ≤t<1 (1≤i≤k)。\n另一方面，由数列的单调性，0≤xᵢ≤u<1 (k<i≤n)。\n\n第二步：估计前 k 项的 m 次幂。\n对任意 1≤i≤k，由于 0≤xᵢ<1，且 m≥2，有 xᵢ^m≤xᵢ²。\n又因为 u≤xᵢ<1，所以 (xᵢ−u)(1−xᵢ)≥0。\n展开并整理，得 xᵢ²≤xᵢ−u+uxᵢ。\n因此 xᵢ^m≤xᵢ−u+uxᵢ。\n对 i=1,2,…,k 求和，得到\n∑_{i=1}^k xᵢ^m ≤ ∑_{i=1}^k (xᵢ−u+uxᵢ) = t−ku+ut。\n\n第三步：估计后 n−k 项的 m 次幂。\n对任意 k<i≤n，由于 0≤xᵢ≤u<1，m≥2，有 xᵢ^(m−1)≤xᵢ≤u。\n两边乘以非负数 xᵢ，得 xᵢ^m≤uxᵢ。\n故 ∑_{i=k+1}^n xᵢ^m ≤ u∑_{i=k+1}^n xᵢ。\n当 n=k 时，上述两边均视为零，结论仍成立。\n\n第四步：合并两个估计。\n将前后两部分相加：\n∑_{i=1}^n xᵢ^m\n= ∑_{i=1}^k xᵢ^m + ∑_{i=k+1}^n xᵢ^m\n≤ t−ku+ut + u∑_{i=k+1}^n xᵢ\n= t−ku+u(t+∑_{i=k+1}^n xᵢ)\n= t−ku+u∑_{i=1}^n xᵢ。\n\n第五步：利用已知条件推出矛盾。\n由题设 ∑_{i=1}^n xᵢ≤k，又 u≥0，所以 u∑_{i=1}^n xᵢ≤uk。\n代入上式：\n∑_{i=1}^n xᵢ^m≤t−ku+u∑_{i=1}^n xᵢ≤t−ku+uk=t<1。\n这与已知条件 ∑_{i=1}^n xᵢ^m≥1 矛盾。\n因此原假设不成立，必有 ∑_{i=1}^k xᵢ≥1。证毕。",
+          "page": null,
+          "bbox": null,
+          "confidence": null,
+          "assetId": null,
+          "providerData": {}
+        }
+      ]
+    },
+    "inputKind": "text",
+    "authority": "single_locked_complete_formal_theorem_kernel_not_natural_language_fidelity"
+  },
+  "error": null
+}

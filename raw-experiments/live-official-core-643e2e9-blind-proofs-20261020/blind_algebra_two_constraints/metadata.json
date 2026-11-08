@@ -1,0 +1,576 @@
+{
+  "id": "blind_algebra_two_constraints",
+  "topic": "初等正确证明：两条件平方和（新系数与变量）",
+  "source": "设 u、v 为实数，已知 u+v=12，uv=35。证明 u²+v²=74。原证明：由 (u+v)²=u²+2uv+v²，移项得到 u²+v²=(u+v)²−2uv。把 u+v=12 和 uv=35 代入，得到 u²+v²=12²−2×35=144−70=74。证毕。",
+  "reference": "原稿正确，需分别证明数学命题与代数推理忠实性；不允许自动改写用户过程。",
+  "appSourceCommit": "643e2e9c3a067c07e3503ba202e94002ac954f88",
+  "providerFixture": false,
+  "kernelFixture": false,
+  "handWrittenLean": false,
+  "handWrittenMathIR": false,
+  "transport": "signed installed App packaged backend POST /api/v2/jobs",
+  "guiInteracted": false,
+  "startedUtc": "2026-10-19T17:00:46.418078+00:00",
+  "sourceSha256": "78e684294e494b8a7002494cc2a3b7e38ce91b20222fa08a1798ea8ba56ea4e6",
+  "capabilities": {
+    "ai": {
+      "configured": true,
+      "provider": "deepseek",
+      "model": "deepseek-flash",
+      "thinking": "provider_default",
+      "liveTested": false
+    },
+    "lean": {
+      "configured": true,
+      "executableFound": true,
+      "projectFound": true,
+      "runtimeBuilt": true,
+      "runtimeIntegrity": true,
+      "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+      "sandbox": "macos",
+      "isolated": true,
+      "ready": true,
+      "toolchain": "leanprover/lean4:v4.34.0",
+      "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+      "liveTestedInThisDistribution": false
+    },
+    "mockFallback": false,
+    "health": "running"
+  },
+  "jobId": "bfd1e624-c197-48a9-a247-c6c8d7dbabae",
+  "submittedUtc": "2026-10-19T17:00:48.725292+00:00",
+  "stageTransitions": [
+    {
+      "status": "running",
+      "stage": "recognizing",
+      "seconds": 2.62,
+      "utc": "2026-10-19T17:00:49.041322+00:00"
+    },
+    {
+      "status": "running",
+      "stage": "lean_verification",
+      "seconds": 51.09,
+      "utc": "2026-10-19T17:01:37.512808+00:00"
+    },
+    {
+      "status": "running",
+      "stage": "proof_only_generation",
+      "seconds": 67.52,
+      "utc": "2026-10-19T17:01:53.935837+00:00"
+    },
+    {
+      "status": "completed",
+      "stage": "completed",
+      "seconds": 109.75,
+      "utc": "2026-10-19T17:02:36.170197+00:00"
+    }
+  ],
+  "terminalStatus": "completed",
+  "terminalStage": "completed",
+  "terminalError": null,
+  "result": {
+    "runStatus": "formal_verified_source_unconfirmed",
+    "termination": "original_route_kernel_passed",
+    "kernelVerified": true,
+    "fixedStatementKernelPassed": true,
+    "originalRouteKernelPassed": true,
+    "sourceProofVerified": false,
+    "originalProofVerified": false,
+    "originalMeaning": "model_interpretation",
+    "statement": null,
+    "failure": null,
+    "mathIRId": "546eed50-dc21-4ee3-a722-37c98021bf8e",
+    "sourceStructureId": "20e031be-15e4-4c8a-a209-da9888fb0cfb",
+    "originalProofFidelity": {
+      "sourceProofVerified": false,
+      "status": "not_independently_established",
+      "basis": "Formal Kernel proof alone cannot certify an author's natural-language reasoning. Unrecognized source rule remains unconfirmed.",
+      "routes": [
+        {
+          "routeId": "r_original",
+          "formalRouteKernelPassed": true,
+          "sourceReasoningVerified": false,
+          "sourceReasoningStatus": "not_independently_established",
+          "steps": [
+            {
+              "nodeId": "c_identity",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": true,
+              "sourceReasoningStatus": "source_rule_certified",
+              "sourceInferenceRule": "explicit_polynomial_identity",
+              "sourceInferenceEvidence": {
+                "blockId": "b0",
+                "start": 44,
+                "end": 60,
+                "formulaStart": 44,
+                "formulaEnd": 60,
+                "quote": "(u+v)²=u²+2uv+v²",
+                "quoteSha256": "fdf6e55090fca09cba186ddf8dbe51cd92b7dd8ef73f7a98d42012a27248f7fd",
+                "dependsOn": [],
+                "method": "deterministic_source_formula_parser_and_exact_arithmetic_rule",
+                "kernelStepCertificate": true
+              }
+            },
+            {
+              "nodeId": "c_rearrange",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": true,
+              "sourceReasoningStatus": "source_rule_certified",
+              "sourceInferenceRule": "explicit_algebraic_rearrangement",
+              "sourceInferenceEvidence": {
+                "blockId": "b0",
+                "start": 61,
+                "end": 82,
+                "formulaStart": 66,
+                "formulaEnd": 82,
+                "quote": "移项得到 u²+v²=(u+v)²−2uv",
+                "quoteSha256": "a0ee43c859ca4dd1283819a4647c548dbc08884ec1a558aa59869a34df7ee7f3",
+                "dependsOn": [
+                  "c_identity"
+                ],
+                "method": "deterministic_source_formula_parser_and_exact_arithmetic_rule",
+                "kernelStepCertificate": true
+              }
+            },
+            {
+              "nodeId": "c_substitute",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": true,
+              "sourceReasoningStatus": "source_rule_certified",
+              "sourceInferenceRule": "explicit_equation_substitution",
+              "sourceInferenceEvidence": {
+                "blockId": "b0",
+                "start": 83,
+                "end": 120,
+                "formulaStart": 106,
+                "formulaEnd": 120,
+                "quote": "把 u+v=12 和 uv=35 代入，得到 u²+v²=12²−2×35",
+                "quoteSha256": "82ea5db23fadf5bb52e469d6c9c7f41f49ff0ed9e8469d8bd4f1f0798a49c55b",
+                "dependsOn": [
+                  "c_rearrange",
+                  "la_prod",
+                  "la_sum"
+                ],
+                "method": "deterministic_source_formula_parser_and_exact_arithmetic_rule",
+                "kernelStepCertificate": true
+              }
+            },
+            {
+              "nodeId": "c_12expr_to_144_70",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": true,
+              "sourceReasoningStatus": "source_rule_certified",
+              "sourceInferenceRule": "explicit_polynomial_identity",
+              "sourceInferenceEvidence": {
+                "blockId": "b0",
+                "start": 112,
+                "end": 127,
+                "formulaStart": 112,
+                "formulaEnd": 127,
+                "quote": "12²−2×35=144−70",
+                "quoteSha256": "3cce36cef706fca87dad4ff144b8d74e0d6451ec60803f31338ac63bbcf1f30a",
+                "dependsOn": [],
+                "method": "deterministic_source_formula_parser_and_exact_arithmetic_rule",
+                "kernelStepCertificate": true
+              }
+            },
+            {
+              "nodeId": "c_144_70_to_74",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": true,
+              "sourceReasoningStatus": "source_rule_certified",
+              "sourceInferenceRule": "explicit_polynomial_identity",
+              "sourceInferenceEvidence": {
+                "blockId": "b0",
+                "start": 121,
+                "end": 130,
+                "formulaStart": 121,
+                "formulaEnd": 130,
+                "quote": "144−70=74",
+                "quoteSha256": "27482d5a01a4f7a6be9bfad89e7bbeeef61c9075bb4ad2358bdc5bdc5586a997",
+                "dependsOn": [],
+                "method": "deterministic_source_formula_parser_and_exact_arithmetic_rule",
+                "kernelStepCertificate": true
+              }
+            },
+            {
+              "nodeId": "c_goal",
+              "formalStepKernelPassed": true,
+              "proofTermOrigin": "proof_only_generation",
+              "sourceReasoningVerified": false,
+              "sourceReasoningStatus": "ai_generated_proof_not_source_reasoning",
+              "sourceInferenceRule": null,
+              "sourceInferenceEvidence": null
+            }
+          ]
+        }
+      ]
+    },
+    "reasoningFidelity": {
+      "version": 2,
+      "authority": "independent_source_inference_certificate",
+      "status": "source_rules_partially_certified",
+      "formalRouteKernelPassed": true,
+      "sourceEvidenceBoundToStatement": true,
+      "expectedStatementHash": "4e1ec43a9c9e2f6369a24a10809dba0f191a0d45efa14a61f149884dd5076998",
+      "originalProofVerified": false,
+      "sourceInferenceCertificationAvailable": true,
+      "sourceRuleVerifiedStepCount": 5,
+      "sourceRuleVerifiedRouteCount": 0,
+      "unconfirmedSourceStepCount": 1,
+      "unconfirmedSourceSteps": [
+        {
+          "routeId": "r_original",
+          "nodeId": "c_goal",
+          "reason": "ai_generated_formal_reconstruction",
+          "ruleCheckReason": "source_inference_does_not_use_all_declared_dependencies"
+        }
+      ],
+      "routes": [
+        {
+          "routeId": "r_original",
+          "formalRouteKernelPassed": true,
+          "originalReasoningVerified": false,
+          "originalReasoningStatus": "not_independently_certified",
+          "goalSourceMatch": {
+            "blockId": "b0",
+            "start": 29,
+            "end": 37,
+            "quote": "u²+v²=74",
+            "formulaStart": 29,
+            "formulaEnd": 37
+          },
+          "theoremPremisesSourceMatched": true,
+          "declarationTypesSourceMatched": true,
+          "unresolvedAmbiguitiesAbsent": true,
+          "authoredFormulaCoverageMatched": true,
+          "statementIdentityMatched": true,
+          "steps": [
+            {
+              "nodeId": "c_identity",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": true,
+              "originalInferenceStatus": "source_rule_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [],
+              "rule": "explicit_polynomial_identity",
+              "ruleEvidence": {
+                "blockId": "b0",
+                "start": 44,
+                "end": 60,
+                "formulaStart": 44,
+                "formulaEnd": 60,
+                "quote": "(u+v)²=u²+2uv+v²",
+                "quoteSha256": "fdf6e55090fca09cba186ddf8dbe51cd92b7dd8ef73f7a98d42012a27248f7fd",
+                "dependsOn": [],
+                "method": "deterministic_source_formula_parser_and_exact_arithmetic_rule",
+                "kernelStepCertificate": true
+              },
+              "ruleCheckReason": "independent_source_formula_and_rule_check",
+              "statementIdentityMatched": true,
+              "reason": "independent_source_formula_and_rule_check"
+            },
+            {
+              "nodeId": "c_rearrange",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": true,
+              "originalInferenceStatus": "source_rule_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [
+                "c_identity"
+              ],
+              "rule": "explicit_algebraic_rearrangement",
+              "ruleEvidence": {
+                "blockId": "b0",
+                "start": 61,
+                "end": 82,
+                "formulaStart": 66,
+                "formulaEnd": 82,
+                "quote": "移项得到 u²+v²=(u+v)²−2uv",
+                "quoteSha256": "a0ee43c859ca4dd1283819a4647c548dbc08884ec1a558aa59869a34df7ee7f3",
+                "dependsOn": [
+                  "c_identity"
+                ],
+                "method": "deterministic_source_formula_parser_and_exact_arithmetic_rule",
+                "kernelStepCertificate": true
+              },
+              "ruleCheckReason": "independent_source_formula_and_rule_check",
+              "statementIdentityMatched": true,
+              "reason": "independent_source_formula_and_rule_check"
+            },
+            {
+              "nodeId": "c_substitute",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": true,
+              "originalInferenceStatus": "source_rule_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [
+                "c_rearrange",
+                "la_sum",
+                "la_prod"
+              ],
+              "rule": "explicit_equation_substitution",
+              "ruleEvidence": {
+                "blockId": "b0",
+                "start": 83,
+                "end": 120,
+                "formulaStart": 106,
+                "formulaEnd": 120,
+                "quote": "把 u+v=12 和 uv=35 代入，得到 u²+v²=12²−2×35",
+                "quoteSha256": "82ea5db23fadf5bb52e469d6c9c7f41f49ff0ed9e8469d8bd4f1f0798a49c55b",
+                "dependsOn": [
+                  "c_rearrange",
+                  "la_prod",
+                  "la_sum"
+                ],
+                "method": "deterministic_source_formula_parser_and_exact_arithmetic_rule",
+                "kernelStepCertificate": true
+              },
+              "ruleCheckReason": "independent_source_formula_and_rule_check",
+              "statementIdentityMatched": true,
+              "reason": "independent_source_formula_and_rule_check"
+            },
+            {
+              "nodeId": "c_12expr_to_144_70",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": true,
+              "originalInferenceStatus": "source_rule_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [],
+              "rule": "explicit_polynomial_identity",
+              "ruleEvidence": {
+                "blockId": "b0",
+                "start": 112,
+                "end": 127,
+                "formulaStart": 112,
+                "formulaEnd": 127,
+                "quote": "12²−2×35=144−70",
+                "quoteSha256": "3cce36cef706fca87dad4ff144b8d74e0d6451ec60803f31338ac63bbcf1f30a",
+                "dependsOn": [],
+                "method": "deterministic_source_formula_parser_and_exact_arithmetic_rule",
+                "kernelStepCertificate": true
+              },
+              "ruleCheckReason": "independent_source_formula_and_rule_check",
+              "statementIdentityMatched": true,
+              "reason": "independent_source_formula_and_rule_check"
+            },
+            {
+              "nodeId": "c_144_70_to_74",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": true,
+              "originalInferenceStatus": "source_rule_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [],
+              "rule": "explicit_polynomial_identity",
+              "ruleEvidence": {
+                "blockId": "b0",
+                "start": 121,
+                "end": 130,
+                "formulaStart": 121,
+                "formulaEnd": 130,
+                "quote": "144−70=74",
+                "quoteSha256": "27482d5a01a4f7a6be9bfad89e7bbeeef61c9075bb4ad2358bdc5bdc5586a997",
+                "dependsOn": [],
+                "method": "deterministic_source_formula_parser_and_exact_arithmetic_rule",
+                "kernelStepCertificate": true
+              },
+              "ruleCheckReason": "independent_source_formula_and_rule_check",
+              "statementIdentityMatched": true,
+              "reason": "independent_source_formula_and_rule_check"
+            },
+            {
+              "nodeId": "c_goal",
+              "formalStepKernelPassed": true,
+              "originalInferenceVerified": false,
+              "originalInferenceStatus": "not_independently_certified",
+              "proofTermOrigin": "proof_only_generation",
+              "sourceClaimAssessment": "supported",
+              "sourceReferenceCount": 1,
+              "declaredDependencies": [
+                "c_substitute",
+                "c_12expr_to_144_70",
+                "c_144_70_to_74"
+              ],
+              "rule": null,
+              "ruleEvidence": null,
+              "ruleCheckReason": "source_inference_does_not_use_all_declared_dependencies",
+              "statementIdentityMatched": true,
+              "reason": "ai_generated_formal_reconstruction"
+            }
+          ]
+        }
+      ],
+      "explanation": "Only exact source-anchored equations with an independently checked arithmetic inference rule and a genuine Kernel certificate are certified. Model proof reconstruction alone never qualifies. Unrecognized natural language is unconfirmed, not disproved."
+    },
+    "routeSummary": [
+      {
+        "routeId": "r_original",
+        "status": "passed",
+        "formalRouteKernelPassed": null,
+        "completeOriginalRouteKernelPassed": true,
+        "originalReasoningVerified": false,
+        "certificate": {
+          "checked": true,
+          "statementMatched": true,
+          "auditMethod": "fresh_environment_data_only_kernel_replay",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "additionalAxioms": [],
+          "statement_hash": "4e1ec43a9c9e2f6369a24a10809dba0f191a0d45efa14a61f149884dd5076998",
+          "expectedExpressionSha256": "2471e0c7f6f68a4245babb0459cf12319bf4cbf60e7b535d597a4face453bfbd",
+          "proofExpressionSha256": "7a8d1a09a901a5f2dd9784bded9243e51ac7597c2d0c8658bcaca32f12a3a15e",
+          "nativeExpressionComparison": "structural_equal",
+          "auditIsolation": "fresh_import_environment_reset_between_candidates"
+        },
+        "steps": 6
+      }
+    ],
+    "steps": [
+      {
+        "route": "r_original",
+        "node": "c_identity",
+        "status": "passed",
+        "mathematicalStatus": "established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": true,
+        "sourceInferenceRule": "explicit_polynomial_identity",
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "r_original",
+        "node": "c_rearrange",
+        "status": "passed",
+        "mathematicalStatus": "conditionally_established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": true,
+        "sourceInferenceRule": "explicit_algebraic_rearrangement",
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "r_original",
+        "node": "c_substitute",
+        "status": "passed",
+        "mathematicalStatus": "conditionally_established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": true,
+        "sourceInferenceRule": "explicit_equation_substitution",
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "r_original",
+        "node": "c_12expr_to_144_70",
+        "status": "passed",
+        "mathematicalStatus": "established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": true,
+        "sourceInferenceRule": "explicit_polynomial_identity",
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "r_original",
+        "node": "c_144_70_to_74",
+        "status": "passed",
+        "mathematicalStatus": "established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": true,
+        "sourceInferenceRule": "explicit_polynomial_identity",
+        "diagnostics": [],
+        "declaredDependencies": null
+      },
+      {
+        "route": "r_original",
+        "node": "c_goal",
+        "status": "passed",
+        "mathematicalStatus": "conditionally_established",
+        "failureClass": null,
+        "sourceAssessment": "supported",
+        "proofTermOrigin": "proof_only_generation",
+        "originalInferenceVerified": false,
+        "sourceInferenceRule": null,
+        "diagnostics": [],
+        "declaredDependencies": null
+      }
+    ]
+  },
+  "finishedUtc": "2026-10-19T17:02:36.177485+00:00",
+  "wallSeconds": 109.76,
+  "provider": {
+    "realAttempts": 2,
+    "started": 2,
+    "finished": 2,
+    "requestCount": 2,
+    "usage": {
+      "input_tokens": 15215,
+      "output_tokens": 16341,
+      "incompleteUsageRecords": 0
+    },
+    "records": [
+      {
+        "request_id": "6602ba25-b782-46ba-94bb-bc6e1a352af2",
+        "stage": "mathir",
+        "reason": "StructureOnlyMathIRV2",
+        "model": "deepseek-flash",
+        "status": "response_received",
+        "input_tokens": 10744,
+        "output_tokens": 12322,
+        "retry_index": 0,
+        "cache_hit": null,
+        "real_request_attempted": true,
+        "started_at": null,
+        "finished_at": null
+      },
+      {
+        "request_id": "bfa54627-c7eb-49b0-b4cf-4ffe67cd6e0d",
+        "stage": "formalization",
+        "reason": "FormalProofs",
+        "model": "deepseek-flash",
+        "status": "response_received",
+        "input_tokens": 4471,
+        "output_tokens": 4019,
+        "retry_index": 0,
+        "cache_hit": null,
+        "real_request_attempted": true,
+        "started_at": null,
+        "finished_at": null
+      }
+    ]
+  },
+  "dbCounts": {
+    "artifacts": 7,
+    "jobs": 1,
+    "events": 13
+  },
+  "archiveSha256": "b010ca3d5b69ac3a5b7b8d5dacdc3fe34b0e83f10a02a166da14fb85905a531b"
+}

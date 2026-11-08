@@ -1,0 +1,69 @@
+{
+  "jobId": "ef58090d-d68f-4206-b335-cf03e06d8845",
+  "recordId": "3f286d8f-d149-4329-a692-1ac7d777aa33",
+  "version": "3.6.1",
+  "status": "whole_proof_translation_incomplete",
+  "kernelVerified": false,
+  "formalProofCertified": false,
+  "originalProofCertified": false,
+  "sourceEquivalenceCertified": false,
+  "sourcePositionsValid": true,
+  "sourceSteps": [
+    {
+      "index": 0,
+      "status": "translation_mapped_only",
+      "sourceExcerpt": "由 x²=4，两边取平方根得到 x=2"
+    },
+    {
+      "index": 1,
+      "status": "translation_mapped_only",
+      "sourceExcerpt": "故证毕。"
+    }
+  ],
+  "refutationVerified": true,
+  "refutationCandidate": {
+    "sourceExcerpt": "由 x²=4，两边取平方根得到 x=2",
+    "sourceStepIndex": 0,
+    "closedSourceAssertion": "∀ x : ℝ, x ^ 2 = 4 → x = 2",
+    "negationProofTerm": "by\n  intro h\n  have hEq : (-2 : ℝ) = 2 := h (-2) (by norm_num)\n  norm_num at hEq",
+    "counterexampleDescription": "取实数 x = -2，则 x² = 4 成立，但 x = 2 不成立，因此该步骤声称的一般推断 ∀ x : ℝ, x² = 4 → x = 2 为假。",
+    "candidateValid": true
+  },
+  "cert": null,
+  "refutationCert": {
+    "auditMethod": "fresh_environment_data_only_kernel_replay",
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "checked": true,
+    "dependencyUsage": [],
+    "formalStatement": "¬∀ (x : ℝ), x ^ 2 = 4 → x = 2",
+    "statementMatched": true,
+    "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+    "expectedExpressionSha256": "89925bf37c765d6fef469c666e38cd7483b940e3dd8a931765815c47b139bad2",
+    "proofExpressionSha256": "b3f7af0bbe8ba092ea18c8c99b1a2ef777451f01882acd2838ade11a68ab7b4a",
+    "statement_hash": "624227782612d02536f759c963c21c8f53c1ceed7401662340c7865d599455f7",
+    "nativeExpressionComparison": "structural_equal",
+    "sourceTypeSha256": "b8ef257a3d3f7a051457c43bfda7c4d2cd5b20089b6b07d7c87df8b19dcdf475",
+    "sourceProofSha256": "f7607cfa04d403285ed937a72599a7d0f78b1f6f4b59fdfafc8799bcc5326935",
+    "runtime": {
+      "configured": true,
+      "executableFound": true,
+      "projectFound": true,
+      "runtimeBuilt": true,
+      "runtimeIntegrity": true,
+      "runtimeAttestation": "bbfe5800c297fd14f30d44eb49274921392f08d089a5544098bc3ea49d2b8881",
+      "sandbox": "macos",
+      "isolated": true,
+      "ready": true,
+      "toolchain": "leanprover/lean4:v4.34.0",
+      "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+      "liveTestedInThisDistribution": false
+    },
+    "additionalAxioms": [],
+    "auditIsolation": "fresh_import_environment_reset_between_candidates"
+  },
+  "modelProvenance": null
+}

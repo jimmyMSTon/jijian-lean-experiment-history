@@ -1,0 +1,73 @@
+{
+  "provenance": {
+    "jsonParsing": {
+      "method": "deterministic_json_schema",
+      "recovered": false,
+      "edits": []
+    },
+    "provider": "deepseek",
+    "requestedModel": "deepseek-flash",
+    "model": "deepseek-flash",
+    "responseId": "c4656dff-40d4-457a-a1c8-2dd9c130b081",
+    "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "usage": {
+      "prompt_tokens": 997,
+      "completion_tokens": 5250,
+      "total_tokens": 6247,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 4594
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 997
+    },
+    "thinking": "provider_default",
+    "promptSchemaEncoding": "compact_json_v1",
+    "structuredOutput": "json_mode_with_local_schema_validation",
+    "simulated": false
+  },
+  "complete": true,
+  "statement": "∀ (A B C : Set ℤ), A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)",
+  "proofTerm": "by\n  intro A B C\n  ext x\n  constructor\n  · intro hx\n    rcases hx with ⟨hxA, hxBUC⟩\n    rcases hxBUC with hxB | hxC\n    · left\n      exact ⟨hxA, hxB⟩\n    · right\n      exact ⟨hxA, hxC⟩\n  · intro hx\n    rcases hx with hxAB | hxAC\n    · rcases hxAB with ⟨hxA, hxB⟩\n      exact ⟨hxA, Or.inl hxB⟩\n    · rcases hxAC with ⟨hxA, hxC⟩\n      exact ⟨hxA, Or.inr hxC⟩",
+  "sourceSteps": [
+    {
+      "start": 43,
+      "end": 77,
+      "sourceExcerpt": "取任意整数 x。若 x∈A∩(B∪C)，则 x∈A 且 x∈B∪C。",
+      "leanWitness": "intro A B C; ext x; constructor; · intro hx; rcases hx with ⟨hxA, hxBUC⟩"
+    },
+    {
+      "start": 77,
+      "end": 107,
+      "sourceExcerpt": "若 x∈B，便有 x∈A∩B；若 x∈C，便有 x∈A∩C。",
+      "leanWitness": "rcases hxBUC with hxB | hxC; · left; exact ⟨hxA, hxB⟩; · right; exact ⟨hxA, hxC⟩"
+    },
+    {
+      "start": 107,
+      "end": 124,
+      "sourceExcerpt": "因此 x∈(A∩B)∪(A∩C)。",
+      "leanWitness": "left; exact ⟨hxA, hxB⟩（第一分支）与 right; exact ⟨hxA, hxC⟩（第二分支）构造并集成员关系"
+    },
+    {
+      "start": 124,
+      "end": 163,
+      "sourceExcerpt": "反之若 x∈(A∩B)∪(A∩C)，则分两种情形：x∈A∩B 或 x∈A∩C。",
+      "leanWitness": "· intro hx; rcases hx with hxAB | hxAC"
+    },
+    {
+      "start": 163,
+      "end": 202,
+      "sourceExcerpt": "不管哪一种，都有 x∈A，并有 x∈B 或 x∈C，从而 x∈A∩(B∪C)。",
+      "leanWitness": "· rcases hxAB with ⟨hxA, hxB⟩; exact ⟨hxA, Or.inl hxB⟩; · rcases hxAC with ⟨hxA, hxC⟩; exact ⟨hxA, Or.inr hxC⟩"
+    },
+    {
+      "start": 202,
+      "end": 217,
+      "sourceExcerpt": "由集合外延性，两边相等。证毕。",
+      "leanWitness": "ext x; constructor（用集合外延性化为双向成员关系，并在两分支完成后闭合等式）"
+    }
+  ],
+  "unsupportedOriginalSteps": []
+}

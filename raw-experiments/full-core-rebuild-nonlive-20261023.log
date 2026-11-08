@@ -1,0 +1,72 @@
+........................................................................ [  7%]
+........................................................................ [ 15%]
+........................................................................ [ 23%]
+........................................................................ [ 31%]
+........................................................................ [ 39%]
+.................F...................................................... [ 46%]
+........................................................................ [ 54%]
+........................................................................ [ 62%]
+........................................................................ [ 70%]
+........................................................................ [ 78%]
+........................................................................ [ 85%]
+........................................................................ [ 93%]
+...........................................................              [100%]
+=================================== FAILURES ===================================
+______ test_compiler_feedback_retries_same_source_with_recorded_diagnosis ______
+
+tmp_path = PosixPath('/private/var/folders/_d/x5xldyk10v7_r3p9_74rnk2c0000gn/T/pytest-of-mac/pytest-13/test_compiler_feedback_retries0')
+
+    def test_compiler_feedback_retries_same_source_with_recorded_diagnosis(tmp_path):
+        original,correct=reference()
+        provider=Corrections([invalid_set_value(correct),correct])
+        recognition=Recognition(source(original))
+        store=Store(tmp_path/"state")
+        try:
+            service=MathIRV2Service(store,provider,recognition,None,None)
+>           result=asyncio.run(service.structure(None))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/v2/test_compiler_source_locked_feedback.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:195: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+backend/v2/service.py:323: in structure
+    return await self._compile_resolved_source(
+backend/v2/service.py:381: in _compile_resolved_source
+    ir, provenance, recognition_evidence = await structure_mathir_v2(
+backend/v2/structure.py:491: in structure_mathir_v2
+    semantic, provenance = await _structure_with_source_locked_diagnostics(
+backend/v2/structure.py:423: in _structure_with_source_locked_diagnostics
+    value, provenance = await provider.structured(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <test_compiler_source_locked_feedback.Corrections object at 0x10a1440e0>
+schema = <class 'backend.v2.structure.StructureOnlyMathIRV2'>
+instructions = '将下方用户原稿及来源块编码为 MathIR v2.0 的语义结构。你只返回结构字段；服务端会从不可变输入附加 source，不能生成或改写 source。\n\n大型证明的结构输出必须严格保持 JSON 完整性：先辨认用户真正写出的数...oerce 的显式节点；coerce 也必须明确提供 targetType。其它表达式操作不得包含 targetType。ascribe/cast 必须提供 targetType；数字字面量的类型写在 literal.type 中。\n'
+payload = {'authoredProofOutline': {'basis': 'immutable Unicode source blocks before AI MathIR conversion', 'clauses': [{'blockI...nitionEvidence': {'ambiguities': [], 'corrections': [], 'locationPrecision': 'text_block', 'userCorrections': []}, ...}
+kwargs = {}, @py_assert1 = None
+
+    async def structured(self,schema,instructions,payload,**kwargs):
+        assert schema is StructureOnlyMathIRV2
+        self.calls.append(payload)
+>       row=self.attempts.pop(0)
+            ^^^^^^^^^^^^^^^^^^^^
+E       IndexError: pop from empty list
+
+tests/v2/test_compiler_source_locked_feedback.py:47: IndexError
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/starlette/testclient.py:45
+  /[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/.venv/lib/python3.12/site-packages/starlette/testclient.py:45: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/v2/test_compiler_source_locked_feedback.py::test_compiler_feedback_retries_same_source_with_recorded_diagnosis
+1 failed, 922 passed, 72 deselected, 1 warning in 10.49s

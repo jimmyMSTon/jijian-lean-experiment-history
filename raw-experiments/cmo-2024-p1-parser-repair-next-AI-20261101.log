@@ -1,0 +1,30 @@
+Traceback (most recent call last):
+  File "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/run-cmo-parser-repair-next-AI-20261101.py", line 83, in <module>
+    asyncio.run(main())
+    ~~~~~~~~~~~^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py", line 204, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py", line 127, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/run-cmo-parser-repair-next-AI-20261101.py", line 52, in main
+    proposal,provenance=await provider.structured(LeanProofPatchBatch,PROMPT,payload)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/backend/providers/deepseek.py", line 40, in structured
+    value, provenance = await self.raw_structured(schema, model.__name__, instructions, payload, images or [])
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/backend/providers/deepseek.py", line 123, in raw_structured
+    result = await self._call(s.deepseek_base_url.rstrip("/") + "/chat/completions", body,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                             {"Authorization": f"Bearer {s.deepseek_api_key}"})
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/backend/providers/deepseek.py", line 208, in _call
+    result=await self._http_call(url,payload,headers)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/backend/providers/deepseek.py", line 252, in _http_call
+    raise AppError("AI_PROVIDER_ERROR", "AI 服务返回错误", 502, details)
+backend.errors.AppError: AI 服务返回错误

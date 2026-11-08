@@ -1,0 +1,73 @@
+{
+  "model": "real DeepSeek Flash",
+  "mathGoal": "∀ (a x y z e : ℕ), y = (x ^ 2 + a * x + 1) ^ e → z * x = (y ^ 2 + a * y + 1) ^ e → x ∣ (a + 2) ^ e",
+  "realModelProofOriginal": "by\n  intro a x y z e hy hz\n  have hx0 : (x : ZMod x) = 0 := ZMod.natCast_self x\n  have hy1 : (y : ZMod x) = 1 := by\n    rw [hy]\n    rw [Nat.cast_pow]\n    have hbase : ((x ^ 2 + a * x + 1 : ℕ) : ZMod x) = 1 := by\n      rw [Nat.cast_add, Nat.cast_add, Nat.cast_mul, Nat.cast_pow, hx0]\n      simp\n    rw [hbase, one_pow]\n  have hz0 : ((((y ^ 2 + a * y + 1 : ℕ) : ZMod x)) ^ e) = 0 := by\n    have h := congrArg (fun n : ℕ => (n : ZMod x)) hz\n    simpa [Nat.cast_mul, Nat.cast_pow, hx0] using h.symm\n  have hbase2 : (((y ^ 2 + a * y + 1 : ℕ) : ZMod x)) = ((a + 2 : ℕ) : ZMod x) := by\n    calc\n      (((y ^ 2 + a * y + 1 : ℕ) : ZMod x))\n          = (y : ZMod x)^2 + (a : ZMod x)*(y : ZMod x) + 1 := by\n              push_cast\n              ring\n      _ = (1 : ZMod x)^2 + (a : ZMod x)*1 + 1 := by rw [hy1]\n      _ = (a : ZMod x) + 1 + 1 := by ring\n      _ = ((a + 2 : ℕ) : ZMod x) := by\n              rw [Nat.cast_add]\n              norm_num\n              ring\n  have hpow : (((a + 2 : ℕ) : ZMod x) ^ e) = 0 := by\n    rw [← hbase2]\n    exact hz0\n  have hpowNat : (((a + 2) ^ e : ℕ) : ZMod x) = 0 := by\n    simpa [Nat.cast_pow] using hpow\n  exact (ZMod.natCast_zmod_eq_zero_iff_dvd ((a + 2) ^ e) x).mp hpowNat",
+  "automaticEvidence": {
+    "kind": "installed_mathlib_lean_check",
+    "missingNames": [
+      "ZMod.natCast_zmod_eq_zero_iff_dvd"
+    ],
+    "checkedAlternatives": [
+      {
+        "missingName": "ZMod.natCast_zmod_eq_zero_iff_dvd",
+        "name": "ZMod.natCast_eq_zero_iff",
+        "leanCheckedSignature": "ZMod.natCast_eq_zero_iff : ∀ (a b : ℕ), Eq.{1} (↑a) 0 ↔ Dvd.dvd.{0} b a"
+      }
+    ],
+    "unavailableNames": [
+      "ZMod.natCast_zmod_eq_zero_iff_dvd"
+    ],
+    "authority": "declaration-existence-and-type-only_not-math-equivalence",
+    "status": "lean_checked"
+  },
+  "repair": {
+    "kernelVerified": true,
+    "replacements": [
+      {
+        "missingName": "ZMod.natCast_zmod_eq_zero_iff_dvd",
+        "leanCheckedReplacement": "ZMod.natCast_eq_zero_iff",
+        "occurrences": 1,
+        "typeChecked": true,
+        "mathematicalEquivalenceClaimed": false
+      }
+    ],
+    "status": "kernel_verified",
+    "certificate": {
+      "auditMethod": "fresh_environment_data_only_kernel_replay",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "checked": true,
+      "dependencyUsage": [],
+      "formalStatement": "∀ (a x y z e : ℕ), y = (x ^ 2 + a * x + 1) ^ e → z * x = (y ^ 2 + a * y + 1) ^ e → x ∣ (a + 2) ^ e",
+      "statementMatched": true,
+      "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+      "expectedExpressionSha256": "95ca064436469b188abddd39eb209dc4ba3d5db10d214908785cbf942e86e085",
+      "proofExpressionSha256": "253ef675c2e0986ffa021451cac837e93ba7f44e06ac9fb3812f09b7b8566ced",
+      "statement_hash": "942bb5969dffd8683217630536c3050393076bd33ec4c3dd94730da6d3e0ede8",
+      "nativeExpressionComparison": "structural_equal",
+      "sourceTypeSha256": "942bb5969dffd8683217630536c3050393076bd33ec4c3dd94730da6d3e0ede8",
+      "sourceProofSha256": "7133a402c331fceb8dc9d3398bc8e7242b765a789fd7f15db1e83ad47c8ab0a7",
+      "runtime": {
+        "configured": true,
+        "executableFound": true,
+        "projectFound": true,
+        "runtimeBuilt": true,
+        "runtimeIntegrity": true,
+        "runtimeAttestation": "bbfe5800c297fd14f30d44eb49274921392f08d089a5544098bc3ea49d2b8881",
+        "sandbox": "macos",
+        "isolated": true,
+        "ready": true,
+        "toolchain": "leanprover/lean4:v4.34.0",
+        "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+        "liveTestedInThisDistribution": false
+      },
+      "additionalAxioms": [],
+      "auditIsolation": "fresh_import_environment_reset_between_candidates"
+    },
+    "newLeanDiagnostics": [],
+    "candidateProofTerm": "by\n  intro a x y z e hy hz\n  have hx0 : (x : ZMod x) = 0 := ZMod.natCast_self x\n  have hy1 : (y : ZMod x) = 1 := by\n    rw [hy]\n    rw [Nat.cast_pow]\n    have hbase : ((x ^ 2 + a * x + 1 : ℕ) : ZMod x) = 1 := by\n      rw [Nat.cast_add, Nat.cast_add, Nat.cast_mul, Nat.cast_pow, hx0]\n      simp\n    rw [hbase, one_pow]\n  have hz0 : ((((y ^ 2 + a * y + 1 : ℕ) : ZMod x)) ^ e) = 0 := by\n    have h := congrArg (fun n : ℕ => (n : ZMod x)) hz\n    simpa [Nat.cast_mul, Nat.cast_pow, hx0] using h.symm\n  have hbase2 : (((y ^ 2 + a * y + 1 : ℕ) : ZMod x)) = ((a + 2 : ℕ) : ZMod x) := by\n    calc\n      (((y ^ 2 + a * y + 1 : ℕ) : ZMod x))\n          = (y : ZMod x)^2 + (a : ZMod x)*(y : ZMod x) + 1 := by\n              push_cast\n              ring\n      _ = (1 : ZMod x)^2 + (a : ZMod x)*1 + 1 := by rw [hy1]\n      _ = (a : ZMod x) + 1 + 1 := by ring\n      _ = ((a + 2 : ℕ) : ZMod x) := by\n              rw [Nat.cast_add]\n              norm_num\n              ring\n  have hpow : (((a + 2 : ℕ) : ZMod x) ^ e) = 0 := by\n    rw [← hbase2]\n    exact hz0\n  have hpowNat : (((a + 2) ^ e : ℕ) : ZMod x) = 0 := by\n    simpa [Nat.cast_pow] using hpow\n  exact (ZMod.natCast_eq_zero_iff ((a + 2) ^ e) x).mp hpowNat"
+  }
+}

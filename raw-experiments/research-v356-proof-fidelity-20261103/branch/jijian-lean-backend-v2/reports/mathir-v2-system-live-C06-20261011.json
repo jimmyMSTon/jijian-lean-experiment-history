@@ -1,0 +1,84 @@
+{
+  "study": "MathIR v2 Stage 7 blinded 15-case live matrix",
+  "baselineCommit": "2cec1a3",
+  "workflowId": "e5b4343e-b98d-4179-aadc-f6ecc767696b",
+  "provider": "DeepSeek",
+  "requestedModel": "deepseek-flash",
+  "liveCallsAllowed": "explicit Stage 7 research runner; sequential, no parallel API requests",
+  "priorAttempt": "reports/mathir-v2-stage7-final-evidence.json",
+  "formalV1Changed": false,
+  "mathlibAChanged": false,
+  "cases": {
+    "C06": {
+      "layer": "nat_square_sum_induction_correct",
+      "sourceText": "题目：对任意自然数 n≥1，证明 6Σ(k=1..n)k^2=n(n+1)(2n+1)。所有运算在 ℕ 中进行。\n\n用户原稿证明：\n记 S_n=Σ(k=1..n)k^2。\n第一步：基例。当 n=1 时，6S_1=6，而 1×2×3=6。所以成立。\n第二步：归纳假设。假设 6S_n=n(n+1)(2n+1)。\n第三步：归纳步骤。因为 S_(n+1)=S_n+(n+1)^2，所以 6S_(n+1)=6S_n+6(n+1)^2=n(n+1)(2n+1)+6(n+1)^2。\n第四步：提取公因式。6S_(n+1)=(n+1)[n(2n+1)+6(n+1)]=(n+1)(2n^2+7n+6)。\n第五步：因式分解。2n^2+7n+6=(n+2)(2n+3)。因此 6S_(n+1)=(n+1)(n+2)(2n+3)。这正是把原公式中的 n 替换成 n+1 所得的结论。归纳完成。",
+      "providerRequests": [
+        {
+          "stage": "mathir",
+          "reason": "StructureOnlyMathIRV2",
+          "requestId": "e0e736c2-19cc-4cb0-ba4d-f118b8974e01",
+          "inputHash": "5bbf1247326ca3aae0009b5228900495ea85eb31f98aa7d97fddd4a103710473",
+          "promptVersion": "sha256:4682acac0d3289de3a13c9571d7b53c10c7f03a0e3d47ca896e6efdc5d9e165b",
+          "model": "deepseek-flash",
+          "retryIndex": 0,
+          "cache": "miss",
+          "inputTokens": null,
+          "outputTokens": null,
+          "durationMs": 534.617,
+          "status": "failed",
+          "realRequestAttempted": true
+        }
+      ],
+      "stageSeconds": {},
+      "pipelineError": {
+        "type": "AppError",
+        "message": "AI 服务返回错误",
+        "traceback": "Traceback (most recent call last):\n  File \"/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/scripts/run_mathir_v2_stage7_matrix.py\", line 140, in main\n    struct,prov=await structured_captured(provider,StructureOnlyMathIRV2,STRUCTURE_INSTRUCTIONS,\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/scripts/run_mathir_v2_stage7_matrix.py\", line 87, in structured_captured\n    value,provenance=await provider.raw_structured(schema,model.__name__,instructions,payload,[])\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/backend/providers/deepseek.py\", line 70, in raw_structured\n    result = await self._call(s.deepseek_base_url.rstrip(\"/\") + \"/chat/completions\", body,\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/backend/providers/deepseek.py\", line 128, in _call\n    result=await self._http_call(url,payload,headers)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/[LOCAL_USER]/Documents/ChatGPT/极简lean 2/jijian-lean-backend-v2/backend/providers/deepseek.py\", line 168, in _http_call\n    raise AppError(\"AI_PROVIDER_ERROR\", \"AI 服务返回错误\", 502, details)\nbackend.errors.AppError: AI 服务返回错误\n",
+        "details": {
+          "httpStatus": 402,
+          "requestId": null,
+          "retryAfter": null,
+          "providerCode": "invalid_request_error",
+          "providerMessage": "Insufficient Balance (request_id: 8e451ff2-dd2a-4701-9eff-9012a3602c15)"
+        }
+      },
+      "elapsedSeconds": 0.571,
+      "memorySnapshot": {
+        "pythonPeakRSSMiB": 62.53,
+        "reapedChildPeakRSSMiB": 0.0
+      }
+    }
+  },
+  "requestAudit": {
+    "workflowId": "e5b4343e-b98d-4179-aadc-f6ecc767696b",
+    "total": 1,
+    "real": 1,
+    "stages": {
+      "recognition": 0,
+      "mathir": 1,
+      "formalization": 0,
+      "repair": 0,
+      "feedback": 0,
+      "other": 0
+    },
+    "rows": [
+      {
+        "workflow_id": "e5b4343e-b98d-4179-aadc-f6ecc767696b",
+        "request_id": "e0e736c2-19cc-4cb0-ba4d-f118b8974e01",
+        "stage": "mathir",
+        "reason": "StructureOnlyMathIRV2",
+        "input_hash": "5bbf1247326ca3aae0009b5228900495ea85eb31f98aa7d97fddd4a103710473",
+        "prompt_version": "sha256:4682acac0d3289de3a13c9571d7b53c10c7f03a0e3d47ca896e6efdc5d9e165b",
+        "model": "deepseek-flash",
+        "retry_index": 0,
+        "cache": "miss",
+        "input_tokens": null,
+        "output_tokens": null,
+        "http_duration_ms": 534.617,
+        "status": "failed",
+        "real_request_attempted": true
+      }
+    ],
+    "scope": "filtered by workflow_id; excludes historical prior workflows"
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "$defs": {
+    "MathExpression": {
+      "additionalProperties": false,
+      "description": "Data-only expression tree; identifiers refer to MathIR symbols, never Lean code.",
+      "properties": {
+        "op": {
+          "enum": [
+            "symbol",
+            "number",
+            "constant",
+            "add",
+            "sub",
+            "mul",
+            "div",
+            "pow",
+            "neg",
+            "eq",
+            "le",
+            "lt",
+            "ge",
+            "gt",
+            "and",
+            "or",
+            "implies",
+            "iff",
+            "not",
+            "forall",
+            "exists",
+            "sum_range",
+            "apply",
+            "eval",
+            "cos",
+            "sin",
+            "true"
+          ],
+          "title": "Op",
+          "type": "string"
+        },
+        "args": {
+          "items": {
+            "$ref": "#/$defs/MathExpression"
+          },
+          "title": "Args",
+          "type": "array"
+        },
+        "symbolId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Symbolid"
+        },
+        "binderId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Binderid"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        }
+      },
+      "required": [
+        "op"
+      ],
+      "title": "MathExpression",
+      "type": "object"
+    },
+    "MathematicalExpression": {
+      "additionalProperties": false,
+      "properties": {
+        "sourceId": {
+          "title": "Sourceid",
+          "type": "string"
+        },
+        "expression": {
+          "$ref": "#/$defs/MathExpression"
+        }
+      },
+      "required": [
+        "sourceId",
+        "expression"
+      ],
+      "title": "MathematicalExpression",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Typed mathematics attached during understanding, before proof generation.",
+  "properties": {
+    "expressions": {
+      "items": {
+        "$ref": "#/$defs/MathematicalExpression"
+      },
+      "title": "Expressions",
+      "type": "array"
+    }
+  },
+  "required": [
+    "expressions"
+  ],
+  "title": "MathematicalSpecification",
+  "type": "object"
+}

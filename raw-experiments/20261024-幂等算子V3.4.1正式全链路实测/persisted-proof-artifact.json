@@ -1,0 +1,315 @@
+{
+  "id": "8fd102b4-0830-400b-8859-5ba50ddd59ce",
+  "kind": "lean_first_local",
+  "mode": "single_whole_theorem_kernel",
+  "sourceSha256": "766ac50fd3d715bbd44566bd4f1d3faaf33ebc381cead090261b5218cf8a121e",
+  "runTraceId": "ab1854a2-1c0d-4d3e-a7a1-8603938b3331",
+  "status": "whole_formal_kernel_verified_source_unconfirmed",
+  "kernelVerified": true,
+  "formalProofCertified": true,
+  "originalProofCertified": false,
+  "sourceEquivalenceCertified": false,
+  "originalInferenceVerified": false,
+  "sourcePositionsValid": true,
+  "plannedStepCount": 4,
+  "localFormalVerifiedCount": 0,
+  "sourceSteps": [
+    {
+      "id": "source-0",
+      "index": 0,
+      "role": "inference",
+      "start": 192,
+      "end": 364,
+      "sourceExcerpt": "第一步：证明核空间与像空间的交集仅含零向量。任取 z∈ker(P)∩Im(P)。由于 z∈Im(P)，存在 y∈V 使 z=P(y)。因此 P(z)=P(P(y))=P(y)=z，其中使用了题设 P∘P=P。但 z∈ker(P)，所以 P(z)=0，从而 z=0。又由于零向量显然同时属于核空间和像空间，所以 ker(P)∩Im(P)={0}。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_0",
+      "dependsOn": []
+    },
+    {
+      "id": "source-1",
+      "index": 1,
+      "role": "inference",
+      "start": 366,
+      "end": 540,
+      "sourceExcerpt": "第二步：证明每个向量都能分解为核空间元素与像空间元素之和。任取 v∈V。令 u=v−P(v)，w=P(v)。由 P 的线性性及 P²=P，得到 P(u)=P(v)−P(P(v))=P(v)−P(v)=0，因此 u∈ker(P)。而 w=P(v)，故 w∈Im(P)。并且 u+w=(v−P(v))+P(v)=v。因此 V=ker(P)+Im(P)。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_1",
+      "dependsOn": []
+    },
+    {
+      "id": "source-2",
+      "index": 2,
+      "role": "inference",
+      "start": 542,
+      "end": 717,
+      "sourceExcerpt": "第三步：证明这样的分解唯一。假定 v=u₁+w₁=u₂+w₂，其中 u₁,u₂∈ker(P)，w₁,w₂∈Im(P)。移项得 u₁−u₂=w₂−w₁。因为核空间与像空间都是线性子空间，所以共同的这个向量同时属于 ker(P) 与 Im(P)。由第一步可知它等于零向量，于是 u₁=u₂；再由 v=u₁+w₁=u₂+w₂，得到 w₁=w₂。故分解唯一。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_2",
+      "dependsOn": []
+    },
+    {
+      "id": "source-3",
+      "index": 3,
+      "role": "inference",
+      "start": 719,
+      "end": 756,
+      "sourceExcerpt": "综上，存在性及唯一性均得到证明，所以 V=ker(P)⊕Im(P)。证毕。",
+      "status": "translation_mapped_only",
+      "kernelVerified": false,
+      "sourcePositionsValid": true,
+      "originalInferenceVerified": false,
+      "sourceEquivalenceCertified": false,
+      "leanWitnessMarker": "source_step_3",
+      "dependsOn": []
+    }
+  ],
+  "statement": "∀ (V : Type*) [AddCommGroup V] [Module ℝ V] (P : V →ₗ[ℝ] V), (∀ v : V, P (P v) = P v) → ((LinearMap.ker P ⊔ LinearMap.range P = ⊤) ∧ (LinearMap.ker P ⊓ LinearMap.range P = ⊥) ∧ (∀ v : V, ∃! u : V × V, P (u.1) = 0 ∧ u.2 ∈ LinearMap.range P ∧ v = u.1 + u.2))",
+  "proofTerm": "by\n  intro V hAdd hMod P hP\n  have source_step_0 : LinearMap.ker P ⊓ LinearMap.range P = ⊥ := by\n    ext z\n    constructor\n    · intro hz\n      have hz' : z ∈ LinearMap.ker P ∧ z ∈ LinearMap.range P := by\n        simpa only [Submodule.mem_inf] using hz\n      have hzker : P z = 0 := by\n        simpa only [LinearMap.mem_ker] using hz'.1\n      rcases (LinearMap.mem_range.mp hz'.2) with ⟨y, hy⟩\n      have hz0 : z = 0 := by\n        calc\n          z = P y := hy.symm\n          _ = P (P y) := (hP y).symm\n          _ = P z := by rw [hy]\n          _ = 0 := hzker\n      rw [Submodule.mem_bot]\n      exact hz0\n    · intro hz\n      have hz0 : z = 0 := by\n        simpa only [Submodule.mem_bot] using hz\n      subst z\n      rw [Submodule.mem_inf]\n      constructor\n      · rw [LinearMap.mem_ker]\n        simp\n      · exact LinearMap.mem_range.mpr ⟨0, by simp⟩\n  have source_step_1 : LinearMap.ker P ⊔ LinearMap.range P = ⊤ := by\n    ext v\n    constructor\n    · intro hv\n      simp\n    · intro hv\n      have hu : v - P v ∈ LinearMap.ker P := by\n        rw [LinearMap.mem_ker]\n        simp [map_sub, hP v]\n      have hw : P v ∈ LinearMap.range P := by\n        exact LinearMap.mem_range.mpr ⟨v, rfl⟩\n      have hdecomp : v = (v - P v) + P v := by\n        abel\n      rw [hdecomp]\n      exact Submodule.add_mem_sup hu hw\n  have source_step_2 : ∀ v : V, ∀ u1 u2 : V × V,\n      P u1.1 = 0 → u1.2 ∈ LinearMap.range P → v = u1.1 + u1.2 →\n      P u2.1 = 0 → u2.2 ∈ LinearMap.range P → v = u2.1 + u2.2 →\n      u1 = u2 := by\n    intro v u1 u2 hker1 hrange1 hv1 hker2 hrange2 hv2\n    have hv_eq : u1.1 + u1.2 = u2.1 + u2.2 := by\n      rw [← hv1, hv2]\n    have hdiff : u1.1 - u2.1 = u2.2 - u1.2 := by\n      calc\n        u1.1 - u2.1 = (u1.1 + u1.2) - (u2.1 + u1.2) := by abel\n        _ = (u2.1 + u2.2) - (u2.1 + u1.2) := by rw [hv_eq]\n        _ = u2.2 - u1.2 := by abel\n    have hker_diff : u1.1 - u2.1 ∈ LinearMap.ker P := by\n      rw [LinearMap.mem_ker]\n      simp [map_sub, hker1, hker2]\n    have hrange_diff_rhs : u2.2 - u1.2 ∈ LinearMap.range P := by\n      rcases (LinearMap.mem_range.mp hrange2) with ⟨y2, hy2⟩\n      rcases (LinearMap.mem_range.mp hrange1) with ⟨y1, hy1⟩\n      refine LinearMap.mem_range.mpr ⟨y2 - y1, ?_⟩\n      simp [map_sub, hy2, hy1]\n    have hrange_diff_lhs : u1.1 - u2.1 ∈ LinearMap.range P := by\n      rw [hdiff]\n      exact hrange_diff_rhs\n    have hcommon : u1.1 - u2.1 ∈ LinearMap.ker P ⊓ LinearMap.range P := by\n      rw [Submodule.mem_inf]\n      exact ⟨hker_diff, hrange_diff_lhs⟩\n    have hbot : u1.1 - u2.1 ∈ (⊥ : Submodule ℝ V) := by\n      simpa [source_step_0] using hcommon\n    have hzero : u1.1 - u2.1 = 0 := by\n      simpa only [Submodule.mem_bot] using hbot\n    have hu_eq : u1.1 = u2.1 := sub_eq_zero.mp hzero\n    have hw_eq : u1.2 = u2.2 := by\n      have hcancel : u2.1 + u1.2 = u2.1 + u2.2 := by\n        simpa [hu_eq] using hv_eq\n      exact add_left_cancel hcancel\n    ext\n    · exact hu_eq\n    · exact hw_eq\n  have source_step_3 : ((LinearMap.ker P ⊔ LinearMap.range P = ⊤) ∧\n      (LinearMap.ker P ⊓ LinearMap.range P = ⊥) ∧\n      (∀ v : V, ∃! u : V × V, P (u.1) = 0 ∧ u.2 ∈ LinearMap.range P ∧ v = u.1 + u.2)) := by\n    refine ⟨source_step_1, source_step_0, ?_⟩\n    intro v\n    let u0 : V × V := (v - P v, P v)\n    have hu0ker : P u0.1 = 0 := by\n      dsimp [u0]\n      simp [map_sub, hP v]\n    have hu0range : u0.2 ∈ LinearMap.range P := by\n      dsimp [u0]\n      exact LinearMap.mem_range.mpr ⟨v, rfl⟩\n    have hu0sum : v = u0.1 + u0.2 := by\n      dsimp [u0]\n      abel\n    refine ⟨u0, ?_, ?_⟩\n    · exact ⟨hu0ker, hu0range, hu0sum⟩\n    · intro u hu\n      exact source_step_2 v u u0 hu.1 hu.2.1 hu.2.2 hu0ker hu0range hu0sum\n  exact source_step_3",
+  "lean": {
+    "localVerified": true,
+    "status": "verified",
+    "diagnostics": [],
+    "certificate": {
+      "auditMethod": "fresh_environment_data_only_kernel_replay",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "checked": true,
+      "dependencyUsage": [],
+      "formalStatement": "∀ (V : Type u_1) [inst : AddCommGroup V] [inst_1 : Module ℝ V] (P : V →ₗ[ℝ] V),\n  (∀ (v : V), P (P v) = P v) →\n    P.ker ⊔ P.range = ⊤ ∧ P.ker ⊓ P.range = ⊥ ∧ ∀ (v : V), ∃! u, P u.1 = 0 ∧ u.2 ∈ P.range ∧ v = u.1 + u.2",
+      "statementMatched": true,
+      "typeComparisonMethod": "fresh_environment_lean_definitional_equality",
+      "expectedExpressionSha256": "b020546077b6525047963779a8a720f429c7069c7374216e86b9e22e01cb98d7",
+      "proofExpressionSha256": "6cf806a9d8928214f5d9db60c0f06af75de5a3301ae70db702a826ebaee84739",
+      "statement_hash": "766ac50fd3d715bbd44566bd4f1d3faaf33ebc381cead090261b5218cf8a121e",
+      "nativeExpressionComparison": "structural_equal",
+      "sourceTypeSha256": "812c63dbedde4a069f4a32905f512f3299692ca7c45d6a9533a8f73cb6d102a0",
+      "sourceProofSha256": "bc542516217ba9824d216c5a4d417d8efa9df5563ec6c514d9d6fce1212af415",
+      "runtime": {
+        "configured": true,
+        "executableFound": true,
+        "projectFound": true,
+        "runtimeBuilt": true,
+        "runtimeIntegrity": true,
+        "runtimeAttestation": "8ed0581c17efdbc6c9f64ccb66dad3768b4feb21ce25f501aab79b229e7443bd",
+        "sandbox": "macos",
+        "isolated": true,
+        "ready": true,
+        "toolchain": "leanprover/lean4:v4.34.0",
+        "manifestSha256": "787c8e50ed1868a7e0d192cd6083c00faf0c0f17ade6a5ca878b2571b080fb20",
+        "liveTestedInThisDistribution": false
+      },
+      "additionalAxioms": [],
+      "auditIsolation": "fresh_import_environment_reset_between_candidates"
+    },
+    "evidence": {
+      "expected": "[oversized elaborated Lean expression omitted; see certificate SHA-256]",
+      "proof": "[oversized elaborated Lean expression omitted; see certificate SHA-256]",
+      "omissions": {
+        "expected": {
+          "omitted": true,
+          "utf8Bytes": 60631,
+          "canonicalSha256": "b020546077b6525047963779a8a720f429c7069c7374216e86b9e22e01cb98d7",
+          "reason": "bounded_http_storage_evidence_after_kernel_check"
+        },
+        "proof": {
+          "omitted": true,
+          "utf8Bytes": 4024817,
+          "canonicalSha256": "6cf806a9d8928214f5d9db60c0f06af75de5a3301ae70db702a826ebaee84739",
+          "reason": "bounded_http_storage_evidence_after_kernel_check"
+        }
+      }
+    }
+  },
+  "unsupportedOriginalSteps": [],
+  "planProvenance": {
+    "jsonParsing": {
+      "method": "deterministic_json_schema",
+      "recovered": false,
+      "edits": []
+    },
+    "provider": "deepseek",
+    "requestedModel": "deepseek-flash",
+    "model": "deepseek-flash",
+    "responseId": "1d217b3e-f442-4a86-b4e6-f0890f36aca6",
+    "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "usage": {
+      "prompt_tokens": 1136,
+      "completion_tokens": 13036,
+      "total_tokens": 14172,
+      "prompt_tokens_details": {
+        "cached_tokens": 384
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 12399
+      },
+      "prompt_cache_hit_tokens": 384,
+      "prompt_cache_miss_tokens": 752
+    },
+    "thinking": "provider_default",
+    "promptSchemaEncoding": "compact_json_v1",
+    "structuredOutput": "json_mode_with_local_schema_validation",
+    "simulated": false
+  },
+  "model": "deepseek-flash",
+  "goalExcerpt": "证明 V=ker(P)⊕Im(P)。具体而言，任意 v∈V 存在唯一的一对向量 (u,w)，满足 P(u)=0、w 属于 P 的像空间，并且 v=u+w。",
+  "originalGivenExcerpts": [
+    "设 V 是任意实向量空间，P:V→V 是线性映射，且 P∘P=P，也就是对所有 v∈V 有 P(P(v))=P(v)。"
+  ],
+  "sourceOffsetRepairs": [],
+  "proofProvenance": {
+    "jsonParsing": {
+      "method": "deterministic_json_schema",
+      "recovered": false,
+      "edits": []
+    },
+    "provider": "deepseek",
+    "requestedModel": "deepseek-flash",
+    "model": "deepseek-flash",
+    "responseId": "c9230c92-668e-4932-96b6-a5d9bdbd9ad6",
+    "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "usage": {
+      "prompt_tokens": 1670,
+      "completion_tokens": 23327,
+      "total_tokens": 24997,
+      "prompt_tokens_details": {
+        "cached_tokens": 384
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 21778
+      },
+      "prompt_cache_hit_tokens": 384,
+      "prompt_cache_miss_tokens": 1286
+    },
+    "thinking": "provider_default",
+    "promptSchemaEncoding": "compact_json_v1",
+    "structuredOutput": "json_mode_with_local_schema_validation",
+    "simulated": false
+  },
+  "sourceFidelityReview": {
+    "assessment": "no_specific_mismatch_identified_by_model",
+    "sourceEquivalenceCertified": false,
+    "originalProofCertified": false,
+    "modelReviewOnly": true,
+    "reviewedStepCount": 4,
+    "sourceStepCount": 4,
+    "issues": [],
+    "auxiliaryAssertions": [
+      "have hzker : P z = 0 := by",
+      "have hz0 : z = 0 := by",
+      "have hz0 : z = 0 := by",
+      "have hu : v - P v ∈ LinearMap.ker P := by",
+      "have hw : P v ∈ LinearMap.range P := by",
+      "have hdecomp : v = (v - P v) + P v := by",
+      "have hv_eq : u1.1 + u1.2 = u2.1 + u2.2 := by",
+      "have hdiff : u1.1 - u2.1 = u2.2 - u1.2 := by",
+      "have hker_diff : u1.1 - u2.1 ∈ LinearMap.ker P := by",
+      "have hrange_diff_rhs : u2.2 - u1.2 ∈ LinearMap.range P := by",
+      "have hrange_diff_lhs : u1.1 - u2.1 ∈ LinearMap.range P := by",
+      "have hcommon : u1.1 - u2.1 ∈ LinearMap.ker P ⊓ LinearMap.range P := by",
+      "have hbot : u1.1 - u2.1 ∈ (⊥ : Submodule ℝ V) := by",
+      "have hzero : u1.1 - u2.1 = 0 := by",
+      "have hu_eq : u1.1 = u2.1 := sub_eq_zero.mp hzero",
+      "have hw_eq : u1.2 = u2.2 := by",
+      "have hcancel : u2.1 + u1.2 = u2.1 + u2.2 := by",
+      "have hu0ker : P u0.1 = 0 := by",
+      "have hu0range : u0.2 ∈ LinearMap.range P := by",
+      "have hu0sum : v = u0.1 + u0.2 := by"
+    ],
+    "modelProvenance": {
+      "jsonParsing": {
+        "method": "deterministic_json_schema",
+        "recovered": false,
+        "edits": []
+      },
+      "provider": "deepseek",
+      "requestedModel": "deepseek-flash",
+      "model": "deepseek-flash",
+      "responseId": "62432b42-43bf-48c2-8044-46011dd95eca",
+      "systemFingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+      "usage": {
+        "prompt_tokens": 3816,
+        "completion_tokens": 10965,
+        "total_tokens": 14781,
+        "prompt_tokens_details": {
+          "cached_tokens": 640
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 9283
+        },
+        "prompt_cache_hit_tokens": 640,
+        "prompt_cache_miss_tokens": 3176
+      },
+      "thinking": "provider_default",
+      "promptSchemaEncoding": "compact_json_v1",
+      "structuredOutput": "json_mode_with_local_schema_validation",
+      "simulated": false
+    },
+    "steps": [
+      {
+        "index": 0,
+        "originalExcerpt": "第一步：证明核空间与像空间的交集仅含零向量。任取 z∈ker(P)∩Im(P)。由于 z∈Im(P)，存在 y∈V 使 z=P(y)。因此 P(z)=P(P(y))=P(y)=z，其中使用了题设 P∘P=P。但 z∈ker(P)，所以 P(z)=0，从而 z=0。又由于零向量显然同时属于核空间和像空间，所以 ker(P)∩Im(P)={0}。",
+        "leanEvidenceExcerpt": "have source_step_0 : LinearMap.ker P ⊓ LinearMap.range P = ⊥ := by\n    ext z\n    constructor\n    · intro hz\n      have hz' : z ∈ LinearMap.ker P ∧ z ∈ LinearMap.range P := by\n        simpa only [Submodule.mem_inf] using hz",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 的 source_step_0 对应原第一步，用子模块交 inf 等于 ⊥ 表示交集仅含零向量。代码从 z 属于交、由 range 取 y 使 P y = z，并用 hP 与 P z = 0 推出 z = 0；零向量属于核与像也由 simp/mem_range 直接检查。未发现额外的关键数学假设。"
+      },
+      {
+        "index": 1,
+        "originalExcerpt": "第二步：证明每个向量都能分解为核空间元素与像空间元素之和。任取 v∈V。令 u=v−P(v)，w=P(v)。由 P 的线性性及 P²=P，得到 P(u)=P(v)−P(P(v))=P(v)−P(v)=0，因此 u∈ker(P)。而 w=P(v)，故 w∈Im(P)。并且 u+w=(v−P(v))+P(v)=v。因此 V=ker(P)+Im(P)。",
+        "leanEvidenceExcerpt": "have source_step_1 : LinearMap.ker P ⊔ LinearMap.range P = ⊤ := by\n    ext v\n    constructor\n    · intro hv\n      simp\n    · intro hv\n      have hu : v - P v ∈ LinearMap.ker P := by\n        rw [LinearMap.mem_ker]\n        simp [map_sub, hP v]\n      have hw : P v ∈ LinearMap.range P := by\n        exact LinearMap.mem_range.mpr ⟨v, rfl⟩",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 的 source_step_1 使用与原第二步相同的构造 u = v - P v, w = P v。hu 由 map_sub 和 hP v 化简得到，hw 直接见证 P v 在像中；随后用 add_mem_sup 得到任意 v 在核与像的上确界中，对应 V = ker(P) + Im(P)。"
+      },
+      {
+        "index": 2,
+        "originalExcerpt": "第三步：证明这样的分解唯一。假定 v=u₁+w₁=u₂+w₂，其中 u₁,u₂∈ker(P)，w₁,w₂∈Im(P)。移项得 u₁−u₂=w₂−w₁。因为核空间与像空间都是线性子空间，所以共同的这个向量同时属于 ker(P) 与 Im(P)。由第一步可知它等于零向量，于是 u₁=u₂；再由 v=u₁+w₁=u₂+w₂，得到 w₁=w₂。故分解唯一。",
+        "leanEvidenceExcerpt": "have hdiff : u1.1 - u2.1 = u2.2 - u1.2 := by\n      calc\n        u1.1 - u2.1 = (u1.1 + u1.2) - (u2.1 + u1.2) := by abel\n        _ = (u2.1 + u2.2) - (u2.1 + u1.2) := by rw [hv_eq]\n        _ = u2.2 - u1.2 := by abel\n    have hker_diff : u1.1 - u2.1 ∈ LinearMap.ker P := by\n      rw [LinearMap.mem_ker]\n      simp [map_sub, hker1, hker2]\n    have hrange_diff_rhs : u2.2 - u1.2 ∈ LinearMap.range P := by\n      rcases (LinearMap.mem_range.mp hrange2) with ⟨y2, hy2⟩\n      rcases (LinearMap.mem_range.mp hrange1) with ⟨y1, hy1⟩\n      refine LinearMap.mem_range.mpr ⟨y2 - y1, ?_⟩\n      simp [map_sub, hy2, hy1]\n    have hrange_diff_lhs : u1.1 - u2.1 ∈ LinearMap.range P := by\n      rw [hdiff]\n      exact hrange_diff_rhs\n    have hcommon : u1.1 - u2.1 ∈ LinearMap.ker P ⊓ LinearMap.range P := by\n      rw [Submodule.mem_inf]\n      exact ⟨hker_diff, hrange_diff_lhs⟩\n    have hbot : u1.1 - u2.1 ∈ (⊥ : Submodule ℝ V) := by\n      simpa [source_step_0] using hcommon",
+        "assessment": "matches_authored_reason",
+        "explanation": "Lean 的 source_step_2 明确复现移项 u1.1 - u2.1 = u2.2 - u1.2；用核的线性性和像的线性性证明该差同时属于 ker P 与 range P，再调用 source_step_0 得到它属于 ⊥，即等于零。随后由 sub_eq_zero 得 u1.1 = u2.1，并由加法消去得第二分量相等。这与原第三步的推理对应。"
+      },
+      {
+        "index": 3,
+        "originalExcerpt": "综上，存在性及唯一性均得到证明，所以 V=ker(P)⊕Im(P)。证毕。",
+        "leanEvidenceExcerpt": "have source_step_3 : ((LinearMap.ker P ⊔ LinearMap.range P = ⊤) ∧\n      (LinearMap.ker P ⊓ LinearMap.range P = ⊥) ∧\n      (∀ v : V, ∃! u : V × V, P (u.1) = 0 ∧ u.2 ∈ LinearMap.range P ∧ v = u.1 + u.2)) := by",
+        "assessment": "matches_authored_reason",
+        "explanation": "source_step_3 把前面得到的核与像之和为全空间、交为零、以及唯一分解三项合并，正好对应原证明最后的 V = ker(P) ⊕ Im(P) 结论。这里的 Lean 表述使用子模块 sup、inf 和存在唯一对来表示直和及唯一分解，语义一致。"
+      }
+    ],
+    "modelSummary": "逐项比较后，Lean 代码基本逐条复现了作者原证明：交集为零、显式分解、唯一性以及最终直和结论均有对应代码，未发现明显引入作者未写的关键数学定理或替换证明。该结论仅为未找到具体疑点，不等同于对原证明的独立完全认证。"
+  },
+  "version": "3.4.1",
+  "source": {
+    "kind": "text",
+    "raw": "【独立泛化测试｜大学线性代数·幂等算子，不是高考或竞赛原题】\n\n题目：设 V 是任意实向量空间，P:V→V 是线性映射，且 P∘P=P，也就是对所有 v∈V 有 P(P(v))=P(v)。证明 V=ker(P)⊕Im(P)。具体而言，任意 v∈V 存在唯一的一对向量 (u,w)，满足 P(u)=0、w 属于 P 的像空间，并且 v=u+w。\n\n【原证明，不提供 Lean 代码】\n\n第一步：证明核空间与像空间的交集仅含零向量。任取 z∈ker(P)∩Im(P)。由于 z∈Im(P)，存在 y∈V 使 z=P(y)。因此 P(z)=P(P(y))=P(y)=z，其中使用了题设 P∘P=P。但 z∈ker(P)，所以 P(z)=0，从而 z=0。又由于零向量显然同时属于核空间和像空间，所以 ker(P)∩Im(P)={0}。\n\n第二步：证明每个向量都能分解为核空间元素与像空间元素之和。任取 v∈V。令 u=v−P(v)，w=P(v)。由 P 的线性性及 P²=P，得到 P(u)=P(v)−P(P(v))=P(v)−P(v)=0，因此 u∈ker(P)。而 w=P(v)，故 w∈Im(P)。并且 u+w=(v−P(v))+P(v)=v。因此 V=ker(P)+Im(P)。\n\n第三步：证明这样的分解唯一。假定 v=u₁+w₁=u₂+w₂，其中 u₁,u₂∈ker(P)，w₁,w₂∈Im(P)。移项得 u₁−u₂=w₂−w₁。因为核空间与像空间都是线性子空间，所以共同的这个向量同时属于 ker(P) 与 Im(P)。由第一步可知它等于零向量，于是 u₁=u₂；再由 v=u₁+w₁=u₂+w₂，得到 w₁=w₂。故分解唯一。\n\n综上，存在性及唯一性均得到证明，所以 V=ker(P)⊕Im(P)。证毕。",
+    "normalized": "【独立泛化测试｜大学线性代数·幂等算子，不是高考或竞赛原题】\n\n题目：设 V 是任意实向量空间，P:V→V 是线性映射，且 P∘P=P，也就是对所有 v∈V 有 P(P(v))=P(v)。证明 V=ker(P)⊕Im(P)。具体而言，任意 v∈V 存在唯一的一对向量 (u,w)，满足 P(u)=0、w 属于 P 的像空间，并且 v=u+w。\n\n【原证明，不提供 Lean 代码】\n\n第一步：证明核空间与像空间的交集仅含零向量。任取 z∈ker(P)∩Im(P)。由于 z∈Im(P)，存在 y∈V 使 z=P(y)。因此 P(z)=P(P(y))=P(y)=z，其中使用了题设 P∘P=P。但 z∈ker(P)，所以 P(z)=0，从而 z=0。又由于零向量显然同时属于核空间和像空间，所以 ker(P)∩Im(P)={0}。\n\n第二步：证明每个向量都能分解为核空间元素与像空间元素之和。任取 v∈V。令 u=v−P(v)，w=P(v)。由 P 的线性性及 P²=P，得到 P(u)=P(v)−P(P(v))=P(v)−P(v)=0，因此 u∈ker(P)。而 w=P(v)，故 w∈Im(P)。并且 u+w=(v−P(v))+P(v)=v。因此 V=ker(P)+Im(P)。\n\n第三步：证明这样的分解唯一。假定 v=u₁+w₁=u₂+w₂，其中 u₁,u₂∈ker(P)，w₁,w₂∈Im(P)。移项得 u₁−u₂=w₂−w₁。因为核空间与像空间都是线性子空间，所以共同的这个向量同时属于 ker(P) 与 Im(P)。由第一步可知它等于零向量，于是 u₁=u₂；再由 v=u₁+w₁=u₂+w₂，得到 w₁=w₂。故分解唯一。\n\n综上，存在性及唯一性均得到证明，所以 V=ker(P)⊕Im(P)。证毕。",
+    "recognitionId": null,
+    "transcriptionEvidence": null,
+    "blocks": [
+      {
+        "id": "b0",
+        "text": "【独立泛化测试｜大学线性代数·幂等算子，不是高考或竞赛原题】\n\n题目：设 V 是任意实向量空间，P:V→V 是线性映射，且 P∘P=P，也就是对所有 v∈V 有 P(P(v))=P(v)。证明 V=ker(P)⊕Im(P)。具体而言，任意 v∈V 存在唯一的一对向量 (u,w)，满足 P(u)=0、w 属于 P 的像空间，并且 v=u+w。\n\n【原证明，不提供 Lean 代码】\n\n第一步：证明核空间与像空间的交集仅含零向量。任取 z∈ker(P)∩Im(P)。由于 z∈Im(P)，存在 y∈V 使 z=P(y)。因此 P(z)=P(P(y))=P(y)=z，其中使用了题设 P∘P=P。但 z∈ker(P)，所以 P(z)=0，从而 z=0。又由于零向量显然同时属于核空间和像空间，所以 ker(P)∩Im(P)={0}。\n\n第二步：证明每个向量都能分解为核空间元素与像空间元素之和。任取 v∈V。令 u=v−P(v)，w=P(v)。由 P 的线性性及 P²=P，得到 P(u)=P(v)−P(P(v))=P(v)−P(v)=0，因此 u∈ker(P)。而 w=P(v)，故 w∈Im(P)。并且 u+w=(v−P(v))+P(v)=v。因此 V=ker(P)+Im(P)。\n\n第三步：证明这样的分解唯一。假定 v=u₁+w₁=u₂+w₂，其中 u₁,u₂∈ker(P)，w₁,w₂∈Im(P)。移项得 u₁−u₂=w₂−w₁。因为核空间与像空间都是线性子空间，所以共同的这个向量同时属于 ker(P) 与 Im(P)。由第一步可知它等于零向量，于是 u₁=u₂；再由 v=u₁+w₁=u₂+w₂，得到 w₁=w₂。故分解唯一。\n\n综上，存在性及唯一性均得到证明，所以 V=ker(P)⊕Im(P)。证毕。",
+        "page": null,
+        "bbox": null,
+        "confidence": null,
+        "assetId": null,
+        "providerData": {}
+      }
+    ]
+  },
+  "inputKind": "text",
+  "authority": "single_locked_complete_formal_theorem_kernel_not_natural_language_fidelity"
+}

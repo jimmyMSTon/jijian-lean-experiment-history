@@ -1,0 +1,302 @@
+{
+  "date": "2026-10-24",
+  "officialAppCommit": "868349bf1fbec7ffae5e45c01d671f3552ba56d2",
+  "method": "three independent Chinese original proofs; three packaged signed app backend HTTP POST /api/v2/jobs; real DeepSeek+Lean4 Mathlib; no fixtures; not native GUI",
+  "fixedStatementManualReview": "All three final Lean statements faithfully express the original theorem claims and declared domains; this is human review, not automatic source inference certification",
+  "cases": [
+    {
+      "caseId": "proof_A_integer_divisibility",
+      "title": "整数整除与线性组合",
+      "originalChineseSource": "设 a,b,d∈ℤ，且 d∣a、d∣b。证明 d∣(2a−3b)。原证明：由 d∣a，存在 u∈ℤ，使 a=du；由 d∣b，存在 v∈ℤ，使 b=dv。于是 2a−3b=2du−3dv=d(2u−3v)。由于 2u−3v∈ℤ，根据整除的定义，d∣(2a−3b)。证毕。",
+      "sourceSha256": "d489db9ac5e7699473411c03ebceeec81d79ed331c247ffcb9d8c0b4b6780da3",
+      "runStatus": "formal_verified_source_unconfirmed",
+      "termination": "original_route_kernel_passed",
+      "jobId": "d2f17119-04c5-4528-8846-6976d84c2ddc",
+      "requestCount": 2,
+      "inputTokens": 16619,
+      "outputTokens": 22140,
+      "missingUsageRecords": 0,
+      "durationSeconds": 145.23,
+      "completeFormalKernelVerified": true,
+      "fullyAuthenticatedOriginalReasoning": false,
+      "kernelCertificate": {
+        "checked": true,
+        "statementMatched": true,
+        "auditMethod": "fresh_environment_data_only_kernel_replay",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ],
+        "additionalAxioms": [],
+        "statement_hash": "323751e0265225395d538b2c0e6a7fb212dfffaee0cdc86de5e0c213cb2490c8",
+        "expectedExpressionSha256": "9df64ccb8d05774d251262c3580f43d92a21625e9a58c388e45165038a176e87",
+        "proofExpressionSha256": "ca5fa699095ef9619b69e715cb9740f32a97c380db1963522ed71fa83253b356",
+        "nativeExpressionComparison": "structural_equal",
+        "auditIsolation": "fresh_import_environment_reset_between_candidates"
+      },
+      "stepCount": 5,
+      "stepsPassed": 5,
+      "sourceStepCertifications": 0,
+      "sourceFidelityRuleFailureSummary": [
+        [
+          "n_exists_u",
+          "unsupported_or_non_authored_predicate"
+        ],
+        [
+          "n_exists_v",
+          "unsupported_or_non_authored_predicate"
+        ],
+        [
+          "n_equality",
+          "no_source_matched_quantifier_inference"
+        ],
+        [
+          "n_aux_conclusion",
+          "author_quantifier_or_local_step_not_identified"
+        ],
+        [
+          "n_final",
+          "author_quantifier_or_local_step_not_identified"
+        ]
+      ],
+      "providerAudit": [
+        {
+          "request_id": "9418a488-ddbf-4c2c-8f0e-9251fe373743",
+          "stage": "mathir",
+          "reason": "StructureOnlyMathIRV2",
+          "model": "deepseek-flash",
+          "status": "response_received",
+          "input_tokens": 11804,
+          "output_tokens": 18690,
+          "retry_index": 0,
+          "cache_hit": null,
+          "real_request_attempted": true,
+          "started_at": null,
+          "finished_at": null
+        },
+        {
+          "request_id": "0ad0dac9-6add-4e0b-b47d-e71606466147",
+          "stage": "formalization",
+          "reason": "FormalProofs",
+          "model": "deepseek-flash",
+          "status": "response_received",
+          "input_tokens": 4815,
+          "output_tokens": 3450,
+          "retry_index": 0,
+          "cache_hit": null,
+          "real_request_attempted": true,
+          "started_at": null,
+          "finished_at": null
+        }
+      ],
+      "proofArtifactDirectory": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/live-three-new-proofs-868349b-20261024-1206/proof_A_integer_divisibility",
+      "archiveSha256": "64c96b2093b072a35425b86c8a8ffe1414582f728150ce341cfa9154ff66b4b5",
+      "finalLeanStatement": "(∀ (v_a : ℤ), (∀ (v_b : ℤ), (∀ (v_d : ℤ), ((v_d ∣ v_a) → ((v_d ∣ v_b) → (v_d ∣ (((2 : ℤ) * v_a) - ((3 : ℤ) * v_b))))))))"
+    },
+    {
+      "caseId": "proof_B_induction_odd_sum",
+      "title": "前 n+1 项奇数和的归纳证明",
+      "originalChineseSource": "证明：对每一个自然数 n∈ℕ，都有 ∑_{k=0}^{n}(2k+1)=(n+1)²。原证明：对 n 归纳。基础步 n=0 时，左边只有一项 1，右边 (0+1)²=1，成立。归纳步：假设 n=m 时 ∑_{k=0}^{m}(2k+1)=(m+1)²。则 n=m+1 时，∑_{k=0}^{m+1}(2k+1)=∑_{k=0}^{m}(2k+1)+(2(m+1)+1)=(m+1)²+2m+3=(m+2)²。因此命题对所有 n∈ℕ 成立。",
+      "sourceSha256": "d4e233088240bad70e86cdc094a34dd8f110681dd17828e1febf247b0807ce9c",
+      "runStatus": "formal_verified_source_unconfirmed",
+      "termination": "original_route_kernel_passed",
+      "jobId": "2ec59c77-b6a4-4ec3-94ea-af51661187f9",
+      "requestCount": 2,
+      "inputTokens": 16048,
+      "outputTokens": 37776,
+      "missingUsageRecords": 0,
+      "durationSeconds": 239.17,
+      "completeFormalKernelVerified": true,
+      "fullyAuthenticatedOriginalReasoning": false,
+      "kernelCertificate": {
+        "checked": true,
+        "statementMatched": true,
+        "auditMethod": "fresh_environment_data_only_kernel_replay",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "additionalAxioms": [],
+        "statement_hash": "31473ae0ef0903a439ed3469d9350d3f7619c961bbad51e69efcb76ca9d9d353",
+        "expectedExpressionSha256": "f5572c1f7f87776cd559d0a557d2242a8aea1679b9507b54aa0053a634785a01",
+        "proofExpressionSha256": "e934fbeb42c1316a8d93394408b43df11dbf6f278f4a718b1bb1cbdd192ef84f",
+        "nativeExpressionComparison": "structural_equal",
+        "auditIsolation": "fresh_import_environment_reset_between_candidates"
+      },
+      "stepCount": 7,
+      "stepsPassed": 7,
+      "sourceStepCertifications": 0,
+      "sourceFidelityRuleFailureSummary": [
+        [
+          "base_lhs",
+          "missing_kernel_or_supported_source"
+        ],
+        [
+          "base_rhs",
+          "arithmetic_domain_not_covered"
+        ],
+        [
+          "base_case",
+          "missing_kernel_or_supported_source"
+        ],
+        [
+          "sum_split",
+          "missing_kernel_or_supported_source"
+        ],
+        [
+          "ih_substitute",
+          "author_quantifier_or_local_step_not_identified"
+        ],
+        [
+          "algebra",
+          "arithmetic_domain_not_covered"
+        ],
+        [
+          "step_conclusion",
+          "missing_kernel_or_supported_source"
+        ],
+        [
+          "final_conclusion",
+          "ambiguous_source_step_identity"
+        ]
+      ],
+      "providerAudit": [
+        {
+          "request_id": "1c756f79-e684-41f2-b5d0-d52bbe57baf1",
+          "stage": "mathir",
+          "reason": "StructureOnlyMathIRV2",
+          "model": "deepseek-flash",
+          "status": "response_received",
+          "input_tokens": 11817,
+          "output_tokens": 21849,
+          "retry_index": 0,
+          "cache_hit": null,
+          "real_request_attempted": true,
+          "started_at": null,
+          "finished_at": null
+        },
+        {
+          "request_id": "b9a20e77-2ea3-4ede-a5d5-1d1976818f92",
+          "stage": "formalization",
+          "reason": "FormalProofs",
+          "model": "deepseek-flash",
+          "status": "response_received",
+          "input_tokens": 4231,
+          "output_tokens": 15927,
+          "retry_index": 0,
+          "cache_hit": null,
+          "real_request_attempted": true,
+          "started_at": null,
+          "finished_at": null
+        }
+      ],
+      "proofArtifactDirectory": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/live-three-new-proofs-868349b-20261024-1206/proof_B_induction_odd_sum",
+      "archiveSha256": "50877bd4e15f7d176aa639e598988088f9f0d4a67af76b7b33b14dd840250542",
+      "finalLeanStatement": "(∀ (v_n_goal : ℕ), ((∑ v_k_goal ∈ Finset.Icc (0 : ℕ) v_n_goal, (((2 : ℕ) * v_k_goal) + (1 : ℕ))) = ((v_n_goal + (1 : ℕ)) ^ (2 : ℕ))))"
+    },
+    {
+      "caseId": "proof_C_cauchy_schwarz_R2",
+      "title": "二维柯西–施瓦茨不等式",
+      "originalChineseSource": "设 a,b,c,d∈ℝ。证明 (ac+bd)²≤(a²+b²)(c²+d²)。原证明：展开并整理可得 (a²+b²)(c²+d²)−(ac+bd)²=a²d²+b²c²−2abcd=(ad−bc)²。由于任意实数的平方均非负，故 (ad−bc)²≥0。因此 (a²+b²)(c²+d²)−(ac+bd)²≥0，即 (ac+bd)²≤(a²+b²)(c²+d²)。证毕。",
+      "sourceSha256": "5fae618f34c7f1fb8668d74cbd55291a3710bc252e9e0792cdea605d17b58fb9",
+      "runStatus": "formal_verified_source_unconfirmed",
+      "termination": "original_route_kernel_passed",
+      "jobId": "2f6f5f2d-1f60-4d91-9fcc-dc03a1c13688",
+      "requestCount": 2,
+      "inputTokens": 16485,
+      "outputTokens": 19312,
+      "missingUsageRecords": 0,
+      "durationSeconds": 173.59,
+      "completeFormalKernelVerified": true,
+      "fullyAuthenticatedOriginalReasoning": false,
+      "kernelCertificate": {
+        "checked": true,
+        "statementMatched": true,
+        "auditMethod": "fresh_environment_data_only_kernel_replay",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "additionalAxioms": [],
+        "statement_hash": "c067984e1b5c2c818fa52c40906039b2bc431965664ad008843f498fbb9388fe",
+        "expectedExpressionSha256": "55f4de1a243ed9c7384a441e59e4f1ed7b4a73f042a87e63213b207b37e0b67f",
+        "proofExpressionSha256": "5971564da03b41910c452ed3e049cdb6ea242b8b3c79a98d745a58195897e35f",
+        "nativeExpressionComparison": "structural_equal",
+        "auditIsolation": "fresh_import_environment_reset_between_candidates"
+      },
+      "stepCount": 5,
+      "stepsPassed": 5,
+      "sourceStepCertifications": 0,
+      "sourceFidelityRuleFailureSummary": [
+        [
+          "n_expand_chain",
+          "unsupported_or_non_authored_predicate"
+        ],
+        [
+          "n_square_nonneg_general",
+          "unsupported_or_non_authored_predicate"
+        ],
+        [
+          "n_square_nonneg_specific",
+          "unsupported_or_non_authored_predicate"
+        ],
+        [
+          "n_nonneg_diff",
+          "unsupported_or_non_authored_predicate"
+        ],
+        [
+          "n_goal",
+          "unsupported_or_non_authored_predicate"
+        ]
+      ],
+      "providerAudit": [
+        {
+          "request_id": "acd59cb0-d6e0-4917-9bee-c3bd8bfb35da",
+          "stage": "mathir",
+          "reason": "StructureOnlyMathIRV2",
+          "model": "deepseek-flash",
+          "status": "response_received",
+          "input_tokens": 11766,
+          "output_tokens": 14964,
+          "retry_index": 0,
+          "cache_hit": null,
+          "real_request_attempted": true,
+          "started_at": null,
+          "finished_at": null
+        },
+        {
+          "request_id": "91dcf96b-1fee-45d2-9168-f3ffe8b88dec",
+          "stage": "formalization",
+          "reason": "FormalProofs",
+          "model": "deepseek-flash",
+          "status": "response_received",
+          "input_tokens": 4719,
+          "output_tokens": 4348,
+          "retry_index": 0,
+          "cache_hit": null,
+          "real_request_attempted": true,
+          "started_at": null,
+          "finished_at": null
+        }
+      ],
+      "proofArtifactDirectory": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/live-three-new-proofs-868349b-20261024-1206/proof_C_cauchy_schwarz_R2",
+      "archiveSha256": "662f1ac3b8c4392120b9526251d0be7e55857c6690fb70d56664c964a82897df",
+      "finalLeanStatement": "(∀ (v_d_a : ℝ), (∀ (v_d_b : ℝ), (∀ (v_d_c : ℝ), (∀ (v_d_d : ℝ), ((((v_d_a * v_d_c) + (v_d_b * v_d_d)) ^ (2 : ℕ)) ≤ (((v_d_a ^ (2 : ℕ)) + (v_d_b ^ (2 : ℕ))) * ((v_d_c ^ (2 : ℕ)) + (v_d_d ^ (2 : ℕ)))))))))"
+    }
+  ],
+  "totals": {
+    "realDeepSeekRequests": 6,
+    "inputTokens": 49152,
+    "outputTokens": 79228,
+    "totalTokens": 128380,
+    "fullyLeanCertifiedFormalProofs": 3,
+    "sourceReasoningAuthenticatedProofs": 0,
+    "kernelStepsPassed": 17,
+    "kernelStepsTotal": 17,
+    "sumTaskSeconds": 557.99
+  },
+  "rawReport": "/[LOCAL_USER]/Documents/ChatGPT/极简lean-review/live-three-new-proofs-868349b-20261024-1206/final_report.json",
+  "interpretation": "3/3 completed kernel formalizations of source-matched theorem statements, 0/3 independently source-authenticated original reasoning; no architecture choice follows from this single sample set."
+}

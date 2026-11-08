@@ -1,0 +1,236 @@
+{
+  "study": "Current C10/C12 proof-only and diagnostic-repair payload audit",
+  "baseline": "3804bae",
+  "providerCalls": 0,
+  "leanCalls": 0,
+  "cases": {
+    "C10": {
+      "sourceTextMatches": true,
+      "statementLockPreserved": true,
+      "statementHash": "e59d9afb006a43af8c97dbdd2aa9170466e59581754ca7ab355a70b184be6e2d",
+      "recordedGeneratedPatchCount": 6,
+      "recordedProofTermHashes": {
+        "nA1": "be825e346af61b7356ef370530b7b282c8511615e30ecf2a041426c3b9978d99",
+        "nA2": "dfa6ae3e8f8bde65bed3536cfb584f84c94f3ed66b3ff26b1483734dd80f2a5e",
+        "nA3": "84d73e5ac6c94836fd68d15b6acad7e4838d391d3c423440ce3f96a3dd81115d",
+        "nA4": "c2f1463ec557a6fb790c1b59b26e54ab4eeb62590ea086c03eeb9428cbbe9387",
+        "nB1": "574bb32326ec196af7e08bc6b2a8c1914db8a91f7d4e62075ab4511cdc7d100d",
+        "nB3": "365f3da2471856832ec942df390bbc9012af520a399716df3bf783ecbc96eed4"
+      },
+      "missingProofGenerationTargets": [
+        {
+          "nodeId": "nB2",
+          "kind": "claim",
+          "expectedType": "(let v_d_P : Polynomial ℝ := (((Polynomial.X ^ (2 : ℕ)) + ((Polynomial.C (2 : ℝ)) * Polynomial.X)) + (Polynomial.C (1 : ℝ))); (let v_d_Q : Polynomial ℝ := (v_d_P * (Polynomial.X - (Polynomial.C (1 : ℝ)))); (∀ (jjdep_nB1 : (v_d_P = ((Polynomial.X + (Polynomial.C (1 : ℝ))) ^ (2 : ℕ)))), (v_d_Q = ((((Polynomial.X + (Polynomial.C (1 : ℝ))) ^ (2 : ℕ)) * (Polynomial.X - (Polynomial.C (1 : ℝ)))) + (Polynomial.X - (Polynomial.C (2 : ℝ))))))))",
+          "sourceRefs": [
+            {
+              "blockId": "b_text",
+              "start": 231,
+              "end": 264
+            }
+          ]
+        }
+      ],
+      "diagnosticRepairTargets": [
+        {
+          "nodeId": "nA1",
+          "failureClass": "lean_proof_compile_failed",
+          "repairReason": "lean_diagnostics",
+          "dependencyAudit": {
+            "status": "not_required",
+            "evidence": "not_required",
+            "usage": [],
+            "declaredDependencyIds": [],
+            "unusedDependencyIds": [],
+            "unauditedDependencyIds": []
+          },
+          "diagnosticRefs": [
+            "1d528a90bc2be9079f0e8b73637b1e36a09e6c463f9f1bd347655e7435c27406"
+          ]
+        },
+        {
+          "nodeId": "nA2",
+          "failureClass": "lean_proof_compile_failed",
+          "repairReason": "lean_diagnostics_and_dependency_usage_not_audited",
+          "dependencyAudit": {
+            "status": "not_audited",
+            "evidence": "dependency_usage_not_audited",
+            "usage": [],
+            "declaredDependencyIds": [
+              "nA1"
+            ],
+            "unusedDependencyIds": [],
+            "unauditedDependencyIds": [
+              "nA1"
+            ]
+          },
+          "diagnosticRefs": [
+            "7fa7e620a21ec2552775cba4f3e467d82f5cb07edbb04d720d4b77b52b8044bc"
+          ]
+        },
+        {
+          "nodeId": "nA3",
+          "failureClass": "lean_proof_compile_failed",
+          "repairReason": "lean_diagnostics",
+          "dependencyAudit": {
+            "status": "not_required",
+            "evidence": "not_required",
+            "usage": [],
+            "declaredDependencyIds": [],
+            "unusedDependencyIds": [],
+            "unauditedDependencyIds": []
+          },
+          "diagnosticRefs": [
+            "94307ce10af525adaafcd9b7b48803712bfa353804f31d55bd763ad05c7b39ad"
+          ]
+        },
+        {
+          "nodeId": "nA4",
+          "failureClass": "lean_proof_compile_failed",
+          "repairReason": "lean_diagnostics_and_dependency_usage_not_audited",
+          "dependencyAudit": {
+            "status": "not_audited",
+            "evidence": "dependency_usage_not_audited",
+            "usage": [],
+            "declaredDependencyIds": [
+              "nA2",
+              "nA3"
+            ],
+            "unusedDependencyIds": [],
+            "unauditedDependencyIds": [
+              "nA2",
+              "nA3"
+            ]
+          },
+          "diagnosticRefs": [
+            "38ff7c3ca16dc387ff983eb01cc60857995f0c4afb10bb75d9f011b2e4c34338"
+          ]
+        },
+        {
+          "nodeId": "nB1",
+          "failureClass": "lean_proof_compile_failed",
+          "repairReason": "lean_diagnostics",
+          "dependencyAudit": {
+            "status": "not_required",
+            "evidence": "not_required",
+            "usage": [],
+            "declaredDependencyIds": [],
+            "unusedDependencyIds": [],
+            "unauditedDependencyIds": []
+          },
+          "diagnosticRefs": [
+            "05324df676eccdd1abf90381d7ce26e269d922dca9443ce6ab01f2dde0e6cc1e"
+          ]
+        },
+        {
+          "nodeId": "nB3",
+          "failureClass": "lean_proof_compile_failed",
+          "repairReason": "lean_diagnostics_and_dependency_usage_not_audited",
+          "dependencyAudit": {
+            "status": "not_audited",
+            "evidence": "dependency_usage_not_audited",
+            "usage": [],
+            "declaredDependencyIds": [
+              "nB2"
+            ],
+            "unusedDependencyIds": [],
+            "unauditedDependencyIds": [
+              "nB2"
+            ]
+          },
+          "diagnosticRefs": [
+            "ecd4fd31c15512d108bf2ca3c37e77f58403c003238983ac49ea662e63bef46b"
+          ]
+        }
+      ],
+      "interpretation": "Missing proofs enter proof generation; failed generated proof terms and unaudited dependency use enter diagnostics repair. This is local payload construction evidence only, not a new provider response."
+    },
+    "C12": {
+      "sourceTextMatches": true,
+      "statementLockPreserved": true,
+      "statementHash": "a9199a64e2896e007b2862b430cd9c218dda7f0cb752cbb7008c2e5d01cbff44",
+      "recordedGeneratedPatchCount": 3,
+      "recordedProofTermHashes": {
+        "n3": "bafe5c164781e8bc0a07d8270c9a0b5a1966c84ee13b65330e709bc533b52f3f",
+        "n4": "7cb990a40ff95fab34c8c68aafe1270181f3e5a4b6a26fb6e359c59966b0e27c",
+        "n5": "21c478c9eaa15c9c19b835e3fe3a0d8a7c012369dfad6b15b999a1f5cf295e3a"
+      },
+      "missingProofGenerationTargets": [
+        {
+          "nodeId": "n2",
+          "kind": "claim",
+          "expectedType": "(∀ (v_x : ℝ), (∀ (v_M : ℝ), (v_M = (v_x + (1 : ℝ)))))",
+          "sourceRefs": [
+            {
+              "blockId": "b_text",
+              "start": 78,
+              "end": 93
+            }
+          ]
+        },
+        {
+          "nodeId": "n6",
+          "kind": "claim",
+          "expectedType": "(∀ (jjdep_n5 : (∀ (v_x : ℝ), (∃ (v_M : ℝ), ((v_M = (v_x + (1 : ℝ))) ∧ (v_x < v_M))))), (∃ (v_M : ℝ), (∀ (v_x : ℝ), (v_x < v_M))))",
+          "sourceRefs": [
+            {
+              "blockId": "b_text",
+              "start": 135,
+              "end": 167
+            }
+          ]
+        }
+      ],
+      "diagnosticRepairTargets": [
+        {
+          "nodeId": "n3",
+          "failureClass": "lean_statement_compile_failed",
+          "repairReason": "lean_diagnostics",
+          "dependencyAudit": {
+            "status": "not_required",
+            "evidence": "not_required",
+            "usage": [],
+            "declaredDependencyIds": [],
+            "unusedDependencyIds": [],
+            "unauditedDependencyIds": []
+          },
+          "diagnosticRefs": [
+            "e347dda5ae5bc981893e8ee3f82e8e4b33b18c8762aff3ca12452cd04d71a6e1",
+            "1d0dabd2294f392802125a2359b6a903933d48bb493013b5a5e164b62ab8fe8a"
+          ]
+        },
+        {
+          "nodeId": "n5",
+          "failureClass": "lean_proof_compile_failed",
+          "repairReason": "lean_diagnostics_and_dependency_usage_not_audited",
+          "dependencyAudit": {
+            "status": "not_audited",
+            "evidence": "dependency_usage_not_audited",
+            "usage": [],
+            "declaredDependencyIds": [
+              "n2",
+              "n3",
+              "n4"
+            ],
+            "unusedDependencyIds": [],
+            "unauditedDependencyIds": [
+              "n2",
+              "n3",
+              "n4"
+            ]
+          },
+          "diagnosticRefs": [
+            "9d211913bfb58db9e91db1facf50a793c3a9d449eb661bded33216e436c553eb",
+            "74425aa9e8db218e311c1712dbb7a02f26579f7581e0a73b1a67cf60adfb24ce",
+            "c32bea034df97541c5157c0ad93c1c4c8249881aeaa87d141ec9324cdfc259da",
+            "b614be221790734e68a0b2c0c2534b8edfb98cfca0b53e9c48055d73059f08a5",
+            "d1384f269051a6f84664cc37f8225059594ec3929f1db349ebe0afe2d27e7e05",
+            "2e3bd86a8b0adbd1822c61abe7a06c06018108f07cd00d6a6d81515c7ec32684",
+            "86773a38266554cf334f167e36464208f749e115840d20b5bf3abfa791039bad"
+          ]
+        }
+      ],
+      "interpretation": "Missing proofs enter proof generation; failed generated proof terms and unaudited dependency use enter diagnostics repair. This is local payload construction evidence only, not a new provider response."
+    }
+  }
+}

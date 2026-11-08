@@ -1,0 +1,127 @@
+{
+  "baselineCommit": "a7b38fa",
+  "productionChanged": false,
+  "appRebuilt": false,
+  "experiment": "algebra full proof generation; same model/prompt/schema/MathIR/fixed statement/original proof steps; only candidate evidence serialization differed",
+  "validSourceEvidenceABCSampleCount": 0,
+  "reasonNoValidSourceEvidenceABCSample": "all three saved retrieval contexts had zero sourceMatches before prompt serialization; live A/B/C therefore did not test the sourceMatches-removal/compaction hypothesis",
+  "liveProviderAttempts": 5,
+  "responsesReceived": 4,
+  "failedOrInterruptedAttempts": 1,
+  "knownInputTokens": 23311,
+  "knownOutputTokens": 51295,
+  "knownHttpMs": 238724.586,
+  "unknownUsageAttempts": [
+    "840d9948-595a-4154-be12-bd15aad95f87"
+  ],
+  "duplicates": [
+    {
+      "input_hash": "324218ec566e7cd95f6a0a5c2d403d47709b9237d8f9bed0ef8e93f3ad73b757",
+      "request_ids": [
+        "a15aa4a0-3c4e-49f3-bdc8-a6a366e81480",
+        "8ef51528-84d8-47fc-a16b-9cd710b0d7f2"
+      ],
+      "note": "B was accidentally repeated after experiment restart; different outputs and usage."
+    },
+    {
+      "input_hash": "880f35f1603b298f4f3a7e9de4e9d9573e7b43b084cf114870271d4c3ca4737b",
+      "request_ids": [
+        "ad942f86-3e64-444e-89c7-389caca186a8",
+        "840d9948-595a-4154-be12-bd15aad95f87"
+      ],
+      "note": "C duplicate was canceled before response; usage unknown."
+    }
+  ],
+  "liveVariants": {
+    "A": {
+      "requestId": "619ee205-735a-4fce-ab8a-af5ccaf942c9",
+      "inputTokens": 5864,
+      "outputTokens": 18555,
+      "httpMs": 82867.796,
+      "leanAggregate": "not_proved"
+    },
+    "B_first": {
+      "requestId": "a15aa4a0-3c4e-49f3-bdc8-a6a366e81480",
+      "inputTokens": 5803,
+      "outputTokens": 5673,
+      "httpMs": 22115.626,
+      "lean": "all local proof obligations failed"
+    },
+    "C_first": {
+      "requestId": "ad942f86-3e64-444e-89c7-389caca186a8",
+      "inputTokens": 5841,
+      "outputTokens": 13826,
+      "httpMs": 50920.245,
+      "lean": "all proof steps passed",
+      "kernel": "verified",
+      "additionalAxioms": []
+    },
+    "B_duplicate": {
+      "requestId": "8ef51528-84d8-47fc-a16b-9cd710b0d7f2",
+      "inputTokens": 5803,
+      "outputTokens": 13241,
+      "httpMs": 54583.568,
+      "lean": "not run"
+    },
+    "C_duplicate_interrupted": {
+      "requestId": "840d9948-595a-4154-be12-bd15aad95f87",
+      "inputTokens": null,
+      "outputTokens": null,
+      "httpMs": 28237.351,
+      "lean": "not run"
+    }
+  },
+  "liveContextEvidenceCounts": {
+    "A_sourceMatches": 0,
+    "B_sourceMatches": 0,
+    "C_sourceMatches": 0,
+    "actualInputTokens": {
+      "A": 5864,
+      "B": 5803,
+      "C": 5841
+    }
+  },
+  "offlineReconstructedEvidenceBytes": {
+    "serialization": "JSON UTF-8, compact separators; saved exact names/#check rows plus local source search matches from same saved queries",
+    "samples": {
+      "algebra": {
+        "declarations": 4,
+        "sourceMatches": 74,
+        "A": 54482,
+        "B": 7809,
+        "C": 18774
+      },
+      "induction": {
+        "declarations": 4,
+        "sourceMatches": 81,
+        "A": 55937,
+        "B": 7541,
+        "C": 18070
+      },
+      "trigPolynomial": {
+        "declarations": 10,
+        "sourceMatches": 34,
+        "A": 36905,
+        "B": 19332,
+        "C": 20395
+      },
+      "historicalEquation": {
+        "declarations": 302,
+        "sourceMatches": 288,
+        "A": 396039,
+        "B": 190639,
+        "C": 241794,
+        "uniqueSourceFilesInC": 128
+      }
+    }
+  },
+  "historicalEquationBaseline": {
+    "requestId": "ea83b3f7-651b-4010-9202-c7bf98877d7c",
+    "inputTokens": 163160,
+    "outputTokens": 999,
+    "httpMs": 6809.326,
+    "kernelVerified": true,
+    "notStrictABC": true
+  },
+  "recommendation": "C is a research candidate only; keep all names/found/real signatures and full server retrieval, compact prompt provenance to deduplicated files plus declaration lines. Do not implement until a source-bearing live A/B/C sample is run."
+}
