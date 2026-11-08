@@ -1,47 +1,46 @@
-# 极简 Lean — 实验历史档案 / Experimental History
+# 极简 Lean · 历史实验与形式化验证研究档案
 
-本仓库记录极简 Lean 项目在数学证明形式化、Lean Kernel 核验、AI 自动修复与奥林匹克数学泛化测试中的实验历程。
+**Jijian Lean — Experimental History & Evidence Archive**
 
-**重要说明：** 本仓库是历史实验索引，不是项目成功率声明。一次实验的 Kernel 通过不等于原始数学题目或原始人类证明获得认证。必须区分局部引理、改写命题、整题形式化以及原稿忠实性。
+这是极简 Lean 研发过程的公开历史档案，记录 AI 数学形式化、Lean Kernel 验证、证明修复、语义忠实性、奥赛题泛化测试和工程回归。**成功、失败与未完成记录均予保留。**
 
-## 实验数据索引
+## 数据范围
 
-- `experiments.csv`：从本地实验目录的 `summary.json` 提取的逐案例结构化数据，保留原始实验目录引用。
-- 本次索引包含 **66** 条案例记录，来自本地现存的 `summary.json` 文件。
-- `kernel_verified` 字段原样保存；缺失值不按失败或成功推断。
-- **这些记录存在重复运行、不同版本、局部验证和不同难度样本，不得直接合并为总体通过率。**
+- 已索引 **66** 条结构化案例记录，来源于 **46** 份本地 `summary.json`。
+- Kernel 字段为 true：**15**；false：**46**；缺失：**5**。
+- 公开 **18** 份经初步敏感内容筛查的 Markdown 历史报告。
+- 另有 **4680** 项本地轻量级证据文件的名称与大小索引，原始文件不随之公开。
 
-## 历史里程碑（待与原始日志逐项交叉核查）
+**警告：这些不是独立题目样本，不得将 true/total 当作产品通过率。**
 
-| 日期 | 实验或版本 | 已有记录所反映的结果 | 解释边界 |
-| --- | --- | --- | --- |
-| 2026-10-07 | 三题真实基线 | 最终 Kernel 3/3；DeepSeek 12 次；305 项测试通过 | 包含 repair，不代表首次全部成功 |
-| 2026-10-08 | Mac App 真实端到端 smoke | kernelVerified=true，simulated=false；DeepSeek 6 次 | 单次 smoke |
-| 2026-10-09 | Repair 优化对照 | 请求 2→1；输入 tokens 324184→163160；HTTP 70.842s→6.809s | 特定对照案例，不代表普遍加速 |
-| 2026-10-10 | MathIR v2 Stage 2 | 335 passed、1 skipped、2 deselected；5 组真实 Lean/Kernel 案例 | 回归测试与数学案例分开统计 |
-| 2026-10-24 | V3.4 四题泛化 | 三个正确证明整篇 Kernel 通过；一个故意错误证明未通过 | 仅针对该批次 |
-| 2026-10-24 | 递推数列 | 16/16 步 Kernel 通过；3 次 DeepSeek；约 318 秒 | 单题 |
-| 2026-10-24 | 幂等线性算子 | 整篇 Kernel 通过；4 次 DeepSeek | 单题 |
-| 2026-10-30 | 长证明编译研究 | 1071 项通过、6 项失败、72 项跳过 | 回归结果不能等同于真实 AI 泛化 |
-| 2026-10-31 | 高联二试 / BMO2 三题 | 整题 0/3 | 必须保留失败 |
-| 2026-10-31 | BMO2 局部引理 | KernelVerified=true、statementMatched=true、additionalAxioms=[] | 局部引理通过不代表整题通过 |
-| 2026-11-03 | V3.5.6 竞赛基线回顾 | BMO1 Q5、2023/2025 高联 Q2 有 Kernel 通过记录；CMO Q4 失败 | 原稿尚未独立认证 |
+## 目录
 
-## 数据口径
+| 路径 | 内容 |
+|---|---|
+| [data/structured-results.csv](data/structured-results.csv) | 可分析的案例级数据 |
+| [data/structured-results.json](data/structured-results.json) | 原始字段类型保留的结构化数据 |
+| [data/report-manifest.json](data/report-manifest.json) | 报告来源相对路径和原文件 SHA-256 |
+| [data/local-evidence-inventory.csv](data/local-evidence-inventory.csv) | 本地证据目录清单（不含文件正文） |
+| [reports/](reports/) | 历史工程报告和实验报告 |
+| [methodology/INTERPRETATION.md](methodology/INTERPRETATION.md) | 统计与验证结果的解释边界 |
+| [DATA_DICTIONARY.md](DATA_DICTIONARY.md) | 初版数据字典 |
 
-- **Kernel verified**：特定 Lean 形式命题及证明经 Kernel 核验。
-- **Original proof certified**：原始人类证明是否获得对应流程认证，独立于 Kernel 字段。
-- **Source fidelity**：自然语言命题/证明与形式化表达之间的语义对应关系，不由 Kernel 自动保证。
-- **Regression tests**：软件测试用例数量，不是数学证明题通过数量。
-- **AI requests/tokens**：仅在可追溯记录明确给出时使用，不能据此估算缺失数据。
-- **失败与未完成**：保留，不因后续局部证明成功而改写。
+## 历史阶段
 
-## 数据来源与公开边界
+1. **早期数学证明验证**：自然语言证明、Lean 生成、编译和修复链路。
+2. **MathIR 与证明义务**：结构化表达、源证明步骤追踪、数学语义忠实性问题。
+3. **Mac 原生应用与端到端链路**：真实 AI 请求、Lean Kernel、软件回归。
+4. **竞赛数学泛化**：数论、代数、数列、几何、BMO、CMO、高联二试。
+5. **长证明与复杂题攻坚**：多轮修复、模块化证明、局部引理与整题验证的区别。
 
-数据提取自项目维护者 Mac 上的 `~/Documents/ChatGPT/极简lean-review/` 中现存的结构化实验摘要。该目录包含更多原始日志、代码、输入和调试记录，**本仓库暂未直接公开完整原始文件**，以避免未经检查地泄露 API 密钥、用户路径或其他敏感内容。
+## 重要的研究结论
 
-本仓库是历史档案，不包含可直接运行的完整极简 Lean 应用源码，也不代表所有历史实验已被完整收录。
+Lean Kernel 能够验证特定形式化命题的证明，但不能单独证明自然语言原题与形式化命题语义一致。早期成功样本与后续复杂题目失败记录应并列展示，不能用局部 Kernel 成功代替整题通过。
 
-## 许可与引用
+## 隐私与可复核性
 
-实验事实和统计索引供研究核查；源代码、数学题目文本及第三方材料的许可应分别核对，不在此擅自授予统一开源许可证。
+历史实验日志包含大量中间产物、模型请求、环境路径和可能的敏感信息。本仓库只公开经过初步筛查的报告与结构化摘要；原始文件通过 SHA-256 和相对路径建立追溯关系。未公开的原始日志不应被描述为已提供完整公开复现。
+
+## License
+
+暂不授予统一代码许可证。第三方数学题、代码和依赖许可须分别确认。公开可读不等于允许无限制再分发。
